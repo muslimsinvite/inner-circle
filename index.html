@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muslims Invite — Inner Circle Interactive Vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src="catalog.js"></script>
+  <style>
+    :root {
+      --bg: #faf9f5;
+      --surface: #ffffff;
+      --surface-soft: #f1efe8;
+      --ink: #17181a;
+      --muted: #56585c;
+      --border: #dedad0;
+      --gold: #f2b705;
+      --slate: #1f4e5f;
+      --slate-soft: #e9f1f4;
+      --green: #2b6e52;
+      --green-soft: #e6f2ec;
+      --red: #b42318;
+      --red-soft: #fdeceb;
+      --font-head: 'Source Serif 4', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- LOCK SCREEN ---------- */
+    #lock-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .lock-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--ink);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .pill {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.55rem;
+      border-radius: 2px;
+      margin-bottom: 0.9rem;
+    }
+    .lock-title {
+      font-family: var(--font-head);
+      font-size: 1.85rem;
+      line-height: 1.15;
+      margin: 0 0 0.5rem 0;
+    }
+    .lock-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.5rem 0;
+    }
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .input-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .pass-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.65rem 0.9rem;
+      font-size: 1rem;
+      font-family: var(--font-mono);
+      border: 1px solid #c8c4b8;
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .pass-input:focus {
+      outline: 2px solid var(--slate);
+      outline-offset: 1px;
+    }
+    .remember-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 44px;
+      padding: 0.6rem 1.1rem;
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+    .btn-primary {
+      width: 100%;
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--slate); }
+    .btn-primary:disabled { opacity: 0.6; cursor: wait; }
+    .btn-outline {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: #c8c4b8;
+    }
+    .btn-outline:hover { background: var(--surface-soft); }
+
+    .lock-error {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.75rem 0.9rem;
+      background: var(--red-soft);
+      border-left: 3px solid var(--red);
+      color: var(--red);
+      font-size: 0.875rem;
+      border-radius: 4px;
+    }
+    .lock-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .lock-footer a {
+      color: var(--slate);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .lock-footer a:hover { text-decoration: underline; }
+
+    /* ---------- VAULT HUB ---------- */
+    #vault-hub {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .hub-topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .hub-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .hub-mono {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .hub-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 1.4rem + 2.5vw, 3.1rem);
+      line-height: 1.1;
+      margin: 0 0 0.5rem 0;
+    }
+    .hub-lead {
+      color: var(--slate);
+      font-weight: 600;
+      font-size: 1.05rem;
+      max-width: 65ch;
+      margin: 0 0 1.75rem 0;
+    }
+
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tab-btn {
+      min-height: 42px;
+      padding: 0.45rem 0.95rem;
+      border-radius: 6px;
+      border: 1px solid #c8c4b8;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+    .search-box {
+      min-height: 42px;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      border: 1px solid #c8c4b8;
+      background: var(--surface);
+      font-size: 0.9375rem;
+      width: 260px;
+      max-width: 100%;
+    }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(310px, 100%), 1fr));
+      gap: 1.25rem;
+    }
+    .guide-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: border-color 140ms ease;
+    }
+    .guide-card:hover { border-color: var(--slate); }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .track-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .track-invite { background: var(--green-soft); color: var(--green); }
+    .track-refute { background: var(--slate-soft); color: var(--slate); }
+    .num-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .guide-title {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      line-height: 1.22;
+      margin: 0 0 0.45rem 0;
+    }
+    .guide-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.85rem;
+    }
+    .mini-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--surface-soft);
+      color: var(--muted);
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+    }
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    .status-dot {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ---------- FULLSCREEN GUIDE VIEWER ---------- */
+    #reader-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      flex-direction: column;
+    }
+    .reader-bar {
+      height: 54px;
+      background: var(--ink);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .reader-back {
+      background: transparent;
+      color: var(--bg);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 5px;
+      padding: 0.35rem 0.8rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .reader-back:hover { background: rgba(255,255,255,0.12); }
+    .reader-title {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #reader-frame {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: var(--bg);
+    }
+
+    @media (max-width: 640px) {
+      .search-box { width: 100%; }
+      .controls-bar { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PASSWORD LOCK SCREEN -->
+  <section id="lock-screen">
+    <div class="lock-card">
+      <span class="pill">Inner Circle Vault</span>
+      <h1 class="lock-title">Muslims Invite Interactive Library</h1>
+      <p class="lock-sub">
+        Enter the Inner Circle passcode from Discord to decrypt and launch all interactive Dawah playbooks, sparring simulators, and field guides.
+      </p>
+
+      <form id="unlock-form" onsubmit="handleUnlock(event)">
+        <div class="input-wrap">
+          <label class="input-label" for="vault-pass">Inner Circle Passcode</label>
+          <input id="vault-pass" class="pass-input" type="password" placeholder="Enter passcode..." autocomplete="current-password" required>
+        </div>
+
+        <label class="remember-row">
+          <input type="checkbox" id="remember-pass" checked>
+          <span>Keep vault unlocked on this device</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary" id="unlock-btn">Unlock Interactive Vault</button>
+      </form>
+
+      <div class="lock-error" id="lock-error"></div>
+
+      <div class="lock-footer">
+        Not a member yet? <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener">Unlock the Inner Circle here &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. MASTER VAULT HUB -->
+  <main id="vault-hub">
+    <div class="hub-topbar">
+      <div class="hub-brand">
+        <span class="pill" style="margin:0;">Inner Circle</span>
+        <span class="hub-mono" id="vault-count-meta">Interactive Dawah Headquarters</span>
+      </div>
+      <button type="button" class="btn btn-outline" style="min-height:36px; font-size:0.82rem;" onclick="lockVault()">Lock Vault</button>
+    </div>
+
+    <h1 class="hub-title">Interactive Defense &amp; Dawah Guides</h1>
+    <p class="hub-lead">
+      Practice live sparring simulations, build tailored responses, and verify primary sources across every reel from @muslims.invite and @muslims.refute. Your progress saves automatically on your device.
+    </p>
+
+    <div class="controls-bar">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab-btn active" id="tab-all" onclick="setTrackFilter('all')">All Guides</button>
+        <button type="button" class="tab-btn" id="tab-invite" onclick="setTrackFilter('invite')">🌱 Muslims Invite</button>
+        <button type="button" class="tab-btn" id="tab-refute" onclick="setTrackFilter('refute')">🛡️ Muslims Refute</button>
+      </div>
+      <input type="search" id="hub-search" class="search-box" placeholder="Search topic, verse, or trap..." oninput="renderGrid()">
+    </div>
+
+    <div class="guides-grid" id="guides-grid"></div>
+  </main>
+
+  <!-- 3. FULLSCREEN INTERACTIVE READER -->
+  <div id="reader-overlay" aria-hidden="true">
+    <div class="reader-bar">
+      <button type="button" class="reader-back" onclick="closeReader()">&larr; Back to Vault</button>
+      <span class="reader-title" id="reader-title">Loading guide...</span>
+      <span class="hub-mono" style="color:var(--gold); font-size:0.7rem;">ENCRYPTED SESSION</span>
+    </div>
+    <iframe id="reader-frame" allow="clipboard-write"></iframe>
+  </div>
+
+  <script>
+    const PASS_STORAGE_KEY = 'mi_inner_circle_pass_v1';
+    const MAGIC_HEADER = 'MUSLIMS_INVITE_VAULT_V1';
+    let activePassword = '';
+    let activeTrack = 'all';
+    const decryptedCache = {};
+
+    function getCatalog() {
+      return Array.isArray(window.VAULT_CATALOG) ? window.VAULT_CATALOG : [];
+    }
+
+    async function fetchAndDecryptGuide(guide, password) {
+      if (decryptedCache[guide.id]) return decryptedCache[guide.id];
+
+      const res = await fetch(guide.file + '?v=' + Date.now());
+      if (!res.ok) throw new Error('Could not find encrypted file: ' + guide.file);
+      const cipherText = (await res.text()).trim();
+
+      const bytes = CryptoJS.AES.decrypt(cipherText, password);
+      let plainText = '';
+      try {
+        plainText = bytes.toString(CryptoJS.enc.Utf8);
+      } catch (e) {
+        throw new Error('INVALID_PASSWORD');
+      }
+      if (!plainText) throw new Error('INVALID_PASSWORD');
+
+      let parsed;
+      try {
+        parsed = JSON.parse(plainText);
+      } catch (e) {
+        throw new Error('INVALID_PASSWORD');
+      }
+      if (!parsed || parsed.ok !== MAGIC_HEADER || typeof parsed.html !== 'string') {
+        throw new Error('INVALID_PASSWORD');
+      }
+
+      decryptedCache[guide.id] = parsed.html;
+      return parsed.html;
+    }
+
+    function buildBridgeShim(guideId) {
+      const safeId = JSON.stringify('mi_vault_state_' + guideId);
+      return '<script>' +
+        '(function(){' +
+        'var K=' + safeId + ';' +
+        'window.notebookAppApi={' +
+          'getAppState:function(){try{var r=localStorage.getItem(K);return Promise.resolve(r?JSON.parse(r):null);}catch(e){return Promise.resolve(null);}},' +
+          'setAppState:function(s){try{localStorage.setItem(K,JSON.stringify(s));}catch(e){}return Promise.resolve();},' +
+          'triggerFileDownload:function(o){try{var b=new Blob([o.content||""],{type:o.contentType||"text/plain;charset=utf-8"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download=o.filename||"guide.txt";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},500);}catch(e){}},' +
+          'notifyAppReady:function(){}' +
+        '};' +
+        '})();' +
+        '<\/script>';
+    }
+
+    function injectShimIntoHtml(html, guideId) {
+      const shim = buildBridgeShim(guideId);
+      if (html.indexOf('<head>') !== -1) {
+        return html.replace('<head>', '<head>' + shim);
+      }
+      return shim + html;
+    }
+
+    async function handleUnlock(e) {
+      e.preventDefault();
+      const input = document.getElementById('vault-pass');
+      const btn = document.getElementById('unlock-btn');
+      const errBox = document.getElementById('lock-error');
+      const remember = document.getElementById('remember-pass').checked;
+      const password = input.value.trim();
+
+      errBox.style.display = 'none';
+      if (!password) return;
+
+      const catalog = getCatalog();
+      if (catalog.length === 0) {
+        errBox.textContent = 'No guides found in catalog.js yet.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Decrypting Vault...';
+
+      try {
+        // Cryptographically verify password against the first encrypted guide
+        await fetchAndDecryptGuide(catalog[0], password);
+        activePassword = password;
+
+        if (remember) {
+          localStorage.setItem(PASS_STORAGE_KEY, password);
+        } else {
+          sessionStorage.setItem(PASS_STORAGE_KEY, password);
+          localStorage.removeItem(PASS_STORAGE_KEY);
+        }
+
+        openHub();
+      } catch (err) {
+        errBox.textContent = err.message === 'INVALID_PASSWORD'
+          ? 'Incorrect passcode. Please check #announcements in Discord for the current Inner Circle passcode.'
+          : 'Setup note: ' + err.message;
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Unlock Interactive Vault';
+      }
+    }
+
+    function openHub() {
+      document.getElementById('lock-screen').style.display = 'none';
+      document.getElementById('vault-hub').style.display = 'block';
+      const catalog = getCatalog();
+      document.getElementById('vault-count-meta').textContent = catalog.length + ' Interactive Guides Unlocked';
+      renderGrid();
+    }
+
+    function lockVault() {
+      activePassword = '';
+      localStorage.removeItem(PASS_STORAGE_KEY);
+      sessionStorage.removeItem(PASS_STORAGE_KEY);
+      for (const k in decryptedCache) delete decryptedCache[k];
+      document.getElementById('vault-pass').value = '';
+      document.getElementById('vault-hub').style.display = 'none';
+      document.getElementById('lock-screen').style.display = 'flex';
+    }
+
+    function setTrackFilter(track) {
+      activeTrack = track;
+      ['all', 'invite', 'refute'].forEach(function(t) {
+        const b = document.getElementById('tab-' + t);
+        if (b) b.classList.toggle('active', t === track);
+      });
+      renderGrid();
+    }
+
+    function hasSavedProgress(guideId) {
+      try {
+        return Boolean(localStorage.getItem('mi_vault_state_' + guideId));
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('guides-grid');
+      const query = (document.getElementById('hub-search').value || '').trim().toLowerCase();
+      const catalog = getCatalog();
+
+      const filtered = catalog.filter(function(g) {
+        if (activeTrack !== 'all' && g.track !== activeTrack) return false;
+        if (query) {
+          const hay = (g.title + ' ' + g.subtitle + ' ' + (g.tags || []).join(' ')).toLowerCase();
+          if (hay.indexOf(query) === -1) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="color:var(--muted);">No guides match that search yet.</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(function(g) {
+        const isInvite = g.track === 'invite';
+        const trackLabel = isInvite ? '🌱 Muslims Invite' : '🛡️ Muslims Refute';
+        const trackCls = isInvite ? 'track-invite' : 'track-refute';
+        const started = hasSavedProgress(g.id);
+        const tagsHtml = (g.tags || []).map(function(t) {
+          return '<span class="mini-tag">' + t + '</span>';
+        }).join('');
+
+        return (
+          '<article class="guide-card">' +
+            '<div>' +
+              '<div class="card-top">' +
+                '<span class="track-badge ' + trackCls + '">' + trackLabel + '</span>' +
+                '<span class="num-badge">GUIDE #' + g.number + '</span>' +
+              '</div>' +
+              '<h2 class="guide-title">' + g.title + '</h2>' +
+              '<p class="guide-desc">' + g.subtitle + '</p>' +
+              '<div class="tag-row">' + tagsHtml + '</div>' +
+            '</div>' +
+            '<div class="card-actions">' +
+              '<button type="button" class="btn btn-primary" style="width:auto; padding:0.5rem 1rem; font-size:0.875rem;" onclick="launchGuide(\'' + g.id + '\', this)">Launch Guide &rarr;</button>' +
+              (started ? '<span class="status-dot">● Progress Saved</span>' : (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem; color:var(--slate); font-weight:600; text-decoration:none;">Watch Reel ↗</a>' : '')) +
+            '</div>' +
+          '</article>'
+        );
+      }).join('');
+    }
+
+    async function launchGuide(guideId, btnEl) {
+      const guide = getCatalog().find(function(g) { return g.id === guideId; });
+      if (!guide) return;
+
+      const origText = btnEl ? btnEl.textContent : '';
+      if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'Decrypting...'; }
+
+      try {
+        const rawHtml = await fetchAndDecryptGuide(guide, activePassword);
+        const bridgedHtml = injectShimIntoHtml(rawHtml, guide.id);
+
+        document.getElementById('reader-title').textContent = '#' + guide.number + ' · ' + guide.title;
+        const frame = document.getElementById('reader-frame');
+        frame.srcdoc = bridgedHtml;
+
+        const overlay = document.getElementById('reader-overlay');
+        overlay.style.display = 'flex';
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      } catch (err) {
+        alert('Could not decrypt this guide. Please check that ' + guide.file + ' was encrypted with the current passcode.');
+      } finally {
+        if (btnEl) { btnEl.disabled = false; btnEl.textContent = origText; }
+      }
+    }
+
+    function closeReader() {
+      const overlay = document.getElementById('reader-overlay');
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+      document.getElementById('reader-frame').srcdoc = '';
+      document.body.style.overflow = '';
+      renderGrid(); // Refresh "Progress Saved" badges
+    }
+
+    // Auto-unlock if saved passcode still matches
+    window.addEventListener('DOMContentLoaded', async function() {
+      const savedPass = localStorage.getItem(PASS_STORAGE_KEY) || sessionStorage.getItem(PASS_STORAGE_KEY);
+      const catalog = getCatalog();
+      if (savedPass && catalog.length > 0) {
+        try {
+          await fetchAndDecryptGuide(catalog[0], savedPass);
+          activePassword = savedPass;
+          openHub();
+        } catch (e) {
+          // Passcode was rotated — show lock screen cleanly
+          localStorage.removeItem(PASS_STORAGE_KEY);
+          sessionStorage.removeItem(PASS_STORAGE_KEY);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
