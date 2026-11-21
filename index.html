@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muslims Invite — Interactive Dawah Notebook</title>
+  <meta name="description" content="Your interactive Dawah and faith-defense workspace, grounded in the Quran, authentic Sunnah, and historical evidence.">
+  <meta property="og:title" content="Muslims Invite — Interactive Dawah Notebook">
+  <meta property="og:description" content="Practice live dialogue simulators, 30-second pitch drills, and verified Quran, Hadith & historical pocket receipts.">
+  <meta property="og:url" content="https://muslimsinvite.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f1f1f'/%3E%3Cpath d='M9 22.5v-11A2.5 2.5 0 0 1 11.5 9H23v14H11.5a2.5 2.5 0 0 1 0-5H23' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M13 13h6M13 16h4' fill='none' stroke='%234dd0e1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -120,7 +127,7 @@
       display: inline-block;
     }
 
-    /* ---------- TOP NAV BAR (Both Views) ---------- */
+    /* ---------- TOP NAV BAR ---------- */
     .top-nav {
       height: 64px;
       max-width: 1320px;
@@ -216,7 +223,7 @@
       color: var(--ink);
     }
 
-    /* ---------- 1. LANDING / LOCK VIEW (notebook.google.com Hero) ---------- */
+    /* ---------- 1. LANDING / LOCK VIEW ---------- */
     #lock-screen {
       min-height: 100vh;
       display: flex;
@@ -280,11 +287,11 @@
     .unlock-capsule {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: var(--surface-variant);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-pill);
-      padding: 0.35rem 0.35rem 0.35rem 1.2rem;
+      padding: 0.35rem 0.35rem 0.35rem 1.15rem;
       transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
     }
     .unlock-capsule:focus-within {
@@ -304,6 +311,24 @@
       padding: 0.45rem 0;
     }
     .capsule-input::placeholder { color: var(--ink-muted); }
+    .eye-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--ink-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 140ms ease, color 140ms ease;
+    }
+    .eye-toggle-btn:hover {
+      background: var(--surface-hover);
+      color: var(--ink);
+    }
     .capsule-submit {
       height: 44px;
       padding: 0 1.35rem;
@@ -348,7 +373,7 @@
       font-size: 0.92rem;
     }
 
-    /* Feature Overview Section (Matching notebook.google.com) */
+    /* Feature Overview Section */
     .overview-section {
       width: 100%;
       margin-top: 5rem;
@@ -422,7 +447,7 @@
     }
     .landing-footer a:hover { color: var(--ink); text-decoration: underline; }
 
-    /* ---------- 2. LOGGED-IN DASHBOARD (Gemini Notebook Home) ---------- */
+    /* ---------- 2. LOGGED-IN DASHBOARD ---------- */
     #vault-hub {
       display: none;
       min-height: 100vh;
@@ -450,7 +475,7 @@
       max-width: 64ch;
     }
 
-    /* Signature Notebook Toolbar (Filter Chips + Search + Grid/List + Sort) */
+    /* Workspace Toolbar */
     .workspace-toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -581,7 +606,7 @@
       justify-content: space-between;
     }
 
-    /* ---------- NOTEBOOK GRID CARDS (Signature Rounded Tonal Look) ---------- */
+    /* ---------- NOTEBOOK GRID CARDS ---------- */
     .notebook-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
@@ -694,7 +719,20 @@
       color: var(--ink);
     }
 
-    /* ---------- NOTEBOOK LIST VIEW (Matching Gemini Notebook Table View) ---------- */
+    /* ---------- EMPTY / CROSS-TAB SEARCH BOX ---------- */
+    .empty-search-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* ---------- NOTEBOOK LIST VIEW ---------- */
     .notebook-list-wrap {
       width: 100%;
       overflow-x: auto;
@@ -788,7 +826,7 @@
       flex-shrink: 0;
     }
 
-    /* ---------- 3. FULLSCREEN INTERACTIVE READER ---------- */
+    /* ---------- 3. FULLSCREEN INTERACTIVE NOTEBOOK READER ---------- */
     #reader-overlay {
       display: none;
       position: fixed;
@@ -834,11 +872,18 @@
       border-radius: var(--radius-pill);
       flex-shrink: 0;
     }
-    #reader-frame {
+    #reader-mount {
       flex: 1;
       width: 100%;
+      display: flex;
+      background: #faf9f5;
+    }
+    #reader-mount iframe {
+      flex: 1;
+      width: 100%;
+      height: 100%;
       border: none;
-      background: #ffffff;
+      background: #faf9f5;
     }
 
     /* ---------- RESPONSIVE ---------- */
@@ -861,7 +906,7 @@
 </head>
 <body>
 
-  <!-- 1. LANDING & LOCK SCREEN (Styled like notebook.google.com) -->
+  <!-- 1. LANDING & LOCK SCREEN -->
   <section id="lock-screen">
     <header class="top-nav">
       <a href="#lock-screen" class="brand-link" onclick="return false;">
@@ -902,10 +947,14 @@
       </p>
 
       <!-- Capsule Passcode Unlock Form -->
-      <form id="unlock-form" class="unlock-capsule-wrap" onsubmit="handleUnlock(event)">
+      <form id="unlock-form" class="unlock-capsule-wrap" autocomplete="off" onsubmit="handleUnlock(event)">
         <div class="unlock-capsule">
           <svg class="icon" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
-          <input id="vault-pass" class="capsule-input" type="password" placeholder="Enter Inner Circle passcode..." autocomplete="current-password" required>
+          <input id="vault-pass" class="capsule-input" type="password" placeholder="Enter Inner Circle passcode..." autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
+          <button type="button" class="eye-toggle-btn" id="pass-eye-btn" onclick="togglePassVisibility()" aria-label="Show or hide passcode" title="Show passcode">
+            <svg class="icon-sm" id="eye-icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-sm" id="eye-icon-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+          </button>
           <button type="submit" class="pill-btn pill-primary capsule-submit" id="unlock-btn">
             <span>Unlock</span>
           </button>
@@ -979,7 +1028,7 @@
     </footer>
   </section>
 
-  <!-- 2. UNLOCKED DASHBOARD (Gemini Notebook Home Workspace) -->
+  <!-- 2. UNLOCKED DASHBOARD -->
   <div id="vault-hub">
     <header class="top-nav">
       <a href="#vault-hub" class="brand-link" onclick="return false;">
@@ -1019,7 +1068,7 @@
         </p>
       </div>
 
-      <!-- Gemini Notebook Filter, Search, View & Sort Toolbar -->
+      <!-- Toolbar -->
       <div class="workspace-toolbar">
         <div class="filter-chips" role="tablist" aria-label="Guide categories">
           <button type="button" class="m3-chip active" id="tab-invite" onclick="setTrackFilter('invite')">
@@ -1060,14 +1109,14 @@
 
       <div id="guides-stage"></div>
 
-      <!-- Official Buy Me a Coffee Support Section -->
+      <!-- Official Buy Me a Coffee Support Section (Native Vector Icon, Zero Emojis) -->
       <section class="hub-support-banner">
         <div class="hub-support-text">
           <h3>Support the Dawah Studio (Sadaqah Jariyah)</h3>
           <p>Every interactive playbook, historical breakdown, and animated reel is funded directly by this community. Contribute anytime to help us expand this library and reach more hearts.</p>
         </div>
         <div class="bmc-wrap">
-          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="Muslims.invite" data-color="#FFDD00" data-emoji="☕" data-font="Cookie" data-text="Support the Dawah efforts" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="Muslims.invite" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Support the Dawah efforts" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
         </div>
       </section>
     </main>
@@ -1085,7 +1134,7 @@
       </div>
       <span class="reader-status-pill hide-xs">Encrypted Session</span>
     </div>
-    <iframe id="reader-frame" allow="clipboard-write"></iframe>
+    <div id="reader-mount"></div>
   </div>
 
   <script>
@@ -1110,7 +1159,7 @@
     const SVG_EXT = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
     const SVG_ARROW = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
 
-    /* ---------- THEME SWITCHING ---------- */
+    /* ---------- THEME & PASSCODE VISIBILITY ---------- */
     function applyTheme(theme) {
       const t = theme === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
@@ -1126,6 +1175,22 @@
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
       applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    function togglePassVisibility() {
+      const input = document.getElementById('vault-pass');
+      const showIcon = document.getElementById('eye-icon-show');
+      const hideIcon = document.getElementById('eye-icon-hide');
+      if (input.type === 'password') {
+        input.type = 'text';
+        showIcon.style.display = 'none';
+        hideIcon.style.display = 'inline-block';
+      } else {
+        input.type = 'password';
+        showIcon.style.display = 'inline-block';
+        hideIcon.style.display = 'none';
+      }
+      input.focus();
     }
 
     /* ---------- DATA & CRYPTO ---------- */
@@ -1302,6 +1367,12 @@
       catch (e) { return false; }
     }
 
+    function matchesQuery(g, query) {
+      if (!query) return true;
+      const hay = (g.title + ' ' + g.subtitle + ' ' + (g.tags || []).join(' ')).toLowerCase();
+      return hay.indexOf(query) !== -1;
+    }
+
     function renderGuides() {
       const stage = document.getElementById('guides-stage');
       const query = (document.getElementById('hub-search').value || '').trim().toLowerCase();
@@ -1309,12 +1380,7 @@
       const catalog = getCatalog();
 
       let filtered = catalog.filter(function(g) {
-        if (g.track !== activeTrack) return false;
-        if (query) {
-          const hay = (g.title + ' ' + g.subtitle + ' ' + (g.tags || []).join(' ')).toLowerCase();
-          if (hay.indexOf(query) === -1) return false;
-        }
-        return true;
+        return g.track === activeTrack && matchesQuery(g, query);
       });
 
       filtered.sort(function(a, b) {
@@ -1324,7 +1390,24 @@
       });
 
       if (filtered.length === 0) {
-        stage.innerHTML = '<p style="color:var(--ink-muted); padding:2rem 0;">No notebooks match your search in this category.</p>';
+        const otherTrack = activeTrack === 'invite' ? 'refute' : 'invite';
+        const otherLabel = otherTrack === 'invite' ? 'Muslims Invite' : 'Muslims Refute';
+        const otherMatches = query
+          ? catalog.filter(function(g) { return g.track === otherTrack && matchesQuery(g, query); }).length
+          : 0;
+
+        if (otherMatches > 0) {
+          stage.innerHTML =
+            '<div class="empty-search-box">' +
+              '<div>' +
+                '<strong style="display:block; margin-bottom:0.2rem;">No matches in this category</strong>' +
+                '<span style="color:var(--ink-muted); font-size:0.9rem;">Found ' + otherMatches + ' matching notebook(s) inside <strong>' + otherLabel + '</strong>.</span>' +
+              '</div>' +
+              '<button type="button" class="pill-btn pill-primary" onclick="setTrackFilter(\'' + otherTrack + '\')"><span>View in ' + otherLabel + '</span>' + SVG_ARROW + '</button>' +
+            '</div>';
+        } else {
+          stage.innerHTML = '<p style="color:var(--ink-muted); padding:2rem 0;">No notebooks match your search.</p>';
+        }
         return;
       }
 
@@ -1395,7 +1478,7 @@
       stage.innerHTML = '<div class="notebook-grid">' + cards + '</div>';
     }
 
-    /* ---------- READER ---------- */
+    /* ---------- READER (Instant 1-Click Back Fix) ---------- */
     async function launchGuide(guideId, btnEl) {
       const guide = getCatalog().find(function(g) { return g.id === guideId; });
       if (!guide) return;
@@ -1408,18 +1491,20 @@
         const bridgedHtml = injectShimIntoHtml(rawHtml, guide.id);
 
         document.getElementById('reader-title').textContent = '#' + guide.number + ' · ' + guide.title;
-        const frame = document.getElementById('reader-frame');
+
+        // Create a fresh iframe every time so Chrome never accumulates stale srcdoc history entries
+        const mount = document.getElementById('reader-mount');
+        mount.innerHTML = '';
+        const frame = document.createElement('iframe');
+        frame.setAttribute('allow', 'clipboard-write');
         frame.srcdoc = bridgedHtml;
+        mount.appendChild(frame);
 
         const overlay = document.getElementById('reader-overlay');
         overlay.style.display = 'flex';
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-
-        if (!readerIsOpen) {
-          readerIsOpen = true;
-          history.pushState({ vaultReader: true }, '');
-        }
+        readerIsOpen = true;
       } catch (err) {
         alert('Could not decrypt this guide. Please check that ' + getGuideFile(guide) + ' was encrypted with the current passcode.');
       } finally {
@@ -1427,27 +1512,22 @@
       }
     }
 
-    function hideReaderUI() {
+    function closeReader() {
+      if (!readerIsOpen) return;
       const overlay = document.getElementById('reader-overlay');
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
-      const frame = document.getElementById('reader-frame');
-      frame.removeAttribute('srcdoc');
+      document.getElementById('reader-mount').innerHTML = '';
       document.body.style.overflow = '';
       readerIsOpen = false;
       renderGuides();
     }
 
-    function closeReader() {
-      if (readerIsOpen && history.state && history.state.vaultReader) {
-        history.back();
-      } else {
-        hideReaderUI();
+    // Escape key closes the reader smoothly on desktop
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && readerIsOpen) {
+        closeReader();
       }
-    }
-
-    window.addEventListener('popstate', function() {
-      if (readerIsOpen) hideReaderUI();
     });
 
     window.addEventListener('DOMContentLoaded', async function() {
