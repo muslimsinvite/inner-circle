@@ -224,32 +224,50 @@
     .tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
     .tab-btn {
-      min-height: 42px;
-      padding: 0.45rem 0.95rem;
+      min-height: 44px;
+      padding: 0.5rem 1.1rem;
       border-radius: 6px;
       border: 1px solid #c8c4b8;
       background: var(--surface);
       color: var(--ink);
       font-weight: 600;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+    .tab-btn:hover:not(.active) {
+      background: var(--surface-soft);
     }
     .tab-btn.active {
       background: var(--ink);
       color: var(--bg);
       border-color: var(--ink);
     }
+    .tab-count {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 0.1rem 0.42rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--gold);
+    }
     .search-box {
-      min-height: 42px;
+      min-height: 44px;
       padding: 0.45rem 0.85rem;
       border-radius: 6px;
       border: 1px solid #c8c4b8;
       background: var(--surface);
       font-size: 0.9375rem;
-      width: 260px;
+      width: 280px;
       max-width: 100%;
     }
 
@@ -318,15 +336,36 @@
       padding: 0.15rem 0.45rem;
       border-radius: 3px;
     }
+    .card-footer-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
     .card-actions {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.5rem;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border);
+      gap: 0.6rem;
+      flex-wrap: wrap;
     }
-    .status-dot {
+    .reel-link {
+      font-size: 0.82rem;
+      color: var(--slate);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.3rem 0.45rem;
+      border-radius: 4px;
+    }
+    .reel-link:hover {
+      background: var(--slate-soft);
+      text-decoration: underline;
+    }
+    .progress-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--green);
@@ -382,6 +421,8 @@
     @media (max-width: 640px) {
       .search-box { width: 100%; }
       .controls-bar { flex-direction: column; align-items: stretch; }
+      .tabs { display: grid; grid-template-columns: 1fr 1fr; }
+      .tab-btn { justify-content: center; }
     }
   </style>
 </head>
@@ -435,9 +476,14 @@
 
     <div class="controls-bar">
       <div class="tabs" role="tablist">
-        <button type="button" class="tab-btn active" id="tab-all" onclick="setTrackFilter('all')">All Guides</button>
-        <button type="button" class="tab-btn" id="tab-invite" onclick="setTrackFilter('invite')">🌱 Muslims Invite</button>
-        <button type="button" class="tab-btn" id="tab-refute" onclick="setTrackFilter('refute')">🛡️ Muslims Refute</button>
+        <button type="button" class="tab-btn active" id="tab-invite" onclick="setTrackFilter('invite')">
+          <span>🌱 Muslims Invite</span>
+          <span class="tab-count" id="count-invite">0</span>
+        </button>
+        <button type="button" class="tab-btn" id="tab-refute" onclick="setTrackFilter('refute')">
+          <span>🛡️ Muslims Refute</span>
+          <span class="tab-count" id="count-refute">0</span>
+        </button>
       </div>
       <input type="search" id="hub-search" class="search-box" placeholder="Search topic, verse, or trap..." oninput="renderGrid()">
     </div>
@@ -459,18 +505,24 @@
     const PASS_STORAGE_KEY = 'mi_inner_circle_pass_v1';
     const MAGIC_HEADER = 'MUSLIMS_INVITE_VAULT_V1';
     let activePassword = '';
-    let activeTrack = 'all';
+    let activeTrack = 'invite';
+    let readerIsOpen = false;
     const decryptedCache = {};
 
     function getCatalog() {
       return Array.isArray(window.VAULT_CATALOG) ? window.VAULT_CATALOG : [];
     }
 
+    function getGuideFile(guide) {
+      return guide.guideFile || guide.file || '';
+    }
+
     async function fetchAndDecryptGuide(guide, password) {
       if (decryptedCache[guide.id]) return decryptedCache[guide.id];
 
-      const res = await fetch(guide.file + '?v=' + Date.now());
-      if (!res.ok) throw new Error('Could not find encrypted file: ' + guide.file);
+      const filePath = getGuideFile(guide);
+      const res = await fetch(filePath + '?v=' + Date.now());
+      if (!res.ok) throw new Error('Could not find encrypted file: ' + filePath);
       const cipherText = (await res.text()).trim();
 
       const bytes = CryptoJS.AES.decrypt(cipherText, password);
@@ -496,6 +548,7 @@
       return parsed.html;
     }
 
+    // Injects both the localStorage/download bridge AND the in-page #hash smooth-scroll fix
     function buildBridgeShim(guideId) {
       const safeId = JSON.stringify('mi_vault_state_' + guideId);
       return '<script>' +
@@ -507,6 +560,20 @@
           'triggerFileDownload:function(o){try{var b=new Blob([o.content||""],{type:o.contentType||"text/plain;charset=utf-8"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download=o.filename||"guide.txt";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},500);}catch(e){}},' +
           'notifyAppReady:function(){}' +
         '};' +
+        'document.addEventListener("click",function(e){' +
+          'var el=e.target&&e.target.nodeType===1?e.target:(e.target?e.target.parentElement:null);' +
+          'if(!el||!el.closest)return;' +
+          'var link=el.closest("a[href^=\\"#\\"]");' +
+          'if(!link)return;' +
+          'var href=link.getAttribute("href");' +
+          'if(!href||href==="#")return;' +
+          'var targetId=href.slice(1);' +
+          'var target=document.getElementById(targetId)||document.querySelector("[name=\\""+targetId+"\\"]");' +
+          'if(target){' +
+            'e.preventDefault();' +
+            'target.scrollIntoView({behavior:"smooth",block:"start"});' +
+          '}' +
+        '},true);' +
         '})();' +
         '<\/script>';
     }
@@ -541,7 +608,6 @@
       btn.textContent = 'Decrypting Vault...';
 
       try {
-        // Cryptographically verify password against the first encrypted guide
         await fetchAndDecryptGuide(catalog[0], password);
         activePassword = password;
 
@@ -555,7 +621,7 @@
         openHub();
       } catch (err) {
         errBox.textContent = err.message === 'INVALID_PASSWORD'
-          ? 'Incorrect passcode. Please check #announcements in Discord for the current Inner Circle passcode.'
+          ? 'Incorrect passcode. Please check #interactive-web-vault in Discord for the current Inner Circle passcode.'
           : 'Setup note: ' + err.message;
         errBox.style.display = 'block';
       } finally {
@@ -567,8 +633,15 @@
     function openHub() {
       document.getElementById('lock-screen').style.display = 'none';
       document.getElementById('vault-hub').style.display = 'block';
+
       const catalog = getCatalog();
+      const inviteCount = catalog.filter(function(g) { return g.track === 'invite'; }).length;
+      const refuteCount = catalog.filter(function(g) { return g.track === 'refute'; }).length;
+
       document.getElementById('vault-count-meta').textContent = catalog.length + ' Interactive Guides Unlocked';
+      document.getElementById('count-invite').textContent = inviteCount;
+      document.getElementById('count-refute').textContent = refuteCount;
+
       renderGrid();
     }
 
@@ -584,7 +657,7 @@
 
     function setTrackFilter(track) {
       activeTrack = track;
-      ['all', 'invite', 'refute'].forEach(function(t) {
+      ['invite', 'refute'].forEach(function(t) {
         const b = document.getElementById('tab-' + t);
         if (b) b.classList.toggle('active', t === track);
       });
@@ -605,7 +678,7 @@
       const catalog = getCatalog();
 
       const filtered = catalog.filter(function(g) {
-        if (activeTrack !== 'all' && g.track !== activeTrack) return false;
+        if (g.track !== activeTrack) return false;
         if (query) {
           const hay = (g.title + ' ' + g.subtitle + ' ' + (g.tags || []).join(' ')).toLowerCase();
           if (hay.indexOf(query) === -1) return false;
@@ -614,7 +687,7 @@
       });
 
       if (filtered.length === 0) {
-        grid.innerHTML = '<p style="color:var(--muted);">No guides match that search yet.</p>';
+        grid.innerHTML = '<p style="color:var(--muted);">No guides match that search in this category.</p>';
         return;
       }
 
@@ -638,9 +711,12 @@
               '<p class="guide-desc">' + g.subtitle + '</p>' +
               '<div class="tag-row">' + tagsHtml + '</div>' +
             '</div>' +
-            '<div class="card-actions">' +
-              '<button type="button" class="btn btn-primary" style="width:auto; padding:0.5rem 1rem; font-size:0.875rem;" onclick="launchGuide(\'' + g.id + '\', this)">Launch Guide &rarr;</button>' +
-              (started ? '<span class="status-dot">● Progress Saved</span>' : (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" style="font-size:0.8rem; color:var(--slate); font-weight:600; text-decoration:none;">Watch Reel ↗</a>' : '')) +
+            '<div class="card-footer-wrap">' +
+              (started ? '<div class="progress-bar-row"><span>● Progress Saved on Device</span></div>' : '') +
+              '<div class="card-actions">' +
+                '<button type="button" class="btn btn-primary" style="width:auto; padding:0.5rem 1rem; font-size:0.875rem;" onclick="launchGuide(\'' + g.id + '\', this)">Launch Guide &rarr;</button>' +
+                (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" class="reel-link">Watch Reel ↗</a>' : '') +
+              '</div>' +
             '</div>' +
           '</article>'
         );
@@ -666,23 +742,43 @@
         overlay.style.display = 'flex';
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+
+        if (!readerIsOpen) {
+          readerIsOpen = true;
+          history.pushState({ vaultReader: true }, '');
+        }
       } catch (err) {
-        alert('Could not decrypt this guide. Please check that ' + guide.file + ' was encrypted with the current passcode.');
+        alert('Could not decrypt this guide. Please check that ' + getGuideFile(guide) + ' was encrypted with the current passcode.');
       } finally {
         if (btnEl) { btnEl.disabled = false; btnEl.textContent = origText; }
       }
     }
 
-    function closeReader() {
+    function hideReaderUI() {
       const overlay = document.getElementById('reader-overlay');
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
-      document.getElementById('reader-frame').srcdoc = '';
+      const frame = document.getElementById('reader-frame');
+      frame.removeAttribute('srcdoc');
       document.body.style.overflow = '';
-      renderGrid(); // Refresh "Progress Saved" badges
+      readerIsOpen = false;
+      renderGrid();
     }
 
-    // Auto-unlock if saved passcode still matches
+    function closeReader() {
+      if (readerIsOpen && history.state && history.state.vaultReader) {
+        history.back();
+      } else {
+        hideReaderUI();
+      }
+    }
+
+    window.addEventListener('popstate', function() {
+      if (readerIsOpen) {
+        hideReaderUI();
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', async function() {
       const savedPass = localStorage.getItem(PASS_STORAGE_KEY) || sessionStorage.getItem(PASS_STORAGE_KEY);
       const catalog = getCatalog();
@@ -692,7 +788,6 @@
           activePassword = savedPass;
           openHub();
         } catch (e) {
-          // Passcode was rotated — show lock screen cleanly
           localStorage.removeItem(PASS_STORAGE_KEY);
           sessionStorage.removeItem(PASS_STORAGE_KEY);
         }
