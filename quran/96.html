@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-‘Alaq (Chapter 96) — Interactive Study & Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border-soft: #c98a6b;
+      --tertiary-border-soft: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --brass-mid: #b5893e;
+      --brass-edge: #d8c3b0;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Semantic tokens */
+      --positive: #1d6356;
+      --positive-container: #e1efe9;
+      --warning: #8f6524;
+      --warning-container: #f5ebd8;
+      --error-container: #fae8e8;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-edge), var(--brass-mid), var(--brass-edge));
+
+      /* Narrative Type Scale (adjusted slightly upward for Cormorant's x-height) */
+      --display-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+      --label-size: 0.75rem;
+      --arabic-size: clamp(1.45rem, 1.2rem + 1vw, 2rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero & Editorial Typography */
+    .hero {
+      padding-top: var(--space-md);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-block: var(--space-xl);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Arched Movement Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+    .arch-card-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-card-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(1.85rem, 1.5rem + 1.2vw, 2.5rem);
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-card-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--on-surface);
+      line-height: 1.2;
+    }
+    .arch-card-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+    .arch-card.is-featured .arch-card-caption {
+      color: var(--on-primary-container);
+    }
+
+    /* Mastery Status Strip */
+    .mastery-strip {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .mastery-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .mastery-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mastery-stat-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mastery-stat-value {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mastery-bar-wrap {
+      flex: 1 1 200px;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .mastery-bar-track {
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      border: var(--warm-hairline);
+    }
+    .mastery-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .mastery-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+      border-radius: var(--rounded-full);
+      padding: 0.625rem 1.25rem;
+      min-height: 44px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--secondary-btn-border);
+      border-radius: var(--rounded-full);
+      padding: 0.55rem 1.15rem;
+      min-height: 44px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-secondary[aria-pressed="true"],
+    .btn-secondary.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-secondary.is-armed {
+      background: var(--error-container);
+      color: var(--error);
+      border-color: var(--error);
+    }
+
+    /* Section Headings */
+    .section-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      border-bottom: var(--warm-hairline);
+      padding-bottom: var(--space-md);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-intro {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    /* Section 1: Structural Arc Diagram + Side Context */
+    .structure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .svg-diagram-box {
+      width: 100%;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .svg-diagram-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .arc-node-btn {
+      cursor: pointer;
+    }
+    .arc-node-btn:focus-visible rect,
+    .arc-node-btn:focus-visible circle {
+      stroke: var(--primary);
+      stroke-width: 2.5;
+    }
+
+    .movement-inspector {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .inspector-arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.5rem;
+      line-height: 1.85;
+      color: var(--on-surface);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      text-align: right;
+      direction: rtl;
+    }
+
+    .movement-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    /* Section 2: Verse-by-Verse Study Controls & Cards */
+    .study-toolbar {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .verses-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: border-color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-pivot {
+      border-left: 4px solid var(--primary);
+      background: var(--primary-container);
+    }
+    .verse-card.is-studied {
+      border-color: var(--tertiary-border-soft);
+    }
+
+    .verse-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .verse-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-num {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-variant-numeric: lining-nums;
+    }
+
+    .verse-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .verse-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 2;
+      color: var(--on-surface);
+      text-align: right;
+      direction: rtl;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .verse-arabic.is-masked,
+    .verse-english.is-masked {
+      filter: blur(6px);
+      user-select: none;
+      opacity: 0.45;
+      cursor: pointer;
+    }
+
+    .verse-note-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .term-chip {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      min-height: 36px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .term-chip:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+
+    /* Section 3: Root-Term Explorer & Polarity Table */
+    .lexicon-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .lexicon-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .lex-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      min-height: 54px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .lex-btn:hover {
+      background: var(--surface-container);
+    }
+    .lex-btn.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    .lex-btn-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .lex-btn-title {
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .lex-btn-sub {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .lex-btn-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      color: var(--primary);
+      direction: rtl;
+      letter-spacing: 0;
+    }
+
+    .lex-detail-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .lex-detail-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      padding-bottom: var(--space-md);
+    }
+
+    .lex-detail-arabic {
+      font-family: var(--font-arabic);
+      font-size: 2.35rem;
+      line-height: 1.6;
+      color: var(--primary);
+      direction: rtl;
+      letter-spacing: 0;
+    }
+
+    .lex-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Comparison Table */
+    .table-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      overflow-x: auto;
+      box-shadow: var(--soft-shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--warm-hairline);
+    }
+    tbody td {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .col-dimension {
+      font-weight: 700;
+      color: var(--on-surface);
+      width: 24%;
+    }
+    .col-istaghna {
+      color: var(--on-primary-container);
+    }
+    .col-sujud {
+      color: var(--on-tertiary-container);
+    }
+
+    /* Section 4: Mastery Check & Quiz */
+    .quiz-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .quiz-progress-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .quiz-question-title {
+      font-family: var(--font-headline);
+      font-size: clamp(1.35rem, 1.15rem + 0.65vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .quiz-arabic-prompt {
+      font-family: var(--font-arabic);
+      font-size: 1.65rem;
+      line-height: 1.9;
+      color: var(--on-surface);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      text-align: right;
+      direction: rtl;
+      letter-spacing: 0;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+
+    .quiz-option {
+      text-align: left;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 54px;
+      cursor: pointer;
+      color: var(--on-surface);
+      font-weight: 500;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .quiz-option.is-correct {
+      background: var(--positive-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .quiz-feedback {
+      background: var(--surface-container);
+      border-left: 4px solid var(--tertiary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+    .quiz-feedback.is-error {
+      border-left-color: var(--error);
+    }
+
+    .quiz-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+
+    .status-banner {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      min-height: 1.4em;
+    }
+
+    .footer-note {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 860px) {
+      .structure-layout,
+      .lexicon-layout,
+      .verse-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .verse-arabic {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .arch-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .quiz-panel,
+      .lex-detail-panel,
+      .panel-card {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="kicker-row">
+        <span class="kicker">Chapter 96 · Al-‘Alaq (The Clinging Substance) · 19 Verses</span>
+        <span class="badge-emerald" id="hero-status-badge">First-Time Study View</span>
+      </div>
+      <h1 class="title">Surah Al-‘Alaq: From Clinging Substance to <em>Drawing Near</em></h1>
+      <p class="lede">
+        An interactive study and mastery guide to the nineteen verses of Chapter 96—tracing the dawn of revelation (<em>Iqra’</em>), human origin from a clinging substance, teaching by the pen, the moral rupture of self-sufficiency (<em>istaghna</em>), the opposition to prayer, and the final command to prostrate and draw near.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Four Movements of Chapter 96 ◆</div>
+
+      <!-- 4 Arched Movement Cards -->
+      <div class="arch-grid" role="navigation" aria-label="Surah movements">
+        <button type="button" class="arch-card" onclick="jumpToMovement('m1')">
+          <span class="arch-card-label">Movement I</span>
+          <span class="arch-card-figure">96:1–5</span>
+          <span class="arch-card-title">Revelation &amp; the Pen</span>
+          <span class="arch-card-caption">Iqra’, ‘Alaq &amp; Al-Qalam</span>
+        </button>
+        <button type="button" class="arch-card" onclick="jumpToMovement('m2')">
+          <span class="arch-card-label">Movement II</span>
+          <span class="arch-card-figure">96:6–8</span>
+          <span class="arch-card-title">The Illusion of Sufficiency</span>
+          <span class="arch-card-caption">Kalla! Yatgha &amp; Istaghna</span>
+        </button>
+        <button type="button" class="arch-card" onclick="jumpToMovement('m3')">
+          <span class="arch-card-label">Movement III</span>
+          <span class="arch-card-figure">96:9–14</span>
+          <span class="arch-card-title">Opposition to Prayer</span>
+          <span class="arch-card-caption">Triple Ara’ayta &amp; Divine Sight</span>
+        </button>
+        <button type="button" class="arch-card is-featured" onclick="jumpToMovement('m4')">
+          <span class="arch-card-label">Movement IV</span>
+          <span class="arch-card-figure">96:15–19</span>
+          <span class="arch-card-title">Confrontation &amp; Nearness</span>
+          <span class="arch-card-caption">Nasiyah vs. Wasjud Waqtarib</span>
+        </button>
+      </div>
+
+      <!-- Persistent Mastery Progress Bar -->
+      <section class="mastery-strip" aria-label="Study mastery progress">
+        <div class="mastery-metrics">
+          <div class="mastery-stat">
+            <span class="mastery-stat-label">Verses Studied</span>
+            <span class="mastery-stat-value" id="stat-verses">0 / 19</span>
+          </div>
+          <div class="mastery-stat">
+            <span class="mastery-stat-label">Core Terms</span>
+            <span class="mastery-stat-value" id="stat-terms">0 / 8</span>
+          </div>
+          <div class="mastery-stat">
+            <span class="mastery-stat-label">Recall Check</span>
+            <span class="mastery-stat-value" id="stat-quiz">0 / 6</span>
+          </div>
+        </div>
+        <div class="mastery-bar-wrap">
+          <span class="mastery-stat-label" id="stat-percent-label">Overall Mastery: 0%</span>
+          <div class="mastery-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+            <div class="mastery-bar-fill" id="mastery-bar-fill"></div>
+          </div>
+        </div>
+        <div class="mastery-actions">
+          <button type="button" class="btn-secondary" onclick="exportStudySummary()">Export Study Notes</button>
+          <button type="button" class="btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset Progress</button>
+        </div>
+      </section>
+      <div class="status-banner" id="global-status-msg" aria-live="polite"></div>
+    </header>
+
+    <!-- Section 1: Structural Architecture -->
+    <section class="section-block" id="section-architecture">
+      <div class="section-header">
+        <span class="kicker">01 · Architectural Overview</span>
+        <h2 class="section-title">Three <em>Kalla</em> Pivots Divide Nineteen Verses into Four Moral Movements</h2>
+        <p class="section-intro">
+          Surah Al-‘Alaq moves from humble biological origin and divine generosity (vv. 1–5) into a sharp moral diagnosis anchored by three occurrences of the Arabic particle <em>Kalla</em> (“No!”) at verses 6, 15, and 19. Select any movement on the arc below to examine its structure.
+        </p>
+      </div>
+
+      <div class="structure-layout">
+        <div class="panel-card">
+          <div class="svg-diagram-box">
+            <span class="control-label">Interactive Structural Arc · Click a Movement Node</span>
+            <svg viewBox="0 0 640 270" role="img" aria-label="Structural arc of Surah Al-Alaq showing four movements and three Kalla pivots">
+              <!-- Baseline and subtle gridlines -->
+              <line x1="36" y1="210" x2="604" y2="210" stroke="var(--outline-variant)" stroke-width="1.5" />
+              <line x1="36" y1="130" x2="604" y2="130" stroke="var(--outline-variant)" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="36" y1="56" x2="604" y2="56" stroke="var(--outline-variant)" stroke-width="1" stroke-dasharray="4 4" />
+
+              <!-- Axis annotations -->
+              <text x="36" y="46" fill="var(--tertiary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">NEARNESS &amp; GIFT</text>
+              <text x="36" y="200" fill="var(--primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">DENIAL &amp; TRANSGRESSION</text>
+
+              <!-- Arc Path tracing the thematic movement -->
+              <path d="M 75 95 C 125 65, 160 65, 205 162 C 245 200, 305 190, 355 152 C 415 110, 455 182, 505 165 C 540 150, 565 88, 585 68"
+                    fill="none" stroke="var(--brass-mid)" stroke-width="2.5" stroke-linecap="round" />
+
+              <!-- Three Kalla Pivot Markers -->
+              <g aria-hidden="true">
+                <line x1="205" y1="54" x2="205" y2="215" stroke="var(--primary)" stroke-width="1.2" stroke-dasharray="3 3" />
+                <text x="205" y="42" text-anchor="middle" fill="var(--primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700">PIVOT 1 · v.6 KALLA</text>
+
+                <line x1="468" y1="54" x2="468" y2="215" stroke="var(--primary)" stroke-width="1.2" stroke-dasharray="3 3" />
+                <text x="468" y="42" text-anchor="middle" fill="var(--primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700">PIVOT 2 · v.15 KALLA</text>
+
+                <line x1="585" y1="54" x2="585" y2="215" stroke="var(--tertiary)" stroke-width="1.5" stroke-dasharray="3 3" />
+                <text x="560" y="232" text-anchor="middle" fill="var(--tertiary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700">PIVOT 3 · v.19 WASJUD WAQTARIB</text>
+              </g>
+
+              <!-- Movement Node 1: vv 1-5 -->
+              <g class="arc-node-btn" tabindex="0" role="button" aria-label="Inspect Movement 1: Verses 1 to 5" onclick="selectArcMovement('m1')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectArcMovement('m1');}">
+                <circle cx="96" cy="85" r="22" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2" />
+                <text x="96" y="83" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Cormorant Garamond, serif" font-size="15" font-weight="700">1–5</text>
+                <text x="96" y="98" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700">IQRA’</text>
+                <text x="96" y="126" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600">Creation &amp; Pen</text>
+              </g>
+
+              <!-- Movement Node 2: vv 6-8 -->
+              <g class="arc-node-btn" tabindex="0" role="button" aria-label="Inspect Movement 2: Verses 6 to 8" onclick="selectArcMovement('m2')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectArcMovement('m2');}">
+                <circle cx="242" cy="175" r="22" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2" />
+                <text x="242" y="173" text-anchor="middle" fill="var(--on-primary-container)" font-family="Cormorant Garamond, serif" font-size="15" font-weight="700">6–8</text>
+                <text x="242" y="188" text-anchor="middle" fill="var(--on-primary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700">ISTAGHNA</text>
+                <text x="242" y="232" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600">Self-Sufficiency</text>
+              </g>
+
+              <!-- Movement Node 3: vv 9-14 -->
+              <g class="arc-node-btn" tabindex="0" role="button" aria-label="Inspect Movement 3: Verses 9 to 14" onclick="selectArcMovement('m3')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectArcMovement('m3');}">
+                <circle cx="366" cy="148" r="22" fill="var(--surface-container-high)" stroke="var(--secondary)" stroke-width="2" />
+                <text x="366" y="146" text-anchor="middle" fill="var(--on-surface)" font-family="Cormorant Garamond, serif" font-size="15" font-weight="700">9–14</text>
+                <text x="366" y="161" text-anchor="middle" fill="var(--secondary)" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700">ARA’AYTA</text>
+                <text x="366" y="188" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600">Forbidding Prayer</text>
+              </g>
+
+              <!-- Movement Node 4: vv 15-19 -->
+              <g class="arc-node-btn" tabindex="0" role="button" aria-label="Inspect Movement 4: Verses 15 to 19" onclick="selectArcMovement('m4')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectArcMovement('m4');}">
+                <circle cx="548" cy="108" r="24" fill="var(--tertiary)" stroke="var(--on-tertiary-container)" stroke-width="2" />
+                <text x="548" y="106" text-anchor="middle" fill="var(--on-primary)" font-family="Cormorant Garamond, serif" font-size="15" font-weight="700">15–19</text>
+                <text x="548" y="121" text-anchor="middle" fill="var(--on-primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700">SUJUD</text>
+                <text x="548" y="152" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600">Forelock vs. Nearness</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <aside class="movement-inspector" aria-live="polite">
+          <div class="movement-pills">
+            <button type="button" class="btn-secondary is-active" id="arc-btn-m1" onclick="selectArcMovement('m1')">I. 1–5</button>
+            <button type="button" class="btn-secondary" id="arc-btn-m2" onclick="selectArcMovement('m2')">II. 6–8</button>
+            <button type="button" class="btn-secondary" id="arc-btn-m3" onclick="selectArcMovement('m3')">III. 9–14</button>
+            <button type="button" class="btn-secondary" id="arc-btn-m4" onclick="selectArcMovement('m4')">IV. 15–19</button>
+          </div>
+          <div>
+            <span class="kicker" id="inspector-range">Verses 96:1–5 · Dawn of Revelation</span>
+            <h3 class="section-title" style="font-size: 1.6rem; margin-top: 0.25rem;" id="inspector-heading">Creation from a Clinging Substance &amp; Teaching by the Pen</h3>
+          </div>
+          <div class="inspector-arabic" lang="ar" dir="rtl" id="inspector-arabic">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ ۝ خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ</div>
+          <p id="inspector-summary" style="margin: 0; color: var(--on-surface-variant);">
+            The opening command pairs recitation (<em>Iqra’</em>) directly with the Lord who creates humanity from a humble clinging substance (<em>‘alaq</em>) and generously elevates them through the pen (<em>al-qalam</em>) to know what they did not know.
+          </p>
+          <div>
+            <button type="button" class="btn-primary" id="inspector-jump-btn" onclick="jumpToMovement('m1')">Filter Reader to Verses 1–5</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Verse-by-Verse Study Reader -->
+    <section class="section-block" id="section-reader">
+      <div class="section-header">
+        <span class="kicker">02 · Complete Text &amp; Study Reader</span>
+        <h2 class="section-title">Read and Track All Nineteen Verses with <em>Study Annotations</em></h2>
+        <p class="section-intro">
+          Filter by movement, toggle Arabic or English visibility for active recall practice, click highlighted lexical chips to jump straight to their root analysis, and mark each verse studied as you master the chapter.
+        </p>
+      </div>
+
+      <div class="study-toolbar">
+        <div class="control-group">
+          <span class="control-label">Filter by Movement</span>
+          <div class="filter-row" role="group" aria-label="Filter verses by movement">
+            <button type="button" class="btn-secondary is-active" id="filter-all" onclick="setVerseFilter('all')">All (19)</button>
+            <button type="button" class="btn-secondary" id="filter-m1" onclick="setVerseFilter('m1')">I. Creation &amp; Pen (1–5)</button>
+            <button type="button" class="btn-secondary" id="filter-m2" onclick="setVerseFilter('m2')">II. Istaghna (6–8)</button>
+            <button type="button" class="btn-secondary" id="filter-m3" onclick="setVerseFilter('m3')">III. Prayer Opposition (9–14)</button>
+            <button type="button" class="btn-secondary" id="filter-m4" onclick="setVerseFilter('m4')">IV. Nearness (15–19)</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label">Memorization &amp; Study Modes</span>
+          <div class="filter-row">
+            <button type="button" class="btn-secondary" id="toggle-mask-en" aria-pressed="false" onclick="toggleMask('en')">Hide English</button>
+            <button type="button" class="btn-secondary" id="toggle-mask-ar" aria-pressed="false" onclick="toggleMask('ar')">Hide Arabic</button>
+            <button type="button" class="btn-secondary is-active" id="toggle-notes-btn" aria-pressed="true" onclick="toggleStudyNotes()">Study Notes On</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="verses-stack" id="verses-container" aria-live="polite"></div>
+    </section>
+
+    <!-- Section 3: Core Terms & Moral Polarity -->
+    <section class="section-block" id="section-lexicon">
+      <div class="section-header">
+        <span class="kicker">03 · Lexical Mastery &amp; Moral Polarity</span>
+        <h2 class="section-title">From <em>Istaghna</em> to <em>Wasjud Waqtarib</em>: Eight Defining Terms</h2>
+        <p class="section-intro">
+          The moral diagnosis of Surah Al-‘Alaq hinges on precise Arabic contrasts: biological dependence (<em>‘alaq</em>) versus imagined self-sufficiency (<em>istaghna</em>), and a lying forelock (<em>nasiyah</em>) versus the lowliest posture of worship (<em>wasjud</em>) that achieves the highest nearness (<em>waqtarib</em>).
+        </p>
+      </div>
+
+      <div class="lexicon-layout">
+        <div class="lexicon-list" id="lexicon-list" role="listbox" aria-label="Core Arabic terms of Surah Al-Alaq"></div>
+
+        <div class="lex-detail-panel" id="lex-detail-panel" aria-live="polite">
+          <div class="lex-detail-header">
+            <div>
+              <span class="kicker" id="lex-detail-verses">Verse 96:1 &amp; 96:3</span>
+              <h3 class="section-title" style="font-size: 2rem; margin-top: 0.25rem;" id="lex-detail-name">Iqra’ — “Recite”</h3>
+            </div>
+            <div class="lex-detail-arabic" lang="ar" dir="rtl" id="lex-detail-arabic">اقْرَأْ</div>
+          </div>
+
+          <div class="lex-meta-grid">
+            <div>
+              <span class="control-label">Transliteration</span>
+              <div style="font-weight: 600;" id="lex-detail-translit">Iqra’</div>
+            </div>
+            <div>
+              <span class="control-label">Contextual Meaning</span>
+              <div style="font-weight: 600;" id="lex-detail-meaning">Recite / Proclaim</div>
+            </div>
+            <div>
+              <span class="control-label">Movement Role</span>
+              <div style="font-weight: 600;" id="lex-detail-role">Opening Imperative</div>
+            </div>
+          </div>
+
+          <p id="lex-detail-explanation" style="margin: 0;"></p>
+
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-md); padding-top: var(--space-sm); border-top: var(--warm-hairline);">
+            <button type="button" class="btn-primary" id="lex-master-btn" onclick="toggleCurrentTermMastered()">Mark Term Mastered</button>
+            <button type="button" class="btn-secondary" id="lex-jump-verse-btn" onclick="jumpToSelectedTermVerse()">View in Verse Reader</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contrast Table -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Path of Self-Sufficiency (<em>Istaghna</em>, vv. 6–18)</th>
+              <th>Path of Servanthood &amp; Nearness (<em>‘Abd</em> &amp; <em>Sujud</em>, vv. 1–5, 10–12, 19)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-dimension">Origin &amp; Self-View</td>
+              <td class="col-istaghna">Sees himself self-sufficient (<em>ra’ahu istaghna</em>, v. 7), forgetting his origin from a clinging substance (<em>‘alaq</em>, v. 2).</td>
+              <td class="col-sujud">Acknowledges creation by the Lord (v. 1) and stands humbly as a servant when praying (<em>‘abdan idha salla</em>, v. 10).</td>
+            </tr>
+            <tr>
+              <td class="col-dimension">Attitude Toward Truth</td>
+              <td class="col-istaghna">Denies and turns away (<em>kadhdhaba wa tawalla</em>, v. 13), speaking from a lying, sinning forelock (v. 16).</td>
+              <td class="col-sujud">Recites in the Lord’s name (v. 1), learns what was unknown via the pen (vv. 4–5), and walks upon guidance (v. 11).</td>
+            </tr>
+            <tr>
+              <td class="col-dimension">Action Toward Others</td>
+              <td class="col-istaghna">Transgresses bounds (<em>yatgha</em>, v. 6) and actively forbids a servant from prayer (vv. 9–10).</td>
+              <td class="col-sujud">Prays consistently and enjoins righteousness / God-consciousness (<em>amara bi-t-taqwa</em>, v. 12).</td>
+            </tr>
+            <tr>
+              <td class="col-dimension">Awareness of Return</td>
+              <td class="col-istaghna">Forgets that to the Lord is the return (<em>ar-ruj‘a</em>, v. 8) and acts as if Allah does not see (v. 14).</td>
+              <td class="col-sujud">Refuses obedience to the tyrant (<em>la tuti‘hu</em>) and anchors life in Allah’s sight and ultimate return (vv. 8, 14, 19).</td>
+            </tr>
+            <tr>
+              <td class="col-dimension">Allies &amp; Outcome</td>
+              <td class="col-istaghna">Relies on earthly associates (<em>nadiyahu</em>, v. 17) while summoned to face the angels of Hell (<em>az-zabaniyah</em>, v. 18).</td>
+              <td class="col-sujud">Answered by the Most Generous Lord (<em>Al-Akram</em>, v. 3); achieves closeness through prostration (<em>wasjud waqtarib</em>, v. 19).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Mastery Check & Recall Quiz -->
+    <section class="section-block" id="section-quiz">
+      <div class="section-header">
+        <span class="kicker">04 · Mastery Assessment</span>
+        <h2 class="section-title">Verify Your Recall of Surah Al-‘Alaq’s <em>Sequence and Meaning</em></h2>
+        <p class="section-intro">
+          Test your grasp of the chapter’s verses, pivotal transitions, and Arabic keywords. Your answered score persists automatically across sessions.
+        </p>
+      </div>
+
+      <div class="quiz-panel">
+        <div class="quiz-progress-row">
+          <span class="badge-terracotta" id="quiz-counter">Question 1 of 6</span>
+          <span class="badge-emerald" id="quiz-score-pill">Correct: 0 / 6</span>
+        </div>
+
+        <h3 class="quiz-question-title" id="quiz-question-text">Loading question…</h3>
+        <div class="quiz-arabic-prompt" lang="ar" dir="rtl" id="quiz-arabic-prompt"></div>
+
+        <div class="quiz-options" id="quiz-options"></div>
+
+        <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+
+        <div class="quiz-nav-row">
+          <button type="button" class="btn-secondary" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous Question</button>
+          <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+            <button type="button" class="btn-secondary" onclick="retryCurrentQuiz()">Clear This Answer</button>
+            <button type="button" class="btn-primary" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>Source Basis: Quran Chapter 96 (Surah Al-‘Alaq, 96:1–19) Arabic text &amp; English translation from source file <em>96-1.pdf</em>.</span>
+      <span>Progress saved via Notebook App State when supported by the host environment.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        movement: `m1`,
+        movementLabel: `I. Dawn of Revelation`,
+        arabic: `اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ`,
+        english: `Recite in the name of your Lord who created`,
+        note: `The first command is paired immediately with "in the name of your Lord who created"—grounding literacy, recitation, and knowledge in relationship with the Creator.`,
+        isPivot: false,
+        terms: [`iqra`]
+      },
+      {
+        num: 2,
+        movement: `m1`,
+        movementLabel: `I. Dawn of Revelation`,
+        arabic: `خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ`,
+        english: `Created man from a clinging substance.`,
+        note: `Repeating "created" (khalaqa) shifts focus to humanity's humble physical beginning: a fragile clinging substance ('alaq), dismantling any basis for human arrogance.`,
+        isPivot: false,
+        terms: [`alaq`]
+      },
+      {
+        num: 3,
+        movement: `m1`,
+        movementLabel: `I. Dawn of Revelation`,
+        arabic: `اقْرَأْ وَرَبُّكَ الْأَكْرَمُ`,
+        english: `Recite, and your Lord is the most Generous`,
+        note: `The second "Recite" links human learning to divine generosity (Al-Akram)—God is not grudging with revelation or knowledge.`,
+        isPivot: false,
+        terms: [`iqra`]
+      },
+      {
+        num: 4,
+        movement: `m1`,
+        movementLabel: `I. Dawn of Revelation`,
+        arabic: `الَّذِي عَلَّمَ بِالْقَلَمِ`,
+        english: `Who taught by the pen`,
+        note: `From biological fragility ('alaq) to enduring civilization: the pen (al-qalam) is named as an instrument of divine instruction across generations.`,
+        isPivot: false,
+        terms: [`qalam`]
+      },
+      {
+        num: 5,
+        movement: `m1`,
+        movementLabel: `I. Dawn of Revelation`,
+        arabic: `عَلَّمَ الْإِنْسَانَ مَا لَمْ يَعْلَمْ`,
+        english: `Taught man that which he knew not.`,
+        note: `Closes Movement I by reminding humanity that every insight starts from prior ignorance—knowledge is received, never self-generated from nothing.`,
+        isPivot: false,
+        terms: [`qalam`]
+      },
+      {
+        num: 6,
+        movement: `m2`,
+        movementLabel: `II. Pathology of Self-Sufficiency`,
+        arabic: `كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَىٰ`,
+        english: `No! [But] indeed, man transgresses`,
+        note: `First Kalla ("No!") pivot: abruptly breaks from divine generosity to expose human ingratitude. Yatgha denotes crossing rightful moral boundaries.`,
+        isPivot: true,
+        terms: [`istaghna`]
+      },
+      {
+        num: 7,
+        movement: `m2`,
+        movementLabel: `II. Pathology of Self-Sufficiency`,
+        arabic: `أَنْ رَآهُ اسْتَغْنَى`,
+        english: `Because he sees himself self-sufficient.`,
+        note: `Diagnoses the root pathology: not actual independence (which is impossible for a creature born from 'alaq), but the illusion of seeing oneself (ra'ahu) as self-sufficient (istaghna).`,
+        isPivot: false,
+        terms: [`istaghna`]
+      },
+      {
+        num: 8,
+        movement: `m2`,
+        movementLabel: `II. Pathology of Self-Sufficiency`,
+        arabic: `إِنَّ إِلَىٰ رَبِّكَ الرُّجْعَىٰ`,
+        english: `Indeed, to your Lord is the return.`,
+        note: `A sharp corrective to self-sufficiency: every human trajectory curves back to the Lord (ar-ruj'a) for final reckoning.`,
+        isPivot: false,
+        terms: [`ruja`]
+      },
+      {
+        num: 9,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `أَرَأَيْتَ الَّذِي يَنْهَى`,
+        english: `Have you seen the one who forbids`,
+        note: `First "Have you seen?" (Ara'ayta) moves from universal human transgression to a concrete scene: arrogance manifesting as hostility toward someone else's worship.`,
+        isPivot: false,
+        terms: [`araayta`]
+      },
+      {
+        num: 10,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `عَبْدًا إِذَا صَلَّى`,
+        english: `A servant when he prays?`,
+        note: `The worshipper is honored with the title "servant" ('abdan)—in direct contrast to the tyrant who imagines himself self-sufficient.`,
+        isPivot: false,
+        terms: [`araayta`]
+      },
+      {
+        num: 11,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `أَرَأَيْتَ إِنْ كَانَ عَلَى الْهُدَىٰ`,
+        english: `Have you seen if he is upon guidance`,
+        note: `Second Ara'ayta highlights the moral absurdity of opposing prayer: the praying servant is anchored upon clear guidance (al-huda).`,
+        isPivot: false,
+        terms: [`araayta`]
+      },
+      {
+        num: 12,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `أَوْ أَمَرَ بِالتَّقْوَىٰ`,
+        english: `Or enjoins righteousness?`,
+        note: `Prayer here is paired with active social virtue—enjoining righteousness and God-consciousness (taqwa)—showing why tyranny fears it.`,
+        isPivot: false,
+        terms: [`araayta`]
+      },
+      {
+        num: 13,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `أَرَأَيْتَ إِنْ كَذَّبَ وَتَوَلَّىٰ`,
+        english: `Have you seen if he denies and turns away?`,
+        note: `Third Ara'ayta shifts back to the opponent: rather than merely holding a private doubt, he actively denies truth and turns his back.`,
+        isPivot: false,
+        terms: [`araayta`]
+      },
+      {
+        num: 14,
+        movement: `m3`,
+        movementLabel: `III. Opposition to Prayer`,
+        arabic: `أَلَمْ يَعْلَمْ بِأَنَّ اللَّهَ يَرَى`,
+        english: `Does he not know that Allah sees?`,
+        note: `Echoes v. 5 ("that which he knew not") with a piercing question: the opponent who claimed self-sufficiency acts in blindness to Allah's constant sight (yara).`,
+        isPivot: false,
+        terms: [`ruja`]
+      },
+      {
+        num: 15,
+        movement: `m4`,
+        movementLabel: `IV. Confrontation & Nearness`,
+        arabic: `كَلَّا لَئِنْ لَمْ يَنْتَهِ لَنَسْفَعًا بِالنَّاصِيَةِ`,
+        english: `No! If he does not desist, We will surely drag him by the forelock —`,
+        note: `Second Kalla pivot: issues an unmistakable warning. The forelock (nasiyah), symbolizing proud status and decision-making, becomes the point of seizure if hostility persists.`,
+        isPivot: true,
+        terms: [`nasiyah`]
+      },
+      {
+        num: 16,
+        movement: `m4`,
+        movementLabel: `IV. Confrontation & Nearness`,
+        arabic: `نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ`,
+        english: `A lying, sinning forelock.`,
+        note: `Describes the forelock with two moral attributes—lying (kadhibah) in speech/denial and sinning (khati'ah) in deliberate conduct.`,
+        isPivot: false,
+        terms: [`nasiyah`]
+      },
+      {
+        num: 17,
+        movement: `m4`,
+        movementLabel: `IV. Confrontation & Nearness`,
+        arabic: `فَلْيَدْعُ نَادِيَهُ`,
+        english: `Then let him call his associates;`,
+        note: `Challenges the tyrant's social backing (nadiyahu—his council, clique, or assembly of supporters) on which his feeling of self-sufficiency rested.`,
+        isPivot: false,
+        terms: [`nasiyah`]
+      },
+      {
+        num: 18,
+        movement: `m4`,
+        movementLabel: `IV. Confrontation & Nearness`,
+        arabic: `سَنَدْعُ الزَّبَانِيَةَ`,
+        english: `We will call the angels of Hell.`,
+        note: `Answers human assembly with divine enforcement: "Let him call (fal-yad'u)..." is countered instantaneously by "We will call (sanad'u) the Zabaniyah."`,
+        isPivot: false,
+        terms: [`nasiyah`]
+      },
+      {
+        num: 19,
+        movement: `m4`,
+        movementLabel: `IV. Confrontation & Nearness`,
+        arabic: `كَلَّا لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ`,
+        english: `No! Do not obey him. But prostrate and draw near [to Allah].`,
+        note: `Third and final Kalla pivot: turns directly to the believer. Refusing to obey intimidation is fulfilled not in pride, but in prostration (wasjud)—where lowering one's forehead draws the servant nearest to Allah (waqtarib).`,
+        isPivot: true,
+        terms: [`sujud`]
+      }
+    ];
+
+    const MOVEMENTS = {
+      m1: {
+        range: `Verses 96:1–5 · Dawn of Revelation`,
+        title: `Creation from a Clinging Substance & Teaching by the Pen`,
+        arabic: `اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ ۝ خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ`,
+        summary: `The opening command pairs recitation (Iqra’) directly with the Lord who creates humanity from a humble clinging substance (‘alaq) and generously elevates them through the pen (al-qalam) to know what they did not know.`,
+        btnLabel: `Filter Reader to Verses 1–5`
+      },
+      m2: {
+        range: `Verses 96:6–8 · First Kalla Pivot`,
+        title: `The Pathology of Imagined Self-Sufficiency (Istaghna)`,
+        arabic: `كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَىٰ ۝ أَنْ رَآهُ اسْتَغْنَى`,
+        summary: `Introduced by the sharp rebuke "Kalla!" ("No!"), these three verses diagnose why humans cross moral limits (yatgha): perceiving oneself as needing no one, forgetting that every path returns to the Lord (ar-ruj‘a).`,
+        btnLabel: `Filter Reader to Verses 6–8`
+      },
+      m3: {
+        range: `Verses 96:9–14 · Triple Ara’ayta Contrast`,
+        title: `Hostility Toward a Praying Servant Under Allah’s Gaze`,
+        arabic: `أَرَأَيْتَ الَّذِي يَنْهَى ۝ عَبْدًا إِذَا صَلَّى`,
+        summary: `Three rhetorical "Have you seen?" questions expose the injustice of forbidding a guided, righteous servant from prayer—concluding with the piercing reminder that Allah sees everything (yara).`,
+        btnLabel: `Filter Reader to Verses 9–14`
+      },
+      m4: {
+        range: `Verses 96:15–19 · Second & Third Kalla Pivots`,
+        title: `The Lying Forelock vs. Prostration and Nearness`,
+        arabic: `كَلَّا لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ`,
+        summary: `After warning that earthly associates (nadiyahu) cannot withstand the angels of Hell (az-zabaniyah), the chapter closes with its culminating imperative: defy intimidation, prostrate (wasjud), and draw near (waqtarib).`,
+        btnLabel: `Filter Reader to Verses 15–19`
+      }
+    };
+
+    const LEXICON = [
+      {
+        id: `iqra`,
+        name: `Iqra’ — “Recite”`,
+        shortSub: `Command & Divine Generosity`,
+        arabic: `اقْرَأْ`,
+        translit: `Iqra’`,
+        verses: `96:1, 96:3`,
+        firstVerse: 1,
+        meaning: `Recite / Read aloud`,
+        role: `Double Opening Imperative`,
+        explanation: `Repeated twice in verses 1 and 3, Iqra’ inaugurates the chapter not as isolated intellectual effort, but recitation "in the name of your Lord who created" and under the care of "your Lord, the most Generous" (Al-Akram).`
+      },
+      {
+        id: `alaq`,
+        name: `‘Alaq — “Clinging Substance”`,
+        shortSub: `Human Biological Origin`,
+        arabic: `عَلَقٍ`,
+        translit: `‘Alaq`,
+        verses: `96:2`,
+        firstVerse: 2,
+        meaning: `Clinging substance`,
+        role: `Humility Anchor`,
+        explanation: `Denotes something that clings or attaches. By placing humanity’s origin in ‘alaq right beside Allah’s creative power, the Surah establishes radical dependence before any discussion of human knowledge or pride.`
+      },
+      {
+        id: `qalam`,
+        name: `Al-Qalam — “The Pen”`,
+        shortSub: `Instrument of Knowledge`,
+        arabic: `الْقَلَمِ`,
+        translit: `Al-Qalam`,
+        verses: `96:4–5`,
+        firstVerse: 4,
+        meaning: `The pen`,
+        role: `Gift of Preserved Knowledge`,
+        explanation: `Named in verse 4 as the medium through which the Most Generous Lord "taught man that which he knew not" (v. 5). The pen bridges fleeting speech and cumulative human understanding—yet remains a gift from Allah.`
+      },
+      {
+        id: `istaghna`,
+        name: `Istaghna — “Self-Sufficient”`,
+        shortSub: `Root of Transgression`,
+        arabic: `اسْتَغْنَى`,
+        translit: `Istaghna`,
+        verses: `96:6–7`,
+        firstVerse: 7,
+        meaning: `Considered himself self-sufficient`,
+        role: `Diagnosis of Yatgha`,
+        explanation: `Notice the wording of verse 7: "Because he sees himself (ra’ahu) self-sufficient." The transgression (yatgha, v. 6) grows out of a distorted self-perception—mistaking borrowed wealth, status, or knowledge for true independence from God.`
+      },
+      {
+        id: `ruja`,
+        name: `Ar-Ruj‘a — “The Return”`,
+        shortSub: `Accountability & Divine Sight`,
+        arabic: `الرُّجْعَىٰ`,
+        translit: `Ar-Ruj‘a`,
+        verses: `96:8, 96:14`,
+        firstVerse: 8,
+        meaning: `The final return`,
+        role: `Reality Check on Pride`,
+        explanation: `Verse 8 counters istaghna immediately: "Indeed, to your Lord is the return." Together with verse 14 ("Does he not know that Allah sees?"), it establishes that no human act occurs outside divine sight or accountability.`
+      },
+      {
+        id: `araayta`,
+        name: `Ara’ayta — “Have You Seen?”`,
+        shortSub: `Triple Rhetorical Indictment`,
+        arabic: `أَرَأَيْتَ`,
+        translit: `Ara’ayta`,
+        verses: `96:9, 96:11, 96:13`,
+        firstVerse: 9,
+        meaning: `Have you seen / Consider`,
+        role: `Moral Exposure of Oppression`,
+        explanation: `Repeated three times in verses 9, 11, and 13, Ara’ayta invites the listener to witness the absurdity of a person who denies truth yet tries to stop a guided, righteous servant (‘abdan) from praying.`
+      },
+      {
+        id: `nasiyah`,
+        name: `Nasiyah — “Forelock”`,
+        shortSub: `Seat of Pride vs. Accountability`,
+        arabic: `نَاصِيَةٍ`,
+        translit: `Nasiyah`,
+        verses: `96:15–18`,
+        firstVerse: 15,
+        meaning: `Forelock / Front of the head`,
+        role: `Contrast with Prostration`,
+        explanation: `Described in verse 16 as "a lying, sinning forelock." While the tyrant holds his head high and calls on his associates (nadiyahu, v. 17), Allah warns of seizure by that very forelock and summoning the angels of Hell (az-zabaniyah, v. 18).`
+      },
+      {
+        id: `sujud`,
+        name: `Wasjud Waqtarib — “Prostrate & Draw Near”`,
+        shortSub: `Culminating Command`,
+        arabic: `وَاسْجُدْ وَاقْتَرِبْ`,
+        translit: `Wasjud waqtarib`,
+        verses: `96:19`,
+        firstVerse: 19,
+        meaning: `Prostrate and draw near`,
+        role: `Resolution of the Surah`,
+        explanation: `The final verse reverses the entire pathology of the chapter: where the tyrant places his forelock in arrogance and falsehood, the believer places the forehead on the ground in prostration—discovering that humility is the path to nearness to Allah.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        question: `In verses 1–5, what two realities frame humanity’s capacity to learn and write with the pen?`,
+        arabic: `خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ ۝ اقْرَأْ وَرَبُّكَ الْأَكْرَمُ ۝ الَّذِي عَلَّمَ بِالْقَلَمِ`,
+        options: [
+          `Human creation from a clinging substance (‘alaq) and the Lord’s generosity (Al-Akram) in teaching what man knew not`,
+          `Human self-reliance in discovering writing without divine aid`,
+          `Earthly associates teaching humanity through tribal assemblies`,
+          `The forelock symbolizing independent human sovereignty`
+        ],
+        correctIndex: 0,
+        explanation: `Verses 2–5 pair humble biological origin (‘alaq, v. 2) with the Most Generous Lord (Al-Akram, v. 3) who taught by the pen what man did not know (vv. 4–5).`
+      },
+      {
+        id: `q2`,
+        question: `According to verses 6–7, what directly drives human transgression (yatgha)?`,
+        arabic: `كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَىٰ ۝ أَنْ رَآهُ اسْتَغْنَى`,
+        options: [
+          `Lacking access to written knowledge by the pen`,
+          `Seeing oneself as self-sufficient (ra’ahu istaghna)`,
+          `Being forbidden from praying in public`,
+          `Forgetting the names of earthly associates`
+        ],
+        correctIndex: 1,
+        explanation: `Verse 7 states explicitly: "Because he sees himself self-sufficient" (an ra’ahu istaghna), followed immediately by the reminder in v. 8 that to the Lord is the return.`
+      },
+      {
+        id: `q3`,
+        question: `How does the Surah characterize the individual who is forbidden from praying in verses 10–12?`,
+        arabic: `عَبْدًا إِذَا صَلَّى ۝ أَرَأَيْتَ إِنْ كَانَ عَلَى الْهُدَىٰ ۝ أَوْ أَمَرَ بِالتَّقْوَىٰ`,
+        options: [
+          `As a self-sufficient leader calling his council`,
+          `As a servant (‘abdan) upon guidance (al-huda) who enjoins righteousness (taqwa)`,
+          `As someone who denies and turns away from revelation`,
+          `As a seeker who knows nothing of divine return`
+        ],
+        correctIndex: 1,
+        explanation: `Verses 10–12 honor the worshipper as a "servant when he prays" who is "upon guidance" (al-huda) and "enjoins righteousness" (taqwa).`
+      },
+      {
+        id: `q4`,
+        question: `What rhetorical question in verse 14 answers the opponent who "denies and turns away" in verse 13?`,
+        arabic: `أَرَأَيْتَ إِنْ كَذَّبَ وَتَوَلَّىٰ ۝ أَلَمْ يَعْلَمْ بِأَنَّ اللَّهَ يَرَى`,
+        options: [
+          `"Does he not know that Allah sees?"`,
+          `"Have you seen the one who created from clay?"`,
+          `"Will his associates not ransom him?"`,
+          `"Why did he not write with the pen?"`
+        ],
+        correctIndex: 0,
+        explanation: `Verse 14 asks: "Does he not know that Allah sees?" (Alam ya‘lam bi-anna Allaha yara), shattering the illusion of unaccountable autonomy.`
+      },
+      {
+        id: `q5`,
+        question: `In verses 15–18, how is the opponent’s boast of calling his associates (nadiyahu) answered?`,
+        arabic: `فَلْيَدْعُ نَادِيَهُ ۝ سَنَدْعُ الزَّبَانِيَةَ`,
+        options: [
+          `His associates are invited to debate with the pen`,
+          `"We will call the angels of Hell" (az-zabaniyah)`,
+          `He is granted respite until he returns willingly`,
+          `His forelock is honored before his council`
+        ],
+        correctIndex: 1,
+        explanation: `Verse 17–18 sets up an exact verbal contrast: "Then let him call his associates (nadiyahu); We will call the angels of Hell (az-zabaniyah)."`
+      },
+      {
+        id: `q6`,
+        question: `What two positive commands conclude Surah Al-‘Alaq right after "No! Do not obey him" in verse 19?`,
+        arabic: `كَلَّا لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ`,
+        options: [
+          `Confront his associates and seize his forelock`,
+          `Withdraw into solitude and cease recitation`,
+          `Prostrate and draw near [to Allah] (wasjud waqtarib)`,
+          `Wait silently until the return arrives`
+        ],
+        correctIndex: 2,
+        explanation: `Verse 19 ends the Surah with the third Kalla pivot: "No! Do not obey him. But prostrate and draw near [to Allah]" (wasjud waqtarib).`
+      }
+    ];
+
+    // Application state (persisted via window.notebookAppApi)
+    let appState = {
+      studiedVerses: [],
+      masteredTerms: [],
+      quizAnswers: {},
+      currentFilter: `all`,
+      selectedArcMovement: `m1`,
+      selectedTermId: `iqra`,
+      currentQuizIdx: 0,
+      maskEn: false,
+      maskAr: false,
+      showNotes: true
+    };
+
+    function sanitizeLoadedState(raw) {
+      if (!raw || typeof raw !== `object`) return;
+      if (Array.isArray(raw.studiedVerses)) {
+        appState.studiedVerses = raw.studiedVerses.filter((n) => typeof n === `number` && n >= 1 && n <= 19);
+      }
+      if (Array.isArray(raw.masteredTerms)) {
+        appState.masteredTerms = raw.masteredTerms.filter((id) => LEXICON.some((t) => t.id === id));
+      }
+      if (raw.quizAnswers && typeof raw.quizAnswers === `object`) {
+        appState.quizAnswers = raw.quizAnswers;
+      }
+      if (typeof raw.currentFilter === `string`) appState.currentFilter = raw.currentFilter;
+      if (typeof raw.selectedArcMovement === `string` && MOVEMENTS[raw.selectedArcMovement]) {
+        appState.selectedArcMovement = raw.selectedArcMovement;
+      }
+      if (typeof raw.selectedTermId === `string` && LEXICON.some((t) => t.id === raw.selectedTermId)) {
+        appState.selectedTermId = raw.selectedTermId;
+      }
+      if (typeof raw.currentQuizIdx === `number` && raw.currentQuizIdx >= 0 && raw.currentQuizIdx < QUIZ_QUESTIONS.length) {
+        appState.currentQuizIdx = raw.currentQuizIdx;
+      }
+      if (typeof raw.maskEn === `boolean`) appState.maskEn = raw.maskEn;
+      if (typeof raw.maskAr === `boolean`) appState.maskAr = raw.maskAr;
+      if (typeof raw.showNotes === `boolean`) appState.showNotes = raw.showNotes;
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Graceful handling if host limits writes
+        }
+      }
+    }
+
+    function updateMasteryUI() {
+      const versesCount = appState.studiedVerses.length;
+      const termsCount = appState.masteredTerms.length;
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach((q) => {
+        if (appState.quizAnswers[q.id] === q.correctIndex) quizCorrect += 1;
+      });
+
+      const totalItems = 19 + LEXICON.length + QUIZ_QUESTIONS.length;
+      const completedItems = versesCount + termsCount + quizCorrect;
+      const pct = Math.round((completedItems / totalItems) * 100);
+
+      const elVerses = document.getElementById(`stat-verses`);
+      const elTerms = document.getElementById(`stat-terms`);
+      const elQuiz = document.getElementById(`stat-quiz`);
+      const elPctLabel = document.getElementById(`stat-percent-label`);
+      const elBar = document.getElementById(`mastery-bar-fill`);
+      const elProgressbar = document.getElementById(`mastery-progressbar`);
+      const elHeroBadge = document.getElementById(`hero-status-badge`);
+
+      if (elVerses) elVerses.textContent = `${versesCount} / 19`;
+      if (elTerms) elTerms.textContent = `${termsCount} / ${LEXICON.length}`;
+      if (elQuiz) elQuiz.textContent = `${quizCorrect} / ${QUIZ_QUESTIONS.length}`;
+      if (elPctLabel) elPctLabel.textContent = `Overall Mastery: ${pct}%`;
+      if (elBar) elBar.style.width = `${pct}%`;
+      if (elProgressbar) elProgressbar.setAttribute(`aria-valuenow`, String(pct));
+      if (elHeroBadge) {
+        if (completedItems === 0) {
+          elHeroBadge.textContent = `First-Time Study View`;
+        } else if (pct === 100) {
+          elHeroBadge.textContent = `Chapter 96 Mastered · 100%`;
+        } else {
+          elHeroBadge.textContent = `Study In Progress · ${pct}%`;
+        }
+      }
+    }
+
+    function selectArcMovement(movKey) {
+      if (!MOVEMENTS[movKey]) return;
+      appState.selectedArcMovement = movKey;
+      const data = MOVEMENTS[movKey];
+
+      const elRange = document.getElementById(`inspector-range`);
+      const elHeading = document.getElementById(`inspector-heading`);
+      const elArabic = document.getElementById(`inspector-arabic`);
+      const elSummary = document.getElementById(`inspector-summary`);
+      const elBtn = document.getElementById(`inspector-jump-btn`);
+
+      if (elRange) elRange.textContent = data.range;
+      if (elHeading) elHeading.textContent = data.title;
+      if (elArabic) elArabic.textContent = data.arabic;
+      if (elSummary) elSummary.textContent = data.summary;
+      if (elBtn) {
+        elBtn.textContent = data.btnLabel;
+        elBtn.setAttribute(`onclick`, `jumpToMovement('${movKey}')`);
+      }
+
+      [`m1`, `m2`, `m3`, `m4`].forEach((key) => {
+        const btn = document.getElementById(`arc-btn-${key}`);
+        if (btn) btn.classList.toggle(`is-active`, key === movKey);
+      });
+
+      persistState();
+    }
+
+    function jumpToMovement(movKey) {
+      selectArcMovement(movKey);
+      setVerseFilter(movKey);
+      const reader = document.getElementById(`section-reader`);
+      if (reader) reader.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    function setVerseFilter(filterKey) {
+      appState.currentFilter = filterKey;
+      [`all`, `m1`, `m2`, `m3`, `m4`].forEach((k) => {
+        const btn = document.getElementById(`filter-${k}`);
+        if (btn) btn.classList.toggle(`is-active`, k === filterKey);
+      });
+      renderVerses();
+      persistState();
+    }
+
+    function toggleMask(lang) {
+      if (lang === `en`) {
+        appState.maskEn = !appState.maskEn;
+        const btn = document.getElementById(`toggle-mask-en`);
+        if (btn) {
+          btn.classList.toggle(`is-active`, appState.maskEn);
+          btn.setAttribute(`aria-pressed`, String(appState.maskEn));
+          btn.textContent = appState.maskEn ? `Reveal English` : `Hide English`;
+        }
+      } else if (lang === `ar`) {
+        appState.maskAr = !appState.maskAr;
+        const btn = document.getElementById(`toggle-mask-ar`);
+        if (btn) {
+          btn.classList.toggle(`is-active`, appState.maskAr);
+          btn.setAttribute(`aria-pressed`, String(appState.maskAr));
+          btn.textContent = appState.maskAr ? `Reveal Arabic` : `Hide Arabic`;
+        }
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function toggleStudyNotes() {
+      appState.showNotes = !appState.showNotes;
+      const btn = document.getElementById(`toggle-notes-btn`);
+      if (btn) {
+        btn.classList.toggle(`is-active`, appState.showNotes);
+        btn.setAttribute(`aria-pressed`, String(appState.showNotes));
+        btn.textContent = appState.showNotes ? `Study Notes On` : `Study Notes Off`;
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(verseNum);
+        appState.studiedVerses.sort((a, b) => a - b);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      updateMasteryUI();
+      renderVerses();
+      persistState();
+    }
+
+    function revealMaskedVerse(el) {
+      if (el) el.classList.remove(`is-masked`);
+    }
+
+    function inspectTermFromVerse(termId) {
+      selectLexiconTerm(termId);
+      const sec = document.getElementById(`section-lexicon`);
+      if (sec) sec.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verses-container`);
+      if (!container) return;
+
+      const filtered = appState.currentFilter === `all`
+        ? VERSES
+        : VERSES.filter((v) => v.movement === appState.currentFilter);
+
+      container.innerHTML = filtered.map((v) => {
+        const isStudied = appState.studiedVerses.includes(v.num);
+        const pivotBadge = v.isPivot ? `<span class="badge-terracotta">Kalla Pivot</span>` : ``;
+        const studiedClass = isStudied ? `is-studied` : ``;
+        const pivotClass = v.isPivot ? `is-pivot` : ``;
+        const enMasked = appState.maskEn ? `is-masked` : ``;
+        const arMasked = appState.maskAr ? `is-masked` : ``;
+
+        const termChips = v.terms.map((tid) => {
+          const found = LEXICON.find((t) => t.id === tid);
+          if (!found) return ``;
+          return `<button type="button" class="term-chip" onclick="inspectTermFromVerse('${tid}')">Inspect: ${found.translit}</button>`;
+        }).join(``);
+
+        const noteBlock = appState.showNotes
+          ? `<div class="verse-note-box">
+               <span>${v.note}</span>
+               <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs);">${termChips}</div>
+             </div>`
+          : ``;
+
+        return `
+          <article class="verse-card ${pivotClass} ${studiedClass}" id="verse-card-${v.num}">
+            <div class="verse-top">
+              <div class="verse-meta">
+                <span class="verse-num">96:${v.num}</span>
+                <span class="badge-emerald">${v.movementLabel}</span>
+                ${pivotBadge}
+              </div>
+              <button type="button"
+                      class="btn-secondary ${isStudied ? `is-active` : ``}"
+                      aria-pressed="${isStudied}"
+                      onclick="toggleVerseStudied(${v.num})">
+                ${isStudied ? `Studied` : `Mark Studied`}
+              </button>
+            </div>
+            <div class="verse-body">
+              <p class="verse-english ${enMasked}" onclick="revealMaskedVerse(this)">${v.english}</p>
+              <p class="verse-arabic ${arMasked}" lang="ar" dir="rtl" onclick="revealMaskedVerse(this)">${v.arabic}</p>
+            </div>
+            ${noteBlock}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function renderLexiconList() {
+      const listEl = document.getElementById(`lexicon-list`);
+      if (!listEl) return;
+
+      listEl.innerHTML = LEXICON.map((item) => {
+        const isSelected = item.id === appState.selectedTermId;
+        const isMastered = appState.masteredTerms.includes(item.id);
+        const statusTag = isMastered ? ` · Mastered` : ``;
+        return `
+          <button type="button"
+                  role="option"
+                  aria-selected="${isSelected}"
+                  class="lex-btn ${isSelected ? `is-selected` : ``}"
+                  onclick="selectLexiconTerm('${item.id}')">
+            <div class="lex-btn-left">
+              <span class="lex-btn-title">${item.name}</span>
+              <span class="lex-btn-sub">${item.verses} · ${item.shortSub}${statusTag}</span>
+            </div>
+            <span class="lex-btn-ar" lang="ar" dir="rtl">${item.arabic}</span>
+          </button>
+        `;
+      }).join(``);
+    }
+
+    function selectLexiconTerm(termId) {
+      const item = LEXICON.find((t) => t.id === termId);
+      if (!item) return;
+      appState.selectedTermId = termId;
+
+      const elVerses = document.getElementById(`lex-detail-verses`);
+      const elName = document.getElementById(`lex-detail-name`);
+      const elArabic = document.getElementById(`lex-detail-arabic`);
+      const elTranslit = document.getElementById(`lex-detail-translit`);
+      const elMeaning = document.getElementById(`lex-detail-meaning`);
+      const elRole = document.getElementById(`lex-detail-role`);
+      const elExp = document.getElementById(`lex-detail-explanation`);
+      const elBtn = document.getElementById(`lex-master-btn`);
+      const elJump = document.getElementById(`lex-jump-verse-btn`);
+
+      if (elVerses) elVerses.textContent = `Appears in ${item.verses}`;
+      if (elName) elName.textContent = item.name;
+      if (elArabic) elArabic.textContent = item.arabic;
+      if (elTranslit) elTranslit.textContent = item.translit;
+      if (elMeaning) elMeaning.textContent = item.meaning;
+      if (elRole) elRole.textContent = item.role;
+      if (elExp) elExp.textContent = item.explanation;
+
+      const isMastered = appState.masteredTerms.includes(item.id);
+      if (elBtn) {
+        elBtn.textContent = isMastered ? `Mastered (Click to Unmark)` : `Mark Term Mastered`;
+      }
+      if (elJump) {
+        elJump.textContent = `View Verse 96:${item.firstVerse}`;
+      }
+
+      renderLexiconList();
+      persistState();
+    }
+
+    function toggleCurrentTermMastered() {
+      const tid = appState.selectedTermId;
+      const idx = appState.masteredTerms.indexOf(tid);
+      if (idx === -1) {
+        appState.masteredTerms.push(tid);
+      } else {
+        appState.masteredTerms.splice(idx, 1);
+      }
+      updateMasteryUI();
+      selectLexiconTerm(tid);
+      persistState();
+    }
+
+    function jumpToSelectedTermVerse() {
+      const item = LEXICON.find((t) => t.id === appState.selectedTermId);
+      if (!item) return;
+      setVerseFilter(`all`);
+      const target = document.getElementById(`verse-card-${item.firstVerse}`);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `center` });
+      }
+    }
+
+    function renderQuiz() {
+      const q = QUIZ_QUESTIONS[appState.currentQuizIdx];
+      if (!q) return;
+
+      const elCounter = document.getElementById(`quiz-counter`);
+      const elScorePill = document.getElementById(`quiz-score-pill`);
+      const elTitle = document.getElementById(`quiz-question-text`);
+      const elArabic = document.getElementById(`quiz-arabic-prompt`);
+      const elOptions = document.getElementById(`quiz-options`);
+      const elFeedback = document.getElementById(`quiz-feedback`);
+      const elPrev = document.getElementById(`quiz-prev-btn`);
+      const elNext = document.getElementById(`quiz-next-btn`);
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach((item) => {
+        if (appState.quizAnswers[item.id] === item.correctIndex) correctCount += 1;
+      });
+
+      if (elCounter) elCounter.textContent = `Question ${appState.currentQuizIdx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (elScorePill) elScorePill.textContent = `Correct: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      if (elTitle) elTitle.textContent = q.question;
+      if (elArabic) elArabic.textContent = q.arabic;
+
+      const chosenIdx = appState.quizAnswers[q.id];
+      const hasAnswered = typeof chosenIdx === `number`;
+
+      if (elOptions) {
+        elOptions.innerHTML = q.options.map((opt, idx) => {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (idx === q.correctIndex) cls += ` is-correct`;
+            else if (idx === chosenIdx) cls += ` is-wrong`;
+          }
+          return `<button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="submitQuizAnswer(${idx})">${opt}</button>`;
+        }).join(``);
+      }
+
+      if (elFeedback) {
+        if (hasAnswered) {
+          elFeedback.hidden = false;
+          const isCorrect = chosenIdx === q.correctIndex;
+          elFeedback.className = isCorrect ? `quiz-feedback` : `quiz-feedback is-error`;
+          elFeedback.innerHTML = `<strong>${isCorrect ? `Correct.` : `Review the text.`}</strong> ${q.explanation}`;
+        } else {
+          elFeedback.hidden = true;
+          elFeedback.innerHTML = ``;
+        }
+      }
+
+      if (elPrev) elPrev.disabled = appState.currentQuizIdx === 0;
+      if (elNext) elNext.disabled = appState.currentQuizIdx === QUIZ_QUESTIONS.length - 1;
+    }
+
+    function submitQuizAnswer(optionIndex) {
+      const q = QUIZ_QUESTIONS[appState.currentQuizIdx];
+      if (!q) return;
+      appState.quizAnswers[q.id] = optionIndex;
+      updateMasteryUI();
+      renderQuiz();
+      persistState();
+    }
+
+    function retryCurrentQuiz() {
+      const q = QUIZ_QUESTIONS[appState.currentQuizIdx];
+      if (!q) return;
+      delete appState.quizAnswers[q.id];
+      updateMasteryUI();
+      renderQuiz();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      const nextIdx = appState.currentQuizIdx + delta;
+      if (nextIdx < 0 || nextIdx >= QUIZ_QUESTIONS.length) return;
+      appState.currentQuizIdx = nextIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function exportStudySummary() {
+      const lines = [
+        `SURAH AL-'ALAQ (CHAPTER 96) — PERSONAL STUDY NOTES`,
+        `==================================================`,
+        `Verses Studied: ${appState.studiedVerses.length} / 19 (${appState.studiedVerses.map((n) => `96:${n}`).join(`, `) || `None yet`})`,
+        `Mastered Terms: ${appState.masteredTerms.length} / ${LEXICON.length} (${appState.masteredTerms.join(`, `) || `None yet`})`,
+        ``,
+        `COMPLETE TEXT & STUDY NOTES`,
+        `---------------------------`
+      ];
+      VERSES.forEach((v) => {
+        const mark = appState.studiedVerses.includes(v.num) ? `[Studied]` : `[ ]`;
+        lines.push(`${mark} 96:${v.num} (${v.movementLabel})`);
+        lines.push(`AR: ${v.arabic}`);
+        lines.push(`EN: ${v.english}`);
+        lines.push(`Note: ${v.note}`);
+        lines.push(``);
+      });
+
+      const content = lines.join(`\n`);
+      const statusEl = document.getElementById(`global-status-msg`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-96-al-alaq-study-notes.txt`
+        });
+        if (statusEl) statusEl.textContent = `Exported study notes as surah-96-al-alaq-study-notes.txt.`;
+      } else {
+        if (statusEl) statusEl.textContent = `Study summary prepared (${appState.studiedVerses.length}/19 verses studied).`;
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      const statusEl = document.getElementById(`global-status-msg`);
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.classList.add(`is-armed`);
+        btn.textContent = `Click Again to Confirm Reset`;
+        if (statusEl) statusEl.textContent = `Click the Reset button once more to clear your verse, term, and quiz progress.`;
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.classList.remove(`is-armed`);
+      btn.textContent = `Reset Progress`;
+
+      appState.studiedVerses = [];
+      appState.masteredTerms = [];
+      appState.quizAnswers = {};
+      appState.currentQuizIdx = 0;
+
+      updateMasteryUI();
+      renderVerses();
+      selectLexiconTerm(appState.selectedTermId);
+      renderQuiz();
+      persistState();
+
+      if (statusEl) statusEl.textContent = `All Chapter 96 study progress has been reset.`;
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          sanitizeLoadedState(saved);
+        } catch (err) {
+          // Proceed with clean initial state
+        }
+      }
+
+      // Sync UI toggle buttons with restored state
+      const btnEn = document.getElementById(`toggle-mask-en`);
+      if (btnEn) {
+        btnEn.classList.toggle(`is-active`, appState.maskEn);
+        btnEn.setAttribute(`aria-pressed`, String(appState.maskEn));
+        btnEn.textContent = appState.maskEn ? `Reveal English` : `Hide English`;
+      }
+      const btnAr = document.getElementById(`toggle-mask-ar`);
+      if (btnAr) {
+        btnAr.classList.toggle(`is-active`, appState.maskAr);
+        btnAr.setAttribute(`aria-pressed`, String(appState.maskAr));
+        btnAr.textContent = appState.maskAr ? `Reveal Arabic` : `Hide Arabic`;
+      }
+      const btnNotes = document.getElementById(`toggle-notes-btn`);
+      if (btnNotes) {
+        btnNotes.classList.toggle(`is-active`, appState.showNotes);
+        btnNotes.setAttribute(`aria-pressed`, String(appState.showNotes));
+        btnNotes.textContent = appState.showNotes ? `Study Notes On` : `Study Notes Off`;
+      }
+
+      [`all`, `m1`, `m2`, `m3`, `m4`].forEach((k) => {
+        const btn = document.getElementById(`filter-${k}`);
+        if (btn) btn.classList.toggle(`is-active`, k === appState.currentFilter);
+      });
+
+      selectArcMovement(appState.selectedArcMovement);
+      renderVerses();
+      selectLexiconTerm(appState.selectedTermId);
+      renderQuiz();
+      updateMasteryUI();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="nocturne">
+  <title>Surah Al-Ma‘ārij (Chapter 70) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* Page and surfaces: Prussian midnight steps (Nocturne) */
+      --background: #0a101d;
+      --surface-container-low: #0e1626;
+      --surface-container: #111b2e;
+      --surface-container-high: #17243c;
+
+      /* Text */
+      --on-surface: #f2ece1;
+      --on-surface-variant: #9ba8bf;
+
+      /* Borders */
+      --outline: #384d73;
+      --outline-variant: #21304d;
+
+      /* Accents */
+      --primary: #dfaa5b;
+      --on-primary: #0a101d;
+      --primary-container: #2b261c;
+      --on-primary-container: #f5dcb0;
+      --secondary: #687a99;
+      --tertiary: #7cc4e8;
+      --error: #f27474;
+      --on-error: #1a0606;
+
+      /* Data series, in order of use */
+      --data-1: #dfaa5b;
+      --data-2: #7cc4e8;
+      --data-3: #52d19c;
+      --data-4: #e07a5f;
+      --data-context: #4a5d80;
+
+      /* Fonts */
+      --font-headline: 'EB Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-strong: 1px solid var(--outline);
+      --panel-highlight: inset 0 1px 0 rgba(242, 236, 225, 0.05);
+      --brass-glow: radial-gradient(circle at 88% 12%, rgba(223, 170, 91, 0.08), transparent 45%);
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.06em;
+      --sky-tint: color-mix(in srgb, var(--tertiary) 12%, transparent);
+      --brass-tint: color-mix(in srgb, var(--primary) 14%, transparent);
+      --mint-tint: color-mix(in srgb, var(--positive) 12%, transparent);
+      --coral-tint: color-mix(in srgb, var(--warning) 13%, transparent);
+      --error-tint: color-mix(in srgb, var(--error) 14%, transparent);
+
+      /* Shared Semantic & Focus Tokens */
+      --positive: #52d19c;
+      --warning: #e07a5f;
+      --focus: var(--primary);
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing Scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-medium: 280ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1160px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--heading-tracking);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    h1.title {
+      font-size: var(--display-size);
+      line-height: 1.08;
+    }
+    h1.title em, h2 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    h2.section-title {
+      font-size: var(--headline-size);
+      line-height: 1.14;
+    }
+    h3.card-title {
+      font-size: var(--subhead-size);
+      line-height: 1.25;
+    }
+    p {
+      margin: 0;
+      max-width: 68ch;
+      color: var(--on-surface);
+    }
+    .muted {
+      color: var(--on-surface-variant);
+    }
+
+    .deck-brass {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .coord-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+    }
+
+    /* Arabic Typography */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 2.05;
+      color: var(--on-surface);
+    }
+    .arabic-hero {
+      font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    /* Nocturne Treatments */
+    .hero-header {
+      background-color: var(--background);
+      background-image: var(--brass-glow);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-xl);
+      padding-top: var(--space-lg);
+    }
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-lg);
+    }
+    .hero-intro {
+      display: grid;
+      gap: var(--space-sm);
+      max-width: 720px;
+    }
+    .hero-lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.2rem);
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    .panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .panel-low {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .observation-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      border: 1px solid color-mix(in srgb, var(--tertiary) 35%, transparent);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-brass {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 38%, transparent);
+    }
+    .badge-mint {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border-color: color-mix(in srgb, var(--positive) 38%, transparent);
+    }
+    .badge-coral {
+      background: var(--coral-tint);
+      color: var(--warning);
+      border-color: color-mix(in srgb, var(--warning) 38%, transparent);
+    }
+
+    /* Navigation & Progress Strip */
+    .study-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+    }
+    .nav-link:hover {
+      background: var(--surface-container-high);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .progress-readout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface-variant);
+    }
+    .progress-readout strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Metrics Strip */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .metric-card {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .metric-val {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.9rem, 1.5rem + 1vw, 2.5rem);
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    /* Buttons & Controls */
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: var(--hairline-strong);
+      background: transparent;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+      box-shadow: 0 0 0 1px var(--outline);
+    }
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+    .btn-active {
+      background: var(--primary-container);
+      color: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+    .btn-studied {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border-color: color-mix(in srgb, var(--positive) 45%, transparent);
+    }
+
+    /* Inputs */
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .select-input, .textarea-input {
+      width: 100%;
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      padding: 0.65rem 0.9rem;
+      font-size: 0.95rem;
+      min-height: 44px;
+    }
+    .select-input {
+      padding-right: 2.25rem;
+    }
+    .textarea-input {
+      min-height: 110px;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .text-input:focus, .select-input:focus, .textarea-input:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Section Header */
+    .section-block {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: var(--hairline);
+    }
+    .section-head {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Section 1: Structural Ascent Schematic */
+    .structure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .schematic-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .movement-node {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out);
+    }
+    .movement-node:hover rect,
+    .movement-node:focus-visible rect {
+      stroke: var(--primary);
+      stroke-width: 2;
+    }
+    .movement-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .movement-btn {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      gap: 2px;
+      height: auto;
+    }
+    .movement-detail-well {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    /* Section 2: Cosmic Ascent vs Halu'an & Nine Virtues */
+    .parallel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .haluan-axis {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .polarity-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    .virtues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .virtue-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+    .virtue-card.is-bookend {
+      border-color: color-mix(in srgb, var(--primary) 55%, transparent);
+      background: linear-gradient(180deg, var(--primary-container), var(--surface-container));
+    }
+    .virtue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .virtue-toggle {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--label-size);
+    }
+
+    /* Ring Structure / Inclusio Callout */
+    .inclusio-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Section 3: Verse Studio */
+    .studio-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verses-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .verse-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      container-type: inline-size;
+    }
+    .verse-card.is-studied {
+      border-color: color-mix(in srgb, var(--positive) 45%, transparent);
+    }
+    .verse-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .verse-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .word-tokens-rtl {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      direction: rtl;
+      gap: var(--space-sm);
+      align-items: center;
+      padding: var(--space-sm) 0;
+    }
+    .word-chip {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.55rem, 1.25rem + 0.9vw, 2.05rem);
+      line-height: 1.8;
+      padding: 0.15rem 0.65rem;
+      min-height: 44px;
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .word-chip:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+    .word-chip.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .verse-translit {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      line-height: 1.5;
+    }
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
+      line-height: 1.42;
+      color: var(--on-surface);
+    }
+    .verse-tafsir {
+      font-size: 0.96rem;
+      color: var(--on-surface-variant);
+      border-left: 2px solid var(--outline);
+      padding-left: var(--space-md);
+      max-width: 72ch;
+    }
+
+    /* Word Inspector Well */
+    .morph-inspector {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: center;
+    }
+    .morph-arabic-focus {
+      font-family: var(--font-arabic);
+      font-size: 2.2rem;
+      line-height: 1.7;
+      color: var(--primary);
+      padding: var(--space-xs) var(--space-md);
+      border-right: var(--hairline);
+      direction: rtl;
+    }
+    .morph-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-sm) var(--space-md);
+    }
+    .morph-cell {
+      display: grid;
+      gap: 2px;
+    }
+    .morph-cell .k {
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+    }
+    .morph-cell .v {
+      font-size: 0.92rem;
+      color: var(--on-surface);
+      font-weight: 500;
+    }
+    .morph-cell .v.mono {
+      font-family: var(--font-label);
+      color: var(--tertiary);
+    }
+
+    /* Full Word-by-Word Table inside Verse */
+    .wbw-table-wrap {
+      overflow-x: auto;
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+    .wbw-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .wbw-table th {
+      text-align: left;
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      padding: var(--space-xs) var(--space-sm);
+      border-bottom: var(--hairline-strong);
+    }
+    .wbw-table td {
+      padding: var(--space-xs) var(--space-sm);
+      border-bottom: var(--hairline);
+      vertical-align: middle;
+    }
+    .wbw-table td.ar {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      direction: rtl;
+      text-align: right;
+      color: var(--primary);
+    }
+
+    /* Section 4: Tafsir Synthesis */
+    .tafsir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Section 5: Self-Assessment Quiz */
+    .quiz-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .quiz-opt {
+      width: 100%;
+      justify-content: flex-start;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      height: auto;
+      line-height: 1.45;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      letter-spacing: 0;
+    }
+    .quiz-opt.is-correct {
+      background: var(--mint-tint);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+    .quiz-opt.is-wrong {
+      background: var(--error-tint);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-rationale {
+      font-size: 0.94rem;
+      padding: var(--space-sm) var(--space-md);
+      border-left: 2px solid var(--primary);
+      background: var(--background);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+    }
+
+    /* Section 6: Reflections */
+    .reflections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .reflection-card {
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+    .status-line {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--positive);
+      min-height: 1.25em;
+    }
+
+    .footer-bar {
+      border-top: var(--hairline);
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-2xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      font-size: 0.88rem;
+      color: var(--on-surface-variant);
+    }
+
+    @container (max-width: 520px) {
+      .morph-inspector {
+        grid-template-columns: 1fr;
+      }
+      .morph-arabic-focus {
+        border-right: none;
+        border-bottom: var(--hairline);
+        padding-bottom: var(--space-xs);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .structure-layout,
+      .parallel-grid {
+        grid-template-columns: 1fr;
+      }
+      .studio-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .polarity-pair {
+        grid-template-columns: 1fr;
+      }
+      .study-nav {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero-header">
+      <div class="hero-top-row">
+        <div class="hero-intro">
+          <div class="deck-brass">Juz 29 &middot; Meccan Revelation &middot; Chapter 70 &middot; 44 Verses</div>
+          <h1 class="title">Surah Al-Ma‘ārij: The Ways of <em>Ascent</em></h1>
+          <p class="hero-lede">
+            A comprehensive linguistic, morphological, and exegetical mastery guide tracing how cosmic vertical ascent and eschatological unmaking frame the diagnosis of human restlessness (<em>halū‘an</em>) and its remedy in the nine disciplined virtues of the prayerful.
+          </p>
+        </div>
+        <div class="arabic-text arabic-hero" lang="ar" dir="rtl" aria-label="Surah Al-Ma'arij in Arabic">
+          سُورَةُ الْمَعَارِجِ
+        </div>
+      </div>
+    </header>
+
+    <!-- Study Navigation & Live Mastery Telemetry -->
+    <nav class="study-nav" aria-label="Study Guide Navigation">
+      <div class="nav-links">
+        <a class="nav-link" href="#structure">I. Architecture</a>
+        <a class="nav-link" href="#parallels">II. Ascent &amp; Nine Virtues</a>
+        <a class="nav-link" href="#verses">III. 44-Verse Linguistic Studio</a>
+        <a class="nav-link" href="#tafsir">IV. Tafsir Synthesis</a>
+        <a class="nav-link" href="#assessment">V. Mastery Check</a>
+        <a class="nav-link" href="#reflections">VI. Reflections</a>
+      </div>
+      <div class="progress-readout" id="mastery-telemetry" aria-live="polite">
+        <span>Verses Studied: <strong id="stat-verses">0 / 44</strong></span>
+        <span>Mastery Check: <strong id="stat-quiz">0 / 8</strong></span>
+        <span>Virtues Audited: <strong id="stat-virtues">0 / 9</strong></span>
+      </div>
+    </nav>
+
+    <!-- Opening Key Figures -->
+    <section class="metrics-grid" aria-label="Surah Key Structural Coordinates">
+      <article class="panel metric-card">
+        <span class="coord-label">Total Verses</span>
+        <div class="metric-val">44 Āyāt</div>
+        <p class="muted">Five tightly symmetrical Meccan movements</p>
+      </article>
+      <article class="panel metric-card">
+        <span class="coord-label">Cosmic Ascent Span</span>
+        <div class="metric-val">50,000 Years</div>
+        <p class="muted">Extent of the Day angels &amp; Spirit ascend (70:4)</p>
+      </article>
+      <article class="panel metric-card">
+        <span class="coord-label">Human Diagnosis</span>
+        <div class="metric-val">Halū‘an</div>
+        <p class="muted">Anxious oscillation between panic &amp; hoarding (70:19–21)</p>
+      </article>
+      <article class="panel metric-card">
+        <span class="coord-label">Anchoring Cure</span>
+        <div class="metric-val">9 Virtues</div>
+        <p class="muted">Bookended by constancy &amp; guarding of prayer (70:22–34)</p>
+      </article>
+    </section>
+
+    <!-- Section I: Thematic Architecture & Structural Schematic -->
+    <section id="structure" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section I &middot; Structural Architecture</span>
+        <h2 class="section-title">Five movements trace a path from <em>cosmic ascent</em> to inner steadiness</h2>
+        <p class="muted">
+          Select any movement on the ascent schematic or in the index to inspect its thematic axis, key Arabic roots, and narrative transition.
+        </p>
+      </div>
+
+      <div class="structure-layout">
+        <div class="panel">
+          <div class="observation-well">
+            <svg class="schematic-svg" viewBox="0 0 560 390" role="img" aria-label="Interactive five-movement structural map of Surah Al-Ma'arij">
+              <defs>
+                <marker id="arrow-brass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--primary)"></path>
+                </marker>
+                <marker id="arrow-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--tertiary)"></path>
+                </marker>
+              </defs>
+
+              <!-- Vertical Ascent Axis -->
+              <line x1="64" y1="355" x2="64" y2="28" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-brass)" />
+              <text x="52" y="200" fill="var(--primary)" font-family="var(--font-label)" font-size="10" letter-spacing="1.4" transform="rotate(-90 52 200)" text-anchor="middle">VERTICAL ASCENT (MA‘ĀRIJ)</text>
+
+              <!-- Movement 1 -->
+              <g class="movement-node" tabindex="0" onclick="selectMovement(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMovement(0);}">
+                <rect x="98" y="20" width="440" height="58" rx="4" fill="var(--surface-container)" stroke="var(--primary)" stroke-width="1.5" id="svg-mov-0" />
+                <text x="114" y="42" fill="var(--primary)" font-family="var(--font-label)" font-size="11" font-weight="600">MOVEMENT I &middot; VV. 1–7</text>
+                <text x="114" y="62" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="16">Dhi al-Ma‘ārij, the 50,000-Year Day &amp; Gracious Patience</text>
+              </g>
+
+              <!-- Movement 2 -->
+              <g class="movement-node" tabindex="0" onclick="selectMovement(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMovement(1);}">
+                <rect x="98" y="92" width="440" height="58" rx="4" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" id="svg-mov-1" />
+                <text x="114" y="114" fill="var(--warning)" font-family="var(--font-label)" font-size="11" font-weight="600">MOVEMENT II &middot; VV. 8–18</text>
+                <text x="114" y="134" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="16">Cosmic Unmaking, Ransom Failure &amp; the Calling Flame (Laẓā)</text>
+              </g>
+
+              <!-- Movement 3 -->
+              <g class="movement-node" tabindex="0" onclick="selectMovement(2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMovement(2);}">
+                <rect x="98" y="164" width="440" height="58" rx="4" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" id="svg-mov-2" />
+                <text x="114" y="186" fill="var(--tertiary)" font-family="var(--font-label)" font-size="11" font-weight="600">MOVEMENT III &middot; VV. 19–21 (PIVOT)</text>
+                <text x="114" y="206" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="16">Psychological Diagnosis: Humanity Created Halū‘an</text>
+              </g>
+
+              <!-- Movement 4 -->
+              <g class="movement-node" tabindex="0" onclick="selectMovement(3)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMovement(3);}">
+                <rect x="98" y="236" width="440" height="58" rx="4" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" id="svg-mov-3" />
+                <text x="114" y="258" fill="var(--positive)" font-family="var(--font-label)" font-size="11" font-weight="600">MOVEMENT IV &middot; VV. 22–35</text>
+                <text x="114" y="278" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="16">The Nine Virtues of Al-Muṣallīn &amp; Honored Gardens</text>
+              </g>
+
+              <!-- Movement 5 -->
+              <g class="movement-node" tabindex="0" onclick="selectMovement(4)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMovement(4);}">
+                <rect x="98" y="308" width="440" height="58" rx="4" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" id="svg-mov-4" />
+                <text x="114" y="330" fill="var(--tertiary)" font-family="var(--font-label)" font-size="11" font-weight="600">MOVEMENT V &middot; VV. 36–44</text>
+                <text x="114" y="350" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="16">Lord of Risings &amp; Settings, Sovereign Replacement &amp; Reckoning</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="panel movement-detail-well" id="movement-detail-panel">
+          <div class="movement-list" role="group" aria-label="Select Surah Movement">
+            <button type="button" class="btn movement-btn btn-active" id="mov-btn-0" onclick="selectMovement(0)">
+              <span class="deck-brass">I &middot; Vv. 1–7</span>
+              <span>The Skeptic’s Demand &amp; Cosmic Ascent</span>
+            </button>
+            <button type="button" class="btn movement-btn" id="mov-btn-1" onclick="selectMovement(1)">
+              <span class="coord-label">II &middot; Vv. 8–18</span>
+              <span>Dissolution of Sky, Kinship &amp; the Flame</span>
+            </button>
+            <button type="button" class="btn movement-btn" id="mov-btn-2" onclick="selectMovement(2)">
+              <span class="coord-label">III &middot; Vv. 19–21</span>
+              <span>The Diagnosis of Restlessness (Halū‘an)</span>
+            </button>
+            <button type="button" class="btn movement-btn" id="mov-btn-3" onclick="selectMovement(3)">
+              <span class="coord-label">IV &middot; Vv. 22–35</span>
+              <span>The Nine Virtues of the Steadfast</span>
+            </button>
+            <button type="button" class="btn movement-btn" id="mov-btn-4" onclick="selectMovement(4)">
+              <span class="coord-label">V &middot; Vv. 36–44</span>
+              <span>Risings, Settings &amp; Inevitable Reckoning</span>
+            </button>
+          </div>
+
+          <div class="observation-well" id="movement-inspector">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section II: Structural Parallels (Cosmic Ascent vs. Halu'an & Nine Virtues) -->
+    <section id="parallels" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section II &middot; Structural Parallels</span>
+        <h2 class="section-title">How <em>Dhī al-Ma‘ārij</em> answers human restlessness with nine ascending disciplines</h2>
+        <p class="muted">
+          Surah Al-Ma‘ārij mirrors cosmic verticality inside the human soul. Left unchecked, human nature oscillates violently between panic and hoarding (<em>halū‘an</em>). Only the nine virtues anchored by prayer stabilize that oscillation and restore upward ascent.
+        </p>
+      </div>
+
+      <!-- Ring / Inclusio Bridges -->
+      <div class="inclusio-strip">
+        <article class="panel-low">
+          <span class="badge badge-brass">Lexical Thread: S-’-L</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">From Mockery to Mercy</h3>
+          <p class="muted" style="margin-top: var(--space-xs);">
+            <strong>v. 1</strong> opens with a skeptic asking (<em>sa’ala sā’ilun</em>) in defiance; <strong>v. 10</strong> depicts the Day no friend asks (<em>lā yas’alu</em>) of a friend; <strong>v. 25</strong> redeems the root in giving to the petitioner (<em>lis-sā’ili</em>).
+          </p>
+        </article>
+        <article class="panel-low">
+          <span class="badge">Cosmic &harr; Moral Axis</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">Ascending vs. Turning Back</h3>
+          <p class="muted" style="margin-top: var(--space-xs);">
+            Angels and the Spirit ascend (<em>ta‘ruju</em>, v. 4) to Allah, whereas the condemned turned his back and retreated (<em>adbara wa tawallā</em>, v. 17) into hoarding (v. 18).
+          </p>
+        </article>
+        <article class="panel-low">
+          <span class="badge badge-mint">Horizon Symmetry</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">Time &amp; Orbital Mastery</h3>
+          <p class="muted" style="margin-top: var(--space-xs);">
+            Opening with the 50,000-year Day of ascent (v. 4) and nearness (<em>qarīban</em>, v. 7), closing with the Lord of all risings and settings (<em>al-mashāriq wal-maghārib</em>, v. 40).
+          </p>
+        </article>
+      </div>
+
+      <div class="parallel-grid">
+        <!-- Left Axis: The Halu'an Oscillation -->
+        <aside class="panel haluan-axis" aria-label="Diagnosis of Human Restlessness">
+          <div>
+            <span class="badge badge-coral">The Unanchored Soul &middot; Vv. 19–21</span>
+            <h3 class="card-title" style="margin-top: var(--space-sm);"><em>Halū‘an</em>: The Dual Extremes</h3>
+            <p class="muted" style="margin-top: var(--space-xs);">
+              Verse 19 introduces a rare Qur’anic intensive adjective—<em>halū‘an</em> (restless, anxious, unsteady)—and verses 20–21 immediately define it through two symmetrical failures:
+            </p>
+          </div>
+
+          <div class="polarity-pair">
+            <div class="observation-well">
+              <div class="arabic-text" lang="ar" dir="rtl" style="font-size: 1.55rem; color: var(--warning);">جَزُوعًا</div>
+              <div class="coord-label" style="color: var(--warning);">Jazū‘an (v. 20)</div>
+              <p style="font-size: 0.92rem; margin-top: var(--space-xs);">
+                When harm or hardship touches him: impatient, panicking, losing inward composure.
+              </p>
+            </div>
+            <div class="observation-well">
+              <div class="arabic-text" lang="ar" dir="rtl" style="font-size: 1.55rem; color: var(--warning);">مَنُوعًا</div>
+              <div class="coord-label" style="color: var(--warning);">Manū‘an (v. 21)</div>
+              <p style="font-size: 0.92rem; margin-top: var(--space-xs);">
+                When good or abundance touches him: tight-fisted, hoarding (linking back to <em>jama‘a fa-aw‘ā</em> in v. 18).
+              </p>
+            </div>
+          </div>
+
+          <div class="observation-well">
+            <span class="deck-brass">The Structural Remedy (Vv. 22–35)</span>
+            <p style="font-size: 0.94rem; margin-top: var(--space-xs);">
+              Notice the exception particle <strong><em>Illā al-muṣallīn</em></strong> (“Except the observers of prayer,” v. 22). Prayer stands at the entry (v. 23, inward constancy <em>dā’imūn</em>) and the exit (v. 34, outward vigilance <em>yuḥāfiẓūn</em>), enclosing seven ethical and eschatological virtues that neutralize both panic and greed.
+            </p>
+          </div>
+        </aside>
+
+        <!-- Right Axis: The Nine Virtues Grid -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <span class="deck-brass">The Nine Virtues of Al-Muṣallīn (Vv. 22–34)</span>
+            <span class="muted" style="font-size: 0.88rem;">Check any virtue below to include it in your personal readiness audit</span>
+          </div>
+          <div class="virtues-grid" id="virtues-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section III: Comprehensive Verse-by-Verse & Word-by-Word Studio -->
+    <section id="verses" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section III &middot; Comprehensive Text &amp; Morphology</span>
+        <h2 class="section-title">All 44 verses with <em>word-by-word</em> linguistic &amp; morphological analysis</h2>
+        <p class="muted">
+          Click any Arabic word token in a verse to inspect its triliteral root, morphological pattern, grammatical case, and contextual gloss in the recessed observatory well—or expand the full word-by-word table for any verse.
+        </p>
+      </div>
+
+      <div class="panel-low" style="display:grid; gap:var(--space-md);">
+        <div class="studio-controls">
+          <div class="field-group">
+            <label class="field-label" for="verse-search">Search Arabic, Transliteration, Root, or Meaning</label>
+            <input type="text" id="verse-search" class="text-input" placeholder="Try: patience, halū‘, ع-ر-ج, 50,000, trust…" oninput="filterVerses()">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="movement-select">Filter by Thematic Movement</label>
+            <select id="movement-select" class="select-input" onchange="filterVerses()">
+              <option value="all">All 44 Verses (Full Surah)</option>
+              <option value="1">I. Ascent &amp; Patience (70:1–7)</option>
+              <option value="2">II. Unmaking &amp; Flame (70:8–18)</option>
+              <option value="3">III. Human Restlessness (70:19–21)</option>
+              <option value="4">IV. The Nine Virtues (70:22–35)</option>
+              <option value="5">V. Confrontation &amp; Reckoning (70:36–44)</option>
+            </select>
+          </div>
+          <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+            <button type="button" class="btn btn-active" id="btn-toggle-translit" onclick="toggleTranslit()">Transliteration: On</button>
+            <button type="button" class="btn" id="btn-expand-all-wbw" onclick="toggleAllWbw()">Expand All Tables</button>
+          </div>
+        </div>
+        <div class="muted" id="verse-filter-count" style="font-family:var(--font-label); font-size:var(--label-size);">
+          Showing 44 of 44 verses
+        </div>
+      </div>
+
+      <div class="verses-stack" id="verses-container">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section IV: Tafsir Synthesis -->
+    <section id="tafsir" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section IV &middot; Exegetical Synthesis</span>
+        <h2 class="section-title">Four classical <em>tafsīr</em> keys unlocking Surah Al-Ma‘ārij</h2>
+        <p class="muted">
+          Synthesizing linguistic observations and classical commentary (including Ibn Kathīr, al-Ṭabarī, al-Zamakhsharī, and al-Rāzī) around the surah’s core theological tensions.
+        </p>
+      </div>
+
+      <div class="tafsir-grid">
+        <article class="panel">
+          <span class="badge badge-brass">1 &middot; Vv. 1–5</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">Occasion of Challenge &amp; <em>Ṣabran Jamīlan</em></h3>
+          <p class="muted" style="margin-top: var(--space-sm);">
+            Classical commentators link verse 1 to Meccan opponents (notably al-Naḍr ibn al-Ḥārith) who sarcastically challenged revelation by demanding immediate divine punishment. Instead of answering mockery with haste, Allah answers with His transcendent title <em>Dhī al-Ma‘ārij</em>—revealing that cosmic governance unfolds across measures like fifty thousand years, and instructing the Prophet to adopt <em>ṣabran jamīlan</em>: patience free of complaint to creation, anchored in certainty.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="badge">2 &middot; Vv. 6–18</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">Perceptual Inversion: Distant vs. Near</h3>
+          <p class="muted" style="margin-top: var(--space-sm);">
+            “They see it as distant (<em>ba‘īdan</em>), but We see it as near (<em>qarīban</em>).” To human myopia, accountability feels remote; to divine omniscience, every assured reality is already imminent. When that Day arrives, sky and mountains lose density (molten dregs and carded wool), social shelters dissolve so violently that a criminal would trade child, spouse, brother, clan, and all humanity—yet <em>kallā</em>: the blazing core fire (<em>Laẓā</em>) specifically calls those who turned away and hoarded.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="badge badge-coral">3 &middot; Vv. 19–21</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">The Qur’an’s Self-Gloss of <em>Halū‘an</em></h3>
+          <p class="muted" style="margin-top: var(--space-sm);">
+            Philologists note that <em>halū‘</em> appears only once in the Qur’an, on the intensive pattern <em>fa‘ūl</em> indicating ingrained propensity. Rather than leaving its nuance ambiguous, the text immediately defines it in the next two verses: panic when touched by harm (<em>jazū‘an</em>) and withholding when touched by good (<em>manū‘an</em>). Both reactions share one root defect—measuring reality solely by immediate comfort rather than divine trust.
+          </p>
+        </article>
+
+        <article class="panel">
+          <span class="badge badge-mint">4 &middot; Vv. 22–44</span>
+          <h3 class="card-title" style="margin-top: var(--space-sm);">The Ring of Prayer &amp; Sovereign Replacement</h3>
+          <p class="muted" style="margin-top: var(--space-sm);">
+            Prayer both opens (<em>dā’imūn</em>, inward constancy, v. 23) and closes (<em>yuḥāfiẓūn</em>, diligent guardianship of times and integrity, v. 34) the nine virtues. Between those pillars stand financial justice, eschatological realism, moral modesty, covenantal fidelity, and truthful testimony. In the closing scene, disbelievers who rushed into mocking circles (<em>‘izīn</em>, v. 37) are reminded of their humble origin (v. 39) and warned by the Lord of all sunrises and sunsets (v. 40) that He can replace them with better people—before emerging from graves as swiftly as they once ran to idols.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section V: Interactive Self-Assessment -->
+    <section id="assessment" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section V &middot; Mastery Self-Assessment</span>
+        <h2 class="section-title">Test your grasp of <em>morphology</em>, structure, and exegetical parallels</h2>
+        <p class="muted">
+          Select an answer for each question to receive immediate grammatical and exegetical feedback. Your score persists automatically across sessions.
+        </p>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-md);" class="panel-low">
+        <div class="progress-readout">
+          <span>Questions Answered: <strong id="quiz-answered-count">0 / 8</strong></span>
+          <span>Correct: <strong id="quiz-correct-count">0 / 8</strong></span>
+        </div>
+        <button type="button" class="btn" id="btn-reset-quiz" onclick="resetQuiz(this)">Reset Assessment</button>
+      </div>
+
+      <div class="quiz-stack" id="quiz-container">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section VI: Reflective Prompts & Export -->
+    <section id="reflections" class="section-block">
+      <div class="section-head">
+        <span class="coord-label">Section VI &middot; Contemplative Application</span>
+        <h2 class="section-title">Reflective prompts for <em>inner steadiness</em></h2>
+        <p class="muted">
+          Notes are saved automatically to your notebook state and can be exported as a plain-text study summary at any time.
+        </p>
+      </div>
+
+      <div class="reflections-grid" id="reflections-container">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="panel-low" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-md);">
+        <div class="status-line" id="reflection-status" aria-live="polite"></div>
+        <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" onclick="exportStudyNotes()">Export Study Notes (.txt)</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-bar">
+      <span>Source grounding: Surah Al-Ma‘ārij (Chapter 70, verses 1–44) Arabic text and English rendering from the study PDF, paired with classical Arabic morphology and tafsīr synthesis.</span>
+      <span class="coord-label">Surah 70 &middot; Nocturne Study Edition</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA: 5 THEMATIC MOVEMENTS
+    // =========================================================================
+    const MOVEMENTS = [
+      {
+        id: 1,
+        range: `70:1–7`,
+        title: `The Skeptic’s Challenge & Cosmic Ascent`,
+        summary: `A mocking demand for punishment is answered by introducing Allah as Dhī al-Ma‘ārij (Owner of the Ways of Ascent). Cosmic time—a Day measuring fifty thousand years—frames the prophetic command to gracious patience (ṣabran jamīlan) and contrasts human myopia ("distant") with divine certainty ("near").`,
+        roots: [`س-أ-ل (demand)`, `ع-ر-ج (ascend)`, `ص-ب-ر (patience)`, `ق-ر-ب (near)`],
+        bridge: `Establishes vertical ascent as the Surah’s governing metaphor.`
+      },
+      {
+        id: 2,
+        range: `70:8–18`,
+        title: `Eschatological Unmaking & the Calling Flame`,
+        summary: `The physical cosmos unravels—sky like molten dregs/murky oil, mountains like carded wool—while every earthly shelter fails. No friend asks of a friend; the guilty wishes to ransom himself with children, spouse, brother, clan, and all on earth. Laẓā answers with finality, calling out to the one who turned back and hoarded.`,
+        roots: [`م-ه-ل (molten oil)`, `ع-ه-ن (wool)`, `ف-د-ي (ransom)`, `و-ع-ي (hoard)`],
+        bridge: `Shows the collapse of horizontal attachments when vertical ascent is refused.`
+      },
+      {
+        id: 3,
+        range: `70:19–21`,
+        title: `Psychological Diagnosis: Humanity Created Halū‘an`,
+        summary: `The hinge of the Surah diagnoses humanity’s unanchored nature: halū‘an (anxious restlessness). When touched by hardship, humans collapse into panic (jazū‘an); when touched by prosperity, they lock it away (manū‘an).`,
+        roots: [`ه-ل-ع (restless)`, `ج-ز-ع (panicked)`, `م-ن-ع (withholding)`],
+        bridge: `Provides the psychological root behind the hoarding condemned in v. 18.`
+      },
+      {
+        id: 4,
+        range: `70:22–35`,
+        title: `The Nine Virtues of Al-Muṣallīn & Honored Gardens`,
+        summary: `Introduced by the exception "Illā al-muṣallīn" (v. 22), nine anchoring disciplines lift the believer out of anxiety and greed: constancy in prayer, recognized wealth-sharing, belief in Recompense, reverent fear of divine punishment, chastity, fidelity to trusts and promises, upright testimony, and vigilant preservation of prayer—culminating in honored gardens.`,
+        roots: [`ص-ل-و (prayer)`, `د-و-م (constancy)`, `ش-ف-ق (reverence)`, `ح-ف-ظ (guarding)`],
+        bridge: `Turns vertical prayer into horizontal justice, fidelity, and steadiness.`
+      },
+      {
+        id: 5,
+        range: `70:36–44`,
+        title: `Mocking Circles, Risings & Settings, and Reckoning`,
+        summary: `Disbelievers who rush into fragmented circles around the Prophet while presuming paradise are reminded of their humble origin and confronted by the Lord of all sunrises and sunsets, fully able to replace them. The Surah closes as they emerge rapidly from graves with humbled eyes, covered in humiliation.`,
+        roots: [`ه-ط-ع (hasten)`, `ش-ر-ق / غ-ر-ب (risings/settings)`, `خ-ش-ع (humbled)`],
+        bridge: `Mirrors the opening challenge (v. 1) with the unavoidable Day they were promised (v. 44).`
+      }
+    ];
+
+    // =========================================================================
+    // DATA: NINE VIRTUES OF AL-MUSALLIN (VV. 22-34)
+    // =========================================================================
+    const VIRTUES = [
+      {
+        num: `01`,
+        verse: `70:22–23`,
+        arabic: `عَلَىٰ صَلَاتِهِمْ دَائِمُونَ`,
+        title: `Constancy in Prayer (Dā’imūn)`,
+        counters: `Cures jazū‘an (spiritual inconsistency & panic)`,
+        desc: `Unbroken, serene commitment to worship in both ease and hardship; the inner anchor initiating the list.`,
+        bookend: true
+      },
+      {
+        num: `02`,
+        verse: `70:24–25`,
+        arabic: `فِي أَمْوَالِهِمْ حَقٌّ مَعْلُومٌ`,
+        title: `Known Right for Petitioner & Deprived`,
+        counters: `Directly cures manū‘an (withholding) & hoarding (v. 18)`,
+        desc: `Treating charity not as optional surplus but as an acknowledged, scheduled right belonging to the asker and the destitute.`,
+        bookend: false
+      },
+      {
+        num: `03`,
+        verse: `70:26`,
+        arabic: `يُصَدِّقُونَ بِيَوْمِ الدِّينِ`,
+        title: `Affirmation of the Day of Recompense`,
+        counters: `Cures perceiving Judgment as distant (ba‘īdan, v. 6)`,
+        desc: `Active, lived conviction (taṣdīq) that deeds carry weight beyond immediate worldly outcomes.`,
+        bookend: false
+      },
+      {
+        num: `04`,
+        verse: `70:27–28`,
+        arabic: `مِنْ عَذَابِ رَبِّهِمْ مُشْفِقُونَ`,
+        title: `Reverent Vigilance (Mushfiqūn)`,
+        counters: `Cures reckless defiance (sa’ala sā’ilun, v. 1)`,
+        desc: `Humble awareness that no one has unilateral immunity from divine accountability (ghayru ma’mūn).`,
+        bookend: false
+      },
+      {
+        num: `05`,
+        verse: `70:29–31`,
+        arabic: `لِفُرُوجِهِمْ حَافِظُونَ`,
+        title: `Guarding Chastity`,
+        counters: `Disciplines bodily impulse against transgression`,
+        desc: `Maintaining moral boundaries and dignity, refusing to cross beyond lawful marital bounds.`,
+        bookend: false
+      },
+      {
+        num: `06`,
+        verse: `70:32a`,
+        arabic: `لِأَمَانَاتِهِمْ رَاعُونَ`,
+        title: `Fidelity to Trusts (Amānāt)`,
+        counters: `Restores social integrity where kinship fails (vv. 10–14)`,
+        desc: `Attentively shepherding every deposit—material, relational, or spiritual—entrusted to one’s care.`,
+        bookend: false
+      },
+      {
+        num: `07`,
+        verse: `70:32b`,
+        arabic: `وَعَهْدِهِمْ رَاعُونَ`,
+        title: `Honoring Covenants & Promises (‘Ahd)`,
+        counters: `Replaces opportunism with binding reliability`,
+        desc: `Keeping spoken agreements and solemn pledges intact even when circumstances shift.`,
+        bookend: false
+      },
+      {
+        num: `08`,
+        verse: `70:33`,
+        arabic: `بِشَهَادَاتِهِمْ قَائِمُونَ`,
+        title: `Uprightness in Testimony`,
+        counters: `Prevents distortion under fear or favor`,
+        desc: `Standing firm (qā’imūn) in truthful witness without concealing or bending facts for self-interest.`,
+        bookend: false
+      },
+      {
+        num: `09`,
+        verse: `70:34`,
+        arabic: `عَلَىٰ صَلَاتِهِمْ يُحَافِظُونَ`,
+        title: `Careful Preservation of Prayer (Yuḥāfiẓūn)`,
+        counters: `Seals the nine virtues as both root and crown`,
+        desc: `Guarding the appointed times, pillars, and inward presence of prayer—completing the protective ring around the soul.`,
+        bookend: true
+      }
+    ];
+
+    // =========================================================================
+    // DATA: ALL 44 VERSES WITH WORD-BY-WORD MORPHOLOGY
+    // =========================================================================
+    const VERSES = [
+      {
+        num: 1,
+        mov: 1,
+        arabic: `سَأَلَ سَائِلٌ بِعَذَابٍ وَاقِعٍ`,
+        translit: `Sa’ala sā’ilun bi-‘adhābin wāqi‘`,
+        translation: `A supplicant asked for a punishment bound to happen`,
+        tafsir: `Opens abruptly with a past-tense verb and its cognate active participle. Classical tafsīr identifies the challenger as al-Naḍr ibn al-Ḥārith or Meccan skeptics sarcastically asking for immediate chastisement, which Allah confirms is inevitably befalling (wāqi‘).`,
+        words: [
+          { ar: `سَأَلَ`, tr: `sa’ala`, root: `س-أ-ل`, form: `Form I Perfect Verb (3ms)`, role: `Main verb`, gloss: `asked / demanded` },
+          { ar: `سَائِلٌ`, tr: `sā’ilun`, root: `س-أ-ل`, form: `Form I Active Participle (nom.)`, role: `Subject (fā‘il)`, gloss: `a supplicant / challenger` },
+          { ar: `بِعَذَابٍ`, tr: `bi-‘adhābin`, root: `ع-ذ-ب`, form: `Prep. bi + Noun (gen.)`, role: `Prepositional object`, gloss: `for a punishment` },
+          { ar: `وَاقِعٍ`, tr: `wāqi‘in`, root: `و-ق-ع`, form: `Form I Active Participle (gen.)`, role: `Adjective (na‘t)`, gloss: `bound to happen / befalling` }
+        ]
+      },
+      {
+        num: 2,
+        mov: 1,
+        arabic: `لِلْكَافِرِينَ لَيْسَ لَهُ دَافِعٌ`,
+        translit: `Lil-kāfirīna laysa lahu dāfi‘`,
+        translation: `To the disbelievers; of it there is no preventer.`,
+        tafsir: `Restricts the inevitable punishment specifically to persistent disbelievers and underscores its irrevocability using the negative verb laysa and the active participle dāfi‘ (repeller).`,
+        words: [
+          { ar: `لِلْكَافِرِينَ`, tr: `lil-kāfirīna`, root: `ك-ف-ر`, form: `Prep. li + Sound Masc. Pl. Participle`, role: `Indirect prepositional phrase`, gloss: `for the disbelievers` },
+          { ar: `لَيْسَ`, tr: `laysa`, root: `ل-ي-س`, form: `Defective Negative Verb`, role: `Negation of existence`, gloss: `there is not` },
+          { ar: `لَهُ`, tr: `lahu`, root: `—`, form: `Prep. li + 3ms pronoun`, role: `Predicate of laysa (khabar)`, gloss: `for it` },
+          { ar: `دَافِعٌ`, tr: `dāfi‘un`, root: `د-ف-ع`, form: `Form I Active Participle (nom.)`, role: `Subject of laysa (ism)`, gloss: `a preventer / repeller` }
+        ]
+      },
+      {
+        num: 3,
+        mov: 1,
+        arabic: `مِنَ اللَّهِ ذِي الْمَعَارِجِ`,
+        translit: `Mina llāhi dhī l-ma‘ārij`,
+        translation: `[It is] from Allah, owner of the ways of ascent.`,
+        tafsir: `Names the Surah. Al-ma‘ārij is the plural of mi‘rāj (stairway or channel of ascent), pointing to both the angelic pathways of divine governance and the spiritual elevation of believers.`,
+        words: [
+          { ar: `مِنَ`, tr: `mina`, root: `—`, form: `Preposition`, role: `Specifies source`, gloss: `from` },
+          { ar: `اللَّهِ`, tr: `Allāhi`, root: `أ-ل-ه`, form: `Proper Divine Name (gen.)`, role: `Genitive noun`, gloss: `Allah` },
+          { ar: `ذِي`, tr: `dhī`, root: `ذ-و`, form: `Noun of Possession (gen.)`, role: `Apposition / attribute`, gloss: `Owner / Possessor of` },
+          { ar: `الْمَعَارِجِ`, tr: `al-ma‘āriji`, root: `ع-ر-ج`, form: `Broken Plural mafā‘il (gen.)`, role: `Genitive annex (muḍāf ilayh)`, gloss: `the ways / stairways of ascent` }
+        ]
+      },
+      {
+        num: 4,
+        mov: 1,
+        arabic: `تَعْرُجُ الْمَلَائِكَةُ وَالرُّوحُ إِلَيْهِ فِي يَوْمٍ كَانَ مِقْدَارُهُ خَمْسِينَ أَلْفَ سَنَةٍ`,
+        translit: `Ta‘ruju l-malā’ikatu war-rūḥu ilayhi fī yawmin kāna miqdāruhu khamsīna alfa sanah`,
+        translation: `The angels and the Spirit will ascend to Him during a Day the extent of which is fifty thousand years.`,
+        tafsir: `Al-Rūḥ denotes the Archangel Jibrīl (Gabriel) singled out in honor. Classical exegetes read the 50,000-year span either as the vast cosmic scale of angelic ascent or the felt duration of Judgment Day for the disbelievers—whereas it passes lightly for the believer.`,
+        words: [
+          { ar: `تَعْرُجُ`, tr: `ta‘ruju`, root: `ع-ر-ج`, form: `Form I Imperfect Verb (3fs)`, role: `Continuous/future ascent`, gloss: `ascend` },
+          { ar: `الْمَلَائِكَةُ`, tr: `al-malā’ikatu`, root: `ل-أ-ك`, form: `Broken Plural Noun (nom.)`, role: `Subject (fā‘il)`, gloss: `the angels` },
+          { ar: `وَالرُّوحُ`, tr: `war-rūḥu`, root: `ر-و-ح`, form: `Conj. + Noun (nom.)`, role: `Coupled subject`, gloss: `and the Spirit (Jibrīl)` },
+          { ar: `إِلَيْهِ`, tr: `ilayhi`, root: `—`, form: `Prep. ilā + 3ms pronoun`, role: `Destination`, gloss: `to Him` },
+          { ar: `فِي يَوْمٍ`, tr: `fī yawmin`, root: `ي-و-م`, form: `Prep. + Noun (gen.)`, role: `Temporal phrase`, gloss: `during a Day` },
+          { ar: `كَانَ`, tr: `kāna`, root: `ك-و-ن`, form: `Defective Verb`, role: `Links subject and extent`, gloss: `whose measure is` },
+          { ar: `مِقْدَارُهُ`, tr: `miqdāruhu`, root: `ق-د-ر`, form: `Noun mif‘āl + 3ms pronoun`, role: `Subject of kāna`, gloss: `its extent / measure` },
+          { ar: `خَمْسِينَ`, tr: `khamsīna`, root: `خ-م-س`, form: `Cardinal Decade (acc.)`, role: `Predicate of kāna`, gloss: `fifty` },
+          { ar: `أَلْفَ`, tr: `alfa`, root: `أ-ل-ف`, form: `Numeral Noun (acc.)`, role: `Specifier (tamyīz)`, gloss: `thousand` },
+          { ar: `سَنَةٍ`, tr: `sanatin`, root: `س-ن-و`, form: `Singular Noun (gen.)`, role: `Genitive specifier`, gloss: `years` }
+        ]
+      },
+      {
+        num: 5,
+        mov: 1,
+        arabic: `فَاصْبِرْ صَبْرًا جَمِيلًا`,
+        translit: `Fa-ṣbir ṣabran jamīlā`,
+        translation: `So be patient with gracious patience.`,
+        tafsir: `Uses the cognate accusative (ṣabran) paired with jamīlan (beautiful, gracious). In prophetic ethics, ṣabr jamīl means endurance free from bitterness, panic, or complaint toward people, turning one’s grievance solely to Allah.`,
+        words: [
+          { ar: `فَاصْبِرْ`, tr: `fa-ṣbir`, root: `ص-ب-ر`, form: `Conj. fa + Form I Imperative (2ms)`, role: `Resultant command`, gloss: `so be patient` },
+          { ar: `صَبْرًا`, tr: `ṣabran`, root: `ص-ب-ر`, form: `Verbal Noun / Maṣdar (acc.)`, role: `Cognate accusative (maf‘ūl muṭlaq)`, gloss: `with a patience` },
+          { ar: `جَمِيلًا`, tr: `jamīlan`, root: `ج-م-ل`, form: `Adjective fa‘īl (acc.)`, role: `Qualifier of patience`, gloss: `gracious / comely` }
+        ]
+      },
+      {
+        num: 6,
+        mov: 1,
+        arabic: `إِنَّهُمْ يَرَوْنَهُ بَعِيدًا`,
+        translit: `Innahum yarawnahu ba‘īdā`,
+        translation: `Indeed, they see it [as] distant,`,
+        tafsir: `Captures the psychological illusion of denial: because accountability is deferred, skeptics assume it is either far off or impossible.`,
+        words: [
+          { ar: `إِنَّهُمْ`, tr: `innahum`, root: `—`, form: `Emphatic inna + 3mp pronoun`, role: `Emphatic clause opener`, gloss: `indeed they` },
+          { ar: `يَرَوْنَهُ`, tr: `yarawnahu`, root: `ر-أ-ي`, form: `Form I Imperfect (3mp) + 3ms obj.`, role: `Verb of perception`, gloss: `see / deem it` },
+          { ar: `بَعِيدًا`, tr: `ba‘īdan`, root: `ب-ع-د`, form: `Adjective fa‘īl (acc.)`, role: `Second object of perception`, gloss: `distant / far-fetched` }
+        ]
+      },
+      {
+        num: 7,
+        mov: 1,
+        arabic: `وَنَرَاهُ قَرِيبًا`,
+        translit: `Wa-narāhu qarībā`,
+        translation: `But We see it [as] near.`,
+        tafsir: `Crisp antithesis to verse 6: every certainty decreed by Allah is already close at hand in divine reckoning.`,
+        words: [
+          { ar: `وَنَرَاهُ`, tr: `wa-narāhu`, root: `ر-أ-ي`, form: `Conj. + Form I Imperfect (1p) + 3ms`, role: `Divine perception`, gloss: `but We see it` },
+          { ar: `قَرِيبًا`, tr: `qarīban`, root: `ق-ر-ب`, form: `Adjective fa‘īl (acc.)`, role: `Second object`, gloss: `near / imminent` }
+        ]
+      },
+      {
+        num: 8,
+        mov: 2,
+        arabic: `يَوْمَ تَكُونُ السَّمَاءُ كَالْمُهْلِ`,
+        translit: `Yawma takūnu s-samā’u kal-muhl`,
+        translation: `On the Day the sky will be like murky oil,`,
+        tafsir: `Begins the eschatological tableau. Al-muhl denotes murky sediment of olive oil or molten metal dregs—signaling that the seemingly immutable canopy above melts into fluid turbulence.`,
+        words: [
+          { ar: `يَوْمَ`, tr: `yawma`, root: `ي-و-م`, form: `Time Adverb (acc.)`, role: `Links to qarīban / wāqi‘`, gloss: `on the Day` },
+          { ar: `تَكُونُ`, tr: `takūnu`, root: `ك-و-ن`, form: `Defective Imperfect (3fs)`, role: `Transformation verb`, gloss: `will become` },
+          { ar: `السَّمَاءُ`, tr: `as-samā’u`, root: `س-م-و`, form: `Definite Noun (nom.)`, role: `Subject of takūnu`, gloss: `the sky` },
+          { ar: `كَالْمُهْلِ`, tr: `kal-muhli`, root: `م-ه-ل`, form: `Prep. ka + Definite Noun (gen.)`, role: `Simile predicate`, gloss: `like murky oil / molten dregs` }
+        ]
+      },
+      {
+        num: 9,
+        mov: 2,
+        arabic: `وَتَكُونُ الْجِبَالُ كَالْعِهْنِ`,
+        translit: `Wa-takūnu l-jibālu kal-‘ihn`,
+        translation: `And the mountains will be like wool,`,
+        tafsir: `Paired with verse 8: just as sky liquefies, solid mountains become weightless like carded, dyed wool (‘ihn), stripped of their geological anchor.`,
+        words: [
+          { ar: `وَتَكُونُ`, tr: `wa-takūnu`, root: `ك-و-ن`, form: `Conj. + Imperfect (3fs)`, role: `Parallel verb`, gloss: `and will become` },
+          { ar: `الْجِبَالُ`, tr: `al-jibālu`, root: `ج-ب-ل`, form: `Broken Plural (nom.)`, role: `Subject`, gloss: `the mountains` },
+          { ar: `كَالْعِهْنِ`, tr: `kal-‘ihni`, root: `ع-ه-ن`, form: `Prep. ka + Definite Noun (gen.)`, role: `Simile predicate`, gloss: `like carded wool` }
+        ]
+      },
+      {
+        num: 10,
+        mov: 2,
+        arabic: `وَلَا يَسْأَلُ حَمِيمٌ حَمِيمًا`,
+        translit: `Wa-lā yas’alu ḥamīmun ḥamīmā`,
+        translation: `And no friend will ask [anything of] a friend,`,
+        tafsir: `Repeats the root ḥamīm (devoted intimate friend) to heighten the shock of total social atomization—each person is consumed by dread.`,
+        words: [
+          { ar: `وَلَا`, tr: `wa-lā`, root: `—`, form: `Conj. + Negative Particle`, role: `Negation`, gloss: `and not` },
+          { ar: `يَسْأَلُ`, tr: `yas’alu`, root: `س-أ-ل`, form: `Form I Imperfect (3ms)`, role: `Main verb`, gloss: `will ask` },
+          { ar: `حَمِيمٌ`, tr: `ḥamīmun`, root: `ح-م-م`, form: `Noun fa‘īl (nom.)`, role: `Subject`, gloss: `a close friend` },
+          { ar: `حَمِيمًا`, tr: `ḥamīman`, root: `ح-م-م`, form: `Noun fa‘īl (acc.)`, role: `Direct object`, gloss: `about/of a close friend` }
+        ]
+      },
+      {
+        num: 11,
+        mov: 2,
+        arabic: `يُبَصَّرُونَهُمْ ۚ يَوَدُّ الْمُجْرِمُ لَوْ يَفْتَدِي مِنْ عَذَابِ يَوْمِئِذٍ بِبَنِيهِ`,
+        translit: `Yubaṣṣarūnahum; yawaddu l-mujrimu law yaftadī min ‘adhābi yawma’idhin bi-banīh`,
+        translation: `They will be shown each other. The criminal will wish that he could be ransomed from the punishment of that Day by his children`,
+        tafsir: `Silence is not due to absence: yubaṣṣarūnahum (Form II passive) means they are made to see one another clearly, yet self-preservation overrides parental love—the closest bond in human life.`,
+        words: [
+          { ar: `يُبَصَّرُونَهُمْ`, tr: `yubaṣṣarūnahum`, root: `ب-ص-ر`, form: `Form II Passive Imperfect (3mp) + 3mp`, role: `Main clause`, gloss: `they will be shown them` },
+          { ar: `يَوَدُّ`, tr: `yawaddu`, root: `و-د-د`, form: `Form I Imperfect (3ms)`, role: `Verb of wishing`, gloss: `will wish` },
+          { ar: `الْمُجْرِمُ`, tr: `al-mujrimu`, root: `ج-ر-م`, form: `Form IV Active Participle (nom.)`, role: `Subject`, gloss: `the criminal` },
+          { ar: `لَوْ`, tr: `law`, root: `—`, form: `Optative Particle`, role: `Introduces wish`, gloss: `if only` },
+          { ar: `يَفْتَدِي`, tr: `yaftadī`, root: `ف-د-ي`, form: `Form VIII Imperfect (3ms)`, role: `Reflexive verb`, gloss: `he could ransom himself` },
+          { ar: `مِنْ عَذَابِ`, tr: `min ‘adhābi`, root: `ع-ذ-ب`, form: `Prep. + Construct Noun (gen.)`, role: `Source of dread`, gloss: `from the punishment of` },
+          { ar: `يَوْمِئِذٍ`, tr: `yawma’idhin`, root: `ي-و-م`, form: `Compound Time Adverb`, role: `Genitive annex`, gloss: `that Day` },
+          { ar: `بِبَنِيهِ`, tr: `bi-banīhi`, root: `ب-ن-ي`, form: `Prep. bi + Pl. Noun + 3ms`, role: `Instrument of ransom`, gloss: `by his children` }
+        ]
+      },
+      {
+        num: 12,
+        mov: 2,
+        arabic: `وَصَاحِبَتِهِ وَأَخِيهِ`,
+        translit: `Wa-ṣāḥibatihi wa-akhīh`,
+        translation: `And his wife and his brother`,
+        tafsir: `Moves outward through the concentric circles of human intimacy: after offspring, the lifelong companion (ṣāḥibah) and sibling.`,
+        words: [
+          { ar: `وَصَاحِبَتِهِ`, tr: `wa-ṣāḥibatihi`, root: `ص-ح-ب`, form: `Conj. + Fem. Participle + 3ms`, role: `Coupled ransom`, gloss: `and his wife / companion` },
+          { ar: `وَأَخِيهِ`, tr: `wa-akhīhi`, root: `أ-خ-و`, form: `Conj. + Five-Noun gen. + 3ms`, role: `Coupled ransom`, gloss: `and his brother` }
+        ]
+      },
+      {
+        num: 13,
+        mov: 2,
+        arabic: `وَفَصِيلَتِهِ الَّتِي تُؤْوِيهِ`,
+        translit: `Wa-faṣīlatihi llatī tu’wīh`,
+        translation: `And his nearest kindred who shelter him`,
+        tafsir: `Faṣīlah refers to one’s immediate clan or tribe—the social safety net that once sheltered a person in Meccan society, now offered up in vain.`,
+        words: [
+          { ar: `وَفَصِيلَتِهِ`, tr: `wa-faṣīlatihi`, root: `ف-ص-ل`, form: `Conj. + Noun fa‘īlah + 3ms`, role: `Coupled ransom`, gloss: `and his nearest kindred` },
+          { ar: `الَّتِي`, tr: `allatī`, root: `—`, form: `Relative Pronoun (fs)`, role: `Modifies faṣīlah`, gloss: `who` },
+          { ar: `تُؤْوِيهِ`, tr: `tu’wīhi`, root: `أ-و-ي`, form: `Form IV Imperfect (3fs) + 3ms`, role: `Relative verb`, gloss: `shelter / harbor him` }
+        ]
+      },
+      {
+        num: 14,
+        mov: 2,
+        arabic: `وَمَنْ فِي الْأَرْضِ جَمِيعًا ثُمَّ يُنْجِيهِ`,
+        translit: `Wa-man fil-arḍi jamī‘an thumma yunjīh`,
+        translation: `And whoever is on earth entirely [so] then it could save him.`,
+        tafsir: `Climaxes the desperate bargain from family to the entire human race—exposing the moral bankruptcy of self-centered survival.`,
+        words: [
+          { ar: `وَمَنْ`, tr: `wa-man`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Universal expansion`, gloss: `and whoever` },
+          { ar: `فِي الْأَرْضِ`, tr: `fil-arḍi`, root: `أ-ر-ض`, form: `Prep. + Definite Noun (gen.)`, role: `Location`, gloss: `is on earth` },
+          { ar: `جَمِيعًا`, tr: `jamī‘an`, root: `ج-م-ع`, form: `Circumstantial Noun (ḥāl, acc.)`, role: `Emphasis of totality`, gloss: `entirely / all together` },
+          { ar: `ثُمَّ`, tr: `thumma`, root: `—`, form: `Sequential Conjunction`, role: `Result link`, gloss: `then` },
+          { ar: `يُنْجِيهِ`, tr: `yunjīhi`, root: `ن-ج-و`, form: `Form IV Imperfect (3ms) + 3ms`, role: `Desired rescue`, gloss: `it could save him` }
+        ]
+      },
+      {
+        num: 15,
+        mov: 2,
+        arabic: `كَلَّا ۖ إِنَّهَا لَظَىٰ`,
+        translit: `Kallā! Innahā laẓā`,
+        translation: `No! Indeed, it is the Flame [of Hell],`,
+        tafsir: `Kallā (“Never! By no means!”) shatters the ransom fantasy in one syllable. Laẓā is a proper name for pure, smokeless blazing fire.`,
+        words: [
+          { ar: `كَلَّا`, tr: `kallā`, root: `—`, form: `Deterrent Particle`, role: `Emphatic rejection`, gloss: `No! Never!` },
+          { ar: `إِنَّهَا`, tr: `innahā`, root: `—`, form: `Emphatic inna + 3fs pronoun`, role: `Clause opener`, gloss: `indeed it is` },
+          { ar: `لَظَىٰ`, tr: `laẓā`, root: `ل-ظ-ي`, form: `Proper Feminine Noun`, role: `Predicate of inna`, gloss: `the blazing Flame` }
+        ]
+      },
+      {
+        num: 16,
+        mov: 2,
+        arabic: `نَزَّاعَةً لِلشَّوَىٰ`,
+        translit: `Nazzā‘atan lish-shawā`,
+        translation: `A remover of exteriors.`,
+        tafsir: `Nazzā‘ah follows the intensive pattern fa‘‘ālah, conveying relentless tearing away. Al-shawā refers to the scalp, skin, and extremities—stripping away every outer facade.`,
+        words: [
+          { ar: `نَزَّاعَةً`, tr: `nazzā‘atan`, root: `ن-ز-ع`, form: `Intensive Participle fa‘‘ālah (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `relentlessly removing` },
+          { ar: `لِلشَّوَىٰ`, tr: `lish-shawā`, root: `ش-و-ي`, form: `Prep. li + Collective Noun`, role: `Object of removal`, gloss: `of the exteriors / scalp` }
+        ]
+      },
+      {
+        num: 17,
+        mov: 2,
+        arabic: `تَدْعُو مَنْ أَدْبَرَ وَتَوَلَّىٰ`,
+        translit: `Tad‘ū man adbara wa-tawallā`,
+        translation: `It invites he who turned his back [on truth] and went away [from obedience]`,
+        tafsir: `Personifies the Fire as summoning its own guests: adbara (turning one’s back physically/intellectually on truth) and tawallā (walking away from moral obedience).`,
+        words: [
+          { ar: `تَدْعُو`, tr: `tad‘ū`, root: `د-ع-و`, form: `Form I Imperfect (3fs)`, role: `Personified action of Laẓā`, gloss: `it invites / calls` },
+          { ar: `مَنْ`, tr: `man`, root: `—`, form: `Relative Pronoun`, role: `Object`, gloss: `he who` },
+          { ar: `أَدْبَرَ`, tr: `adbara`, root: `د-ب-ر`, form: `Form IV Perfect (3ms)`, role: `Past action`, gloss: `turned his back` },
+          { ar: `وَتَوَلَّىٰ`, tr: `wa-tawallā`, root: `و-ل-ي`, form: `Conj. + Form V Perfect (3ms)`, role: `Coupled action`, gloss: `and went away` }
+        ]
+      },
+      {
+        num: 18,
+        mov: 2,
+        arabic: `وَجَمَعَ فَأَوْعَىٰ`,
+        translit: `Wa-jama‘a fa-aw‘ā`,
+        translation: `And collected [wealth] and hoarded.`,
+        tafsir: `Aw‘ā comes from wi‘ā’ (vessel/chest): stuffing wealth into a locked container and refusing to circulate it to the needy—directly anticipating manū‘an in verse 21.`,
+        words: [
+          { ar: `وَجَمَعَ`, tr: `wa-jama‘a`, root: `ج-م-ع`, form: `Conj. + Form I Perfect (3ms)`, role: `Accumulation`, gloss: `and collected [wealth]` },
+          { ar: `فَأَوْعَىٰ`, tr: `fa-aw‘ā`, root: `و-ع-ي`, form: `Conj. fa + Form IV Perfect (3ms)`, role: `Resultant hoarding`, gloss: `and hoarded / locked away` }
+        ]
+      },
+      {
+        num: 19,
+        mov: 3,
+        arabic: `إِنَّ الْإِنْسَانَ خُلِقَ هَلُوعًا`,
+        translit: `Inna l-insāna khuliqa halū‘ā`,
+        translation: `Indeed, mankind was created anxious:`,
+        tafsir: `Marks the psychological pivot of the Surah. Halū‘an (pattern fa‘ūl) denotes deep-seated susceptibility to instability and restless panic unless disciplined by faith and prayer.`,
+        words: [
+          { ar: `إِنَّ`, tr: `inna`, root: `—`, form: `Emphatic Particle`, role: `Assertion`, gloss: `indeed` },
+          { ar: `الْإِنْسَانَ`, tr: `al-insāna`, root: `أ-ن-س`, form: `Definite Noun (acc.)`, role: `Subject of inna`, gloss: `mankind / the human` },
+          { ar: `خُلِقَ`, tr: `khuliqa`, root: `خ-ل-ق`, form: `Form I Passive Perfect (3ms)`, role: `Main verb`, gloss: `was created` },
+          { ar: `هَلُوعًا`, tr: `halū‘an`, root: `ه-ل-ع`, form: `Intensive Adjective fa‘ūl (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `anxious / restless` }
+        ]
+      },
+      {
+        num: 20,
+        mov: 3,
+        arabic: `إِذَا مَسَّهُ الشَّرُّ جَزُوعًا`,
+        translit: `Idhā massahu sh-sharru jazū‘ā`,
+        translation: `When evil touches him, impatient,`,
+        tafsir: `First half of the Qur’an’s own definition of halū‘: notice massahu (“merely touches him”)—even a slight brush with adversity triggers collapse into impatience (jazū‘an).`,
+        words: [
+          { ar: `إِذَا`, tr: `idhā`, root: `—`, form: `Conditional Time Particle`, role: `Condition`, gloss: `when` },
+          { ar: `مَسَّهُ`, tr: `massahu`, root: `م-س-س`, form: `Form I Perfect (3ms) + 3ms`, role: `Light contact verb`, gloss: `touches him` },
+          { ar: `الشَّرُّ`, tr: `ash-sharru`, root: `ش-ر-ر`, form: `Definite Noun (nom.)`, role: `Subject`, gloss: `evil / hardship` },
+          { ar: `جَزُوعًا`, tr: `jazū‘an`, root: `ج-ز-ع`, form: `Intensive Adjective fa‘ūl (acc.)`, role: `State descriptor`, gloss: `impatient / panicked` }
+        ]
+      },
+      {
+        num: 21,
+        mov: 3,
+        arabic: `وَإِذَا مَسَّهُ الْخَيْرُ مَنُوعًا`,
+        translit: `Wa-idhā massahu l-khayru manū‘ā`,
+        translation: `And when good touches him, withholding [of it],`,
+        tafsir: `Second half of the definition: when prosperity touches him, he becomes manū‘an (obstinately withholding). All three adjectives—halū‘an, jazū‘an, manū‘an—share the exact same fa‘ūl morphology and rhyming cadence.`,
+        words: [
+          { ar: `وَإِذَا`, tr: `wa-idhā`, root: `—`, form: `Conj. + Conditional Particle`, role: `Symmetrical condition`, gloss: `and when` },
+          { ar: `مَسَّهُ`, tr: `massahu`, root: `م-س-س`, form: `Form I Perfect (3ms) + 3ms`, role: `Verb`, gloss: `touches him` },
+          { ar: `الْخَيْرُ`, tr: `al-khayru`, root: `خ-ي-ر`, form: `Definite Noun (nom.)`, role: `Subject`, gloss: `good / prosperity` },
+          { ar: `مَنُوعًا`, tr: `manū‘an`, root: `م-ن-ع`, form: `Intensive Adjective fa‘ūl (acc.)`, role: `State descriptor`, gloss: `withholding / miserly` }
+        ]
+      },
+      {
+        num: 22,
+        mov: 4,
+        arabic: `إِلَّا الْمُصَلِّينَ`,
+        translit: `Illā l-muṣallīn`,
+        translation: `Except the observers of prayer`,
+        tafsir: `The liberating exception (istithnā’). Real prayer elevates the human above biological reactivity (halū‘), initiating the nine anchoring virtues.`,
+        words: [
+          { ar: `إِلَّا`, tr: `illā`, root: `—`, form: `Exception Particle`, role: `Exempts from halū‘`, gloss: `except` },
+          { ar: `الْمُصَلِّينَ`, tr: `al-muṣallīna`, root: `ص-ل-و`, form: `Form II Active Participle m.pl. (acc.)`, role: `Excepted noun`, gloss: `the observers of prayer` }
+        ]
+      },
+      {
+        num: 23,
+        mov: 4,
+        arabic: `الَّذِينَ هُمْ عَلَىٰ صَلَاتِهِمْ دَائِمُونَ`,
+        translit: `Alladhīna hum ‘alā ṣalātihim dā’imūn`,
+        translation: `Those who are constant in their prayer`,
+        tafsir: `Virtue 1: Dā’imūn emphasizes unbroken constancy and inward calm—prayer not performed sporadically out of crisis, but as a lifelong rhythm.`,
+        words: [
+          { ar: `الَّذِينَ`, tr: `alladhīna`, root: `—`, form: `Relative Pronoun (mp)`, role: `Defines al-muṣallīn`, gloss: `those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Subject Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `عَلَىٰ صَلَاتِهِمْ`, tr: `‘alā ṣalātihim`, root: `ص-ل-و`, form: `Prep. + Noun + 3mp`, role: `Focus of constancy`, gloss: `in/upon their prayer` },
+          { ar: `دَائِمُونَ`, tr: `dā’imūna`, root: `د-و-م`, form: `Form I Active Participle m.pl. (nom.)`, role: `Predicate`, gloss: `constant / persevering` }
+        ]
+      },
+      {
+        num: 24,
+        mov: 4,
+        arabic: `وَالَّذِينَ فِي أَمْوَالِهِمْ حَقٌّ مَعْلُومٌ`,
+        translit: `Walladhīna fī amwālihim ḥaqqun ma‘lūm`,
+        translation: `And those within whose wealth is a known right`,
+        tafsir: `Virtue 2: Calling charity a ḥaqq ma‘lūm (“a recognized, definite right”)—covering both obligatory zakāh and voluntary steady giving—reframes generosity as justice rather than condescension.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun (mp)`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `فِي أَمْوَالِهِمْ`, tr: `fī amwālihim`, root: `م-و-ل`, form: `Prep. + Broken Pl. + 3mp`, role: `Locative predicate`, gloss: `within their wealth` },
+          { ar: `حَقٌّ`, tr: `ḥaqqun`, root: `ح-ق-ق`, form: `Noun (nom.)`, role: `Delayed subject`, gloss: `a right / due share` },
+          { ar: `مَعْلُومٌ`, tr: `ma‘lūmun`, root: `ع-ل-م`, form: `Form I Passive Participle (nom.)`, role: `Adjective`, gloss: `known / designated` }
+        ]
+      },
+      {
+        num: 25,
+        mov: 4,
+        arabic: `لِلسَّائِلِ وَالْمَحْرُومِ`,
+        translit: `Lis-sā’ili wal-maḥrūm`,
+        translation: `For the petitioner and the deprived`,
+        tafsir: `Covers both those who visibly ask (al-sā’il—ironically echoing and redeeming sa’ala in v. 1) and the dignified poor who refrain from asking or are deprived of means (al-maḥrūm).`,
+        words: [
+          { ar: `لِلسَّائِلِ`, tr: `lis-sā’ili`, root: `س-أ-ل`, form: `Prep. li + Active Participle (gen.)`, role: `Beneficiary`, gloss: `for the petitioner / asker` },
+          { ar: `وَالْمَحْرُومِ`, tr: `wal-maḥrūmi`, root: `ح-ر-م`, form: `Conj. + Passive Participle (gen.)`, role: `Beneficiary`, gloss: `and the deprived` }
+        ]
+      },
+      {
+        num: 26,
+        mov: 4,
+        arabic: `وَالَّذِينَ يُصَدِّقُونَ بِيَوْمِ الدِّينِ`,
+        translit: `Walladhīna yuṣaddiqūna bi-yawmi d-dīn`,
+        translation: `And those who believe in the Day of Recompense`,
+        tafsir: `Virtue 3: Yuṣaddiqūn (Form II) denotes active affirmation that translates into action, standing in sharp contrast to those who dismiss Judgment as distant (v. 6).`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `يُصَدِّقُونَ`, tr: `yuṣaddiqūna`, root: `ص-د-ق`, form: `Form II Imperfect (3mp)`, role: `Verb of conviction`, gloss: `sincerely affirm / believe` },
+          { ar: `بِيَوْمِ`, tr: `bi-yawmi`, root: `ي-و-م`, form: `Prep. + Construct Noun (gen.)`, role: `Object of belief`, gloss: `in the Day of` },
+          { ar: `الدِّينِ`, tr: `ad-dīni`, root: `د-ي-ن`, form: `Definite Noun (gen.)`, role: `Genitive annex`, gloss: `Recompense / Judgment` }
+        ]
+      },
+      {
+        num: 27,
+        mov: 4,
+        arabic: `وَالَّذِينَ هُمْ مِنْ عَذَابِ رَبِّهِمْ مُشْفِقُونَ`,
+        translit: `Walladhīna hum min ‘adhābi rabbihim mushfiqūn`,
+        translation: `And those who are fearful of the punishment of their Lord -`,
+        tafsir: `Virtue 4: Ishfāq is tender, watchful dread mixed with humility—not paralyzing terror, but spiritual alertness that keeps righteousness free of complacency.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `مِنْ عَذَابِ`, tr: `min ‘adhābi`, root: `ع-ذ-ب`, form: `Prep. + Noun (gen.)`, role: `Source of awe`, gloss: `of the punishment of` },
+          { ar: `رَبِّهِمْ`, tr: `rabbihim`, root: `ر-ب-ب`, form: `Noun + 3mp pronoun`, role: `Genitive annex`, gloss: `their Lord` },
+          { ar: `مُشْفِقُونَ`, tr: `mushfiqūna`, root: `ش-ف-ق`, form: `Form IV Active Participle m.pl. (nom.)`, role: `Predicate`, gloss: `fearful / reverently wary` }
+        ]
+      },
+      {
+        num: 28,
+        mov: 4,
+        arabic: `إِنَّ عَذَابَ رَبِّهِمْ غَيْرُ مَأْمُونٍ`,
+        translit: `Inna ‘adhāba rabbihim ghayru ma’mūn`,
+        translation: `Indeed, the punishment of their Lord is not that from which one is safe`,
+        tafsir: `Parenthetical divine confirmation validating the believers’ humility in v. 27: no mortal possesses a guarantee of impunity.`,
+        words: [
+          { ar: `إِنَّ`, tr: `inna`, root: `—`, form: `Emphatic Particle`, role: `Confirmation`, gloss: `indeed` },
+          { ar: `عَذَابَ`, tr: `‘adhāba`, root: `ع-ذ-ب`, form: `Noun (acc.)`, role: `Subject of inna`, gloss: `the punishment of` },
+          { ar: `رَبِّهِمْ`, tr: `rabbihim`, root: `ر-ب-ب`, form: `Noun + 3mp pronoun`, role: `Genitive annex`, gloss: `their Lord` },
+          { ar: `غَيْرُ`, tr: `ghayru`, root: `غ-ي-ر`, form: `Negating Noun (nom.)`, role: `Predicate of inna`, gloss: `is not` },
+          { ar: `مَأْمُونٍ`, tr: `ma’mūnin`, root: `أ-م-ن`, form: `Form I Passive Participle (gen.)`, role: `Genitive complement`, gloss: `safe / secure from` }
+        ]
+      },
+      {
+        num: 29,
+        mov: 4,
+        arabic: `وَالَّذِينَ هُمْ لِفُرُوجِهِمْ حَافِظُونَ`,
+        translit: `Walladhīna hum li-furūjihim ḥāfiẓūn`,
+        translation: `And those who guard their private parts`,
+        tafsir: `Virtue 5: Self-mastery over sexual desire. Guarding chastity preserves personal dignity and family cohesion.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `لِفُرُوجِهِمْ`, tr: `li-furūjihim`, root: `ف-ر-ج`, form: `Prep. li + Broken Pl. + 3mp`, role: `Prepositional object`, gloss: `their private parts` },
+          { ar: `حَافِظُونَ`, tr: `ḥāfiẓūna`, root: `ح-ف-ظ`, form: `Form I Active Participle m.pl. (nom.)`, role: `Predicate`, gloss: `guarding / preserving` }
+        ]
+      },
+      {
+        num: 30,
+        mov: 4,
+        arabic: `إِلَّا عَلَىٰ أَزْوَاجِهِمْ أَوْ مَا مَلَكَتْ أَيْمَانُهُمْ فَإِنَّهُمْ غَيْرُ مَلُومِينَ`,
+        translit: `Illā ‘alā azwājihim aw mā malakat aymānuhum fa-innahum ghayru malūmīn`,
+        translation: `Except from their wives or those their right hands possess, for indeed, they are not to be blamed -`,
+        tafsir: `Clarifies the lawful boundary of intimacy recognized in the historical context of revelation, affirming that lawful marital fulfillment carries no blame.`,
+        words: [
+          { ar: `إِلَّا`, tr: `illā`, root: `—`, form: `Exception Particle`, role: `Defines lawful scope`, gloss: `except` },
+          { ar: `عَلَىٰ أَزْوَاجِهِمْ`, tr: `‘alā azwājihim`, root: `ز-و-ج`, form: `Prep. + Broken Pl. + 3mp`, role: `Lawful exception`, gloss: `from their wives` },
+          { ar: `أَوْ مَا مَلَكَتْ`, tr: `aw mā malakat`, root: `م-ل-ك`, form: `Conj. + Rel. + Perfect (3fs)`, role: `Historical legal clause`, gloss: `or those whom possess` },
+          { ar: `أَيْمَانُهُمْ`, tr: `aymānuhum`, root: `ي-م-ن`, form: `Broken Pl. + 3mp`, role: `Subject of malakat`, gloss: `their right hands` },
+          { ar: `فَإِنَّهُمْ`, tr: `fa-innahum`, root: `—`, form: `Conj. + Emphatic + 3mp`, role: `Exoneration`, gloss: `for indeed they` },
+          { ar: `غَيْرُ مَلُومِينَ`, tr: `ghayru malūmīna`, root: `ل-و-م`, form: `Neg. Noun + Passive Participle m.pl.`, role: `Predicate`, gloss: `are not to be blamed` }
+        ]
+      },
+      {
+        num: 31,
+        mov: 4,
+        arabic: `فَمَنِ ابْتَغَىٰ وَرَاءَ ذَٰلِكَ فَأُولَٰئِكَ هُمُ الْعَادُونَ`,
+        translit: `Fa-mani btaghā warā’a dhālika fa-ulā’ika humu l-‘ādūn`,
+        translation: `But whoever seeks beyond that, then they are the transgressors -`,
+        tafsir: `Draws a clear ethical boundary: al-‘ādūn comes from ‘adw (stepping over a limit / trespassing).`,
+        words: [
+          { ar: `فَمَنِ`, tr: `fa-mani`, root: `—`, form: `Conj. + Conditional Pronoun`, role: `Condition`, gloss: `but whoever` },
+          { ar: `ابْتَغَىٰ`, tr: `ibtaghā`, root: `ب-غ-ي`, form: `Form VIII Perfect (3ms)`, role: `Deliberate pursuit`, gloss: `seeks` },
+          { ar: `وَرَاءَ`, tr: `warā’a`, root: `و-ر-ي`, form: `Adverbial Noun (acc.)`, role: `Boundary marker`, gloss: `beyond` },
+          { ar: `ذَٰلِكَ`, tr: `dhālika`, root: `—`, form: `Demonstrative Pronoun`, role: `Refers to lawful bounds`, gloss: `that` },
+          { ar: `فَأُولَٰئِكَ`, tr: `fa-ulā’ika`, root: `—`, form: `Conj. + Pl. Demonstrative`, role: `Subject`, gloss: `then those` },
+          { ar: `هُمُ الْعَادُونَ`, tr: `humu l-‘ādūna`, root: `ع-د-و`, form: `Pronoun + Def. Active Participle m.pl.`, role: `Emphatic predicate`, gloss: `they are the transgressors` }
+        ]
+      },
+      {
+        num: 32,
+        mov: 4,
+        arabic: `وَالَّذِينَ هُمْ لِأَمَانَاتِهِمْ وَعَهْدِهِمْ رَاعُونَ`,
+        translit: `Walladhīna hum li-amānātihim wa-‘ahdihim rā‘ūn`,
+        translation: `And those who are to their trusts and promises attentive`,
+        tafsir: `Virtues 6 & 7: Rā‘ūn derives from ri‘āyah (shepherding/tending with care). Trusts (amānāt, plural) cover all diverse obligations toward Allah and people; covenant (‘ahd, singular) unifies every promise under a single standard of integrity.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `لِأَمَانَاتِهِمْ`, tr: `li-amānātihim`, root: `أ-م-ن`, form: `Prep. li + Sound Fem. Pl. + 3mp`, role: `Object of care`, gloss: `to their trusts` },
+          { ar: `وَعَهْدِهِمْ`, tr: `wa-‘ahdihim`, root: `ع-ه-د`, form: `Conj. + Singular Noun + 3mp`, role: `Object of care`, gloss: `and their promise` },
+          { ar: `رَاعُونَ`, tr: `rā‘ūna`, root: `ر-ع-ي`, form: `Form I Active Participle m.pl. (nom.)`, role: `Predicate`, gloss: `attentive / shepherding` }
+        ]
+      },
+      {
+        num: 33,
+        mov: 4,
+        arabic: `وَالَّذِينَ هُمْ بِشَهَادَاتِهِمْ قَائِمُونَ`,
+        translit: `Walladhīna hum bi-shahādātihim qā’imūn`,
+        translation: `And those who are in their testimonies upright`,
+        tafsir: `Virtue 8: Qā’imūn means standing straight without tilting toward bias, wealth, or tribal pressure—sustaining civic justice.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Virtue clause`, gloss: `and those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `بِشَهَادَاتِهِمْ`, tr: `bi-shahādātihim`, root: `ش-ه-د`, form: `Prep. bi + Sound Fem. Pl. + 3mp`, role: `Domain of uprightness`, gloss: `in their testimonies` },
+          { ar: `قَائِمُونَ`, tr: `qā’imūna`, root: `ق-و-م`, form: `Form I Active Participle m.pl. (nom.)`, role: `Predicate`, gloss: `upright / standing firm` }
+        ]
+      },
+      {
+        num: 34,
+        mov: 4,
+        arabic: `وَالَّذِينَ هُمْ عَلَىٰ صَلَاتِهِمْ يُحَافِظُونَ`,
+        translit: `Walladhīna hum ‘alā ṣalātihim yuḥāfiẓūn`,
+        translation: `And those who [carefully] maintain their prayer:`,
+        tafsir: `Virtue 9 (Closing Bookend): Shifts from the noun participle dā’imūn (v. 23) to the Form III imperfect verb yuḥāfiẓūn—expressing active, mutual safeguarding of prayer’s times, concentration, and continuity.`,
+        words: [
+          { ar: `وَالَّذِينَ`, tr: `walladhīna`, root: `—`, form: `Conj. + Relative Pronoun`, role: `Closing virtue clause`, gloss: `and those who` },
+          { ar: `هُمْ`, tr: `hum`, root: `—`, form: `Pronoun (3mp)`, role: `Subject`, gloss: `they` },
+          { ar: `عَلَىٰ صَلَاتِهِمْ`, tr: `‘alā ṣalātihim`, root: `ص-ل-و`, form: `Prep. + Noun + 3mp`, role: `Protected anchor`, gloss: `over their prayer` },
+          { ar: `يُحَافِظُونَ`, tr: `yuḥāfiẓūna`, root: `ح-ف-ظ`, form: `Form III Imperfect (3mp)`, role: `Habitual guarding verb`, gloss: `carefully maintain` }
+        ]
+      },
+      {
+        num: 35,
+        mov: 4,
+        arabic: `أُولَٰئِكَ فِي جَنَّاتٍ مُكْرَمُونَ`,
+        translit: `Ulā’ika fī jannātin mukramūn`,
+        translation: `They will be in gardens, honored.`,
+        tafsir: `Crowns Movement IV: those who honored Allah’s commands and human trusts are themselves honored (mukramūn, Form IV passive participle) inside gardens of permanence.`,
+        words: [
+          { ar: `أُولَٰئِكَ`, tr: `ulā’ika`, root: `—`, form: `Plural Demonstrative`, role: `Subject`, gloss: `those` },
+          { ar: `فِي جَنَّاتٍ`, tr: `fī jannātin`, root: `ج-ن-ن`, form: `Prep. + Sound Fem. Pl. (gen.)`, role: `Place of reward`, gloss: `in gardens` },
+          { ar: `مُكْرَمُونَ`, tr: `mukramūna`, root: `ك-ر-م`, form: `Form IV Passive Participle m.pl. (nom.)`, role: `Predicate`, gloss: `honored` }
+        ]
+      },
+      {
+        num: 36,
+        mov: 5,
+        arabic: `فَمَالِ الَّذِينَ كَفَرُوا قِبَلَكَ مُهْطِعِينَ`,
+        translit: `Fa-māli lladhīna kafarū qibalaka muhṭi‘īn`,
+        translation: `So what is [the matter] with those who disbelieve, hastening [from] before you, [O Muhammad],`,
+        tafsir: `Returns abruptly to the Meccan scene: opponents craning their necks and rushing forward (muhṭi‘īn) around the Prophet—not to accept guidance, but to mock and fragment the gathering.`,
+        words: [
+          { ar: `فَمَالِ`, tr: `fa-māli`, root: `—`, form: `Conj. + Interrogative mā + Prep. li`, role: `Rhetorical rebuke`, gloss: `so what is the matter with` },
+          { ar: `الَّذِينَ كَفَرُوا`, tr: `alladhīna kafarū`, root: `ك-ف-ر`, form: `Rel. + Form I Perfect (3mp)`, role: `Genitive target`, gloss: `those who disbelieve` },
+          { ar: `قِبَلَكَ`, tr: `qibalaka`, root: `ق-ب-ل`, form: `Place Adverb + 2ms pronoun`, role: `Proximity`, gloss: `before / toward you` },
+          { ar: `مُهْطِعِينَ`, tr: `muhṭi‘īna`, root: `ه-ط-ع`, form: `Form IV Active Participle m.pl. (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `hastening with outstretched necks` }
+        ]
+      },
+      {
+        num: 37,
+        mov: 5,
+        arabic: `عَنِ الْيَمِينِ وَعَنِ الشِّمَالِ عِزِينَ`,
+        translit: `‘Ani l-yamīni wa-‘ani sh-shimāli ‘izīn`,
+        translation: `[To sit] on [your] right and [your] left in separate groups?`,
+        tafsir: `‘Izīn (plural of ‘izah, from root ع-ز-و) depicts scattered, clannish cliques sitting to the Prophet’s right and left, whispering ridicule.`,
+        words: [
+          { ar: `عَنِ الْيَمِينِ`, tr: `‘ani l-yamīni`, root: `ي-م-ن`, form: `Prep. + Definite Noun (gen.)`, role: `Spatial side`, gloss: `on the right` },
+          { ar: `وَعَنِ الشِّمَالِ`, tr: `wa-‘ani sh-shimāli`, root: `ش-م-ل`, form: `Conj. + Prep. + Definite Noun`, role: `Spatial side`, gloss: `and on the left` },
+          { ar: `عِزِينَ`, tr: `‘izīna`, root: `ع-ز-و`, form: `Irregular Masculine Plural (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `in separate groups / cliques` }
+        ]
+      },
+      {
+        num: 38,
+        mov: 5,
+        arabic: `أَيَطْمَعُ كُلُّ امْرِئٍ مِنْهُمْ أَنْ يُدْخَلَ جَنَّةَ نَعِيمٍ`,
+        translit: `A-yaṭma‘u kullu mri’in minhum an yudkhala jannata na‘īm`,
+        translation: `Does every person among them aspire to enter a garden of pleasure?`,
+        tafsir: `Exposes their presumption: some opponents claimed that if resurrection existed, they would still be privileged over believers.`,
+        words: [
+          { ar: `أَيَطْمَعُ`, tr: `a-yaṭma‘u`, root: `ط-م-ع`, form: `Interrogative a + Form I Imperfect`, role: `Rhetorical question`, gloss: `does aspire / covet` },
+          { ar: `كُلُّ امْرِئٍ`, tr: `kullu mri’in`, root: `م-ر-أ`, form: `Quantifier + Noun (gen.)`, role: `Subject`, gloss: `every person` },
+          { ar: `مِنْهُمْ`, tr: `minhum`, root: `—`, form: `Prep. + 3mp pronoun`, role: `Partitive`, gloss: `among them` },
+          { ar: `أَنْ يُدْخَلَ`, tr: `an yudkhala`, root: `د-خ-ل`, form: `Particle + Form IV Passive Subjunctive`, role: `Aspired outcome`, gloss: `to be admitted` },
+          { ar: `جَنَّةَ نَعِيمٍ`, tr: `jannata na‘īmin`, root: `ج-ن-ن / ن-ع-م`, form: `Construct Phrase (acc.)`, role: `Destination`, gloss: `a garden of pleasure` }
+        ]
+      },
+      {
+        num: 39,
+        mov: 5,
+        arabic: `كَلَّا ۖ إِنَّا خَلَقْنَاهُمْ مِمَّا يَعْلَمُونَ`,
+        translit: `Kallā! Innā khalaqnāhum mimmā ya‘lamūn`,
+        translation: `No! Indeed, We have created them from that which they know.`,
+        tafsir: `Second kallā in the Surah (matching v. 15). Alluding subtly to a humble drop of fluid (“that which they know”) deflates their arrogance: origin confers no entitlement—only faith and righteousness do.`,
+        words: [
+          { ar: `كَلَّا`, tr: `kallā`, root: `—`, form: `Deterrent Particle`, role: `Categorical denial`, gloss: `No!` },
+          { ar: `إِنَّا`, tr: `innā`, root: `—`, form: `Emphatic inna + 1p pronoun`, role: `Divine assertion`, gloss: `indeed We` },
+          { ar: `خَلَقْنَاهُمْ`, tr: `khalaqnāhum`, root: `خ-ل-ق`, form: `Form I Perfect (1p) + 3mp`, role: `Act of creation`, gloss: `created them` },
+          { ar: `مِمَّا`, tr: `mimmā`, root: `—`, form: `Prep. min + Relative mā`, role: `Humble origin`, gloss: `from that which` },
+          { ar: `يَعْلَمُونَ`, tr: `ya‘lamūna`, root: `ع-ل-م`, form: `Form I Imperfect (3mp)`, role: `Relative verb`, gloss: `they know` }
+        ]
+      },
+      {
+        num: 40,
+        mov: 5,
+        arabic: `فَلَا أُقْسِمُ بِرَبِّ الْمَشَارِقِ وَالْمَغَارِبِ إِنَّا لَقَادِرُونَ`,
+        translit: `Fa-lā uqsimu bi-rabbi l-mashāriqi wal-maghāribi innā la-qādirūn`,
+        translation: `So I swear by the Lord of [all] risings and settings that indeed We are able`,
+        tafsir: `The plural al-mashāriq wal-maghārib captures the sun’s daily shifting points on the horizon across the seasons—a cosmic testimony to Allah’s absolute power to recreate.`,
+        words: [
+          { ar: `فَلَا أُقْسِمُ`, tr: `fa-lā uqsimu`, root: `ق-س-م`, form: `Rhetorical Oath Formula`, role: `Emphatic oath`, gloss: `so I swear` },
+          { ar: `بِرَبِّ`, tr: `bi-rabbi`, root: `ر-ب-ب`, form: `Prep. bi + Noun (gen.)`, role: `Object of oath`, gloss: `by the Lord of` },
+          { ar: `الْمَشَارِقِ`, tr: `al-mashāriqi`, root: `ش-ر-ق`, form: `Broken Pl. Noun of Place (gen.)`, role: `Genitive annex`, gloss: `[all] risings` },
+          { ar: `وَالْمَغَارِبِ`, tr: `wal-maghāribi`, root: `غ-ر-ب`, form: `Conj. + Broken Pl. Noun of Place (gen.)`, role: `Coupled annex`, gloss: `and settings` },
+          { ar: `إِنَّا لَقَادِرُونَ`, tr: `innā la-qādirūna`, root: `ق-د-ر`, form: `Emphatic + la + Active Participle m.pl.`, role: `Complement of oath`, gloss: `indeed We are surely able` }
+        ]
+      },
+      {
+        num: 41,
+        mov: 5,
+        arabic: `عَلَىٰ أَنْ نُبَدِّلَ خَيْرًا مِنْهُمْ وَمَا نَحْنُ بِمَسْبُوقِينَ`,
+        translit: `‘Alā an nubaddila khayran minhum wa-mā naḥnu bi-masbūqīn`,
+        translation: `To replace them with better than them; and We are not to be outdone.`,
+        tafsir: `Completes the oath: Allah can both resurrect them and replace defiant generations with people more worthy, without anyone able to outrun or forestall His decree (bi-masbūqīn).`,
+        words: [
+          { ar: `عَلَىٰ أَنْ نُبَدِّلَ`, tr: `‘alā an nubaddila`, root: `ب-د-ل`, form: `Prep. + Particle + Form II Subjunctive (1p)`, role: `Complement of qādirūn`, gloss: `to replace` },
+          { ar: `خَيْرًا مِنْهُمْ`, tr: `khayran minhum`, root: `خ-ي-ر`, form: `Comparative Adj. + Prep. + 3mp`, role: `Superior replacement`, gloss: `with better than them` },
+          { ar: `وَمَا نَحْنُ`, tr: `wa-mā naḥnu`, root: `—`, form: `Conj. + Neg. + 1p pronoun`, role: `Negation`, gloss: `and We are not` },
+          { ar: `بِمَسْبُوقِينَ`, tr: `bi-masbūqīna`, root: `س-ب-ق`, form: `Prep. bi + Passive Participle m.pl.`, role: `Emphatic predicate`, gloss: `to be outdone / forestalled` }
+        ]
+      },
+      {
+        num: 42,
+        mov: 5,
+        arabic: `فَذَرْهُمْ يَخُوضُوا وَيَلْعَبُوا حَتَّىٰ يُلَاقُوا يَوْمَهُمُ الَّذِي يُوعَدُونَ`,
+        translit: `Fa-dharhum yakhūḍū wa-yal‘abū ḥattā yulāqū yawmahumu lladhī yū‘adūn`,
+        translation: `So leave them to converse vainly and amuse themselves until they meet their Day which they are promised`,
+        tafsir: `Echoes the patience commanded in verse 5: leave them to wade in idle speech (yakhūḍū—literally wading into deep water) and distraction until their promised appointment arrives.`,
+        words: [
+          { ar: `فَذَرْهُمْ`, tr: `fa-dharhum`, root: `و-ذ-ر`, form: `Conj. + Defective Imperative + 3mp`, role: `Prophetic instruction`, gloss: `so leave them` },
+          { ar: `يَخُوضُوا`, tr: `yakhūḍū`, root: `خ-و-ض`, form: `Form I Jussive (3mp)`, role: `Resultant verb`, gloss: `to converse vainly / plunge in` },
+          { ar: `وَيَلْعَبُوا`, tr: `wa-yal‘abū`, root: `ل-ع-ب`, form: `Conj. + Form I Jussive (3mp)`, role: `Coupled verb`, gloss: `and amuse themselves` },
+          { ar: `حَتَّىٰ يُلَاقُوا`, tr: `ḥattā yulāqū`, root: `ل-ق-ي`, form: `Limit Particle + Form III Subjunctive`, role: `Terminal limit`, gloss: `until they meet` },
+          { ar: `يَوْمَهُمُ`, tr: `yawmahumu`, root: `ي-و-م`, form: `Noun + 3mp pronoun`, role: `Object`, gloss: `their Day` },
+          { ar: `الَّذِي يُوعَدُونَ`, tr: `alladhī yū‘adūna`, root: `و-ع-د`, form: `Rel. + Form I Passive Imperfect (3mp)`, role: `Relative clause`, gloss: `which they are promised` }
+        ]
+      },
+      {
+        num: 43,
+        mov: 5,
+        arabic: `يَوْمَ يَخْرُجُونَ مِنَ الْأَجْدَاثِ سِرَاعًا كَأَنَّهُمْ إِلَىٰ نُصُبٍ يُوفِضُونَ`,
+        translit: `Yawma yakhrujūna mina l-ajdāthi sirā‘an ka’annahum ilā nuṣubin yūfiḍūn`,
+        translation: `The Day they will emerge from the graves rapidly as if they were, toward an erected idol, hastening.`,
+        tafsir: `Piercing irony: just as pagans once raced competitively toward erected stone idols (nuṣub) for ritual or spoils, they will race unwillingly out of graves (ajdāth) at the summons of Resurrection.`,
+        words: [
+          { ar: `يَوْمَ يَخْرُجُونَ`, tr: `yawma yakhrujūna`, root: `خ-ر-ج`, form: `Time Noun + Form I Imperfect (3mp)`, role: `Defines the Day`, gloss: `the Day they emerge` },
+          { ar: `مِنَ الْأَجْدَاثِ`, tr: `mina l-ajdāthi`, root: `ج-د-ث`, form: `Prep. + Broken Plural (gen.)`, role: `Origin`, gloss: `from the graves` },
+          { ar: `سِرَاعًا`, tr: `sirā‘an`, root: `س-ر-ع`, form: `Plural Adjective fi‘āl (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `rapidly` },
+          { ar: `كَأَنَّهُمْ`, tr: `ka’annahum`, root: `—`, form: `Simile Particle + 3mp`, role: `Comparison`, gloss: `as if they were` },
+          { ar: `إِلَىٰ نُصُبٍ`, tr: `ilā nuṣubin`, root: `ن-ص-ب`, form: `Prep. + Noun (gen.)`, role: `Target of simile`, gloss: `toward an erected idol` },
+          { ar: `يُوفِضُونَ`, tr: `yūfiḍūna`, root: `و-ف-ض`, form: `Form IV Imperfect (3mp)`, role: `Verb of swift rushing`, gloss: `hastening / racing` }
+        ]
+      },
+      {
+        num: 44,
+        mov: 5,
+        arabic: `خَاشِعَةً أَبْصَارُهُمْ تَرْهَقُهُمْ ذِلَّةٌ ۚ ذَٰلِكَ الْيَوْمُ الَّذِي كَانُوا يُوعَدُونَ`,
+        translit: `Khāshi‘atan abṣāruhum tarhaquhum dhillatun; dhālika l-yawmu lladhī kānū yū‘adūn`,
+        translation: `Their eyes humbled, humiliation will cover them. That is the Day which they had been promised.`,
+        tafsir: `Closes the Surah in symmetry with its opening: those who once mocked the promised punishment (v. 1) and deemed it far off (v. 6) now stand overwhelmed by humiliation on the very Day they were promised.`,
+        words: [
+          { ar: `خَاشِعَةً`, tr: `khāshi‘atan`, root: `خ-ش-ع`, form: `Active Participle fs (acc.)`, role: `Circumstantial (ḥāl)`, gloss: `humbled / cast down` },
+          { ar: `أَبْصَارُهُمْ`, tr: `abṣāruhum`, root: `ب-ص-ر`, form: `Broken Pl. + 3mp`, role: `Subject of participle`, gloss: `their eyes` },
+          { ar: `تَرْهَقُهُمْ`, tr: `tarhaquhum`, root: `ر-ه-ق`, form: `Form I Imperfect (3fs) + 3mp`, role: `Overwhelming action`, gloss: `will cover them` },
+          { ar: `ذِلَّةٌ`, tr: `dhillatun`, root: `ذ-ل-ل`, form: `Noun of State (nom.)`, role: `Subject`, gloss: `humiliation` },
+          { ar: `ذَٰلِكَ الْيَوْمُ`, tr: `dhālika l-yawmu`, root: `ي-و-م`, form: `Demonstrative + Def. Noun`, role: `Final identification`, gloss: `that is the Day` },
+          { ar: `الَّذِي كَانُوا يُوعَدُونَ`, tr: `alladhī kānū yū‘adūna`, root: `و-ع-د`, form: `Rel. + Defective + Passive`, role: `Relative closure`, gloss: `which they had been promised` }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 8 MASTERY SELF-ASSESSMENT QUESTIONS
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        topic: `Morphology & Root`,
+        question: `In 70:19–21, the three adjectives describing human restlessness—halū‘an, jazū‘an, and manū‘an—all share which Arabic morphological pattern?`,
+        options: [
+          `Form I Active Participle (fā‘il) indicating a temporary event`,
+          `Intensive Adjective pattern (fa‘ūl) indicating a deep-seated propensity`,
+          `Form IV Passive Participle (muf‘al) indicating external compulsion`,
+          `Noun of Place (maf‘il) indicating spatial location`
+        ],
+        correct: 1,
+        rationale: `All three follow the intensive fa‘ūl pattern (فَعُول), conveying habitual proneness: anxious restlessness (halū‘an) that flips into panic during hardship (jazū‘an) and tight-fistedness during ease (manū‘an).`
+      },
+      {
+        id: `q2`,
+        topic: `Structural Bookending`,
+        question: `Which practice acts as both the opening anchor (70:23) and the closing seal (70:34) of the virtues of the steadfast?`,
+        options: [
+          `Guarding chastity, shifting from singular to plural`,
+          `Almsgiving to the petitioner and the deprived`,
+          `Prayer (ṣalāh), moving from inward constancy (dā’imūn) to active preservation (yuḥāfiẓūn)`,
+          `Uprightness in testimony, paired with covenantal fidelity`
+        ],
+        correct: 2,
+        rationale: `Verse 23 highlights constancy in prayer (dā’imūn), while verse 34 seals the virtues with active, careful preservation of prayer (yuḥāfiẓūn). All social and ethical virtues sit inside that protective ring of worship.`
+      },
+      {
+        id: `q3`,
+        topic: `Lexical Symmetry`,
+        question: `How does the root س-أ-ل (s-’-l, "to ask") transform across verses 1, 10, and 25?`,
+        options: [
+          `It appears only once in verse 1 as a rhetorical question`,
+          `It moves from a skeptic demanding punishment (v. 1), to silent terror where no friend asks another (v. 10), to caring for the petitioner in need (v. 25)`,
+          `It shifts from angels asking permission to believers asking for gardens`,
+          `It refers exclusively to asking questions about cosmic time`
+        ],
+        correct: 1,
+        rationale: `The Surah weaves a deliberate lexical thread: mocking demand (sa’ala sā’ilun, v. 1), total relational paralysis (lā yas’alu ḥamīmun ḥamīmā, v. 10), and compassionate duty toward the petitioner (lis-sā’ili, v. 25).`
+      },
+      {
+        id: `q4`,
+        topic: `Tafsīr Synthesis`,
+        question: `In classical exegesis, what distinguishes ṣabran jamīlan ("gracious patience," 70:5) from mere outward endurance?`,
+        options: [
+          `Waiting silently for fifty thousand years without speaking`,
+          `Endurance free of bitterness or complaint to creation, directing one’s trust solely to Allah`,
+          `Isolating oneself from all social trusts and testimonies`,
+          `Immediate retaliation against mockery`
+        ],
+        correct: 1,
+        rationale: `Ṣabr jamīl (cognate accusative ṣabran + jamīlan) denotes dignified composure without panic or resentment toward people, anchored in the certainty that Allah sees the promised reckoning as near (v. 7).`
+      },
+      {
+        id: `q5`,
+        topic: `Morphology & Imagery`,
+        question: `In verse 16, Laẓā is described as nazzā‘atan lish-shawā. What does the pattern of nazzā‘ah (fa‘‘ālah) convey?`,
+        options: [
+          `A singular, momentary touch`,
+          `Relentless, repeated force stripping away exteriors`,
+          `A passive state of waiting`,
+          `A plural noun meaning angels of ascent`
+        ],
+        correct: 1,
+        rationale: `Nazzā‘ah uses the intensive feminine pattern fa‘‘ālah (فَعَّالَة), conveying forceful, repeated tearing away—stripping off al-shawā (the scalp, skin, and outward surfaces).`
+      },
+      {
+        id: `q6`,
+        topic: `Cosmic vs. Moral Contrast`,
+        question: `Which pair of verbs in verse 17 directly contrasts with the upward ascent (ta‘ruju, v. 4) of the angels and the Spirit?`,
+        options: [
+          `Yakhūḍū wa-yal‘abū ("converse vainly and amuse themselves")`,
+          `Adbara wa-tawallā ("turned his back and went away")`,
+          `Yubaṣṣarūnahum ("they will be shown each other")`,
+          `Yuṣaddiqūna ("they sincerely affirm")`
+        ],
+        correct: 1,
+        rationale: `While angels ascend (ta‘ruju) toward Allah, the condemned person turns his back (adbara) and walks away (tawallā) into hoarding wealth (v. 18).`
+      },
+      {
+        id: `q7`,
+        topic: `Thematic Structure`,
+        question: `Why does Allah swear by "the Lord of [all] risings and settings" (al-mashāriq wal-maghārib) in verse 40?`,
+        options: [
+          `To indicate that sunset marks the end of prayer obligations`,
+          `To invoke the sun’s daily shifting points on the horizon as proof of sovereign power to resurrect and replace them`,
+          `To compare the sky to carded wool`,
+          `To describe the separated groups sitting on the Prophet’s right and left`
+        ],
+        correct: 1,
+        rationale: `Using the plural al-mashāriq wal-maghārib highlights daily astronomical precision across seasons—proving Allah’s unmatched power to replace defiant people with better ones without ever being outdone (v. 41).`
+      },
+      {
+        id: `q8`,
+        topic: `Closing Irony`,
+        question: `What poignant reversal connects verse 37 (‘izīn) and verse 43 (nuṣub) in the final movement?`,
+        options: [
+          `Those who sat in mocking cliques on the Prophet’s right and left will emerge rapidly from graves as though racing toward an erected idol`,
+          `Those who hoarded wealth will become shepherds of trusts`,
+          `Mountains will return to their solid state before Judgment`,
+          `Friends will negotiate ransoms for one another`
+        ],
+        correct: 0,
+        rationale: `In life they rushed forward with outstretched necks (muhṭi‘īn) into clannish circles (‘izīn) to mock revelation; at Resurrection they emerge swiftly from graves as if hastening toward an erected idol (nuṣub)—only now with eyes humbled and covered in humiliation (v. 44).`
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 4 REFLECTIVE PROMPTS
+    // =========================================================================
+    const REFLECTION_PROMPTS = [
+      {
+        id: `r1`,
+        verseRef: `70:5`,
+        title: `Practicing Ṣabran Jamīlan`,
+        prompt: `Where in your current responsibilities are you tempted toward agitation or complaint, and what would dignified, gracious patience look like there?`
+      },
+      {
+        id: `r2`,
+        verseRef: `70:19–21`,
+        title: `Diagnosing Halū‘an in Daily Life`,
+        prompt: `Reflect honestly on your reflex when difficulty touches you (jazū‘an) versus when abundance arrives (manū‘an). Which extreme tests your steadiness more?`
+      },
+      {
+        id: `r3`,
+        verseRef: `70:22–34`,
+        title: `Renewing the Nine Virtues`,
+        prompt: `Look at the ring of prayer (dā’imūn and yuḥāfiẓūn) and the ethical pillars inside it (charity, trusts, covenants, testimony). Which single discipline will you strengthen this week?`
+      },
+      {
+        id: `r4`,
+        verseRef: `70:6–7`,
+        title: `Living by Qarīban Instead of Ba‘īdan`,
+        prompt: `How would your choices, speech, or generosity change today if you perceived accountability as near (qarīban) rather than distant (ba‘īdan)?`
+      }
+    ];
+
+    // =========================================================================
+    // APPLICATION STATE (PERSISTED VIA notebookAppApi)
+    // =========================================================================
+    let appState = {
+      activeMovement: 0,
+      studiedVerses: [],
+      virtuesAudited: [],
+      selectedWordByVerse: {},
+      expandedWbwVerses: [],
+      showTranslit: true,
+      expandAllWbw: false,
+      quizAnswers: {},
+      reflections: { r1: ``, r2: ``, r3: ``, r4: `` }
+    };
+
+    function saveState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        window.notebookAppApi.setAppState(appState).catch(function() {});
+      }
+    }
+
+    // =========================================================================
+    // RENDER: TELEMETRY
+    // =========================================================================
+    function updateTelemetry() {
+      const statVerses = document.getElementById(`stat-verses`);
+      const statQuiz = document.getElementById(`stat-quiz`);
+      const statVirtues = document.getElementById(`stat-virtues`);
+      const qAnswered = document.getElementById(`quiz-answered-count`);
+      const qCorrect = document.getElementById(`quiz-correct-count`);
+
+      const studiedCount = appState.studiedVerses.length;
+      const virtuesCount = appState.virtuesAudited.length;
+
+      let answered = 0;
+      let correct = 0;
+      QUIZ_QUESTIONS.forEach(function(q) {
+        if (typeof appState.quizAnswers[q.id] === `number`) {
+          answered++;
+          if (appState.quizAnswers[q.id] === q.correct) correct++;
+        }
+      });
+
+      if (statVerses) statVerses.textContent = studiedCount + ` / 44`;
+      if (statQuiz) statQuiz.textContent = correct + ` / ` + QUIZ_QUESTIONS.length;
+      if (statVirtues) statVirtues.textContent = virtuesCount + ` / 9`;
+      if (qAnswered) qAnswered.textContent = answered + ` / ` + QUIZ_QUESTIONS.length;
+      if (qCorrect) qCorrect.textContent = correct + ` / ` + QUIZ_QUESTIONS.length;
+    }
+
+    // =========================================================================
+    // SECTION I: MOVEMENTS INTERACTION
+    // =========================================================================
+    function selectMovement(idx) {
+      if (idx < 0 || idx >= MOVEMENTS.length) return;
+      appState.activeMovement = idx;
+      const mov = MOVEMENTS[idx];
+
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const btn = document.getElementById(`mov-btn-` + i);
+        const rect = document.getElementById(`svg-mov-` + i);
+        if (btn) {
+          if (i === idx) btn.classList.add(`btn-active`);
+          else btn.classList.remove(`btn-active`);
+        }
+        if (rect) {
+          rect.setAttribute(`stroke`, i === idx ? `var(--primary)` : `var(--outline-variant)`);
+          rect.setAttribute(`stroke-width`, i === idx ? `2` : `1`);
+        }
+      }
+
+      const inspector = document.getElementById(`movement-inspector`);
+      if (inspector) {
+        const rootBadges = mov.roots.map(function(r) {
+          return `<span class="badge">${r}</span>`;
+        }).join(``);
+
+        inspector.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+            <span class="deck-brass">Movement ${mov.id} &middot; ${mov.range}</span>
+            <button type="button" class="btn" onclick="jumpToMovementVerses(${mov.id})">Filter These Verses</button>
+          </div>
+          <h3 class="card-title" style="margin-top:var(--space-xs);">${mov.title}</h3>
+          <p style="margin-top:var(--space-sm); font-size:0.96rem;">${mov.summary}</p>
+          <p class="muted" style="margin-top:var(--space-sm); font-size:0.9rem;"><strong>Structural Bridge:</strong> ${mov.bridge}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:var(--space-xs); margin-top:var(--space-md);">${rootBadges}</div>
+        `;
+      }
+      saveState();
+    }
+
+    function jumpToMovementVerses(movId) {
+      const sel = document.getElementById(`movement-select`);
+      if (sel) {
+        sel.value = String(movId);
+        filterVerses();
+      }
+      const target = document.getElementById(`verses`);
+      if (target) target.scrollIntoView({ behavior: `smooth` });
+    }
+
+    // =========================================================================
+    // SECTION II: NINE VIRTUES AUDIT
+    // =========================================================================
+    function renderVirtues() {
+      const grid = document.getElementById(`virtues-grid`);
+      if (!grid) return;
+
+      grid.innerHTML = VIRTUES.map(function(v) {
+        const checked = appState.virtuesAudited.indexOf(v.num) !== -1;
+        const cardClass = v.bookend ? `virtue-card is-bookend` : `virtue-card`;
+        const badgeClass = v.bookend ? `badge badge-brass` : `badge badge-mint`;
+        const btnClass = checked ? `btn virtue-toggle btn-studied` : `btn virtue-toggle`;
+        const btnLabel = checked ? `Practiced / Anchored` : `Mark in Audit`;
+
+        return `
+          <article class="${cardClass}">
+            <div class="virtue-header">
+              <span class="${badgeClass}">${v.num} &middot; ${v.verse}</span>
+              <button type="button" class="${btnClass}" aria-pressed="${checked}" onclick="toggleVirtue('${v.num}')">${btnLabel}</button>
+            </div>
+            <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.45rem; color:var(--primary);">${v.arabic}</div>
+            <h3 class="card-title">${v.title}</h3>
+            <p class="muted" style="font-size:0.92rem;">${v.desc}</p>
+            <p style="font-size:0.86rem; color:var(--tertiary);">${v.counters}</p>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function toggleVirtue(num) {
+      const idx = appState.virtuesAudited.indexOf(num);
+      if (idx === -1) appState.virtuesAudited.push(num);
+      else appState.virtuesAudited.splice(idx, 1);
+      renderVirtues();
+      updateTelemetry();
+      saveState();
+    }
+
+    // =========================================================================
+    // SECTION III: 44-VERSE LINGUISTIC & MORPHOLOGICAL STUDIO
+    // =========================================================================
+    function renderVerses() {
+      const container = document.getElementById(`verses-container`);
+      const countEl = document.getElementById(`verse-filter-count`);
+      const searchInput = document.getElementById(`verse-search`);
+      const movSelect = document.getElementById(`movement-select`);
+      if (!container) return;
+
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : ``;
+      const movFilter = movSelect ? movSelect.value : `all`;
+
+      const filtered = VERSES.filter(function(v) {
+        if (movFilter !== `all` && String(v.mov) !== movFilter) return false;
+        if (!query) return true;
+        const wordMatch = v.words.some(function(w) {
+          return w.ar.indexOf(query) !== -1 ||
+            w.tr.toLowerCase().indexOf(query) !== -1 ||
+            w.root.indexOf(query) !== -1 ||
+            w.gloss.toLowerCase().indexOf(query) !== -1 ||
+            w.form.toLowerCase().indexOf(query) !== -1;
+        });
+        return String(v.num) === query ||
+          (`70:` + v.num).indexOf(query) !== -1 ||
+          v.arabic.indexOf(query) !== -1 ||
+          v.translit.toLowerCase().indexOf(query) !== -1 ||
+          v.translation.toLowerCase().indexOf(query) !== -1 ||
+          v.tafsir.toLowerCase().indexOf(query) !== -1 ||
+          wordMatch;
+      });
+
+      if (countEl) {
+        countEl.textContent = `Showing ` + filtered.length + ` of 44 verses`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="panel" style="display:grid; gap:var(--space-sm);">
+            <h3 class="card-title">No verses match “${escapeHtml(query)}”</h3>
+            <p class="muted">Clear the search box or switch the thematic movement filter back to all 44 verses.</p>
+            <div><button type="button" class="btn btn-primary" onclick="clearVerseFilters()">Show All 44 Verses</button></div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(function(v) {
+        const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+        const selectedWordIdx = typeof appState.selectedWordByVerse[v.num] === `number` ? appState.selectedWordByVerse[v.num] : 0;
+        const safeWordIdx = selectedWordIdx < v.words.length ? selectedWordIdx : 0;
+        const activeWord = v.words[safeWordIdx];
+        const isWbwExpanded = appState.expandAllWbw || appState.expandedWbwVerses.indexOf(v.num) !== -1;
+
+        const wordChipsHtml = v.words.map(function(w, wIdx) {
+          const selClass = wIdx === safeWordIdx ? `word-chip is-selected` : `word-chip`;
+          return `<button type="button" class="${selClass}" lang="ar" dir="rtl" aria-pressed="${wIdx === safeWordIdx}" onclick="selectWord(${v.num}, ${wIdx})">${w.ar}</button>`;
+        }).join(``);
+
+        const translitHtml = appState.showTranslit
+          ? `<div class="verse-translit">${v.translit}</div>`
+          : ``;
+
+        const wbwTableHtml = isWbwExpanded
+          ? `<div class="wbw-table-wrap">
+              <table class="wbw-table" aria-label="Word-by-word morphological table for verse 70:${v.num}">
+                <thead>
+                  <tr>
+                    <th>Arabic</th>
+                    <th>Transliteration</th>
+                    <th>Root</th>
+                    <th>Morphology / Form</th>
+                    <th>Grammatical Role</th>
+                    <th>Gloss</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${v.words.map(function(w) {
+                    return `<tr>
+                      <td class="ar" lang="ar" dir="rtl">${w.ar}</td>
+                      <td style="font-family:var(--font-label); color:var(--tertiary);">${w.tr}</td>
+                      <td lang="ar" dir="rtl" style="font-family:var(--font-arabic); font-size:1.15rem;">${w.root}</td>
+                      <td>${w.form}</td>
+                      <td class="muted">${w.role}</td>
+                      <td><strong>${w.gloss}</strong></td>
+                    </tr>`;
+                  }).join(``)}
+                </tbody>
+              </table>
+            </div>`
+          : ``;
+
+        return `
+          <article class="verse-card ${isStudied ? `is-studied` : ``}" id="verse-${v.num}">
+            <div class="verse-top">
+              <div class="verse-meta-left">
+                <span class="badge badge-brass">70:${v.num}</span>
+                <span class="badge">Movement ${v.mov}</span>
+              </div>
+              <div class="verse-actions">
+                <button type="button" class="btn" aria-expanded="${isWbwExpanded}" onclick="toggleVerseWbw(${v.num})">
+                  ${isWbwExpanded ? `Hide Full Table` : `Word-by-Word Table`}
+                </button>
+                <button type="button" class="btn ${isStudied ? `btn-studied` : ``}" aria-pressed="${isStudied}" onclick="toggleVerseStudied(${v.num})">
+                  ${isStudied ? `Studied` : `Mark Studied`}
+                </button>
+              </div>
+            </div>
+
+            <div class="word-tokens-rtl" aria-label="Clickable Arabic words for verse 70:${v.num}">
+              ${wordChipsHtml}
+            </div>
+
+            ${translitHtml}
+
+            <div class="verse-translation">“${v.translation}”</div>
+
+            <div class="observation-well morph-inspector" aria-label="Selected word morphology">
+              <div class="morph-arabic-focus" lang="ar" dir="rtl">${activeWord.ar}</div>
+              <div class="morph-fields">
+                <div class="morph-cell">
+                  <span class="k">Transliteration</span>
+                  <span class="v mono">${activeWord.tr}</span>
+                </div>
+                <div class="morph-cell">
+                  <span class="k">Root</span>
+                  <span class="v arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem; line-height:1.2; color:var(--primary);">${activeWord.root}</span>
+                </div>
+                <div class="morph-cell">
+                  <span class="k">Morphological Form</span>
+                  <span class="v">${activeWord.form}</span>
+                </div>
+                <div class="morph-cell">
+                  <span class="k">Syntax / Role</span>
+                  <span class="v">${activeWord.role}</span>
+                </div>
+                <div class="morph-cell">
+                  <span class="k">Contextual Gloss</span>
+                  <span class="v" style="color:var(--positive);">${activeWord.gloss}</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="verse-tafsir">${v.tafsir}</p>
+
+            ${wbwTableHtml}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function selectWord(verseNum, wordIdx) {
+      appState.selectedWordByVerse[verseNum] = wordIdx;
+      renderVerses();
+      saveState();
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) appState.studiedVerses.push(verseNum);
+      else appState.studiedVerses.splice(idx, 1);
+      renderVerses();
+      updateTelemetry();
+      saveState();
+    }
+
+    function toggleVerseWbw(verseNum) {
+      const idx = appState.expandedWbwVerses.indexOf(verseNum);
+      if (idx === -1) appState.expandedWbwVerses.push(verseNum);
+      else appState.expandedWbwVerses.splice(idx, 1);
+      renderVerses();
+      saveState();
+    }
+
+    function toggleTranslit() {
+      appState.showTranslit = !appState.showTranslit;
+      const btn = document.getElementById(`btn-toggle-translit`);
+      if (btn) {
+        btn.textContent = appState.showTranslit ? `Transliteration: On` : `Transliteration: Off`;
+        if (appState.showTranslit) btn.classList.add(`btn-active`);
+        else btn.classList.remove(`btn-active`);
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function toggleAllWbw() {
+      appState.expandAllWbw = !appState.expandAllWbw;
+      const btn = document.getElementById(`btn-expand-all-wbw`);
+      if (btn) {
+        btn.textContent = appState.expandAllWbw ? `Collapse All Tables` : `Expand All Tables`;
+        if (appState.expandAllWbw) btn.classList.add(`btn-active`);
+        else btn.classList.remove(`btn-active`);
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function filterVerses() {
+      renderVerses();
+    }
+
+    function clearVerseFilters() {
+      const searchInput = document.getElementById(`verse-search`);
+      const movSelect = document.getElementById(`movement-select`);
+      if (searchInput) searchInput.value = ``;
+      if (movSelect) movSelect.value = `all`;
+      renderVerses();
+    }
+
+    // =========================================================================
+    // SECTION V: SELF-ASSESSMENT QUIZ
+    // =========================================================================
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function(q, qIdx) {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+
+        const optionsHtml = q.options.map(function(opt, oIdx) {
+          let cls = `btn quiz-opt`;
+          if (hasAnswered) {
+            if (oIdx === q.correct) cls += ` is-correct`;
+            else if (oIdx === chosen) cls += ` is-wrong`;
+          }
+          return `<button type="button" class="${cls}" aria-pressed="${chosen === oIdx}" onclick="answerQuiz('${q.id}', ${oIdx})">${String.fromCharCode(65 + oIdx)}. ${opt}</button>`;
+        }).join(``);
+
+        const rationaleHtml = hasAnswered
+          ? `<div class="quiz-rationale">
+              <strong style="color:${chosen === q.correct ? `var(--positive)` : `var(--warning)`};">
+                ${chosen === q.correct ? `Correct` : `Review Note`}
+              </strong> &mdash; ${q.rationale}
+            </div>`
+          : ``;
+
+        return `
+          <article class="panel quiz-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+              <span class="badge badge-brass">Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+              <span class="coord-label">${q.topic}</span>
+            </div>
+            <h3 class="card-title">${q.question}</h3>
+            <div class="quiz-options">${optionsHtml}</div>
+            ${rationaleHtml}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function answerQuiz(qId, optionIdx) {
+      appState.quizAnswers[qId] = optionIdx;
+      const resetBtn = document.getElementById(`btn-reset-quiz`);
+      if (resetBtn) {
+        resetBtn.dataset.armed = `false`;
+        resetBtn.textContent = `Reset Assessment`;
+      }
+      renderQuiz();
+      updateTelemetry();
+      saveState();
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset Assessment`;
+      }
+      appState.quizAnswers = {};
+      renderQuiz();
+      updateTelemetry();
+      saveState();
+    }
+
+    // =========================================================================
+    // SECTION VI: REFLECTIONS & EXPORT
+    // =========================================================================
+    function renderReflections() {
+      const container = document.getElementById(`reflections-container`);
+      if (!container) return;
+
+      container.innerHTML = REFLECTION_PROMPTS.map(function(r) {
+        const val = appState.reflections[r.id] || ``;
+        return `
+          <article class="panel reflection-card">
+            <span class="badge">${r.verseRef}</span>
+            <h3 class="card-title">${r.title}</h3>
+            <p class="muted" style="font-size:0.94rem;">${r.prompt}</p>
+            <div class="field-group" style="margin-top:var(--space-xs);">
+              <label class="field-label" for="refl-${r.id}">Personal Reflection Note</label>
+              <textarea id="refl-${r.id}" class="textarea-input" placeholder="Record your reflection on ${r.verseRef}…" oninput="updateReflection('${r.id}', this.value)">${escapeHtml(val)}</textarea>
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function updateReflection(id, val) {
+      appState.reflections[id] = val;
+      const status = document.getElementById(`reflection-status`);
+      if (status) status.textContent = `Reflection notes saved to notebook state.`;
+      saveState();
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-MA'ARIJ (CHAPTER 70) — STUDY & MASTERY NOTES`,
+        `====================================================`,
+        `Verses Studied: ${appState.studiedVerses.length} / 44 (${appState.studiedVerses.slice().sort(function(a, b) { return a - b; }).join(`, `) || `none yet`})`,
+        `Nine Virtues Audited: ${appState.virtuesAudited.length} / 9`,
+        ``,
+        `REFLECTIVE JOURNAL`,
+        `------------------`
+      ];
+
+      REFLECTION_PROMPTS.forEach(function(r) {
+        lines.push(``);
+        lines.push(`[${r.verseRef}] ${r.title}`);
+        lines.push(`Prompt: ${r.prompt}`);
+        lines.push(`Note: ${appState.reflections[r.id] ? appState.reflections[r.id] : `(No reflection written yet)`}`);
+      });
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-70-al-maarij-study-notes.txt`
+        });
+      }
+      const status = document.getElementById(`reflection-status`);
+      if (status) status.textContent = `Study notes exported as surah-70-al-maarij-study-notes.txt.`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (typeof saved.activeMovement === `number`) appState.activeMovement = saved.activeMovement;
+            if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+            if (Array.isArray(saved.virtuesAudited)) appState.virtuesAudited = saved.virtuesAudited;
+            if (saved.selectedWordByVerse && typeof saved.selectedWordByVerse === `object`) appState.selectedWordByVerse = saved.selectedWordByVerse;
+            if (Array.isArray(saved.expandedWbwVerses)) appState.expandedWbwVerses = saved.expandedWbwVerses;
+            if (typeof saved.showTranslit === `boolean`) appState.showTranslit = saved.showTranslit;
+            if (typeof saved.expandAllWbw === `boolean`) appState.expandAllWbw = saved.expandAllWbw;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (saved.reflections && typeof saved.reflections === `object`) appState.reflections = Object.assign(appState.reflections, saved.reflections);
+          }
+        }
+      } catch (e) {
+        // Fallback cleanly to default initial state
+      }
+
+      const tBtn = document.getElementById(`btn-toggle-translit`);
+      if (tBtn) {
+        tBtn.textContent = appState.showTranslit ? `Transliteration: On` : `Transliteration: Off`;
+        if (appState.showTranslit) tBtn.classList.add(`btn-active`);
+        else tBtn.classList.remove(`btn-active`);
+      }
+      const wBtn = document.getElementById(`btn-expand-all-wbw`);
+      if (wBtn) {
+        wBtn.textContent = appState.expandAllWbw ? `Collapse All Tables` : `Expand All Tables`;
+        if (appState.expandAllWbw) wBtn.classList.add(`btn-active`);
+        else wBtn.classList.remove(`btn-active`);
+      }
+
+      selectMovement(appState.activeMovement);
+      renderVirtues();
+      renderVerses();
+      renderQuiz();
+      renderReflections();
+      updateTelemetry();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>

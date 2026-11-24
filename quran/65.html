@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah At-Talaq (Chapter 65) — Interactive Study Guide &amp; Mastery Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-soft: #c4b29e;
+      --primary-border-soft: #c98a6b;
+      --tertiary-border-soft: #b5d6c9;
+      --error-border-soft: #e0b0b0;
+      --error-container: #fbecec;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9a3c1c;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4.2vw, 4.5rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2.2vw, 2.75rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+      --arabic-size: clamp(1.45rem, 1.25rem + 0.9vw, 1.95rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-xl);
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .kicker-secondary {
+      color: var(--secondary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg) 0;
+      line-height: 1.65;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+
+    .prose-muted {
+      color: var(--on-surface-variant);
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Quick Jump Navigation Strip */
+    .study-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding: var(--space-md) 0;
+      border-top: var(--warm-hairline);
+      border-bottom: var(--warm-hairline);
+      margin-bottom: var(--space-xl);
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background-color: var(--surface-container-low);
+      border-color: var(--primary);
+    }
+    .nav-pill:active {
+      transform: translateY(1px);
+    }
+
+    /* Signature Riad Arch Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+      transform: translateY(-2px);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.125rem, 1.8rem + 1.4vw, 2.85rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Mastery Progress Strip */
+    .mastery-bar-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .mastery-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: flex-end;
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Badges */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Section Bands */
+    .study-section {
+      padding-top: var(--space-xl);
+      border-top: var(--warm-hairline);
+    }
+
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    .context-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .callouts-stack {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .callout-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .callout-title {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Structural Movement Explorer */
+    .movement-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .movement-btn {
+      text-align: left;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      min-height: 44px;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .movement-btn:hover {
+      background: var(--background);
+      box-shadow: var(--soft-shadow);
+    }
+    .movement-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+      box-shadow: var(--soft-shadow-raised);
+    }
+
+    .movement-span {
+      display: block;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .movement-name {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--on-surface);
+    }
+
+    .movement-detail-panel {
+      margin-top: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .bullet-list {
+      margin: 0;
+      padding-left: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+    }
+    .btn-secondary.is-selected {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+
+    /* Verse Explorer Controls & Cards */
+    .filter-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .filter-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-container);
+    }
+    .filter-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .verses-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .verse-card.is-studied {
+      border-color: var(--tertiary-border-soft);
+      background: var(--background);
+    }
+
+    .verse-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      margin-bottom: var(--space-md);
+    }
+
+    .verse-id-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-number {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 2.15;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0 0 var(--space-md) 0;
+      padding: var(--space-md);
+      background: var(--background);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+    }
+
+    .verse-translation {
+      font-size: var(--body-size);
+      color: var(--on-surface);
+      line-height: 1.7;
+      margin: 0 0 var(--space-md) 0;
+      max-width: 72ch;
+    }
+
+    .verse-analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    .analysis-box {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .analysis-label {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .study-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .study-toggle-btn:hover {
+      border-color: var(--tertiary);
+    }
+    .study-toggle-btn.is-studied {
+      background: var(--tertiary);
+      color: var(--on-primary);
+      border-color: var(--tertiary);
+    }
+
+    /* Legal & Ethical Scenario Explorer */
+    .scenario-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+      align-items: start;
+    }
+
+    .scenario-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .scenario-btn {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .scenario-btn:hover {
+      border-color: var(--primary);
+      background: var(--background);
+    }
+    .scenario-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .scenario-btn-title {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .scenario-btn-ref {
+      display: block;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .scenario-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .spec-tile {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .spec-tile-label {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Comparative Table */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-xl);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+
+    tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-variant-numeric: tabular-nums;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Linguistic Lexicon */
+    .lexicon-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+      align-items: start;
+    }
+
+    .lexicon-pills {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .lexicon-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-lg);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .lexicon-btn:hover {
+      border-color: var(--primary);
+    }
+    .lexicon-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+
+    .lexicon-ar-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      font-weight: 700;
+      direction: rtl;
+      color: var(--primary);
+    }
+
+    /* Thematic SVG & Cards */
+    .schematic-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .theme-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .theme-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    /* Mastery Check & Reflection Studio */
+    .quiz-stack {
+      display: grid;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-option-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-container);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .quiz-feedback.is-visible {
+      display: block;
+    }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+    }
+    .quiz-feedback.is-wrong {
+      background: var(--error-container);
+      color: var(--error);
+      border: 1px solid var(--error-border-soft);
+    }
+
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .input-label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+
+    .reflection-textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .studio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: var(--warm-hairline);
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    .study-footer {
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-lg);
+      border-top: var(--warm-hairline);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Reveal animation */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Container queries */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 520px) {
+      .movement-detail-panel { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+      }
+      .mastery-bar-panel,
+      .context-grid,
+      .movement-tabs,
+      .movement-detail-panel,
+      .scenario-layout,
+      .lexicon-grid {
+        grid-template-columns: 1fr;
+      }
+      .mastery-stats {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- HERO / HEADER -->
+    <header>
+      <div class="kicker-row">
+        <span>Qur'anic Study &amp; Mastery Companion</span>
+        <span class="kicker-secondary">Surah At-Talaq · Chapter 65</span>
+      </div>
+      <h1 class="title">Law, Mercy, and <em>Stewardship</em> in Transition</h1>
+      <p class="lede">
+        Revealed in Madinah as twelve tightly woven verses, Surah At-Talaq anchors the legal boundaries of divorce, housing, waiting periods, and child support inside an overarching theology of <em>Taqwa</em>, unexpected divine provision, and cosmic reassurance.
+      </p>
+
+      <div class="ornament-rule">
+        <span>◆ Madinan Period · 12 Verses · Three Structural Movements ◆</span>
+      </div>
+
+      <div class="arch-grid" aria-label="Chapter 65 summary metrics">
+        <div class="arch-card">
+          <div class="arch-label">Total Revelation</div>
+          <div class="arch-figure">12</div>
+          <div class="arch-caption">Structured verses (65:1–12)</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Explicit Calls to Taqwa</div>
+          <div class="arch-figure">5×</div>
+          <div class="arch-caption">Engine of relief &amp; restraint</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Iddah Pathways</div>
+          <div class="arch-figure">3</div>
+          <div class="arch-caption">Menstrual, 3-month, pregnancy</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Promise of Ease</div>
+          <div class="arch-figure">2×</div>
+          <div class="arch-caption">Yusr after constriction (vv. 4, 7)</div>
+        </div>
+      </div>
+
+      <!-- Persistent Mastery Progress Panel -->
+      <div class="mastery-bar-panel" role="region" aria-label="Study mastery progress">
+        <div>
+          <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+            <span>Personal Mastery Progress</span>
+            <span id="mastery-percent-label" class="kicker-secondary">0% Complete</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="mastery-progress-fill"></div>
+          </div>
+        </div>
+        <div class="mastery-stats">
+          <span class="stat-chip"><i data-lucide="book-open" aria-hidden="true"></i> <span id="stat-verses">0/12 Verses</span></span>
+          <span class="stat-chip"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span id="stat-quiz">0/6 Checks</span></span>
+          <span class="stat-chip"><i data-lucide="pen-line" aria-hidden="true"></i> <span id="stat-reflections">0/4 Notes</span></span>
+        </div>
+      </div>
+
+      <nav class="study-nav" aria-label="Section navigation">
+        <a class="nav-pill" href="#sec-context">1. Context &amp; Structure</a>
+        <a class="nav-pill" href="#sec-verses">2. Verse-by-Verse Explorer</a>
+        <a class="nav-pill" href="#sec-legal">3. Legal &amp; Ethical Matrix</a>
+        <a class="nav-pill" href="#sec-linguistics">4. Linguistic Nuances</a>
+        <a class="nav-pill" href="#sec-theology">5. Theological Themes</a>
+        <a class="nav-pill" href="#sec-mastery">6. Mastery &amp; Reflections</a>
+      </nav>
+    </header>
+
+    <main class="page-grid">
+      <!-- SECTION 1: HISTORICAL CONTEXT & STRUCTURAL BREAKDOWN -->
+      <section id="sec-context" class="study-section reveal-item">
+        <div class="kicker-row">
+          <span>Section 01 · Historical Grounding &amp; Architecture</span>
+          <span class="kicker-secondary">Madinan Civic Legislation</span>
+        </div>
+        <h2 class="section-heading">Why Household Law Opens with a <em>Prophetic</em> Address</h2>
+
+        <div class="context-grid">
+          <div>
+            <p class="prose">
+              Surah At-Talaq (“The Divorce”) belongs to the Madinan period, when the Muslim community was transitioning from a persecuted minority into an organized civic society governed by transparent legal and moral norms. Rather than treating domestic rupture as a private matter left to anger or impulse, the opening verse addresses the Prophet Muhammad directly—and through him, the entire community: <em>“O Prophet, when you [Muslims] divorce women…”</em> (65:1).
+            </p>
+            <p class="prose">
+              Historically, pre-Islamic norms often left divorced women vulnerable to abrupt eviction, indefinite suspension without clear timelines, or financial retaliation. Chapter 65 replaces ambiguity with explicit boundaries (<em>ḥudūd Allāh</em>): divorce must be timed cleanly to the commencement of the waiting period (<em>ʿiddah</em>), counted accurately, witnessed by two just individuals, and carried out without forcing a woman from her home.
+            </p>
+            <p class="prose prose-muted">
+              What makes Surah At-Talaq remarkable among legal passages is its cadence. Every juridical instruction in verses 1 through 7 is immediately followed by a spiritual guarantee—turning moments of acute domestic vulnerability into arenas of <em>Taqwa</em> (God-consciousness) and <em>Tawakkul</em> (reliance on Allah).
+            </p>
+          </div>
+
+          <div class="callouts-stack">
+            <div class="callout-item">
+              <div class="callout-title">Direct Address &amp; Communal Scope</div>
+              <p style="margin: 0; font-size: 0.95rem;">
+                Verse 65:1 shifts smoothly from the singular address (<em>Yā ayyuhā al-nabīyu</em> — “O Prophet”) to the plural verb (<em>ṭallaqtumu</em> — “when you [all] divorce”), signaling that the Prophet models and enforces legal protections on behalf of every household.
+              </p>
+            </div>
+            <div class="callout-item">
+              <div class="callout-title">Protecting the Window for Reconciliation</div>
+              <p style="margin: 0; font-size: 0.95rem;">
+                By forbidding both husbands from evicting wives and wives from leaving without grave cause during the waiting period, v. 1 preserves calm proximity: <em>“You know not; perhaps Allah will bring about after that a [different] matter.”</em>
+              </p>
+            </div>
+            <div class="callout-item">
+              <div class="callout-title">From Domestic Law to Cosmic Sovereignty</div>
+              <p style="margin: 0; font-size: 0.95rem;">
+                The final five verses (65:8–12) widen the lens from one home to ancient civilizations, Prophetic light, and the seven heavens and earths—reminding believers that the One regulating family justice governs the cosmos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Structural Breakdown -->
+        <div style="margin-top: var(--space-xl);">
+          <h3 class="subhead">Three-Movement Structural Breakdown (Verses 1–12)</h3>
+          <p class="prose prose-muted">Select each movement to examine how the chapter progresses from concrete legal guardrails to financial equity and finally to cosmic certainty.</p>
+
+          <div class="movement-tabs" role="tablist" aria-label="Structural movements of Surah At-Talaq">
+            <button type="button" class="movement-btn is-active" id="mov-btn-0" onclick="selectMovement(0)" role="tab" aria-selected="true">
+              <span class="movement-span">Movement I · Verses 65:1–5</span>
+              <span class="movement-name">Guardrails of Separation &amp; Iddah</span>
+            </button>
+            <button type="button" class="movement-btn" id="mov-btn-1" onclick="selectMovement(1)" role="tab" aria-selected="false">
+              <span class="movement-span">Movement II · Verses 65:6–7</span>
+              <span class="movement-name">Housing, Nursing &amp; Proportional Means</span>
+            </button>
+            <button type="button" class="movement-btn" id="mov-btn-2" onclick="selectMovement(2)" role="tab" aria-selected="false">
+              <span class="movement-span">Movement III · Verses 65:8–12</span>
+              <span class="movement-name">Historical Warning &amp; Cosmic Order</span>
+            </button>
+          </div>
+
+          <div class="card-wrapper">
+            <div class="movement-detail-panel" id="movement-detail-panel" role="tabpanel">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: INTERACTIVE VERSE-BY-VERSE EXPLORER -->
+      <section id="sec-verses" class="study-section reveal-item">
+        <div class="kicker-row">
+          <span>Section 02 · Primary Text &amp; Commentary</span>
+          <span class="kicker-secondary">Complete 12-Verse Study Explorer</span>
+        </div>
+        <h2 class="section-heading">Verse-by-Verse <em>Mastery</em> Explorer</h2>
+        <p class="prose">
+          Explore the complete Arabic text and English translation of Chapter 65. Filter by structural movement or thematic focus, toggle the Arabic script view, and mark verses as studied to track your progress.
+        </p>
+
+        <div class="filter-toolbar">
+          <div class="filter-group" role="group" aria-label="Filter verses by movement or theme">
+            <button type="button" class="filter-btn is-active" id="vf-all" onclick="filterVerses('all')">All 12 Verses</button>
+            <button type="button" class="filter-btn" id="vf-m1" onclick="filterVerses('m1')">Movement I (vv. 1–5)</button>
+            <button type="button" class="filter-btn" id="vf-m2" onclick="filterVerses('m2')">Movement II (vv. 6–7)</button>
+            <button type="button" class="filter-btn" id="vf-m3" onclick="filterVerses('m3')">Movement III (vv. 8–12)</button>
+            <button type="button" class="filter-btn" id="vf-promises" onclick="filterVerses('promises')">Taqwa &amp; Provision Promises</button>
+          </div>
+          <button type="button" class="btn-secondary" id="toggle-arabic-btn" onclick="toggleArabicDisplay()">Hide Arabic Script</button>
+        </div>
+
+        <div class="verses-stack" id="verses-container">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- SECTION 3: LEGAL & ETHICAL FRAMEWORKS -->
+      <section id="sec-legal" class="study-section tonal-band reveal-item">
+        <div class="kicker-row">
+          <span>Section 03 · Legal &amp; Ethical Architecture (65:1–7)</span>
+          <span class="kicker-secondary">Domestic Transitions Framework</span>
+        </div>
+        <h2 class="section-heading">Navigating Separation with <em>Dignity</em> and Proportion</h2>
+        <p class="prose">
+          Verses 1 through 7 construct a rigorous protection system around domestic transitions. Select a household scenario below to inspect its exact Qur'anic waiting period, housing obligation, financial duties, and ethical boundaries.
+        </p>
+
+        <div class="scenario-layout">
+          <div class="scenario-list" role="tablist" aria-label="Domestic transition legal scenarios">
+            <button type="button" class="scenario-btn is-active" id="scen-btn-0" onclick="selectScenario(0)">
+              <span class="scenario-btn-ref">Verses 65:1–2</span>
+              <span class="scenario-btn-title">Standard Divorce &amp; Waiting Period</span>
+            </button>
+            <button type="button" class="scenario-btn" id="scen-btn-1" onclick="selectScenario(1)">
+              <span class="scenario-btn-ref">Verse 65:4</span>
+              <span class="scenario-btn-title">Post-Menopausal or Non-Menstruating</span>
+            </button>
+            <button type="button" class="scenario-btn" id="scen-btn-2" onclick="selectScenario(2)">
+              <span class="scenario-btn-ref">Verses 65:4 &amp; 65:6</span>
+              <span class="scenario-btn-title">Pregnant Spouse During Transition</span>
+            </button>
+            <button type="button" class="scenario-btn" id="scen-btn-3" onclick="selectScenario(3)">
+              <span class="scenario-btn-ref">Verse 65:6</span>
+              <span class="scenario-btn-title">Post-Birth Nursing &amp; Consultation</span>
+            </button>
+            <button type="button" class="scenario-btn" id="scen-btn-4" onclick="selectScenario(4)">
+              <span class="scenario-btn-ref">Verse 65:7</span>
+              <span class="scenario-btn-title">Financially Constrained Household</span>
+            </button>
+          </div>
+
+          <div class="panel-card" id="scenario-detail-card" aria-live="polite">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Comparative Legal Matrix Table -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario / Clause</th>
+                <th>Verse</th>
+                <th>Waiting Period (Iddah)</th>
+                <th>Housing &amp; Maintenance Duty</th>
+                <th>Ethical &amp; Procedural Mandate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Timing &amp; Counting</strong></td>
+                <td>65:1</td>
+                <td>Timed to start of period; strictly counted</td>
+                <td>No eviction by husband; no departure by wife unless clear immorality</td>
+                <td>Observe Allah's limits (<em>ḥudūd</em>); preserve space for reconciliation</td>
+              </tr>
+              <tr>
+                <td><strong>Completion of Term</strong></td>
+                <td>65:2</td>
+                <td>Approaching end of <em>Iddah</em></td>
+                <td>Transition to either reconciled marriage or clean separation</td>
+                <td>Retain or part <em>bi-maʿrūf</em> (acceptable terms); call 2 just witnesses</td>
+              </tr>
+              <tr>
+                <td><strong>No Menstruation / Doubt</strong></td>
+                <td>65:4</td>
+                <td>3 months</td>
+                <td>Same non-harassment lodging protections apply</td>
+                <td>Eliminates uncertainty for older or non-menstruating women</td>
+              </tr>
+              <tr>
+                <td><strong>Pregnancy</strong></td>
+                <td>65:4, 6</td>
+                <td>Until delivery (birth)</td>
+                <td>Full lodging and financial maintenance until childbirth</td>
+                <td>Cannot harm or pressure her to forfeit rights (<em>lā tuḍārrūhunna</em>)</td>
+              </tr>
+              <tr>
+                <td><strong>Breastfeeding &amp; Means</strong></td>
+                <td>65:6–7</td>
+                <td>Post-delivery nursing phase</td>
+                <td>Fair payment for mother; proportional spending by means</td>
+                <td>Confer in an acceptable way; if in discord, another woman may nurse</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 4: LINGUISTIC NUANCES -->
+      <section id="sec-linguistics" class="study-section reveal-item">
+        <div class="kicker-row">
+          <span>Section 04 · Arabic Precision &amp; Rhetoric</span>
+          <span class="kicker-secondary">7 Pivotal Expressions</span>
+        </div>
+        <h2 class="section-heading">Linguistic <em>Nuances</em> Behind the Rulings</h2>
+        <p class="prose">
+          Much of Surah At-Talaq's moral force resides in single Arabic words—indefinite nouns that refuse to cap divine relief, verbs of mutual consultation, and deliberate echoes between human law and cosmic command.
+        </p>
+
+        <div class="lexicon-grid">
+          <div class="lexicon-pills" role="tablist" aria-label="Key Arabic linguistic terms">
+            <button type="button" class="lexicon-btn is-active" id="lex-btn-0" onclick="selectLexicon(0)">
+              <span><strong>Li-ʿiddatihinna</strong> · Timed Separation (65:1)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">لِعِدَّتِهِنَّ</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-1" onclick="selectLexicon(1)">
+              <span><strong>Bi-maʿrūf</strong> · Honorable Terms (65:2, 6)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">بِمَعْرُوفٍ</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-2" onclick="selectLexicon(2)">
+              <span><strong>Lā tuḍārrūhunna</strong> · Zero Coercion (65:6)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">لَا تُضَارُّوهُنَّ</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-3" onclick="selectLexicon(3)">
+              <span><strong>Makhrajan</strong> · An Unforeseen Exit (65:2)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">مَخْرَجًا</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-4" onclick="selectLexicon(4)">
+              <span><strong>Ḥasbuhu</strong> · Sufficiency in Trust (65:3)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">حَسْبُهُ</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-5" onclick="selectLexicon(5)">
+              <span><strong>Baʿda ʿusrin yusrā</strong> · Ease After Hardship (65:7)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">بَعْدَ عُسْرٍ يُسْرًا</span>
+            </button>
+            <button type="button" class="lexicon-btn" id="lex-btn-6" onclick="selectLexicon(6)">
+              <span><strong>Yatanazzalu al-amru</strong> · Descending Command (65:12)</span>
+              <span class="lexicon-ar-inline" lang="ar" dir="rtl">يَتَنَزَّلُ الْأَمْرُ</span>
+            </button>
+          </div>
+
+          <div class="panel-card" id="lexicon-detail-card" aria-live="polite">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: KEY THEOLOGICAL THEMES -->
+      <section id="sec-theology" class="study-section reveal-item">
+        <div class="kicker-row">
+          <span>Section 05 · Theological Synthesis</span>
+          <span class="kicker-secondary">Taqwa, Tawakkul, Rizq &amp; Cosmic Order</span>
+        </div>
+        <h2 class="section-heading">Why Divine <em>Reassurance</em> Permeates a Legal Chapter</h2>
+        <p class="prose">
+          Divorce and household restructuring naturally trigger anxiety over finances, reputation, and an uncertain future. Surah At-Talaq confronts that fear directly by weaving five escalating promises for <em>Taqwa</em> into its legal clauses—culminating in the certainty that the Creator of seven heavens and earths governs every detail.
+        </p>
+
+      <!-- Custom Architectural SVG Schematic -->
+        <div class="schematic-card">
+          <div class="kicker-row" style="margin-bottom: var(--space-sm);">
+            <span>Thematic Architecture</span>
+            <span class="kicker-secondary">From Domestic Restraint to Cosmic Knowledge</span>
+          </div>
+          <svg viewBox="0 0 900 290" width="100%" role="img" aria-label="Schematic showing how Taqwa and Tawakkul connect legal household restraint in verses 1 to 7 with unexpected provision, ease after hardship, and cosmic sovereignty in verse 12" style="display: block; height: auto;">
+            <!-- Connecting Brass Baseline -->
+            <line x1="70" y1="145" x2="830" y2="145" stroke="var(--data-3)" stroke-width="2" stroke-dasharray="5 5" />
+
+            <!-- Node 1: Domestic Boundaries -->
+            <rect x="30" y="55" width="185" height="180" rx="14" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5" />
+            <text x="122" y="88" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--secondary)" letter-spacing="1.5">VERSES 1, 2, 6–7</text>
+            <text x="122" y="118" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="var(--on-surface)">Ethical Restraint</text>
+            <text x="122" y="148" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">Keep count, no eviction,</text>
+            <text x="122" y="168" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">witnesses, fair lodging,</text>
+            <text x="122" y="188" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">spend within means</text>
+            <rect x="62" y="203" width="120" height="22" rx="11" fill="var(--tertiary-container)" stroke="var(--tertiary-border-soft)" />
+            <text x="122" y="218" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--on-tertiary-container)">BI-MA'RUF</text>
+
+            <!-- Arrow 1 -->
+            <polygon points="228,139 242,145 228,151" fill="var(--primary)" />
+
+            <!-- Node 2: Taqwa & Tawakkul (Featured Center) -->
+            <rect x="250" y="35" width="210" height="220" rx="22" fill="var(--primary-container)" stroke="var(--primary-border-soft)" stroke-width="2" />
+            <text x="355" y="68" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--primary)" letter-spacing="1.5">THE SPIRITUAL PIVOT</text>
+            <text x="355" y="100" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="25" font-weight="600" fill="var(--on-surface)">Taqwa &amp; Tawakkul</text>
+            <text x="355" y="132" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12.5" fill="var(--on-surface-variant)">God-consciousness (5×)</text>
+            <text x="355" y="152" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12.5" fill="var(--on-surface-variant)">+ Complete reliance (v. 3)</text>
+            <text x="355" y="182" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="17" fill="var(--on-primary-container)">“He is sufficient for him”</text>
+            <rect x="285" y="212" width="140" height="24" rx="12" fill="var(--primary)" />
+            <text x="355" y="228" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--on-primary)">VERSES 2, 3, 4, 5, 10</text>
+
+            <!-- Arrow 2 -->
+            <polygon points="473,139 487,145 473,151" fill="var(--primary)" />
+
+            <!-- Node 3: Five-Fold Divine Response -->
+            <rect x="495" y="55" width="185" height="180" rx="14" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5" />
+            <text x="587" y="88" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--tertiary)" letter-spacing="1.5">DIVINE PROMISES</text>
+            <text x="587" y="118" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="var(--on-surface)">Relief &amp; Rizq</text>
+            <text x="587" y="148" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">1. A way out (makhrajan)</text>
+            <text x="587" y="168" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">2. Unreckoned provision</text>
+            <text x="587" y="188" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">3. Ease after hardship</text>
+            <text x="587" y="208" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">4. Forgiveness &amp; great reward</text>
+
+            <!-- Arrow 3 -->
+            <polygon points="693,139 707,145 693,151" fill="var(--primary)" />
+
+            <!-- Node 4: Cosmic Horizon -->
+            <rect x="715" y="55" width="155" height="180" rx="14" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="1.5" />
+            <text x="792" y="88" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--secondary)" letter-spacing="1.5">VERSES 11–12</text>
+            <text x="792" y="118" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="var(--on-surface)">Cosmic Proof</text>
+            <text x="792" y="148" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">Darkness to Light</text>
+            <text x="792" y="168" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">7 Heavens &amp; Earths</text>
+            <text x="792" y="188" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">All-Competent (Qadir)</text>
+            <text x="792" y="208" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="var(--on-surface-variant)">All-Knowing (Ilm)</text>
+          </svg>
+        </div>
+
+        <div class="card-grid">
+          <article class="theme-card is-featured">
+            <span class="badge-terracotta">Theme 01 · Verses 1, 2, 4, 5, 10</span>
+            <h3 class="subhead">Taqwa as the Engine of Relief</h3>
+            <p style="margin: 0;">
+              <em>Taqwa</em> (reverent mindfulness of Allah) is not an abstract sermon appended at the end; it is embedded inside each legal clause. The text promises that whoever acts with <em>Taqwa</em> during conflict receives: (1) a way out (v. 2), (2) unexpected provision (v. 3), (3) ease in affairs (v. 4), (4) removal of misdeeds and amplified reward (v. 5), and (5) protection from civilizational loss (v. 10).
+            </p>
+          </article>
+
+          <article class="theme-card">
+            <span class="badge-emerald">Theme 02 · Verse 65:3</span>
+            <h3 class="subhead">Tawakkul &amp; Unreckoned Provision</h3>
+            <p style="margin: 0;">
+              Because divorce disrupts household budgets and social plans, v. 3 addresses economic fear directly: Allah provides <em>“from where he does not expect”</em> and <em>“whoever relies upon Allah—then He is sufficient for him.”</em> Reliance is anchored by a decree of balance: Allah has already set a measured extent (<em>qadr</em>) for every circumstance.
+            </p>
+          </article>
+
+          <article class="theme-card">
+            <span class="badge-emerald">Theme 03 · Verse 65:7</span>
+            <h3 class="subhead">Ease Following Hardship</h3>
+            <p style="margin: 0;">
+              Right after legislating proportional financial support—requiring neither the wealthy to withhold nor the constrained to exceed what Allah gave him—v. 7 closes with a definitive future-tense assurance: <em>“Allah will bring about, after hardship, ease.”</em> Constriction is temporary; relief is promised.
+            </p>
+          </article>
+
+          <article class="theme-card">
+            <span class="badge-terracotta">Theme 04 · Verses 65:8–12</span>
+            <h3 class="subhead">Prophetic Light &amp; Cosmic Sovereignty</h3>
+            <p style="margin: 0;">
+              Why end a chapter on divorce with seven heavens and seven earths? Because human compliance depends on knowing who issued the command. Verse 11 shows the Messenger bringing believers <em>“from darknesses into the light,”</em> and v. 12 reveals that Divine Command descends continuously across all realms—proving Allah has full power and total knowledge of every household.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 6: MASTERY CHECK & REFLECTIVE PROMPTS -->
+      <section id="sec-mastery" class="study-section reveal-item">
+        <div class="kicker-row">
+          <span>Section 06 · Active Mastery &amp; Reflection Studio</span>
+          <span class="kicker-secondary">Saved Automatically to Study Log</span>
+        </div>
+        <h2 class="section-heading">Test Your <em>Comprehension</em> &amp; Record Reflections</h2>
+        <p class="prose">
+          Consolidate your study of Surah At-Talaq by completing the six comprehension checks grounded in verses 65:1–12 and writing responses to the reflective prompts. Your progress and notes are preserved across sessions.
+        </p>
+
+        <h3 class="subhead" style="margin-top: var(--space-lg);">Part A · Textual &amp; Legal Mastery Check (6 Questions)</h3>
+        <div class="quiz-stack" id="quiz-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <h3 class="subhead" style="margin-top: var(--space-2xl);">Part B · Reflective Prompts Journal</h3>
+        <p class="prose prose-muted">
+          Use these prompts to connect Surah At-Talaq's legal restraint and spiritual promises to real-life ethical discernment.
+        </p>
+
+        <div class="reflection-grid" id="reflection-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="studio-actions">
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center;">
+            <button type="button" class="btn-primary" onclick="exportStudySummary()">
+              <i data-lucide="download" aria-hidden="true"></i>
+              Export Study Summary (.txt)
+            </button>
+            <button type="button" class="btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              Reset Study Progress
+            </button>
+          </div>
+          <span class="status-note" id="save-status-note" aria-live="polite">Ready — progress saves automatically.</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="study-footer">
+      <span>Source Basis: Arabic text and English translation of Chapter 65 (Surah At-Talaq, vv. 1–12) provided in the study source.</span>
+      <span>Interactive Study &amp; Mastery Guide · Written in English with Arabic primary text</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA: MOVEMENTS, VERSES, LEGAL SCENARIOS, LINGUISTICS, QUIZ, REFLECTIONS
+    // =========================================================================
+
+    const MOVEMENTS = [
+      {
+        id: `m1`,
+        span: `Movement I · Verses 65:1–5`,
+        title: `Legal Guardrails of Separation & Waiting Periods`,
+        summary: `Establishes exact procedural boundaries (ḥudūd Allāh) for initiating divorce: timing it to the waiting period, counting carefully, forbidding unjust eviction, mandating honorable retention or parting with two just witnesses, and defining the three Iddah categories—punctuated by promises of a way out, unexpected provision, ease, and forgiveness for those who practice Taqwa.`,
+        keyPoints: [
+          `Timing & counting: Divorce for the start of the waiting period and keep accurate count (65:1).`,
+          `Housing sanctuary: Neither turn women out nor allow them to leave unless committing clear immorality (65:1).`,
+          `Resolution & witnesses: Retain or part in acceptable terms (bi-maʿrūf) before two just men (65:2).`,
+          `Specific terms: 3 months for post-menopausal or non-menstruating; until delivery for pregnant women (65:4).`
+        ]
+      },
+      {
+        id: `m2`,
+        span: `Movement II · Verses 65:6–7`,
+        title: `Domestic Lodging, Nursing Equity & Proportional Means`,
+        summary: `Translates separation from abstract law into lived household economics. Forbids psychological or financial harassment intended to pressure a woman out of her rights, guarantees full support during pregnancy, establishes fair payment and consultation for breastfeeding, and calibrates every financial duty strictly to a person's means—culminating in the promise of ease after hardship.`,
+        keyPoints: [
+          `Lodging & anti-harassment: House them where you dwell according to your means; do not harm them to oppress them (65:6).`,
+          `Pregnancy maintenance: Full financial spending continues until childbirth (65:6).`,
+          `Nursing compensation: Pay mothers fairly for nursing and confer in an acceptable way; if in discord, another woman may nurse (65:6).`,
+          `Proportional justice: Wealthy spend from wealth; constrained spend from what Allah gave—ease follows hardship (65:7).`
+        ]
+      },
+      {
+        id: `m3`,
+        span: `Movement III · Verses 65:8–12`,
+        title: `Historical Warning, Prophetic Light & Cosmic Sovereignty`,
+        summary: `Pulls back from the household to world history and the cosmos. Warns that insolence toward divine commands ruined past cities, calls people of understanding to heed the Qur'an and the Messenger who brings believers from darknesses into light, and concludes with the awe-inspiring reality of seven heavens and seven earths governed by Allah's descending command, power, and total knowledge.`,
+        keyPoints: [
+          `Civilizational accountability: Insolent cities tasted the ruinous outcome of defying their Lord and messengers (65:8–10).`,
+          `Call to people of understanding: "Fear Allah, O you of understanding who have believed" (65:10).`,
+          `Darknesses into light: The Messenger recites distinct verses leading righteous believers to eternal gardens and perfected provision (65:11).`,
+          `Cosmic foundation: Seven heavens and earths like them prove Allah is All-Competent (Qadīr) and encompasses everything in knowledge (65:12).`
+        ]
+      }
+    ];
+
+    const VERSES = [
+      {
+        num: 1,
+        ref: `65:1`,
+        movement: `m1`,
+        movementLabel: `Movement I · Guardrails`,
+        isPromise: false,
+        arabic: `يَا أَيُّهَا النَّبِيُّ إِذَا طَلَّقْتُمُ النِّسَاءَ فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ وَأَحْصُوا الْعِدَّةَ وَاتَّقُوا اللَّهَ رَبَّكُمْ ۖ لَا تُخْرِجُوهُنَّ مِنْ بُيُوتِهِنَّ وَلَا يَخْرُجْنَ إِلَّا أَنْ يَأْتِينَ بِفَاحِشَةٍ مُبَيِّنَةٍ ۚ وَتِلْكَ حُدُودُ اللَّهِ ۚ وَمَنْ يَتَعَدَّ حُدُودَ اللَّهِ فَقَدْ ظَلَمَ نَفْسَهُ ۚ لَا تَدْرِي لَعَلَّ اللَّهَ يُحْدِثُ بَعْدَ ذَٰلِكَ أَمْرًا`,
+        english: `O Prophet, when you [Muslims] divorce women, divorce them for [the commencement of] their waiting period and keep count of the waiting period, and fear Allah, your Lord. Do not turn them out of their [husbands'] houses, nor should they [themselves] leave [during that period] unless they are committing a clear immorality. And those are the limits [set by] Allah. And whoever transgresses the limits of Allah has certainly wronged himself. You know not; perhaps Allah will bring about after that a [different] matter.`,
+        ruling: `Divorce must be timed deliberately for the start of the waiting period (Iddah) and counted accurately. Housing continuity is mandatory during this window unless clear immorality occurs.`,
+        nuance: `Note the hopeful closing: "You know not; perhaps Allah will bring about after that a [different] matter"—protecting calm space for reconciliation.`
+      },
+      {
+        num: 2,
+        ref: `65:2`,
+        movement: `m1`,
+        movementLabel: `Movement I · Guardrails`,
+        isPromise: true,
+        arabic: `فَإِذَا بَلَغْنَ أَجَلَهُنَّ فَأَمْسِكُوهُنَّ بِمَعْرُوفٍ أَوْ فَارِقُوهُنَّ بِمَعْرُوفٍ وَأَشْهِدُوا ذَوَيْ عَدْلٍ مِنْكُمْ وَأَقِيمُوا الشَّهَادَةَ لِلَّهِ ۚ ذَٰلِكُمْ يُوعَظُ بِهِ مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ ۚ وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا`,
+        english: `And when they have [nearly] fulfilled their term, either retain them according to acceptable terms or part with them according to acceptable terms. And bring to witness two just men from among you and establish the testimony for [the acceptance of] Allah. That is instructed to whoever should believe in Allah and the Last day. And whoever fears Allah - He will make for him a way out`,
+        ruling: `At the end of the waiting period, the decision is binary and honorable: either reconcile or separate "according to acceptable terms" (bi-maʿrūf), formally witnessed by two just men.`,
+        nuance: `Introduces the first major Taqwa promise: "yajʿal lahu makhrajan"—an indefinite "way out" of any deadlock.`
+      },
+      {
+        num: 3,
+        ref: `65:3`,
+        movement: `m1`,
+        movementLabel: `Movement I · Promise`,
+        isPromise: true,
+        arabic: `وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ ۚ إِنَّ اللَّهَ بَالِغُ أَمْرِهِ ۚ قَدْ جَعَلَ اللَّهُ لِكُلِّ شَيْءٍ قَدْرًا`,
+        english: `And will provide for him from where he does not expect. And whoever relies upon Allah - then He is sufficient for him. Indeed, Allah will accomplish His purpose. Allah has already set for everything a [decreed] extent.`,
+        ruling: `Addresses the financial and emotional fear that often tempts people to violate marital ethics: Allah guarantees unforeseen provision and total sufficiency for those who rely on Him.`,
+        nuance: `Lā yaḥtasib means "from outside one's calculations," paired with ḥasbuhu ("He is enough for him") and qadr (a measured term for every trial).`
+      },
+      {
+        num: 4,
+        ref: `65:4`,
+        movement: `m1`,
+        movementLabel: `Movement I · Guardrails`,
+        isPromise: true,
+        arabic: `وَاللَّائِي يَئِسْنَ مِنَ الْمَحِيضِ مِنْ نِسَائِكُمْ إِنِ ارْتَبْتُمْ فَعِدَّتُهُنَّ ثَلَاثَةُ أَشْهُرٍ وَاللَّائِي لَمْ يَحِضْنَ ۚ وَأُولَاتُ الْأَحْمَالِ أَجَلُهُنَّ أَنْ يَضَعْنَ حَمْلَهُنَّ ۚ وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مِنْ أَمْرِهِ يُسْرًا`,
+        english: `And those who no longer expect menstruation among your women - if you doubt, then their period is three months, and [also for] those who have not menstruated. And for those who are pregnant, their term is until they give birth. And whoever fears Allah - He will make for him of his matter ease.`,
+        ruling: `Clarifies waiting periods where menstrual cycles cannot serve as the measure: three months for post-menopausal or non-menstruating women, and until childbirth for pregnant women.`,
+        nuance: `Links legal clarity directly to spiritual ease (yusran): God-consciousness transforms tangled affairs into manageable paths.`
+      },
+      {
+        num: 5,
+        ref: `65:5`,
+        movement: `m1`,
+        movementLabel: `Movement I · Promise`,
+        isPromise: true,
+        arabic: `ذَٰلِكَ أَمْرُ اللَّهِ أَنْزَلَهُ إِلَيْكُمْ ۚ وَمَنْ يَتَّقِ اللَّهَ يُكَفِّرْ عَنْهُ سَيِّئَاتِهِ وَيُعْظِمْ لَهُ أَجْرًا`,
+        english: `That is the command of Allah, which He has sent down to you; and whoever fears Allah - He will remove for him his misdeeds and make great for him his reward.`,
+        ruling: `Seals Movement I by affirming that these domestic rules are the revealed command of Allah, rewarding compliance with absolution and immense recompense.`,
+        nuance: `Yukaffir literally means to cover over or wipe away past shortcomings when one chooses obedience over spite.`
+      },
+      {
+        num: 6,
+        ref: `65:6`,
+        movement: `m2`,
+        movementLabel: `Movement II · Provision`,
+        isPromise: false,
+        arabic: `أَسْكِنُوهُنَّ مِنْ حَيْثُ سَكَنْتُمْ مِنْ وُجْدِكُمْ وَلَا تُضَارُّوهُنَّ لِتُضَيِّقُوا عَلَيْهِنَّ ۚ وَإِنْ كُنَّ أُولَاتِ حَمْلٍ فَأَنْفِقُوا عَلَيْهِنَّ حَتَّىٰ يَضَعْنَ حَمْلَهُنَّ ۚ فَإِنْ أَرْضَعْنَ لَكُمْ فَآتُوهُنَّ أُجُورَهُنَّ ۖ وَأْتَمِرُوا بَيْنَكُمْ بِمَعْرُوفٍ ۖ وَإِنْ تَعَاسَرْتُمْ فَسَتُرْضِعُ لَهُ أُخْرَىٰ`,
+        english: `Lodge them [in a section] of where you dwell out of your means and do not harm them in order to oppress them. And if they should be pregnant, then spend on them until they give birth. And if they breastfeed for you, then give them their payment and confer among yourselves in the acceptable way; but if you are in discord, then there may breastfeed for the father another woman.`,
+        ruling: `Mandates housing during the waiting period commensurate with the husband's means, prohibits oppressive pressure, requires full spending during pregnancy, and secures fair wages and mutual consultation for breastfeeding.`,
+        nuance: `Wa-ʾtamirū baynakum bi-maʿrūf uses a reciprocal verb form meaning "consult and agree fairly together" for the infant's welfare.`
+      },
+      {
+        num: 7,
+        ref: `65:7`,
+        movement: `m2`,
+        movementLabel: `Movement II · Provision`,
+        isPromise: true,
+        arabic: `لِيُنْفِقْ ذُو سَعَةٍ مِنْ سَعَتِهِ ۖ وَمَنْ قُدِرَ عَلَيْهِ رِزْقُهُ فَلْيُنْفِقْ مِمَّا آتَاهُ اللَّهُ ۚ لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا مَا آتَاهَا ۚ سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا`,
+        english: `Let a man of wealth spend from his wealth, and he whose provision is restricted - let him spend from what Allah has given him. Allah does not charge a soul except [according to] what He has given it. Allah will bring about, after hardship, ease.`,
+        ruling: `Establishes proportional financial equity: neither stinginess from the affluent nor impossible burdens on the financially constrained.`,
+        nuance: `Ends with the iconic future assurance "sa-yajʿalu Allāhu baʿda ʿusrin yusrā"—Allah will surely bring ease after hardship.`
+      },
+      {
+        num: 8,
+        ref: `65:8`,
+        movement: `m3`,
+        movementLabel: `Movement III · Warning`,
+        isPromise: false,
+        arabic: `وَكَأَيِّنْ مِنْ قَرْيَةٍ عَتَتْ عَنْ أَمْرِ رَبِّهَا وَرُسُلِهِ فَحَاسَبْنَاهَا حِسَابًا شَدِيدًا وَعَذَّبْنَاهَا عَذَابًا نُكْرًا`,
+        english: `And how many a city was insolent toward the command of its Lord and His messengers, so We took it to severe account and punished it with a terrible punishment.`,
+        ruling: `Shifts from household ethics to historical warning: collective arrogance toward divine commands carries severe moral and historical accountability.`,
+        nuance: `ʿAtat evokes stubborn, haughty defiance—the opposite of the humble Taqwa urged in vv. 1–7.`
+      },
+      {
+        num: 9,
+        ref: `65:9`,
+        movement: `m3`,
+        movementLabel: `Movement III · Warning`,
+        isPromise: false,
+        arabic: `فَذَاقَتْ وَبَالَ أَمْرِهَا وَكَانَ عَاقِبَةُ أَمْرِهَا خُسْرًا`,
+        english: `And it tasted the bad consequence of its affair, and the outcome of its affair was loss.`,
+        ruling: `Highlights that defying moral boundaries ultimately harms the transgressors themselves, echoing v. 1 ("has certainly wronged himself").`,
+        nuance: `Repeats the word amr ("affair/command") twice, contrasting human mismanaged affairs with Allah's accomplished command (v. 3).`
+      },
+      {
+        num: 10,
+        ref: `65:10`,
+        movement: `m3`,
+        movementLabel: `Movement III · Call to Taqwa`,
+        isPromise: true,
+        arabic: `أَعَدَّ اللَّهُ لَهُمْ عَذَابًا شَدِيدًا ۖ فَاتَّقُوا اللَّهَ يَا أُولِي الْأَلْبَابِ الَّذِينَ آمَنُوا ۚ قَدْ أَنْزَلَ اللَّهُ إِلَيْكُمْ ذِكْرًا`,
+        english: `Allah has prepared for them a severe punishment; so fear Allah, O you of understanding who have believed. Allah has sent down to you the Qur'an.`,
+        ruling: `Issues the fifth and final call to Taqwa, directly addressing "people of understanding" (ūlī al-albāb) and presenting the Qur'an as a sent-down Reminder (dhikr).`,
+        nuance: `Pairs faith with intellect (albāb): ethical family conduct is presented as a hallmark of sound reason.`
+      },
+      {
+        num: 11,
+        ref: `65:11`,
+        movement: `m3`,
+        movementLabel: `Movement III · Prophetic Light`,
+        isPromise: true,
+        arabic: `رَسُولًا يَتْلُو عَلَيْكُمْ آيَاتِ اللَّهِ مُبَيِّنَاتٍ لِيُخْرِجَ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ مِنَ الظُّلُمَاتِ إِلَى النُّورِ ۚ وَمَنْ يُؤْمِنْ بِاللَّهِ وَيَعْمَلْ صَالِحًا يُدْخِلْهُ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا ۖ قَدْ أَحْسَنَ اللَّهُ لَهُ رِزْقًا`,
+        english: `[He sent] a Messenger [Muhammad] reciting to you the distinct verses of Allah that He may bring out those who believe and do righteous deeds from darknesses into the light. And whoever believes in Allah and does righteousness - He will admit him into gardens beneath which rivers flow to abide therein forever. Allah will have perfected for him a provision.`,
+        ruling: `Defines the Messenger's mission as clarifying revelation to lead believers out of plural "darknesses" into singular "light," culminating in eternal gardens and perfected provision.`,
+        nuance: `Completes the arc of Rizq (provision): earthly unexpected sustenance (v. 3) expands into "perfected provision" (aḥsana lahu rizqā) in Paradise.`
+      },
+      {
+        num: 12,
+        ref: `65:12`,
+        movement: `m3`,
+        movementLabel: `Movement III · Cosmic Finale`,
+        isPromise: false,
+        arabic: `اللَّهُ الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ وَمِنَ الْأَرْضِ مِثْلَهُنَّ يَتَنَزَّلُ الْأَمْرُ بَيْنَهُنَّ لِتَعْلَمُوا أَنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا`,
+        english: `It is Allah who has created seven heavens and of the earth, the like of them. [His] command descends among them so you may know that Allah is over all things competent and that Allah has encompassed all things in knowledge.`,
+        ruling: `Concludes the chapter by grounding every legal rule and promise of relief in Allah's cosmic omnipotence (Qadīr) and all-encompassing knowledge (ʿIlm).`,
+        nuance: `The phrase "so you may know" (li-taʿlamū) ties belief to certainty: the God who governs seven heavens and earths knows every tear, expense, and quiet act of restraint.`
+      }
+    ];
+
+    const LEGAL_SCENARIOS = [
+      {
+        title: `Standard Divorce & Waiting Period`,
+        ref: `Verses 65:1–2`,
+        summary: `When a husband initiates divorce with a menstruating wife, the separation must align with the commencement of her waiting period and preserve calm residential continuity.`,
+        iddah: `Timed to the start of the waiting period; keep strict count (aḥṣū al-ʿiddah).`,
+        housing: `Do not turn her out of the house, nor should she leave—unless she commits a clear immorality.`,
+        finance: `Lodge her where you dwell out of your means (65:6) without constriction or intimidation.`,
+        ethics: `Preserve the household environment so reconciliation remains possible; at term's end, retain or part bi-maʿrūf before two just witnesses.`,
+        promise: `Whoever fears Allah, He will make for him a way out and provide from where he does not expect (65:2–3).`
+      },
+      {
+        title: `Post-Menopausal or Non-Menstruating Spouse`,
+        ref: `Verse 65:4`,
+        summary: `Where menstruation does not occur—whether because a woman has passed menopause or has not menstruated—the Qur'an removes legal uncertainty with an explicit calendar standard.`,
+        iddah: `Three full lunar months ("if you doubt, then their period is three months").`,
+        housing: `Full waiting-period lodging and non-eviction safeguards apply throughout the three months.`,
+        finance: `Proportional maintenance according to the husband's means (65:6–7).`,
+        ethics: `Clarity prevents prolonged ambiguity or disputing whether the waiting period has concluded.`,
+        promise: `Whoever fears Allah, He will make for him of his matter ease (65:4).`
+      },
+      {
+        title: `Pregnant Spouse During Transition`,
+        ref: `Verses 65:4 & 65:6`,
+        summary: `Pregnancy overrides the three-month or menstrual calendar and activates explicit financial protection until the child is born.`,
+        iddah: `Her term lasts until she delivers her pregnancy ("their term is until they give birth").`,
+        housing: `Uninterrupted lodging according to the husband's means; strict ban on oppression or pressure.`,
+        finance: `Mandatory full spending on her throughout the entire pregnancy ("spend on them until they give birth").`,
+        ethics: `Do not harm or constrict her in order to force concessions during a physically vulnerable time.`,
+        promise: `Removal of misdeeds and amplification of reward for observing Allah's command (65:5).`
+      },
+      {
+        title: `Post-Birth Nursing & Consultation`,
+        ref: `Verse 65:6`,
+        summary: `Once the child is born, the focus turns to the infant's care and fair compensation for the mother who breastfeeds.`,
+        iddah: `Waiting period concluded upon delivery; co-parenting duties begin.`,
+        housing: `Coordinated stability centered on the child's well-being.`,
+        finance: `Give mothers their fair payment (ujūrahunna) if they breastfeed for you.`,
+        ethics: `Confer mutually in an acceptable way (wa-ʾtamirū baynakum bi-maʿrūf). If parents reach deadlock, another woman may nurse for the father without harming the child.`,
+        promise: `Equitable cooperation protects both parents' dignity and the newborn's nourishment.`
+      },
+      {
+        title: `Financially Constrained Household`,
+        ref: `Verse 65:7`,
+        summary: `Surah At-Talaq calibrates financial responsibility to actual capacity, forbidding both wealthy stinginess and crushing expectations on lower-income households.`,
+        iddah: `Waiting period rules remain unchanged regardless of income.`,
+        housing: `Proportional lodging within actual dwelling capacity ("out of your means", 65:6).`,
+        finance: `A person of wealth spends from his wealth; one whose provision is restricted spends from what Allah has given him.`,
+        ethics: `Allah never charges a soul beyond what He has provided to it—fairness replaces financial humiliation.`,
+        promise: `"Allah will bring about, after hardship, ease" (sa-yajʿalu Allāhu baʿda ʿusrin yusrā, 65:7).`
+      }
+    ];
+
+    const LEXICON = [
+      {
+        translit: `Li-ʿiddatihinna`,
+        arabic: `لِعِدَّتِهِنَّ`,
+        ref: `Verse 65:1`,
+        literal: `For [the commencement of] their waiting period`,
+        explanation: `Rather than uttering divorce impulsively at any moment, the preposition li- instructs timing divorce cleanly for the start of the waiting period so its duration can be accurately counted (wa-aḥṣū al-ʿiddah). Precision in timing protects both spouses from confusion.`
+      },
+      {
+        translit: `Bi-maʿrūf`,
+        arabic: `بِمَعْرُوفٍ`,
+        ref: `Verses 65:2 & 65:6`,
+        literal: `According to recognized, acceptable, honorable terms`,
+        explanation: `Derived from ʿarafa (what is widely known as fair, decent, and humane), bi-maʿrūf appears twice in v. 2—both when reconciling and when parting—and again in v. 6 when conferring over nursing. Even when love ends, decency remains legally binding.`
+      },
+      {
+        translit: `Lā tuḍārrūhunna li-tuḍayyiqū ʿalayhinna`,
+        arabic: `لَا تُضَارُّوهُنَّ لِتُضَيِّقُوا عَلَيْهِنَّ`,
+        ref: `Verse 65:6`,
+        literal: `Do not harm them in order to constrict/oppress them`,
+        explanation: `The reciprocal verb tuḍārrūhunna targets subtle harassment—such as reducing living space, withholding essentials, or creating hostility so a woman forfeits her rights or leaves voluntarily. Divine law guards psychological safety alongside physical shelter.`
+      },
+      {
+        translit: `Makhrajan`,
+        arabic: `مَخْرَجًا`,
+        ref: `Verse 65:2`,
+        literal: `An exit / a way out`,
+        explanation: `Set as an indefinite noun (nakirah), makhrajan signals an open, uncircumscribed exit—not limited to one type of problem. Whether the constriction is relational, legal, financial, or emotional, Taqwa opens doors human planning could not foresee.`
+      },
+      {
+        translit: `Ḥasbuhu`,
+        arabic: `حَسْبُهُ`,
+        ref: `Verse 65:3`,
+        literal: `Sufficient for him`,
+        explanation: `Paired with "from where he does not expect" (min ḥaythu lā yaḥtasib), ḥasbuhu declares that Allah Himself suffices the person who practices Tawakkul. It follows immediately with "Allah has set for everything a decreed extent (qadr)"—reminding the believer that hardship has an expiration date.`
+      },
+      {
+        translit: `Sa-yajʿalu Allāhu baʿda ʿusrin yusrā`,
+        arabic: `سَيَجْعَلُ اللَّهُ بَعْدَ عُسْرٍ يُسْرًا`,
+        ref: `Verse 65:7`,
+        literal: `Allah will surely bring about, after hardship, ease`,
+        explanation: `The prefix sa- conveys near-certain future fulfillment. Both ʿusr (hardship) and yusr (ease) are indefinite, yet positioned directly after the command on proportional financial spending—assuring constrained households that generosity within means invites relief.`
+      },
+      {
+        translit: `Yatanazzalu al-amru baynahunna`,
+        arabic: `يَتَنَزَّلُ الْأَمْرُ بَيْنَهُنَّ`,
+        ref: `Verse 65:12`,
+        literal: `[His] command descends continuously among them`,
+        explanation: `The verb yatanazzalu denotes ongoing, continuous descent across the seven heavens and earths. Notice how al-amr ("the command/affair") links v. 1 ("perhaps Allah will bring about a matter"), v. 5 ("that is the command of Allah"), and v. 12—unifying household ethics and cosmic governance.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `1. According to Verse 65:1, what is the rule regarding housing during the waiting period (Iddah)?`,
+        options: [
+          `The wife must immediately relocate to her parents' home once divorce is pronounced.`,
+          `Husbands must not turn wives out of their homes, nor should wives leave unless committing a clear immorality.`,
+          `Housing is optional unless the couple has been married for over five years.`
+        ],
+        correct: 1,
+        explanation: `Correct — Verse 65:1 states: "Do not turn them out of their [husbands'] houses, nor should they [themselves] leave [during that period] unless they are committing a clear immorality," preserving space in case Allah brings about a different matter.`
+      },
+      {
+        id: `q2`,
+        prompt: `2. When women nearly reach the end of their waiting period in Verse 65:2, what two procedural requirements accompany the final decision?`,
+        options: [
+          `Retain or part according to acceptable terms (bi-maʿrūf), and bring two just men to witness.`,
+          `Seek an extended three-month delay regardless of circumstances.`,
+          `Settle terms privately without any witnesses.`
+        ],
+        correct: 0,
+        explanation: `Correct — Verse 65:2 mandates either retaining or parting "according to acceptable terms" and establishing testimony before "two just men from among you" for the acceptance of Allah.`
+      },
+      {
+        id: `q3`,
+        prompt: `3. Under Verse 65:4, what is the waiting period for (a) women who no longer expect menstruation or have not menstruated, and (b) pregnant women?`,
+        options: [
+          `One month for both categories.`,
+          `Three months for non-menstruating/post-menopausal women; until childbirth for pregnant women.`,
+          `Six months for post-menopausal women; three months for pregnant women.`
+        ],
+        correct: 1,
+        explanation: `Correct — Verse 65:4 specifies three months for those who no longer expect menstruation (if in doubt) and those who have not menstruated, while for pregnant women "their term is until they give birth."`
+      },
+      {
+        id: `q4`,
+        prompt: `4. What does Verse 65:6 require if a divorced mother breastfeeds the child, and what if the parents are in discord?`,
+        options: [
+          `She must nurse without compensation, and no alternative arrangement is permitted.`,
+          `Pay her fair wages and confer in an acceptable way; if in discord, another woman may nurse for the father.`,
+          `Only the father's extended family may decide without consulting the mother.`
+        ],
+        correct: 1,
+        explanation: `Correct — Verse 65:6 instructs fathers to give nursing mothers their payment and confer in an acceptable way, while permitting another woman to breastfeed for the father if discord arises.`
+      },
+      {
+        id: `q5`,
+        prompt: `5. How does Verse 65:7 calibrate financial maintenance obligations, and what promise closes the verse?`,
+        options: [
+          `Every man must pay an identical fixed sum; failure invalidates the divorce.`,
+          `Spend proportionally according to wealth or restricted means—and "Allah will bring about, after hardship, ease."`,
+          `Only wealthy men are obliged to provide housing.`
+        ],
+        correct: 1,
+        explanation: `Correct — Verse 65:7 affirms that Allah does not charge a soul except according to what He has given it, and concludes with the reassurance that Allah will bring about ease after hardship.`
+      },
+      {
+        id: `q6`,
+        prompt: `6. Why does Surah At-Talaq conclude in Verse 65:12 with the creation of seven heavens and seven earths?`,
+        options: [
+          `So believers may know that Allah is competent over all things and encompasses everything in knowledge.`,
+          `To introduce astronomical calendar calculations for lunar months.`,
+          `To replace the legal rulings stated in verses 1 through 7.`
+        ],
+        correct: 0,
+        explanation: `Correct — Verse 65:12 states explicitly: "so you may know that Allah is over all things competent and that Allah has encompassed all things in knowledge," grounding domestic law in cosmic sovereignty.`
+      }
+    ];
+
+    const REFLECTIONS = [
+      {
+        id: `r1`,
+        label: `Prompt 1 · Restraint & Counting (65:1)`,
+        prompt: `Why do you think Verse 65:1 pairs emotional separation with disciplined counting ("keep count of the waiting period") and remaining in the home? Where in life does disciplined pause create room for an unexpected change of heart?`
+      },
+      {
+        id: `r2`,
+        label: `Prompt 2 · Decency Without Harm (65:2, 6)`,
+        prompt: `How does the standard of bi-maʿrūf ("acceptable, honorable terms") and the prohibition lā tuḍārrūhunna ("do not harm them to oppress them") challenge how people often behave during interpersonal conflict?`
+      },
+      {
+        id: `r3`,
+        label: `Prompt 3 · Taqwa, Tawakkul & Unexpected Rizq (65:2–7)`,
+        prompt: `Surah At-Talaq repeatedly links ethical obedience during difficult transitions to unexpected provision and "ease after hardship." What does practicing Tawakkul look like alongside taking responsible practical steps?`
+      },
+      {
+        id: `r4`,
+        label: `Prompt 4 · From Household Ethics to Cosmic Order (65:10–12)`,
+        prompt: `How does remembering that Allah's command descends across seven heavens and earths—and that His knowledge encompasses everything—reshape the way we treat private commitments when no one else is watching?`
+      }
+    ];
+
+    // =========================================================================
+    // STATE & PERSISTENCE (notebookAppApi)
+    // =========================================================================
+
+    let appState = {
+      studiedVerses: [],
+      quizAnswers: {},
+      reflections: {},
+      activeMovement: 0,
+      activeScenario: 0,
+      activeLexicon: 0,
+      verseFilter: `all`,
+      showArabic: true
+    };
+
+    function saveStateToHost(statusMessage) {
+      const noteEl = document.getElementById(`save-status-note`);
+      if (noteEl && statusMessage) {
+        noteEl.textContent = statusMessage;
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        window.notebookAppApi.setAppState(appState).catch(function() {});
+      }
+    }
+
+    function updateProgressSummary() {
+      const studiedCount = appState.studiedVerses.length;
+      const correctCount = QUIZ_QUESTIONS.filter(function(q) {
+        return appState.quizAnswers[q.id] === q.correct;
+      }).length;
+      const reflectionCount = REFLECTIONS.filter(function(r) {
+        const val = appState.reflections[r.id];
+        return typeof val === `string` && val.trim().length > 0;
+      }).length;
+
+      const totalUnits = 12 + QUIZ_QUESTIONS.length + REFLECTIONS.length;
+      const completedUnits = studiedCount + correctCount + reflectionCount;
+      const pct = Math.round((completedUnits / totalUnits) * 100);
+
+      const pctEl = document.getElementById(`mastery-percent-label`);
+      if (pctEl) pctEl.textContent = pct + `% Complete`;
+
+      const fillEl = document.getElementById(`mastery-progress-fill`);
+      if (fillEl) fillEl.style.width = pct + `%`;
+
+      const vEl = document.getElementById(`stat-verses`);
+      if (vEl) vEl.textContent = studiedCount + `/12 Verses`;
+
+      const qEl = document.getElementById(`stat-quiz`);
+      if (qEl) qEl.textContent = correctCount + `/6 Checks`;
+
+      const rEl = document.getElementById(`stat-reflections`);
+      if (rEl) rEl.textContent = reflectionCount + `/4 Notes`;
+    }
+
+    // =========================================================================
+    // INTERACTIVE HANDLERS (Hoisted function declarations)
+    // =========================================================================
+
+    function selectMovement(idx) {
+      appState.activeMovement = idx;
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const btn = document.getElementById(`mov-btn-` + i);
+        if (btn) {
+          btn.classList.toggle(`is-active`, i === idx);
+          btn.setAttribute(`aria-selected`, i === idx ? `true` : `false`);
+        }
+      }
+      renderMovementPanel();
+      saveStateToHost();
+    }
+
+    function renderMovementPanel() {
+      const panel = document.getElementById(`movement-detail-panel`);
+      if (!panel) return;
+      const mov = MOVEMENTS[appState.activeMovement] || MOVEMENTS[0];
+      const pointsHtml = mov.keyPoints.map(function(pt) {
+        return `<li>` + pt + `</li>`;
+      }).join(``);
+
+      panel.innerHTML = `
+        <div>
+          <span class="badge-terracotta">` + mov.span + `</span>
+          <h4 class="subhead" style="margin-top: var(--space-sm);">` + mov.title + `</h4>
+          <p class="prose" style="margin-bottom: 0;">` + mov.summary + `</p>
+        </div>
+        <div class="analysis-box">
+          <div class="analysis-label">Key Anchor Clauses</div>
+          <ul class="bullet-list">` + pointsHtml + `</ul>
+        </div>
+      `;
+    }
+
+    function filterVerses(filterKey) {
+      appState.verseFilter = filterKey;
+      const keys = [`all`, `m1`, `m2`, `m3`, `promises`];
+      keys.forEach(function(k) {
+        const btn = document.getElementById(`vf-` + k);
+        if (btn) btn.classList.toggle(`is-active`, k === filterKey);
+      });
+      renderVerses();
+      saveStateToHost();
+    }
+
+    function toggleArabicDisplay() {
+      appState.showArabic = !appState.showArabic;
+      const btn = document.getElementById(`toggle-arabic-btn`);
+      if (btn) {
+        btn.textContent = appState.showArabic ? `Hide Arabic Script` : `Show Arabic Script`;
+      }
+      renderVerses();
+      saveStateToHost();
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(verseNum);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      renderVerses();
+      updateProgressSummary();
+      saveStateToHost(`Progress saved — ` + appState.studiedVerses.length + ` of 12 verses marked studied.`);
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verses-container`);
+      if (!container) return;
+
+      const filtered = VERSES.filter(function(v) {
+        if (appState.verseFilter === `all`) return true;
+        if (appState.verseFilter === `promises`) return v.isPromise;
+        return v.movement === appState.verseFilter;
+      });
+
+      container.innerHTML = filtered.map(function(v) {
+        const studied = appState.studiedVerses.indexOf(v.num) !== -1;
+        const promisePill = v.isPromise
+          ? `<span class="badge-terracotta">Taqwa / Promise</span>`
+          : ``;
+        const arabicBlock = appState.showArabic
+          ? `<p class="arabic-text" lang="ar" dir="rtl">` + v.arabic + `</p>`
+          : ``;
+
+        return `
+          <article class="verse-card ` + (studied ? `is-studied` : ``) + `">
+            <div class="verse-header">
+              <div class="verse-id-group">
+                <span class="verse-number">` + v.ref + `</span>
+                <span class="badge-emerald">` + v.movementLabel + `</span>
+                ` + promisePill + `
+              </div>
+              <button type="button" class="study-toggle-btn ` + (studied ? `is-studied` : ``) + `" onclick="toggleVerseStudied(` + v.num + `)">
+                ` + (studied ? `Studied ✓` : `Mark Studied`) + `
+              </button>
+            </div>
+            ` + arabicBlock + `
+            <p class="verse-translation">` + v.english + `</p>
+            <div class="verse-analysis-grid">
+              <div class="analysis-box">
+                <div class="analysis-label">Legal / Thematic Core</div>
+                <p style="margin: 0; font-size: 0.9375rem;">` + v.ruling + `</p>
+              </div>
+              <div class="analysis-box">
+                <div class="analysis-label">Linguistic &amp; Structural Insight</div>
+                <p style="margin: 0; font-size: 0.9375rem;">` + v.nuance + `</p>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function selectScenario(idx) {
+      appState.activeScenario = idx;
+      for (let i = 0; i < LEGAL_SCENARIOS.length; i++) {
+        const btn = document.getElementById(`scen-btn-` + i);
+        if (btn) btn.classList.toggle(`is-active`, i === idx);
+      }
+      renderScenarioDetail();
+      saveStateToHost();
+    }
+
+    function renderScenarioDetail() {
+      const card = document.getElementById(`scenario-detail-card`);
+      if (!card) return;
+      const sc = LEGAL_SCENARIOS[appState.activeScenario] || LEGAL_SCENARIOS[0];
+
+      card.innerHTML = `
+        <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+          <span>Governing Basis</span>
+          <span class="kicker-secondary">` + sc.ref + `</span>
+        </div>
+        <h3 class="subhead">` + sc.title + `</h3>
+        <p class="prose prose-muted" style="margin-bottom: var(--space-md);">` + sc.summary + `</p>
+        <div class="scenario-spec-grid">
+          <div class="spec-tile">
+            <div class="spec-tile-label">Waiting Period (Iddah)</div>
+            <p style="margin: 0; font-size: 0.9375rem;">` + sc.iddah + `</p>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-tile-label">Housing Mandate</div>
+            <p style="margin: 0; font-size: 0.9375rem;">` + sc.housing + `</p>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-tile-label">Financial Support</div>
+            <p style="margin: 0; font-size: 0.9375rem;">` + sc.finance + `</p>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-tile-label">Ethical Guardrail</div>
+            <p style="margin: 0; font-size: 0.9375rem;">` + sc.ethics + `</p>
+          </div>
+        </div>
+        <div class="callout-item" style="margin-top: var(--space-md);">
+          <div class="callout-title">Attached Divine Assurance</div>
+          <p style="margin: 0; font-size: 0.9375rem;">` + sc.promise + `</p>
+        </div>
+      `;
+    }
+
+    function selectLexicon(idx) {
+      appState.activeLexicon = idx;
+      for (let i = 0; i < LEXICON.length; i++) {
+        const btn = document.getElementById(`lex-btn-` + i);
+        if (btn) btn.classList.toggle(`is-active`, i === idx);
+      }
+      renderLexiconDetail();
+      saveStateToHost();
+    }
+
+    function renderLexiconDetail() {
+      const card = document.getElementById(`lexicon-detail-card`);
+      if (!card) return;
+      const item = LEXICON[appState.activeLexicon] || LEXICON[0];
+
+      card.innerHTML = `
+        <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+          <span>Linguistic Spotlight</span>
+          <span class="kicker-secondary">` + item.ref + `</span>
+        </div>
+        <p class="arabic-text" lang="ar" dir="rtl" style="margin-bottom: var(--space-md);">` + item.arabic + `</p>
+        <h3 class="subhead">` + item.translit + `</h3>
+        <p style="margin: 0 0 var(--space-md) 0;"><strong>Literal Sense:</strong> ` + item.literal + `</p>
+        <p class="prose prose-muted" style="margin: 0;">` + item.explanation + `</p>
+      `;
+    }
+
+    function answerQuiz(qId, optIdx) {
+      appState.quizAnswers[qId] = optIdx;
+      renderQuiz();
+      updateProgressSummary();
+      saveStateToHost(`Comprehension check recorded.`);
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function(q) {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+        const isCorrect = chosen === q.correct;
+
+        const optionsHtml = q.options.map(function(opt, idx) {
+          let cls = ``;
+          if (hasAnswered) {
+            if (idx === q.correct) cls = `is-correct`;
+            else if (idx === chosen) cls = `is-wrong`;
+          }
+          return `<button type="button" class="quiz-option-btn ` + cls + `" onclick="answerQuiz('` + q.id + `', ` + idx + `)">` + opt + `</button>`;
+        }).join(``);
+
+        const feedbackCls = hasAnswered
+          ? (`is-visible ` + (isCorrect ? `is-correct` : `is-wrong`))
+          : ``;
+        const feedbackText = hasAnswered
+          ? (isCorrect ? q.explanation : `Not quite — review the source verse: ` + q.explanation)
+          : ``;
+
+        return `
+          <div class="quiz-card">
+            <p style="margin: 0; font-weight: 700;">` + q.prompt + `</p>
+            <div class="quiz-options">` + optionsHtml + `</div>
+            <div class="quiz-feedback ` + feedbackCls + `">` + feedbackText + `</div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function updateReflection(rId, value) {
+      appState.reflections[rId] = value;
+      const badge = document.getElementById(`ref-status-` + rId);
+      if (badge) {
+        badge.textContent = value.trim().length > 0 ? `Saved in study log` : `Not yet answered`;
+      }
+      updateProgressSummary();
+      saveStateToHost(`Reflection saved automatically.`);
+    }
+
+    function renderReflections() {
+      const container = document.getElementById(`reflection-container`);
+      if (!container) return;
+
+      container.innerHTML = REFLECTIONS.map(function(r) {
+        const currentVal = appState.reflections[r.id] || ``;
+        const hasText = currentVal.trim().length > 0;
+        return `
+          <div class="reflection-card">
+            <div class="kicker-row" style="margin-bottom: 0;">
+              <span>` + r.label + `</span>
+              <span class="kicker-secondary" id="ref-status-` + r.id + `">` + (hasText ? `Saved in study log` : `Not yet answered`) + `</span>
+            </div>
+            <label class="input-label" for="textarea-` + r.id + `">` + r.prompt + `</label>
+            <textarea
+              id="textarea-` + r.id + `"
+              class="reflection-textarea"
+              oninput="updateReflection('` + r.id + `', this.value)"
+            >` + escapeHtml(currentVal) + `</textarea>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function exportStudySummary() {
+      const studiedList = appState.studiedVerses.slice().sort(function(a, b) { return a - b; }).map(function(n) {
+        return `65:` + n;
+      }).join(`, `) || `None marked yet`;
+
+      const score = QUIZ_QUESTIONS.filter(function(q) {
+        return appState.quizAnswers[q.id] === q.correct;
+      }).length;
+
+      let lines = [
+        `SURAH AT-TALAQ (CHAPTER 65) — MASTERY STUDY SUMMARY`,
+        `===================================================`,
+        `Verses Studied (` + appState.studiedVerses.length + `/12): ` + studiedList,
+        `Mastery Checks Passed: ` + score + `/` + QUIZ_QUESTIONS.length,
+        ``,
+        `REFLECTIVE JOURNAL NOTES`,
+        `------------------------`
+      ];
+
+      REFLECTIONS.forEach(function(r) {
+        const ans = (appState.reflections[r.id] || ``).trim() || `[No response entered]`;
+        lines.push(r.label);
+        lines.push(`Prompt: ` + r.prompt);
+        lines.push(`Response: ` + ans);
+        lines.push(``);
+      });
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-at-talaq-65-study-summary.txt`
+        });
+        const noteEl = document.getElementById(`save-status-note`);
+        if (noteEl) noteEl.textContent = `Exported surah-at-talaq-65-study-summary.txt`;
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reset Study Progress`;
+      appState = {
+        studiedVerses: [],
+        quizAnswers: {},
+        reflections: {},
+        activeMovement: 0,
+        activeScenario: 0,
+        activeLexicon: 0,
+        verseFilter: `all`,
+        showArabic: true
+      };
+      renderAll();
+      saveStateToHost(`Study progress reset.`);
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderAll() {
+      // Sync movement buttons
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const mBtn = document.getElementById(`mov-btn-` + i);
+        if (mBtn) {
+          mBtn.classList.toggle(`is-active`, i === appState.activeMovement);
+          mBtn.setAttribute(`aria-selected`, i === appState.activeMovement ? `true` : `false`);
+        }
+      }
+      renderMovementPanel();
+
+      // Sync filter buttons & Arabic toggle
+      [`all`, `m1`, `m2`, `m3`, `promises`].forEach(function(k) {
+        const fBtn = document.getElementById(`vf-` + k);
+        if (fBtn) fBtn.classList.toggle(`is-active`, k === appState.verseFilter);
+      });
+      const arBtn = document.getElementById(`toggle-arabic-btn`);
+      if (arBtn) {
+        arBtn.textContent = appState.showArabic ? `Hide Arabic Script` : `Show Arabic Script`;
+      }
+      renderVerses();
+
+      // Sync scenarios
+      for (let i = 0; i < LEGAL_SCENARIOS.length; i++) {
+        const sBtn = document.getElementById(`scen-btn-` + i);
+        if (sBtn) sBtn.classList.toggle(`is-active`, i === appState.activeScenario);
+      }
+      renderScenarioDetail();
+
+      // Sync lexicon
+      for (let i = 0; i < LEXICON.length; i++) {
+        const lBtn = document.getElementById(`lex-btn-` + i);
+        if (lBtn) lBtn.classList.toggle(`is-active`, i === appState.activeLexicon);
+      }
+      renderLexiconDetail();
+
+      renderQuiz();
+      renderReflections();
+      updateProgressSummary();
+    }
+
+    function initScrollReveal() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function(el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function(el) { observer.observe(el); });
+    }
+
+    // =========================================================================
+    // BOOTSTRAP
+    // =========================================================================
+
+    (async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (saved.reflections && typeof saved.reflections === `object`) appState.reflections = saved.reflections;
+            if (typeof saved.activeMovement === `number`) appState.activeMovement = saved.activeMovement;
+            if (typeof saved.activeScenario === `number`) appState.activeScenario = saved.activeScenario;
+            if (typeof saved.activeLexicon === `number`) appState.activeLexicon = saved.activeLexicon;
+            if (typeof saved.verseFilter === `string`) appState.verseFilter = saved.verseFilter;
+            if (typeof saved.showArabic === `boolean`) appState.showArabic = saved.showArabic;
+          }
+        }
+      } catch (e) {
+        // Fallback cleanly to default state
+      }
+
+      renderAll();
+      initScrollReveal();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    })();
+  </script>
+</body>
+</html>

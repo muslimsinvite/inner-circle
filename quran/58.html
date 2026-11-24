@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Mujadila (Chapter 58) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-border: #c4b29e;
+      --brass-light: #d8c3b0;
+      --brass-mid: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #f9e4e4;
+      --on-error-container: #7c1919;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-arabic: 'Amiri', Georgia, serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-light), var(--brass-mid), var(--brass-light));
+
+      /* Shared tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
+      --headline-size: clamp(1.85rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset -- required on every artifact */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .title i, .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .muted {
+      color: var(--on-surface-variant);
+    }
+
+    /* Defining treatments */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums;
+      color: var(--on-surface);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background-color: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--secondary-border);
+    }
+    .btn-secondary:hover {
+      background-color: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-tertiary {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--tertiary-border);
+    }
+    .btn-tertiary:hover {
+      background-color: var(--surface-container-high);
+    }
+    .btn.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn[disabled] {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Layout & Section Bands */
+    .hero-block {
+      padding-block: var(--space-xl) var(--space-md);
+    }
+
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chapter-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--background);
+      border: var(--warm-hairline);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+      color: var(--on-primary-container);
+    }
+
+    /* Mastery Bar */
+    .mastery-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+      padding: var(--space-md) var(--space-lg);
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--tertiary));
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .mastery-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .mastery-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Narrative sections */
+    .act-section {
+      padding: var(--space-xl);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .act-section.tonal-band {
+      background: var(--surface-container);
+    }
+    .act-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      margin-bottom: var(--space-lg);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Verse spotlight panels */
+    .verse-spotlight {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .verse-spotlight.emerald-accent {
+      border-left-color: var(--tertiary);
+    }
+    .verse-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.375rem, 1.15rem + 0.7vw, 1.75rem);
+      line-height: 2.05;
+      color: var(--on-surface);
+      text-align: right;
+      direction: rtl;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .english-verse {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Interactive widgets */
+    .interactive-panel {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .panel-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Kaffarah stepper */
+    .kaffarah-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .kaffarah-tiers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .tier-box {
+      padding: var(--space-md);
+      border-radius: var(--rounded-arch);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  opacity var(--dur-short) var(--ease-out);
+    }
+    .tier-box.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .tier-box.is-bypassed {
+      opacity: 0.55;
+    }
+    .tier-num {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .tier-outcome {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      font-size: 0.95rem;
+    }
+
+    /* Najwa concentric SVG diagram */
+    .najwa-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .najwa-svg-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .najwa-svg {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      display: block;
+    }
+    .najwa-compare {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .compare-card {
+      padding: var(--space-lg);
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+      background: var(--background);
+    }
+    .compare-card.caution {
+      border-top: 4px solid var(--error);
+    }
+    .compare-card.virtue {
+      border-top: 4px solid var(--tertiary);
+    }
+
+    /* Scenario Lab */
+    .scenario-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .choice-list {
+      display: grid;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+    .choice-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .choice-btn.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+    .choice-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+    .feedback-box {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      border-left: 4px solid var(--secondary);
+      font-size: 0.95rem;
+    }
+    .feedback-box.is-correct {
+      background: var(--tertiary-container);
+      border-left-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+    .feedback-box.is-wrong {
+      background: var(--error-container);
+      border-left-color: var(--error);
+      color: var(--on-error-container);
+    }
+
+    /* Two Parties Matrix */
+    .party-table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-md);
+    }
+    .party-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .party-table th {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline);
+    }
+    .party-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      background: var(--background);
+    }
+    .party-table tr.is-highlighted td {
+      background: var(--primary-container);
+    }
+    .dimension-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+
+    /* Concordance Filters & Verse Cards */
+    .filter-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 220px);
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-lg);
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .select-input {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+    }
+    .select-input {
+      padding-right: var(--space-xl);
+    }
+    .text-input:focus, .select-input:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .concordance-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .concordance-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .concordance-card.is-reviewed {
+      border-color: var(--tertiary-border);
+      background: var(--surface-container-low);
+    }
+    .concordance-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+    .term-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .term-chip {
+      font-size: 0.8125rem;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    /* Mastery Quiz */
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .quiz-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    /* Collapsible details */
+    details.study-note {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    details.study-note summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+      min-height: 28px;
+    }
+    details.study-note p {
+      margin: var(--space-sm) 0 0;
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Container queries */
+    .card-wrapper { container-type: inline-size; }
+    @container (min-width: 520px) {
+      .verse-dual {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+        align-items: start;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 820px) {
+      .split-grid,
+      .najwa-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+      }
+      .act-section {
+        padding: var(--space-md);
+      }
+      .mastery-strip {
+        grid-template-columns: 1fr;
+      }
+      .filter-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .footer-note {
+      padding: var(--space-lg) 0 var(--space-2xl);
+      border-top: var(--warm-hairline);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO BLOCK -->
+    <header class="hero-block">
+      <div class="kicker-row">
+        <span>Quranic Study &amp; Mastery Guide</span>
+        <span>Surah 58 · Al-Mujadila (The Pleading Woman)</span>
+      </div>
+      <h1 class="title">The Plea That Reshaped a <em>Community</em></h1>
+      <p class="lede">
+        Every verse of Surah Al-Mujadila carries the Name of Allah explicitly—binding an intimate domestic complaint in Medina to the reform of marital law, the unseen accountability of whispered counsel, the generosity of public gatherings, and the ultimate divide between the Party of Satan and the Party of God.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ &nbsp; Medinan Surah &nbsp; · &nbsp; 22 Verses &nbsp; · &nbsp; 5 Thematic Movements &nbsp; ◆</div>
+
+      <div class="arch-grid" aria-label="Chapter structural overview">
+        <div class="arch-card">
+          <span class="arch-label">Scope</span>
+          <span class="arch-value">22</span>
+          <span class="arch-caption">Verses from 58:1 to 58:22</span>
+        </div>
+        <div class="arch-card is-featured">
+          <span class="arch-label">Opening Catalyst</span>
+          <span class="arch-value">58:1</span>
+          <span class="arch-caption">Khawlah’s dialogue heard above</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Legal Remedy</span>
+          <span class="arch-value">3 Tiers</span>
+          <span class="arch-caption">Graduated expiation for zihar</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Moral Climax</span>
+          <span class="arch-value">2 Parties</span>
+          <span class="arch-caption">Hizb ash-Shaytan vs. Hizbullah</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVIGATION & MASTERY PROGRESS STRIP -->
+    <nav class="chapter-nav" aria-label="Study sections">
+      <div class="chapter-links">
+        <a class="nav-pill" href="#act-1">I. Khawlah &amp; Zihar</a>
+        <a class="nav-pill" href="#act-2">II. Omniscience &amp; Najwa</a>
+        <a class="nav-pill" href="#act-3">III. Majalis &amp; Counsel</a>
+        <a class="nav-pill" href="#act-4">IV. The Two Parties</a>
+        <a class="nav-pill" href="#concordance">V. All 22 Verses</a>
+        <a class="nav-pill" href="#mastery-quiz">VI. Mastery Check</a>
+      </div>
+      <span class="badge-emerald" id="saved-status-pill">Progress Saved</span>
+    </nav>
+
+    <section class="mastery-strip" aria-label="Study mastery tracker">
+      <div>
+        <div class="mastery-meta">
+          <span id="mastery-summary-text">Mastery Progress: 0 of 4 Acts Studied · 0 of 22 Verses Reviewed · Quiz 0/8</span>
+          <span id="mastery-percent">0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-fill"></div>
+        </div>
+      </div>
+      <div class="mastery-actions">
+        <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset Progress</button>
+      </div>
+    </section>
+
+    <!-- ACT I: KHAWLAH BINT THA'LABAH & ABOLITION OF ZIHAR -->
+    <section id="act-1" class="act-section reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Movement I · Verses 58:1–58:4</span></div>
+          <h2 class="section-title">When a Woman’s Complaint Abolished <em>Zihar</em></h2>
+        </div>
+        <button type="button" class="btn btn-tertiary" data-act="act1" onclick="toggleActComplete('act1', this)">Mark Act I Studied</button>
+      </div>
+
+      <div class="split-grid">
+        <div>
+          <p class="prose">
+            Surah Al-Mujadila opens not with an abstract legal treatise, but with an urgent human voice. Khawlah bint Tha‘labah came to the Prophet Muhammad arguing concerning her husband and directing her complaint directly to God. In classical pre-Islamic custom, her husband had pronounced <em>zihar</em>—a declaration equating his wife’s status to that of his mother’s back—which left a woman suspended in limbo: neither cherished as a wife nor freed through divorce to remarry.
+          </p>
+          <p class="prose">
+            Verse 58:1 validates her persistence with extraordinary tenderness: <em>“Certainly has Allah heard the speech of the one who argues with you concerning her husband and directs her complaint to Allah.”</em> Notice the rare word <em>tahawurakuma</em> (“your dialogue”): Allah records that He is actively listening to their back-and-forth conversation, closing with His twin attributes of <strong>Hearing and Seeing (Sami‘un Basir)</strong>.
+          </p>
+          <p class="prose">
+            Verse 58:2 then dismantles the legal fiction of <em>zihar</em> at its root. Calling a wife a “mother” does not alter biological or sacred reality—<em>“Their mothers are none but those who gave birth to them.”</em> The verse strips <em>zihar</em> of marital dissolution power, denounces it as an <em>objectionable statement and a falsehood</em> (<em>munkaran min al-qawli wa zura</em>), and opens the door to repair by reminding believers that Allah is <strong>Pardoning and Forgiving (‘Afuwwun Ghafur)</strong>.
+          </p>
+          <details class="study-note">
+            <summary>Why does 58:2 mention “Pardoning and Forgiving” after condemning zihar?</summary>
+            <p>
+              Because the Surah seeks restoration rather than permanent rupture. By declaring the utterance morally offensive yet non-terminating, revelation rebukes reckless speech while giving repentant husbands a structured path back to lawful marriage through tangible responsibility.
+            </p>
+          </details>
+        </div>
+
+        <div class="card-wrapper">
+          <div class="verse-spotlight">
+            <div class="verse-head">
+              <span class="verse-ref">Verse 58:1 · The Hearing of the Plea</span>
+              <span class="badge-terracotta">Sami‘un Basir</span>
+            </div>
+            <p class="arabic-verse" dir="rtl" lang="ar">قَدْ سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ فِي زَوْجِهَا وَتَشْتَكِي إِلَى اللَّهِ وَاللَّهُ يَسْمَعُ تَحَاوُرَكُمَا ۚ إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ</p>
+            <p class="english-verse">
+              Certainly has Allah heard the speech of the one who argues with you, [O Muhammad], concerning her husband and directs her complaint to Allah. And Allah hears your dialogue; indeed, Allah is Hearing and Seeing.
+            </p>
+          </div>
+
+          <div class="verse-spotlight emerald-accent">
+            <div class="verse-head">
+              <span class="verse-ref">Verse 58:2 · Legal Abolition of Zihar</span>
+              <span class="badge-emerald">Munkar &amp; Zur</span>
+            </div>
+            <p class="arabic-verse" dir="rtl" lang="ar">الَّذِينَ يُظَاهِرُونَ مِنْكُمْ مِنْ نِسَائِهِمْ مَا هُنَّ أُمَّهَاتِهِمْ ۖ إِنْ أُمَّهَاتُهُمْ إِلَّا اللَّائِي وَلَدْنَهُمْ ۚ وَإِنَّهُمْ لَيَقُولُونَ مُنْكَرًا مِنَ الْقَوْلِ وَزُورًا ۚ وَإِنَّ اللَّهَ لَعَفُوٌّ غَفُورٌ</p>
+            <p class="english-verse">
+              Those who pronounce thihar among you [to separate] from their wives — they are not [consequently] their mothers. Their mothers are none but those who gave birth to them. And indeed, they are saying an objectionable statement and a falsehood. But indeed, Allah is Pardoning and Forgiving.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Kaffarah Sequencer -->
+      <div class="interactive-panel" style="margin-top: var(--space-lg);">
+        <div class="panel-kicker">Interactive Legal Sequencer · Verses 58:3–58:4</div>
+        <h3 class="subhead">Trace the Graduated Expiation (<em>Kaffarah</em>) for Retracting Zihar</h3>
+        <p class="muted" style="margin: 0 0 var(--space-sm); max-width: 65ch;">
+          If a husband who pronounced <em>zihar</em> wishes to retract his words and resume marital intimacy, Verses 58:3–4 mandate a strict three-tier expiation <strong>before they touch one another</strong>. Select the husband’s capacity below to inspect which legal tier applies.
+        </p>
+
+        <div class="kaffarah-controls" role="group" aria-label="Select legal capacity scenario">
+          <button type="button" class="btn btn-secondary is-active" id="kaf-btn-1" onclick="selectKaffarah(1)">1. Able to Free a Bonded Person</button>
+          <button type="button" class="btn btn-secondary" id="kaf-btn-2" onclick="selectKaffarah(2)">2. None Found · Physically Able to Fast</button>
+          <button type="button" class="btn btn-secondary" id="kaf-btn-3" onclick="selectKaffarah(3)">3. Unable to Fast Consecutively</button>
+        </div>
+
+        <div class="kaffarah-tiers">
+          <div class="tier-box is-selected" id="tier-card-1">
+            <div class="tier-num">Tier I · 58:3</div>
+            <strong>Freeing a Slave (<em>Tahrir Raqabah</em>)</strong>
+            <p class="muted" style="font-size: 0.9rem; margin: var(--space-xs) 0 0;">
+              Must be completed <em>before</em> marital intimacy resumes. Channels domestic wrongdoing into human liberation.
+            </p>
+          </div>
+          <div class="tier-box" id="tier-card-2">
+            <div class="tier-num">Tier II · 58:4</div>
+            <strong>Two Consecutive Months of Fasting</strong>
+            <p class="muted" style="font-size: 0.9rem; margin: var(--space-xs) 0 0;">
+              Only if no slave is found. Sixty uninterrupted days of self-restraint before touching one another.
+            </p>
+          </div>
+          <div class="tier-box" id="tier-card-3">
+            <div class="tier-num">Tier III · 58:4</div>
+            <strong>Feeding Sixty Poor Persons</strong>
+            <p class="muted" style="font-size: 0.9rem; margin: var(--space-xs) 0 0;">
+              Only for one genuinely unable to sustain the two-month fast—turning personal contrition into communal nourishment.
+            </p>
+          </div>
+        </div>
+
+        <div class="tier-outcome" id="kaffarah-outcome">
+          <strong>Obligatory Ruling (58:3):</strong> Emancipation comes first—one cannot skip directly to fasting or feeding if a bonded person can be freed. Verse 58:3 concludes: <em>“That is what you are admonished thereby; and Allah is Acquainted with what you do.”</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT II: DIVINE OMNISCIENCE & NAJWA -->
+    <section id="act-2" class="act-section tonal-band reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Movement II · Verses 58:5–58:10</span></div>
+          <h2 class="section-title">The Unseen Fourth: Omniscience &amp; <em>Najwa</em></h2>
+        </div>
+        <button type="button" class="btn btn-tertiary" data-act="act2" onclick="toggleActComplete('act2', this)">Mark Act II Studied</button>
+      </div>
+
+      <p class="prose">
+        Notice the profound theological bridge between Movement I and Movement II. In 58:1, Allah’s all-encompassing hearing comforts an oppressed woman whispering her grief. In 58:6–7, that exact same omniscience confronts conspirators whispering behind closed doors. Every deed is recorded—<em>“Allah had enumerated it, while they forgot it”</em> (58:6)—and no private conference is ever secluded from His knowledge.
+      </p>
+
+      <div class="najwa-layout">
+        <div class="najwa-svg-wrap">
+          <div class="panel-kicker" style="align-self: flex-start;">Interactive Presence Model · Verse 58:7</div>
+          <svg class="najwa-svg" viewBox="0 0 320 260" role="img" aria-label="Diagram illustrating divine knowledge encompassing private gatherings of three, five, or any number">
+            <circle cx="160" cy="130" r="108" fill="none" stroke="var(--outline-variant)" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <circle cx="160" cy="130" r="76" fill="var(--primary-container)" stroke="var(--primary-border)" stroke-width="1.5"/>
+            <circle cx="160" cy="130" r="24" fill="var(--tertiary)" />
+            <text x="160" y="126" text-anchor="middle" fill="var(--on-primary)" font-size="10" font-weight="700" font-family="Plus Jakarta Sans, sans-serif">ALLAH</text>
+            <text x="160" y="140" text-anchor="middle" fill="var(--on-primary)" font-size="8.5" font-family="Plus Jakarta Sans, sans-serif">In Knowledge</text>
+            <g id="najwa-nodes-group"></g>
+            <text id="najwa-svg-caption" x="160" y="250" text-anchor="middle" fill="var(--on-surface)" font-size="11.5" font-weight="600" font-family="Plus Jakarta Sans, sans-serif">3 conversing — He is the 4th of them</text>
+          </svg>
+          <div class="kaffarah-controls" style="margin-block: var(--space-xs); justify-content: center;">
+            <button type="button" class="btn btn-secondary is-active" id="najwa-btn-3" onclick="setNajwaCount(3)">3 People</button>
+            <button type="button" class="btn btn-secondary" id="najwa-btn-5" onclick="setNajwaCount(5)">5 People</button>
+            <button type="button" class="btn btn-secondary" id="najwa-btn-2" onclick="setNajwaCount(2)">Fewer (2)</button>
+            <button type="button" class="btn btn-secondary" id="najwa-btn-7" onclick="setNajwaCount(7)">More (7)</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="verse-spotlight emerald-accent">
+            <div class="verse-head">
+              <span class="verse-ref">Verse 58:7 · Knowledge Without Boundary</span>
+              <span class="badge-emerald" id="najwa-badge">4th of 3</span>
+            </div>
+            <p class="arabic-verse" dir="rtl" lang="ar">أَلَمْ تَرَ أَنَّ اللَّهَ يَعْلَمُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ مَا يَكُونُ مِنْ نَجْوَىٰ ثَلَاثَةٍ إِلَّا هُوَ رَابِعُهُمْ وَلَا خَمْسَةٍ إِلَّا هُوَ سَادِسُهُمْ وَلَا أَدْنَىٰ مِنْ ذَٰلِكَ وَلَا أَكْثَرَ إِلَّا هُوَ مَعَهُمْ أَيْنَ مَا كَانُوا ۖ ثُمَّ يُنَبِّئُهُمْ بِمَا عَمِلُوا يَوْمَ الْقِيَامَةِ ۚ إِنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ</p>
+            <p class="english-verse" id="najwa-verse-note">
+              “There is in no private conversation three but that He is the fourth of them, nor are there five but that He is the sixth of them — and no less than that and no more except that He is with them [in knowledge] wherever they are.”
+            </p>
+          </div>
+          <p class="prose" style="margin-bottom: 0;">
+            Notice the careful precision of the translation: Allah is with them <strong>in knowledge</strong> wherever they are, and will inform them of what they did on the Day of Resurrection. Secret counsel is never private from the Creator; only its moral direction separates sin from righteousness.
+          </p>
+        </div>
+      </div>
+
+      <div class="najwa-compare">
+        <div class="compare-card caution">
+          <div class="kicker-row" style="color: var(--error);"><span>Forbidden Najwa · Verses 58:8 &amp; 58:10</span></div>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Conspiracy, Sin &amp; Psychological Harm</h3>
+          <p class="prose" style="font-size: 0.95rem;">
+            Verse 58:8 exposes those who were forbidden from malicious secret meetings yet return to them, conversing about <strong>sin (<em>al-ithm</em>), aggression (<em>al-‘udwan</em>), and disobedience to the Messenger (<em>ma‘siyat ar-Rasul</em>)</strong>—even greeting the Prophet with distorted words and inwardly mocking, <em>“Why does Allah not punish us for what we say?”</em>
+          </p>
+          <p class="prose" style="font-size: 0.95rem; margin-bottom: 0;">
+            Verse 58:10 unmasks the intent behind such exclusionary whispering: <strong>“Private conversation is only from Satan that he may grieve those who have believed”</strong> (<em>li-yahzuna</em>). Yet believers are anchored in <em>tawakkul</em>: Satan cannot harm them at all except by Allah’s permission.
+          </p>
+        </div>
+
+        <div class="compare-card virtue">
+          <div class="kicker-row" style="color: var(--tertiary);"><span>Redemptive Najwa · Verse 58:9</span></div>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Righteousness, Piety &amp; Accountability</h3>
+          <p class="prose" style="font-size: 0.95rem;">
+            Islam does not ban private conversation wholesale; it redirects it. Addressing believers directly (<em>“Ya ayyuha alladhina amanu”</em>), Verse 58:9 forbids private counsel around sin, aggression, and disobedience, and commands instead: <strong>“converse about righteousness and piety” (<em>al-birr wat-taqwa</em>)</strong>.
+          </p>
+          <p class="prose" style="font-size: 0.95rem; margin-bottom: 0;">
+            Discreet consultation is noble when it protects dignity, arranges quiet charity, or resolves conflict—guided by awareness of <strong>“Allah, to whom you will be gathered.”</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT III: MANNERS OF GATHERINGS (MAJALIS) & PRIVATE CONSULTATIONS -->
+    <section id="act-3" class="act-section reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Movement III · Verses 58:11–58:13</span></div>
+          <h2 class="section-title">Generosity in <em>Assemblies</em> &amp; Discipline in Counsel</h2>
+        </div>
+        <button type="button" class="btn btn-tertiary" data-act="act3" onclick="toggleActComplete('act3', this)">Mark Act III Studied</button>
+      </div>
+
+      <div class="split-grid">
+        <div>
+          <h3 class="subhead">Making Room for Others — And Being Raised by Degrees (58:11)</h3>
+          <p class="prose">
+            After addressing secretive cliques, Verse 58:11 reforms how believers inhabit shared public space (<em>al-majalis</em>). When told, <em>“Space yourselves”</em> (<em>tafassahu</em>), believers are commanded to widen the circle willingly. The reward mirrors the act: <strong>“Allah will make space for you”</strong> (<em>yafsahillahu lakum</em>)—opening ease in hearts, sustenance, and Paradise.
+          </p>
+          <p class="prose">
+            Likewise, when told <em>“Arise”</em> (<em>unshuzu</em>)—whether to yield seats to elders, scholars, or urgent communal needs, or to disperse respectfully when a session closes—complying without ego brings elevation: <strong>“Allah will raise those who have believed among you and those who were given knowledge, by degrees (<em>darajat</em>).”</strong>
+          </p>
+
+          <h3 class="subhead" style="margin-top: var(--space-lg);">The Pedagogical Pause on Private Consultations (58:12–13)</h3>
+          <p class="prose">
+            Verses 58:12–13 preserve a remarkable legislative sequence. Initially, believers wishing a private consultation with the Messenger were instructed to offer a charity (<em>sadaqah</em>) beforehand—described as <em>“better for you and purer”</em> (<em>khayrun lakum wa athar</em>), curbing trivial monopolizing of the Prophet’s time while benefiting the poor, with explicit mercy for those lacking financial means.
+          </p>
+          <p class="prose">
+            When believers hesitated (<em>“Have you feared to present before your consultation charities?”</em>, 58:13), Allah relieved the prerequisite (<em>taba ‘alaykum</em>) and pivoted immediately to the enduring anchors of community life: <strong>establish prayer (<em>as-salah</em>), give <em>zakah</em>, and obey Allah and His Messenger</strong>.
+          </p>
+        </div>
+
+        <div class="card-wrapper">
+          <div class="verse-spotlight">
+            <div class="verse-head">
+              <span class="verse-ref">Verse 58:11 · Assembly Etiquette &amp; Knowledge</span>
+              <span class="badge-terracotta">Darajat</span>
+            </div>
+            <p class="arabic-verse" dir="rtl" lang="ar">يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قِيلَ لَكُمْ تَفَسَّحُوا فِي الْمَجَالِسِ فَافْسَحُوا يَفْسَحِ اللَّهُ لَكُمْ ۖ وَإِذَا قِيلَ انْشُزُوا فَانْشُزُوا يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ</p>
+            <p class="english-verse">
+              O you who have believed, when you are told, “Space yourselves” in assemblies, then make space; Allah will make space for you. And when you are told, “Arise,” then arise; Allah will raise those who have believed among you and those who were given knowledge, by degrees. And Allah is Acquainted with what you do.
+            </p>
+          </div>
+
+          <!-- Interactive Scenario Lab -->
+          <div class="interactive-panel">
+            <div class="panel-kicker">Interactive Scenario Lab · Verses 58:9–58:13</div>
+            <h3 class="subhead" id="scenario-title">Scenario 1: Making Space in a Crowded Circle</h3>
+            <div class="scenario-tabs" role="tablist" aria-label="Etiquette scenarios">
+              <button type="button" class="btn btn-secondary is-active" id="scen-tab-0" onclick="loadScenario(0)">Scenario 1</button>
+              <button type="button" class="btn btn-secondary" id="scen-tab-1" onclick="loadScenario(1)">Scenario 2</button>
+              <button type="button" class="btn btn-secondary" id="scen-tab-2" onclick="loadScenario(2)">Scenario 3</button>
+            </div>
+            <p id="scenario-prompt" style="margin: 0 0 var(--space-sm); font-size: 0.95rem;">
+              A study gathering is seated tightly together near the front when latecomers arrive seeking a place to sit and learn. A host asks everyone to shift and make room. What response aligns with Verse 58:11?
+            </p>
+            <div class="choice-list" id="scenario-choices"></div>
+            <div class="feedback-box" id="scenario-feedback" aria-live="polite">
+              Select a response above to test your application of Surah Al-Mujadila’s social ethics.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT IV: HYPOCRISY & THE CONTRAST OF THE TWO PARTIES -->
+    <section id="act-4" class="act-section tonal-band reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Movement IV · Verses 58:14–58:22</span></div>
+          <h2 class="section-title">The Party of Satan vs. <em>Hizbullah</em></h2>
+        </div>
+        <button type="button" class="btn btn-tertiary" data-act="act4" onclick="toggleActComplete('act4', this)">Mark Act IV Studied</button>
+      </div>
+
+      <p class="prose">
+        The final movement brings the Surah’s underlying conflict into full light. Verses 58:14–18 dissect a fractured identity: people who befriend groups under Allah’s anger while claiming solidarity with believers—<strong>“They are neither of you nor of them”</strong> (58:14). They swear false oaths knowingly, turning their oaths into a protective shield (<em>junnah</em>, 58:16) to obstruct others from the path of Allah. Even on the Day of Resurrection, habit overrides reality as they attempt to swear falsely before Allah Himself (58:18).
+      </p>
+      <p class="prose">
+        Verses 58:19–22 crystallize this trajectory into two opposing camps: <strong>Hizb ash-Shaytan</strong> (the Party of Satan) and <strong>Hizbullah</strong> (the Party of Allah). Notice the defining threshold in Verse 58:22: authentic faith cannot coexist with affectionate alliance toward those who <em>actively oppose (hadda) Allah and His Messenger</em>—even if they are fathers, sons, brothers, or kindred. Conversely, Allah writes faith directly into the hearts of <em>Hizbullah</em>, strengthens them with a spirit from Him, and seals the chapter with mutual delight: <em>“Allah is pleased with them, and they are pleased with Him.”</em>
+      </p>
+
+      <div class="interactive-panel" style="margin-top: var(--space-lg);">
+        <div class="panel-kicker">Interactive Comparative Matrix · Verses 58:14–58:22</div>
+        <h3 class="subhead">Inspect the Six Dimensions Separating the Two Parties</h3>
+        <p class="muted" style="margin: 0 0 var(--space-sm); font-size: 0.95rem;">
+          Click any dimension below to highlight how Surah Al-Mujadila contrasts every inner and outer trait of <em>Hizb ash-Shaytan</em> against <em>Hizbullah</em>.
+        </p>
+
+        <div class="dimension-pills" role="group" aria-label="Select comparative dimension">
+          <button type="button" class="btn btn-secondary is-active" id="dim-btn-all" onclick="highlightDimension('all')">Show All</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-0" onclick="highlightDimension(0)">1. Inner State</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-1" onclick="highlightDimension(1)">2. Speech &amp; Oaths</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-2" onclick="highlightDimension(2)">3. Loyalty &amp; Kinship</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-3" onclick="highlightDimension(3)">4. Reliance</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-4" onclick="highlightDimension(4)">5. Divine Verdict</button>
+          <button type="button" class="btn btn-secondary" id="dim-btn-5" onclick="highlightDimension(5)">6. Final Outcome</button>
+        </div>
+
+        <div class="party-table-wrap">
+          <table class="party-table">
+            <thead>
+              <tr>
+                <th scope="col">Dimension</th>
+                <th scope="col">Party of Satan (<em>Hizb ash-Shaytan</em>) · 58:14–20</th>
+                <th scope="col">Party of God (<em>Hizbullah</em>) · 58:21–22</th>
+              </tr>
+            </thead>
+            <tbody id="party-matrix-body">
+              <tr data-dim="0">
+                <td><strong>Inner State &amp; Memory</strong></td>
+                <td><strong>Satan has overcome them (<em>istahwadha</em>)</strong> and made them forget the remembrance of Allah (<em>dhikr Allah</em>) — 58:19.</td>
+                <td><strong>Allah has written faith inside their hearts</strong> and supported them with a spirit from Him (<em>bi-ruhin minhu</em>) — 58:22.</td>
+              </tr>
+              <tr data-dim="1">
+                <td><strong>Speech &amp; Oaths</strong></td>
+                <td>Swear to falsehood knowingly; take oaths as a cover (<em>junnah</em>) to turn others away, and even swear falsely on Resurrection Day — 58:14, 16, 18.</td>
+                <td>Plead honestly before Allah (58:1), speak in private only of righteousness and piety (58:9), and uphold truth over flattery.</td>
+              </tr>
+              <tr data-dim="2">
+                <td><strong>Loyalty &amp; Kinship</strong></td>
+                <td>Befriend those under Allah’s wrath; caught in duplicity — <em>“neither of you nor of them”</em> — 58:14.</td>
+                <td>Refuse affectionate alliance with active opponents of Allah and His Messenger, even if fathers, sons, brothers, or kindred — 58:22.</td>
+              </tr>
+              <tr data-dim="3">
+                <td><strong>Source of Security</strong></td>
+                <td>Trust in wealth and children, which <em>“will never avail them against Allah at all”</em> — 58:17.</td>
+                <td>Rely completely upon Allah (<em>tawakkul</em>, 58:10) and His irrevocable decree: <em>“I will surely overcome, I and My messengers”</em> — 58:21.</td>
+              </tr>
+              <tr data-dim="4">
+                <td><strong>Historical &amp; Moral Verdict</strong></td>
+                <td>Opposers of Allah and His Messenger are among the <strong>most humbled (<em>al-adhallin</em>)</strong> — 58:20.</td>
+                <td>Mutual pleasure: <strong>“Allah is pleased with them, and they are pleased with Him”</strong> — 58:22.</td>
+              </tr>
+              <tr data-dim="5">
+                <td><strong>Ultimate Outcome</strong></td>
+                <td>Companions of the Fire eternally; unmistakably <strong>the losers (<em>al-khasirun</em>)</strong> — 58:17, 19.</td>
+                <td>Gardens beneath which rivers flow eternally; unmistakably <strong>the successful (<em>al-muflihun</em>)</strong> — 58:22.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <details class="study-note">
+          <summary>Important nuance in 58:22: How does this relate to kindness toward non-Muslim relatives?</summary>
+          <p>
+            Look carefully at the exact wording of Verse 58:22: the verse specifies <em>“those who oppose (hadda) Allah and His Messenger”</em>—active hostility and confrontation against faith and the prophetic mission, mirroring <em>yuhadduna Allaha wa Rasulah</em> in 58:5 and 58:20. It forbids affectionate allegiance to hostile opposition, not ordinary justice, mercy, or respectful familial duty toward peaceful relatives.
+          </p>
+        </details>
+      </div>
+
+      <div class="verse-spotlight emerald-accent" style="margin-top: var(--space-lg); margin-bottom: 0;">
+        <div class="verse-head">
+          <span class="verse-ref">Verse 58:22 · The Seal of Hizbullah</span>
+          <span class="badge-emerald">Al-Muflihun · The Successful</span>
+        </div>
+        <p class="arabic-verse" dir="rtl" lang="ar">لَا تَجِدُ قَوْمًا يُؤْمِنُونَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ يُوَادُّونَ مَنْ حَادَّ اللَّهَ وَرَسُولَهُ وَلَوْ كَانُوا آبَاءَهُمْ أَوْ أَبْنَاءَهُمْ أَوْ إِخْوَانَهُمْ أَوْ عَشِيرَتَهُمْ ۚ أُولَٰئِكَ كَتَبَ فِي قُلُوبِهِمُ الْإِيمَانَ وَأَيَّدَهُمْ بِرُوحٍ مِنْهُ ۖ وَيُدْخِلُهُمْ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا ۚ رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ أُولَٰئِكَ حِزْبُ اللَّهِ ۚ أَلَا إِنَّ حِزْبَ اللَّهِ هُمُ الْمُفْلِحُونَ</p>
+        <p class="english-verse">
+          You will not find a people who believe in Allah and the Last Day having affection for those who oppose Allah and His Messenger, even if they were their fathers or their sons or their brothers or their kindred. Those — He has decreed within their hearts faith and supported them with spirit from Him. And We will admit them to gardens beneath which rivers flow, wherein they abide eternally. Allah is pleased with them, and they are pleased with Him — those are the party of Allah. Unquestionably, the party of Allah — they are the successful.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPLETE VERSE-BY-VERSE CONCORDANCE -->
+    <section id="concordance" class="act-section reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Complete Text Study · Verses 58:1–58:22</span></div>
+          <h2 class="section-title">Verse-by-Verse <em>Concordance</em> &amp; Key Vocabulary</h2>
+        </div>
+        <span class="badge-emerald" id="reviewed-counter-badge">0 / 22 Reviewed</span>
+      </div>
+
+      <p class="prose">
+        Filter by thematic movement or search any English phrase or Arabic concept (such as <em>thihar</em>, <em>Satan</em>, <em>charity</em>, <em>knowledge</em>, or <em>oaths</em>). Mark verses as reviewed as you read through the full Surah.
+      </p>
+
+      <div class="filter-bar">
+        <div class="field-group">
+          <label class="field-label" for="verse-search">Search Verses or Key Concepts</label>
+          <input type="search" id="verse-search" class="text-input" placeholder="Search e.g. mother, sixty, fourth, assembly, party, oaths…" oninput="renderConcordance()">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="verse-theme-filter">Filter by Movement</label>
+          <select id="verse-theme-filter" class="select-input" onchange="renderConcordance()">
+            <option value="all">All 22 Verses (58:1–22)</option>
+            <option value="zihar">I. Khawlah &amp; Zihar (58:1–4)</option>
+            <option value="najwa">II. Omniscience &amp; Najwa (58:5–10)</option>
+            <option value="majalis">III. Majalis &amp; Counsel (58:11–13)</option>
+            <option value="parties">IV. Hypocrisy &amp; Two Parties (58:14–22)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="concordance-list" id="concordance-list"></div>
+    </section>
+
+    <!-- MASTERY CHECK QUIZ -->
+    <section id="mastery-quiz" class="act-section tonal-band reveal-section">
+      <div class="act-header">
+        <div>
+          <div class="kicker-row"><span>Mastery Assessment · 8 Questions</span></div>
+          <h2 class="section-title">Test Your Mastery of <em>Surah Al-Mujadila</em></h2>
+        </div>
+        <span class="badge-terracotta" id="quiz-score-badge">Score: 0 / 8</span>
+      </div>
+      <p class="prose">
+        Verify your command of the historical occasion, legal rulings, ethical principles, and thematic contrasts of Chapter 58. Every answer saves automatically.
+      </p>
+      <div class="quiz-grid" id="quiz-container"></div>
+    </section>
+
+    <footer class="footer-note">
+      <strong>Source &amp; Attribution:</strong> All 22 Quranic Arabic verses and English translations in this guide are grounded in the provided Chapter 58 source text (<em>Surah Al-Mujadila</em>, verses 58:1–58:22). Structural commentary, lexical terms (<em>tahawur</em>, <em>zihar</em>, <em>kaffarah</em>, <em>najwa</em>, <em>tafassahu</em>, <em>darajat</em>, <em>junnah</em>, <em>istahwadha</em>, <em>Hizbullah</em>), and historical context of Khawlah bint Tha‘labah are synthesized directly for interactive study and mastery.
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const SURAH_VERSES = [
+      {
+        num: 1,
+        theme: `zihar`,
+        themeLabel: `I. Khawlah & Zihar`,
+        arabic: `قَدْ سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ فِي زَوْجِهَا وَتَشْتَكِي إِلَى اللَّهِ وَاللَّهُ يَسْمَعُ تَحَاوُرَكُمَا ۚ إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ`,
+        english: `Certainly has Allah heard the speech of the one who argues with you, [O Muhammad], concerning her husband and directs her complaint to Allah. And Allah hears your dialogue; indeed, Allah is Hearing and Seeing.`,
+        terms: [`Tujadiluka (argues with you)`, `Tahawurakuma (your dialogue)`, `Sami'un Basir (Hearing & Seeing)`]
+      },
+      {
+        num: 2,
+        theme: `zihar`,
+        themeLabel: `I. Khawlah & Zihar`,
+        arabic: `الَّذِينَ يُظَاهِرُونَ مِنْكُمْ مِنْ نِسَائِهِمْ مَا هُنَّ أُمَّهَاتِهِمْ ۖ إِنْ أُمَّهَاتُهُمْ إِلَّا اللَّائِي وَلَدْنَهُمْ ۚ وَإِنَّهُمْ لَيَقُولُونَ مُنْكَرًا مِنَ الْقَوْلِ وَزُورًا ۚ وَإِنَّ اللَّهَ لَعَفُوٌّ غَفُورٌ`,
+        english: `Those who pronounce thihar among you [to separate] from their wives - they are not [consequently] their mothers. Their mothers are none but those who gave birth to them. And indeed, they are saying an objectionable statement and a falsehood. But indeed, Allah is Pardoning and Forgiving.`,
+        terms: [`Yuzahirun (pronounce zihar)`, `Munkaran min al-qawl (objectionable speech)`, `'Afuwwun Ghafur (Pardoning & Forgiving)`]
+      },
+      {
+        num: 3,
+        theme: `zihar`,
+        themeLabel: `I. Khawlah & Zihar`,
+        arabic: `وَالَّذِينَ يُظَاهِرُونَ مِنْ نِسَائِهِمْ ثُمَّ يَعُودُونَ لِمَا قَالُوا فَتَحْرِيرُ رَقَبَةٍ مِنْ قَبْلِ أَنْ يَتَمَاسَّا ۚ ذَٰلِكُمْ تُوعَظُونَ بِهِ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ`,
+        english: `And those who pronounce thihar from their wives and then [wish to] go back on what they said then [there must be] the freeing of a slave before they touch one another. That is what you are admonished thereby; and Allah is Acquainted with what you do.`,
+        terms: [`Ya'uduna (retract/return)`, `Tahrir raqabah (freeing a slave)`, `Min qabli an yatamassa (before touching)`]
+      },
+      {
+        num: 4,
+        theme: `zihar`,
+        themeLabel: `I. Khawlah & Zihar`,
+        arabic: `فَمَنْ لَمْ يَجِدْ فَصِيَامُ شَهْرَيْنِ مُتَتَابِعَيْنِ مِنْ قَبْلِ أَنْ يَتَمَاسَّا ۖ فَمَنْ لَمْ يَسْتَطِعْ فَإِطْعَامُ سِتِّينَ مِسْكِينًا ۚ ذَٰلِكَ لِتُؤْمِنُوا بِاللَّهِ وَرَسُولِهِ ۚ وَتِلْكَ حُدُودُ اللَّهِ ۗ وَلِلْكَافِرِينَ عَذَابٌ أَلِيمٌ`,
+        english: `And he who does not find [a slave] - then a fast for two months consecutively before they touch one another; and he who is unable - then the feeding of sixty poor persons. That is for you to believe [completely] in Allah and His Messenger; and those are the limits [set by] Allah. And for the disbelievers is a painful punishment.`,
+        terms: [`Shahrayn mutatabi'ayn (two consecutive months)`, `Sittina miskina (sixty poor)`, `Hudud Allah (limits of Allah)`]
+      },
+      {
+        num: 5,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `إِنَّ الَّذِينَ يُحَادُّونَ اللَّهَ وَرَسُولَهُ كُبِتُوا كَمَا كُبِتَ الَّذِينَ مِنْ قَبْلِهِمْ ۚ وَقَدْ أَنْزَلْنَا آيَاتٍ بَيِّنَاتٍ ۚ وَلِلْكَافِرِينَ عَذَابٌ مُهِينٌ`,
+        english: `Indeed, those who oppose Allah and His Messenger are abased as those before them were abased. And We have certainly sent down verses of clear evidence. And for the disbelievers is a humiliating punishment.`,
+        terms: [`Yuhadduna (actively oppose)`, `Kubitu (abased/humiliated)`, `Ayat bayyinat (clear verses)`]
+      },
+      {
+        num: 6,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `يَوْمَ يَبْعَثُهُمُ اللَّهُ جَمِيعًا فَيُنَبِّئُهُمْ بِمَا عَمِلُوا ۚ أَحْصَاهُ اللَّهُ وَنَسُوهُ ۚ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ شَهِيدٌ`,
+        english: `On the Day when Allah will resurrect them all and inform them of what they did. Allah had enumerated it, while they forgot it; and Allah is, over all things, Witness.`,
+        terms: [`Ahsahu Allah (Allah enumerated it)`, `Wa nasuh (while they forgot it)`, `Shahid (Witness)`]
+      },
+      {
+        num: 7,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `أَلَمْ تَرَ أَنَّ اللَّهَ يَعْلَمُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ مَا يَكُونُ مِنْ نَجْوَىٰ ثَلَاثَةٍ إِلَّا هُوَ رَابِعُهُمْ وَلَا خَمْسَةٍ إِلَّا هُوَ سَادِسُهُمْ وَلَا أَدْنَىٰ مِنْ ذَٰلِكَ وَلَا أَكْثَرَ إِلَّا هُوَ مَعَهُمْ أَيْنَ مَا كَانُوا ۖ ثُمَّ يُنَبِّئُهُمْ بِمَا عَمِلُوا يَوْمَ الْقِيَامَةِ ۚ إِنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ`,
+        english: `Have you not considered that Allah knows what is in the heavens and what is on the earth? There is in no private conversation three but that He is the fourth of them, nor are there five but that He is the sixth of them - and no less than that and no more except that He is with them [in knowledge] wherever they are. Then He will inform them of what they did, on the Day of Resurrection. Indeed Allah is, of all things, Knowing.`,
+        terms: [`Najwa (private counsel)`, `Huwa ma'ahum (with them in knowledge)`, `'Alim (All-Knowing)`]
+      },
+      {
+        num: 8,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `أَلَمْ تَرَ إِلَى الَّذِينَ نُهُوا عَنِ النَّجْوَىٰ ثُمَّ يَعُودُونَ لِمَا نُهُوا عَنْهُ وَيَتَنَاجَوْنَ بِالْإِثْمِ وَالْعُدْوَانِ وَمَعْصِيَتِ الرَّسُولِ وَإِذَا جَاءُوكَ حَيَّوْكَ بِمَا لَمْ يُحَيِّكَ بِهِ اللَّهُ وَيَقُولُونَ فِي أَنْفُسِهِمْ لَوْلَا يُعَذِّبُنَا اللَّهُ بِمَا نَقُولُ ۚ حَسْبُهُمْ جَهَنَّمُ يَصْلَوْنَهَا ۖ فَبِئْسَ الْمَصِيرُ`,
+        english: `Have you not considered those who were forbidden from private conversation, then they return to that which they were forbidden and converse among themselves about sin and aggression and disobedience to the Messenger? And when they come to you, they greet you with that [word] by which Allah does not greet you and say among themselves, "Why does Allah not punish us for what we say?" Sufficient for them is Hell, which they will [enter to] burn, and wretched is the destination.`,
+        terms: [`Al-ithm (sin)`, `Al-'udwan (aggression)`, `Ma'siyat ar-Rasul (disobedience)`]
+      },
+      {
+        num: 9,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا تَنَاجَيْتُمْ فَلَا تَتَنَاجَوْا بِالْإِثْمِ وَالْعُدْوَانِ وَمَعْصِيَتِ الرَّسُولِ وَتَنَاجَوْا بِالْبِرِّ وَالتَّقْوَىٰ ۖ وَاتَّقُوا اللَّهَ الَّذِي إِلَيْهِ تُحْشَرُونَ`,
+        english: `O you who have believed, when you converse privately, do not converse about sin and aggression and disobedience to the Messenger but converse about righteousness and piety. And fear Allah, to whom you will be gathered.`,
+        terms: [`Al-birr (righteousness)`, `At-taqwa (piety)`, `Tuhsharun (you will be gathered)`]
+      },
+      {
+        num: 10,
+        theme: `najwa`,
+        themeLabel: `II. Omniscience & Najwa`,
+        arabic: `إِنَّمَا النَّجْوَىٰ مِنَ الشَّيْطَانِ لِيَحْزُنَ الَّذِينَ آمَنُوا وَلَيْسَ بِضَارِّهِمْ شَيْئًا إِلَّا بِإِذْنِ اللَّهِ ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ`,
+        english: `Private conversation is only from Satan that he may grieve those who have believed, but he will not harm them at all except by permission of Allah. And upon Allah let the believers rely.`,
+        terms: [`Li-yahzuna (to grieve believers)`, `Illa bi-idhnillah (except by Allah's permission)`, `Tawakkul (reliance on Allah)`]
+      },
+      {
+        num: 11,
+        theme: `majalis`,
+        themeLabel: `III. Majalis & Counsel`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قِيلَ لَكُمْ تَفَسَّحُوا فِي الْمَجَالِسِ فَافْسَحُوا يَفْسَحِ اللَّهُ لَكُمْ ۖ وَإِذَا قِيلَ انْشُزُوا فَانْشُزُوا يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ`,
+        english: `O you who have believed, when you are told, "Space yourselves" in assemblies, then make space; Allah will make space for you. And when you are told, "Arise," then arise; Allah will raise those who have believed among you and those who were given knowledge, by degrees. And Allah is Acquainted with what you do.`,
+        terms: [`Tafassahu (make space)`, `Unshuzu (arise)`, `Al-'ilm darajat (knowledge by degrees)`]
+      },
+      {
+        num: 12,
+        theme: `majalis`,
+        themeLabel: `III. Majalis & Counsel`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نَاجَيْتُمُ الرَّسُولَ فَقَدِّمُوا بَيْنَ يَدَيْ نَجْوَاكُمْ صَدَقَةً ۚ ذَٰلِكَ خَيْرٌ لَكُمْ وَأَطْهَرُ ۚ فَإِنْ لَمْ تَجِدُوا فَإِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`,
+        english: `O you who have believed, when you [wish to] privately consult the Messenger, present before your consultation a charity. That is better for you and purer. But if you find not [the means] - then indeed, Allah is Forgiving and Merciful.`,
+        terms: [`Sadaqah (charity)`, `Khayrun wa athar (better & purer)`, `Ghafurun Rahim (Forgiving & Merciful)`]
+      },
+      {
+        num: 13,
+        theme: `majalis`,
+        themeLabel: `III. Majalis & Counsel`,
+        arabic: `أَأَشْفَقْتُمْ أَنْ تُقَدِّمُوا بَيْنَ يَدَيْ نَجْوَاكُمْ صَدَقَاتٍ ۚ فَإِذْ لَمْ تَفْعَلُوا وَتَابَ اللَّهُ عَلَيْكُمْ فَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَأَطِيعُوا اللَّهَ وَرَسُولَهُ ۚ وَاللَّهُ خَبِيرٌ بِمَا تَعْمَلُونَ`,
+        english: `Have you feared to present before your consultation charities? Then when you do not and Allah has forgiven you, then [at least] establish prayer and give zakah and obey Allah and His Messenger. And Allah is Acquainted with what you do.`,
+        terms: [`Ashfaqtum (feared/hesitated)`, `Taba 'alaykum (relieved/forgave you)`, `Salah & Zakah`]
+      },
+      {
+        num: 14,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `أَلَمْ تَرَ إِلَى الَّذِينَ تَوَلَّوْا قَوْمًا غَضِبَ اللَّهُ عَلَيْهِمْ مَا هُمْ مِنْكُمْ وَلَا مِنْهُمْ وَيَحْلِفُونَ عَلَى الْكَذِبِ وَهُمْ يَعْلَمُونَ`,
+        english: `Have you not considered those who make allies of a people with whom Allah has become angry? They are neither of you nor of them, and they swear to untruth while they know [they are lying].`,
+        terms: [`Tawallaw (make allies)`, `Ma hum minkum wa la minhum (neither of you nor them)`, `False oaths`]
+      },
+      {
+        num: 15,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `أَعَدَّ اللَّهُ لَهُمْ عَذَابًا شَدِيدًا ۖ إِنَّهُمْ سَاءَ مَا كَانُوا يَعْمَلُونَ`,
+        english: `Allah has prepared for them a severe punishment. Indeed, it was evil that they were doing.`,
+        terms: [`'Adhaban shadida (severe punishment)`]
+      },
+      {
+        num: 16,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `اتَّخَذُوا أَيْمَانَهُمْ جُنَّةً فَصَدُّوا عَنْ سَبِيلِ اللَّهِ فَلَهُمْ عَذَابٌ مُهِينٌ`,
+        english: `They took their [false] oaths as a cover, so they averted [people] from the way of Allah, and for them is a humiliating punishment.`,
+        terms: [`Aymanahum junnah (oaths as a shield/cover)`, `Fasaddu (averted from Allah's way)`]
+      },
+      {
+        num: 17,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `لَنْ تُغْنِيَ عَنْهُمْ أَمْوَالُهُمْ وَلَا أَوْلَادُهُمْ مِنَ اللَّهِ شَيْئًا ۚ أُولَٰئِكَ أَصْحَابُ النَّارِ ۖ هُمْ فِيهَا خَالِدُونَ`,
+        english: `Never will their wealth or their children avail them against Allah at all. Those are the companions of the Fire; they will abide therein eternally`,
+        terms: [`Amwal & Awlad (wealth & children)`, `Ashab an-Nar (companions of Fire)`]
+      },
+      {
+        num: 18,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `يَوْمَ يَبْعَثُهُمُ اللَّهُ جَمِيعًا فَيَحْلِفُونَ لَهُ كَمَا يَحْلِفُونَ لَكُمْ وَيَحْسَبُونَ أَنَّهُمْ عَلَىٰ شَيْءٍ ۚ أَلَا إِنَّهُمْ هُمُ الْكَاذِبُونَ`,
+        english: `On the Day Allah will resurrect them all, and they will swear to Him as they swear to you and think that they are [standing] on something. Unquestionably, it is they who are the liars.`,
+        terms: [`Yahlifuna lahu (swear falsely to Him)`, `Al-kadhibun (the liars)`]
+      },
+      {
+        num: 19,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `اسْتَحْوَذَ عَلَيْهِمُ الشَّيْطَانُ فَأَنْسَاهُمْ ذِكْرَ اللَّهِ ۚ أُولَٰئِكَ حِزْبُ الشَّيْطَانِ ۚ أَلَا إِنَّ حِزْبَ الشَّيْطَانِ هُمُ الْخَاسِرُونَ`,
+        english: `Satan has overcome them and made them forget the remembrance of Allah. Those are the party of Satan. Unquestionably, the party of Satan - they will be the losers.`,
+        terms: [`Istahwadha (overcame/engrossed)`, `Dhikr Allah (remembrance of Allah)`, `Hizb ash-Shaytan · Al-Khasirun`]
+      },
+      {
+        num: 20,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `إِنَّ الَّذِينَ يُحَادُّونَ اللَّهَ وَرَسُولَهُ أُولَٰئِكَ فِي الْأَذَلِّينَ`,
+        english: `Indeed, the ones who oppose Allah and His Messenger - those will be among the most humbled.`,
+        terms: [`Yuhadduna (oppose)`, `Al-adhallin (most humbled)`]
+      },
+      {
+        num: 21,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `كَتَبَ اللَّهُ لَأَغْلِبَنَّ أَنَا وَرُسُلِي ۚ إِنَّ اللَّهَ قَوِيٌّ عَزِيزٌ`,
+        english: `Allah has written, "I will surely overcome, I and My messengers." Indeed, Allah is Powerful and Exalted in Might.`,
+        terms: [`Kataba Allah (Allah has decreed)`, `Qawiyyun 'Aziz (Powerful & Almighty)`]
+      },
+      {
+        num: 22,
+        theme: `parties`,
+        themeLabel: `IV. Hypocrisy & Two Parties`,
+        arabic: `لَا تَجِدُ قَوْمًا يُؤْمِنُونَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ يُوَادُّونَ مَنْ حَادَّ اللَّهَ وَرَسُولَهُ وَلَوْ كَانُوا آبَاءَهُمْ أَوْ أَبْنَاءَهُمْ أَوْ إِخْوَانَهُمْ أَوْ عَشِيرَتَهُمْ ۚ أُولَٰئِكَ كَتَبَ فِي قُلُوبِهِمُ الْإِيمَانَ وَأَيَّدَهُمْ بِرُوحٍ مِنْهُ ۖ وَيُدْخِلُهُمْ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا ۚ رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ أُولَٰئِكَ حِزْبُ اللَّهِ ۚ أَلَا إِنَّ حِزْبَ اللَّهِ هُمُ الْمُفْلِحُونَ`,
+        english: `You will not find a people who believe in Allah and the Last Day having affection for those who oppose Allah and His Messenger, even if they were their fathers or their sons or their brothers or their kindred. Those - He has decreed within their hearts faith and supported them with spirit from Him. And We will admit them to gardens beneath which rivers flow, wherein they abide eternally. Allah is pleased with them, and they are pleased with Him - those are the party of Allah. Unquestionably, the party of Allah - they are the successful.`,
+        terms: [`Kataba fi qulubihim al-iman`, `Ayyadahum bi-ruhin minhu`, `Radiya Allahu 'anhum`, `Hizbullah · Al-Muflihun`]
+      }
+    ];
+
+    const KAFFARAH_STATES = {
+      1: {
+        selected: 1,
+        outcome: `<strong>Obligatory Ruling (58:3):</strong> Emancipation comes first—one cannot skip directly to fasting or feeding if a bonded person can be freed. Verse 58:3 concludes: <em>“That is what you are admonished thereby; and Allah is Acquainted with what you do.”</em>`
+      },
+      2: {
+        selected: 2,
+        outcome: `<strong>Obligatory Ruling (58:4):</strong> Because no bonded person is available, the husband must fast <strong>two consecutive months</strong> before resuming marital intimacy. Breaking the sequence without valid excuse resets the fast.`
+      },
+      3: {
+        selected: 3,
+        outcome: `<strong>Obligatory Ruling (58:4):</strong> Only when genuinely unable to sustain two consecutive months of fasting does the obligation transition to <strong>feeding sixty poor persons</strong>. Verse 58:4 affirms: <em>“those are the limits set by Allah.”</em>`
+      }
+    };
+
+    const SCENARIOS = [
+      {
+        title: `Scenario 1: Making Space in a Crowded Circle`,
+        prompt: `A study gathering is seated tightly together near the front when latecomers arrive seeking a place to sit and learn. A host asks everyone to shift and make room. What response aligns with Verse 58:11?`,
+        choices: [
+          { text: `Keep your spot tightly guarded because you arrived earlier and earned front-row precedence.`, correct: false },
+          { text: `Widen the circle cheerfully to make room, trusting that as you make space for others, Allah will make space for you.`, correct: true },
+          { text: `Leave quietly in frustration because the room feels overcrowded.`, correct: false }
+        ],
+        explanation: `Verse 58:11 teaches reciprocal generosity in public space: “when you are told, ‘Space yourselves’ in assemblies, then make space; Allah will make space for you.”`
+      },
+      {
+        title: `Scenario 2: Whispered Rumors in a Community`,
+        prompt: `Two acquaintances pull aside into private corners during community events, excluding others while sharing suspicions that leave newcomers feeling anxious and unwelcome. How does Verse 58:10 frame this?`,
+        choices: [
+          { text: `Exclusionary whispering meant to sow anxiety and grief among believers is from Satan, and believers rely on Allah rather than despairing.`, correct: true },
+          { text: `All private conversations are categorically forbidden under every circumstance.`, correct: false },
+          { text: `Believers should retaliate by forming a rival secret clique to counter them.`, correct: false }
+        ],
+        explanation: `Verse 58:9 permits private counsel centered on righteousness and piety (al-birr wat-taqwa), while Verse 58:10 identifies divisive whispering intended to grieve believers as coming from Satan, met with reliance upon Allah (tawakkul).`
+      },
+      {
+        title: `Scenario 3: Respecting Counsel & Enduring Duties`,
+        prompt: `Someone wishes to monopolize a mentor’s private time for trivial issues, forgetting the core communal obligations. Looking at Verses 58:12–13, what lesson emerged from the temporary sadaqah command?`,
+        choices: [
+          { text: `Only wealthy community members deserve private access to leadership.`, correct: false },
+          { text: `Private counsel carries responsibility and consideration for others; once the temporary charity prerequisite was lifted, believers remained anchored to prayer, zakah, and obedience.`, correct: true },
+          { text: `Since the charity prerequisite was forgiven in 58:13, zakah was also cancelled.`, correct: false }
+        ],
+        explanation: `Verse 58:12 explicitly exempted those without means, and Verse 58:13 relieved the consultation-charity requirement while reaffirming permanent anchors: establish prayer, give zakah, and obey Allah and His Messenger.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `What opening declaration in Verse 58:1 establishes the occasion of Surah Al-Mujadila?`,
+        options: [
+          `Allah heard the plea of the woman arguing with the Prophet concerning her husband and complaining directly to Allah.`,
+          `A decree regulating inheritance shares after a battle.`,
+          `A command requiring believers to migrate before sunset.`
+        ],
+        answer: 0,
+        rationale: `Verse 58:1 affirms: “Certainly has Allah heard the speech of the one who argues with you, [O Muhammad], concerning her husband and directs her complaint to Allah.”`
+      },
+      {
+        q: `On what basis does Verse 58:2 declare the practice of zihar legally invalid and false?`,
+        options: [
+          `Because wives cannot become mothers—mothers are strictly those who gave birth to them.`,
+          `Because divorce requires three written witnesses.`,
+          `Because verbal vows only apply during travel.`
+        ],
+        answer: 0,
+        rationale: `Verse 58:2 refutes the metaphor literally and morally: “they are not [consequently] their mothers. Their mothers are none but those who gave birth to them.”`
+      },
+      {
+        q: `In Verses 58:3–4, what is the exact sequence of expiation (kaffarah) before marital intimacy may resume?`,
+        options: [
+          `Feed 60 poor persons first, then fast 2 months, then free a slave.`,
+          `Free a slave; if unable to find one, fast two consecutive months; if unable to fast, feed sixty poor persons.`,
+          `Choose whichever of the three options is most convenient financially.`
+        ],
+        answer: 1,
+        rationale: `Verses 58:3–4 mandate a strict descending order: freeing a slave (58:3), else fasting two consecutive months (58:4), else feeding sixty poor persons (58:4).`
+      },
+      {
+        q: `What does Verse 58:7 teach about Allah’s presence during private conversations (najwa)?`,
+        options: [
+          `Allah hears only formal speeches delivered in assemblies.`,
+          `Whether three, five, fewer, or more converse privately, Allah is with them in knowledge wherever they are.`,
+          `Private counsel is hidden until witnesses testify.`
+        ],
+        answer: 1,
+        rationale: `Verse 58:7 teaches comprehensive divine omniscience: “no private conversation three but that He is the fourth of them... except that He is with them [in knowledge] wherever they are.”`
+      },
+      {
+        q: `According to Verse 58:9, when is private conversation commended rather than condemned?`,
+        options: [
+          `When it centers on righteousness (al-birr) and piety (at-taqwa), with mindfulness of gathering before Allah.`,
+          `Whenever participants agree to conceal it with oaths.`,
+          `Only when held after midnight.`
+        ],
+        answer: 0,
+        rationale: `Verse 58:9 contrasts sin, aggression, and disobedience with righteous counsel: “but converse about righteousness and piety. And fear Allah, to whom you will be gathered.”`
+      },
+      {
+        q: `What two groups does Verse 58:11 say Allah raises by degrees (darajat)?`,
+        options: [
+          `Those who claim front-row seats and those who hold wealth.`,
+          `Those who have believed among you and those who were given knowledge.`,
+          `Those who refuse to rise when asked to disperse.`
+        ],
+        answer: 1,
+        rationale: `Verse 58:11 promises: “Allah will raise those who have believed among you and those who were given knowledge, by degrees.”`
+      },
+      {
+        q: `How do the duplicitous allies in Verses 58:14–16 misuse their oaths?`,
+        options: [
+          `They take false oaths knowingly as a cover/shield (junnah) to avert people from Allah’s way.`,
+          `They refuse to take oaths in court out of humility.`,
+          `They donate their wealth instead of swearing oaths.`
+        ],
+        answer: 0,
+        rationale: `Verses 58:14 and 58:16 describe them swearing falsely while knowing they lie, taking “their [false] oaths as a cover, so they averted [people] from the way of Allah.”`
+      },
+      {
+        q: `What distinguishes Hizb ash-Shaytan (58:19) from Hizbullah (58:22)?`,
+        options: [
+          `Hizb ash-Shaytan forgot Allah’s remembrance and are losers; Hizbullah have faith decreed in their hearts, priority loyalty over hostile opposition, mutual pleasure with Allah, and true success.`,
+          `Hizb ash-Shaytan rely on fasting while Hizbullah rely on wealth and children.`,
+          `Both groups share identical outcomes on the Day of Resurrection.`
+        ],
+        answer: 0,
+        rationale: `Verse 58:19 identifies Hizb ash-Shaytan as engrossed by Satan into forgetting dhikr (the losers), whereas Verse 58:22 honors Hizbullah with heart-inscribed faith, divine spirit, mutual pleasure, and success (al-muflihun).`
+      }
+    ];
+
+    let appState = {
+      completedActs: [],
+      reviewedVerses: [],
+      quizAnswers: {},
+      kaffarahTier: 1,
+      najwaCount: 3,
+      activeScenario: 0,
+      scenarioChoice: null
+    };
+
+    async function persistState() {
+      updateMasteryUI();
+      if (window.notebookAppApi) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+          const pill = document.getElementById('saved-status-pill');
+          if (pill) pill.textContent = `Progress Saved`;
+        } catch (err) {
+          const pill = document.getElementById('saved-status-pill');
+          if (pill) pill.textContent = `Local Session Active`;
+        }
+      }
+    }
+
+    function toggleActComplete(actId, btn) {
+      const idx = appState.completedActs.indexOf(actId);
+      if (idx === -1) {
+        appState.completedActs.push(actId);
+      } else {
+        appState.completedActs.splice(idx, 1);
+      }
+      syncActButtons();
+      persistState();
+    }
+
+    function syncActButtons() {
+      const buttons = document.querySelectorAll('[data-act]');
+      buttons.forEach(function(btn) {
+        const actId = btn.getAttribute('data-act');
+        const done = appState.completedActs.indexOf(actId) !== -1;
+        btn.classList.toggle('is-active', done);
+        const roman = actId === 'act1' ? 'I' : actId === 'act2' ? 'II' : actId === 'act3' ? 'III' : 'IV';
+        btn.textContent = done ? `Act ${roman} Studied ✓` : `Mark Act ${roman} Studied`;
+      });
+    }
+
+    function selectKaffarah(tier) {
+      appState.kaffarahTier = tier;
+      [1, 2, 3].forEach(function(n) {
+        const btn = document.getElementById(`kaf-btn-${n}`);
+        const card = document.getElementById(`tier-card-${n}`);
+        if (btn) btn.classList.toggle('is-active', n === tier);
+        if (card) {
+          card.classList.toggle('is-selected', n === tier);
+          card.classList.toggle('is-bypassed', n < tier);
+        }
+      });
+      const outcomeEl = document.getElementById('kaffarah-outcome');
+      if (outcomeEl && KAFFARAH_STATES[tier]) {
+        outcomeEl.innerHTML = KAFFARAH_STATES[tier].outcome;
+      }
+      persistState();
+    }
+
+    function setNajwaCount(count) {
+      appState.najwaCount = count;
+      [3, 5, 2, 7].forEach(function(n) {
+        const btn = document.getElementById(`najwa-btn-${n}`);
+        if (btn) btn.classList.toggle('is-active', n === count);
+      });
+
+      const group = document.getElementById('najwa-nodes-group');
+      const caption = document.getElementById('najwa-svg-caption');
+      const badge = document.getElementById('najwa-badge');
+      if (group) {
+        let html = ``;
+        const radius = 76;
+        const cx = 160;
+        const cy = 130;
+        for (let i = 0; i < count; i++) {
+          const angle = (-Math.PI / 2) + (2 * Math.PI * i) / count;
+          const x = Math.round(cx + radius * Math.cos(angle));
+          const y = Math.round(cy + radius * Math.sin(angle));
+          html += `<circle cx="${x}" cy="${y}" r="11" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />`;
+          html += `<text x="${x}" y="${y + 3.5}" text-anchor="middle" fill="var(--on-primary)" font-size="9.5" font-weight="700" font-family="Plus Jakarta Sans, sans-serif">${i + 1}</text>`;
+        }
+        group.innerHTML = html;
+      }
+
+      const ordinal = count === 2 ? `3rd of 2 (Fewer)` : count === 3 ? `4th of 3` : count === 5 ? `6th of 5` : `8th of 7 (More)`;
+      const captionText = count === 2
+        ? `2 conversing — Allah is with them in knowledge`
+        : count === 3
+        ? `3 conversing — He is the 4th of them`
+        : count === 5
+        ? `5 conversing — He is the 6th of them`
+        : `7 conversing — No less and no more except He is with them`;
+      if (caption) caption.textContent = captionText;
+      if (badge) badge.textContent = ordinal;
+      persistState();
+    }
+
+    function loadScenario(index) {
+      appState.activeScenario = index;
+      appState.scenarioChoice = null;
+      [0, 1, 2].forEach(function(i) {
+        const tab = document.getElementById(`scen-tab-${i}`);
+        if (tab) tab.classList.toggle('is-active', i === index);
+      });
+      renderScenario();
+      persistState();
+    }
+
+    function renderScenario() {
+      const scen = SCENARIOS[appState.activeScenario] || SCENARIOS[0];
+      const titleEl = document.getElementById('scenario-title');
+      const promptEl = document.getElementById('scenario-prompt');
+      const choicesEl = document.getElementById('scenario-choices');
+      const feedbackEl = document.getElementById('scenario-feedback');
+
+      if (titleEl) titleEl.textContent = scen.title;
+      if (promptEl) promptEl.textContent = scen.prompt;
+
+      if (choicesEl) {
+        choicesEl.innerHTML = scen.choices.map(function(choice, idx) {
+          let cls = 'btn choice-btn';
+          if (appState.scenarioChoice !== null) {
+            if (idx === appState.scenarioChoice) {
+              cls += choice.correct ? ' is-correct' : ' is-wrong';
+            } else if (choice.correct) {
+              cls += ' is-correct';
+            }
+          }
+          return `<button type="button" class="${cls}" onclick="answerScenario(${idx})">${choice.text}</button>`;
+        }).join('');
+      }
+
+      if (feedbackEl) {
+        if (appState.scenarioChoice === null) {
+          feedbackEl.className = 'feedback-box';
+          feedbackEl.textContent = `Select a response above to test your application of Surah Al-Mujadila’s social ethics.`;
+        } else {
+          const picked = scen.choices[appState.scenarioChoice];
+          feedbackEl.className = picked && picked.correct ? 'feedback-box is-correct' : 'feedback-box is-wrong';
+          const prefix = picked && picked.correct ? `Aligned with Revelation: ` : `Re-examine the Surah: `;
+          feedbackEl.textContent = prefix + scen.explanation;
+        }
+      }
+    }
+
+    function answerScenario(choiceIdx) {
+      appState.scenarioChoice = choiceIdx;
+      renderScenario();
+      persistState();
+    }
+
+    function highlightDimension(dim) {
+      const keys = ['all', 0, 1, 2, 3, 4, 5];
+      keys.forEach(function(k) {
+        const btn = document.getElementById(`dim-btn-${k}`);
+        if (btn) btn.classList.toggle('is-active', String(k) === String(dim));
+      });
+      const rows = document.querySelectorAll('#party-matrix-body tr');
+      rows.forEach(function(row) {
+        const rowDim = row.getAttribute('data-dim');
+        row.classList.toggle('is-highlighted', dim !== 'all' && String(rowDim) === String(dim));
+      });
+    }
+
+    function toggleVerseReviewed(verseNum) {
+      const idx = appState.reviewedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.reviewedVerses.push(verseNum);
+      } else {
+        appState.reviewedVerses.splice(idx, 1);
+      }
+      renderConcordance();
+      persistState();
+    }
+
+    function renderConcordance() {
+      const searchEl = document.getElementById('verse-search');
+      const filterEl = document.getElementById('verse-theme-filter');
+      const listEl = document.getElementById('concordance-list');
+      const badgeEl = document.getElementById('reviewed-counter-badge');
+      if (!listEl) return;
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : '';
+      const themeFilter = filterEl ? filterEl.value : 'all';
+
+      const filtered = SURAH_VERSES.filter(function(v) {
+        const matchesTheme = themeFilter === 'all' || v.theme === themeFilter;
+        const haystack = `${v.num} ${v.themeLabel} ${v.english} ${v.terms.join(' ')}`.toLowerCase();
+        const matchesQuery = !query || haystack.indexOf(query) !== -1;
+        return matchesTheme && matchesQuery;
+      });
+
+      if (badgeEl) {
+        badgeEl.textContent = `${appState.reviewedVerses.length} / 22 Reviewed`;
+      }
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="concordance-card"><p class="muted" style="margin:0;">No verses matched “${query.replace(/</g, '&lt;')}”. Try clearing the search box or switching the movement filter to All 22 Verses.</p></div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(function(v) {
+        const reviewed = appState.reviewedVerses.indexOf(v.num) !== -1;
+        const termsHtml = v.terms.map(function(t) {
+          return `<span class="term-chip">${t}</span>`;
+        }).join('');
+        return `
+          <article class="concordance-card ${reviewed ? 'is-reviewed' : ''}">
+            <div class="verse-head">
+              <span class="verse-ref">Verse 58:${v.num} · ${v.themeLabel}</span>
+              <span class="${reviewed ? 'badge-emerald' : 'badge-terracotta'}">${reviewed ? 'Reviewed ✓' : 'Study Item'}</span>
+            </div>
+            <p class="arabic-verse" dir="rtl" lang="ar">${v.arabic}</p>
+            <p class="english-verse">${v.english}</p>
+            <div class="concordance-footer">
+              <div class="term-list">${termsHtml}</div>
+              <button type="button" class="btn ${reviewed ? 'btn-tertiary' : 'btn-secondary'}" onclick="toggleVerseReviewed(${v.num})">
+                ${reviewed ? 'Mark Unreviewed' : 'Mark Reviewed'}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function answerQuiz(qIdx, optIdx) {
+      appState.quizAnswers[qIdx] = optIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById('quiz-container');
+      const scoreBadge = document.getElementById('quiz-score-badge');
+      if (!container) return;
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function(q, idx) {
+        if (appState.quizAnswers[idx] === q.answer) correctCount++;
+      });
+      if (scoreBadge) scoreBadge.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function(q, qIdx) {
+        const chosen = appState.quizAnswers[qIdx];
+        const hasAnswered = typeof chosen === 'number';
+        const isRight = hasAnswered && chosen === q.answer;
+
+        const optionsHtml = q.options.map(function(opt, oIdx) {
+          let cls = 'btn choice-btn';
+          if (hasAnswered) {
+            if (oIdx === q.answer) cls += ' is-correct';
+            else if (oIdx === chosen) cls += ' is-wrong';
+          }
+          return `<button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${oIdx})">${opt}</button>`;
+        }).join('');
+
+        const feedbackHtml = hasAnswered
+          ? `<div class="feedback-box ${isRight ? 'is-correct' : 'is-wrong'}" style="margin-top: var(--space-md);">
+               <strong>${isRight ? 'Correct.' : 'Not quite.'}</strong> ${q.rationale}
+             </div>`
+          : ``;
+
+        return `
+          <div class="quiz-card">
+            <div class="quiz-header">
+              <span class="verse-ref">Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+              ${hasAnswered ? `<span class="${isRight ? 'badge-emerald' : 'badge-terracotta'}">${isRight ? 'Mastered' : 'Review'}</span>` : ``}
+            </div>
+            <h3 class="subhead" style="margin-bottom: var(--space-xs);">${q.q}</h3>
+            <div class="quiz-options">${optionsHtml}</div>
+            ${feedbackHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateMasteryUI() {
+      const actsDone = appState.completedActs.length;
+      const versesDone = appState.reviewedVerses.length;
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach(function(q, idx) {
+        if (appState.quizAnswers[idx] === q.answer) quizCorrect++;
+      });
+
+      const totalPoints = 4 + 22 + QUIZ_QUESTIONS.length;
+      const earnedPoints = actsDone + versesDone + quizCorrect;
+      const pct = Math.round((earnedPoints / totalPoints) * 100);
+
+      const summaryEl = document.getElementById('mastery-summary-text');
+      const pctEl = document.getElementById('mastery-percent');
+      const fillEl = document.getElementById('mastery-fill');
+      const barEl = document.getElementById('mastery-progressbar');
+
+      if (summaryEl) {
+        summaryEl.textContent = `Mastery Progress: ${actsDone} of 4 Acts Studied · ${versesDone} of 22 Verses Reviewed · Quiz ${quizCorrect}/${QUIZ_QUESTIONS.length}`;
+      }
+      if (pctEl) pctEl.textContent = `${pct}%`;
+      if (fillEl) fillEl.style.width = `${pct}%`;
+      if (barEl) barEl.setAttribute('aria-valuenow', String(pct));
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = `Click Again to Reset`;
+        return;
+      }
+      btn.dataset.armed = 'false';
+      btn.textContent = `Reset Progress`;
+      appState = {
+        completedActs: [],
+        reviewedVerses: [],
+        quizAnswers: {},
+        kaffarahTier: 1,
+        najwaCount: 3,
+        activeScenario: 0,
+        scenarioChoice: null
+      };
+      syncActButtons();
+      selectKaffarah(1);
+      setNajwaCount(3);
+      loadScenario(0);
+      renderConcordance();
+      renderQuiz();
+      persistState();
+    }
+
+    function setupScrollReveal() {
+      const sections = document.querySelectorAll('.reveal-section');
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(function(s) { s.classList.add('is-visible'); });
+        return;
+      }
+      const observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(function(s) { observer.observe(s); });
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            if (Array.isArray(saved.completedActs)) appState.completedActs = saved.completedActs;
+            if (Array.isArray(saved.reviewedVerses)) appState.reviewedVerses = saved.reviewedVerses;
+            if (saved.quizAnswers && typeof saved.quizAnswers === 'object') appState.quizAnswers = saved.quizAnswers;
+            if (typeof saved.kaffarahTier === 'number') appState.kaffarahTier = saved.kaffarahTier;
+            if (typeof saved.najwaCount === 'number') appState.najwaCount = saved.najwaCount;
+            if (typeof saved.activeScenario === 'number') appState.activeScenario = saved.activeScenario;
+            if (typeof saved.scenarioChoice === 'number' || saved.scenarioChoice === null) appState.scenarioChoice = saved.scenarioChoice;
+          }
+        } catch (err) {
+          // Proceed cleanly with default initial state
+        }
+      }
+
+      syncActButtons();
+      selectKaffarah(appState.kaffarahTier || 1);
+      setNajwaCount(appState.najwaCount || 3);
+      [0, 1, 2].forEach(function(i) {
+        const tab = document.getElementById(`scen-tab-${i}`);
+        if (tab) tab.classList.toggle('is-active', i === appState.activeScenario);
+      });
+      renderScenario();
+      renderConcordance();
+      renderQuiz();
+      updateMasteryUI();
+      setupScrollReveal();
+
+      if (window.notebookAppApi) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

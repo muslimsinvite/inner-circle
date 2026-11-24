@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Jumu'ah (Chapter 62) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+      --surface-elevated: #fcf8f2;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders & rules */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --error-border: #e0aaaa;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #993b1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fbeaea;
+      --on-error: #ffffff;
+
+      /* Semantic tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', Georgia, serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-size: clamp(1.45rem, 1.25rem + 0.9vw, 1.95rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-bar-top: 4px 4px 0 0;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--outline-variant), var(--data-3), var(--outline-variant));
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus visibility */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    p { margin: 0; max-width: 66ch; }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-heading {
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 1.95;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.22em;
+      line-height: 1.5;
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Ornament Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--secondary-btn-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+
+    .btn-pill-filter {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      border: 1px solid var(--outline-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+    .btn-pill-filter:hover {
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .btn-pill-filter.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero-block {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .hero-header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .hero-nav-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+    .jump-link:hover {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border);
+      color: var(--on-primary-container);
+    }
+
+    /* Arch Cards Row */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .arch-card {
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-card-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-card-figure {
+      font-family: var(--font-headline);
+      font-size: 2.15rem;
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-card-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    .arch-card-caption {
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+      line-height: 1.4;
+    }
+
+    /* Study Progress Bar */
+    .progress-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .progress-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    .progress-stat {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .progress-stat-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--on-surface-variant);
+    }
+    .progress-stat-val {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-bar-track {
+      width: 180px;
+      height: 10px;
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-high);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .progress-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Section Containers */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: var(--warm-hairline);
+    }
+    .section-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .section-header-row {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Interactive Split Grids (Asymmetric) */
+    .split-asymmetric {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .split-balanced {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .panel-sand {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    /* Interactive Selector Lists */
+    .selector-stack {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .selector-btn {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: center;
+      text-align: left;
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .selector-btn:hover {
+      background: var(--surface-container);
+    }
+    .selector-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+      box-shadow: var(--soft-shadow);
+    }
+    .selector-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .selector-btn.is-active .selector-num {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .selector-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--on-surface);
+    }
+    .selector-sub {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+
+    /* Divine Names Strip */
+    .names-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .name-tile {
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .name-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.5rem;
+      color: var(--primary);
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* Parable Schematic SVG */
+    .schematic-box {
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .parable-toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Challenge Chain (62:6-8) */
+    .chain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .chain-step {
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .chain-step:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .chain-step.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    /* Friday Rhythm Table & Interactive Timeline */
+    .rhythm-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .rhythm-table th {
+      background: var(--surface-container);
+      text-align: left;
+      padding: var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      border-bottom: var(--warm-hairline);
+    }
+    .rhythm-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+
+    /* Verse Explorer Cards */
+    .verse-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verse-list {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .verse-card {
+      container-type: inline-size;
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      border-color: var(--tertiary);
+      background: var(--surface-container-low);
+    }
+    .verse-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .verse-ref-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-number {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .mastery-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-btn-border);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+    .mastery-btn[aria-pressed="true"] {
+      background: var(--tertiary);
+      color: var(--on-primary);
+      border-color: var(--tertiary);
+    }
+    .verse-translation {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--on-surface);
+      border-left: 3px solid var(--primary-border);
+      padding-left: var(--space-md);
+      max-width: none;
+    }
+    .verse-insight {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .note-field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Quiz Section */
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      background: var(--surface-elevated);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      font-size: 0.92rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      display: none;
+    }
+    .quiz-feedback.is-visible {
+      display: block;
+    }
+
+    /* Inline Status Message */
+    .status-banner {
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+      min-height: 1.2em;
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    @container (max-width: 480px) {
+      .verse-card { padding: var(--space-md); }
+      .arabic-text { font-size: 1.35rem; }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .split-asymmetric,
+      .split-balanced {
+        grid-template-columns: 1fr;
+      }
+      .section-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .progress-strip {
+        padding: var(--space-md);
+      }
+      .progress-bar-track {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- HERO & STRUCTURAL OVERVIEW -->
+    <header class="hero-block">
+      <div class="hero-header-meta">
+        <span class="kicker">Quranic Study &amp; Mastery Guide &middot; Chapter 62</span>
+        <span class="badge-emerald">11 Verses &middot; 4 Movements</span>
+      </div>
+
+      <h1 class="title">Surah <em>Al-Jumu'ah</em>: Stewardship, Accountability, and the Friday Sanctuary</h1>
+
+      <p class="lede">
+        Named for the Friday congregational assembly in its closing verses, Chapter 62 traces a cohesive spiritual argument across eleven verses: universal glorification gives rise to the Messenger's purifying mission, contrasts sharply with carrying revelation as an unlived burden, exposes the self-deception of exclusive privilege, and culminates in the disciplined rhythm of leaving trade for remembrance.
+      </p>
+
+      <nav class="hero-nav-strip" aria-label="Study sections">
+        <a class="jump-link" href="#movement-mission">I. Prophetic Mission (62:1–4)</a>
+        <a class="jump-link" href="#movement-parable">II. The Donkey &amp; Books (62:5)</a>
+        <a class="jump-link" href="#movement-challenge">III. Challenge of Death (62:6–8)</a>
+        <a class="jump-link" href="#movement-jumuah">IV. Jumu'ah Ordinances (62:9–11)</a>
+        <a class="jump-link" href="#verse-workbench">All 11 Verses</a>
+        <a class="jump-link" href="#mastery-quiz">Mastery Check</a>
+      </nav>
+
+      <div class="ornament-rule" aria-hidden="true">&#9670; Architectural Breakdown of Chapter 62 &#9670;</div>
+
+      <div class="arch-grid">
+        <article class="arch-card is-featured">
+          <span class="arch-card-label">Verses 62:1–4</span>
+          <div class="arch-card-figure">04</div>
+          <h2 class="arch-card-title">Sovereignty &amp; Mission</h2>
+          <p class="arch-card-caption">Four Divine Names &amp; four prophetic duties transforming clear error into bounty</p>
+        </article>
+        <article class="arch-card">
+          <span class="arch-card-label">Verse 62:5</span>
+          <div class="arch-card-figure">01</div>
+          <h2 class="arch-card-title">The Uncarried Trust</h2>
+          <p class="arch-card-caption">Parable of carrying volumes of scripture without bearing their weight</p>
+        </article>
+        <article class="arch-card">
+          <span class="arch-card-label">Verses 62:6–8</span>
+          <div class="arch-card-figure">03</div>
+          <h2 class="arch-card-title">Claim &amp; Return</h2>
+          <p class="arch-card-caption">The truth-test of longing for death &amp; return to the Knower of all deeds</p>
+        </article>
+        <article class="arch-card">
+          <span class="arch-card-label">Verses 62:9–11</span>
+          <div class="arch-card-figure">03</div>
+          <h2 class="arch-card-title">Friday Sanctuary</h2>
+          <p class="arch-card-caption">Halting trade at the call, dispersing for bounty, &amp; prioritizing Allah</p>
+        </article>
+      </div>
+
+      <!-- Persistent Study Progress Strip -->
+      <div class="progress-strip" aria-label="Study mastery progress">
+        <div class="progress-metrics">
+          <div class="progress-stat">
+            <span class="progress-stat-label">Verses Mastered</span>
+            <span class="progress-stat-val" id="mastery-count">0 / 11</span>
+          </div>
+          <div class="progress-stat">
+            <span class="progress-stat-label">Mastery Progress</span>
+            <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="11" aria-valuenow="0" id="mastery-progressbar">
+              <div class="progress-bar-fill" id="mastery-bar-fill"></div>
+            </div>
+          </div>
+          <div class="progress-stat">
+            <span class="progress-stat-label">Quiz Accuracy</span>
+            <span class="progress-stat-val" id="quiz-score-display">0 / 6</span>
+          </div>
+        </div>
+        <div class="progress-actions">
+          <span class="status-banner" id="study-status-msg" aria-live="polite"></span>
+          <button type="button" class="btn btn-secondary" onclick="exportStudySummary()">Export Notes</button>
+          <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="resetStudyProgress(this)">Reset Progress</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: COSMIC GLORIFICATION & THE FOURFOLD MISSION (62:1-4) -->
+    <section id="movement-mission" class="study-section reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Movement I &middot; Verses 62:1–4</span>
+        <h2 class="section-heading">Cosmic Glorification Grounds the <em>Unlettered</em> Prophet's Fourfold Mission</h2>
+        <p>
+          Surah Al-Jumu'ah opens with an uninterrupted chorus: whatever is in the heavens and whatever is on the earth continually exalts Allah. That cosmic devotion leads directly into the historical gift of a Messenger raised from among the unlettered (<span class="arabic-inline" lang="ar" dir="rtl">الْأُمِّيِّينَ</span>) to lift people out of clear error—a bounty extending to later generations not yet joined to them.
+        </p>
+      </div>
+
+      <div class="names-grid" aria-label="Four Divine Names in Verse 62:1">
+        <div class="name-tile">
+          <div class="name-ar" lang="ar" dir="rtl">الْمَلِكِ</div>
+          <span class="kicker">Al-Malik</span>
+          <strong>The Sovereign</strong>
+          <span class="selector-sub">Absolute authority over creation and communal law.</span>
+        </div>
+        <div class="name-tile">
+          <div class="name-ar" lang="ar" dir="rtl">الْقُدُّوسِ</div>
+          <span class="kicker">Al-Quddus</span>
+          <strong>The Pure</strong>
+          <span class="selector-sub">Transcendent perfection, mirrored in the Messenger's purification of hearts.</span>
+        </div>
+        <div class="name-tile">
+          <div class="name-ar" lang="ar" dir="rtl">الْعَزِيزِ</div>
+          <span class="kicker">Al-Aziz</span>
+          <strong>The Exalted in Might</strong>
+          <span class="selector-sub">Unconquerable strength; repeated in 62:3 as a structural bookend.</span>
+        </div>
+        <div class="name-tile">
+          <div class="name-ar" lang="ar" dir="rtl">الْحَكِيمِ</div>
+          <span class="kicker">Al-Hakim</span>
+          <strong>The Wise</strong>
+          <span class="selector-sub">Purposeful wisdom; echoes the "wisdom" taught in 62:2 and closes 62:3.</span>
+        </div>
+      </div>
+
+      <div class="split-asymmetric">
+        <div class="selector-stack" role="list" aria-label="Fourfold Mission of the Messenger in 62:2">
+          <button type="button" class="selector-btn is-active" id="mission-btn-0" onclick="selectMissionStep(0)">
+            <span class="selector-num">1</span>
+            <span>
+              <span class="selector-title">Reciting His Verses</span><br>
+              <span class="selector-sub">62:2 &middot; Direct encounter with revelation</span>
+            </span>
+          </button>
+          <button type="button" class="selector-btn" id="mission-btn-1" onclick="selectMissionStep(1)">
+            <span class="selector-num">2</span>
+            <span>
+              <span class="selector-title">Purifying Them</span><br>
+              <span class="selector-sub">62:2 &middot; Moral and spiritual cleansing</span>
+            </span>
+          </button>
+          <button type="button" class="selector-btn" id="mission-btn-2" onclick="selectMissionStep(2)">
+            <span class="selector-num">3</span>
+            <span>
+              <span class="selector-title">Teaching the Book</span><br>
+              <span class="selector-sub">62:2 &middot; Structured literacy in Scripture</span>
+            </span>
+          </button>
+          <button type="button" class="selector-btn" id="mission-btn-3" onclick="selectMissionStep(3)">
+            <span class="selector-num">4</span>
+            <span>
+              <span class="selector-title">Teaching Wisdom</span><br>
+              <span class="selector-sub">62:2–4 &middot; Embodied judgment &amp; lasting bounty</span>
+            </span>
+          </button>
+        </div>
+
+        <article class="panel" id="mission-detail-panel" aria-live="polite">
+          <div class="hero-header-meta">
+            <span class="badge-terracotta" id="mission-badge">Duty 1 of 4 &middot; 62:2</span>
+            <span class="arabic-text" lang="ar" dir="rtl" id="mission-arabic">يَتْلُو عَلَيْهِمْ آيَاتِهِ</span>
+          </div>
+          <h3 class="subhead" id="mission-title">Reciting to Them His Verses</h3>
+          <p id="mission-body">
+            The transformation begins with hearing: the Messenger recites Allah's verses directly to a community previously "in clear error." Authentic recitation awakens attention before formal instruction begins, bridging the gap between cosmic glorification (62:1) and human consciousness.
+          </p>
+          <div class="verse-insight" id="mission-connection">
+            <strong>Structural link:</strong> Notice how "teaching them the Book and wisdom" answers "The Pure, the Exalted in Might, the Wise" in 62:1—divine attributes become human cultivation through the Messenger, and verse 62:3 extends this reach to "others of them who have not yet joined them."
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE PARABLE OF THE DONKEY CARRYING BOOKS (62:5) -->
+    <section id="movement-parable" class="section-band reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Movement II &middot; Verse 62:5</span>
+        <h2 class="section-heading">Why Carrying Scripture Without Action Resembles a <em>Beast of Burden</em></h2>
+        <p>
+          Immediately after praising the "great bounty" of living prophetic guidance (62:4), verse 62:5 delivers one of the Quran's most arresting similes. Those entrusted with the Torah (<span class="arabic-inline" lang="ar" dir="rtl">حُمِّلُوا التَّوْرَاةَ</span>) who then failed to carry its moral weight (<span class="arabic-inline" lang="ar" dir="rtl">ثُمَّ لَمْ يَحْمِلُوهَا</span>) are compared to a donkey carrying volumes (<span class="arabic-inline" lang="ar" dir="rtl">أَسْفَارًا</span>): physically bearing precious knowledge on its back while remaining utterly unchanged by what is written inside.
+        </p>
+      </div>
+
+      <div class="schematic-box">
+        <div class="hero-header-meta">
+          <h3 class="subhead">Comparative Diagnosis: External Weight vs. Living Trust</h3>
+          <div class="parable-toggle-row" role="group" aria-label="Compare revelation postures">
+            <button type="button" class="btn-pill-filter is-active" id="parable-btn-both" onclick="setParableFocus('both')">Compare Both</button>
+            <button type="button" class="btn-pill-filter" id="parable-btn-burden" onclick="setParableFocus('burden')">Uncarried Burden (62:5)</button>
+            <button type="button" class="btn-pill-filter" id="parable-btn-steward" onclick="setParableFocus('steward')">Living Stewardship (62:2)</button>
+          </div>
+        </div>
+
+        <!-- Clean conceptual SVG diagram -->
+        <svg viewBox="0 0 760 220" width="100%" style="max-height: 240px;" aria-hidden="true">
+          <!-- Left node: Passive Burden (62:5) -->
+          <g id="svg-group-burden" opacity="1">
+            <rect x="16" y="20" width="320" height="180" rx="12" fill="#f7ebe0" stroke="#c98a6b" stroke-width="1.5"/>
+            <text x="36" y="50" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#b84a24" letter-spacing="1.4">VERSE 62:5 · PASSIVE WEIGHT</text>
+            <text x="36" y="78" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="#261b15">Donkey Carrying Volumes</text>
+            <!-- Stylized stack of volumes -->
+            <rect x="36" y="98" width="90" height="16" rx="3" fill="#b84a24" opacity="0.85"/>
+            <rect x="42" y="118" width="84" height="16" rx="3" fill="#8f6524" opacity="0.85"/>
+            <rect x="36" y="138" width="94" height="16" rx="3" fill="#8c3838" opacity="0.85"/>
+            <text x="148" y="112" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#57483f">Possesses external texts</text>
+            <text x="148" y="132" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#57483f">Feels only physical weight</text>
+            <text x="148" y="152" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#b82929" font-weight="600">Denies the signs of Allah</text>
+            <text x="36" y="182" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="#57483f">Outcome: "Allah does not guide the wrongdoing people"</text>
+          </g>
+
+          <!-- Center Divider Arrow -->
+          <line x1="354" y1="110" x2="406" y2="110" stroke="#9e8a78" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <polygon points="402,105 412,110 402,115" fill="#9e8a78"/>
+          <text x="380" y="94" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="#8f6524">VS</text>
+
+          <!-- Right node: Living Stewardship (62:2) -->
+          <g id="svg-group-steward" opacity="1">
+            <rect x="424" y="20" width="320" height="180" rx="12" fill="#e1efe9" stroke="#1d6356" stroke-width="1.5"/>
+            <text x="444" y="50" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#1d6356" letter-spacing="1.4">VERSE 62:2 · LIVING STEWARDSHIP</text>
+            <text x="444" y="78" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="#261b15">Purified &amp; Taught Community</text>
+            <!-- Stylized open vessel / radiating lines -->
+            <circle cx="478" cy="126" r="24" fill="#1d6356" opacity="0.16" stroke="#1d6356" stroke-width="1.5"/>
+            <circle cx="478" cy="126" r="10" fill="#1d6356"/>
+            <text x="518" y="112" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#13473d">Hears verses recited</text>
+            <text x="518" y="132" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#13473d">Purified from inner error</text>
+            <text x="518" y="152" font-family="Plus Jakarta Sans, sans-serif" font-size="12" fill="#13473d" font-weight="600">Learns Scripture &amp; wisdom</text>
+            <text x="444" y="182" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="#13473d">Outcome: Receives "the great bounty of Allah" (62:4)</text>
+          </g>
+        </svg>
+
+        <p id="parable-caption" class="verse-insight">
+          <strong>Key linguistic contrast:</strong> Arabic uses the same root (<span class="arabic-inline" lang="ar" dir="rtl">ح-م-ل</span>) three times in 62:5—they were <em>made to carry</em> (<span class="arabic-inline" lang="ar" dir="rtl">حُمِّلُوا</span>) the Torah, did not <em>shoulder</em> it (<span class="arabic-inline" lang="ar" dir="rtl">لَمْ يَحْمِلُوهَا</span>), and thus resemble a donkey that <em>carries</em> (<span class="arabic-inline" lang="ar" dir="rtl">يَحْمِلُ</span>) books. Mere custody of revelation without moral uptake turns privilege into indictment.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE CHALLENGE REGARDING LONGING FOR DEATH (62:6-8) -->
+    <section id="movement-challenge" class="study-section reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Movement III &middot; Verses 62:6–8</span>
+        <h2 class="section-heading">The Truth-Test of Exclusive Privilege and the <em>Inescapable Return</em></h2>
+        <p>
+          Verses 62:6–8 expose an internal contradiction in claiming exclusive favor with Allah ("allies of Allah, excluding the other people"). If someone truly believed they stood in guaranteed favor above all humanity, meeting Allah through death would be welcomed rather than feared. Click each step of the argument to trace how the Quran dismantles false assurance.
+        </p>
+      </div>
+
+      <div class="chain-grid">
+        <button type="button" class="chain-step is-active" id="chain-btn-0" onclick="selectChallengeStep(0)">
+          <span class="badge-terracotta">Step 1 &middot; Verse 62:6</span>
+          <h3 class="subhead">The Challenge</h3>
+          <p>"If you claim that you are allies of Allah, excluding the [other] people, then wish for death, if you should be truthful."</p>
+        </button>
+        <button type="button" class="chain-step" id="chain-btn-1" onclick="selectChallengeStep(1)">
+          <span class="badge-emerald">Step 2 &middot; Verse 62:7</span>
+          <h3 class="subhead">The Moral Refusal</h3>
+          <p>"But they will not wish for it, ever, because of what their hands have put forth. And Allah is Knowing of the wrongdoers."</p>
+        </button>
+        <button type="button" class="chain-step" id="chain-btn-2" onclick="selectChallengeStep(2)">
+          <span class="badge-terracotta">Step 3 &middot; Verse 62:8</span>
+          <h3 class="subhead">The Inevitable Meeting</h3>
+          <p>"Indeed, the death from which you flee—indeed, it will meet you. Then you will be returned to the Knower of the unseen and the witnessed..."</p>
+        </button>
+      </div>
+
+      <article class="panel-sand" id="challenge-detail-panel" aria-live="polite">
+        <div class="hero-header-meta">
+          <span class="kicker" id="challenge-kicker">Forensic Logic &middot; Verse 62:6</span>
+          <span class="arabic-text" lang="ar" dir="rtl" id="challenge-ar">فَتَمَنَّوُا الْمَوْتَ إِنْ كُنْتُمْ صَادِقِينَ</span>
+        </div>
+        <h3 class="subhead" id="challenge-title">Testing Exclusivity Against Sincerity</h3>
+        <p id="challenge-text">
+          The verse introduces a sharp empirical test of truthfulness: an ally who truly expects honor and proximity from the Beloved does not dread the threshold that leads to Him. By framing the challenge around "excluding the other people," the Surah critiques spiritual tribalism—favor with Allah belongs to sincere stewardship (62:2–4), not inherited status.
+        </p>
+      </article>
+    </section>
+
+    <!-- SECTION 4: ORDINANCES & ETIQUETTE OF SALAT AL-JUMU'AH (62:9-11) -->
+    <section id="movement-jumuah" class="study-section reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Movement IV &middot; Verses 62:9–11</span>
+        <h2 class="section-heading">From the Adhan to the Marketplace: <em>Ordinances of Friday</em></h2>
+        <p>
+          Having critiqued past failures to honor revelation, the Surah turns directly to the believers ("O you who have believed") with practical, communal law. Notice the deliberate symmetry: commerce is halted when the Friday call sounds, yet seeking worldly livelihood resumes immediately once prayer concludes—so long as remembrance remains central and fleeting distractions never pull believers away from the Prophet's sermon.
+        </p>
+      </div>
+
+      <div class="split-balanced">
+        <div class="panel">
+          <span class="kicker">Interactive Friday Rhythm</span>
+          <h3 class="subhead">Three Phases of Friday Conduct</h3>
+          <p>Select a phase of the Jumu'ah cycle to inspect its exact Quranic command, behavioral boundary, and spiritual rationale.</p>
+          <div class="selector-stack">
+            <button type="button" class="selector-btn is-active" id="friday-btn-0" onclick="selectFridayPhase(0)">
+              <span class="selector-num">I</span>
+              <span>
+                <span class="selector-title">When the Call Is Made (62:9)</span><br>
+                <span class="selector-sub">Proceed to remembrance &amp; leave trade</span>
+              </span>
+            </button>
+            <button type="button" class="selector-btn" id="friday-btn-1" onclick="selectFridayPhase(1)">
+              <span class="selector-num">II</span>
+              <span>
+                <span class="selector-title">When Prayer Concludes (62:10)</span><br>
+                <span class="selector-sub">Disperse, seek bounty, remember often</span>
+              </span>
+            </button>
+            <button type="button" class="selector-btn" id="friday-btn-2" onclick="selectFridayPhase(2)">
+              <span class="selector-num">III</span>
+              <span>
+                <span class="selector-title">When Distraction Appears (62:11)</span><br>
+                <span class="selector-sub">Guarding against commerce &amp; diversion</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <article class="panel-sand" id="friday-detail-panel" aria-live="polite">
+          <div class="hero-header-meta">
+            <span class="badge-emerald" id="friday-badge">Phase I &middot; Verse 62:9</span>
+            <span class="arabic-text" lang="ar" dir="rtl" id="friday-ar">فَاسْعَوْا إِلَى ذِكْرِ اللَّهِ وَذَرُوا الْبَيْعَ</span>
+          </div>
+          <h3 class="subhead" id="friday-title">Suspend Trade, Hasten to Remembrance</h3>
+          <p id="friday-summary">
+            At the call to Friday prayer, believers must cease buying and selling ("leave trade") and proceed purposefully toward the remembrance of Allah—encompassing both the Friday sermon (khutbah) and the congregational prayer.
+          </p>
+          <div class="verse-insight" id="friday-rationale">
+            <strong>Spiritual principle:</strong> "That is better for you, if you only knew." Commercial gain feels immediate and tangible, yet interrupting business for weekly communal worship protects the soul from becoming enslaved to transactions.
+          </div>
+        </article>
+      </div>
+
+      <!-- Structured Summary Table of Ordinances -->
+      <div class="panel" style="overflow-x: auto;">
+        <h3 class="subhead">Ordinances &amp; Etiquette Matrix (62:9–11)</h3>
+        <table class="rhythm-table">
+          <thead>
+            <tr>
+              <th>Verse</th>
+              <th>Trigger / Moment</th>
+              <th>Direct Command or Rebuke</th>
+              <th>Core Value Anchoring It</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>62:9</strong></td>
+              <td>Adhan is called on the day of Jumu'ah</td>
+              <td>Proceed to the remembrance of Allah and leave trade</td>
+              <td>"That is better for you, if you only knew."</td>
+            </tr>
+            <tr>
+              <td><strong>62:10</strong></td>
+              <td>The congregational prayer is concluded</td>
+              <td>Disperse within the land, seek from Allah's bounty, remember Allah often</td>
+              <td>Integration of lawful livelihood with constant remembrance so "that you may succeed."</td>
+            </tr>
+            <tr>
+              <td><strong>62:11</strong></td>
+              <td>A transaction or diversion arrives during the sermon</td>
+              <td>Rebuke for rushing out and leaving the Messenger standing</td>
+              <td>"What is with Allah is better than diversion and than a transaction, and Allah is the best of providers."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 5: VERSE-BY-VERSE WORKBENCH (ALL 11 VERSES) -->
+    <section id="verse-workbench" class="study-section reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Complete Text &amp; Active Recall</span>
+        <h2 class="section-heading">Verse-by-Verse <em>Study Workbench</em> (62:1–11)</h2>
+        <p>
+          Explore every verse of Surah Al-Jumu'ah with its Arabic text, English rendering, and contextual insight. Filter by thematic movement, toggle Arabic or English visibility for active-recall practice, record your own reflections, and mark verses as mastered.
+        </p>
+      </div>
+
+      <div class="verse-controls">
+        <div class="filter-group" role="group" aria-label="Filter verses by movement">
+          <button type="button" class="btn-pill-filter is-active" id="filter-all" onclick="filterVerses('all')">All 11 Verses</button>
+          <button type="button" class="btn-pill-filter" id="filter-1" onclick="filterVerses('1')">I. Mission (62:1–4)</button>
+          <button type="button" class="btn-pill-filter" id="filter-2" onclick="filterVerses('2')">II. Parable (62:5)</button>
+          <button type="button" class="btn-pill-filter" id="filter-3" onclick="filterVerses('3')">III. Death Test (62:6–8)</button>
+          <button type="button" class="btn-pill-filter" id="filter-4" onclick="filterVerses('4')">IV. Jumu'ah (62:9–11)</button>
+        </div>
+
+        <div class="filter-group" role="group" aria-label="Display toggles for recall practice">
+          <button type="button" class="btn btn-secondary" id="toggle-arabic-btn" onclick="toggleVerseLayer('arabic')">Hide Arabic</button>
+          <button type="button" class="btn btn-secondary" id="toggle-english-btn" onclick="toggleVerseLayer('english')">Hide English</button>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container">
+        <!-- Rendered cleanly by JS with complete 11 verses -->
+      </div>
+    </section>
+
+    <!-- SECTION 6: MASTERY SELF-CHECK -->
+    <section id="mastery-quiz" class="study-section reveal-section">
+      <div class="section-header-row">
+        <span class="kicker">Comprehension &amp; Mastery Check</span>
+        <h2 class="section-heading">Test Your Understanding of <em>Surah Al-Jumu'ah</em></h2>
+        <p>
+          Six scenario and comprehension questions drawn directly from verses 62:1–11. Your score is saved automatically with your verse mastery progress.
+        </p>
+      </div>
+
+      <div class="quiz-grid" id="quiz-container">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <strong>Source &amp; Grounding Note</strong>
+      <p>
+        All Arabic verses (62:1–62:11), English translations, and thematic structures in this guide are grounded in the Surah Al-Jumu'ah (Chapter 62) source text provided for study. Personal mastery checkmarks, quiz responses, and study notes persist within your notebook workspace.
+      </p>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES_DATA = [
+      {
+        num: 1,
+        ref: `62:1`,
+        movement: `1`,
+        movementLabel: `I · Sovereignty & Mission`,
+        arabic: `يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ`,
+        english: `Whatever is in the heavens and whatever is on the earth is exalting Allah, the Sovereign, the Pure, the Exalted in Might, the Wise.`,
+        insight: `Opens in the present continuous tense ("is exalting"), portraying cosmic glorification as an ongoing reality. The four Divine Names—Al-Malik (Sovereign), Al-Quddus (Pure), Al-Aziz (Exalted in Might), Al-Hakim (Wise)—establish the moral and intellectual backdrop for revelation.`
+      },
+      {
+        num: 2,
+        ref: `62:2`,
+        movement: `1`,
+        movementLabel: `I · Sovereignty & Mission`,
+        arabic: `هُوَ الَّذِي بَعَثَ فِي الْأُمِّيِّينَ رَسُولًا مِنْهُمْ يَتْلُو عَلَيْهِمْ آيَاتِهِ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ الْكِتَابَ وَالْحِكْمَةَ وَإِنْ كَانُوا مِنْ قَبْلُ لَفِي ضَلَالٍ مُبِينٍ`,
+        english: `It is He who has sent among the unlettered a Messenger from themselves reciting to them His verses and purifying them and teaching them the Book and wisdom - although they were before in clear error`,
+        insight: `Defines the Messenger's fourfold curriculum: (1) reciting verses, (2) purifying hearts and conduct, (3) teaching Scripture, and (4) imparting wisdom. Notably, purification (tazkiyah) precedes formal instruction in the Book and wisdom.`
+      },
+      {
+        num: 3,
+        ref: `62:3`,
+        movement: `1`,
+        movementLabel: `I · Sovereignty & Mission`,
+        arabic: `وَآخَرِينَ مِنْهُمْ لَمَّا يَلْحَقُوا بِهِمْ وَهُوَ الْعَزِيزُ الْحَكِيمُ`,
+        english: `And [to] others of them who have not yet joined them. And He is the Exalted in Might, the Wise.`,
+        insight: `Expands the prophetic mission beyond the Prophet's immediate generation to future communities ("others of them who have not yet joined them"). Closing with "the Exalted in Might, the Wise" creates a literary ring with 62:1.`
+      },
+      {
+        num: 4,
+        ref: `62:4`,
+        movement: `1`,
+        movementLabel: `I · Sovereignty & Mission`,
+        arabic: `ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ`,
+        english: `That is the bounty of Allah, which He gives to whom He wills, and Allah is the possessor of great bounty.`,
+        insight: `Frames revelation and moral transformation not as an ethnic entitlement, but as Allah's pure bounty (fadl). Compare this spiritual "bounty" with the material "bounty of Allah" sought after prayer in 62:10.`
+      },
+      {
+        num: 5,
+        ref: `62:5`,
+        movement: `2`,
+        movementLabel: `II · The Uncarried Trust`,
+        arabic: `مَثَلُ الَّذِينَ حُمِّلُوا التَّوْرَاةَ ثُمَّ لَمْ يَحْمِلُوهَا كَمَثَلِ الْحِمَارِ يَحْمِلُ أَسْفَارًا بِئْسَ مَثَلُ الْقَوْمِ الَّذِينَ كَذَّبُوا بِآيَاتِ اللَّهِ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ`,
+        english: `The example of those who were entrusted with the Torah and then did not take it on is like that of a donkey who carries volumes [of books]. Wretched is the example of the people who deny the signs of Allah. And Allah does not guide the wrongdoing people.`,
+        insight: `Warns against possessing sacred texts without embodying them. Just as a donkey carries heavy scrolls without tasting their wisdom, inheriting Scripture without living by it reduces custodianship to uncomprehending burden.`
+      },
+      {
+        num: 6,
+        ref: `62:6`,
+        movement: `3`,
+        movementLabel: `III · Claim & Return`,
+        arabic: `قُلْ يَا أَيُّهَا الَّذِينَ هَادُوا إِنْ زَعَمْتُمْ أَنَّكُمْ أَوْلِيَاءُ لِلَّهِ مِنْ دُونِ النَّاسِ فَتَمَنَّوُا الْمَوْتَ إِنْ كُنْتُمْ صَادِقِينَ`,
+        english: `Say, "O you who are Jews, if you claim that you are allies of Allah, excluding the [other] people, then wish for death, if you should be truthful."`,
+        insight: `Challenges claims of exclusive divine favor ("excluding the other people"). If one truly believed oneself guaranteed special intimacy with Allah over everyone else, passing from this world into His presence would be longed for, not dreaded.`
+      },
+      {
+        num: 7,
+        ref: `62:7`,
+        movement: `3`,
+        movementLabel: `III · Claim & Return`,
+        arabic: `وَلَا يَتَمَنَّوْنَهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ وَاللَّهُ عَلِيمٌ بِالظَّالِمِينَ`,
+        english: `But they will not wish for it, ever, because of what their hands have put forth. And Allah is Knowing of the wrongdoers.`,
+        insight: `Diagnoses the refusal to accept the challenge: conscience knows "what their hands have put forth." Unrepented deeds make the prospect of meeting the Divine Judge terrifying regardless of outward claims.`
+      },
+      {
+        num: 8,
+        ref: `62:8`,
+        movement: `3`,
+        movementLabel: `III · Claim & Return`,
+        arabic: `قُلْ إِنَّ الْمَوْتَ الَّذِي تَفِرُّونَ مِنْهُ فَإِنَّهُ مُلَاقِيكُمْ ثُمَّ تُرَدُّونَ إِلَىٰ عَالِمِ الْغَيْبِ وَالشَّهَادَةِ فَيُنَبِّئُكُمْ بِمَا كُنْتُمْ تَعْمَلُونَ`,
+        english: `Say, "Indeed, the death from which you flee - indeed, it will meet you. Then you will be returned to the Knower of the unseen and the witnessed, and He will inform you about what you used to do."`,
+        insight: `Establishes universal accountability: fleeing death is futile because death itself comes out to meet us, returning every soul to the Knower of both private intentions ("the unseen") and public acts ("the witnessed").`
+      },
+      {
+        num: 9,
+        ref: `62:9`,
+        movement: `4`,
+        movementLabel: `IV · Friday Sanctuary`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِنْ يَوْمِ الْجُمُعَةِ فَاسْعَوْا إِلَى ذِكْرِ اللَّهِ وَذَرُوا الْبَيْعَ ذَٰلِكُمْ خَيْرٌ لَكُمْ إِنْ كُنْتُمْ تَعْلَمُونَ`,
+        english: `O you who have believed, when [the adhan] is called for the prayer on the day of Jumu'ah [Friday], then proceed to the remembrance of Allah and leave trade. That is better for you, if you only knew.`,
+        insight: `Establishes the core legal and spiritual ordinance of Jumu'ah: at the call to prayer, believers must disengage from buying and selling and hasten purposefully to the remembrance of Allah (sermon and prayer).`
+      },
+      {
+        num: 10,
+        ref: `62:10`,
+        movement: `4`,
+        movementLabel: `IV · Friday Sanctuary`,
+        arabic: `فَإِذَا قُضِيَتِ الصَّلَاةُ فَانْتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِنْ فَضْلِ اللَّهِ وَاذْكُرُوا اللَّهَ كَثِيرًا لَعَلَّكُمْ تُفْلِحُونَ`,
+        english: `And when the prayer has been concluded, disperse within the land and seek from the bounty of Allah, and remember Allah often that you may succeed.`,
+        insight: `Balances worship with worldly life: Friday is not an invitation to idleness. Once prayer ends, believers scatter across the earth to earn a livelihood ("seek from the bounty of Allah"), carrying abundant remembrance into commerce.`
+      },
+      {
+        num: 11,
+        ref: `62:11`,
+        movement: `4`,
+        movementLabel: `IV · Friday Sanctuary`,
+        arabic: `وَإِذَا رَأَوْا تِجَارَةً أَوْ لَهْوًا انْفَضُّوا إِلَيْهَا وَتَرَكُوكَ قَائِمًا ۚ قُلْ مَا عِنْدَ اللَّهِ خَيْرٌ مِنَ اللَّهْوِ وَمِنَ التِّجَارَةِ ۚ وَاللَّهُ خَيْرُ الرَّازِقِينَ`,
+        english: `But when they saw a transaction or a diversion, [O Muhammad], they rushed to it and left you standing. Say, "What is with Allah is better than diversion and than a transaction, and Allah is the best of providers."`,
+        insight: `Addresses a historical moment when members of the congregation rushed out for a trade caravan or amusement while the Prophet stood delivering the sermon. The Surah concludes by correcting the root illusion: provision does not come from chasing the caravan—Allah Himself is the Best of Providers.`
+      }
+    ];
+
+    const MISSION_STEPS = [
+      {
+        badge: `Duty 1 of 4 · 62:2`,
+        arabic: `يَتْلُو عَلَيْهِمْ آيَاتِهِ`,
+        title: `Reciting to Them His Verses`,
+        body: `The transformation begins with hearing: the Messenger recites Allah's verses directly to a community previously "in clear error." Authentic recitation awakens attention before formal instruction begins, bridging the gap between cosmic glorification (62:1) and human consciousness.`,
+        connection: `Structural link: Notice how "teaching them the Book and wisdom" answers "The Pure, the Exalted in Might, the Wise" in 62:1—divine attributes become human cultivation through the Messenger, and verse 62:3 extends this reach to "others of them who have not yet joined them."`
+      },
+      {
+        badge: `Duty 2 of 4 · 62:2`,
+        arabic: `وَيُزَكِّيهِمْ`,
+        title: `Purifying Them (Tazkiyah)`,
+        body: `Recitation is followed by inner purification—cleansing hearts, habits, and social ethics from arrogance, neglect, and clear error. Notably, purification is placed before teaching the Book and wisdom, showing that moral readiness prepares the vessel for sacred knowledge.`,
+        connection: `Thematic link: Verse 62:1 names Allah "Al-Quddus" (The Pure). The Messenger mirrors this purity by purifying believers, creating the exact contrast to those in 62:5 who held texts without being transformed by them.`
+      },
+      {
+        badge: `Duty 3 of 4 · 62:2`,
+        arabic: `وَيُعَلِّمُهُمُ الْكِتَابَ`,
+        title: `Teaching Them the Book`,
+        body: `Though sent among "the unlettered" (al-ummiyyin), the Messenger systematically teaches them the Book—lifting a community without prior scriptural literacy into principled stewardship of divine revelation.`,
+        connection: `Contrast with 62:5: Unlike those who merely carried scrolls on their backs like beasts of burden, the Messenger's community is taught to understand, uphold, and live the Book.`
+      },
+      {
+        badge: `Duty 4 of 4 · 62:2–4`,
+        arabic: `وَالْحِكْمَةَ`,
+        title: `Teaching Them Wisdom — A Lasting Bounty`,
+        body: `Knowledge of the Book is paired with wisdom (al-hikmah)—sound practical judgment, prophetic precedent, and knowing how to apply divine commands in daily life. Verses 62:3–4 affirm that this transformative gift reaches future generations as "the great bounty of Allah."`,
+        connection: `Ring composition: Verse 62:3 closes with "the Exalted in Might, the Wise," echoing 62:1 and demonstrating that Allah's wisdom guides the entire historical arc of the community.`
+      }
+    ];
+
+    const CHALLENGE_STEPS = [
+      {
+        kicker: `Forensic Logic · Verse 62:6`,
+        arabic: `فَتَمَنَّوُا الْمَوْتَ إِنْ كُنْتُمْ صَادِقِينَ`,
+        title: `Testing Exclusivity Against Sincerity`,
+        body: `The verse introduces a sharp empirical test of truthfulness: an ally who truly expects honor and proximity from the Beloved does not dread the threshold that leads to Him. By framing the challenge around "excluding the other people," the Surah critiques spiritual tribalism—favor with Allah belongs to sincere stewardship (62:2–4), not inherited status.`
+      },
+      {
+        kicker: `Conscience Diagnosed · Verse 62:7`,
+        arabic: `وَلَا يَتَمَنَّوْنَهُ أَبَدًا بِمَا قَدَّمَتْ أَيْدِيهِمْ`,
+        title: `Why They Will Never Wish for It`,
+        body: `Verse 62:7 predicts an absolute refusal: "they will not wish for it, ever, because of what their hands have put forth." Outward boasts collapse before the inner witness of one's own deeds, and Allah remains "Knowing of the wrongdoers."`
+      },
+      {
+        kicker: `Inevitable Accountability · Verse 62:8`,
+        arabic: `عَالِمِ الْغَيْبِ وَالشَّهَادَةِ`,
+        title: `Death Meets Everyone; Deeds Are Unveiled`,
+        body: `Fleeing death changes nothing—verse 62:8 personifies death as actively coming to meet the one who runs from it. Every person returns to "the Knower of the unseen and the witnessed," who informs each soul about everything it used to do.`
+      }
+    ];
+
+    const FRIDAY_PHASES = [
+      {
+        badge: `Phase I · Verse 62:9`,
+        arabic: `فَاسْعَوْا إِلَى ذِكْرِ اللَّهِ وَذَرُوا الْبَيْعَ`,
+        title: `Suspend Trade, Hasten to Remembrance`,
+        summary: `At the call to Friday prayer (adhan), believers must cease buying and selling ("leave trade") and proceed purposefully toward the remembrance of Allah—encompassing both the Friday sermon (khutbah) and the congregational prayer.`,
+        rationale: `Spiritual principle: "That is better for you, if you only knew." Commercial gain feels immediate and tangible, yet interrupting business for weekly communal worship protects the soul from becoming enslaved to transactions.`
+      },
+      {
+        badge: `Phase II · Verse 62:10`,
+        arabic: `فَانْتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِنْ فَضْلِ اللَّهِ`,
+        title: `Disperse Into the Land & Seek Lawful Bounty`,
+        summary: `Once the prayer concludes, the Surah immediately authorizes dispersing throughout the earth to pursue livelihood ("seek from the bounty of Allah") while continuing to remember Allah often so that you may succeed.`,
+        rationale: `Balanced rhythm: Islam does not pit worship against lawful work. Work pauses for worship (62:9), and worship sends believers back into work infused with frequent remembrance (62:10).`
+      },
+      {
+        badge: `Phase III · Verse 62:11`,
+        arabic: `وَاللَّهُ خَيْرُ الرَّازِقِينَ`,
+        title: `Prioritizing Allah Over Transaction & Diversion`,
+        summary: `Verse 62:11 recounts how some believers rushed out when they saw a trade transaction or diversion, leaving the Messenger standing during the sermon. The closing rebuke reminds them that what is with Allah surpasses both amusement and commerce.`,
+        rationale: `Closing anchor: Calling Allah "the best of providers" (Khayr ar-Raziqin) resolves the anxiety behind rushing to commerce—true sustenance is never lost by staying attentive to revelation.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `In verse 62:2, what are the four duties of the Messenger sent among the unlettered?`,
+        options: [
+          `Reciting His verses, purifying them, teaching them the Book, and teaching wisdom`,
+          `Leading trade caravans, collecting taxes, judging disputes, and recording lineages`,
+          `Fasting on Fridays, memorizing the Torah, avoiding commerce, and dispersing in the land`,
+          `Building sanctuaries, debating exclusivists, reciting poetry, and guarding markets`
+        ],
+        correct: 0,
+        explanation: `Verse 62:2 explicitly lists: reciting to them His verses, purifying them, and teaching them the Book and wisdom.`
+      },
+      {
+        id: `q2`,
+        prompt: `Which two Divine Names appear at the end of verse 62:1 and are repeated at the end of verse 62:3 as a structural bookend?`,
+        options: [
+          `The Sovereign, the Pure (Al-Malik, Al-Quddus)`,
+          `The Exalted in Might, the Wise (Al-Aziz, Al-Hakim)`,
+          `The Knower of the Unseen, the Best of Providers`,
+          `The Merciful, the Forgiving`
+        ],
+        correct: 1,
+        explanation: `Verse 62:1 lists four names ending in "the Exalted in Might, the Wise," and 62:3 closes with the exact same pair.`
+      },
+      {
+        id: `q3`,
+        prompt: `In verse 62:5, why are those entrusted with the Torah compared to a donkey carrying volumes of books?`,
+        options: [
+          `Because they traveled long distances on trade routes`,
+          `Because they carried the physical trust of Scripture without taking on and living its message`,
+          `Because they refused to translate the text into other languages`,
+          `Because they lost their manuscripts during war`
+        ],
+        correct: 1,
+        explanation: `Verse 62:5 describes those who were entrusted with the Torah "and then did not take it on"—bearing books externally without internalizing or acting on Allah's signs.`
+      },
+      {
+        id: `q4`,
+        prompt: `According to verse 62:7, why will those claiming exclusive alliance with Allah never wish for death?`,
+        options: [
+          `Because they were waiting for a Friday sermon`,
+          `Because of what their hands have put forth (their own wrongdoing)`,
+          `Because they had not yet dispersed in the land`,
+          `Because they lacked copies of the Torah`
+        ],
+        correct: 1,
+        explanation: `Verse 62:7 states: "But they will not wish for it, ever, because of what their hands have put forth. And Allah is Knowing of the wrongdoers."`
+      },
+      {
+        id: `q5`,
+        prompt: `What sequence of actions do verses 62:9 and 62:10 prescribe around the Friday prayer?`,
+        options: [
+          `Abstain from all commerce for the entire day of Friday`,
+          `Leave trade and proceed to Allah's remembrance when called; once concluded, disperse to seek Allah's bounty and remember Him often`,
+          `Remain inside the mosque until nightfall without seeking livelihood`,
+          `Finish all business transactions before responding to the adhan`
+        ],
+        correct: 1,
+        explanation: `Verse 62:9 commands leaving trade when the adhan sounds, while 62:10 instructs believers to disperse afterward, seek Allah's bounty, and remember Allah often.`
+      },
+      {
+        id: `q6`,
+        prompt: `How does verse 62:11 respond to those who rushed toward a transaction or diversion and left the Messenger standing?`,
+        options: [
+          `It declares trade permanently unlawful on Fridays`,
+          `It reminds them that what is with Allah is better than diversion and transaction, and Allah is the best of providers`,
+          `It excludes them from future generations mentioned in 62:3`,
+          `It instructs them to wish for death as a test of sincerity`
+        ],
+        correct: 1,
+        explanation: `Verse 62:11 concludes the Surah: "Say, 'What is with Allah is better than diversion and than a transaction, and Allah is the best of providers.'"`
+      }
+    ];
+
+    let appState = {
+      masteredVerses: [],
+      verseNotes: {},
+      quizAnswers: {},
+      activeFilter: `all`,
+      showArabic: true,
+      showEnglish: true
+    };
+
+    function getShimApi() {
+      return window.notebookAppApi || null;
+    }
+
+    async function persistState() {
+      const api = getShimApi();
+      if (api && typeof api.setAppState === `function`) {
+        try {
+          await api.setAppState({
+            masteredVerses: appState.masteredVerses,
+            verseNotes: appState.verseNotes,
+            quizAnswers: appState.quizAnswers,
+            activeFilter: appState.activeFilter,
+            showArabic: appState.showArabic,
+            showEnglish: appState.showEnglish
+          });
+        } catch (err) {
+          setStatusMsg(`Unable to save state automatically.`);
+        }
+      }
+    }
+
+    function setStatusMsg(text) {
+      const el = document.getElementById(`study-status-msg`);
+      if (el) {
+        el.textContent = text;
+      }
+    }
+
+    function selectMissionStep(index) {
+      const step = MISSION_STEPS[index];
+      if (!step) return;
+      for (let i = 0; i < MISSION_STEPS.length; i++) {
+        const btn = document.getElementById(`mission-btn-` + i);
+        if (btn) {
+          btn.classList.toggle(`is-active`, i === index);
+        }
+      }
+      const badgeEl = document.getElementById(`mission-badge`);
+      const arEl = document.getElementById(`mission-arabic`);
+      const titleEl = document.getElementById(`mission-title`);
+      const bodyEl = document.getElementById(`mission-body`);
+      const connEl = document.getElementById(`mission-connection`);
+      if (badgeEl) badgeEl.textContent = step.badge;
+      if (arEl) arEl.textContent = step.arabic;
+      if (titleEl) titleEl.textContent = step.title;
+      if (bodyEl) bodyEl.textContent = step.body;
+      if (connEl) connEl.textContent = step.connection;
+    }
+
+    function setParableFocus(mode) {
+      const modes = [`both`, `burden`, `steward`];
+      modes.forEach(function(m) {
+        const btn = document.getElementById(`parable-btn-` + m);
+        if (btn) btn.classList.toggle(`is-active`, m === mode);
+      });
+      const burdenGroup = document.getElementById(`svg-group-burden`);
+      const stewardGroup = document.getElementById(`svg-group-steward`);
+      const captionEl = document.getElementById(`parable-caption`);
+      if (burdenGroup) {
+        burdenGroup.setAttribute(`opacity`, mode === `steward` ? `0.28` : `1`);
+      }
+      if (stewardGroup) {
+        stewardGroup.setAttribute(`opacity`, mode === `burden` ? `0.28` : `1`);
+      }
+      if (captionEl) {
+        if (mode === `burden`) {
+          captionEl.innerHTML = `<strong>Uncarried Burden (62:5):</strong> "Entrusted with the Torah and then did not take it on" — Scripture remains external weight on the back, ending in denial of Allah's signs and lack of guidance.`;
+        } else if (mode === `steward`) {
+          captionEl.innerHTML = `<strong>Living Stewardship (62:2–4):</strong> Revelation enters through recitation, purifies the heart, and teaches both the Book and practical wisdom—turning prior error into Allah's "great bounty."`;
+        } else {
+          captionEl.innerHTML = `<strong>Key linguistic contrast:</strong> Arabic uses the same root (<span class="arabic-inline" lang="ar" dir="rtl">ح-م-ل</span>) three times in 62:5—they were <em>made to carry</em> the Torah, did not <em>shoulder</em> it, and thus resemble a donkey that <em>carries</em> books. Mere custody without moral uptake turns privilege into indictment.`;
+        }
+      }
+    }
+
+    function selectChallengeStep(index) {
+      const step = CHALLENGE_STEPS[index];
+      if (!step) return;
+      for (let i = 0; i < CHALLENGE_STEPS.length; i++) {
+        const btn = document.getElementById(`chain-btn-` + i);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      const kEl = document.getElementById(`challenge-kicker`);
+      const arEl = document.getElementById(`challenge-ar`);
+      const tEl = document.getElementById(`challenge-title`);
+      const bEl = document.getElementById(`challenge-text`);
+      if (kEl) kEl.textContent = step.kicker;
+      if (arEl) arEl.textContent = step.arabic;
+      if (tEl) tEl.textContent = step.title;
+      if (bEl) bEl.textContent = step.body;
+    }
+
+    function selectFridayPhase(index) {
+      const phase = FRIDAY_PHASES[index];
+      if (!phase) return;
+      for (let i = 0; i < FRIDAY_PHASES.length; i++) {
+        const btn = document.getElementById(`friday-btn-` + i);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      const bEl = document.getElementById(`friday-badge`);
+      const arEl = document.getElementById(`friday-ar`);
+      const tEl = document.getElementById(`friday-title`);
+      const sEl = document.getElementById(`friday-summary`);
+      const rEl = document.getElementById(`friday-rationale`);
+      if (bEl) bEl.textContent = phase.badge;
+      if (arEl) arEl.textContent = phase.arabic;
+      if (tEl) tEl.textContent = phase.title;
+      if (sEl) sEl.textContent = phase.summary;
+      if (rEl) rEl.textContent = phase.rationale;
+    }
+
+    function filterVerses(filterKey) {
+      appState.activeFilter = filterKey;
+      const keys = [`all`, `1`, `2`, `3`, `4`];
+      keys.forEach(function(k) {
+        const btn = document.getElementById(`filter-` + k);
+        if (btn) btn.classList.toggle(`is-active`, k === filterKey);
+      });
+      renderVerses();
+      persistState();
+    }
+
+    function toggleVerseLayer(layer) {
+      if (layer === `arabic`) {
+        appState.showArabic = !appState.showArabic;
+        const btn = document.getElementById(`toggle-arabic-btn`);
+        if (btn) btn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+      } else if (layer === `english`) {
+        appState.showEnglish = !appState.showEnglish;
+        const btn = document.getElementById(`toggle-english-btn`);
+        if (btn) btn.textContent = appState.showEnglish ? `Hide English` : `Show English`;
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function toggleMastered(verseNum) {
+      const idx = appState.masteredVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.masteredVerses.push(verseNum);
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      updateProgressDisplay();
+      renderVerses();
+      setStatusMsg(`Mastery progress updated.`);
+      persistState();
+    }
+
+    function saveVerseNote(verseNum, value) {
+      appState.verseNotes[String(verseNum)] = value;
+      setStatusMsg(`Study note saved for 62:` + verseNum + `.`);
+      persistState();
+    }
+
+    function updateProgressDisplay() {
+      const count = appState.masteredVerses.length;
+      const countEl = document.getElementById(`mastery-count`);
+      const fillEl = document.getElementById(`mastery-bar-fill`);
+      const barEl = document.getElementById(`mastery-progressbar`);
+      if (countEl) countEl.textContent = count + ` / 11`;
+      if (fillEl) fillEl.style.width = Math.round((count / 11) * 100) + `%`;
+      if (barEl) barEl.setAttribute(`aria-valuenow`, String(count));
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function(q) {
+        if (appState.quizAnswers[q.id] === q.correct) {
+          correctCount++;
+        }
+      });
+      const quizEl = document.getElementById(`quiz-score-display`);
+      if (quizEl) quizEl.textContent = correctCount + ` / ` + QUIZ_QUESTIONS.length;
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verse-list-container`);
+      if (!container) return;
+
+      const filtered = VERSES_DATA.filter(function(v) {
+        return appState.activeFilter === `all` || v.movement === appState.activeFilter;
+      });
+
+      const arBtn = document.getElementById(`toggle-arabic-btn`);
+      if (arBtn) arBtn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+      const enBtn = document.getElementById(`toggle-english-btn`);
+      if (enBtn) enBtn.textContent = appState.showEnglish ? `Hide English` : `Show English`;
+
+      const keys = [`all`, `1`, `2`, `3`, `4`];
+      keys.forEach(function(k) {
+        const btn = document.getElementById(`filter-` + k);
+        if (btn) btn.classList.toggle(`is-active`, k === appState.activeFilter);
+      });
+
+      container.innerHTML = ``;
+      filtered.forEach(function(v) {
+        const isMastered = appState.masteredVerses.indexOf(v.num) !== -1;
+        const noteVal = appState.verseNotes[String(v.num)] || ``;
+
+        const card = document.createElement(`article`);
+        card.className = `verse-card` + (isMastered ? ` is-mastered` : ``);
+
+        const top = document.createElement(`div`);
+        top.className = `verse-card-top`;
+
+        const refGroup = document.createElement(`div`);
+        refGroup.className = `verse-ref-group`;
+
+        const refSpan = document.createElement(`span`);
+        refSpan.className = `verse-number`;
+        refSpan.textContent = v.ref;
+
+        const badge = document.createElement(`span`);
+        badge.className = `badge-emerald`;
+        badge.textContent = v.movementLabel;
+
+        refGroup.appendChild(refSpan);
+        refGroup.appendChild(badge);
+
+        const masterBtn = document.createElement(`button`);
+        masterBtn.type = `button`;
+        masterBtn.className = `mastery-btn`;
+        masterBtn.setAttribute(`aria-pressed`, isMastered ? `true` : `false`);
+        masterBtn.textContent = isMastered ? `Mastered` : `Mark Mastered`;
+        masterBtn.onclick = function() {
+          toggleMastered(v.num);
+        };
+
+        top.appendChild(refGroup);
+        top.appendChild(masterBtn);
+        card.appendChild(top);
+
+        if (appState.showArabic) {
+          const arP = document.createElement(`p`);
+          arP.className = `arabic-text`;
+          arP.setAttribute(`lang`, `ar`);
+          arP.setAttribute(`dir`, `rtl`);
+          arP.textContent = v.arabic;
+          card.appendChild(arP);
+        }
+
+        if (appState.showEnglish) {
+          const enP = document.createElement(`p`);
+          enP.className = `verse-translation`;
+          enP.textContent = v.english;
+          card.appendChild(enP);
+        }
+
+        const ins = document.createElement(`div`);
+        ins.className = `verse-insight`;
+        ins.textContent = v.insight;
+        card.appendChild(ins);
+
+        const noteGroup = document.createElement(`div`);
+        noteGroup.className = `note-field-group`;
+
+        const label = document.createElement(`label`);
+        label.className = `field-label`;
+        label.setAttribute(`for`, `verse-note-` + v.num);
+        label.textContent = `Personal Study Note (` + v.ref + `)`;
+
+        const input = document.createElement(`input`);
+        input.type = `text`;
+        input.className = `text-input`;
+        input.id = `verse-note-` + v.num;
+        input.value = noteVal;
+        input.onchange = function() {
+          saveVerseNote(v.num, input.value);
+        };
+
+        noteGroup.appendChild(label);
+        noteGroup.appendChild(input);
+        card.appendChild(noteGroup);
+
+        container.appendChild(card);
+      });
+    }
+
+    function selectQuizOption(qId, optIndex) {
+      appState.quizAnswers[qId] = optIndex;
+      updateProgressDisplay();
+      renderQuiz();
+      setStatusMsg(`Quiz answer recorded.`);
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+      container.innerHTML = ``;
+
+      QUIZ_QUESTIONS.forEach(function(q, qIdx) {
+        const selected = appState.quizAnswers[q.id];
+        const hasAnswered = typeof selected === `number`;
+
+        const card = document.createElement(`article`);
+        card.className = `quiz-card`;
+
+        const kicker = document.createElement(`span`);
+        kicker.className = `kicker`;
+        kicker.textContent = `Question ` + (qIdx + 1) + ` of ` + QUIZ_QUESTIONS.length;
+
+        const prompt = document.createElement(`h3`);
+        prompt.className = `subhead`;
+        prompt.textContent = q.prompt;
+
+        const optsDiv = document.createElement(`div`);
+        optsDiv.className = `quiz-options`;
+
+        q.options.forEach(function(optText, optIdx) {
+          const btn = document.createElement(`button`);
+          btn.type = `button`;
+          btn.className = `quiz-option`;
+          if (hasAnswered) {
+            if (optIdx === q.correct) {
+              btn.classList.add(`is-correct`);
+            } else if (optIdx === selected && selected !== q.correct) {
+              btn.classList.add(`is-wrong`);
+            }
+          }
+          btn.textContent = optText;
+          btn.onclick = function() {
+            selectQuizOption(q.id, optIdx);
+          };
+          optsDiv.appendChild(btn);
+        });
+
+        const fb = document.createElement(`div`);
+        fb.className = `quiz-feedback` + (hasAnswered ? ` is-visible` : ``);
+        if (hasAnswered) {
+          const prefix = selected === q.correct ? `Correct — ` : `Review — `;
+          fb.textContent = prefix + q.explanation;
+        }
+
+        card.appendChild(kicker);
+        card.appendChild(prompt);
+        card.appendChild(optsDiv);
+        card.appendChild(fb);
+        container.appendChild(card);
+      });
+    }
+
+    function exportStudySummary() {
+      const lines = [
+        `SURAH AL-JUMU'AH (CHAPTER 62) — STUDY & MASTERY SUMMARY`,
+        `Verses Mastered: ` + appState.masteredVerses.length + ` / 11`,
+        ``
+      ];
+      VERSES_DATA.forEach(function(v) {
+        const masteredMark = appState.masteredVerses.indexOf(v.num) !== -1 ? `[MASTERED]` : `[IN PROGRESS]`;
+        const note = appState.verseNotes[String(v.num)] || `(No personal note)`;
+        lines.push(v.ref + ` ` + masteredMark);
+        lines.push(`Translation: ` + v.english);
+        lines.push(`Personal Note: ` + note);
+        lines.push(``);
+      });
+      const content = lines.join(`\n`);
+      const api = getShimApi();
+      if (api && typeof api.triggerFileDownload === `function`) {
+        api.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-jumuah-study-notes.txt`
+        });
+        setStatusMsg(`Study summary downloaded.`);
+      } else {
+        setStatusMsg(`Export ready in workspace.`);
+      }
+    }
+
+    function resetStudyProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirm Reset`;
+        setStatusMsg(`Click Confirm Reset to clear progress.`);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+      appState = {
+        masteredVerses: [],
+        verseNotes: {},
+        quizAnswers: {},
+        activeFilter: `all`,
+        showArabic: true,
+        showEnglish: true
+      };
+      updateProgressDisplay();
+      renderVerses();
+      renderQuiz();
+      setStatusMsg(`All study progress cleared.`);
+      persistState();
+    }
+
+    async function initApp() {
+      const api = getShimApi();
+      if (api && typeof api.getAppState === `function`) {
+        try {
+          const saved = await api.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.masteredVerses)) appState.masteredVerses = saved.masteredVerses;
+            if (saved.verseNotes && typeof saved.verseNotes === `object`) appState.verseNotes = saved.verseNotes;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (typeof saved.activeFilter === `string`) appState.activeFilter = saved.activeFilter;
+            if (typeof saved.showArabic === `boolean`) appState.showArabic = saved.showArabic;
+            if (typeof saved.showEnglish === `boolean`) appState.showEnglish = saved.showEnglish;
+          }
+        } catch (err) {
+          setStatusMsg(`Started fresh study session.`);
+        }
+      }
+
+      updateProgressDisplay();
+      renderVerses();
+      renderQuiz();
+
+      if (api && typeof api.notifyAppReady === `function`) {
+        api.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, function() {
+      initApp();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah ‘Abasa (Chapter 80) — Interactive Study & Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --border-featured-arch: #c98a6b;
+      --border-emerald-badge: #b5d6c9;
+      --border-secondary-btn: #c4b29e;
+      --border-error-soft: #e2b6b6;
+      --surface-error-soft: #faecec;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-hover: #9c3d1c;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Semantic & focus */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Type scale — Narrative */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.35rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2.1vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1140px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      text-align: center;
+    }
+    .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    .prose {
+      max-width: 68ch;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .prose + .prose {
+      margin-top: var(--space-md);
+    }
+
+    .muted {
+      color: var(--on-surface-variant);
+    }
+
+    .arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 1.95;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.25em;
+      line-height: 1.4;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--primary-on-light, var(--on-primary-container));
+      padding-inline: var(--space-xs);
+    }
+
+    /* Hero */
+    .hero-block {
+      padding-block: var(--space-xl) var(--space-lg);
+      text-align: center;
+    }
+
+    .hero-kicker-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-lede {
+      max-width: 64ch;
+      margin: var(--space-md) auto 0;
+      color: var(--on-surface-variant);
+      font-size: clamp(1.05rem, 1rem + 0.35vw, 1.22rem);
+      line-height: 1.65;
+    }
+
+    .hero-arabic-banner {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+      color: var(--secondary);
+      margin-bottom: var(--space-sm);
+      direction: rtl;
+    }
+
+    /* Ornament Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Arch cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--border-featured-arch);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-block: var(--space-xs);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald-badge);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--border-featured-arch);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .btn-primary, .btn-secondary, .pill-btn {
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--rounded-full);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: var(--soft-shadow);
+    }
+    .btn-primary:active { transform: translateY(1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--border-secondary-btn);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .pill-btn {
+      background: var(--surface-container-low);
+      color: var(--on-surface-variant);
+      border: 1px solid var(--outline-variant);
+      font-size: 0.875rem;
+      padding: var(--space-xs) var(--space-md);
+    }
+    .pill-btn:hover {
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .pill-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Mastery Telemetry Strip */
+    .mastery-bar-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-sm);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .mastery-stats {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    .stat-mini {
+      text-align: right;
+    }
+    .stat-mini-val {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-mini-lbl {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    /* Section Architecture */
+    .act-section {
+      padding-block: var(--space-xl);
+      border-top: var(--warm-hairline);
+    }
+
+    .act-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+
+    .act-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+    }
+
+    .two-col-narrative {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .panel-card.featured-wash {
+      background: var(--primary-container);
+      border-color: var(--border-featured-arch);
+    }
+
+    /* Rhetorical Callout */
+    .rhetorical-shift-box {
+      border-left: 3px solid var(--primary);
+      background: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      margin-top: var(--space-lg);
+    }
+
+    /* Interactive Priority Comparator (Act I) */
+    .lens-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .comparator-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .posture-card {
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .posture-card.elite {
+      border-top: 4px solid var(--data-4);
+    }
+    .posture-card.seeker {
+      border-top: 4px solid var(--tertiary);
+      background: var(--tertiary-container);
+      border-color: var(--border-emerald-badge);
+    }
+
+    .verse-ref-chip {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Honored Scrolls Row (Act II) */
+    .scroll-qualities {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .quality-tile {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+
+    /* Lifecycle Stepper (Act III Part A) */
+    .stage-rail {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .stage-btn {
+      font-family: inherit;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-sm);
+      min-height: 68px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--on-surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .stage-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .stage-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow);
+    }
+    .stage-btn-num {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .stage-btn-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.25;
+    }
+
+    /* Sustenance Explorer (Act III Part B) */
+    .sustenance-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .sustenance-svg-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sustenance-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .food-step-btn {
+      font-family: inherit;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 54px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .food-step-btn:hover { background: var(--surface-container-high); }
+    .food-step-btn.is-active {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+
+    /* As-Sakhkhah & Two Destinies (Act IV) */
+    .ties-chain {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+    }
+    .tie-node {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--on-surface);
+      min-height: 88px;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .tie-node:hover { background: var(--surface-container-high); }
+    .tie-node.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .faces-contrast {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .face-panel {
+      border-radius: var(--rounded-arch);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--soft-shadow);
+    }
+    .face-panel.radiant {
+      background: var(--tertiary-container);
+      border-color: var(--border-emerald-badge);
+    }
+    .face-panel.darkened {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+
+    .trait-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .trait-btn {
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+    }
+    .trait-btn.is-active-radiant {
+      background: var(--tertiary);
+      color: var(--on-primary);
+      border-color: var(--tertiary);
+    }
+    .trait-btn.is-active-darkened {
+      background: var(--on-surface);
+      color: var(--background);
+      border-color: var(--on-surface);
+    }
+
+    /* Verse-by-Verse Workbench */
+    .workbench-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .search-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-width: min(260px, 100%);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .text-area {
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      width: 100%;
+    }
+    .text-input:focus, .text-area:focus {
+      border-color: var(--primary);
+      outline: 3px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-studied {
+      border-left: 4px solid var(--tertiary);
+    }
+    .verse-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-sm);
+    }
+    .verse-body-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+      padding-block: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .verse-tafsir {
+      margin-top: var(--space-sm);
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+    }
+    .verse-note-wrap {
+      margin-top: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Reflection & Quiz */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      font-family: inherit;
+      font-size: 0.95rem;
+      text-align: left;
+      background: var(--background);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--surface-error-soft);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .quiz-feedback.is-visible { display: block; }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald-badge);
+    }
+    .quiz-feedback.is-wrong {
+      background: var(--surface-error-soft);
+      color: var(--error);
+      border: 1px solid var(--border-error-soft);
+    }
+
+    /* Container queries for adaptive inner cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 520px) {
+      .verse-body-grid {
+        grid-template-columns: 1fr;
+      }
+      .arabic {
+        text-align: right;
+      }
+    }
+
+    /* Reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .guide-footer {
+      border-top: var(--warm-hairline);
+      padding-block: var(--space-xl) var(--space-2xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    .status-toast {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      min-height: 1.4em;
+    }
+
+    /* Responsive Breakpoint */
+    @media (max-width: 780px) {
+      .two-col-narrative,
+      .comparator-grid,
+      .sustenance-layout,
+      .faces-contrast,
+      .mastery-bar-panel {
+        grid-template-columns: 1fr;
+      }
+      .mastery-stats {
+        justify-content: flex-start;
+      }
+      .stat-mini { text-align: left; }
+      .stage-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .ties-chain {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .act-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .sustenance-steps-grid,
+      .stage-rail,
+      .ties-chain {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO SECTION -->
+    <header class="hero-block">
+      <div class="hero-kicker-row">
+        <span class="badge-terracotta">Chapter 80 · Al-Qur'an</span>
+        <span class="badge-emerald">42 Verses · Meccan Revelation</span>
+      </div>
+      <div class="hero-arabic-banner" lang="ar" dir="rtl">سُورَةُ عَبَسَ</div>
+      <h1 class="title">Surah ‘Abasa: The Realignment of <em>Worth</em></h1>
+      <p class="hero-lede">
+        Opened by a single unguarded frown in Makkah, Chapter 80 unfolds from an intimate moment between the Prophet Muhammad and the blind seeker ‘Abdullah ibn Umm Maktum into a panoramic reckoning of human origins, daily sustenance, and the Day when every earthly rank dissolves.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">
+        <span>◆ Architectural Study &amp; Mastery Guide ◆</span>
+      </div>
+
+      <!-- 4 Riad Arch Overview Cards -->
+      <section class="arch-grid" aria-label="Structural overview of Surah Abasa">
+        <article class="arch-card is-featured">
+          <div class="arch-label">Opening Pivot · Vv. 1–10</div>
+          <div class="arch-value">Priority</div>
+          <div class="arch-caption">Sincere seeker over proud elite</div>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Revelation · Vv. 11–16</div>
+          <div class="arch-value">Honored</div>
+          <div class="arch-caption">Purified scrolls &amp; noble angels</div>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Gratitude · Vv. 17–32</div>
+          <div class="arch-value">8 Gifts</div>
+          <div class="arch-caption">From fluid drop to living table</div>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Reckoning · Vv. 33–42</div>
+          <div class="arch-value">2 Faces</div>
+          <div class="arch-caption">Radiant dawn vs. clinging dust</div>
+        </article>
+      </section>
+    </header>
+
+    <!-- PERSISTENT MASTERY TELEMETRY BAR -->
+    <section class="mastery-bar-panel" aria-label="Study mastery progress">
+      <div>
+        <span class="kicker">Your Mastery Tracker</span>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-sm); flex-wrap:wrap;">
+          <strong id="mastery-headline">0 of 42 verses studied</strong>
+          <span class="status-toast" id="save-status" aria-live="polite">Ready to begin</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-progress-fill"></div>
+        </div>
+      </div>
+      <div class="mastery-stats">
+        <div class="stat-mini">
+          <div class="stat-mini-val" id="stat-verses">0/42</div>
+          <div class="stat-mini-lbl">Verses</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-val" id="stat-notes">0/3</div>
+          <div class="stat-mini-lbl">Reflections</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-val" id="stat-quiz">0/6</div>
+          <div class="stat-mini-lbl">Quiz Score</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT I: CONTEXT, DIVINE REPRIMAND & SPIRITUAL RECEPTIVITY -->
+    <section class="act-section reveal-on-scroll" id="act-1">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Act I · Verses 1–10</span>
+          <h2 class="section-title">When Strategic Outreach Collides with <em>Sincere</em> Hunger</h2>
+        </div>
+        <button type="button" class="btn-secondary" onclick="markSectionStudied(1, 10)">Mark Vv. 1–10 Studied</button>
+      </div>
+
+      <div class="two-col-narrative">
+        <div>
+          <p class="prose">
+            Surah ‘Abasa opens in the midst of a tense Makkan gathering. The Prophet Muhammad (peace be upon him) was earnestly conversing with influential tribal leaders of Quraysh, hoping their acceptance of Islam would remove social barriers and protect the struggling community. At that moment, <strong>‘Abdullah ibn Umm Maktum</strong>—a blind companion already devoted to the message—approached and asked to be taught from what Allah had revealed.
+          </p>
+          <p class="prose">
+            Focused on the strategic opportunity before him, the Prophet felt interrupted. He frowned (<span class="arabic-inline" lang="ar" dir="rtl">عَبَسَ</span>) and turned away (<span class="arabic-inline" lang="ar" dir="rtl">تَوَلَّىٰ</span>) toward the Quraysh notables. Notice that Ibn Umm Maktum could not even see the frown—yet revelation immediately intervened to defend his dignity and reset the standard of prophetic attention.
+          </p>
+
+          <div class="rhetorical-shift-box">
+            <span class="verse-ref-chip">Rhetorical Precision · Vv. 1–3</span>
+            <p class="prose">
+              <strong>From Third Person to Direct Address:</strong> Verses 1–2 speak in the third person (<em>“He frowned and turned away because there came to him the blind man”</em>), softening the reproach out of reverence before shifting in verse 3 to gentle direct inquiry: <em>“But what would make you perceive, [O Muhammad], that perhaps he might be purified?”</em> Even in correction, divine speech preserves the Prophet’s honor while clarifying an enduring principle: spiritual readiness outweighs social prestige.
+            </p>
+          </div>
+        </div>
+
+        <aside class="panel-card featured-wash">
+          <span class="verse-ref-chip">Opening Verses · 80:1–4</span>
+          <p class="arabic" lang="ar" dir="rtl">
+            عَبَسَ وَتَوَلَّىٰ ۝ أَن جَاءَهُ الْأَعْمَىٰ ۝ وَمَا يُدْرِيكَ لَعَلَّهُ يَزَّكَّىٰ ۝ أَوْ يَذَّكَّرُ فَتَنفَعَهُ الذِّكْرَىٰ
+          </p>
+          <p class="prose" style="margin-top:var(--space-sm);">
+            “The Prophet frowned and turned away because there came to him the blind man, [interrupting]. But what would make you perceive, [O Muhammad], that perhaps he might be purified, or be reminded and the remembrance would benefit him?”
+          </p>
+        </aside>
+      </div>
+
+      <!-- Interactive Comparator: Istighna vs. Yas'a & Yakhsha -->
+      <div class="act-band" style="margin-top:var(--space-xl);">
+        <span class="kicker">Interactive Contrast · Verses 5–10</span>
+        <h3 class="subhead" style="margin-bottom:var(--space-xs);">Spiritual Receptivity vs. Self-Sufficiency (<em>Istighna</em>)</h3>
+        <p class="prose muted" style="margin-bottom:var(--space-md);">
+          Select an analytical lens below to compare the two human archetypes presented in verses 5–10 and examine how their inner posture reverses worldly expectations.
+        </p>
+
+        <div class="lens-tabs" role="tablist" aria-label="Comparison lenses for verses 5 to 10">
+          <button type="button" class="pill-btn is-active" onclick="selectPostureLens(0)" id="lens-btn-0">1. Inner Posture</button>
+          <button type="button" class="pill-btn" onclick="selectPostureLens(1)" id="lens-btn-1">2. Action &amp; Effort</button>
+          <button type="button" class="pill-btn" onclick="selectPostureLens(2)" id="lens-btn-2">3. Attention Given</button>
+          <button type="button" class="pill-btn" onclick="selectPostureLens(3)" id="lens-btn-3">4. Moral Responsibility</button>
+        </div>
+
+        <div class="comparator-grid">
+          <article class="posture-card elite" id="posture-elite-card">
+            <span class="verse-ref-chip">Verses 5–7 · The Self-Sufficient Elite</span>
+            <h4 class="subhead" id="elite-title">Delusion of Needlessness (Istighna)</h4>
+            <p class="arabic" lang="ar" dir="rtl" id="elite-arabic" style="margin-block:var(--space-sm);">أَمَّا مَنِ اسْتَغْنَىٰ</p>
+            <p class="prose" id="elite-desc">
+              <em>Man istaghna</em> refers to one who imagines himself complete through wealth, lineage, or status—feeling no spiritual poverty or urgency toward guidance.
+            </p>
+          </article>
+
+          <article class="posture-card seeker" id="posture-seeker-card">
+            <span class="verse-ref-chip">Verses 8–10 · The Blind Seeker</span>
+            <h4 class="subhead" id="seeker-title">Reverent Awe (Khashyah)</h4>
+            <p class="arabic" lang="ar" dir="rtl" id="seeker-arabic" style="margin-block:var(--space-sm);">وَهُوَ يَخْشَىٰ</p>
+            <p class="prose" id="seeker-desc">
+              <em>Wa huwa yakhsha</em> describes Ibn Umm Maktum’s heart: humble awareness of Allah that makes him receptive to purification (<em>tazkiyah</em>) and reminder.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT II: THE HONORED SCROLLS -->
+    <section class="act-section reveal-on-scroll" id="act-2">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Act II · Verses 11–16</span>
+          <h2 class="section-title">No! This Reminder Needs No <em>Patronage</em></h2>
+        </div>
+        <button type="button" class="btn-secondary" onclick="markSectionStudied(11, 16)">Mark Vv. 11–16 Studied</button>
+      </div>
+
+      <p class="prose">
+        Verse 11 breaks sharply with <strong><span class="arabic-inline" lang="ar" dir="rtl">كَلَّا</span> (Kalla — “No!”)</strong>. The Qur’an does not depend on the endorsement of Makkan elites for its dignity. Rather, it is an open reminder (<span class="arabic-inline" lang="ar" dir="rtl">تَذْكِرَةٌ</span>) placed before humanity—whoever truly wills may remember it, while its intrinsic majesty remains safeguarded in the highest realm.
+      </p>
+
+      <div class="scroll-qualities">
+        <article class="quality-tile">
+          <span class="verse-ref-chip">Verse 13</span>
+          <div class="arabic" lang="ar" dir="rtl" style="text-align:center;">صُحُفٍ مُّكَرَّمَةٍ</div>
+          <h3 class="subhead" style="margin-top:var(--space-xs);">Honored Sheets</h3>
+          <p class="muted" style="font-size:0.9375rem; margin:var(--space-xs) 0 0;">Dignified in origin, untouched by human distortion or tribal bargaining.</p>
+        </article>
+        <article class="quality-tile">
+          <span class="verse-ref-chip">Verse 14</span>
+          <div class="arabic" lang="ar" dir="rtl" style="text-align:center;">مَّرْفُوعَةٍ مُّطَهَّرَةٍ</div>
+          <h3 class="subhead" style="margin-top:var(--space-xs);">Exalted &amp; Purified</h3>
+          <p class="muted" style="font-size:0.9375rem; margin:var(--space-xs) 0 0;">Elevated in rank and guarded from every impurity or tampering.</p>
+        </article>
+        <article class="quality-tile">
+          <span class="verse-ref-chip">Verse 15</span>
+          <div class="arabic" lang="ar" dir="rtl" style="text-align:center;">بِأَيْدِي سَفَرَةٍ</div>
+          <h3 class="subhead" style="margin-top:var(--space-xs);">Messenger-Angels</h3>
+          <p class="muted" style="font-size:0.9375rem; margin:var(--space-xs) 0 0;"><em>Safarah</em>—trusted emissaries bearing revelation between Heaven and earth.</p>
+        </article>
+        <article class="quality-tile">
+          <span class="verse-ref-chip">Verse 16</span>
+          <div class="arabic" lang="ar" dir="rtl" style="text-align:center;">كِرَامٍ بَرَرَةٍ</div>
+          <h3 class="subhead" style="margin-top:var(--space-xs);">Noble &amp; Dutiful</h3>
+          <p class="muted" style="font-size:0.9375rem; margin:var(--space-xs) 0 0;">Honored in character and unwaveringly obedient to their Lord.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ACT III: ORIGINS & SUSTENANCE OF MANKIND -->
+    <section class="act-section reveal-on-scroll" id="act-3">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Act III · Verses 17–32</span>
+          <h2 class="section-title">Disarming <em>Istighna</em> Through Origins &amp; Daily Bread</h2>
+        </div>
+        <button type="button" class="btn-secondary" onclick="markSectionStudied(17, 32)">Mark Vv. 17–32 Studied</button>
+      </div>
+
+      <p class="prose">
+        Having addressed the Prophet’s moment of outreach, the surah turns directly to the root disease of the arrogant elite: <em>kufran</em> (ingratitude) born of imagined self-sufficiency. Verse 17 asks in stunned rebuke, <em>“Cursed is man; how disbelieving is he!”</em>—and immediately answers with two undeniable proofs of total human dependence: how we are formed and how we are fed.
+      </p>
+
+      <!-- Part A: 5 Stages of Human Dependence -->
+      <div class="panel-card" style="margin-top:var(--space-lg);">
+        <span class="kicker">Part A · Verses 18–23 · Interactive Lifecycle Progression</span>
+        <h3 class="subhead" style="margin-bottom:var(--space-sm);">Every Verb Has One Author</h3>
+        <p class="prose muted" style="margin-bottom:var(--space-md);">
+          Step through the five stages below. Notice the grammar of verses 19–22: in every transition from conception to resurrection, God is the subject and the human being is the recipient.
+        </p>
+
+        <div class="stage-rail" role="tablist" aria-label="Stages of human dependence">
+          <button type="button" class="stage-btn is-active" onclick="selectLifeStage(0)" id="life-btn-0">
+            <span class="stage-btn-num">Stage 1 · 80:19</span>
+            <span class="stage-btn-title">Origin &amp; Measure</span>
+          </button>
+          <button type="button" class="stage-btn" onclick="selectLifeStage(1)" id="life-btn-1">
+            <span class="stage-btn-num">Stage 2 · 80:20</span>
+            <span class="stage-btn-title">The Way Eased</span>
+          </button>
+          <button type="button" class="stage-btn" onclick="selectLifeStage(2)" id="life-btn-2">
+            <span class="stage-btn-num">Stage 3 · 80:21</span>
+            <span class="stage-btn-title">Death &amp; Burial</span>
+          </button>
+          <button type="button" class="stage-btn" onclick="selectLifeStage(3)" id="life-btn-3">
+            <span class="stage-btn-num">Stage 4 · 80:22</span>
+            <span class="stage-btn-title">Resurrection</span>
+          </button>
+          <button type="button" class="stage-btn" onclick="selectLifeStage(4)" id="life-btn-4">
+            <span class="stage-btn-num">Stage 5 · 80:23</span>
+            <span class="stage-btn-title">Unfulfilled Duty</span>
+          </button>
+        </div>
+
+        <div class="panel-card featured-wash" id="life-stage-detail">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+            <span class="badge-terracotta" id="life-ref">Verse 80:19</span>
+            <span class="badge-emerald" id="life-theme">Humble Beginning</span>
+          </div>
+          <p class="arabic" lang="ar" dir="rtl" id="life-arabic" style="margin-block:var(--space-sm);">مِن نُّطْفَةٍ خَلَقَهُ فَقَدَّرَهُ</p>
+          <p class="prose" id="life-translation"><strong>“From a sperm-drop He created him and destined for him.”</strong></p>
+          <p class="prose muted" id="life-commentary" style="margin-top:var(--space-xs);">
+            Human pride collapses at its source: life begins as a microscopic drop (<em>nutfah</em>), shaped, proportioned, and given exact capacities (<em>fa-qaddarahu</em>) without any consultation or effort of our own.
+          </p>
+        </div>
+      </div>
+
+      <!-- Part B: Let Mankind Look at His Food -->
+      <div class="act-band" style="margin-top:var(--space-xl);">
+        <span class="kicker">Part B · Verses 24–32 · Interactive Sustenance Chain</span>
+        <h3 class="subhead" style="margin-bottom:var(--space-xs);">“Then Let Mankind Look at His Food”</h3>
+        <p class="prose muted" style="margin-bottom:var(--space-lg);">
+          If someone ignores their distant birth or future grave, verse 24 invites them to look at what sits in front of them three times a day. Click any link in the eight-stage ecological chain to inspect how rainwater and split soil nourish both body and delight.
+        </p>
+
+        <div class="sustenance-layout">
+          <!-- Custom Botanical / Ecological SVG Schematic -->
+          <div class="sustenance-svg-box">
+            <svg viewBox="0 0 360 260" width="100%" height="230" aria-hidden="true" style="display:block;">
+              <!-- Sky & Cloud -->
+              <rect x="0" y="0" width="360" height="175" fill="var(--background)" rx="8" />
+              <path d="M85 48 C85 33 102 25 117 31 C126 18 152 18 161 32 C177 29 192 40 190 54 C190 64 179 69 167 69 L98 69 C88 69 85 59 85 48 Z" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="1.5" />
+              <!-- Rain Torrents (Stage 0: 80:25) -->
+              <g id="svg-stage-0" opacity="1">
+                <line x1="108" y1="78" x2="98" y2="128" stroke="var(--tertiary)" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="132" y1="78" x2="122" y2="138" stroke="var(--tertiary)" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="156" y1="78" x2="146" y2="128" stroke="var(--tertiary)" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="176" y1="78" x2="166" y2="136" stroke="var(--tertiary)" stroke-width="2.5" stroke-linecap="round" />
+              </g>
+              <!-- Earth & Split Soil (Stage 1: 80:26) -->
+              <path d="M0 175 L360 175 L360 260 L0 260 Z" fill="var(--surface-container-high)" />
+              <path id="svg-stage-1" d="M60 175 L88 175 L98 186 L108 175 L175 175 L186 188 L196 175 L268 175 L278 185 L288 175 L360 175" fill="none" stroke="var(--primary)" stroke-width="3" />
+              <!-- Grain Stalks (Stage 2: 80:27) -->
+              <g id="svg-stage-2" opacity="0.45">
+                <path d="M98 175 Q96 135 90 110" fill="none" stroke="var(--secondary)" stroke-width="2.5" />
+                <ellipse cx="88" cy="108" rx="4" ry="8" fill="var(--secondary)" />
+                <ellipse cx="95" cy="116" rx="4" ry="7" fill="var(--secondary)" />
+                <ellipse cx="86" cy="120" rx="4" ry="7" fill="var(--secondary)" />
+              </g>
+              <!-- Grapes & Herbage (Stage 3: 80:28) -->
+              <g id="svg-stage-3" opacity="0.45">
+                <path d="M150 175 Q148 145 156 125" fill="none" stroke="var(--tertiary)" stroke-width="2" />
+                <circle cx="156" cy="134" r="4" fill="var(--primary)" />
+                <circle cx="164" cy="136" r="4" fill="var(--primary)" />
+                <circle cx="160" cy="143" r="4" fill="var(--primary)" />
+                <path d="M135 175 Q132 160 128 152 M142 175 Q143 162 146 155" stroke="var(--tertiary)" stroke-width="2" fill="none" />
+              </g>
+              <!-- Olive & Date Palm (Stage 4: 80:29) -->
+              <g id="svg-stage-4" opacity="0.45">
+                <path d="M214 175 Q218 130 226 92" fill="none" stroke="var(--on-surface-variant)" stroke-width="4" />
+                <path d="M226 92 Q200 78 188 94 M226 92 Q212 70 224 62 M226 92 Q248 72 260 88 M226 92 Q252 94 256 108" fill="none" stroke="var(--tertiary)" stroke-width="2.5" stroke-linecap="round" />
+              </g>
+              <!-- Dense Gardens & Fruit (Stages 5 & 6: 80:30-31) -->
+              <g id="svg-stage-5" opacity="0.45">
+                <circle cx="288" cy="134" r="26" fill="var(--tertiary)" opacity="0.28" stroke="var(--tertiary)" stroke-width="2" />
+                <circle cx="312" cy="144" r="20" fill="var(--tertiary)" opacity="0.28" stroke="var(--tertiary)" stroke-width="2" />
+                <circle cx="278" cy="128" r="4.5" fill="var(--primary)" />
+                <circle cx="296" cy="138" r="4.5" fill="var(--primary)" />
+                <circle cx="310" cy="146" r="4.5" fill="var(--primary)" />
+              </g>
+              <!-- Grazing Provision Label (Stage 7: 80:32) -->
+              <text x="180" y="222" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="700" fill="var(--on-surface-variant)" id="svg-caption">
+                WATER POURED IN TORRENTS (80:25)
+              </text>
+            </svg>
+
+            <div style="margin-top:var(--space-sm); padding-top:var(--space-sm); border-top:var(--warm-hairline);">
+              <span class="verse-ref-chip" id="food-detail-ref">Verse 80:25</span>
+              <div class="arabic" lang="ar" dir="rtl" id="food-detail-arabic" style="font-size:1.5rem;">أَنَّا صَبَبْنَا الْمَاءَ صَبًّا</div>
+              <p class="prose" id="food-detail-text" style="margin-top:var(--space-xs); font-size:0.95rem;">
+                <strong>“How We poured down water in torrents”</strong> — Notice the intensive infinitive (<em>sabban</em>): rainfall is never random; it arrives in measured abundance straight from the sky.
+              </p>
+            </div>
+          </div>
+
+          <div class="sustenance-steps-grid" role="list" aria-label="Stages of human and animal sustenance">
+            <button type="button" class="food-step-btn is-active" onclick="selectFoodStep(0)" id="food-btn-0">
+              <span><strong>1. Torrential Rain</strong><br><small class="muted">V. 25 · Sabban</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:25</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(1)" id="food-btn-1">
+              <span><strong>2. Split Earth</strong><br><small class="muted">V. 26 · Shaqqan</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:26</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(2)" id="food-btn-2">
+              <span><strong>3. Staple Grain</strong><br><small class="muted">V. 27 · Habban</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:27</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(3)" id="food-btn-3">
+              <span><strong>4. Grapes &amp; Herbage</strong><br><small class="muted">V. 28 · Fresh produce</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:28</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(4)" id="food-btn-4">
+              <span><strong>5. Olives &amp; Palms</strong><br><small class="muted">V. 29 · Enduring trees</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:29</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(5)" id="food-btn-5">
+              <span><strong>6. Dense Gardens</strong><br><small class="muted">V. 30 · Hada’iq ghulba</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:30</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(6)" id="food-btn-6">
+              <span><strong>7. Fruit &amp; Pasture</strong><br><small class="muted">V. 31 · Fakihat &amp; abb</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:31</span>
+            </button>
+            <button type="button" class="food-step-btn" onclick="selectFoodStep(7)" id="food-btn-7">
+              <span><strong>8. Shared Enjoyment</strong><br><small class="muted">V. 32 · Mata‘an lakum</small></span>
+              <span class="verse-ref-chip" style="margin:0;">80:32</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT IV: AS-SAKHKHAH & TWO CONTRASTING FACES -->
+    <section class="act-section reveal-on-scroll" id="act-4">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Act IV · Verses 33–42</span>
+          <h2 class="section-title">As-Sakhkhah: The Deafening Blast &amp; <em>Unveiled</em> Faces</h2>
+        </div>
+        <button type="button" class="btn-secondary" onclick="markSectionStudied(33, 42)">Mark Vv. 33–42 Studied</button>
+      </div>
+
+      <p class="prose">
+        The final movement erupts with <strong><span class="arabic-inline" lang="ar" dir="rtl">الصَّاخَّةُ</span> (As-Sakhkhah)</strong>—a piercing, deafening blast so overwhelming it drowns out every earthly conversation, status symbol, and distraction. Notice the deliberate escalation of intimacy in verses 34–36: human flight begins with the sibling and reaches the deepest bonds of the heart.
+      </p>
+
+      <!-- Concentric Ties Breakdown -->
+      <div class="ties-chain" role="tablist" aria-label="Escalating severance of human ties on the Day of Resurrection">
+        <button type="button" class="tie-node is-active" onclick="selectTieNode(0)" id="tie-btn-0">
+          <span class="verse-ref-chip">80:34</span>
+          <div style="font-weight:700;">His Brother</div>
+          <div class="arabic" lang="ar" dir="rtl" style="font-size:1.25rem; text-align:center;">مِنْ أَخِيهِ</div>
+        </button>
+        <button type="button" class="tie-node" onclick="selectTieNode(1)" id="tie-btn-1">
+          <span class="verse-ref-chip">80:35</span>
+          <div style="font-weight:700;">Mother &amp; Father</div>
+          <div class="arabic" lang="ar" dir="rtl" style="font-size:1.25rem; text-align:center;">وَأُمِّهِ وَأَبِيهِ</div>
+        </button>
+        <button type="button" class="tie-node" onclick="selectTieNode(2)" id="tie-btn-2">
+          <span class="verse-ref-chip">80:36</span>
+          <div style="font-weight:700;">Wife &amp; Children</div>
+          <div class="arabic" lang="ar" dir="rtl" style="font-size:1.25rem; text-align:center;">وَصَاحِبَتِهِ وَبَنِيهِ</div>
+        </button>
+        <button type="button" class="tie-node" onclick="selectTieNode(3)" id="tie-btn-3">
+          <span class="verse-ref-chip">80:37</span>
+          <div style="font-weight:700;">All-Consuming Concern</div>
+          <div class="arabic" lang="ar" dir="rtl" style="font-size:1.25rem; text-align:center;">شَأْنٌ يُغْنِيهِ</div>
+        </button>
+      </div>
+
+      <div class="panel-card featured-wash" id="tie-detail-box">
+        <span class="verse-ref-chip" id="tie-detail-ref">Verse 80:34 · First Circle</span>
+        <p class="prose" id="tie-detail-text">
+          <strong>“On the Day a man will flee from his brother”</strong> — One’s sibling is often the closest peer and lifelong ally, yet terror turns instinctive solidarity into solitary flight.
+        </p>
+      </div>
+
+      <!-- Vivid Contrast: Radiant vs. Dust-Darkened Faces -->
+      <div class="faces-contrast">
+        <article class="face-panel radiant">
+          <span class="badge-emerald">Verses 38–39 · The Redeemed</span>
+          <h3 class="section-title" style="margin-top:var(--space-sm); font-size:var(--headline-size);">Radiant, Laughing Faces</h3>
+          <p class="arabic" lang="ar" dir="rtl">وُجُوهٌ يَوْمَئِذٍ مُّسْفِرَةٌ ۝ ضَاحِكَةٌ مُّسْتَبْشِرَةٌ</p>
+          <div class="trait-chips">
+            <button type="button" class="trait-btn is-active-radiant" onclick="selectFaceTrait('radiant', 0)" id="rad-btn-0">Musfirah (Bright)</button>
+            <button type="button" class="trait-btn" onclick="selectFaceTrait('radiant', 1)" id="rad-btn-1">Dahikah (Laughing)</button>
+            <button type="button" class="trait-btn" onclick="selectFaceTrait('radiant', 2)" id="rad-btn-2">Mustabshirah (Rejoicing)</button>
+          </div>
+          <p class="prose" id="rad-detail">
+            <strong>Musfirah (Bright / Unveiled like dawn):</strong> From the root <em>s-f-r</em>—meaning to shine clearly, uncover, and radiate morning light. Notably, it shares a linguistic root with <em>safarah</em> (the noble angel-scribes in v. 15): those who honored the revealed reminder now shine with its light.
+          </p>
+        </article>
+
+        <article class="face-panel darkened">
+          <span class="badge-terracotta">Verses 40–42 · The Wicked Disbelievers</span>
+          <h3 class="section-title" style="margin-top:var(--space-sm); font-size:var(--headline-size);">Dust-Covered, Darkened Faces</h3>
+          <p class="arabic" lang="ar" dir="rtl">وَوُجُوهٌ يَوْمَئِذٍ عَلَيْهَا غَبَرَةٌ ۝ تَرْهَقُهَا قَتَرَةٌ ۝ أُولَٰئِكَ هُمُ الْكَفَرَةُ الْفَجَرَةُ</p>
+          <div class="trait-chips">
+            <button type="button" class="trait-btn is-active-darkened" onclick="selectFaceTrait('darkened', 0)" id="dark-btn-0">Ghabarah (Dust)</button>
+            <button type="button" class="trait-btn" onclick="selectFaceTrait('darkened', 1)" id="dark-btn-1">Qatarah (Blackness)</button>
+            <button type="button" class="trait-btn" onclick="selectFaceTrait('darkened', 2)" id="dark-btn-2">Kafarah Fajarah</button>
+          </div>
+          <p class="prose" id="dark-detail">
+            <strong>Ghabarah (Clinging Dust):</strong> The fine, settling dust of exhaustion, defeat, and humiliation resting visibly on faces that once prided themselves on polished prestige in Makkah.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMPLETE 42-VERSE STUDY WORKBENCH -->
+    <section class="act-section reveal-on-scroll" id="verse-workbench">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Complete Text &amp; Lexical Commentary</span>
+          <h2 class="section-title">Verse-by-Verse Study <em>Workbench</em></h2>
+        </div>
+        <span class="badge-emerald" id="workbench-count-badge">Showing 42 of 42 verses</span>
+      </div>
+
+      <div class="workbench-controls">
+        <div class="filter-row" role="group" aria-label="Filter verses by thematic movement">
+          <button type="button" class="pill-btn is-active" onclick="setVerseFilter('all')" id="filter-all">All 42</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('act1')" id="filter-act1">Vv. 1–10 Reprimand</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('act2')" id="filter-act2">Vv. 11–16 Scroll</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('act3a')" id="filter-act3a">Vv. 17–23 Origins</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('act3b')" id="filter-act3b">Vv. 24–32 Sustenance</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('act4')" id="filter-act4">Vv. 33–42 Reckoning</button>
+          <button type="button" class="pill-btn" onclick="setVerseFilter('unstudied')" id="filter-unstudied">Unstudied Only</button>
+        </div>
+
+        <div class="search-field-group">
+          <label for="verse-search" class="field-label">Search Translation or Concept</label>
+          <input type="search" id="verse-search" class="text-input" placeholder="e.g., purified, grain, dust, angels…" oninput="handleVerseSearch(this.value)">
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container"></div>
+    </section>
+
+    <!-- REFLECTIVE EXERCISES -->
+    <section class="act-section reveal-on-scroll" id="reflections">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Personal Application</span>
+          <h2 class="section-title">Guided Reflective <em>Exercises</em></h2>
+        </div>
+        <button type="button" class="btn-secondary" onclick="exportStudySummary()">Export Study Notes (.txt)</button>
+      </div>
+
+      <p class="prose muted" style="margin-bottom:var(--space-lg);">
+        Surah ‘Abasa moves from external observation to self-examination. Your reflections save automatically in this notebook so you can revisit them anytime.
+      </p>
+
+      <div class="reflection-grid">
+        <article class="reflection-card">
+          <span class="verse-ref-chip">Reflection 1 · Verses 1–10</span>
+          <label for="reflect-1" class="subhead" style="cursor:pointer;">Whom do I overlook while chasing prestige?</label>
+          <p class="muted" style="font-size:0.9rem; margin:0;">
+            Identify a person or group in your life who approaches with sincerity and vulnerability, and consider how status or busyness may cause you to turn away.
+          </p>
+          <textarea id="reflect-1" class="text-area" rows="4" placeholder="Write your reflection on attention and spiritual receptivity…" oninput="saveReflection(0, this.value)"></textarea>
+        </article>
+
+        <article class="reflection-card">
+          <span class="verse-ref-chip">Reflection 2 · Verses 17–32</span>
+          <label for="reflect-2" class="subhead" style="cursor:pointer;">Where does hidden ‘istighna’ appear in my routine?</label>
+          <p class="muted" style="font-size:0.9rem; margin:0;">
+            Reflect on a daily provision—health, knowledge, or your next meal—that you treat as self-earned rather than a chain of mercy poured down for you.
+          </p>
+          <textarea id="reflect-2" class="text-area" rows="4" placeholder="Write your reflection on dependence and gratitude…" oninput="saveReflection(1, this.value)"></textarea>
+        </article>
+
+        <article class="reflection-card">
+          <span class="verse-ref-chip">Reflection 3 · Verses 33–42</span>
+          <label for="reflect-3" class="subhead" style="cursor:pointer;">What endures when every title falls silent?</label>
+          <p class="muted" style="font-size:0.9rem; margin:0;">
+            When As-Sakhkhah strips away family alliances and social roles, only inner purity and faith remain. What habit most needs realignment today?
+          </p>
+          <textarea id="reflect-3" class="text-area" rows="4" placeholder="Write your reflection on the Day of unveiling…" oninput="saveReflection(2, this.value)"></textarea>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMPREHENSION CHECK -->
+    <section class="act-section reveal-on-scroll" id="comprehension-check">
+      <div class="act-header">
+        <div>
+          <span class="kicker">Mastery Verification</span>
+          <h2 class="section-title">Comprehension <em>Check</em></h2>
+        </div>
+        <div style="display:flex; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+          <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 6</span>
+          <button type="button" class="btn-secondary" id="reset-quiz-btn" onclick="resetQuiz(this)">Reset Quiz</button>
+        </div>
+      </div>
+
+      <div class="quiz-grid" id="quiz-container"></div>
+    </section>
+
+    <footer class="guide-footer">
+      <div>
+        <strong>Sources:</strong> Qur’anic text &amp; English translation of Surah ‘Abasa (Chapter 80, vv. 1–42) from the provided study source context (Sahih International translation) and classical *Asbab al-Nuzul* context regarding ‘Abdullah ibn Umm Maktum.
+      </div>
+      <div>
+        <button type="button" class="btn-secondary" id="reset-all-btn" onclick="resetAllProgress(this)">Reset All Progress</button>
+      </div>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES_DATA = [
+      { n: 1, act: `act1`, ar: `عَبَسَ وَتَوَلَّىٰ`, en: `The Prophet frowned and turned away`, note: `Opening in the 3rd person (‘Abasa — he frowned) gently softens the reprimand before shifting to direct address in v. 3.` },
+      { n: 2, act: `act1`, ar: `أَن جَاءَهُ الْأَعْمَىٰ`, en: `Because there came to him the blind man, [interrupting].`, note: `Refers to ‘Abdullah ibn Umm Maktum; his blindness meant he could not even see the Prophet’s facial expression, highlighting Allah’s protective care for his honor.` },
+      { n: 3, act: `act1`, ar: `وَمَا يُدْرِيكَ لَعَلَّهُ يَزَّكَّىٰ`, en: `But what would make you perceive, [O Muhammad], that perhaps he might be purified`, note: `Tazkiyah (purification) is the real currency of prophethood—far more precious than reluctant attention from elites.` },
+      { n: 4, act: `act1`, ar: `أَوْ يَذَّكَّرُ فَتَنفَعَهُ الذِّكْرَىٰ`, en: `Or be reminded and the remembrance would benefit him?`, note: `Pairs with v. 3: even if he only gains a timely reminder, a receptive heart puts truth into practice.` },
+      { n: 5, act: `act1`, ar: `أَمَّا مَنِ اسْتَغْنَىٰ`, en: `As for he who thinks himself without need,`, note: `Istighna denotes perceived self-sufficiency—trusting wealth, lineage, and status instead of seeking Allah.` },
+      { n: 6, act: `act1`, ar: `فَأَنتَ لَهُ تَصَدَّىٰ`, en: `To him you give attention.`, note: `Tasadda conveys turning fully toward someone, mirroring their importance and accommodating their reluctance.` },
+      { n: 7, act: `act1`, ar: `وَمَا عَلَيْكَ أَلَّا يَزَّكَّىٰ`, en: `And not upon you [is any blame] if he will not be purified.`, note: `Clarifies prophetic duty: delivering truth faithfully is required; forcing arrogant hearts to purify themselves is not.` },
+      { n: 8, act: `act1`, ar: `وَأَمَّا مَن جَاءَكَ يَسْعَىٰ`, en: `But as for he who came to you striving [for knowledge]`, note: `Yas‘a indicates earnest, brisk effort—coming despite physical blindness to seek guidance.` },
+      { n: 9, act: `act1`, ar: `وَهُوَ يَخْشَىٰ`, en: `While he fears [Allah],`, note: `Khashyah (reverent awe grounded in awareness of Allah) makes the heart fertile soil for revelation.` },
+      { n: 10, act: `act1`, ar: `فَأَنتَ عَنْهُ تَلَهَّىٰ`, en: `From him you are distracted.`, note: `Talahha marks being preoccupied elsewhere—contrasting starkly with tasadda (devoted attention) in v. 6.` },
+      { n: 11, act: `act2`, ar: `كَلَّا إِنَّهَا تَذْكِرَةٌ`, en: `No! Indeed, these verses are a reminder;`, note: `Kalla (‘No!’) firmly pivots: do not repeat this priority error, and know that revelation stands in its own honor.` },
+      { n: 12, act: `act2`, ar: `فَمَن شَاءَ ذَكَرَهُ`, en: `So whoever wills may remember it.`, note: `Truth is offered freely to all; human will determines who receives the reminder.` },
+      { n: 13, act: `act2`, ar: `فِي صُحُفٍ مُّكَرَّمَةٍ`, en: `[It is recorded] in honored sheets,`, note: `Suhuf mukarramah—noble scrolls kept in the highest register, above worldly patronage.` },
+      { n: 14, act: `act2`, ar: `مَّرْفُوعَةٍ مُّطَهَّرَةٍ`, en: `Exalted and purified,`, note: `Elevated in rank (marfu‘ah) and safeguarded from any defect or distortion (mutahharah).` },
+      { n: 15, act: `act2`, ar: `بِأَيْدِي سَفَرَةٍ`, en: `[Carried] by the hands of messenger-angels,`, note: `Safarah—emissaries and scribes who mediate revelation with complete fidelity.` },
+      { n: 16, act: `act2`, ar: `كِرَامٍ بَرَرَةٍ`, en: `Noble and dutiful.`, note: `Kiram (honorable) and bararah (righteous, deeply obedient) underline the purity of transmission.` },
+      { n: 17, act: `act3a`, ar: `قُتِلَ الْإِنسَانُ مَا أَكْفَرَهُ`, en: `Cursed is man; how disbelieving is he.`, note: `An expression of astonishment at how deeply ungrateful and forgetful the arrogant human being can become.` },
+      { n: 18, act: `act3a`, ar: `مِنْ أَيِّ شَيْءٍ خَلَقَهُ`, en: `From what substance did He create him?`, note: `Calls the proud back to their starting point before examining their capacities.` },
+      { n: 19, act: `act3a`, ar: `مِن نُّطْفَةٍ خَلَقَهُ فَقَدَّرَهُ`, en: `From a sperm-drop He created him and destined for him;`, note: `From a mere drop (nutfah), Allah created and precisely proportioned his faculties and lifespan.` },
+      { n: 20, act: `act3a`, ar: `ثُمَّ السَّبِيلَ يَسَّرَهُ`, en: `Then He eased the way for him;`, note: `Eased both the physical passage of birth and the moral clarity of the path between guidance and error.` },
+      { n: 21, act: `act3a`, ar: `ثُمَّ أَمَاتَهُ فَأَقْبَرَهُ`, en: `Then He causes his death and provides a grave for him.`, note: `Even after death, Allah honors humans with burial (aqbarahu) rather than leaving them exposed.` },
+      { n: 22, act: `act3a`, ar: `ثُمَّ إِذَا شَاءَ أَنشَرَهُ`, en: `Then when He wills, He will resurrect him.`, note: `Resurrection (inshar) awaits only Allah’s appointed command—neither hastened nor escaped by man.` },
+      { n: 23, act: `act3a`, ar: `كَلَّا لَمَّا يَقْضِ مَا أَمَرَهُ`, en: `No! Man has not yet accomplished what He commanded him.`, note: `Despite uninterrupted grace from womb to grave, humanity still falls short of fulfilling its covenant.` },
+      { n: 24, act: `act3b`, ar: `فَلْيَنظُرِ الْإِنسَانُ إِلَىٰ طَعَامِهِ`, en: `Then let mankind look at his food -`, note: `Redirects reflection to the everyday table: every meal is an argument against istighna.` },
+      { n: 25, act: `act3b`, ar: `أَنَّا صَبَبْنَا الْمَاءَ صَبًّا`, en: `How We poured down water in torrents,`, note: `Sabban—rainwater descending from clouds beyond human manufacture.` },
+      { n: 26, act: `act3b`, ar: `ثُمَّ شَقَقْنَا الْأَرْضَ شَقًّا`, en: `Then We broke open the earth, splitting [it with sprouts],`, note: `Tender shoots cleave hard soil—a quiet daily miracle of power and gentleness.` },
+      { n: 27, act: `act3b`, ar: `فَأَنبَتْنَا فِيهَا حَبًّا`, en: `And caused to grow within it grain`, note: `Habb—staple grains (wheat, barley, rice) that form the backbone of human sustenance.` },
+      { n: 28, act: `act3b`, ar: `وَعِنَبًا وَقَضْبًا`, en: `And grapes and herbage`, note: `Sweet fruits of the vine alongside fresh green herbs and fodder (qadb) eaten repeatedly as they regrow.` },
+      { n: 29, act: `act3b`, ar: `وَزَيْتُونًا وَنَخْلًا`, en: `And olive and palm trees`, note: `Two enduring trees of the Mediterranean and Arabian world—providing oil, shade, and nutrient-dense dates.` },
+      { n: 30, act: `act3b`, ar: `وَحَدَائِقَ غُلْبًا`, en: `And gardens of dense shrubbery`, note: `Hada’iq ghulba—lush walled orchards with thick, intertwined canopies of beauty and shade.` },
+      { n: 31, act: `act3b`, ar: `وَفَاكِهَةً وَأَبًّا`, en: `And fruit and grass`, note: `Pairs fakahat (delightful fruits for people) with abb (wild pasture/grass for animals), showing holistic care.` },
+      { n: 32, act: `act3b`, ar: `مَّتَاعًا لَّكُمْ وَلِأَنْعَامِكُمْ`, en: `[As] enjoyment for you and your grazing livestock.`, note: `Sustenance is described as mata‘ (provision & enjoyment) linking human flourishing with the creatures in our care.` },
+      { n: 33, act: `act4`, ar: `فَإِذَا جَاءَتِ الصَّاخَّةُ`, en: `But when there comes the Deafening Blast`, note: `As-Sakhkhah—a sound so piercing it shatters distraction and commands absolute attention.` },
+      { n: 34, act: `act4`, ar: `يَوْمَ يَفِرُّ الْمَرْءُ مِنْ أَخِيهِ`, en: `On the Day a man will flee from his brother`, note: `Flight begins with one’s sibling—lest they claim a right or add to one’s burden.` },
+      { n: 35, act: `act4`, ar: `وَأُمِّهِ وَأَبِيهِ`, en: `And his mother and his father`, note: `Escalates to the parents who raised and sacrificed for him.` },
+      { n: 36, act: `act4`, ar: `وَصَاحِبَتِهِ وَبَنِيهِ`, en: `And his wife and his children,`, note: `Reaches the innermost circle of daily tenderness—spouse and children—showing total relational collapse.` },
+      { n: 37, act: `act4`, ar: `لِكُلِّ امْرِئٍ مِّنْهُمْ يَوْمَئِذٍ شَأْنٌ يُغْنِيهِ`, en: `For every man, that Day, will be a matter adequate for him.`, note: `Yughnih (‘adequate to occupy him’) echoes istaghna (v. 5): worldly false sufficiency turns into total solitary preoccupation.` },
+      { n: 38, act: `act4`, ar: `وُجُوهٌ يَوْمَئِذٍ مُّسْفِرَةٌ`, en: `[Some] faces, that Day, will be bright -`, note: `Musfirah—radiant and unveiled like the break of dawn, sharing the root of safarah (v. 15).` },
+      { n: 39, act: `act4`, ar: `ضَاحِكَةٌ مُّسْتَبْشِرَةٌ`, en: `Laughing, rejoicing at good news.`, note: `Outer joy (dahikah) united with inner certainty at the glad tidings of salvation (mustabshirah).` },
+      { n: 40, act: `act4`, ar: `وَوُجُوهٌ يَوْمَئِذٍ عَلَيْهَا غَبَرَةٌ`, en: `And [other] faces, that Day, will have upon them dust.`, note: `Ghabarah—the pale, clinging dust of defeat and disgrace settling over once-proud faces.` },
+      { n: 41, act: `act4`, ar: `تَرْهَقُهَا قَتَرَةٌ`, en: `Blackness will cover them.`, note: `Tarhaquha qatarah—soot-like gloom overwhelms and wraps them from without and within.` },
+      { n: 42, act: `act4`, ar: `أُولَٰئِكَ هُمُ الْكَفَرَةُ الْفَجَرَةُ`, en: `Those are the disbelievers, the wicked ones.`, note: `Concludes by pairing inward rejection of truth (kafarah) with outward moral recklessness (fajarah).` }
+    ];
+
+    const POSTURE_LENSES = [
+      {
+        eliteTitle: `Delusion of Needlessness (Istighna)`,
+        eliteArabic: `أَمَّا مَنِ اسْتَغْنَىٰ`,
+        eliteDesc: `Man istaghna refers to one who imagines himself complete through wealth, lineage, or status—feeling no spiritual poverty or urgency toward guidance.`,
+        seekerTitle: `Reverent Awe (Khashyah)`,
+        seekerArabic: `وَهُوَ يَخْشَىٰ`,
+        seekerDesc: `Wa huwa yakhsha describes Ibn Umm Maktum’s heart: humble awareness of Allah that makes him receptive to purification (tazkiyah) and reminder.`
+      },
+      {
+        eliteTitle: `Indifference & Reluctance`,
+        eliteArabic: `مَنِ اسْتَغْنَىٰ ۝ أَلَّا يَزَّكَّىٰ`,
+        eliteDesc: `The proud elite felt they were doing the Prophet a favor simply by listening—resisting self-examination and clinging to tribal prestige.`,
+        seekerTitle: `Earnest Striving (Yas‘a)`,
+        seekerArabic: `وَأَمَّا مَنْ جَاءَكَ يَسْعَىٰ`,
+        seekerDesc: `Despite physical blindness, Ibn Umm Maktum walked briskly and purposefully (yas‘a) toward revelation, refusing to let limitation block his growth.`
+      },
+      {
+        eliteTitle: `Full Attention Given (Tasadda)`,
+        eliteArabic: `فَأَنتَ لَهُ تَصَدَّىٰ`,
+        eliteDesc: `The Prophet gave the elites focused engagement (tasadda), hoping their conversion would sway Makkah—yet their hearts were closed.`,
+        seekerTitle: `Turned Away & Distracted (‘Abasa / Talahha)`,
+        seekerArabic: `فَأَنتَ عَنْهُ تَلَهَّىٰ`,
+        seekerDesc: `The sincere seeker was met with a frown and distraction (talahha)—prompting divine correction so the community never sidelines the humble.`
+      },
+      {
+        eliteTitle: `No Blame for Their Refusal`,
+        eliteArabic: `وَمَا عَلَيْكَ أَلَّا يَزَّكَّىٰ`,
+        eliteDesc: `Verse 7 relieves the messenger of responsibility for hardened hearts: you cannot manufacture receptivity where arrogance refuses purification.`,
+        seekerTitle: `The Core Measure of Success`,
+        seekerArabic: `لَعَلَّهُ يَزَّكَّىٰ ۝ أَوْ يَذَّكَّرُ`,
+        seekerDesc: `Even one sincere soul growing in purity (v. 3) or benefiting from a reminder (v. 4) outweighs impressing an entire assembly of the indifferent.`
+      }
+    ];
+
+    const LIFE_STAGES = [
+      {
+        ref: `Verse 80:19`,
+        theme: `Humble Beginning`,
+        ar: `مِن نُّطْفَةٍ خَلَقَهُ فَقَدَّرَهُ`,
+        tr: `“From a sperm-drop He created him and destined for him.”`,
+        note: `Human pride collapses at its source: life begins as a microscopic drop (nutfah), shaped, proportioned, and given exact capacities (fa-qaddarahu) without any effort of our own.`
+      },
+      {
+        ref: `Verse 80:20`,
+        theme: `Guidance & Emergence`,
+        ar: `ثُمَّ السَّبِيلَ يَسَّرَهُ`,
+        tr: `“Then He eased the way for him;”`,
+        note: `Commentators note two complementary meanings of easing the way: emerging safely from the womb into life, and having the path of moral discernment made clear.`
+      },
+      {
+        ref: `Verse 80:21`,
+        theme: `Mortality & Dignity`,
+        ar: `ثُمَّ أَمَاتَهُ فَأَقْبَرَهُ`,
+        tr: `“Then He causes his death and provides a grave for him.”`,
+        note: `No human controls the hour of death, yet Allah grants humanity the dignity of burial (aqbarahu) rather than leaving the body exposed to scavengers.`
+      },
+      {
+        ref: `Verse 80:22`,
+        theme: `Appointed Return`,
+        ar: `ثُمَّ إِذَا شَاءَ أَنشَرَهُ`,
+        tr: `“Then when He wills, He will resurrect him.”`,
+        note: `Inshar—spreading life back into scattered dust—depends solely on Allah’s will and timing, sealing our accountability.`
+      },
+      {
+        ref: `Verse 80:23`,
+        theme: `The Unfinished Charge`,
+        ar: `كَلَّا لَمَّا يَقْضِ مَا أَمَرَهُ`,
+        tr: `“No! Man has not yet accomplished what He commanded him.”`,
+        note: `After tracing four stages of total divine care, verse 23 confronts human complacency: we have not yet fulfilled what our Creator asked of us.`
+      }
+    ];
+
+    const FOOD_STEPS = [
+      {
+        ref: `Verse 80:25`,
+        ar: `أَنَّا صَبَبْنَا الْمَاءَ صَبًّا`,
+        tr: `“How We poured down water in torrents”`,
+        note: `Notice the intensive infinitive (sabban): rainfall is never self-generated; it arrives in measured abundance straight from the sky.`,
+        caption: `WATER POURED IN TORRENTS (80:25)`,
+        activeSvg: 0
+      },
+      {
+        ref: `Verse 80:26`,
+        ar: `ثُمَّ شَقَقْنَا الْأَرْضَ شَقًّا`,
+        tr: `“Then We broke open the earth, splitting [it with sprouts]”`,
+        note: `Shaqqan captures the quiet power by which fragile green shoots split packed, dry soil upward toward the light.`,
+        caption: `EARTH SPLIT BY TENDER SPROUTS (80:26)`,
+        activeSvg: 1
+      },
+      {
+        ref: `Verse 80:27`,
+        ar: `فَأَنبَتْنَا فِيهَا حَبًّا`,
+        tr: `“And caused to grow within it grain”`,
+        note: `Habb comes first—staple grains like wheat, barley, and rice that anchor human survival and can be stored across seasons.`,
+        caption: `STAPLE GRAIN NOURISHMENT (80:27)`,
+        activeSvg: 2
+      },
+      {
+        ref: `Verse 80:28`,
+        ar: `وَعِنَبًا وَقَضْبًا`,
+        tr: `“And grapes and herbage”`,
+        note: `Grapes bring sweetness and refreshment, while qadb (fresh herbage/greens) provides nourishing crops that regrow after cutting.`,
+        caption: `GRAPES & FRESH HERBAGE (80:28)`,
+        activeSvg: 3
+      },
+      {
+        ref: `Verse 80:29`,
+        ar: `وَزَيْتُونًا وَنَخْلًا`,
+        tr: `“And olive and palm trees”`,
+        note: `Long-lived trees prized for oil, shade, fuel, and dates—sustaining entire generations across harsh terrains.`,
+        caption: `OLIVE & DATE PALM TREES (80:29)`,
+        activeSvg: 4
+      },
+      {
+        ref: `Verse 80:30`,
+        ar: `وَحَدَائِقَ غُلْبًا`,
+        tr: `“And gardens of dense shrubbery”`,
+        note: `Beyond bare survival, Allah grows lush, thick-canopied orchards (hada’iq ghulba) that delight the eye and offer cool sanctuary.`,
+        caption: `GARDENS OF DENSE CANOPY (80:30)`,
+        activeSvg: 5
+      },
+      {
+        ref: `Verse 80:31`,
+        ar: `وَفَاكِهَةً وَأَبًّا`,
+        tr: `“And fruit and grass”`,
+        note: `Pairs sweet seasonal fruits (fakahat) for human enjoyment with wild pasture/grass (abb) so grazing herds never go hungry.`,
+        caption: `FRUIT & PASTURE GRASS (80:31)`,
+        activeSvg: 5
+      },
+      {
+        ref: `Verse 80:32`,
+        ar: `مَّتَاعًا لَّكُمْ وَلِأَنْعَامِكُمْ`,
+        tr: `“[As] enjoyment for you and your grazing livestock.”`,
+        note: `Closes the chain by framing food as shared mercy (mata‘an)—an invitation to gratitude rather than self-satisfied pride.`,
+        caption: `SHARED PROVISION FOR ALL (80:32)`,
+        activeSvg: -1
+      }
+    ];
+
+    const TIE_NODES = [
+      {
+        ref: `Verse 80:34 · First Circle`,
+        html: `<strong>“On the Day a man will flee from his brother”</strong> — One’s sibling is often the closest peer and lifelong ally, yet terror turns instinctive solidarity into solitary flight.`
+      },
+      {
+        ref: `Verse 80:35 · Second Circle`,
+        html: `<strong>“And his mother and his father”</strong> — Even the deepest filial debt to parents cannot hold when every soul fears being questioned over unmet rights.`
+      },
+      {
+        ref: `Verse 80:36 · Innermost Circle`,
+        html: `<strong>“And his wife and his children”</strong> — Reaching the tenderest daily bonds of spouse and offspring underscores that no earthly relationship can shield a person from personal accountability.`
+      },
+      {
+        ref: `Verse 80:37 · The Verbal Echo of Istighna`,
+        html: `<strong>“For every man, that Day, will be a matter adequate for him (sha’nun yughnih).”</strong> — Note the haunting echo: those who acted <em>istaghna</em> (self-sufficient) in worldly pride now possess a consuming crisis that cuts them off from everyone.`
+      }
+    ];
+
+    const FACE_TRAITS = {
+      radiant: [
+        `<strong>Musfirah (Bright / Unveiled like dawn):</strong> From the root <em>s-f-r</em>—meaning to shine clearly, uncover, and radiate morning light. Notably, it shares a linguistic root with <em>safarah</em> (the noble angel-scribes in v. 15): those who honored the revealed reminder now shine with its light.`,
+        `<strong>Dahikah (Laughing openly):</strong> After lifelong patience, self-purification (<em>tazkiyah</em>), and reverent awe (<em>khashyah</em>), anxiety gives way to effortless, unburdened laughter.`,
+        `<strong>Mustabshirah (Rejoicing at glad tidings):</strong> Literally radiant with good news—receiving confirmation of acceptance and eternal security.`
+      ],
+      darkened: [
+        `<strong>Ghabarah (Clinging Dust):</strong> The fine, settling dust of exhaustion, defeat, and humiliation resting visibly on faces that once prided themselves on polished prestige in Makkah.`,
+        `<strong>Qatarah (Covered in Blackness / Soot):</strong> <em>Tarhaquha</em> means to overtake and smother; soot-darkness seals over the dust, expressing inward dread surfacing on the face.`,
+        `<strong>Al-Kafarah al-Fajarah (The Wicked Disbelievers):</strong> Combines <em>kufr</em> (ungrateful rejection of truth and dependence) with <em>fujur</em> (breaking moral bounds and treating people unjustly).`
+      ]
+    };
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `Who was the blind companion whose arrival prompted the opening verses of Surah ‘Abasa?`,
+        options: [
+          `Bilal ibn Rabah`,
+          `‘Abdullah ibn Umm Maktum`,
+          `Salman al-Farsi`,
+          `Abu Dharr al-Ghifari`
+        ],
+        correct: 1,
+        explanation: `‘Abdullah ibn Umm Maktum approached the Prophet seeking spiritual instruction while the Prophet was engaged with influential Quraysh leaders.`
+      },
+      {
+        q: `Why do verses 1–2 refer to the Prophet in the third person (“He frowned and turned away”) before shifting to direct second-person address in verse 3?`,
+        options: [
+          `Because the opening verses describe a Quraysh leader, not the Prophet`,
+          `To soften the rebuke out of honor while still establishing a clear moral standard`,
+          `Because two different chapters were merged together`,
+          `To indicate that the incident happened in Madinah`
+        ],
+        correct: 1,
+        explanation: `Classical scholars note that opening in the third person preserves prophetic dignity before gently turning to direct inquiry in v. 3 (“But what would make you perceive…”).`
+      },
+      {
+        q: `In verse 5, what does the Arabic term “istaghna” signify in the character of the wealthy leaders?`,
+        options: [
+          `Extreme physical poverty and hunger`,
+          `A mindset of perceived self-sufficiency and lack of need for guidance`,
+          `Generous charitable spending for the poor`,
+          `Careful memorization of the honored scrolls`
+        ],
+        correct: 1,
+        explanation: `Istighna describes the illusion of being self-sufficient through wealth or status—imagining oneself without need for Allah’s guidance or purification.`
+      },
+      {
+        q: `What shared Arabic root connects the messenger-angels in verse 15 (“safarah”) with the bright faces of the righteous in verse 38 (“musfirah”)?`,
+        options: [
+          `k-f-r (covering / ingratitude)`,
+          `s-f-r (uncovering, clarity, shining light)`,
+          `gh-n-y (wealth / sufficiency)`,
+          `sh-q-q (splitting open)`
+        ],
+        correct: 1,
+        explanation: `Both safarah (emissaries who reveal/carry the message clearly) and musfirah (bright, unveiled faces) stem from s-f-r—linking faithfulness to revelation with radiance on the Last Day.`
+      },
+      {
+        q: `Why does verse 24 command humanity to “look at his food” immediately after describing human creation and resurrection?`,
+        options: [
+          `To ban certain crops grown in Makkah`,
+          `To prove that daily sustenance relies on a chain of divine mercy—rain, split earth, grains, and orchards—refuting self-sufficiency`,
+          `To encourage fasting during the winter months`,
+          `To compare angels to date palms`
+        ],
+        correct: 1,
+        explanation: `Every stage from pouring rain (v. 25) to shared provision for humans and livestock (v. 32) demonstrates total dependence on Allah’s provision.`
+      },
+      {
+        q: `What is the grammatical/thematic irony linking “istaghna” (v. 5) with “yughnih” (v. 37)?`,
+        options: [
+          `Both refer to abundant orchards and olive groves`,
+          `The one who acted self-sufficient without need of God will have a solitary crisis adequate to consume him and sever every tie`,
+          `Both describe the joyful laughter of the righteous`,
+          `There is no linguistic relationship between the two words`
+        ],
+        correct: 1,
+        explanation: `From the same root (gh-n-y), false worldly self-sufficiency (istaghna) in v. 5 transforms into an all-consuming personal crisis (sha’nun yughnih) in v. 37.`
+      }
+    ];
+
+    const appState = {
+      studiedVerses: [],
+      verseNotes: {},
+      reflections: [``, ``, ``],
+      quizAnswers: {},
+      currentFilter: `all`,
+      searchQuery: ``
+    };
+
+    let saveTimer = null;
+
+    function updateStatusToast(msg) {
+      const el = document.getElementById(`save-status`);
+      if (el) el.textContent = msg;
+    }
+
+    async function persistState() {
+      updateStatusToast(`Saving progress…`);
+      if (window.notebookAppApi) {
+        try {
+          await window.notebookAppApi.setAppState({
+            studiedVerses: appState.studiedVerses,
+            verseNotes: appState.verseNotes,
+            reflections: appState.reflections,
+            quizAnswers: appState.quizAnswers
+          });
+          updateStatusToast(`Progress saved`);
+        } catch (err) {
+          updateStatusToast(`Session active`);
+        }
+      } else {
+        updateStatusToast(`Session active`);
+      }
+    }
+
+    function schedulePersist() {
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        persistState();
+      }, 300);
+    }
+
+    function updateMasteryTelemetry() {
+      const studiedCount = appState.studiedVerses.length;
+      const pct = Math.round((studiedCount / 42) * 100);
+      const reflectionsDone = appState.reflections.filter(r => r && r.trim().length >= 10).length;
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (appState.quizAnswers[idx] === q.correct) quizCorrect += 1;
+      });
+
+      const headline = document.getElementById(`mastery-headline`);
+      if (headline) headline.textContent = `${studiedCount} of 42 verses studied (${pct}%)`;
+
+      const fill = document.getElementById(`mastery-progress-fill`);
+      if (fill) fill.style.width = `${pct}%`;
+
+      const bar = document.getElementById(`mastery-progressbar`);
+      if (bar) bar.setAttribute(`aria-valuenow`, String(pct));
+
+      const sVerses = document.getElementById(`stat-verses`);
+      if (sVerses) sVerses.textContent = `${studiedCount}/42`;
+
+      const sNotes = document.getElementById(`stat-notes`);
+      if (sNotes) sNotes.textContent = `${reflectionsDone}/3`;
+
+      const sQuiz = document.getElementById(`stat-quiz`);
+      if (sQuiz) sQuiz.textContent = `${quizCorrect}/${QUIZ_QUESTIONS.length}`;
+
+      const badge = document.getElementById(`quiz-score-badge`);
+      if (badge) badge.textContent = `Score: ${quizCorrect} / ${QUIZ_QUESTIONS.length}`;
+    }
+
+    function selectPostureLens(index) {
+      const lens = POSTURE_LENSES[index];
+      if (!lens) return;
+      for (let i = 0; i < POSTURE_LENSES.length; i++) {
+        const btn = document.getElementById(`lens-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      const et = document.getElementById(`elite-title`);
+      const ea = document.getElementById(`elite-arabic`);
+      const ed = document.getElementById(`elite-desc`);
+      const st = document.getElementById(`seeker-title`);
+      const sa = document.getElementById(`seeker-arabic`);
+      const sd = document.getElementById(`seeker-desc`);
+
+      if (et) et.textContent = lens.eliteTitle;
+      if (ea) ea.textContent = lens.eliteArabic;
+      if (ed) ed.textContent = lens.eliteDesc;
+      if (st) st.textContent = lens.seekerTitle;
+      if (sa) sa.textContent = lens.seekerArabic;
+      if (sd) sd.textContent = lens.seekerDesc;
+    }
+
+    function selectLifeStage(index) {
+      const stage = LIFE_STAGES[index];
+      if (!stage) return;
+      for (let i = 0; i < LIFE_STAGES.length; i++) {
+        const btn = document.getElementById(`life-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      const refEl = document.getElementById(`life-ref`);
+      const themeEl = document.getElementById(`life-theme`);
+      const arEl = document.getElementById(`life-arabic`);
+      const trEl = document.getElementById(`life-translation`);
+      const noteEl = document.getElementById(`life-commentary`);
+
+      if (refEl) refEl.textContent = stage.ref;
+      if (themeEl) themeEl.textContent = stage.theme;
+      if (arEl) arEl.textContent = stage.ar;
+      if (trEl) trEl.innerHTML = `<strong>${stage.tr}</strong>`;
+      if (noteEl) noteEl.textContent = stage.note;
+    }
+
+    function selectFoodStep(index) {
+      const step = FOOD_STEPS[index];
+      if (!step) return;
+      for (let i = 0; i < FOOD_STEPS.length; i++) {
+        const btn = document.getElementById(`food-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      for (let s = 0; s <= 5; s++) {
+        const svgLayer = document.getElementById(`svg-stage-${s}`);
+        if (svgLayer) {
+          if (step.activeSvg === -1) {
+            svgLayer.setAttribute(`opacity`, `1`);
+          } else {
+            svgLayer.setAttribute(`opacity`, s === step.activeSvg ? `1` : `0.35`);
+          }
+        }
+      }
+      const cap = document.getElementById(`svg-caption`);
+      const ref = document.getElementById(`food-detail-ref`);
+      const ar = document.getElementById(`food-detail-arabic`);
+      const txt = document.getElementById(`food-detail-text`);
+      if (cap) cap.textContent = step.caption;
+      if (ref) ref.textContent = step.ref;
+      if (ar) ar.textContent = step.ar;
+      if (txt) txt.innerHTML = `<strong>${step.tr}</strong> — ${step.note}`;
+    }
+
+    function selectTieNode(index) {
+      const tie = TIE_NODES[index];
+      if (!tie) return;
+      for (let i = 0; i < TIE_NODES.length; i++) {
+        const btn = document.getElementById(`tie-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === index);
+      }
+      const ref = document.getElementById(`tie-detail-ref`);
+      const txt = document.getElementById(`tie-detail-text`);
+      if (ref) ref.textContent = tie.ref;
+      if (txt) txt.innerHTML = tie.html;
+    }
+
+    function selectFaceTrait(group, index) {
+      const list = FACE_TRAITS[group];
+      if (!list || !list[index]) return;
+      const prefix = group === `radiant` ? `rad-btn-` : `dark-btn-`;
+      const activeCls = group === `radiant` ? `is-active-radiant` : `is-active-darkened`;
+      for (let i = 0; i < list.length; i++) {
+        const btn = document.getElementById(`${prefix}${i}`);
+        if (btn) btn.classList.toggle(activeCls, i === index);
+      }
+      const targetId = group === `radiant` ? `rad-detail` : `dark-detail`;
+      const target = document.getElementById(targetId);
+      if (target) target.innerHTML = list[index];
+    }
+
+    function setVerseFilter(filterKey) {
+      appState.currentFilter = filterKey;
+      const keys = [`all`, `act1`, `act2`, `act3a`, `act3b`, `act4`, `unstudied`];
+      keys.forEach(k => {
+        const btn = document.getElementById(`filter-${k}`);
+        if (btn) btn.classList.toggle(`is-active`, k === filterKey);
+      });
+      renderVerseList();
+    }
+
+    function handleVerseSearch(query) {
+      appState.searchQuery = query.trim().toLowerCase();
+      renderVerseList();
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(verseNum);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      appState.studiedVerses.sort((a, b) => a - b);
+      updateMasteryTelemetry();
+      renderVerseList();
+      persistState();
+    }
+
+    function markSectionStudied(startV, endV) {
+      for (let v = startV; v <= endV; v++) {
+        if (!appState.studiedVerses.includes(v)) {
+          appState.studiedVerses.push(v);
+        }
+      }
+      appState.studiedVerses.sort((a, b) => a - b);
+      updateMasteryTelemetry();
+      renderVerseList();
+      persistState();
+      updateStatusToast(`Marked verses ${startV}–${endV} studied`);
+    }
+
+    function updateVerseNote(verseNum, value) {
+      if (value.trim() === ``) {
+        delete appState.verseNotes[verseNum];
+      } else {
+        appState.verseNotes[verseNum] = value;
+      }
+      schedulePersist();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function renderVerseList() {
+      const container = document.getElementById(`verse-list-container`);
+      if (!container) return;
+
+      const actLabels = {
+        act1: `Act I · Reprimand`,
+        act2: `Act II · Honored Scroll`,
+        act3a: `Act III · Human Origins`,
+        act3b: `Act III · Sustenance`,
+        act4: `Act IV · As-Sakhkhah`
+      };
+
+      const filtered = VERSES_DATA.filter(v => {
+        if (appState.currentFilter === `unstudied`) {
+          if (appState.studiedVerses.includes(v.n)) return false;
+        } else if (appState.currentFilter !== `all` && v.act !== appState.currentFilter) {
+          return false;
+        }
+        if (appState.searchQuery) {
+          const hay = `${v.en} ${v.note} 80:${v.n}`.toLowerCase();
+          if (!hay.includes(appState.searchQuery)) return false;
+        }
+        return true;
+      });
+
+      const countBadge = document.getElementById(`workbench-count-badge`);
+      if (countBadge) countBadge.textContent = `Showing ${filtered.length} of 42 verses`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="panel-card" style="text-align:center;">
+          <p class="prose" style="margin:0 auto;">No verses match the active filter or search query.</p>
+          <button type="button" class="btn-secondary" style="margin-top:var(--space-md);" onclick="resetVerseFilters()">Show All 42 Verses</button>
+        </div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(v => {
+        const studied = appState.studiedVerses.includes(v.n);
+        const existingNote = appState.verseNotes[v.n] || ``;
+        return `
+          <div class="card-wrapper">
+            <article class="verse-card ${studied ? `is-studied` : ``}">
+              <div class="verse-card-top">
+                <div style="display:flex; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+                  <span class="badge-terracotta">80:${v.n}</span>
+                  <span class="verse-ref-chip" style="margin:0;">${actLabels[v.act]}</span>
+                </div>
+                <button type="button" class="${studied ? `btn-primary` : `btn-secondary`}" onclick="toggleVerseStudied(${v.n})" aria-pressed="${studied}">
+                  ${studied ? `Studied ✓` : `Mark Studied`}
+                </button>
+              </div>
+              <div class="verse-body-grid">
+                <div>
+                  <p class="prose" style="font-weight:600; margin:0;">${escapeHtml(v.en)}</p>
+                </div>
+                <div class="arabic" lang="ar" dir="rtl">${v.ar}</div>
+              </div>
+              <p class="verse-tafsir"><strong>Study Note:</strong> ${escapeHtml(v.note)}</p>
+              <div class="verse-note-wrap">
+                <label for="vnote-${v.n}" class="field-label">Personal Margin Note (80:${v.n})</label>
+                <input type="text" id="vnote-${v.n}" class="text-input" value="${escapeHtml(existingNote)}" placeholder="Add a personal takeaway for verse ${v.n}…" oninput="updateVerseNote(${v.n}, this.value)">
+              </div>
+            </article>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function resetVerseFilters() {
+      appState.searchQuery = ``;
+      const searchEl = document.getElementById(`verse-search`);
+      if (searchEl) searchEl.value = ``;
+      setVerseFilter(`all`);
+    }
+
+    function saveReflection(index, text) {
+      appState.reflections[index] = text;
+      updateMasteryTelemetry();
+      schedulePersist();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map((item, qIdx) => {
+        const chosen = appState.quizAnswers[qIdx];
+        const answered = chosen !== undefined;
+        const isRight = answered && chosen === item.correct;
+        const letters = [`A`, `B`, `C`, `D`];
+
+        const optionsHtml = item.options.map((opt, oIdx) => {
+          let cls = `quiz-option`;
+          if (answered) {
+            if (oIdx === item.correct) cls += ` is-correct`;
+            else if (oIdx === chosen) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${oIdx})">
+              <strong>${letters[oIdx]}.</strong>
+              <span>${escapeHtml(opt)}</span>
+            </button>
+          `;
+        }).join(``);
+
+        return `
+          <article class="quiz-card">
+            <span class="verse-ref-chip">Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+            <h3 class="subhead">${escapeHtml(item.q)}</h3>
+            <div class="quiz-options">${optionsHtml}</div>
+            <div class="quiz-feedback ${answered ? `is-visible ${isRight ? `is-correct` : `is-wrong`}` : ``}">
+              <strong>${isRight ? `Correct.` : `Review:`}</strong> ${escapeHtml(item.explanation)}
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function answerQuiz(qIdx, oIdx) {
+      appState.quizAnswers[qIdx] = oIdx;
+      renderQuiz();
+      updateMasteryTelemetry();
+      persistState();
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset quiz`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset Quiz`;
+      }
+      appState.quizAnswers = {};
+      renderQuiz();
+      updateMasteryTelemetry();
+      persistState();
+    }
+
+    function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirm full reset`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset All Progress`;
+      }
+      appState.studiedVerses = [];
+      appState.verseNotes = {};
+      appState.reflections = [``, ``, ``];
+      appState.quizAnswers = {};
+      for (let i = 1; i <= 3; i++) {
+        const ta = document.getElementById(`reflect-${i}`);
+        if (ta) ta.value = ``;
+      }
+      renderVerseList();
+      renderQuiz();
+      updateMasteryTelemetry();
+      persistState();
+      updateStatusToast(`All progress cleared`);
+    }
+
+    function exportStudySummary() {
+      const lines = [
+        `SURAH 'ABASA (CHAPTER 80) — PERSONAL STUDY NOTES`,
+        `Studied Verses: ${appState.studiedVerses.length} / 42`,
+        ``,
+        `--- GUIDED REFLECTIONS ---`,
+        `1. Whom do I overlook while chasing prestige?`,
+        appState.reflections[0] || `(No entry yet)`,
+        ``,
+        `2. Where does hidden 'istighna' appear in my routine?`,
+        appState.reflections[1] || `(No entry yet)`,
+        ``,
+        `3. What endures when every title falls silent?`,
+        appState.reflections[2] || `(No entry yet)`,
+        ``,
+        `--- VERSE MARGIN NOTES ---`
+      ];
+
+      const noteKeys = Object.keys(appState.verseNotes).map(Number).sort((a, b) => a - b);
+      if (noteKeys.length === 0) {
+        lines.push(`(No verse margin notes added yet)`);
+      } else {
+        noteKeys.forEach(num => {
+          lines.push(`Verse 80:${num}: ${appState.verseNotes[num]}`);
+        });
+      }
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-abasa-study-notes.txt`
+        });
+        updateStatusToast(`Exported study notes`);
+      } else {
+        const blob = new Blob([content], { type: `text/plain;charset=utf-8` });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement(`a`);
+        a.href = url;
+        a.download = `surah-abasa-study-notes.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    function setupScrollReveal() {
+      const items = document.querySelectorAll(`.reveal-on-scroll`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(el => el.classList.add(`is-visible`));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      items.forEach(el => obs.observe(el));
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+            if (saved.verseNotes && typeof saved.verseNotes === `object`) appState.verseNotes = saved.verseNotes;
+            if (Array.isArray(saved.reflections)) appState.reflections = saved.reflections;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+          }
+        } catch (err) {
+          /* Graceful fallback if state unavailable */
+        }
+      }
+
+      for (let i = 1; i <= 3; i++) {
+        const ta = document.getElementById(`reflect-${i}`);
+        if (ta && appState.reflections[i - 1]) {
+          ta.value = appState.reflections[i - 1];
+        }
+      }
+
+      renderVerseList();
+      renderQuiz();
+      updateMasteryTelemetry();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

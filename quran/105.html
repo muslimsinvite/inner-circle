@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Fil (Chapter 105) — Interactive Study Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta style) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders & rules */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --brass-light: #d8c3b0;
+      --brass-mid: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fae8e8;
+      --on-error: #ffffff;
+
+      /* Semantic tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-arabic: 'Amiri', 'Times New Roman', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-light), var(--brass-mid), var(--brass-light));
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-display-size: clamp(1.65rem, 1.3rem + 1.4vw, 2.35rem);
+      --arabic-verse-size: clamp(1.45rem, 1.2rem + 1vw, 1.95rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: var(--space-md) 0 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .prose-muted {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 2;
+      font-weight: 400;
+      color: var(--on-surface);
+    }
+
+    /* Defining Treatment 3: Brass diamond ornamental divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Defining Treatment 1: Riad arch metric & feature cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.5rem);
+      line-height: 1.1;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Defining Treatment 4: Zellige emerald counterpoint badge */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--rounded-full);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+      text-decoration: none;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--secondary-btn-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+    }
+
+    .btn-emerald {
+      background-color: var(--tertiary-container);
+      border-color: var(--tertiary-border);
+      color: var(--on-tertiary-container);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--surface-container-high);
+    }
+
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.875rem;
+    }
+
+    /* Section jump strip */
+    .toc-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+    .toc-pill {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-md);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .toc-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    /* Tonal Plaster Section Bands */
+    .plaster-band {
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Full Surah Recitation Banner */
+    .surah-recitation-box {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      margin-top: var(--space-md);
+    }
+    .recitation-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .surah-arabic-flow {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      text-align: right;
+      font-size: var(--arabic-display-size);
+      line-height: 2.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .ayah-marker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-container);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--rounded-full);
+      width: 28px;
+      height: 28px;
+      margin-inline: var(--space-xs);
+      vertical-align: middle;
+    }
+    .surah-english-flow {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+      color: var(--on-surface-variant);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* Section 1: Verse-by-Verse Interactive Explorer (Spatial Contiguity) */
+    .verse-explorer-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .verse-row-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+      color: var(--on-surface);
+    }
+    .verse-row-btn:hover {
+      background: var(--primary-container);
+      box-shadow: var(--soft-shadow);
+    }
+    .verse-row-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary), var(--soft-shadow);
+    }
+
+    .verse-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .verse-row-arabic {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      text-align: right;
+      width: 100%;
+      font-size: var(--arabic-verse-size);
+      line-height: 1.95;
+      color: var(--on-surface);
+    }
+    .verse-row-trans {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      line-height: 1.5;
+    }
+
+    .verse-inspector {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .inspector-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+
+    .word-chips-row {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+    }
+
+    .word-chip {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      font-size: 1.35rem;
+      line-height: 1.7;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .word-chip:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .word-chip.is-selected {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .lexical-focus-box {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .lexical-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .inspector-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+
+    /* Section 2: Key Vocabulary Grid */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin: var(--space-md) 0 var(--space-lg);
+    }
+    .filter-pill {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .filter-pill:hover {
+      background: var(--primary-container);
+    }
+    .filter-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .vocab-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      justify-content: space-between;
+    }
+    .vocab-card.is-mastered {
+      border-color: var(--tertiary);
+      background: var(--tertiary-container);
+    }
+    .vocab-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .vocab-arabic {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      font-size: 1.75rem;
+      line-height: 1.75;
+      color: var(--on-surface);
+    }
+    .vocab-translit {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+    .vocab-meaning {
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .vocab-root {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Section 3: Historical Context & Vector Expedition Schematic */
+    .history-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+
+    .schematic-card {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .stage-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .stage-btn {
+      min-height: 44px;
+      padding: var(--space-sm);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .stage-btn:hover {
+      background: var(--primary-container);
+    }
+    .stage-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .stage-detail-panel {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    .history-facts-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .fact-card {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .fact-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Section 4: Structural Flow & Acoustic Table */
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .act-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .act-card.is-climax {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+    }
+    table.study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    .study-table thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .study-table tbody td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    .study-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Section 5: Theological Themes */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .theme-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .theme-card-toggle {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+    .theme-deepening {
+      margin-top: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border-left: 3px solid var(--tertiary);
+      border-radius: var(--rounded);
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      display: none;
+    }
+    .theme-deepening.is-open {
+      display: block;
+    }
+
+    /* Section 6: Comprehension Check & Reflection Journal */
+    .study-lab-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option-btn {
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option-btn:hover {
+      background: var(--primary-container);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option-btn.is-incorrect {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .quiz-feedback {
+      margin-top: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      display: none;
+    }
+    .quiz-feedback.is-visible { display: block; }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .quiz-feedback.is-incorrect {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .reflection-block {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .reflection-label {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .reflection-hint {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-sm);
+    }
+    .reflection-textarea {
+      width: 100%;
+      min-height: 104px;
+      padding: var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: var(--on-surface);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      resize: vertical;
+    }
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+    .reflection-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-xs);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .notebook-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    .status-banner {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      min-height: 1.4em;
+    }
+
+    /* Footer */
+    .study-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    /* Container queries for adaptive cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 480px) {
+      .verse-inspector, .plaster-band { padding: var(--space-md); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .verse-explorer-layout,
+      .history-grid,
+      .study-lab-grid { grid-template-columns: minmax(0, 1fr); }
+      .act-grid,
+      .themes-grid { grid-template-columns: minmax(0, 1fr); }
+      .stage-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .plaster-band,
+      .surah-recitation-box { padding: var(--space-md); }
+      .stage-buttons { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO HEADER -->
+    <header>
+      <div class="kicker">
+        <span>Quranic Study Guide · Juz Amma</span>
+        <span class="badge-emerald" id="hero-status-badge">5 Verses · Interactive Study</span>
+      </div>
+      <h1 class="title">Surah Al-Fil: <em>The Elephant</em></h1>
+      <p class="lede">
+        Revealed in Mecca in five tightly woven verses, Chapter 105 recalls the Year of the Elephant—when an overwhelming army marched to destroy the Ka'bah and was turned into eaten straw by flocks of small birds carrying stones of baked clay.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Chapter 105 · Makkiyah · Five Verses ◆</div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <span class="arch-label">Chapter Index</span>
+          <span class="arch-value">105</span>
+          <span class="arch-caption">Sūrat al-Fīl</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Scope</span>
+          <span class="arch-value">5</span>
+          <span class="arch-caption">23 Arabic words</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Historical Anchor</span>
+          <span class="arch-value">~570 CE</span>
+          <span class="arch-caption">Year of the Elephant</span>
+        </div>
+        <div class="arch-card is-featured">
+          <span class="arch-label">Study Progress</span>
+          <span class="arch-value" id="progress-metric">0 / 5</span>
+          <span class="arch-caption" id="progress-caption">Verses marked studied</span>
+        </div>
+      </div>
+
+      <nav class="toc-strip" aria-label="Study guide sections">
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-verses')">1. Arabic &amp; Verse Explorer</button>
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-vocab')">2. Key Vocabulary</button>
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-history')">3. Ashab al-Fil History</button>
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-structure')">4. Structural Flow</button>
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-themes')">5. Theological Themes</button>
+        <button type="button" class="toc-pill" onclick="scrollToSection('sec-reflection')">6. Check &amp; Reflection</button>
+      </nav>
+    </header>
+
+    <!-- SECTION 1: ARABIC TEXT & VERSE-BY-VERSE EXPLORER -->
+    <section id="sec-verses" class="reveal">
+      <div class="kicker"><span>Section 01 · Text &amp; Lexical Breakdown</span></div>
+      <h2 class="section-heading">Five Verses That Turn Imperial Might into <em>Eaten Straw</em></h2>
+      <p class="prose">
+        Read the complete Surah in sequence, then select any verse below to inspect its rhetorical role and tap individual Arabic words to examine their Semitic root, literal sense, and grammatical function.
+      </p>
+
+      <div class="surah-recitation-box">
+        <div class="recitation-toolbar">
+          <span class="badge-terracotta">Complete Chapter · 105:1–5</span>
+          <div style="display:flex; gap: var(--space-sm); flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-toggle-translit" onclick="toggleFullTranslit()">Show Transliteration</button>
+            <button type="button" class="btn btn-emerald btn-sm" onclick="markAllVersesStudied()">Mark All 5 Studied</button>
+          </div>
+        </div>
+        <p class="surah-arabic-flow" lang="ar" dir="rtl">
+          أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ <span class="ayah-marker" aria-label="Verse 1">١</span>
+          أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ <span class="ayah-marker" aria-label="Verse 2">٢</span>
+          وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ <span class="ayah-marker" aria-label="Verse 3">٣</span>
+          تَرْمِيهِمْ بِحِجَارَةٍ مِنْ سِجِّيلٍ <span class="ayah-marker" aria-label="Verse 4">٤</span>
+          فَجَعَلَهُمْ كَعَصْفٍ مَأْكُولٍ <span class="ayah-marker" aria-label="Verse 5">٥</span>
+        </p>
+        <div id="full-translit-box" style="display: none; margin-top: var(--space-md); padding-top: var(--space-md); border-top: var(--warm-hairline); color: var(--secondary); font-style: italic;">
+          Alam tara kayfa fa‘ala rabbuka bi-aṣḥābi al-fīl (1) Alam yaj‘al kaydahum fī taḍlīl (2) Wa arsala ‘alayhim ṭayran abābīl (3) Tarmīhim bi-ḥijāratin min sijjīl (4) Fa-ja‘alahum ka-‘aṣfin ma’kūl (5)
+        </div>
+        <p class="surah-english-flow">
+          <strong>1</strong> Have you not considered, [O Muhammad], how your Lord dealt with the companions of the elephant?
+          <strong>2</strong> Did He not make their plan into misguidance?
+          <strong>3</strong> And He sent against them birds in flocks,
+          <strong>4</strong> Striking them with stones of hard clay,
+          <strong>5</strong> And He made them like eaten straw.
+        </p>
+      </div>
+
+      <div class="verse-explorer-layout card-wrapper">
+        <div class="verse-list" id="verse-list" role="tablist" aria-label="Verses of Surah Al-Fil"></div>
+
+        <aside class="verse-inspector" id="verse-inspector" aria-live="polite">
+          <div class="inspector-header">
+            <div>
+              <span class="verse-ref" id="insp-ref">105:1</span>
+              <h3 class="subhead" id="insp-title">Rhetorical Awakening</h3>
+            </div>
+            <span class="badge-emerald" id="insp-status">Not Yet Studied</span>
+          </div>
+
+          <p class="arabic-text" id="insp-arabic" lang="ar" dir="rtl" style="font-size: var(--arabic-verse-size); text-align: right; margin: 0;"></p>
+          <p class="prose-muted" id="insp-translit" style="font-style: italic;"></p>
+          <p class="prose" id="insp-translation" style="margin-bottom: 0;"></p>
+
+          <div>
+            <div class="kicker" style="margin-bottom: var(--space-xs);"><span>Tap a Word to Inspect Its Root &amp; Meaning</span></div>
+            <div class="word-chips-row" id="insp-words"></div>
+            <div class="lexical-focus-box" id="lexical-focus-box">
+              <div class="lexical-meta-row">
+                <span class="arabic-text" id="lex-word" lang="ar" dir="rtl" style="font-size: 1.5rem; line-height: 1.5;"></span>
+                <strong id="lex-translit" style="color: var(--primary);"></strong>
+                <span class="badge-emerald" id="lex-root"></span>
+              </div>
+              <p class="prose" id="lex-meaning" style="margin: 0; font-size: 0.9375rem;"></p>
+              <p class="prose-muted" id="lex-note" style="font-size: 0.875rem;"></p>
+            </div>
+          </div>
+
+          <div>
+            <div class="kicker" style="margin-bottom: var(--space-xs);"><span>Verse Commentary</span></div>
+            <p class="prose" id="insp-commentary" style="margin: 0; font-size: 0.9375rem;"></p>
+          </div>
+
+          <div class="inspector-actions">
+            <div style="display: flex; gap: var(--space-sm);">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="stepVerse(-1)">Previous Verse</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="stepVerse(1)">Next Verse</button>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-mark-verse" onclick="toggleCurrentVerseStudied()">Mark Verse Studied</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION 2: KEY VOCABULARY -->
+    <section id="sec-vocab" class="reveal">
+      <div class="kicker"><span>Section 02 · Core Lexicon</span></div>
+      <h2 class="section-heading">Ten Core Arabic Terms Carrying the Surah's <em>Imagery</em></h2>
+      <p class="prose">
+        Surah Al-Fil relies on vivid, tactile nouns and verbs—moving from deliberate scheming (<em>kayd</em>) to scattered flocks (<em>abābīl</em>), hardened clay (<em>sijjīl</em>), and chewed chaff (<em>ʿaṣf maʾkūl</em>). Filter by thematic role and mark words as reviewed.
+      </p>
+
+      <div class="filter-row" role="group" aria-label="Filter vocabulary by category">
+        <button type="button" class="filter-pill is-active" data-filter="all" onclick="filterVocab('all', this)">All Terms (10)</button>
+        <button type="button" class="filter-pill" data-filter="actors" onclick="filterVocab('actors', this)">Actors &amp; Instruments</button>
+        <button type="button" class="filter-pill" data-filter="action" onclick="filterVocab('action', this)">Plot &amp; Divine Action</button>
+        <button type="button" class="filter-pill" data-filter="outcome" onclick="filterVocab('outcome', this)">Outcome &amp; Imagery</button>
+      </div>
+
+      <div class="card-grid" id="vocab-grid"></div>
+    </section>
+
+    <!-- SECTION 3: HISTORICAL CONTEXT (ASHAB AL-FIL) -->
+    <section id="sec-history" class="plaster-band reveal">
+      <div class="kicker"><span>Section 03 · Historical Context</span></div>
+      <h2 class="section-heading">Why an Army from Yemen Marched on Mecca—and Why the Event Was <em>Unforgettable</em></h2>
+      <p class="prose">
+        Classical Qur'anic exegesis and early Islamic historiography locate Surah Al-Fil in the Year of the Elephant (<em>ʿĀm al-Fīl</em>, circa 570 CE), the same year Prophet Muhammad was born. Because the elders of Mecca had witnessed the episode firsthand, the Surah does not narrate the backstory; it invokes shared memory with <em>"Have you not considered..."</em>
+      </p>
+
+      <div class="history-grid">
+        <div class="schematic-card">
+          <div class="kicker" style="margin-bottom: var(--space-xs);">
+            <span>Interactive Expedition Schematic</span>
+            <span class="badge-emerald" id="stage-badge">Stage 1 of 4</span>
+          </div>
+
+          <!-- Pure vector SVG schematic (no raster tiles) -->
+          <svg viewBox="0 0 640 240" width="100%" style="display: block; height: auto; background: var(--surface-container-low); border-radius: var(--rounded); border: 1px solid var(--outline-variant);" role="img" aria-label="Schematic progression of the Companions of the Elephant from Sana'a toward Mecca">
+            <!-- Subtle desert horizon arcs -->
+            <path d="M 20 190 Q 170 165 320 185 T 620 175" fill="none" stroke="var(--outline-variant)" stroke-width="1.5" />
+            <path d="M 20 212 Q 220 195 420 210 T 620 202" fill="none" stroke="var(--outline-variant)" stroke-width="1" />
+
+            <!-- Route connectors -->
+            <line x1="90" y1="115" x2="255" y2="115" stroke="var(--outline)" stroke-width="2" stroke-dasharray="6 5" />
+            <line x1="255" y1="115" x2="420" y2="115" stroke="var(--outline)" stroke-width="2" stroke-dasharray="6 5" />
+            <line x1="420" y1="115" x2="555" y2="115" stroke="var(--primary)" stroke-width="2.5" />
+
+            <!-- Stage 1 node -->
+            <g id="svg-stage-0" style="cursor: pointer;" onclick="selectHistoryStage(0)">
+              <circle cx="90" cy="115" r="24" fill="var(--surface-container)" stroke="var(--primary)" stroke-width="2.5" />
+              <text x="90" y="121" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-weight="700" fill="var(--on-surface)">I</text>
+              <text x="90" y="158" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-surface)">Sana'a, Yemen</text>
+              <text x="90" y="174" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">Abraha's March</text>
+            </g>
+
+            <!-- Stage 2 node -->
+            <g id="svg-stage-1" style="cursor: pointer;" onclick="selectHistoryStage(1)">
+              <circle cx="255" cy="115" r="24" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2" />
+              <text x="255" y="121" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-weight="700" fill="var(--on-surface)">II</text>
+              <text x="255" y="158" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-surface)">Outskirts of Mecca</text>
+              <text x="255" y="174" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">'Abd al-Muttalib's Stand</text>
+            </g>
+
+            <!-- Stage 3 node -->
+            <g id="svg-stage-2" style="cursor: pointer;" onclick="selectHistoryStage(2)">
+              <circle cx="420" cy="115" r="24" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2" />
+              <text x="420" y="121" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-weight="700" fill="var(--on-surface)">III</text>
+              <text x="420" y="158" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-surface)">Wadi Muhassar</text>
+              <text x="420" y="174" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">The Elephant Halts</text>
+            </g>
+
+            <!-- Stage 4 node (Sanctuary protected) -->
+            <g id="svg-stage-3" style="cursor: pointer;" onclick="selectHistoryStage(3)">
+              <rect x="527" y="87" width="56" height="56" rx="8" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2" />
+              <text x="555" y="121" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-weight="700" fill="var(--on-tertiary-container)">IV</text>
+              <text x="555" y="158" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--tertiary)">Sanctuary Spared</text>
+              <text x="555" y="174" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">Tayran Ababil</text>
+            </g>
+
+            <text x="320" y="34" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-weight="600" fill="var(--on-surface)">Historical Sequence of the Companions of the Elephant</text>
+            <text x="320" y="53" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">Select any station below or on the schematic to read its historical context</text>
+          </svg>
+
+          <div class="stage-buttons">
+            <button type="button" class="stage-btn is-active" data-stage="0" onclick="selectHistoryStage(0)">1. Sana'a Ambition</button>
+            <button type="button" class="stage-btn" data-stage="1" onclick="selectHistoryStage(1)">2. Meccan Vulnerability</button>
+            <button type="button" class="stage-btn" data-stage="2" onclick="selectHistoryStage(2)">3. Elephant Refuses</button>
+            <button type="button" class="stage-btn" data-stage="3" onclick="selectHistoryStage(3)">4. Flocks &amp; Clay Stones</button>
+          </div>
+
+          <div class="stage-detail-panel" id="history-stage-detail" aria-live="polite">
+            <h3 class="subhead" id="hist-stage-title"></h3>
+            <p class="prose" id="hist-stage-body" style="margin-top: var(--space-xs); margin-bottom: 0;"></p>
+          </div>
+        </div>
+
+        <div class="history-facts-stack">
+          <div class="fact-card">
+            <div class="kicker" style="margin-bottom: var(--space-xs);"><span>Who Were Ashab al-Fil?</span></div>
+            <h3 class="fact-title">Abraha al-Ashram &amp; the Abyssinian Expedition</h3>
+            <p class="prose-muted">
+              Abraha ruled Yemen as viceroy of the Aksumite kingdom. After constructing an ornate church (al-Qullays) in Sana'a to rival Mecca's pilgrimage prestige, he led an armed expedition northward accompanied by one or more war elephants—animals rare and terrifying to the people of the Hijaz.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="kicker" style="margin-bottom: var(--space-xs);"><span>The Custodians' Realization</span></div>
+            <h3 class="fact-title">'Abd al-Muttalib's Famous Distinction</h3>
+            <p class="prose-muted">
+              When Abraha's scouts seized Meccan camels, 'Abd al-Muttalib (the Prophet's grandfather) negotiated only for his camels. Asked why he did not plead for the Ka'bah, he replied: <em>"I am the lord of the camels; the House has a Lord who will protect it."</em> Meccans withdrew to the surrounding hills.
+            </p>
+          </div>
+
+          <div class="fact-card">
+            <div class="kicker" style="margin-bottom: var(--space-xs);"><span>Why "Have You Not Considered?"</span></div>
+            <h3 class="fact-title">Living Memory in Early Mecca</h3>
+            <p class="prose-muted">
+              Events in pre-Islamic Mecca were dated by the Year of the Elephant (~570 CE). Revealed decades later in Mecca, the Surah addressed listeners—both believers and opponents—who knew survivors and eyewitnesses of that campaign.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: STRUCTURAL FLOW & RHETORIC -->
+    <section id="sec-structure" class="reveal">
+      <div class="kicker"><span>Section 04 · Literary Architecture</span></div>
+      <h2 class="section-heading">Five Verses Built on <em>Contrast, Escalation, and Acoustic Closure</em></h2>
+      <p class="prose">
+        Though only 23 words in Arabic, Surah Al-Fil unfolds across a disciplined three-act arc. Every verse closes with an identical phonetic cadence (<em>-īl / -ūl</em>), binding two opening rhetorical questions to three swift narrative actions.
+      </p>
+
+      <div class="act-grid">
+        <div class="act-card">
+          <span class="badge-terracotta">Act I · Verses 1–2</span>
+          <h3 class="subhead">Rhetorical Awakening</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            Two consecutive <em>alam</em> ("Have you not... / Did He not...") questions demand reflection on undeniable reality. The grand military campaign is stripped of pomp and reduced to <em>kayd</em> (scheming) turned into <em>taḍlīl</em> (wandering into ruin).
+          </p>
+        </div>
+
+        <div class="act-card is-climax">
+          <span class="badge-emerald">Act II · Verses 3–4</span>
+          <h3 class="subhead">Inversion of Scale</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            Introduced by <em>wa arsala</em> ("And He sent"). The verse moves from the largest land beast known to Arabia to small birds arriving in successive waves (<em>ṭayran abābīl</em>), armed with baked clay pebbles (<em>ḥijārah min sijjīl</em>).
+          </p>
+        </div>
+
+        <div class="act-card">
+          <span class="badge-terracotta">Act III · Verse 5</span>
+          <h3 class="subhead">Decisive Ruin</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            Introduced by <em>fa ja‘alahum</em> ("So He made them")—the particle <em>fa-</em> marks swift, immediate consequence. The once-imposing ranks are left like <em>ʿaṣf maʾkūl</em>: chewed, hollowed straw scattered across a field.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="study-table">
+          <thead>
+            <tr>
+              <th>Verse</th>
+              <th>Grammatical Opening</th>
+              <th>End Rhyme (Fāṣilah)</th>
+              <th>Narrative Shift</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>105:1</strong></td>
+              <td><em>Alam tara</em> (Negative interrogative)</td>
+              <td><em>al-fīl</em> (the elephant)</td>
+              <td>Appeals to eyewitness memory; introduces "your Lord" as active agent.</td>
+            </tr>
+            <tr>
+              <td><strong>105:2</strong></td>
+              <td><em>Alam yaj‘al</em> (Parallel interrogative)</td>
+              <td><em>taḍlīl</em> (misguidance)</td>
+              <td>Exposes the attackers' strategy as self-defeating and futile.</td>
+            </tr>
+            <tr>
+              <td><strong>105:3</strong></td>
+              <td><em>Wa arsala</em> ("And He sent")</td>
+              <td><em>abābīl</em> (in flocks)</td>
+              <td>Deploys unexpected, small aerial instruments from above.</td>
+            </tr>
+            <tr>
+              <td><strong>105:4</strong></td>
+              <td><em>Tarmīhim</em> (Present continuous participle)</td>
+              <td><em>sijjīl</em> (hard clay)</td>
+              <td>Conveys relentless, ongoing pelting rather than a single strike.</td>
+            </tr>
+            <tr>
+              <td><strong>105:5</strong></td>
+              <td><em>Fa-ja‘alahum</em> ("So He made them")</td>
+              <td><em>ma’kūl</em> (eaten straw)</td>
+              <td>Shifts vowel from long <em>-īl</em> to heavy <em>-ūl</em>, sealing final collapse.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel-card" style="margin-top: var(--space-lg); border-left: 3px solid var(--secondary);">
+        <div class="kicker" style="margin-bottom: var(--space-xs);"><span>Canonical Pairing · Connection to Surah Quraysh (106)</span></div>
+        <p class="prose" style="margin-bottom: 0;">
+          Classical commentators note the intimate link between Chapter 105 and Chapter 106 (<em>Surah Quraysh</em>). Surah Al-Fil recalls how God shielded the Sacred House from Abraha's army; Surah Quraysh immediately follows by reminding the tribe of Quraysh that their winter and summer trade journeys—and their security against fear—depended entirely on that sanctuary's protection.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 5: THEOLOGICAL THEMES -->
+    <section id="sec-themes" class="reveal">
+      <div class="kicker"><span>Section 05 · Theological Meaning</span></div>
+      <h2 class="section-heading">Divine Protection and the <em>Futility of Human Plotting</em></h2>
+      <p class="prose">
+        Beyond commemorating an extraordinary historical deliverance, Surah Al-Fil anchors three enduring theological principles for a community facing opposition in Mecca and believers in every era.
+      </p>
+
+      <div class="themes-grid">
+        <article class="theme-card">
+          <span class="badge-emerald" style="align-self: flex-start;">Theme I · Sanctuary</span>
+          <h3 class="subhead">Divine Guardianship of Sacred Space</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            Notice the personal possessive in verse 1: <em>Rabbuka</em> ("your Lord"), not merely "God." By addressing Prophet Muhammad directly, the verse frames the defense of the Ka'bah as an act of personal care by the same Lord watching over His Messenger during the difficult Meccan years.
+          </p>
+          <button type="button" class="btn btn-secondary btn-sm theme-card-toggle" onclick="toggleThemeDetail('theme-d-1', this)" aria-expanded="false">Explore Implication</button>
+          <div class="theme-deepening" id="theme-d-1">
+            When Meccan elites boasted of being custodians of the Sanctuary while opposing the Prophet, Surah Al-Fil quietly reminded them: the Ka'bah survived Abraha not through Quraysh's military strength, for they had retreated to the hills, but solely through God's protection.
+          </div>
+        </article>
+
+        <article class="theme-card">
+          <span class="badge-terracotta" style="align-self: flex-start;">Theme II · Futility of Kayd</span>
+          <h3 class="subhead">Collapse of Arrogant Plotting</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            The noun <em>kayd</em> denotes meticulous, covert, or strategic plotting. Yet verse 2 declares that God placed their entire <em>kayd</em> into <em>taḍlīl</em>—causing their plan to lose its way and evaporate before achieving a single blow against the Sanctuary.
+          </p>
+          <button type="button" class="btn btn-secondary btn-sm theme-card-toggle" onclick="toggleThemeDetail('theme-d-2', this)" aria-expanded="false">Explore Implication</button>
+          <div class="theme-deepening" id="theme-d-2">
+            Human arrogance assumes superior numbers, equipment, and prestige guarantee outcomes. Surah Al-Fil teaches that schemes opposing divine sanctity carry the seeds of their own undoing—a consolation to any vulnerable community confronting overwhelming force.
+          </div>
+        </article>
+
+        <article class="theme-card">
+          <span class="badge-emerald" style="align-self: flex-start;">Theme III · Scale Inversion</span>
+          <h3 class="subhead">Power Measured Beyond Material Might</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">
+            An elephant—towering, armored, and intimidating—stands at the pinnacle of ancient battlefield terror. God did not counter it with an earthquake or another elephant, but with small flocks of birds and pebbles of baked clay.
+          </p>
+          <button type="button" class="btn btn-secondary btn-sm theme-card-toggle" onclick="toggleThemeDetail('theme-d-3', this)" aria-expanded="false">Explore Implication</button>
+          <div class="theme-deepening" id="theme-d-3">
+            In the Qur'anic worldview, the smallest creation becomes unstoppable when commissioned by the Creator, while the largest creation becomes powerless when detached from divine permission.
+          </div>
+        </article>
+      </div>
+
+      <div class="table-wrap" style="margin-top: var(--space-lg);">
+        <table class="study-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Human Ambition (Ashab al-Fil)</th>
+              <th>Divine Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scale &amp; Spectacle</strong></td>
+              <td>Organized military expedition with a war elephant</td>
+              <td>Small birds arriving in flocks (<em>ṭayran abābīl</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>Weaponry</strong></td>
+              <td>Siege and demolition tools aimed at the Ka'bah</td>
+              <td>Stones of hardened clay (<em>ḥijārah min sijjīl</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>Strategic Outcome</strong></td>
+              <td>Calculated scheme (<em>kayd</em>)</td>
+              <td>Total misguidance and futility (<em>taḍlīl</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>Final Condition</strong></td>
+              <td>Projected triumph and regional dominance</td>
+              <td>Rendered like eaten, hollowed straw (<em>ʿaṣf maʾkūl</em>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 6: COMPREHENSION CHECK & INTERACTIVE REFLECTION JOURNAL -->
+    <section id="sec-reflection" class="reveal">
+      <div class="kicker"><span>Section 06 · Active Recall &amp; Personal Study</span></div>
+      <h2 class="section-heading">Test Your Grasp &amp; Record Your <em>Reflections</em></h2>
+      <p class="prose">
+        Consolidate your study with four quick comprehension checks and three guided reflection prompts. Your studied verses, vocabulary reviews, quiz answers, and written reflections are saved automatically to your notebook session.
+      </p>
+
+      <div class="study-lab-grid">
+        <!-- Left column: Comprehension Check -->
+        <div>
+          <h3 class="subhead" style="margin-bottom: var(--space-md);">Comprehension Check <span class="badge-emerald" id="quiz-score-badge" style="margin-left: var(--space-sm);">0 / 4 Answered</span></h3>
+          <div id="quiz-container"></div>
+        </div>
+
+        <!-- Right column: Interactive Reflection Journal -->
+        <div>
+          <h3 class="subhead" style="margin-bottom: var(--space-md);">Interactive Reflection Questions</h3>
+
+          <div class="reflection-block">
+            <label class="reflection-label" for="refl-1">1. Shared Memory &amp; Gratitude ("Have you not considered...")</label>
+            <p class="reflection-hint">
+              Verse 105:1 appeals to an event the Meccans already knew well. Why is remembering past deliverance essential when facing present uncertainty, and what moments of unseen protection stand out in your own reflection?
+            </p>
+            <textarea class="reflection-textarea" id="refl-1" oninput="handleReflectionInput(1, this.value)"></textarea>
+            <div class="reflection-footer">
+              <span id="refl-count-1">0 words</span>
+              <span>Saved automatically</span>
+            </div>
+          </div>
+
+          <div class="reflection-block">
+            <label class="reflection-label" for="refl-2">2. Human Scheming (Kayd) vs. Misguidance (Taḍlīl)</label>
+            <p class="reflection-hint">
+              Verse 105:2 contrasts meticulous human planning with total misdirection. What distinguishes constructive human effort from arrogant plotting that relies purely on intimidation or status?
+            </p>
+            <textarea class="reflection-textarea" id="refl-2" oninput="handleReflectionInput(2, this.value)"></textarea>
+            <div class="reflection-footer">
+              <span id="refl-count-2">0 words</span>
+              <span>Saved automatically</span>
+            </div>
+          </div>
+
+          <div class="reflection-block">
+            <label class="reflection-label" for="refl-3">3. Small Instruments &amp; Humble Reliance</label>
+            <p class="reflection-hint">
+              Why does the imagery of small birds, baked clay pebbles, and eaten straw carry such spiritual weight for people who feel outmatched by worldly power?
+            </p>
+            <textarea class="reflection-textarea" id="refl-3" oninput="handleReflectionInput(3, this.value)"></textarea>
+            <div class="reflection-footer">
+              <span id="refl-count-3">0 words</span>
+              <span>Saved automatically</span>
+            </div>
+          </div>
+
+          <div class="notebook-actions-bar">
+            <div class="status-banner" id="notebook-status" aria-live="polite"></div>
+            <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-study" onclick="handleResetStudy(this)">Reset Study Progress</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="exportStudyNotes()">Export Study Notes (.txt)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="study-footer">
+      <span><strong>Source Basis:</strong> Qur'an 105:1–5 (Arabic text &amp; Saheeh International English translation provided in study source); classical historical context of ʿĀm al-Fīl (Year of the Elephant).</span>
+      <span>Chapter 105 Interactive Study Guide</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        ref: `105:1`,
+        title: `Rhetorical Awakening & Divine Address`,
+        arabic: `أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ`,
+        translit: `Alam tara kayfa fa‘ala rabbuka bi-aṣḥābi al-fīl`,
+        translation: `Have you not considered, [O Muhammad], how your Lord dealt with the companions of the elephant?`,
+        commentary: `The Surah opens with an interrogative of certainty (alam tara, literally "Have you not seen?"), invoking vivid, shared Meccan memory. Addressing the Prophet with "your Lord" (Rabbuka) connects the historic defense of the Ka'bah with God's intimate guardianship over His Messenger.`,
+        words: [
+          { ar: `أَلَمْ تَرَ`, tr: `Alam tara`, root: `r-ʾ-y (ر أ ي)`, meaning: `Have you not considered / seen?`, note: `A rhetorical question signaling an undeniable, widely witnessed reality.` },
+          { ar: `فَعَلَ`, tr: `fa‘ala`, root: `f-ʿ-l (ف ع ل)`, meaning: `He dealt / acted`, note: `Past-tense verb anchoring the narrative in settled historical fact.` },
+          { ar: `رَبُّكَ`, tr: `Rabbuka`, root: `r-b-b (ر ب ب)`, meaning: `Your Lord (Sustainer & Protector)`, note: `Adds possessive warmth (-ka, "your"), reassuring Prophet Muhammad personally.` },
+          { ar: `بِأَصْحَابِ`, tr: `bi-aṣḥābi`, root: `ṣ-ḥ-b (ص ح ب)`, meaning: `with the companions / masters of`, note: `Denotes Abraha's army, defined by the spectacle they brought with them.` },
+          { ar: `الْفِيلِ`, tr: `al-fīl`, root: `f-y-l (ف ي ل)`, meaning: `the elephant`, note: `Refers to the war elephant(s) led by Abraha—an unprecedented sight in Mecca.` }
+        ]
+      },
+      {
+        num: 2,
+        ref: `105:2`,
+        title: `Futile Scheming`,
+        arabic: `أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ`,
+        translit: `Alam yaj‘al kaydahum fī taḍlīl`,
+        translation: `Did He not make their plan into misguidance?`,
+        commentary: `A second parallel question narrows the focus from the army's sheer physical presence to its strategic intent (kayd). Far from breaching the Sanctuary, their entire expedition wandered off course into complete ruin and zero accomplishment (taḍlīl).`,
+        words: [
+          { ar: `أَلَمْ يَجْعَلْ`, tr: `Alam yaj‘al`, root: `j-ʿ-l (ج ع ل)`, meaning: `Did He not make / render?`, note: `Echoes the opening rhythm, intensifying certainty and closure.` },
+          { ar: `كَيْدَهُمْ`, tr: `kaydahum`, root: `k-y-d (ك ي د)`, meaning: `their plan / cunning plot`, note: `Connotes deliberate, covert, or intimidating strategic scheming.` },
+          { ar: `فِي تَضْلِيلٍ`, tr: `fī taḍlīl`, root: `ḍ-l-l (ض ل ل)`, meaning: `into misguidance / utter loss`, note: `Verbal noun (Form II) meaning their plot was lost in the wilderness without reaching its target.` }
+        ]
+      },
+      {
+        num: 3,
+        ref: `105:3`,
+        title: `The Unlikely Counter-Force`,
+        arabic: `وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ`,
+        translit: `Wa arsala ‘alayhim ṭayran abābīl`,
+        translation: `And He sent against them birds in flocks,`,
+        commentary: `The narrative pivots from questions to rapid action with "And He sent" (wa arsala). Rather than meeting an imperial army with human defenders, the Sanctuary is defended from above by small birds arriving in successive, encircling flocks.`,
+        words: [
+          { ar: `وَأَرْسَلَ`, tr: `Wa arsala`, root: `r-s-l (ر س ل)`, meaning: `And He dispatched / sent`, note: `Same root as rasūl (messenger): the birds act under divine commission.` },
+          { ar: `عَلَيْهِمْ`, tr: `‘alayhim`, root: `Preposition + pronoun`, meaning: `against them / down upon them`, note: `Signals inescapable vertical descent from above.` },
+          { ar: `طَيْرًا`, tr: `ṭayran`, root: `ṭ-y-r (ط ي ر)`, meaning: `birds (collective)`, note: `Indefinite form amplifies awe—an unspecified, overwhelming cloud of winged creatures.` },
+          { ar: `أَبَابِيلَ`, tr: `abābīl`, root: `ʾ-b-l (أ ب ل)`, meaning: `in successive flocks / waves`, note: `Classical lexicons describe groups following one after another in dense formation.` }
+        ]
+      },
+      {
+        num: 4,
+        ref: `105:4`,
+        title: `Stones of Hard Clay`,
+        arabic: `تَرْمِيهِمْ بِحِجَارَةٍ مِنْ سِجِّيلٍ`,
+        translit: `Tarmīhim bi-ḥijāratin min sijjīl`,
+        translation: `Striking them with stones of hard clay,`,
+        commentary: `Shifting into an imperfect verb (tarmīhim, "striking/pelting them") brings the action vividly into the present mind's eye—conveying continuous, targeted volleying with hardened, baked clay stones.`,
+        words: [
+          { ar: `تَرْمِيهِمْ`, tr: `tarmīhim`, root: `r-m-y (ر م ي)`, meaning: `pelting / striking them`, note: `Imperfect tense creates cinematic immediacy—you see the stones falling.` },
+          { ar: `بِحِجَارَةٍ`, tr: `bi-ḥijāratin`, root: `ḥ-j-r (ح ج ر)`, meaning: `with stones`, note: `Small enough to be carried by birds, yet lethal by divine decree.` },
+          { ar: `مِنْ سِجِّيلٍ`, tr: `min sijjīl`, root: `s-j-l (س ج ل)`, meaning: `of hard / baked clay`, note: `Also used in the Qur'an for stones of judgment against stubborn defiance.` }
+        ]
+      },
+      {
+        num: 5,
+        ref: `105:5`,
+        title: `Reduced to Eaten Straw`,
+        arabic: `فَجَعَلَهُمْ كَعَصْفٍ مَأْكُولٍ`,
+        translit: `Fa-ja‘alahum ka-‘aṣfin ma’kūl`,
+        translation: `And He made them like eaten straw.`,
+        commentary: `The prefix fa- ("so / thus") signals instantaneous result. The verse shifts its closing vowel from -īl to -ūl (ma'kūl), landing with finality: an army that expected to trample Mecca was left trampled and hollowed out like chaff grazed by livestock.`,
+        words: [
+          { ar: `فَجَعَلَهُمْ`, tr: `Fa-ja‘alahum`, root: `j-ʿ-l (ج ع ل)`, meaning: `So He made them`, note: `Mirrors yaj'al from verse 2: their plot fell to ruin, and then they themselves did.` },
+          { ar: `كَـعَصْفٍ`, tr: `ka-‘aṣfin`, root: `ʿ-ṣ-f (ع ص ف)`, meaning: `like straw / dry stalks`, note: `Dry husks left behind after grain is harvested, brittle and weightless.` },
+          { ar: `مَأْكُولٍ`, tr: `ma’kūl`, root: `ʾ-k-l (أ ك ل)`, meaning: `eaten / devoured / chewed`, note: `Passive participle: stripped of substance, flattened, and unusable.` }
+        ]
+      }
+    ];
+
+    const VOCAB_LIST = [
+      { id: `v1`, cat: `actors`, ref: `105:1`, ar: `أَصْحَابِ الْفِيلِ`, tr: `Aṣḥāb al-Fīl`, root: `ṣ-ḥ-b / f-y-l`, meaning: `Companions of the Elephant — Abraha's expeditionary army marching with a war elephant.` },
+      { id: `v2`, cat: `actors`, ref: `105:1`, ar: `رَبُّكَ`, tr: `Rabbuka`, root: `r-b-b`, meaning: `Your Lord — Sustainer, Master, and Guardian of the Sanctuary and of Prophet Muhammad.` },
+      { id: `v3`, cat: `action`, ref: `105:2`, ar: `كَيْدَهُمْ`, tr: `Kaydahum`, root: `k-y-d`, meaning: `Their plan / subtle scheming — deliberate strategy intended to undermine Mecca.` },
+      { id: `v4`, cat: `outcome`, ref: `105:2`, ar: `تَضْلِيلٍ`, tr: `Taḍlīl`, root: `ḍ-l-l`, meaning: `Misguidance / utter futility — causing a scheme to lose its direction and collapse.` },
+      { id: `v5`, cat: `actors`, ref: `105:3`, ar: `طَيْرًا`, tr: `Ṭayran`, root: `ṭ-y-r`, meaning: `Birds — small winged creatures contrasting starkly with towering war elephants.` },
+      { id: `v6`, cat: `actors`, ref: `105:3`, ar: `أَبَابِيلَ`, tr: `Abābīl`, root: `ʾ-b-l`, meaning: `In flocks — successive waves or dense, organized swarms arriving one after another.` },
+      { id: `v7`, cat: `action`, ref: `105:4`, ar: `تَرْمِيهِمْ`, tr: `Tarmīhim`, root: `r-m-y`, meaning: `Striking / pelting them — continuous, accurate hurling from overhead.` },
+      { id: `v8`, cat: `actors`, ref: `105:4`, ar: `حِجَارَةٍ`, tr: `Ḥijārah`, root: `ḥ-j-r`, meaning: `Stones — small earthly projectiles turned into decisive instruments.` },
+      { id: `v9`, cat: `actors`, ref: `105:4`, ar: `سِجِّيلٍ`, tr: `Sijjīl`, root: `s-j-l`, meaning: `Hard / baked clay — dense stone-like clay carried in the birds' beaks and talons.` },
+      { id: `v10`, cat: `outcome`, ref: `105:5`, ar: `عَصْفٍ مَأْكُولٍ`, tr: `ʿAṣfin Maʾkūl`, root: `ʿ-ṣ-f / ʾ-k-l`, meaning: `Eaten straw — dried stalks grazed or hollowed out, utterly devoid of strength.` }
+    ];
+
+    const HISTORY_STAGES = [
+      {
+        title: `1. Ambition in Sana'a (Yemen)`,
+        body: `Seeking to redirect Arabian pilgrimage and commerce away from Mecca, Abraha—the Aksumite viceroy in Yemen—built a magnificent cathedral called al-Qullays. When Arab tribes continued honoring the Ka'bah instead, Abraha assembled a large military expedition to march north and demolish the Meccan Sanctuary.`
+      },
+      {
+        title: `2. Mecca Without Military Defense`,
+        body: `As the army neared Mecca, seizing livestock along the outskirts, the Quraysh recognized they could not defeat an imperial force equipped with a war elephant. Following 'Abd al-Muttalib's counsel—entrusting the Ka'bah to its Divine Lord—the residents evacuated into the surrounding mountain passes.`
+      },
+      {
+        title: `3. The Elephant Halts at Wadi Muhassar`,
+        body: `Historical accounts report that when the army prepared to enter the sacred precincts at Wadi Muhassar (between Muzdalifah and Mina), the lead elephant (known in tradition as Mahmud) knelt and refused to take a single step toward the Ka'bah—even when turned toward Yemen or Syria it rose willingly, yet facing Mecca it dropped to the ground.`
+      },
+      {
+        title: `4. Flocks of Birds & Stones of Hard Clay`,
+        body: `While the expedition stalled, dark flocks of birds (ṭayran abābīl) appeared from the direction of the sea, each carrying small pellets of baked clay (ḥijārah min sijjīl). Struck down in panic and swift devastation, the invading ranks scattered and perished, leaving the Ka'bah untouched.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `Why does Surah Al-Fil begin with the question "Have you not considered..." (Alam tara)?`,
+        options: [
+          `Because the Prophet and Meccan listeners already knew the Year of the Elephant as recent, undeniable history`,
+          `Because Abraha's army had not yet departed Yemen when the chapter was revealed`,
+          `Because the Quraysh had personally defeated the elephant in open battle`
+        ],
+        correctIdx: 0,
+        explanation: `Correct. The event occurred around 570 CE—within living memory of Mecca's inhabitants—so the Surah appeals to shared historical certainty rather than introducing an unknown tale.`
+      },
+      {
+        id: `q2`,
+        prompt: `What does the Arabic word taḍlīl (105:2) convey about the invaders' plan (kayd)?`,
+        options: [
+          `That their plan succeeded partially before retreating`,
+          `That their entire scheme was turned into misguidance, wandering into utter ruin without reaching its goal`,
+          `That their plan was postponed to a later season`
+        ],
+        correctIdx: 1,
+        explanation: `Correct. From the root ḍ-l-l (to stray or be lost), taḍlīl expresses complete strategic failure—the expedition lost its way and achieved nothing.`
+      },
+      {
+        id: `q3`,
+        prompt: `What is the theological significance of birds (ṭayr) and clay stones (sijjīl) defeating an elephant-led army?`,
+        options: [
+          `It shows that birds were naturally stronger than elephants`,
+          `It highlights an intentional inversion of scale, proving protection came from divine decree rather than worldly might`,
+          `It suggests Meccan archers trained flocks of birds for defense`
+        ],
+        correctIdx: 1,
+        explanation: `Correct. Countering Arabia's most intimidating military symbol with small birds and humble clay makes unmistakable that God alone defended the Sanctuary.`
+      },
+      {
+        id: `q4`,
+        prompt: `How does the closing simile "like eaten straw" (ka-‘aṣfin ma’kūl) summarize the army's fate?`,
+        options: [
+          `They marched peacefully back home with supplies`,
+          `They were stripped of power and hollowed out like dry stalks chewed by cattle`,
+          `They established a permanent settlement outside Mecca`
+        ],
+        correctIdx: 1,
+        explanation: `Correct. After the swift consequence marked by fa-ja‘alahum, the final simile leaves an unforgettable image of brittle, emptied husks.`
+      }
+    ];
+
+    let appState = {
+      activeVerseIdx: 0,
+      activeWordIdx: 0,
+      studiedVerses: [],
+      masteredVocab: [],
+      vocabFilter: `all`,
+      activeHistoryStage: 0,
+      showFullTranslit: false,
+      quizAnswers: {},
+      reflections: { r1: ``, r2: ``, r3: `` }
+    };
+
+    let saveTimer = null;
+
+    async function persistState(statusMsg) {
+      const statusEl = document.getElementById(`notebook-status`);
+      if (statusEl && statusMsg) {
+        statusEl.textContent = statusMsg;
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          if (statusEl) statusEl.textContent = `Could not save session state; changes remain active on page.`;
+        }
+      }
+    }
+
+    function scheduleReflectionSave() {
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async function () {
+        await persistState(`Reflections saved to study notebook.`);
+      }, 350);
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function toggleFullTranslit() {
+      appState.showFullTranslit = !appState.showFullTranslit;
+      renderFullTranslit();
+      persistState(``);
+    }
+
+    function renderFullTranslit() {
+      const box = document.getElementById(`full-translit-box`);
+      const btn = document.getElementById(`btn-toggle-translit`);
+      if (box) {
+        box.style.display = appState.showFullTranslit ? `block` : `none`;
+      }
+      if (btn) {
+        btn.textContent = appState.showFullTranslit ? `Hide Transliteration` : `Show Transliteration`;
+      }
+    }
+
+    function updateProgressSummary() {
+      const count = appState.studiedVerses.length;
+      const metric = document.getElementById(`progress-metric`);
+      const caption = document.getElementById(`progress-caption`);
+      const badge = document.getElementById(`hero-status-badge`);
+
+      if (metric) metric.textContent = `${count} / 5`;
+      if (caption) {
+        caption.textContent = count === 5 ? `All 5 verses studied` : `Verses marked studied`;
+      }
+      if (badge) {
+        const vocabCount = appState.masteredVocab.length;
+        badge.textContent = `${count}/5 Verses · ${vocabCount}/10 Terms Reviewed`;
+      }
+    }
+
+    function renderVerseList() {
+      const container = document.getElementById(`verse-list`);
+      if (!container) return;
+
+      let html = ``;
+      for (let i = 0; i < VERSES.length; i++) {
+        const v = VERSES[i];
+        const isActive = i === appState.activeVerseIdx;
+        const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+        html += `<button type="button" role="tab" aria-selected="${isActive ? `true` : `false`}" class="verse-row-btn${isActive ? ` is-active` : ``}" onclick="selectVerse(${i})">`;
+        html += `<div class="verse-row-top">`;
+        html += `<span class="verse-ref">Verse ${v.ref} · ${v.title}</span>`;
+        if (isStudied) {
+          html += `<span class="badge-emerald">Studied</span>`;
+        }
+        html += `</div>`;
+        html += `<span class="verse-row-arabic" lang="ar" dir="rtl">${v.arabic}</span>`;
+        html += `<span class="verse-row-trans">${v.translation}</span>`;
+        html += `</button>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function renderVerseInspector() {
+      const v = VERSES[appState.activeVerseIdx] || VERSES[0];
+      const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+
+      const refEl = document.getElementById(`insp-ref`);
+      const titleEl = document.getElementById(`insp-title`);
+      const statusEl = document.getElementById(`insp-status`);
+      const arabicEl = document.getElementById(`insp-arabic`);
+      const translitEl = document.getElementById(`insp-translit`);
+      const transEl = document.getElementById(`insp-translation`);
+      const commEl = document.getElementById(`insp-commentary`);
+      const markBtn = document.getElementById(`btn-mark-verse`);
+      const wordsEl = document.getElementById(`insp-words`);
+
+      if (refEl) refEl.textContent = v.ref;
+      if (titleEl) titleEl.textContent = v.title;
+      if (statusEl) {
+        statusEl.textContent = isStudied ? `Studied` : `In Progress`;
+        statusEl.className = isStudied ? `badge-emerald` : `badge-terracotta`;
+      }
+      if (arabicEl) arabicEl.textContent = v.arabic;
+      if (translitEl) translitEl.textContent = v.translit;
+      if (transEl) transEl.textContent = v.translation;
+      if (commEl) commEl.textContent = v.commentary;
+      if (markBtn) {
+        markBtn.textContent = isStudied ? `Studied (Click to Unmark)` : `Mark Verse Studied`;
+        markBtn.className = isStudied ? `btn btn-emerald btn-sm` : `btn btn-primary btn-sm`;
+      }
+
+      if (wordsEl) {
+        let wHtml = ``;
+        for (let j = 0; j < v.words.length; j++) {
+          const w = v.words[j];
+          const sel = j === appState.activeWordIdx;
+          wHtml += `<button type="button" lang="ar" dir="rtl" class="word-chip${sel ? ` is-selected` : ``}" onclick="selectWord(${j})">${w.ar}</button>`;
+        }
+        wordsEl.innerHTML = wHtml;
+      }
+
+      const wordObj = v.words[appState.activeWordIdx] || v.words[0];
+      const lexWord = document.getElementById(`lex-word`);
+      const lexTr = document.getElementById(`lex-translit`);
+      const lexRoot = document.getElementById(`lex-root`);
+      const lexMean = document.getElementById(`lex-meaning`);
+      const lexNote = document.getElementById(`lex-note`);
+
+      if (lexWord) lexWord.textContent = wordObj.ar;
+      if (lexTr) lexTr.textContent = wordObj.tr;
+      if (lexRoot) lexRoot.textContent = `Root: ${wordObj.root}`;
+      if (lexMean) lexMean.textContent = wordObj.meaning;
+      if (lexNote) lexNote.textContent = wordObj.note;
+    }
+
+    function selectVerse(idx) {
+      if (idx < 0 || idx >= VERSES.length) return;
+      appState.activeVerseIdx = idx;
+      appState.activeWordIdx = 0;
+      renderVerseList();
+      renderVerseInspector();
+      persistState(``);
+    }
+
+    function selectWord(wordIdx) {
+      const v = VERSES[appState.activeVerseIdx];
+      if (!v || wordIdx < 0 || wordIdx >= v.words.length) return;
+      appState.activeWordIdx = wordIdx;
+      renderVerseInspector();
+    }
+
+    function stepVerse(delta) {
+      const next = (appState.activeVerseIdx + delta + VERSES.length) % VERSES.length;
+      selectVerse(next);
+    }
+
+    function toggleCurrentVerseStudied() {
+      const v = VERSES[appState.activeVerseIdx];
+      if (!v) return;
+      const pos = appState.studiedVerses.indexOf(v.num);
+      if (pos === -1) {
+        appState.studiedVerses.push(v.num);
+      } else {
+        appState.studiedVerses.splice(pos, 1);
+      }
+      renderVerseList();
+      renderVerseInspector();
+      updateProgressSummary();
+      persistState(`Verse ${v.ref} study status updated.`);
+    }
+
+    function markAllVersesStudied() {
+      appState.studiedVerses = [1, 2, 3, 4, 5];
+      renderVerseList();
+      renderVerseInspector();
+      updateProgressSummary();
+      persistState(`All 5 verses marked as studied.`);
+    }
+
+    function filterVocab(category, btnEl) {
+      appState.vocabFilter = category;
+      const buttons = document.querySelectorAll(`.filter-pill`);
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove(`is-active`);
+      }
+      if (btnEl) {
+        btnEl.classList.add(`is-active`);
+      } else {
+        const matchBtn = document.querySelector(`.filter-pill[data-filter="${category}"]`);
+        if (matchBtn) matchBtn.classList.add(`is-active`);
+      }
+      renderVocabGrid();
+      persistState(``);
+    }
+
+    function toggleVocabMastered(id) {
+      const idx = appState.masteredVocab.indexOf(id);
+      if (idx === -1) {
+        appState.masteredVocab.push(id);
+      } else {
+        appState.masteredVocab.splice(idx, 1);
+      }
+      renderVocabGrid();
+      updateProgressSummary();
+      persistState(`Vocabulary review progress saved.`);
+    }
+
+    function renderVocabGrid() {
+      const grid = document.getElementById(`vocab-grid`);
+      if (!grid) return;
+
+      let html = ``;
+      for (let i = 0; i < VOCAB_LIST.length; i++) {
+        const item = VOCAB_LIST[i];
+        if (appState.vocabFilter !== `all` && item.cat !== appState.vocabFilter) continue;
+        const isMastered = appState.masteredVocab.indexOf(item.id) !== -1;
+
+        html += `<article class="vocab-card${isMastered ? ` is-mastered` : ``}">`;
+        html += `<div>`;
+        html += `<div class="vocab-top">`;
+        html += `<span class="vocab-arabic" lang="ar" dir="rtl">${item.ar}</span>`;
+        html += `<span class="badge-terracotta">${item.ref}</span>`;
+        html += `</div>`;
+        html += `<div class="vocab-translit">${item.tr}</div>`;
+        html += `<p class="vocab-meaning">${item.meaning}</p>`;
+        html += `<p class="vocab-root">Trilateral Root: <strong>${item.root}</strong></p>`;
+        html += `</div>`;
+        html += `<button type="button" class="btn btn-sm ${isMastered ? `btn-emerald` : `btn-secondary`}" onclick="toggleVocabMastered('${item.id}')">${isMastered ? `Reviewed` : `Mark Reviewed`}</button>`;
+        html += `</article>`;
+      }
+      grid.innerHTML = html;
+    }
+
+    function selectHistoryStage(stageIdx) {
+      if (stageIdx < 0 || stageIdx >= HISTORY_STAGES.length) return;
+      appState.activeHistoryStage = stageIdx;
+      const stage = HISTORY_STAGES[stageIdx];
+
+      const titleEl = document.getElementById(`hist-stage-title`);
+      const bodyEl = document.getElementById(`hist-stage-body`);
+      const badgeEl = document.getElementById(`stage-badge`);
+
+      if (titleEl) titleEl.textContent = stage.title;
+      if (bodyEl) bodyEl.textContent = stage.body;
+      if (badgeEl) badgeEl.textContent = `Stage ${stageIdx + 1} of 4`;
+
+      const btns = document.querySelectorAll(`.stage-btn`);
+      for (let i = 0; i < btns.length; i++) {
+        if (i === stageIdx) {
+          btns[i].classList.add(`is-active`);
+        } else {
+          btns[i].classList.remove(`is-active`);
+        }
+      }
+
+      for (let s = 0; s < 4; s++) {
+        const node = document.getElementById(`svg-stage-${s}`);
+        if (!node) continue;
+        const shape = node.querySelector(`circle, rect`);
+        if (!shape) continue;
+        if (s === stageIdx) {
+          shape.setAttribute(`stroke`, `var(--primary)`);
+          shape.setAttribute(`stroke-width`, `3`);
+          shape.setAttribute(`fill`, s === 3 ? `var(--tertiary-container)` : `var(--primary-container)`);
+        } else {
+          shape.setAttribute(`stroke`, s === 3 ? `var(--tertiary)` : `var(--outline)`);
+          shape.setAttribute(`stroke-width`, `2`);
+          shape.setAttribute(`fill`, s === 3 ? `var(--tertiary-container)` : `var(--surface-container)`);
+        }
+      }
+      persistState(``);
+    }
+
+    function toggleThemeDetail(detailId, btnEl) {
+      const box = document.getElementById(detailId);
+      if (!box) return;
+      const isOpen = box.classList.contains(`is-open`);
+      if (isOpen) {
+        box.classList.remove(`is-open`);
+        if (btnEl) {
+          btnEl.textContent = `Explore Implication`;
+          btnEl.setAttribute(`aria-expanded`, `false`);
+        }
+      } else {
+        box.classList.add(`is-open`);
+        if (btnEl) {
+          btnEl.textContent = `Hide Implication`;
+          btnEl.setAttribute(`aria-expanded`, `true`);
+        }
+      }
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      let answeredCount = 0;
+      let correctCount = 0;
+      let html = ``;
+
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        const q = QUIZ_QUESTIONS[i];
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+        if (hasAnswered) {
+          answeredCount++;
+          if (chosen === q.correctIdx) correctCount++;
+        }
+
+        html += `<div class="quiz-card">`;
+        html += `<div class="kicker" style="margin-bottom: var(--space-xs);"><span>Question ${i + 1} of ${QUIZ_QUESTIONS.length}</span></div>`;
+        html += `<p style="margin: 0; font-weight: 600; color: var(--on-surface);">${q.prompt}</p>`;
+        html += `<div class="quiz-options">`;
+
+        for (let optIdx = 0; optIdx < q.options.length; optIdx++) {
+          let cls = `quiz-option-btn`;
+          if (hasAnswered) {
+            if (optIdx === q.correctIdx) {
+              cls += ` is-correct`;
+            } else if (optIdx === chosen) {
+              cls += ` is-incorrect`;
+            }
+          }
+          html += `<button type="button" class="${cls}" onclick="answerQuiz('${q.id}', ${optIdx})">${q.options[optIdx]}</button>`;
+        }
+
+        html += `</div>`;
+        if (hasAnswered) {
+          const isRight = chosen === q.correctIdx;
+          html += `<div class="quiz-feedback is-visible ${isRight ? `is-correct` : `is-incorrect`}">${isRight ? q.explanation : `Not quite—revisit the verse commentary or vocabulary above. ${q.explanation}`}</div>`;
+        }
+        html += `</div>`;
+      }
+
+      container.innerHTML = html;
+      const badge = document.getElementById(`quiz-score-badge`);
+      if (badge) {
+        badge.textContent = `${correctCount} / ${QUIZ_QUESTIONS.length} Correct (${answeredCount} Answered)`;
+      }
+    }
+
+    function answerQuiz(qId, optIdx) {
+      appState.quizAnswers[qId] = optIdx;
+      renderQuiz();
+      persistState(`Comprehension check updated.`);
+    }
+
+    function countWords(text) {
+      const trimmed = (text || ``).trim();
+      if (!trimmed) return 0;
+      return trimmed.split(/\s+/).length;
+    }
+
+    function updateReflectionUI() {
+      const map = [
+        { idx: 1, key: `r1` },
+        { idx: 2, key: `r2` },
+        { idx: 3, key: `r3` }
+      ];
+      for (let i = 0; i < map.length; i++) {
+        const item = map[i];
+        const ta = document.getElementById(`refl-${item.idx}`);
+        const countEl = document.getElementById(`refl-count-${item.idx}`);
+        const val = appState.reflections[item.key] || ``;
+        if (ta && ta.value !== val) ta.value = val;
+        if (countEl) {
+          const w = countWords(val);
+          countEl.textContent = w === 1 ? `1 word` : `${w} words`;
+        }
+      }
+    }
+
+    function handleReflectionInput(idx, val) {
+      const key = `r${idx}`;
+      appState.reflections[key] = val;
+      const countEl = document.getElementById(`refl-count-${idx}`);
+      if (countEl) {
+        const w = countWords(val);
+        countEl.textContent = w === 1 ? `1 word` : `${w} words`;
+      }
+      scheduleReflectionSave();
+    }
+
+    function handleResetStudy(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click Again to Confirm Reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Study Progress`;
+      appState = {
+        activeVerseIdx: 0,
+        activeWordIdx: 0,
+        studiedVerses: [],
+        masteredVocab: [],
+        vocabFilter: `all`,
+        activeHistoryStage: 0,
+        showFullTranslit: false,
+        quizAnswers: {},
+        reflections: { r1: ``, r2: ``, r3: `` }
+      };
+      renderAll();
+      persistState(`Study progress and notes cleared.`);
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-FIL (CHAPTER 105) — PERSONAL STUDY NOTES`,
+        `==================================================`,
+        ``,
+        `Verses Studied: ${appState.studiedVerses.length} / 5 (${appState.studiedVerses.join(`, `) || `None yet`})`,
+        `Key Terms Reviewed: ${appState.masteredVocab.length} / 10`,
+        ``,
+        `VERSE TEXT & TRANSLATION`,
+        `105:1 Have you not considered, [O Muhammad], how your Lord dealt with the companions of the elephant?`,
+        `105:2 Did He not make their plan into misguidance?`,
+        `105:3 And He sent against them birds in flocks,`,
+        `105:4 Striking them with stones of hard clay,`,
+        `105:5 And He made them like eaten straw.`,
+        ``,
+        `REFLECTION 1: Shared Memory & Gratitude`,
+        appState.reflections.r1 || `(No reflection recorded yet)`,
+        ``,
+        `REFLECTION 2: Human Scheming (Kayd) vs. Misguidance (Taḍlīl)`,
+        appState.reflections.r2 || `(No reflection recorded yet)`,
+        ``,
+        `REFLECTION 3: Small Instruments & Humble Reliance`,
+        appState.reflections.r3 || `(No reflection recorded yet)`
+      ];
+      const content = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-fil-study-notes.txt`
+        });
+        const statusEl = document.getElementById(`notebook-status`);
+        if (statusEl) statusEl.textContent = `Study notes downloaded.`;
+      } else {
+        const statusEl = document.getElementById(`notebook-status`);
+        if (statusEl) statusEl.textContent = `Export is ready inside the notebook host environment.`;
+      }
+    }
+
+    function renderAll() {
+      renderFullTranslit();
+      renderVerseList();
+      renderVerseInspector();
+      filterVocab(appState.vocabFilter || `all`, null);
+      selectHistoryStage(appState.activeHistoryStage || 0);
+      renderQuiz();
+      updateReflectionUI();
+      updateProgressSummary();
+    }
+
+    function initScrollReveal() {
+      const items = document.querySelectorAll(`.reveal`);
+      if (!(`IntersectionObserver` in window)) {
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add(`is-visible`);
+        }
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        for (let i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            entries[i].target.classList.add(`is-visible`);
+            observer.unobserve(entries[i].target);
+          }
+        }
+      }, { threshold: 0.08 });
+
+      for (let i = 0; i < items.length; i++) {
+        observer.observe(items[i]);
+      }
+    }
+
+    async function initStudyGuide() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (typeof saved.activeVerseIdx === `number`) appState.activeVerseIdx = saved.activeVerseIdx;
+            if (typeof saved.activeWordIdx === `number`) appState.activeWordIdx = saved.activeWordIdx;
+            if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+            if (Array.isArray(saved.masteredVocab)) appState.masteredVocab = saved.masteredVocab;
+            if (typeof saved.vocabFilter === `string`) appState.vocabFilter = saved.vocabFilter;
+            if (typeof saved.activeHistoryStage === `number`) appState.activeHistoryStage = saved.activeHistoryStage;
+            if (typeof saved.showFullTranslit === `boolean`) appState.showFullTranslit = saved.showFullTranslit;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (saved.reflections && typeof saved.reflections === `object`) {
+              appState.reflections = {
+                r1: saved.reflections.r1 || ``,
+                r2: saved.reflections.r2 || ``,
+                r3: saved.reflections.r3 || ``
+              };
+            }
+          }
+        } catch (err) {
+          // Proceed cleanly with default initial state
+        }
+      }
+
+      renderAll();
+      initScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initStudyGuide);
+  </script>
+</body>
+</html>

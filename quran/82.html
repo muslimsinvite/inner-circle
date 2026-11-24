@@ -1,0 +1,2666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="nocturne">
+  <title>Surah Al-Infitar (Chapter 82) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* Page and surfaces: Prussian midnight steps */
+      --background: #0a101d;
+      --surface-container-low: #0e1626;
+      --surface-container: #111b2e;
+      --surface-container-high: #17243c;
+
+      /* Text */
+      --on-surface: #f2ece1;
+      --on-surface-variant: #9ba8bf;
+
+      /* Borders */
+      --outline: #384d73;
+      --outline-variant: #21304d;
+
+      /* Accents */
+      --primary: #dfaa5b;
+      --on-primary: #0a101d;
+      --primary-container: #2b261c;
+      --on-primary-container: #f5dcb0;
+      --secondary: #687a99;
+      --tertiary: #7cc4e8;
+      --error: #f27474;
+      --on-error: #1a0606;
+
+      /* Data series */
+      --data-1: #dfaa5b;
+      --data-2: #7cc4e8;
+      --data-3: #52d19c;
+      --data-4: #e07a5f;
+      --data-context: #4a5d80;
+
+      /* Fonts */
+      --font-headline: 'EB Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-strong: 1px solid var(--outline);
+      --panel-highlight: inset 0 1px 0 rgba(242, 236, 225, 0.05);
+      --brass-glow: radial-gradient(circle at 88% 12%, rgba(223, 170, 91, 0.08), transparent 45%);
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.06em;
+      --sky-tint: color-mix(in srgb, var(--tertiary) 12%, transparent);
+      --brass-tint: color-mix(in srgb, var(--primary) 14%, transparent);
+      --positive-tint: color-mix(in srgb, var(--positive) 14%, transparent);
+      --error-tint: color-mix(in srgb, var(--error) 14%, transparent);
+      --coral-tint: color-mix(in srgb, var(--data-4) 14%, transparent);
+
+      /* Shared semantic & focus tokens */
+      --positive: #52d19c;
+      --warning: #dfaa5b;
+      --focus: #dfaa5b;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4.2vw, 4.5rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-size: clamp(1.65rem, 1.35rem + 1.1vw, 2.25rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero Header */
+    .hero-header {
+      background-color: var(--background);
+      background-image: var(--brass-glow);
+      border-bottom: var(--hairline);
+      padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+      gap: var(--space-xl);
+      align-items: end;
+    }
+    .coord-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .hero-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.06;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .deck-brass {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: var(--space-sm) 0 var(--space-md) 0;
+    }
+    .hero-lede {
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+      margin: 0;
+    }
+    .hero-arabic-banner {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      color: var(--primary);
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.6;
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Panels & Surfaces */
+    .panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .panel-low {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .observation-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface);
+    }
+
+    /* Telemetry Mastery Strip */
+    .telemetry-panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .stat-tile {
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      display: block;
+    }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+      line-height: 1.15;
+      margin-top: var(--space-xs);
+    }
+    .stat-note {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+      margin-top: var(--space-xs);
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    /* Quick Jump Index */
+    .index-rail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      padding: var(--space-md) 0;
+      border-bottom: var(--hairline);
+    }
+    .index-rail-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-right: var(--space-xs);
+    }
+    .jump-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      background: transparent;
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .jump-btn:hover {
+      background: var(--sky-tint);
+      border-color: var(--tertiary);
+    }
+
+    /* Section Headings */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      scroll-margin-top: var(--space-lg);
+    }
+    .section-header {
+      border-top: var(--hairline-strong);
+      padding-top: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.12;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .section-intro {
+      color: var(--on-surface-variant);
+      max-width: 68ch;
+      margin: 0;
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      border: 1px solid color-mix(in srgb, var(--tertiary) 35%, transparent);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-brass {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+    }
+    .badge-positive {
+      background: var(--positive-tint);
+      color: var(--positive);
+      border-color: color-mix(in srgb, var(--positive) 35%, transparent);
+    }
+    .badge-coral {
+      background: var(--coral-tint);
+      color: var(--data-4);
+      border-color: color-mix(in srgb, var(--data-4) 35%, transparent);
+    }
+
+    /* Buttons */
+    .btn-primary, .btn-secondary {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: var(--hairline-strong);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-high);
+      border-color: var(--tertiary);
+    }
+    .btn-secondary[aria-pressed="true"], .filter-btn[aria-pressed="true"] {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:disabled, .btn-secondary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Section 1: Structural Breakdown & Diagram */
+    .structure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .svg-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .movement-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .movement-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      display: grid;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .movement-card:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+    .movement-card.active {
+      background: var(--surface-container-high);
+      border-color: var(--primary);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+    .movement-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .movement-title {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 500;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .movement-summary {
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+      margin: 0;
+    }
+
+    /* Structural Table */
+    .data-table-wrap {
+      overflow-x: auto;
+    }
+    .nocturne-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .nocturne-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--hairline-strong);
+      font-weight: 500;
+    }
+    .nocturne-table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--hairline);
+      color: var(--on-surface);
+      vertical-align: top;
+      font-size: 0.9375rem;
+    }
+    .nocturne-table td.num {
+      font-family: var(--font-label);
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      white-space: nowrap;
+      color: var(--primary);
+    }
+    .nocturne-table th.num {
+      text-align: right;
+    }
+
+    /* Section 2: Verse-by-Verse Controls & Cards */
+    .verse-controls {
+      display: grid;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: 0.03em;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .filter-btn:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+    .search-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: end;
+      justify-content: space-between;
+    }
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+      flex: 1 1 260px;
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .textarea-input {
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+      min-height: 44px;
+      width: 100%;
+    }
+    .textarea-input {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .verse-stream {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      border-color: color-mix(in srgb, var(--positive) 45%, transparent);
+    }
+    .verse-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .verse-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-num-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--brass-tint);
+      border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+    }
+    .verse-bilingual {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .verse-translation-block {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .verse-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+      font-weight: 500;
+      line-height: 1.32;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .verse-translit {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--on-surface);
+      text-align: right;
+      direction: rtl;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+    }
+    .verse-commentary {
+      color: var(--on-surface-variant);
+      margin: 0;
+      max-width: 72ch;
+    }
+    .verse-commentary strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+    .linguistic-drawer {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-left: 3px solid var(--tertiary);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .linguistic-drawer.hidden {
+      display: none;
+    }
+    .ling-head {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+    }
+    .ling-body {
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.15em;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--primary);
+      padding: 0 var(--space-xs);
+    }
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .master-toggle {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      background: transparent;
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .master-toggle:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+    .master-toggle[aria-pressed="true"] {
+      background: var(--positive-tint);
+      color: var(--positive);
+      border-color: var(--positive);
+    }
+
+    /* Section 3: Theological Pillars & Cosmic Stepper */
+    .cosmic-stepper {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .step-buttons {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .step-btn {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .step-btn:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+    .step-btn[aria-selected="true"] {
+      background: var(--brass-tint);
+      border-color: var(--primary);
+    }
+    .step-btn-title {
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+      color: var(--on-surface);
+    }
+    .step-btn-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--primary);
+    }
+    .theology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .pillar-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+    .pillar-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .pillar-copy {
+      color: var(--on-surface-variant);
+      margin: 0;
+      font-size: 0.96rem;
+    }
+    .pillar-copy strong {
+      color: var(--on-surface);
+    }
+    .contrast-table-box {
+      margin-top: var(--space-xs);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Section 4: Linguistic Root Lab */
+    .root-lab {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .root-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(135px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .root-chip {
+      min-height: 58px;
+      padding: var(--space-sm);
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: grid;
+      gap: 2px;
+      text-align: center;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .root-chip:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+    .root-chip[aria-pressed="true"] {
+      background: var(--brass-tint);
+      border-color: var(--primary);
+    }
+    .root-chip-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.35;
+    }
+    .root-chip-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+    }
+
+    /* Section 5: Interactive Quiz */
+    .quiz-shell {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-header-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-md);
+    }
+    .quiz-question-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-prompt {
+      font-family: var(--font-headline);
+      font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.28;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      text-align: left;
+      color: var(--on-surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container-high);
+      border-color: var(--tertiary);
+    }
+    .quiz-option.selected-correct {
+      background: var(--positive-tint);
+      border-color: var(--positive);
+      color: var(--on-surface);
+    }
+    .quiz-option.selected-wrong {
+      background: var(--error-tint);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-option.reveal-correct {
+      border-color: var(--positive);
+      box-shadow: inset 3px 0 0 var(--positive);
+    }
+    .quiz-opt-key {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--primary);
+      min-width: 1.5rem;
+    }
+    .quiz-feedback {
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      border: var(--hairline);
+      background: var(--surface-container-low);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .quiz-feedback.is-correct {
+      border-left: 3px solid var(--positive);
+    }
+    .quiz-feedback.is-wrong {
+      border-left: 3px solid var(--error);
+    }
+    .quiz-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .quiz-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .quiz-dot {
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      cursor: pointer;
+    }
+    .quiz-dot.current {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .quiz-dot.correct {
+      background: var(--positive-tint);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+    .quiz-dot.wrong {
+      background: var(--error-tint);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Section 6: Reflective Takeaways */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .reflection-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .reflection-verse-quote {
+      font-family: var(--font-headline);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--primary);
+      border-left: 2px solid var(--primary);
+      padding-left: var(--space-md);
+      margin: 0;
+    }
+    .inline-status {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--positive);
+      min-height: 1.25em;
+    }
+    .empty-state {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: left;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .hidden {
+      display: none !important;
+    }
+
+    /* Footer */
+    .page-footer {
+      border-top: var(--hairline);
+      padding: var(--space-xl) var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner,
+      .structure-layout,
+      .cosmic-stepper,
+      .root-lab,
+      .verse-bilingual {
+        grid-template-columns: 1fr;
+      }
+      .verse-arabic {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .hero-header {
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
+      }
+      .telemetry-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-arabic-banner" dir="rtl" lang="ar">سُورَةُ الانْفِطَارِ</div>
+        <p class="coord-label">Qurʾān Chapter 82 · 19 Verses · 5 Structural Movements</p>
+        <h1 class="hero-title">Surah Al-Infitar: <em>The Cleaving</em></h1>
+        <p class="deck-brass">When the cosmos dismantles so the soul may finally read itself</p>
+        <p class="hero-lede">
+          Delivered in nineteen compressed, rhythmic verses, Chapter 82 opens with the physical unmaking of sky, stars, seas, and graves—not as spectacle for its own sake, but as the dramatic prelude to a quiet personal reckoning: why does the human being mistake the patience of a Generous Lord (<em>al-Karīm</em>) for impunity?
+        </p>
+      </div>
+
+      <aside class="telemetry-panel" aria-label="Study Mastery Telemetry">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+          <span class="coord-label" style="margin:0;">Mastery Logbook</span>
+          <span class="badge badge-brass" id="mastery-rank-badge">Initiate</span>
+        </div>
+        <div class="telemetry-grid">
+          <div class="stat-tile">
+            <span class="stat-label">Verses Mastered</span>
+            <div class="stat-value" id="stat-verses">0 / 19</div>
+            <div class="stat-note" id="stat-verses-pct">0% complete</div>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-label">Quiz Score</span>
+            <div class="stat-value" id="stat-quiz">0 / 8</div>
+            <div class="stat-note" id="stat-quiz-note">Not yet taken</div>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-label">Reflections</span>
+            <div class="stat-value" id="stat-notes">0 / 4</div>
+            <div class="stat-note" id="stat-notes-note">Prompt entries</div>
+          </div>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="mastery-progress-bar"></div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:var(--space-sm); justify-content:space-between; align-items:center;">
+          <span class="stat-note" style="margin:0; color:var(--on-surface-variant);" id="persistence-status">Ready to record study progress.</span>
+          <button type="button" class="btn-secondary" onclick="exportStudySummary()">Export Study Notes</button>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main class="page-grid">
+
+    <nav class="index-rail" aria-label="Study guide sections">
+      <span class="index-rail-label">Navigate Guide:</span>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-structure')">I. Architecture (1–19)</button>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-verses')">II. Verse Commentary</button>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-theology')">III. Four Theological Pillars</button>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-linguistics')">IV. Arabic Root Lab</button>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-quiz')">V. Mastery Assessment</button>
+      <button type="button" class="jump-btn" onclick="scrollToSection('sec-reflections')">VI. Reflections</button>
+    </nav>
+
+    <!-- SECTION 1: ARCHITECTURAL & STRUCTURAL BREAKDOWN -->
+    <section id="sec-structure" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section I · Structural Architecture</span>
+        <h2 class="section-title">Five movements compress <em>cosmic collapse</em> into absolute divine command</h2>
+        <p class="section-intro">
+          Surah Al-Infitar moves cleanly through five rhetorical gears. Each shift in pronoun, verb voice, and rhyme cadence narrows the lens—from the vast outer cosmos down to the anatomy of one human person, outward again to the invisible scribes, and finally to the universal horizon where no soul can shield another.
+        </p>
+      </div>
+
+      <div class="structure-layout">
+        <div class="panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <span class="coord-label" style="margin:0;">Rhetorical Arc Schematic · 82:1–19</span>
+            <span class="badge" id="arc-active-badge">Movement I · 82:1–5</span>
+          </div>
+          <div class="svg-well">
+            <svg id="arc-svg" viewBox="0 0 560 300" width="100%" role="img" aria-label="Five-movement structural arc of Surah Al-Infitar from verses 1 to 19">
+              <!-- Baseline and grid -->
+              <line x1="40" y1="245" x2="530" y2="245" stroke="var(--outline)" stroke-width="1.5" />
+              <line x1="40" y1="65" x2="530" y2="65" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1" />
+              <line x1="40" y1="125" x2="530" y2="125" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1" />
+              <line x1="40" y1="185" x2="530" y2="185" stroke="var(--outline-variant)" stroke-dasharray="4 4" stroke-width="1" />
+
+              <!-- Axis labels -->
+              <text x="32" y="69" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="end">COSMIC</text>
+              <text x="32" y="129" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="end">UNSEEN</text>
+              <text x="32" y="189" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="end">MORAL</text>
+              <text x="32" y="249" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="end">SOUL</text>
+
+              <!-- Connecting trajectory path -->
+              <path d="M 85 75 C 130 75, 145 215, 195 215 C 245 215, 255 135, 305 135 C 355 135, 365 175, 415 175 C 465 175, 475 72, 510 72"
+                    fill="none" stroke="var(--tertiary)" stroke-width="2" stroke-opacity="0.7" />
+
+              <!-- Movement bars / nodes -->
+              <g id="svg-node-1" onclick="selectMovement(0)" style="cursor:pointer;">
+                <rect x="52" y="254" width="68" height="22" rx="3" fill="var(--brass-tint)" stroke="var(--primary)" stroke-width="1" />
+                <text x="86" y="269" fill="var(--primary)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">vv. 1–5</text>
+                <circle cx="85" cy="75" r="10" fill="var(--primary)" stroke="var(--background)" stroke-width="2" />
+                <text x="85" y="54" fill="var(--on-surface)" font-family="EB Garamond, serif" font-size="13" text-anchor="middle">I. Cleaving</text>
+              </g>
+
+              <g id="svg-node-2" onclick="selectMovement(1)" style="cursor:pointer;">
+                <rect x="161" y="254" width="68" height="22" rx="3" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" />
+                <text x="195" y="269" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">vv. 6–9</text>
+                <circle cx="195" cy="215" r="8" fill="var(--data-2)" stroke="var(--background)" stroke-width="2" />
+                <text x="195" y="196" fill="var(--on-surface-variant)" font-family="EB Garamond, serif" font-size="13" text-anchor="middle">II. Rebuke</text>
+              </g>
+
+              <g id="svg-node-3" onclick="selectMovement(2)" style="cursor:pointer;">
+                <rect x="271" y="254" width="68" height="22" rx="3" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" />
+                <text x="305" y="269" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">vv. 10–12</text>
+                <circle cx="305" cy="135" r="8" fill="var(--data-2)" stroke="var(--background)" stroke-width="2" />
+                <text x="305" y="116" fill="var(--on-surface-variant)" font-family="EB Garamond, serif" font-size="13" text-anchor="middle">III. Scribes</text>
+              </g>
+
+              <g id="svg-node-4" onclick="selectMovement(3)" style="cursor:pointer;">
+                <rect x="381" y="254" width="68" height="22" rx="3" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" />
+                <text x="415" y="269" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">vv. 13–16</text>
+                <circle cx="415" cy="175" r="8" fill="var(--data-2)" stroke="var(--background)" stroke-width="2" />
+                <text x="415" y="156" fill="var(--on-surface-variant)" font-family="EB Garamond, serif" font-size="13" text-anchor="middle">IV. Destinies</text>
+              </g>
+
+              <g id="svg-node-5" onclick="selectMovement(4)" style="cursor:pointer;">
+                <rect x="476" y="254" width="68" height="22" rx="3" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1" />
+                <text x="510" y="269" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">vv. 17–19</text>
+                <circle cx="510" cy="72" r="8" fill="var(--data-2)" stroke="var(--background)" stroke-width="2" />
+                <text x="510" y="51" fill="var(--on-surface-variant)" font-family="EB Garamond, serif" font-size="13" text-anchor="middle">V. Sovereignty</text>
+              </g>
+            </svg>
+          </div>
+          <div id="movement-detail-well" class="observation-well" style="margin-top:var(--space-md);">
+            <div class="coord-label" id="mov-detail-label">Movement I · Verses 82:1–5</div>
+            <p style="margin:var(--space-xs) 0 0 0; color:var(--on-surface);" id="mov-detail-text">
+              Four rapid temporal clauses (“When…”) shatter sky, stars, seas, and graves in descending vertical order—from upper heavens down into the earth—landing on a single verb of awakening: <em>ʿalimat nafsun</em> (“a soul will know”).
+            </p>
+          </div>
+        </div>
+
+        <div class="movement-list" id="movement-selector-list">
+          <button type="button" class="movement-card active" onclick="selectMovement(0)">
+            <div class="movement-card-head">
+              <h3 class="movement-title">I. The Cosmic &amp; Resurrection Prelude</h3>
+              <span class="badge badge-brass">82:1–5</span>
+            </div>
+            <p class="movement-summary">Rhyme shifts from cosmic passive <em>-rat</em> (vv. 1–4) to moral disclosure <em>akhkharat</em> (v. 5).</p>
+          </button>
+          <button type="button" class="movement-card" onclick="selectMovement(1)">
+            <div class="movement-card-head">
+              <h3 class="movement-title">II. The Penetrating Rebuke &amp; Creation</h3>
+              <span class="badge">82:6–9</span>
+            </div>
+            <p class="movement-summary">Direct singular address (<em>-ka</em>) confronts human delusion before exposing collective denial (v. 9).</p>
+          </button>
+          <button type="button" class="movement-card" onclick="selectMovement(2)">
+            <div class="movement-card-head">
+              <h3 class="movement-title">III. The Unseen Guardian Scribes</h3>
+              <span class="badge">82:10–12</span>
+            </div>
+            <p class="movement-summary">Emphatic <em>inna</em> + <em>la-</em> introduces noble, unerring recorders watching every deed.</p>
+          </button>
+          <button type="button" class="movement-card" onclick="selectMovement(3)">
+            <div class="movement-card-head">
+              <h3 class="movement-title">IV. The Bifurcated Destinies</h3>
+              <span class="badge">82:13–16</span>
+            </div>
+            <p class="movement-summary">Paired mirror sentences contrast <em>al-abrār</em> in bliss and <em>al-fujjār</em> in inescapable fire.</p>
+          </button>
+          <button type="button" class="movement-card" onclick="selectMovement(4)">
+            <div class="movement-card-head">
+              <h3 class="movement-title">V. Ultimate Sovereignty of the Day</h3>
+              <span class="badge">82:17–19</span>
+            </div>
+            <p class="movement-summary">Doubled rhetorical awe (<em>mā adrāka</em>) seals all command exclusively with Allah.</p>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel data-table-wrap">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+          <span class="coord-label" style="margin:0;">Prosodic &amp; Grammatical Shift Matrix</span>
+          <span class="stat-note" style="margin:0;">Notice how grammatical person tracks moral intimacy</span>
+        </div>
+        <table class="nocturne-table">
+          <thead>
+            <tr>
+              <th>Movement</th>
+              <th class="num">Verses</th>
+              <th>Grammatical Voice</th>
+              <th>End-Rhyme Cadence</th>
+              <th>Core Rhetorical Shift</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>I. Cosmic Cleaving</td>
+              <td class="num">1–5</td>
+              <td>3rd person feminine (sky, stars, seas, graves, soul)</td>
+              <td><em>-rat</em> (broken / poured / scattered)</td>
+              <td>External universe dissolves to expose internal deeds</td>
+            </tr>
+            <tr>
+              <td>II. Rebuke &amp; Design</td>
+              <td class="num">6–9</td>
+              <td>2nd person singular (vv. 6–8) → plural (v. 9)</td>
+              <td><em>-ka</em> (you) → <em>bi-d-dīn</em></td>
+              <td>Intimate wonder turns into direct diagnosis of denial</td>
+            </tr>
+            <tr>
+              <td>III. Vigilant Scribes</td>
+              <td class="num">10–12</td>
+              <td>2nd person plural (“over you”)</td>
+              <td><em>-īn / -ūn</em> (continuous plural)</td>
+              <td>Establishes unbroken witness behind denied accountability</td>
+            </tr>
+            <tr>
+              <td>IV. Two Destinies</td>
+              <td class="num">13–16</td>
+              <td>3rd person plural moral archetypes</td>
+              <td><em>naʿīm / jaḥīm / ghāʾibīn</em></td>
+              <td>Symmetrical verdict: permanent pleasure vs. permanent fire</td>
+            </tr>
+            <tr>
+              <td>V. Day of Command</td>
+              <td class="num">17–19</td>
+              <td>2nd person prophetic awe → absolute universal</td>
+              <td><em>yawmu d-dīn / lillāh</em></td>
+              <td>All created agency vanishes; sovereignty rests solely with Allah</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 2: VERSE-BY-VERSE TEXT, COMMENTARY & LINGUISTICS -->
+    <section id="sec-verses" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section II · Complete Annotated Text</span>
+        <h2 class="section-title">Verse-by-verse <em>Arabic, translation &amp; commentary</em> (82:1–19)</h2>
+        <p class="section-intro">
+          Study each of the nineteen verses in sequence or filter by movement. Toggle linguistic notes to inspect root morphology and rhetorical structure, and mark verses as mastered to record your progress in the logbook.
+        </p>
+      </div>
+
+      <div class="verse-controls">
+        <div class="filter-row" role="group" aria-label="Filter verses by thematic movement">
+          <button type="button" class="filter-btn" id="filter-all" aria-pressed="true" onclick="setMovementFilter('all')">All 19 Verses</button>
+          <button type="button" class="filter-btn" id="filter-1" aria-pressed="false" onclick="setMovementFilter(1)">I. Cosmic Cleaving (1–5)</button>
+          <button type="button" class="filter-btn" id="filter-2" aria-pressed="false" onclick="setMovementFilter(2)">II. Rebuke (6–9)</button>
+          <button type="button" class="filter-btn" id="filter-3" aria-pressed="false" onclick="setMovementFilter(3)">III. Scribes (10–12)</button>
+          <button type="button" class="filter-btn" id="filter-4" aria-pressed="false" onclick="setMovementFilter(4)">IV. Destinies (13–16)</button>
+          <button type="button" class="filter-btn" id="filter-5" aria-pressed="false" onclick="setMovementFilter(5)">V. Sovereignty (17–19)</button>
+        </div>
+
+        <div class="search-toolbar">
+          <div class="field-group">
+            <label for="verse-search-input" class="field-label">Search Arabic, English, or commentary</label>
+            <input type="search" id="verse-search-input" class="text-input" placeholder="Try: Generous, graves, scribes, 82:6…" oninput="handleVerseSearch(this.value)">
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" class="btn-secondary" id="toggle-all-ling-btn" aria-pressed="true" onclick="toggleAllLinguistics()">Hide All Linguistic Notes</button>
+            <button type="button" class="btn-secondary" onclick="markVisibleMastered()">Mark Visible Mastered</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="verse-empty-state" class="empty-state hidden">
+        <span class="coord-label">No matching verses</span>
+        <p style="margin:0; color:var(--on-surface-variant);">No verses matched your current movement filter and search query.</p>
+        <div>
+          <button type="button" class="btn-primary" onclick="resetVerseFilters()">Reset Filters</button>
+        </div>
+      </div>
+
+      <div id="verse-stream" class="verse-stream"></div>
+    </section>
+
+    <!-- SECTION 3: FOUR KEY THEOLOGICAL THEMES -->
+    <section id="sec-theology" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section III · Theological Synthesis</span>
+        <h2 class="section-title">Four pillars of <em>moral and eschatological</em> awakening</h2>
+        <p class="section-intro">
+          Beneath its vivid imagery, Surah Al-Infitar constructs a single theological argument: cosmic order is contingent, divine generosity demands gratitude rather than complacency, human actions are preserved with dignity and precision, and ultimate authority belongs to Allah alone.
+        </p>
+      </div>
+
+      <!-- Interactive Anchor: 4-Stage Cosmic Cleaving Stepper -->
+      <div class="panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+          <div>
+            <span class="coord-label" style="margin:0;">Pillar 1 Interactive Explorer · 82:1–5</span>
+            <h3 class="pillar-title" style="margin-top:var(--space-xs);">Descending the Vertical Axis of the Cosmic Cleaving</h3>
+          </div>
+          <span class="badge badge-brass" id="cosmic-stage-badge">Stage 1 of 5 · Sky</span>
+        </div>
+
+        <div class="cosmic-stepper">
+          <div class="step-buttons" role="tablist" aria-label="Stages of the Cosmic Cleaving">
+            <button type="button" class="step-btn" role="tab" aria-selected="true" id="cstep-0" onclick="selectCosmicStage(0)">
+              <span class="step-btn-title">1. The Sky Breaks Apart</span>
+              <span class="step-btn-ref">82:1 · السَّمَاءُ انْفَطَرَتْ</span>
+            </button>
+            <button type="button" class="step-btn" role="tab" aria-selected="false" id="cstep-1" onclick="selectCosmicStage(1)">
+              <span class="step-btn-title">2. The Stars Scatter</span>
+              <span class="step-btn-ref">82:2 · الْكَوَاكِبُ انْتَثَرَتْ</span>
+            </button>
+            <button type="button" class="step-btn" role="tab" aria-selected="false" id="cstep-2" onclick="selectCosmicStage(2)">
+              <span class="step-btn-title">3. The Seas Erupt</span>
+              <span class="step-btn-ref">82:3 · الْبِحَارُ فُجِّرَتْ</span>
+            </button>
+            <button type="button" class="step-btn" role="tab" aria-selected="false" id="cstep-3" onclick="selectCosmicStage(3)">
+              <span class="step-btn-title">4. The Graves Overturn</span>
+              <span class="step-btn-ref">82:4 · الْقُبُورُ بُعْثِرَتْ</span>
+            </button>
+            <button type="button" class="step-btn" role="tab" aria-selected="false" id="cstep-4" onclick="selectCosmicStage(4)">
+              <span class="step-btn-title">5. Every Soul Knows</span>
+              <span class="step-btn-ref">82:5 · عَلِمَتْ نَفْسٌ</span>
+            </button>
+          </div>
+
+          <div class="observation-well" id="cosmic-stage-readout">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+              <span class="coord-label" id="cosmic-stage-ref" style="margin:0;">Verse 82:1 · Upper Canopy</span>
+              <span class="badge" id="cosmic-stage-form">Form VII Reflexive</span>
+            </div>
+            <div class="verse-arabic" id="cosmic-stage-arabic" dir="rtl" lang="ar" style="margin-bottom:var(--space-md);">إِذَا السَّمَاءُ انْفَطَرَتْ</div>
+            <h4 class="pillar-title" id="cosmic-stage-heading">When the Sky Breaks Apart</h4>
+            <p class="pillar-copy" id="cosmic-stage-desc" style="margin-top:var(--space-xs);">
+              The verb <em>infaṭarat</em> (from root <em>f-ṭ-r</em>, to split or cleave lengthwise) uses Form VII—signifying effortless, reflexive yielding rather than violent struggle. The sky that appeared eternal and impenetrable for millennia splits open like fabric parting on command, signaling that the veil between the seen and unseen realms has lifted.
+            </p>
+            <p class="stat-note" id="cosmic-stage-echo" style="margin-top:var(--space-sm); color:var(--primary);">
+              Theological link: The physical barrier between human affairs and divine accountability dissolves.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Remaining Three Theological Pillars + Synthesis -->
+      <div class="theology-grid">
+        <article class="pillar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="coord-label" style="margin:0;">Pillar 2 · 82:6–9</span>
+            <span class="badge badge-brass">Al-Karīm</span>
+          </div>
+          <h3 class="pillar-title">Human Delusion &amp; the Generous Lord</h3>
+          <p class="pillar-copy">
+            After cosmic upheaval, 82:6 pivots with startling tenderness: <em>“O mankind, what has deceived you (gharraka) concerning your Lord, the Generous?”</em> Classical commentators note the profound precision of choosing the divine name <strong>al-Karīm</strong> here. Instead of appealing to terror, the verse appeals to conscience: it was His very generosity—forgiving, concealing faults, sustaining you despite negligence—that a heedless heart twisted into false security.
+          </p>
+          <p class="pillar-copy">
+            Verses 7–8 reinforce this by pointing to the human body itself as the first witness of generosity: Allah <em>created</em> you from nothing (<em>khalaqaka</em>), <em>proportioned</em> your organs in harmony (<em>sawwāka</em>), <em>balanced</em> your stature upright (<em>ʿadalaka</em>), and assembled your unique form by His will (<em>rakkabaka</em>). Verse 9 strips away every excuse with <strong>Kallā</strong> (“No!”): intellectual confusion is not the root; rather, <em>“you deny the Recompense.”</em>
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="coord-label" style="margin:0;">Pillar 3 · 82:10–12</span>
+            <span class="badge">Kirāman Kātibīn</span>
+          </div>
+          <h3 class="pillar-title">The Vigilant Guardian Scribes</h3>
+          <p class="pillar-copy">
+            If human beings assume nothing is being tracked—or imagine their private motives vanish—82:10–12 introduce an unseen witness using double emphasis (<em>wa-inna ʿalaykum la-ḥāfiẓīn</em>): appointed over every person are <strong>keepers</strong> who are <strong>noble and recording</strong> (<em>kirāman kātibīn</em>).
+          </p>
+          <p class="pillar-copy">
+            Three qualities define their stewardship. First, <strong>ḥāfiẓīn</strong> marks active preservation—nothing worthy of reward or reckoning slips away. Second, <strong>kirāman</strong> (“noble”) establishes moral integrity and reverence: they cannot be bribed, flattered, or intimidated, and believers feel a sense of honor and modesty before noble companions. Third, <strong>kātibīn</strong> coupled with <em>yaʿlamūna mā tafʿalūn</em> (“they know whatever you do”) ensures total fidelity between deed and record.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="coord-label" style="margin:0;">Pillar 4 · 82:13–19</span>
+            <span class="badge badge-coral">Yawm ad-Dīn</span>
+          </div>
+          <h3 class="pillar-title">Bifurcated Destinies &amp; Absolute Sovereignty</h3>
+          <p class="pillar-copy">
+            The moral ledger divides humanity into two archetypal paths: <strong>al-abrār</strong> (the righteous, rooted in <em>birr</em>—expansive goodness and fidelity) enter enduring pleasure (<em>naʿīm</em>), while <strong>al-fujjār</strong> (the wicked, rooted in <em>fujūr</em>—tearing through moral limits, echoing the bursting seas <em>fujjirat</em> of v. 3) enter Hellfire (<em>jaḥīm</em>) on the Day of Recompense without escape (82:16).
+          </p>
+          <div class="contrast-table-box">
+            <span class="coord-label" style="margin:0;">Final Sovereign Climax (82:17–19)</span>
+            <p class="pillar-copy">
+              The doubled question <em>“And what can make you know what is the Day of Recompense?”</em> (82:17–18) elevates the Day beyond human imagination, concluding with total ontological clarity: no soul possesses even a speck of leverage for another soul, <strong>“and the command, that Day, is [entirely] with Allah.”</strong>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LINGUISTIC & MORPHOLOGICAL INSIGHTS LAB -->
+    <section id="sec-linguistics" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section IV · Linguistic &amp; Morphological Lab</span>
+        <h2 class="section-title">Arabic roots, verb forms &amp; <em>cross-verse echoes</em></h2>
+        <p class="section-intro">
+          Much of Surah Al-Infitar’s force lives inside its verb patterns and shared triliteral roots. Select any key term below to examine its root letters, grammatical pattern, and theological echo across the chapter.
+        </p>
+      </div>
+
+      <div class="root-lab">
+        <div class="root-grid" role="group" aria-label="Key Arabic terms in Surah Al-Infitar">
+          <button type="button" class="root-chip" aria-pressed="true" onclick="selectRootTerm(0)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">انْفَطَرَتْ</span>
+            <span class="root-chip-ref">82:1 · ف-ط-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(1)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">انْتَثَرَتْ</span>
+            <span class="root-chip-ref">82:2 · ن-ث-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(2)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">فُجِّرَتْ</span>
+            <span class="root-chip-ref">82:3 · ف-ج-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(3)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">بُعْثِرَتْ</span>
+            <span class="root-chip-ref">82:4 · ب-ع-ث-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(4)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">غَرَّكَ</span>
+            <span class="root-chip-ref">82:6 · غ-ر-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(5)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">الْكَرِيمِ</span>
+            <span class="root-chip-ref">82:6 · ك-ر-م</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(6)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">فَسَوَّاكَ</span>
+            <span class="root-chip-ref">82:7 · س-و-ي</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(7)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">فَعَدَلَكَ</span>
+            <span class="root-chip-ref">82:7 · ع-د-ل</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(8)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">الْأَبْرَارَ</span>
+            <span class="root-chip-ref">82:13 · ب-ر-ر</span>
+          </button>
+          <button type="button" class="root-chip" aria-pressed="false" onclick="selectRootTerm(9)">
+            <span class="root-chip-ar" dir="rtl" lang="ar">الْفُجَّارَ</span>
+            <span class="root-chip-ref">82:14 · ف-ج-ر</span>
+          </button>
+        </div>
+
+        <div class="panel" id="root-detail-panel">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); border-bottom:var(--hairline); padding-bottom:var(--space-sm);">
+            <div>
+              <span class="coord-label" id="root-detail-meta" style="margin:0;">Verse 82:1 · Root: ف - ط - ر (f-ṭ-r)</span>
+              <h3 class="pillar-title" id="root-detail-title" style="margin-top:var(--space-xs);">Infaṭarat — To cleave or split apart</h3>
+            </div>
+            <div class="verse-arabic" id="root-detail-arabic" dir="rtl" lang="ar" style="padding:var(--space-xs) var(--space-md);">انْفَطَرَتْ</div>
+          </div>
+
+          <div style="display:grid; gap:var(--space-md); margin-top:var(--space-md);">
+            <div class="observation-well">
+              <span class="stat-label">Morphological Form &amp; Literal Nuance</span>
+              <p style="margin:var(--space-xs) 0 0 0; color:var(--on-surface);" id="root-detail-form">
+                Form VII passive-reflexive (<em>infaʿala</em>). Rather than describing a struggle against resistance, Form VII denotes effortless yielding—the heavens part smoothly at the divine command.
+              </p>
+            </div>
+            <div>
+              <span class="stat-label">Theological &amp; Cross-Verse Echo</span>
+              <p style="margin:var(--space-xs) 0 0 0; color:var(--on-surface-variant);" id="root-detail-echo">
+                The same root <em>f-ṭ-r</em> yields <em>fiṭrah</em> (innate spiritual nature) and <em>Fāṭir</em> (Originator of the heavens and earth). He who split open creation at its origin splits its canopy open again for judgment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE SELF-ASSESSMENT QUIZ -->
+    <section id="sec-quiz" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section V · Self-Assessment Mastery Check</span>
+        <h2 class="section-title">Test your grasp of <em>structure, Arabic nuance &amp; theology</em></h2>
+        <p class="section-intro">
+          Eight diagnostic questions test your mastery of Surah Al-Infitar. Each response unlocks grounded commentary referencing the exact verse and Arabic phrasing, and your progress saves automatically to your study logbook.
+        </p>
+      </div>
+
+      <div class="quiz-shell">
+        <div class="quiz-header-bar">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-md);">
+            <span class="badge badge-brass" id="quiz-progress-badge">Question 1 of 8</span>
+            <span class="coord-label" id="quiz-score-label" style="margin:0;">Score: 0 / 8 answered</span>
+          </div>
+          <button type="button" class="btn-secondary" id="quiz-reset-btn" onclick="handleQuizReset(this)">Reset Quiz</button>
+        </div>
+
+        <div class="quiz-dots" id="quiz-dots-row" role="navigation" aria-label="Quiz questions"></div>
+
+        <div class="quiz-question-card" id="quiz-card">
+          <span class="coord-label" id="quiz-topic-label" style="margin:0;">Structure · Movement I</span>
+          <h3 class="quiz-prompt" id="quiz-prompt-text">Loading question…</h3>
+          <div class="quiz-options" id="quiz-options-list"></div>
+          <div class="quiz-feedback hidden" id="quiz-feedback-box">
+            <span class="coord-label" id="quiz-feedback-title" style="margin:0;">Explanation</span>
+            <p style="margin:0; color:var(--on-surface-variant);" id="quiz-feedback-body"></p>
+          </div>
+          <div class="quiz-nav">
+            <button type="button" class="btn-secondary" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous Question</button>
+            <button type="button" class="btn-primary" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: REFLECTIVE TAKEAWAYS -->
+    <section id="sec-reflections" class="study-section reveal">
+      <div class="section-header">
+        <span class="coord-label">Section VI · Reflective Takeaways</span>
+        <h2 class="section-title">From passive reading to <em>personal accounting</em></h2>
+        <p class="section-intro">
+          Surah Al-Infitar refuses to remain theoretical: it moves from the skies directly to <em>“what it has put forth and kept back”</em> (82:5). Record your own reflections below; entries persist across sessions and can be exported alongside your quiz score.
+        </p>
+      </div>
+
+      <div class="reflection-grid" id="reflection-grid">
+        <article class="reflection-card">
+          <span class="coord-label" style="margin:0;">Prompt 1 · Verse 82:5</span>
+          <blockquote class="reflection-verse-quote">“A soul will [then] know what it has put forth and kept back.”</blockquote>
+          <p class="pillar-copy">
+            What good habit, reconciliation, or obligation have you been “keeping back” (postponing), and what legacy are you actively “putting forth” ahead of you?
+          </p>
+          <div class="field-group">
+            <label for="reflect-0" class="field-label">Your reflection on 82:5</label>
+            <textarea id="reflect-0" class="textarea-input" placeholder="Write your personal takeaway on deeds sent forward vs. postponed…" oninput="saveReflection(0, this.value)"></textarea>
+          </div>
+          <span class="inline-status" id="reflect-status-0"></span>
+        </article>
+
+        <article class="reflection-card">
+          <span class="coord-label" style="margin:0;">Prompt 2 · Verse 82:6</span>
+          <blockquote class="reflection-verse-quote">“O mankind, what has deceived you concerning your Lord, the Generous,”</blockquote>
+          <p class="pillar-copy">
+            Where in your daily life might ease, health, or unanswered delay be lulling you into spiritual complacency instead of deepening gratitude toward <em>al-Karīm</em>?
+          </p>
+          <div class="field-group">
+            <label for="reflect-1" class="field-label">Your reflection on 82:6</label>
+            <textarea id="reflect-1" class="textarea-input" placeholder="Reflect on mistaking divine patience for permission…" oninput="saveReflection(1, this.value)"></textarea>
+          </div>
+          <span class="inline-status" id="reflect-status-1"></span>
+        </article>
+
+        <article class="reflection-card">
+          <span class="coord-label" style="margin:0;">Prompt 3 · Verses 82:10–12</span>
+          <blockquote class="reflection-verse-quote">“And indeed, [appointed] over you are keepers, Noble and recording;”</blockquote>
+          <p class="pillar-copy">
+            Knowing that noble, honorable witnesses accompany both public actions and private choices, what single daily speech or digital habit changes today?
+          </p>
+          <div class="field-group">
+            <label for="reflect-2" class="field-label">Your reflection on 82:10–12</label>
+            <textarea id="reflect-2" class="textarea-input" placeholder="Note a concrete shift in private or public mindfulness…" oninput="saveReflection(2, this.value)"></textarea>
+          </div>
+          <span class="inline-status" id="reflect-status-2"></span>
+        </article>
+
+        <article class="reflection-card">
+          <span class="coord-label" style="margin:0;">Prompt 4 · Verse 82:19</span>
+          <blockquote class="reflection-verse-quote">“It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah.”</blockquote>
+          <p class="pillar-copy">
+            Which worldly status, peer approval, or borrowed reliance loses its hold on you when viewed in light of the Day when command belongs solely to Allah?
+          </p>
+          <div class="field-group">
+            <label for="reflect-3" class="field-label">Your reflection on 82:19</label>
+            <textarea id="reflect-3" class="textarea-input" placeholder="Write how ultimate divine sovereignty re-orders your priorities…" oninput="saveReflection(3, this.value)"></textarea>
+          </div>
+          <span class="inline-status" id="reflect-status-3"></span>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <span>Source: Surah Al-Infitar (Chapter 82, Verses 1–19), Arabic text and English translation grounded in the provided study source.</span>
+    <span class="coord-label" style="margin:0; color:var(--on-surface-variant);">Study &amp; Mastery Edition</span>
+  </footer>
+
+  <api-shim></api-shim>
+
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        movement: 1,
+        movementLabel: `I. Cosmic Cleaving`,
+        arabic: `إِذَا السَّمَاءُ انْفَطَرَتْ`,
+        english: `When the sky breaks apart`,
+        translit: `Idhā s-samāʾu nfaṭarat`,
+        commentary: `The Surah opens abruptly with the temporal conditional <strong>idhā</strong> (“When…”), bypassing introductory praise to place the listener directly inside the final hour. The sky—humanity’s symbol of permanence and protective shelter—cleaves open without resistance.`,
+        ling: `Form VII verb <span class="arabic-inline" dir="rtl" lang="ar">انْفَطَرَتْ</span> (<em>infaṭarat</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ف-ط-ر</span>) denotes reflexive splitting lengthwise. It mirrors the Creator’s title <em>Fāṭir</em> (Originator).`
+      },
+      {
+        num: 2,
+        movement: 1,
+        movementLabel: `I. Cosmic Cleaving`,
+        arabic: `وَإِذَا الْكَوَاكِبُ انْتَثَرَتْ`,
+        english: `And when the stars fall, scattering,`,
+        translit: `Wa-idhā l-kawākibu ntatharat`,
+        commentary: `Heavenly bodies that once anchored navigation, calendars, and human awe lose their orbital poise and scatter like pearls from a snapped cord. Cosmic order is revealed to be borrowed, not self-sustaining.`,
+        ling: `<span class="arabic-inline" dir="rtl" lang="ar">انْتَثَرَتْ</span> (<em>intatharat</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ن-ث-ر</span>, Form VII/VIII reflexive) means to scatter loosely in every direction—the exact opposite of celestial symmetry.`
+      },
+      {
+        num: 3,
+        movement: 1,
+        movementLabel: `I. Cosmic Cleaving`,
+        arabic: `وَإِذَا الْبِحَارُ فُجِّرَتْ`,
+        english: `And when the seas are erupted`,
+        translit: `Wa-idhā l-biḥāru fujjirat`,
+        commentary: `Descending from sky and stars to the earth’s surface, the restrained oceans burst their basins and barriers, merging into one overflowing upheaval. What seemed safely contained breaks loose.`,
+        ling: `Form II passive intensive <span class="arabic-inline" dir="rtl" lang="ar">فُجِّرَتْ</span> (<em>fujjirat</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ف-ج-ر</span>) conveys forceful, repeated bursting open. Crucially, the same root returns in v. 14 for <span class="arabic-inline" dir="rtl" lang="ar">الْفُجَّارَ</span>—those who burst moral boundaries.`
+      },
+      {
+        num: 4,
+        movement: 1,
+        movementLabel: `I. Cosmic Cleaving`,
+        arabic: `وَإِذَا الْقُبُورُ بُعْثِرَتْ`,
+        english: `And when the [contents of] graves are scattered,`,
+        translit: `Wa-idhā l-qubūru buʿthirat`,
+        commentary: `The vertical descent completes beneath the earth’s crust: graves are turned inside-out, surrendering every buried generation for resurrection. Nothing hidden underground remains concealed.`,
+        ling: `Quadriliteral passive <span class="arabic-inline" dir="rtl" lang="ar">بُعْثِرَتْ</span> (<em>buʿthirat</em>) blends the senses of <em>baʿatha</em> (raising up) and <em>athāra</em> (stirring up/scattering soil), capturing both physical upheaval and resurrection.`
+      },
+      {
+        num: 5,
+        movement: 1,
+        movementLabel: `I. Cosmic Cleaving`,
+        arabic: `عَلِمَتْ نَفْسٌ مَا قَدَّمَتْ وَأَخَّرَتْ`,
+        english: `A soul will [then] know what it has put forth and kept back.`,
+        translit: `ʿAlimat nafsun mā qaddamat wa-akhkharat`,
+        commentary: `Here lands the long-awaited apodosis (“answer”) to the four <em>idhā</em> clauses: every single soul (<em>nafsun</em>, singular and indefinite for universal reach) achieves sudden, total self-knowledge. It sees both what it sent ahead in deeds and what it left behind or neglected.`,
+        ling: `Antithetical Form II pair <span class="arabic-inline" dir="rtl" lang="ar">قَدَّمَتْ وَأَخَّرَتْ</span> (<em>qaddamat wa-akhkharat</em>) spans the full life ledger: actions actively performed vs. duties deferred, or moral precedents set for future generations.`
+      },
+      {
+        num: 6,
+        movement: 2,
+        movementLabel: `II. Rebuke & Creation`,
+        arabic: `يَا أَيُّهَا الْإِنْسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ`,
+        english: `O mankind, what has deceived you concerning your Lord, the Generous,`,
+        translit: `Yā ayyuhā l-insānu mā gharraka bi-rabbika l-karīm`,
+        commentary: `An intimate, piercing pivot: the cosmic panorama pauses for a tender yet devastating question. Rather than invoking divine wrath, the verse names Allah <strong>al-Karīm</strong> (the Generous, the Noble), exposing the tragedy of mistaking His forbearance for indifference.`,
+        ling: `The root <span class="arabic-inline" dir="rtl" lang="ar">غ-ر-ر</span> in <span class="arabic-inline" dir="rtl" lang="ar">غَرَّكَ</span> (<em>gharraka</em>) signifies being seduced by an illusion—like a mirage that promises safety while hiding ruin.`
+      },
+      {
+        num: 7,
+        movement: 2,
+        movementLabel: `II. Rebuke & Creation`,
+        arabic: `الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ`,
+        english: `Who created you, proportioned you, and balanced you?`,
+        translit: `Alladhī khalaqaka fa-sawwāka fa-ʿadalaka`,
+        commentary: `Three rapid verbs connected by sequential <em>fa-</em> (“and then”) trace your very existence as proof of <em>al-Karīm</em>: He brought you into being from non-existence, harmonized your faculties and limbs, and set your frame upright in balanced symmetry.`,
+        ling: `Notice the progression: <span class="arabic-inline" dir="rtl" lang="ar">خَلَقَكَ</span> (origination), <span class="arabic-inline" dir="rtl" lang="ar">سَوَّاكَ</span> (Form II: fine-tuned proportion), and <span class="arabic-inline" dir="rtl" lang="ar">عَدَلَكَ</span> (upright balance and justice—linked to <em>ʿadl</em>).`
+      },
+      {
+        num: 8,
+        movement: 2,
+        movementLabel: `II. Rebuke & Creation`,
+        arabic: `فِي أَيِّ صُورَةٍ مَا شَاءَ رَكَّبَكَ`,
+        english: `In whatever form He willed has He assembled you.`,
+        translit: `Fī ayyi ṣūratin mā shāʾa rakkabaka`,
+        commentary: `Every individual’s distinct features, temperament, and biological assembly rest entirely on divine will—not self-authorship. Having received one’s very face and form as a gift, arrogance toward the Giver becomes incoherent.`,
+        ling: `Form II verb <span class="arabic-inline" dir="rtl" lang="ar">رَكَّبَكَ</span> (<em>rakkabaka</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ر-ك-ب</span>) means to fit parts together cleanly into one composite whole, emphasizing purposeful artistry.`
+      },
+      {
+        num: 9,
+        movement: 2,
+        movementLabel: `II. Rebuke & Creation`,
+        arabic: `كَلَّا بَلْ تُكَذِّبُونَ بِالدِّينِ`,
+        english: `No! But you deny the Recompense.`,
+        translit: `Kallā bal tukadhdhibūna bi-d-dīn`,
+        commentary: `<strong>Kallā</strong> (“No!”) abruptly cuts off any excuse of ignorance. Shifting from singular address (<em>-ka</em>) to plural accusation (<em>tukadhdhibūna</em>), the verse diagnoses the real root of delusion: denying accountability on the Day of Recompense.`,
+        ling: `<span class="arabic-inline" dir="rtl" lang="ar">كَلَّا</span> is a particle of decisive rebuke; <span class="arabic-inline" dir="rtl" lang="ar">تُكَذِّبُونَ</span> (Form II imperfect) expresses persistent, active denial—not passive doubt.`
+      },
+      {
+        num: 10,
+        movement: 3,
+        movementLabel: `III. Guardian Scribes`,
+        arabic: `وَإِنَّ عَلَيْكُمْ لَحَافِظِينَ`,
+        english: `And indeed, [appointed] over you are keepers,`,
+        translit: `Wa-inna ʿalaykum la-ḥāfiẓīn`,
+        commentary: `Denying the Recompense does not erase the record. Reinforced by two particles of certainty (<em>inna</em> and <em>la-</em>), the Surah reveals an unbroken spiritual reality: vigilant keepers watch over every human life.`,
+        ling: `Active participle <span class="arabic-inline" dir="rtl" lang="ar">حَافِظِينَ</span> (<em>ḥāfiẓīn</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ح-ف-ظ</span>) denotes continuous, faithful guarding and preservation of records without omission.`
+      },
+      {
+        num: 11,
+        movement: 3,
+        movementLabel: `III. Guardian Scribes`,
+        arabic: `كِرَامًا كَاتِبِينَ`,
+        english: `Noble and recording;`,
+        translit: `Kirāman kātibīn`,
+        commentary: `The angelic scribes are dignified and incorruptible (<em>kirāman</em>)—echoing Allah’s own title <em>al-Karīm</em> in v. 6. Because they are noble, their record is never falsified, and awareness of their noble company invites moral modesty.`,
+        ling: `<span class="arabic-inline" dir="rtl" lang="ar">كِرَامًا</span> is the plural of <em>karīm</em> (noble/honorable), creating an intentional lexical link back to <span class="arabic-inline" dir="rtl" lang="ar">رَبِّكَ الْكَرِيمِ</span> in v. 6.`
+      },
+      {
+        num: 12,
+        movement: 3,
+        movementLabel: `III. Guardian Scribes`,
+        arabic: `يَعْلَمُونَ مَا تَفْعَلُونَ`,
+        english: `They know whatever you do.`,
+        translit: `Yaʿlamūna mā tafʿalūn`,
+        commentary: `No action is too fleeting, disguised, or private to register. Both present-tense verbs convey ongoing immediacy: as deeds happen, knowledge and recording occur concurrently.`,
+        ling: `The general relative pronoun <span class="arabic-inline" dir="rtl" lang="ar">مَا</span> (“whatever”) leaves zero exceptions—encompassing speech, gesture, public acts, and private conduct.`
+      },
+      {
+        num: 13,
+        movement: 4,
+        movementLabel: `IV. Two Destinies`,
+        arabic: `إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ`,
+        english: `Indeed, the righteous will be in pleasure,`,
+        translit: `Inna l-abrāra la-fī naʿīm`,
+        commentary: `With the record complete, humanity bifurcates into two clear outcomes. The righteous (<em>al-abrār</em>)—those true to their Lord and generous to creation—are enveloped completely inside enduring bliss.`,
+        ling: `The preposition <span class="arabic-inline" dir="rtl" lang="ar">فِي</span> (“inside/immersed in”) paired with emphatic <span class="arabic-inline" dir="rtl" lang="ar">لَـ</span> portrays <em>naʿīm</em> as an encompassing realm, not a brief reward.`
+      },
+      {
+        num: 14,
+        movement: 4,
+        movementLabel: `IV. Two Destinies`,
+        arabic: `وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ`,
+        english: `And indeed, the wicked will be in Hellfire.`,
+        translit: `Wa-inna l-fujjāra la-fī jaḥīm`,
+        commentary: `In strict grammatical symmetry to v. 13, the wicked (<em>al-fujjār</em>)—those who tore through moral restraints and ignored the Generous Lord—are immersed in blazing Hellfire.`,
+        ling: `<span class="arabic-inline" dir="rtl" lang="ar">الْفُجَّارَ</span> (intensive pattern <em>fuʿʿāl</em>, root <span class="arabic-inline" dir="rtl" lang="ar">ف-ج-ر</span>) ties moral transgression directly to the bursting seas (<span class="arabic-inline" dir="rtl" lang="ar">فُجِّرَتْ</span>) of v. 3.`
+      },
+      {
+        num: 15,
+        movement: 4,
+        movementLabel: `IV. Two Destinies`,
+        arabic: `يَصْلَوْنَهَا يَوْمَ الدِّينِ`,
+        english: `They will [enter to] burn therein on the Day of Recompense,`,
+        translit: `Yaṣlawnahā yawma d-dīn`,
+        commentary: `The very <em>Dīn</em> (Day of Recompense) they denied in v. 9 becomes the exact moment of reckoning and entry. What was dismissed as fiction arrives as lived reality.`,
+        ling: `Repeating <span class="arabic-inline" dir="rtl" lang="ar">الدِّينِ</span> links v. 9 (“you deny the Recompense”) directly to v. 15, closing the argumentative loop.`
+      },
+      {
+        num: 16,
+        movement: 4,
+        movementLabel: `IV. Two Destinies`,
+        arabic: `وَمَا هُمْ عَنْهَا بِغَائِبِينَ`,
+        english: `And never therefrom will they be absent.`,
+        translit: `Wa-mā hum ʿanhā bi-ghāʾibīn`,
+        commentary: `Eliminating any illusion of temporary escape or loophole, this nominal negation confirms that there is no furlough, evasion, or disappearance from the consequence of persistent rejection.`,
+        ling: `Negation with <span class="arabic-inline" dir="rtl" lang="ar">مَا ... بِـ</span> plus a nominal active participle (<span class="arabic-inline" dir="rtl" lang="ar">غَائِبِينَ</span>) expresses permanent, unchanging reality rather than a passing state.`
+      },
+      {
+        num: 17,
+        movement: 5,
+        movementLabel: `V. Day of Command`,
+        arabic: `وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ`,
+        english: `And what can make you know what is the Day of Recompense?`,
+        translit: `Wa-mā adrāka mā yawmu d-dīn`,
+        commentary: `A classic Quranic formula of awe (<em>mā adrāka</em>): ordinary human categories cannot measure the gravity, clarity, and scale of that Day.`,
+        ling: `Whenever the Quran asks <span class="arabic-inline" dir="rtl" lang="ar">مَا أَدْرَاكَ</span> (“what can make you know…?”), an authoritative divine explanation immediately follows.`
+      },
+      {
+        num: 18,
+        movement: 5,
+        movementLabel: `V. Day of Command`,
+        arabic: `ثُمَّ مَا أَدْرَاكَ مَا يَوْمُ الدِّين`,
+        english: `Then, what can make you know what is the Day of Recompense?`,
+        translit: `Thumma mā adrāka mā yawmu d-dīn`,
+        commentary: `The rare repetition preceded by <strong>thumma</strong> (“Then…”) amplifies the silence before the final disclosure, underscoring how utterly beyond human reckoning that Day stands.`,
+        ling: `<span class="arabic-inline" dir="rtl" lang="ar">ثُمَّ</span> here functions rhetorically for elevation and solemn pause (<em>tarākhī rutbī</em>), heightening anticipation before v. 19.`
+      },
+      {
+        num: 19,
+        movement: 5,
+        movementLabel: `V. Day of Command`,
+        arabic: `يَوْمَ لَا تَمْلِكُ نَفْسٌ لِنَفْسٍ شَيْئًا وَالْأَمْرُ يَوْمَئِذٍ لِلَّهِ`,
+        english: `It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah.`,
+        translit: `Yawma lā tamliku nafsun li-nafsin shayʾan wa-l-amru yawmaʾidhin lillāh`,
+        commentary: `The Surah seals with absolute clarity: every worldly alliance, tribal pride, or borrowed intercession evaporates—no soul possesses even a single thing (<em>shayʾan</em>) for another—leaving all authority wholly with Allah.`,
+        ling: `Indefinite <span class="arabic-inline" dir="rtl" lang="ar">شَيْئًا</span> under negation denies even the smallest atom of independent help; the final predicate <span class="arabic-inline" dir="rtl" lang="ar">لِلَّهِ</span> (<em>lillāh</em>) achieves both rhythmic closure and theological finality.`
+      }
+    ];
+
+    const MOVEMENTS = [
+      {
+        label: `Movement I · Verses 82:1–5`,
+        badge: `Movement I · 82:1–5`,
+        text: `Four rapid temporal clauses (“When…”) shatter sky, stars, seas, and graves in descending vertical order—from upper heavens down into the earth—landing on a single verb of awakening: <em>ʿalimat nafsun</em> (“a soul will know”).`
+      },
+      {
+        label: `Movement II · Verses 82:6–9`,
+        badge: `Movement II · 82:6–9`,
+        text: `The lens zooms into the solitary human person (<em>-ka</em>): What deceived you concerning your Generous Lord (<em>al-Karīm</em>), who created, proportioned, balanced, and assembled you? Verse 9 breaks the spell: denial of the Recompense is the root.`
+      },
+      {
+        label: `Movement III · Verses 82:10–12`,
+        badge: `Movement III · 82:10–12`,
+        text: `Two emphatic assertions establish an unseen moral ledger: noble, incorruptible angelic keepers (<em>kirāman kātibīn</em>) accompany every human being and know whatever they do.`
+      },
+      {
+        label: `Movement IV · Verses 82:13–16`,
+        badge: `Movement IV · 82:13–16`,
+        text: `Twin symmetrical clauses separate humanity by moral trajectory: the righteous (<em>al-abrār</em>) dwell inside enduring bliss (<em>naʿīm</em>), while the boundary-breakers (<em>al-fujjār</em>) enter Hellfire (<em>jaḥīm</em>) on the Day of Recompense without escape.`
+      },
+      {
+        label: `Movement V · Verses 82:17–19`,
+        badge: `Movement V · 82:17–19`,
+        text: `A rare doubled rhetorical question (<em>mā adrāka</em>) pauses the reader in awe before delivering the Surah’s ultimate verdict: all inter-soul leverage vanishes, and command belongs wholly to Allah.`
+      }
+    ];
+
+    const COSMIC_STAGES = [
+      {
+        badge: `Stage 1 of 5 · Sky`,
+        ref: `Verse 82:1 · Upper Canopy`,
+        form: `Form VII Reflexive`,
+        arabic: `إِذَا السَّمَاءُ انْفَطَرَتْ`,
+        heading: `When the Sky Breaks Apart`,
+        desc: `The verb <em>infaṭarat</em> (from root <em>f-ṭ-r</em>, to split or cleave lengthwise) uses Form VII—signifying effortless, reflexive yielding rather than violent struggle. The sky that appeared eternal and impenetrable for millennia splits open on command, signaling that the veil between the seen and unseen realms has lifted.`,
+        echo: `Theological link: The physical barrier between human affairs and divine accountability dissolves.`
+      },
+      {
+        badge: `Stage 2 of 5 · Stars`,
+        ref: `Verse 82:2 · Celestial Order`,
+        form: `Form VII/VIII Reflexive`,
+        arabic: `وَإِذَا الْكَوَاكِبُ انْتَثَرَتْ`,
+        heading: `And When the Stars Fall, Scattering`,
+        desc: `<em>Intatharat</em> (root <em>n-th-r</em>) evokes beads scattering everywhere once a thread snaps. Stars that guided travelers across deserts and oceans lose their fixed orbits—reminding humanity that cosmic stability was never self-powered.`,
+        echo: `Theological link: Every external landmark people relied upon for orientation gives way.`
+      },
+      {
+        badge: `Stage 3 of 5 · Seas`,
+        ref: `Verse 82:3 · Earth’s Surface`,
+        form: `Form II Passive Intensive`,
+        arabic: `وَإِذَا الْبِحَارُ فُجِّرَتْ`,
+        heading: `And When the Seas Are Erupted`,
+        desc: `Descending from heavens to earth, the oceans’ natural boundaries burst open (<em>fujjirat</em>, root <em>f-j-r</em>). Notice the shift to Form II passive: immense terrestrial reservoirs are forcibly unleashed beyond containment.`,
+        echo: `Theological link: Shares the root f-j-r with al-fujjār (v. 14)—those who tore past Allah’s moral boundaries.`
+      },
+      {
+        badge: `Stage 4 of 5 · Graves`,
+        ref: `Verse 82:4 · Beneath the Earth`,
+        form: `Quadriliteral Passive`,
+        arabic: `وَإِذَا الْقُبُورُ بُعْثِرَتْ`,
+        heading: `And When the Graves Are Scattered`,
+        desc: `<em>Buʿthirat</em> blends raising up and turning earth inside out. The vertical sweep reaches beneath the soil so that every hidden grave yields its occupant—joining cosmic dismantling directly to bodily resurrection.`,
+        echo: `Theological link: What earth concealed for centuries is brought out into daylight.`
+      },
+      {
+        badge: `Stage 5 of 5 · The Soul`,
+        ref: `Verse 82:5 · Inner Reckoning`,
+        form: `Apodosis (Result Clause)`,
+        arabic: `عَلِمَتْ نَفْسٌ مَا قَدَّمَتْ وَأَخَّرَتْ`,
+        heading: `A Soul Will Know What It Put Forth and Kept Back`,
+        desc: `All four cosmic upheavals exist to produce this single inner realization: <em>ʿalimat nafsun</em>. Every soul sees the full balance sheet—actions sent ahead in obedience or transgression, and duties delayed or left undone.`,
+        echo: `Theological link: Outer cosmos collapses so inner moral truth becomes impossible to ignore.`
+      }
+    ];
+
+    const ROOT_TERMS = [
+      {
+        meta: `Verse 82:1 · Root: ف - ط - ر (f-ṭ-r)`,
+        title: `Infaṭarat — To cleave or split apart`,
+        arabic: `انْفَطَرَتْ`,
+        form: `Form VII passive-reflexive (infaʿala). Rather than describing a struggle against resistance, Form VII denotes effortless yielding—the heavens part smoothly at divine command.`,
+        echo: `The same root f-ṭ-r yields fiṭrah (innate spiritual nature) and Fāṭir (Originator of the heavens and earth). He who split open creation at its origin splits its canopy open again for judgment.`
+      },
+      {
+        meta: `Verse 82:2 · Root: ن - ث - ر (n-th-r)`,
+        title: `Intatharat — To fall loose and scatter`,
+        arabic: `انْتَثَرَتْ`,
+        form: `Form VII/VIII reflexive verb denoting dispersion without order, like seeds or unstrung pearls falling across a floor.`,
+        echo: `Contrasts with the measured precision of creation later in vv. 7–8 (sawwāka, ʿadalaka, rakkabaka): when divine command lifts, precision unravels.`
+      },
+      {
+        meta: `Verse 82:3 · Root: ف - ج - ر (f-j-r)`,
+        title: `Fujjirat — To be violently erupted`,
+        arabic: `فُجِّرَتْ`,
+        form: `Form II passive intensive (fuʿʿilat). Doubling the middle radical intensifies the action: waters burst barriers repeatedly and overwhelmingly.`,
+        echo: `Directly echoes al-fujjār (82:14). Just as the seas burst their physical restraints, the wicked burst ethical and spiritual restraints.`
+      },
+      {
+        meta: `Verse 82:4 · Root: ب - ع - ث - ر (b-ʿ-th-r)`,
+        title: `Buʿthirat — To be overturned and scattered out`,
+        arabic: `بُعْثِرَتْ`,
+        form: `Quadriliteral passive verb combining baʿatha (to resurrect/dispatch) and athāra (to stir up and scatter).`,
+        echo: `Captures both the outward scattering of soil and the upward summoning of every buried human soul toward judgment.`
+      },
+      {
+        meta: `Verse 82:6 · Root: غ - ر - ر (gh-r-r)`,
+        title: `Gharraka — What deceived or deluded you?`,
+        arabic: `غَرَّكَ`,
+        form: `Form I active past with 2nd-person singular suffix (-ka). Denotes being seduced by false security, flattery, or an empty mirage.`,
+        echo: `Links to Satanic or worldly delusion (ghurūr): mistaking present comfort and divine patience for permanent immunity.`
+      },
+      {
+        meta: `Verse 82:6 · Root: ك - ر - م (k-r-m)`,
+        title: `Al-Karīm — The Generous, Noble Lord`,
+        arabic: `الْكَرِيمِ`,
+        form: `Intensive adjective (faʿīl) indicating vast, unfailing generosity, nobility, and forbearance.`,
+        echo: `Lexically echoes kirāman (v. 11). The Generous Lord appointed noble (kirām) scribes—making human ingratitude all the more striking.`
+      },
+      {
+        meta: `Verse 82:7 · Root: س - و - ي (s-w-y)`,
+        title: `Fa-sawwāka — And proportioned you harmoniously`,
+        arabic: `فَسَوَّاكَ`,
+        form: `Form II causative-intensive (faʿʿala), denoting careful smoothing, leveling, and harmonizing of every organ and faculty.`,
+        echo: `Invites the reader to view their own eyes, hands, intellect, and nervous system as continuous evidence of al-Karīm’s care.`
+      },
+      {
+        meta: `Verse 82:7 · Root: ع - د - ل (ʿ-d-l)`,
+        title: `Fa-ʿadalaka — And balanced you upright`,
+        arabic: `فَعَدَلَكَ`,
+        form: `Form I (or Form II in some readings) expressing symmetry, upright posture, and equitable proportion—from the same root as ʿadl (justice).`,
+        echo: `The Creator who built physical balance (ʿadl) into the human body expects moral balance in return on the Day of Recompense.`
+      },
+      {
+        meta: `Verse 82:13 · Root: ب - ر - ر (b-r-r)`,
+        title: `Al-Abrār — The deeply righteous`,
+        arabic: `الْأَبْرَارَ`,
+        form: `Plural of barr/bārr; the root connotes spaciousness, truthfulness, and loyal fulfillment of duties toward Allah and people.`,
+        echo: `Paired symmetrically against al-fujjār in v. 14: expansive fidelity leads to encompassing pleasure (la-fī naʿīm).`
+      },
+      {
+        meta: `Verse 82:14 · Root: ف - ج - ر (f-j-r)`,
+        title: `Al-Fujjār — The boundary-breaking wicked`,
+        arabic: `الْفُجَّارَ`,
+        form: `Intensive plural noun (fuʿʿāl) indicating habitual, deliberate shattering of moral limits.`,
+        echo: `Completes the Surah’s root bridge from v. 3 (fujjirat): those who refuse the bounds set by their Generous Creator.`
+      }
+    ];
+
+    const QUIZ_DATA = [
+      {
+        topic: `Structure · Movement I (82:1–5)`,
+        prompt: `In verses 82:1–4, four cosmic events unfold in sequence. Which trajectory do they trace before arriving at verse 5?`,
+        options: [
+          `From inner psychological guilt outward to distant galaxies`,
+          `From the upper sky and stars downward to the seas and buried graves`,
+          `From historical nations of the past toward future empires`,
+          `From the Day of Recompense backward to human creation`
+        ],
+        correct: 1,
+        explanation: `Verses 1–4 move steadily downward along a vertical axis: the sky (82:1), the stars (82:2), the seas on earth’s surface (82:3), and the graves beneath the earth (82:4), culminating in every soul knowing what it put forth and kept back (82:5).`
+      },
+      {
+        topic: `Theology · Divine Names (82:6)`,
+        prompt: `When Allah confronts human delusion in 82:6 (“what has deceived you concerning your Lord…”), which divine attribute does the verse specifically invoke?`,
+        options: [
+          `Al-Jabbār (The Compeller)`,
+          `Al-Muntaqim (The Avenger)`,
+          `Al-Karīm (The Generous)`,
+          `Al-Qahhār (The Subduer)`
+        ],
+        correct: 2,
+        explanation: `Verse 82:6 invokes al-Karīm (“the Generous”). Classical exegetes observe that human beings often exploit Allah’s generosity, forbearance, and concealment of faults as a pretext for negligence—making the appeal to His generosity far more piercing than a threat alone.`
+      },
+      {
+        topic: `Linguistics · Creation Verbs (82:7–8)`,
+        prompt: `Which sequence accurately reflects the three verbs describing human formation in 82:7?`,
+        options: [
+          `Created you (khalaqaka), proportioned you (sawwāka), and balanced you (ʿadalaka)`,
+          `Named you, tested you, and recorded you`,
+          `Warned you, forgave you, and elevated you`,
+          `Assembled you, scattered you, and resurrected you`
+        ],
+        correct: 0,
+        explanation: `Verse 82:7 presents three linked gifts: khalaqaka (created you), fa-sawwāka (proportioned you), and fa-ʿadalaka (balanced you), followed in 82:8 by rakkabaka (“assembled you” in whatever form He willed).`
+      },
+      {
+        topic: `Rhetorical Pivot · Diagnosis (82:9)`,
+        prompt: `What diagnosis does verse 82:9 (“Kallā bal tukadhdhibūna bi-d-dīn”) deliver immediately after recalling human creation?`,
+        options: [
+          `Human beings are excused because cosmic signs are hidden`,
+          `The angels failed to preserve complete records`,
+          `No—the real root of negligence is denying the Recompense`,
+          `Physical proportion guarantees salvation regardless of deeds`
+        ],
+        correct: 2,
+        explanation: `Kallā (“No!”) cuts off excuses and shifts into plural address: the underlying crisis is not lack of evidence, but active denial of the Day of Recompense (tukadhdhibūna bi-d-dīn).`
+      },
+      {
+        topic: `Theology · Unseen Witness (82:10–12)`,
+        prompt: `Why are the guardian angels in 82:11 described specifically as “kirāman kātibīn” (noble and recording)?`,
+        options: [
+          `Because they only record charitable deeds and ignore errors`,
+          `Because their nobility guarantees incorruptible fidelity and shares the root k-r-m with al-Karīm`,
+          `Because they intercede to erase the ledger before Judgment`,
+          `Because they record only external speech, not actions`
+        ],
+        correct: 1,
+        explanation: `Kirāman (noble/honorable) shares the root k-r-m with al-Karīm (82:6). Their nobility means they cannot be bribed or deceived, their record is faithful, and verse 12 affirms “They know whatever you do.”`
+      },
+      {
+        topic: `Arabic Root Echo · 82:3 & 82:14`,
+        prompt: `Which pair of words in Surah Al-Infitar shares the triliteral Arabic root f-j-r (ف-ج-ر), linking cosmic upheaval to moral transgression?`,
+        options: [
+          `Infaṭarat (82:1) and Kirāman (82:11)`,
+          `Fujjirat (seas erupted, 82:3) and al-Fujjār (the wicked, 82:14)`,
+          `Buʿthirat (82:4) and al-Abrār (82:13)`,
+          `Gharraka (82:6) and Ghāʾibīn (82:16)`
+        ],
+        correct: 1,
+        explanation: `Both fujjirat (82:3, the seas bursting open) and al-fujjār (82:14, the wicked) come from the root f-j-r, signifying a violent tearing or bursting through boundaries.`
+      },
+      {
+        topic: `Eschatology · Destinies (82:15–16)`,
+        prompt: `What do verses 82:15–16 emphasize about the wicked (al-fujjār) entering Hellfire on the Day of Recompense?`,
+        options: [
+          `They will be absent from it after a brief symbolic appearance`,
+          `They will burn therein on the Day of Recompense and never therefrom be absent`,
+          `They will be shielded by the souls of their ancestors`,
+          `They will remain unaware of what they put forth or kept back`
+        ],
+        correct: 1,
+        explanation: `Verse 82:15 specifies entry on yawm ad-dīn (closing the loop with denial in v. 9), and verse 82:16 uses emphatic nominal negation (“wa-mā hum ʿanhā bi-ghāʾibīn”) to confirm they will never be absent from it.`
+      },
+      {
+        topic: `Climax · Ultimate Sovereignty (82:17–19)`,
+        prompt: `After doubling the awe-inducing question “mā adrāka mā yawmu d-dīn” (82:17–18), how does verse 82:19 define that Day?`,
+        options: [
+          `A Day when righteous families bargain freely for one another`,
+          `A Day when cosmic stars return to guide the lost`,
+          `A Day when no soul possesses power for another soul, and all command belongs with Allah`,
+          `A Day when only the guardian scribes issue the final verdict`
+        ],
+        correct: 2,
+        explanation: `Verse 82:19 strips away every illusion of mutual leverage (“a soul will not possess for another soul a thing”) and seals the entire Surah with absolute divine sovereignty: “and the command, that Day, is [entirely] with Allah.”`
+      }
+    ];
+
+    /* Persistent application state (symmetric schema) */
+    const appState = {
+      masteredVerses: [],
+      quizAnswers: {},
+      currentQuizIdx: 0,
+      reflections: [` `, ` `, ` `, ` `].map(() => ``),
+      selectedMovement: 0,
+      selectedCosmicStage: 0,
+      selectedRootTerm: 0
+    };
+
+    let activeMovementFilter = `all`;
+    let activeSearchQuery = ``;
+    let showAllLinguistics = true;
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    async function persistState(reason) {
+      updateTelemetry();
+      const statusEl = document.getElementById(`persistence-status`);
+      if (statusEl && reason) {
+        statusEl.textContent = reason;
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState({
+            masteredVerses: appState.masteredVerses,
+            quizAnswers: appState.quizAnswers,
+            currentQuizIdx: appState.currentQuizIdx,
+            reflections: appState.reflections,
+            selectedMovement: appState.selectedMovement,
+            selectedCosmicStage: appState.selectedCosmicStage,
+            selectedRootTerm: appState.selectedRootTerm
+          });
+        } catch (err) {
+          if (statusEl) statusEl.textContent = `Saved locally in active session.`;
+        }
+      }
+    }
+
+    function updateTelemetry() {
+      const masteredCount = appState.masteredVerses.length;
+      const pct = Math.round((masteredCount / VERSES.length) * 100);
+
+      const statVerses = document.getElementById(`stat-verses`);
+      const statVersesPct = document.getElementById(`stat-verses-pct`);
+      if (statVerses) statVerses.textContent = `${masteredCount} / 19`;
+      if (statVersesPct) statVersesPct.textContent = `${pct}% complete`;
+
+      const answeredKeys = Object.keys(appState.quizAnswers);
+      let correctCount = 0;
+      for (let i = 0; i < answeredKeys.length; i++) {
+        const qIdx = Number(answeredKeys[i]);
+        if (QUIZ_DATA[qIdx] && appState.quizAnswers[qIdx] === QUIZ_DATA[qIdx].correct) {
+          correctCount++;
+        }
+      }
+      const statQuiz = document.getElementById(`stat-quiz`);
+      const statQuizNote = document.getElementById(`stat-quiz-note`);
+      if (statQuiz) statQuiz.textContent = `${correctCount} / ${QUIZ_DATA.length}`;
+      if (statQuizNote) {
+        statQuizNote.textContent = answeredKeys.length === 0
+          ? `Not yet taken`
+          : `${answeredKeys.length} of ${QUIZ_DATA.length} answered`;
+      }
+
+      const filledNotes = appState.reflections.filter(function (txt) {
+        return typeof txt === `string` && txt.trim().length > 0;
+      }).length;
+      const statNotes = document.getElementById(`stat-notes`);
+      if (statNotes) statNotes.textContent = `${filledNotes} / 4`;
+
+      const totalSteps = VERSES.length + QUIZ_DATA.length + 4;
+      const completedSteps = masteredCount + correctCount + filledNotes;
+      const overallPct = Math.min(100, Math.round((completedSteps / totalSteps) * 100));
+
+      const bar = document.getElementById(`mastery-progress-bar`);
+      if (bar) bar.style.width = `${overallPct}%`;
+
+      const rankBadge = document.getElementById(`mastery-rank-badge`);
+      if (rankBadge) {
+        if (overallPct >= 85) rankBadge.textContent = `Mastered`;
+        else if (overallPct >= 45) rankBadge.textContent = `Deepening`;
+        else if (overallPct > 0) rankBadge.textContent = `In Progress`;
+        else rankBadge.textContent = `Initiate`;
+      }
+    }
+
+    function selectMovement(idx) {
+      if (idx < 0 || idx >= MOVEMENTS.length) return;
+      appState.selectedMovement = idx;
+
+      const cards = document.querySelectorAll(`#movement-selector-list .movement-card`);
+      cards.forEach(function (card, i) {
+        if (i === idx) card.classList.add(`active`);
+        else card.classList.remove(`active`);
+      });
+
+      for (let i = 0; i < 5; i++) {
+        const g = document.getElementById(`svg-node-${i + 1}`);
+        if (!g) continue;
+        const circle = g.querySelector(`circle`);
+        const rect = g.querySelector(`rect`);
+        const texts = g.querySelectorAll(`text`);
+        const isCurrent = i === idx;
+        if (circle) {
+          circle.setAttribute(`r`, isCurrent ? `10` : `8`);
+          circle.setAttribute(`fill`, isCurrent ? `var(--primary)` : `var(--data-2)`);
+        }
+        if (rect) {
+          rect.setAttribute(`fill`, isCurrent ? `var(--brass-tint)` : `var(--surface-container)`);
+          rect.setAttribute(`stroke`, isCurrent ? `var(--primary)` : `var(--outline-variant)`);
+        }
+        if (texts[0]) texts[0].setAttribute(`fill`, isCurrent ? `var(--primary)` : `var(--on-surface-variant)`);
+        if (texts[1]) texts[1].setAttribute(`fill`, isCurrent ? `var(--on-surface)` : `var(--on-surface-variant)`);
+      }
+
+      const mov = MOVEMENTS[idx];
+      const badgeEl = document.getElementById(`arc-active-badge`);
+      const labelEl = document.getElementById(`mov-detail-label`);
+      const textEl = document.getElementById(`mov-detail-text`);
+      if (badgeEl) badgeEl.textContent = mov.badge;
+      if (labelEl) labelEl.textContent = mov.label;
+      if (textEl) textEl.innerHTML = mov.text;
+
+      persistState(`Inspecting ${mov.badge}`);
+    }
+
+    function getFilteredVerses() {
+      const q = activeSearchQuery.trim().toLowerCase();
+      return VERSES.filter(function (v) {
+        const matchesMov = activeMovementFilter === `all` || v.movement === Number(activeMovementFilter);
+        if (!matchesMov) return false;
+        if (!q) return true;
+        const haystack = `${v.num} 82:${v.num} ${v.arabic} ${v.english} ${v.translit} ${v.commentary} ${v.ling}`.toLowerCase();
+        return haystack.indexOf(q) !== -1;
+      });
+    }
+
+    function renderVerses() {
+      const stream = document.getElementById(`verse-stream`);
+      const emptyEl = document.getElementById(`verse-empty-state`);
+      if (!stream || !emptyEl) return;
+
+      const list = getFilteredVerses();
+      if (list.length === 0) {
+        stream.innerHTML = ``;
+        emptyEl.classList.remove(`hidden`);
+        return;
+      }
+      emptyEl.classList.add(`hidden`);
+
+      const html = list.map(function (v) {
+        const isMastered = appState.masteredVerses.indexOf(v.num) !== -1;
+        return `
+          <article class="verse-card ${isMastered ? `is-mastered` : ``}" id="verse-card-${v.num}">
+            <div class="verse-card-top">
+              <div class="verse-meta">
+                <span class="verse-num-badge">82:${v.num}</span>
+                <span class="badge">${v.movementLabel}</span>
+              </div>
+              <div class="verse-actions">
+                <button type="button" class="master-toggle" aria-pressed="${isMastered ? `true` : `false`}" onclick="toggleVerseMastery(${v.num})">
+                  ${isMastered ? `Mastered` : `Mark Mastered`}
+                </button>
+              </div>
+            </div>
+
+            <div class="verse-bilingual">
+              <div class="verse-translation-block">
+                <p class="verse-english">${v.english}</p>
+                <p class="verse-translit">${v.translit}</p>
+              </div>
+              <p class="verse-arabic" dir="rtl" lang="ar">${v.arabic}</p>
+            </div>
+
+            <p class="verse-commentary">${v.commentary}</p>
+
+            <div class="linguistic-drawer ${showAllLinguistics ? `` : `hidden`}" id="ling-drawer-${v.num}">
+              <span class="ling-head">Linguistic &amp; Morphological Insight</span>
+              <p class="ling-body">${v.ling}</p>
+            </div>
+          </article>
+        `;
+      }).join(``);
+
+      stream.innerHTML = html;
+    }
+
+    function setMovementFilter(mov) {
+      activeMovementFilter = mov;
+      const ids = [`all`, `1`, `2`, `3`, `4`, `5`];
+      ids.forEach(function (id) {
+        const btn = document.getElementById(`filter-${id}`);
+        if (btn) btn.setAttribute(`aria-pressed`, String(mov) === id ? `true` : `false`);
+      });
+      renderVerses();
+    }
+
+    function handleVerseSearch(val) {
+      activeSearchQuery = val;
+      renderVerses();
+    }
+
+    function resetVerseFilters() {
+      activeSearchQuery = ``;
+      const input = document.getElementById(`verse-search-input`);
+      if (input) input.value = ``;
+      setMovementFilter(`all`);
+    }
+
+    function toggleAllLinguistics() {
+      showAllLinguistics = !showAllLinguistics;
+      const btn = document.getElementById(`toggle-all-ling-btn`);
+      if (btn) {
+        btn.setAttribute(`aria-pressed`, showAllLinguistics ? `true` : `false`);
+        btn.textContent = showAllLinguistics ? `Hide All Linguistic Notes` : `Show All Linguistic Notes`;
+      }
+      renderVerses();
+    }
+
+    function toggleVerseMastery(num) {
+      const idx = appState.masteredVerses.indexOf(num);
+      if (idx === -1) {
+        appState.masteredVerses.push(num);
+        appState.masteredVerses.sort(function (a, b) { return a - b; });
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      renderVerses();
+      persistState(`Updated mastery for verse 82:${num}.`);
+    }
+
+    function markVisibleMastered() {
+      const visible = getFilteredVerses();
+      visible.forEach(function (v) {
+        if (appState.masteredVerses.indexOf(v.num) === -1) {
+          appState.masteredVerses.push(v.num);
+        }
+      });
+      appState.masteredVerses.sort(function (a, b) { return a - b; });
+      renderVerses();
+      persistState(`Marked ${visible.length} visible verses as mastered.`);
+    }
+
+    function selectCosmicStage(idx) {
+      if (idx < 0 || idx >= COSMIC_STAGES.length) return;
+      appState.selectedCosmicStage = idx;
+      for (let i = 0; i < COSMIC_STAGES.length; i++) {
+        const btn = document.getElementById(`cstep-${i}`);
+        if (btn) btn.setAttribute(`aria-selected`, i === idx ? `true` : `false`);
+      }
+      const st = COSMIC_STAGES[idx];
+      const badgeEl = document.getElementById(`cosmic-stage-badge`);
+      const refEl = document.getElementById(`cosmic-stage-ref`);
+      const formEl = document.getElementById(`cosmic-stage-form`);
+      const arEl = document.getElementById(`cosmic-stage-arabic`);
+      const headEl = document.getElementById(`cosmic-stage-heading`);
+      const descEl = document.getElementById(`cosmic-stage-desc`);
+      const echoEl = document.getElementById(`cosmic-stage-echo`);
+
+      if (badgeEl) badgeEl.textContent = st.badge;
+      if (refEl) refEl.textContent = st.ref;
+      if (formEl) formEl.textContent = st.form;
+      if (arEl) arEl.textContent = st.arabic;
+      if (headEl) headEl.textContent = st.heading;
+      if (descEl) descEl.innerHTML = st.desc;
+      if (echoEl) echoEl.textContent = st.echo;
+
+      persistState(`Viewing ${st.badge}.`);
+    }
+
+    function selectRootTerm(idx) {
+      if (idx < 0 || idx >= ROOT_TERMS.length) return;
+      appState.selectedRootTerm = idx;
+      const chips = document.querySelectorAll(`.root-chip`);
+      chips.forEach(function (chip, i) {
+        chip.setAttribute(`aria-pressed`, i === idx ? `true` : `false`);
+      });
+
+      const term = ROOT_TERMS[idx];
+      const metaEl = document.getElementById(`root-detail-meta`);
+      const titleEl = document.getElementById(`root-detail-title`);
+      const arEl = document.getElementById(`root-detail-arabic`);
+      const formEl = document.getElementById(`root-detail-form`);
+      const echoEl = document.getElementById(`root-detail-echo`);
+
+      if (metaEl) metaEl.textContent = term.meta;
+      if (titleEl) titleEl.textContent = term.title;
+      if (arEl) arEl.textContent = term.arabic;
+      if (formEl) formEl.textContent = term.form;
+      if (echoEl) echoEl.textContent = term.echo;
+
+      persistState(`Inspected root term ${term.title.split(` `)[0]}.`);
+    }
+
+    function renderQuiz() {
+      const idx = appState.currentQuizIdx;
+      const q = QUIZ_DATA[idx];
+      if (!q) return;
+
+      const progBadge = document.getElementById(`quiz-progress-badge`);
+      const scoreLabel = document.getElementById(`quiz-score-label`);
+      const topicEl = document.getElementById(`quiz-topic-label`);
+      const promptEl = document.getElementById(`quiz-prompt-text`);
+      const optionsEl = document.getElementById(`quiz-options-list`);
+      const fbBox = document.getElementById(`quiz-feedback-box`);
+      const fbTitle = document.getElementById(`quiz-feedback-title`);
+      const fbBody = document.getElementById(`quiz-feedback-body`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+      const dotsRow = document.getElementById(`quiz-dots-row`);
+
+      const answeredKeys = Object.keys(appState.quizAnswers);
+      let correctCount = 0;
+      for (let i = 0; i < answeredKeys.length; i++) {
+        const qNum = Number(answeredKeys[i]);
+        if (QUIZ_DATA[qNum] && appState.quizAnswers[qNum] === QUIZ_DATA[qNum].correct) correctCount++;
+      }
+
+      if (progBadge) progBadge.textContent = `Question ${idx + 1} of ${QUIZ_DATA.length}`;
+      if (scoreLabel) scoreLabel.textContent = `Score: ${correctCount} / ${answeredKeys.length} answered`;
+      if (topicEl) topicEl.textContent = q.topic;
+      if (promptEl) promptEl.textContent = q.prompt;
+
+      const userChoice = appState.quizAnswers[idx];
+      const hasAnswered = typeof userChoice === `number`;
+
+      if (optionsEl) {
+        const letters = [`A`, `B`, `C`, `D`];
+        optionsEl.innerHTML = q.options.map(function (opt, oIdx) {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (oIdx === userChoice && oIdx === q.correct) cls += ` selected-correct`;
+            else if (oIdx === userChoice && oIdx !== q.correct) cls += ` selected-wrong`;
+            else if (oIdx === q.correct) cls += ` reveal-correct`;
+          }
+          return `
+            <button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="selectQuizOption(${oIdx})">
+              <span class="quiz-opt-key">${letters[oIdx]}</span>
+              <span>${opt}</span>
+            </button>
+          `;
+        }).join(``);
+      }
+
+      if (fbBox && fbTitle && fbBody) {
+        if (hasAnswered) {
+          const isRight = userChoice === q.correct;
+          fbBox.classList.remove(`hidden`, `is-correct`, `is-wrong`);
+          fbBox.classList.add(isRight ? `is-correct` : `is-wrong`);
+          fbTitle.textContent = isRight ? `Correct — Grounded Commentary` : `Review — Grounded Commentary`;
+          fbTitle.style.color = isRight ? `var(--positive)` : `var(--error)`;
+          fbBody.textContent = q.explanation;
+        } else {
+          fbBox.classList.add(`hidden`);
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) {
+        nextBtn.disabled = idx === QUIZ_DATA.length - 1;
+        nextBtn.textContent = idx === QUIZ_DATA.length - 1 ? `Final Question` : `Next Question`;
+      }
+
+      if (dotsRow) {
+        dotsRow.innerHTML = QUIZ_DATA.map(function (_, dIdx) {
+          let cls = `quiz-dot`;
+          if (dIdx === idx) cls += ` current`;
+          if (typeof appState.quizAnswers[dIdx] === `number`) {
+            cls += appState.quizAnswers[dIdx] === QUIZ_DATA[dIdx].correct ? ` correct` : ` wrong`;
+          }
+          return `<button type="button" class="${cls}" aria-label="Go to question ${dIdx + 1}" onclick="jumpToQuiz(${dIdx})">${dIdx + 1}</button>`;
+        }).join(``);
+      }
+    }
+
+    function selectQuizOption(oIdx) {
+      const idx = appState.currentQuizIdx;
+      if (typeof appState.quizAnswers[idx] === `number`) return;
+      appState.quizAnswers[idx] = oIdx;
+      renderQuiz();
+      persistState(`Recorded answer for Question ${idx + 1}.`);
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.currentQuizIdx + delta;
+      if (next < 0 || next >= QUIZ_DATA.length) return;
+      appState.currentQuizIdx = next;
+      renderQuiz();
+      persistState(null);
+    }
+
+    function jumpToQuiz(idx) {
+      if (idx < 0 || idx >= QUIZ_DATA.length) return;
+      appState.currentQuizIdx = idx;
+      renderQuiz();
+      persistState(null);
+    }
+
+    function handleQuizReset(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Quiz`;
+      appState.quizAnswers = {};
+      appState.currentQuizIdx = 0;
+      renderQuiz();
+      persistState(`Quiz progress reset.`);
+    }
+
+    function saveReflection(idx, value) {
+      if (idx < 0 || idx >= appState.reflections.length) return;
+      appState.reflections[idx] = value;
+      const st = document.getElementById(`reflect-status-${idx}`);
+      if (st) {
+        st.textContent = value.trim().length > 0 ? `Saved to study logbook.` : ``;
+      }
+      persistState(`Reflection ${idx + 1} updated.`);
+    }
+
+    function exportStudySummary() {
+      const lines = [
+        `SURAH AL-INFITAR (CHAPTER 82) — STUDY & MASTERY NOTES`,
+        `Verses Mastered: ${appState.masteredVerses.length} / 19 (${appState.masteredVerses.map(function (n) { return `82:` + n; }).join(`, `) || `None yet`})`,
+        ``
+      ];
+      const answeredKeys = Object.keys(appState.quizAnswers);
+      let correctCount = 0;
+      answeredKeys.forEach(function (k) {
+        if (appState.quizAnswers[k] === QUIZ_DATA[Number(k)].correct) correctCount++;
+      });
+      lines.push(`Self-Assessment Score: ${correctCount} / ${QUIZ_DATA.length} (${answeredKeys.length} answered)`);
+      lines.push(``);
+      lines.push(`PERSONAL REFLECTIONS:`);
+      const prompts = [`82:5 (Put forth vs. kept back)`, `82:6 (Delusion vs. Al-Karīm)`, `82:10–12 (Kirāman Kātibīn)`, `82:19 (Ultimate Sovereignty)`];
+      prompts.forEach(function (title, i) {
+        lines.push(`- ${title}:`);
+        lines.push(`  ${(appState.reflections[i] || `(No entry recorded)`).trim()}`);
+      });
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-infitar-study-notes.txt`
+        });
+        const statusEl = document.getElementById(`persistence-status`);
+        if (statusEl) statusEl.textContent = `Exported study notes.`;
+      } else {
+        const statusEl = document.getElementById(`persistence-status`);
+        if (statusEl) statusEl.textContent = `Export ready in host environment.`;
+      }
+    }
+
+    function restoreFromState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (Array.isArray(saved.masteredVerses)) {
+        appState.masteredVerses = saved.masteredVerses.filter(function (n) {
+          return typeof n === `number` && n >= 1 && n <= 19;
+        });
+      }
+      if (saved.quizAnswers && typeof saved.quizAnswers === `object`) {
+        appState.quizAnswers = saved.quizAnswers;
+      }
+      if (typeof saved.currentQuizIdx === `number` && saved.currentQuizIdx >= 0 && saved.currentQuizIdx < QUIZ_DATA.length) {
+        appState.currentQuizIdx = saved.currentQuizIdx;
+      }
+      if (Array.isArray(saved.reflections)) {
+        for (let i = 0; i < 4; i++) {
+          appState.reflections[i] = typeof saved.reflections[i] === `string` ? saved.reflections[i] : ``;
+        }
+      }
+      if (typeof saved.selectedMovement === `number`) {
+        appState.selectedMovement = saved.selectedMovement;
+      }
+      if (typeof saved.selectedCosmicStage === `number`) {
+        appState.selectedCosmicStage = saved.selectedCosmicStage;
+      }
+      if (typeof saved.selectedRootTerm === `number`) {
+        appState.selectedRootTerm = saved.selectedRootTerm;
+      }
+    }
+
+    function setupScrollReveal() {
+      const els = document.querySelectorAll(`.reveal`);
+      if (!(`IntersectionObserver` in window)) {
+        els.forEach(function (el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function (el) { obs.observe(el); });
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            restoreFromState(saved);
+          }
+        } catch (err) {
+          /* proceed with fresh state */
+        }
+      }
+
+      /* Populate reflections */
+      for (let i = 0; i < 4; i++) {
+        const ta = document.getElementById(`reflect-${i}`);
+        const st = document.getElementById(`reflect-status-${i}`);
+        if (ta) ta.value = appState.reflections[i] || ``;
+        if (st && appState.reflections[i] && appState.reflections[i].trim().length > 0) {
+          st.textContent = `Restored from study logbook.`;
+        }
+      }
+
+      selectMovement(appState.selectedMovement);
+      selectCosmicStage(appState.selectedCosmicStage);
+      selectRootTerm(appState.selectedRootTerm);
+      renderVerses();
+      renderQuiz();
+      updateTelemetry();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

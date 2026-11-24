@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="nocturne">
+  <title>Surah At-Tariq (Chapter 86) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/scrollama@3.2.0/build/scrollama.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* Page and surfaces: Prussian midnight steps (Nocturne) */
+      --background: #0a101d;
+      --surface-container-low: #0e1626;
+      --surface-container: #111b2e;
+      --surface-container-high: #17243c;
+
+      /* Text */
+      --on-surface: #f2ece1;
+      --on-surface-variant: #9ba8bf;
+
+      /* Borders */
+      --outline: #384d73;
+      --outline-variant: #21304d;
+
+      /* Accents */
+      --primary: #dfaa5b;
+      --on-primary: #0a101d;
+      --primary-container: #2b261c;
+      --on-primary-container: #f5dcb0;
+      --secondary: #687a99;
+      --tertiary: #7cc4e8;
+      --error: #f27474;
+      --on-error: #1a0606;
+
+      /* Data series */
+      --data-1: #dfaa5b;
+      --data-2: #7cc4e8;
+      --data-3: #52d19c;
+      --data-4: #e07a5f;
+      --data-context: #4a5d80;
+
+      /* Semantic tokens */
+      --positive: #52d19c;
+      --warning: #e07a5f;
+      --focus: #dfaa5b;
+
+      /* Fonts */
+      --font-headline: 'EB Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-strong: 1px solid var(--outline);
+      --panel-highlight: inset 0 1px 0 rgba(242, 236, 225, 0.05);
+      --brass-glow: radial-gradient(circle at 88% 12%, rgba(223, 170, 91, 0.09), transparent 46%);
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.06em;
+      --sky-tint: color-mix(in srgb, var(--tertiary) 12%, transparent);
+      --brass-tint: color-mix(in srgb, var(--primary) 14%, transparent);
+      --mint-tint: color-mix(in srgb, var(--positive) 14%, transparent);
+      --coral-tint: color-mix(in srgb, var(--warning) 14%, transparent);
+      --error-tint: color-mix(in srgb, var(--error) 14%, transparent);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.4rem + 4vw, 4.5rem);
+      --headline-size: clamp(1.85rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1.02rem, 0.96rem + 0.22vw, 1.14rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+
+    /* PIN CORE — keep sticky scroller free of block overflow ancestors */
+    .page-shell {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg) var(--space-3xl);
+      overflow-x: clip;
+    }
+    .page-shell * { min-width: 0; }
+
+    .scrolly {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .scrolly-graphic {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: grid;
+      align-items: center;
+      margin: 0;
+      padding: var(--space-lg) 0;
+    }
+    .steps {
+      padding: 22vh 0 28vh;
+      display: grid;
+      gap: var(--space-xl);
+    }
+    .step {
+      min-height: 70vh;
+      display: grid;
+      align-content: center;
+    }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    p { margin: 0; }
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.95;
+      color: var(--on-surface);
+    }
+    .coord-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      display: inline-block;
+    }
+    .deck-brass {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-top: var(--space-xs);
+    }
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    /* Nocturne Panels & Wells */
+    .panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .panel-low {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .observation-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface);
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      border: 1px solid color-mix(in srgb, var(--tertiary) 35%, transparent);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .badge-brass {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+    }
+    .badge-mint {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border-color: color-mix(in srgb, var(--positive) 35%, transparent);
+    }
+    .badge-coral {
+      background: var(--coral-tint);
+      color: var(--warning);
+      border-color: color-mix(in srgb, var(--warning) 35%, transparent);
+    }
+
+    /* Buttons & Inputs */
+    button, input, select, textarea { font-family: inherit; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      cursor: pointer;
+      border: var(--hairline-strong);
+      background: transparent;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+      box-shadow: var(--panel-highlight);
+    }
+    .btn:active:not(:disabled) { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--primary) 88%, var(--on-surface));
+      color: var(--on-primary);
+    }
+    .btn-active {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .btn-mint {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border-color: color-mix(in srgb, var(--positive) 45%, transparent);
+    }
+    .btn-danger {
+      background: var(--error-tint);
+      color: var(--error);
+      border-color: color-mix(in srgb, var(--error) 45%, transparent);
+    }
+
+    label.field-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .field-control {
+      width: 100%;
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.96rem;
+      line-height: 1.5;
+      transition: box-shadow var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+    }
+    .field-control:hover { background: var(--surface-container-low); }
+    .field-control:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+    select.field-control { padding-right: var(--space-xl); min-height: 44px; }
+    textarea.field-control { min-height: 112px; resize: vertical; }
+
+    /* Hero Header */
+    .hero-header {
+      background-color: var(--background);
+      background-image: var(--brass-glow);
+      border-bottom: var(--hairline);
+      padding: var(--space-2xl) 0 var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+      gap: var(--space-xl);
+      align-items: end;
+    }
+    .hero-title {
+      font-size: var(--display-size);
+      line-height: 1.06;
+      margin-top: var(--space-sm);
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .hero-lede {
+      margin-top: var(--space-md);
+      max-width: 60ch;
+      color: var(--on-surface-variant);
+    }
+    .hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .hero-nav a {
+      text-decoration: none;
+      color: var(--tertiary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .hero-nav a:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+
+    /* Telemetry Strip */
+    .telemetry-panel {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .telemetry-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .metric-cell {
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+    .metric-value {
+      font-family: var(--font-headline);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-top: var(--space-xs);
+    }
+    .metric-note {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+    .progress-track {
+      height: 6px;
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Section framing */
+    .study-section {
+      padding: var(--space-2xl) 0;
+      border-bottom: var(--hairline);
+    }
+    .study-section:last-of-type { border-bottom: none; }
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .section-title {
+      font-size: var(--headline-size);
+      margin-top: var(--space-xs);
+    }
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .section-intro {
+      max-width: 62ch;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-sm);
+    }
+
+    /* Section 1: Four-Movement Architecture */
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .movement-card {
+      text-align: left;
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .movement-card:hover {
+      background: var(--surface-container-high);
+    }
+    .movement-card.is-selected {
+      background: var(--surface-container-high);
+      box-shadow: inset 0 2px 0 var(--primary);
+    }
+    .movement-card h3 {
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+    }
+    .movement-card p {
+      font-size: 0.94rem;
+      color: var(--on-surface-variant);
+    }
+    .symmetry-bar {
+      display: grid;
+      grid-template-columns: 4fr 6fr 4fr 3fr;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-lg);
+    }
+    .symmetry-seg {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      cursor: pointer;
+    }
+    .symmetry-seg.is-selected {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+    }
+    .movement-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .mini-verse-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .mini-verse-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+    }
+
+    /* Section 2: Scrollytelling Observatory SVG */
+    .observatory-frame {
+      width: 100%;
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .observatory-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .observatory-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm);
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+    }
+    .observatory-svg {
+      width: 100%;
+      height: auto;
+      max-height: 430px;
+      display: block;
+    }
+    .obs-layer {
+      opacity: 0.14;
+      transform-origin: 260px 210px;
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .obs-layer.is-lit {
+      opacity: 1;
+    }
+    .obs-layer.is-dim {
+      opacity: 0.28;
+    }
+    .step-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      opacity: 0.48;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out),
+                  background-color var(--dur-long) var(--ease-out);
+    }
+    .step.is-active .step-card {
+      opacity: 1;
+      transform: none;
+      background: var(--surface-container);
+    }
+    .step-card h3 { font-size: var(--subhead-size); }
+    .step-card .arabic-quote {
+      font-size: 1.45rem;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      text-align: right;
+    }
+
+    /* Section 3: Verse-by-Verse Study Bench */
+    .bench-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: end;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .bench-controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: var(--space-sm);
+    }
+    .bench-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .verse-rail {
+      display: grid;
+      gap: var(--space-sm);
+      max-height: 760px;
+      overflow-y: auto;
+      padding-right: var(--space-xs);
+    }
+    .verse-row {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface);
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .verse-row:hover { background: var(--surface-container-high); }
+    .verse-row.is-active {
+      background: var(--surface-container);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+    .verse-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-row-en {
+      font-size: 0.94rem;
+      color: var(--on-surface-variant);
+    }
+    .verse-row.is-active .verse-row-en { color: var(--on-surface); }
+
+    .study-inspector {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .inspector-arabic {
+      font-size: clamp(1.7rem, 1.4rem + 1.2vw, 2.35rem);
+      text-align: right;
+      padding: var(--space-md) var(--space-lg);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+    }
+    .inspector-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.3rem, 1.15rem + 0.5vw, 1.65rem);
+      line-height: 1.35;
+      color: var(--on-surface);
+    }
+    .lexical-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .lexical-card {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .reflection-box {
+      border-top: var(--hairline);
+      padding-top: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .reflection-prompt {
+      color: var(--primary);
+      font-style: italic;
+      font-family: var(--font-headline);
+      font-size: 1.18rem;
+      line-height: 1.4;
+    }
+    .inspector-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .status-note {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--positive);
+      min-height: 1.2em;
+    }
+
+    /* Section 4: Interactive Mastery Lab */
+    .mastery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .flashcard-stage {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-xl) var(--space-lg);
+      min-height: 250px;
+      display: grid;
+      align-content: center;
+      gap: var(--space-md);
+      cursor: pointer;
+    }
+    .flashcard-stage:hover { background: var(--surface-container-low); }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      text-transform: none;
+      letter-spacing: normal;
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+    .quiz-option.is-correct {
+      background: var(--mint-tint);
+      border-color: var(--positive);
+      color: var(--on-surface);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-tint);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+      font-size: 0.95rem;
+    }
+
+    /* Section 5: Reflection Archive & Export */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .empty-state {
+      border: var(--hairline);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-sm);
+      justify-items: start;
+    }
+    .study-footer {
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-lg);
+      border-top: var(--hairline);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive rules */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .movement-detail,
+      .bench-layout,
+      .mastery-grid {
+        grid-template-columns: 1fr;
+      }
+      .architecture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .scrolly {
+        grid-template-columns: 1fr;
+      }
+      .scrolly-graphic {
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        padding: var(--space-sm) 0;
+        background: var(--background);
+      }
+      .observatory-well { min-height: 240px; }
+      .steps { padding: 4vh 0 10vh; }
+      .step { min-height: 52vh; }
+    }
+    @media (max-width: 640px) {
+      .page-shell { padding: 0 var(--space-md) var(--space-2xl); }
+      .architecture-grid { grid-template-columns: 1fr; }
+      .symmetry-bar { grid-template-columns: 1fr; }
+      .telemetry-metrics { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- Hero Header -->
+    <header class="hero-header">
+      <div class="hero-grid">
+        <div>
+          <span class="coord-label">Surah 86 · At-Tariq · 17 Verses</span>
+          <h1 class="hero-title">The Night Comer <em>&amp;</em> The Return</h1>
+          <div class="deck-brass">An Observatory Study &amp; Mastery Guide to Chapter 86</div>
+          <p class="hero-lede">
+            From a piercing star in the night vault to the unseen guardian over every soul, from human origin between backbone and ribs to the Day secrets are laid bare—trace the four-movement symmetry of Surah At-Tariq, study each verse in Arabic and English, record reflections, and test your mastery.
+          </p>
+          <nav class="hero-nav" aria-label="Study sections">
+            <a href="#architecture">1. Chapter Architecture</a>
+            <a href="#observatory">2. Cosmic Imagery</a>
+            <a href="#study-bench">3. Verse-by-Verse Bench</a>
+            <a href="#mastery-lab">4. Mastery Lab</a>
+            <a href="#reflection-archive">5. Study Archive</a>
+          </nav>
+        </div>
+
+        <aside class="panel telemetry-panel" aria-label="Study mastery progress">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+            <span class="coord-label">Mastery Telemetry</span>
+            <span class="badge badge-brass" id="mastery-stage-badge">Beginning Study</span>
+          </div>
+          <div class="telemetry-metrics">
+            <div class="metric-cell">
+              <span class="coord-label">Studied</span>
+              <div class="metric-value tabular" id="metric-studied">0 / 17</div>
+              <div class="metric-note">Verses marked</div>
+            </div>
+            <div class="metric-cell">
+              <span class="coord-label">Reflections</span>
+              <div class="metric-value tabular" id="metric-notes">0</div>
+              <div class="metric-note">Saved notes</div>
+            </div>
+            <div class="metric-cell">
+              <span class="coord-label">Quiz Score</span>
+              <div class="metric-value tabular" id="metric-quiz">0 / 8</div>
+              <div class="metric-note">Recall check</div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-xs);">
+              <span class="coord-label">Chapter Completion</span>
+              <span class="coord-label tabular" id="metric-pct">0%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="mastery-progress-fill"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- Section 1: Chapter Architecture -->
+    <section class="study-section" id="architecture">
+      <div class="section-head">
+        <div>
+          <span class="coord-label">Section 01 · Structural Overview</span>
+          <h2 class="section-title">Two Celestial Oaths Frame <em>Human Accountability</em></h2>
+          <p class="section-intro">
+            Surah At-Tariq unfolds in four tight movements across seventeen verses. Select any movement below to inspect how the opening night sky mirrors the returning sky and splitting earth, anchoring human creation and final exposure between them.
+          </p>
+        </div>
+        <span class="badge">17 Verses · 4 Movements</span>
+      </div>
+
+      <div class="symmetry-bar" role="group" aria-label="Proportional verse spans across the four movements">
+        <button type="button" class="symmetry-seg is-selected" data-mov="0" onclick="selectMovement(0)">
+          <span>I · 86:1–4</span><span>4 vv</span>
+        </button>
+        <button type="button" class="symmetry-seg" data-mov="1" onclick="selectMovement(1)">
+          <span>II · 86:5–10</span><span>6 vv</span>
+        </button>
+        <button type="button" class="symmetry-seg" data-mov="2" onclick="selectMovement(2)">
+          <span>III · 86:11–14</span><span>4 vv</span>
+        </button>
+        <button type="button" class="symmetry-seg" data-mov="3" onclick="selectMovement(3)">
+          <span>IV · 86:15–17</span><span>3 vv</span>
+        </button>
+      </div>
+
+      <div class="architecture-grid">
+        <button type="button" class="movement-card is-selected" data-mov-card="0" onclick="selectMovement(0)">
+          <span class="coord-label">Movement I · 86:1–4</span>
+          <h3>The Piercing Star &amp; Guarded Soul</h3>
+          <p>Oath by the sky and the night comer, revealing a protector stationed over every soul.</p>
+        </button>
+        <button type="button" class="movement-card" data-mov-card="1" onclick="selectMovement(1)">
+          <span class="coord-label">Movement II · 86:5–10</span>
+          <h3>Origin, Return &amp; Trial of Secrets</h3>
+          <p>From ejected fluid to resurrection on the Day hidden secrets are put on trial.</p>
+        </button>
+        <button type="button" class="movement-card" data-mov-card="2" onclick="selectMovement(2)">
+          <span class="coord-label">Movement III · 86:11–14</span>
+          <h3>Returning Sky, Splitting Earth &amp; Decisive Word</h3>
+          <p>Cyclical rain and sprouting earth attest that the Qur'an is decisive, never amusement.</p>
+        </button>
+        <button type="button" class="movement-card" data-mov-card="3" onclick="selectMovement(3)">
+          <span class="coord-label">Movement IV · 86:15–17</span>
+          <h3>Rival Plans &amp; Measured Respite</h3>
+          <p>Human scheming met by divine planning, concluding with calm patience for awhile.</p>
+        </button>
+      </div>
+
+      <div class="panel movement-detail" id="movement-detail-panel">
+        <div style="display:grid;gap:var(--space-sm);">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <span class="badge badge-brass" id="mov-detail-span">Verses 86:1–4</span>
+            <button type="button" class="btn" id="mov-jump-btn" onclick="jumpToMovementInBench()">Open in Verse Bench</button>
+          </div>
+          <h3 id="mov-detail-title" style="font-size:1.65rem;">The Piercing Star &amp; Guarded Soul</h3>
+          <p id="mov-detail-summary" style="color:var(--on-surface-variant);"></p>
+          <div class="observation-well">
+            <span class="coord-label">Thematic Hinge</span>
+            <p id="mov-detail-hinge" style="margin-top:var(--space-xs);font-size:0.96rem;"></p>
+          </div>
+        </div>
+        <div>
+          <span class="coord-label" style="margin-bottom:var(--space-sm);">Verses in This Movement</span>
+          <div class="mini-verse-list" id="mov-detail-verses"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Cosmic Imagery Observatory (Sticky Scroller) -->
+    <section class="study-section" id="observatory">
+      <div class="section-head">
+        <div>
+          <span class="coord-label">Section 02 · Visual Scrollytelling</span>
+          <h2 class="section-title">The Imagery Engine of <em>At-Tariq</em></h2>
+          <p class="section-intro">
+            Scroll through the five visual beats below. As each theme enters focus, the observatory plate updates in place—connecting sky, soul, biological origin, moral exposure, and earth.
+          </p>
+        </div>
+        <span class="badge" id="obs-beat-badge">Beat 1 / 5 · 86:1–3</span>
+      </div>
+
+      <div class="scrolly">
+        <figure class="scrolly-graphic">
+          <div class="observatory-frame">
+            <div class="observatory-header">
+              <span class="coord-label" id="obs-coord">PLATE 01 · CELESTIAL VAULT</span>
+              <span class="badge badge-brass" id="obs-ref">86:1–3</span>
+            </div>
+            <div class="observatory-well">
+              <svg id="observatory-svg" class="observatory-svg" viewBox="0 0 520 420" role="img" aria-label="Interactive astronomical and thematic diagram of Surah At-Tariq">
+                <defs>
+                  <radialGradient id="starHalo" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.7" />
+                    <stop offset="55%" stop-color="var(--primary)" stop-opacity="0.16" />
+                    <stop offset="100%" stop-color="var(--primary)" stop-opacity="0" />
+                  </radialGradient>
+                  <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="var(--tertiary)" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="var(--tertiary)" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <!-- Permanent Meridian Grid -->
+                <g stroke="var(--outline-variant)" stroke-width="1" fill="none">
+                  <circle cx="260" cy="210" r="185" stroke-dasharray="3 5" />
+                  <circle cx="260" cy="210" r="138" />
+                  <circle cx="260" cy="210" r="88" stroke-dasharray="4 4" />
+                  <line x1="38" y1="210" x2="482" y2="210" />
+                  <line x1="260" y1="18" x2="260" y2="402" />
+                </g>
+
+                <!-- Layer 0: Piercing Star (86:1-3) -->
+                <g id="layer-star" class="obs-layer is-lit">
+                  <circle cx="260" cy="82" r="56" fill="url(#starHalo)" />
+                  <line x1="260" y1="20" x2="260" y2="144" stroke="var(--primary)" stroke-width="1.6" />
+                  <line x1="198" y1="82" x2="322" y2="82" stroke="var(--primary)" stroke-width="1.6" />
+                  <line x1="226" y1="48" x2="294" y2="116" stroke="var(--primary)" stroke-width="1" opacity="0.65" />
+                  <line x1="294" y1="48" x2="226" y2="116" stroke="var(--primary)" stroke-width="1" opacity="0.65" />
+                  <circle cx="260" cy="82" r="9" fill="var(--primary)" />
+                  <circle cx="260" cy="82" r="19" fill="none" stroke="var(--on-surface)" stroke-width="1.2" opacity="0.8" />
+                  <text x="288" y="64" fill="var(--primary)" font-family="JetBrains Mono, monospace" font-size="11">AT-TARIQ · PIERCING STAR</text>
+                </g>
+
+                <!-- Layer 1: Protector Over Every Soul (86:4) -->
+                <g id="layer-guardian" class="obs-layer">
+                  <path d="M 160 155 Q 260 108 360 155" fill="none" stroke="var(--tertiary)" stroke-width="2" />
+                  <path d="M 184 174 Q 260 134 336 174" fill="none" stroke="var(--tertiary)" stroke-width="1.2" stroke-dasharray="4 4" />
+                  <line x1="260" y1="92" x2="260" y2="196" stroke="var(--tertiary)" stroke-width="1.4" stroke-dasharray="2 4" />
+                  <circle cx="260" cy="210" r="24" fill="url(#coreGlow)" />
+                  <circle cx="260" cy="210" r="8" fill="var(--tertiary)" />
+                  <text x="276" y="156" fill="var(--tertiary)" font-family="JetBrains Mono, monospace" font-size="11">HAFIZ · PROTECTOR</text>
+                </g>
+
+                <!-- Layer 2: Origin & Return Arc (86:5-8) -->
+                <g id="layer-origin" class="obs-layer">
+                  <path d="M 162 246 C 195 190, 325 190, 358 246" fill="none" stroke="var(--positive)" stroke-width="2" />
+                  <path d="M 358 246 C 325 302, 195 302, 162 246" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-dasharray="5 4" />
+                  <circle cx="162" cy="246" r="6" fill="var(--positive)" />
+                  <circle cx="358" cy="246" r="6" fill="var(--primary)" />
+                  <text x="116" y="272" fill="var(--positive)" font-family="JetBrains Mono, monospace" font-size="10.5">ORIGIN (86:6-7)</text>
+                  <text x="312" y="272" fill="var(--primary)" font-family="JetBrains Mono, monospace" font-size="10.5">RETURN (86:8)</text>
+                </g>
+
+                <!-- Layer 3: Secrets Laid Bare (86:9-10) -->
+                <g id="layer-secrets" class="obs-layer">
+                  <polygon points="260,152 318,210 260,268 202,210" fill="none" stroke="var(--warning)" stroke-width="1.8" />
+                  <line x1="175" y1="210" x2="215" y2="210" stroke="var(--warning)" stroke-width="1.4" />
+                  <line x1="305" y1="210" x2="345" y2="210" stroke="var(--warning)" stroke-width="1.4" />
+                  <circle cx="260" cy="210" r="36" fill="none" stroke="var(--warning)" stroke-width="1.2" stroke-dasharray="3 3" />
+                  <text x="184" y="142" fill="var(--warning)" font-family="JetBrains Mono, monospace" font-size="11">SECRETS ON TRIAL (86:9)</text>
+                </g>
+
+                <!-- Layer 4: Returning Sky, Splitting Earth & Respite (86:11-17) -->
+                <g id="layer-cycle" class="obs-layer">
+                  <!-- Descending rain lines -->
+                  <line x1="196" y1="126" x2="196" y2="316" stroke="var(--tertiary)" stroke-width="1.3" stroke-dasharray="6 6" />
+                  <line x1="260" y1="126" x2="260" y2="316" stroke="var(--tertiary)" stroke-width="1.3" stroke-dasharray="6 6" />
+                  <line x1="324" y1="126" x2="324" y2="316" stroke="var(--tertiary)" stroke-width="1.3" stroke-dasharray="6 6" />
+                  <!-- Earth horizon cracking open -->
+                  <path d="M 96 340 L 232 340 L 248 358 L 260 330 L 274 356 L 288 340 L 424 340" fill="none" stroke="var(--positive)" stroke-width="2.2" />
+                  <!-- Sprouting decisive axis -->
+                  <line x1="260" y1="330" x2="260" y2="288" stroke="var(--primary)" stroke-width="2.2" />
+                  <path d="M 260 308 Q 240 294 232 278" fill="none" stroke="var(--positive)" stroke-width="1.8" />
+                  <path d="M 260 308 Q 280 294 288 278" fill="none" stroke="var(--positive)" stroke-width="1.8" />
+                  <text x="132" y="376" fill="var(--positive)" font-family="JetBrains Mono, monospace" font-size="11">RETURNING SKY · SPLITTING EARTH (86:11-12)</text>
+                </g>
+              </svg>
+            </div>
+            <p id="obs-caption" style="font-size:0.95rem;color:var(--on-surface-variant);">
+              A piercing star breaks through the dark expanse—introducing the theme of light penetrating obscurity.
+            </p>
+          </div>
+        </figure>
+
+        <div class="steps" id="scrolly-steps"></div>
+      </div>
+    </section>
+
+    <!-- Section 3: Verse-by-Verse Study Bench -->
+    <section class="study-section" id="study-bench">
+      <div class="section-head">
+        <div>
+          <span class="coord-label">Section 03 · Textual &amp; Reflective Study</span>
+          <h2 class="section-title">Verse-by-Verse <em>Study Bench</em></h2>
+          <p class="section-intro">
+            Examine all 17 verses in Arabic and English, filter by thematic strand, explore key vocabulary from the source text, and record your own reflections.
+          </p>
+        </div>
+        <span class="badge badge-mint" id="bench-studied-pill">0 / 17 Studied</span>
+      </div>
+
+      <div class="bench-toolbar">
+        <div class="filter-pills" role="group" aria-label="Filter verses by theme">
+          <button type="button" class="btn btn-active" data-theme-filter="all" onclick="setThemeFilter('all')">All 17 Verses</button>
+          <button type="button" class="btn" data-theme-filter="oath" onclick="setThemeFilter('oath')">Celestial Oaths</button>
+          <button type="button" class="btn" data-theme-filter="creation" onclick="setThemeFilter('creation')">Creation &amp; Return</button>
+          <button type="button" class="btn" data-theme-filter="trial" onclick="setThemeFilter('trial')">Day of Secrets</button>
+          <button type="button" class="btn" data-theme-filter="revelation" onclick="setThemeFilter('revelation')">Word &amp; Respite</button>
+        </div>
+        <div class="bench-controls-right">
+          <div>
+            <label for="verse-search-input" class="field-label">Find verse or phrase</label>
+            <input type="text" id="verse-search-input" class="field-control" placeholder="e.g. star, secrets, 86:11" oninput="handleSearchInput(this.value)">
+          </div>
+          <div>
+            <label for="arabic-size-select" class="field-label">Arabic script size</label>
+            <select id="arabic-size-select" class="field-control" onchange="setArabicScale(this.value)">
+              <option value="standard">Standard</option>
+              <option value="large">Large</option>
+              <option value="xlarge">Display</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="bench-layout">
+        <div class="verse-rail" id="verse-rail" aria-label="Verse list"></div>
+
+        <article class="panel study-inspector" id="study-inspector" aria-live="polite">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+              <span class="coord-label" id="insp-coord">VERSE 86:1</span>
+              <span class="badge" id="insp-theme-badge">Celestial Oath</span>
+            </div>
+            <div style="display:flex;gap:var(--space-xs);">
+              <button type="button" class="btn" id="insp-prev-btn" onclick="stepVerse(-1)">Prev</button>
+              <button type="button" class="btn" id="insp-next-btn" onclick="stepVerse(1)">Next</button>
+            </div>
+          </div>
+
+          <div class="arabic-text inspector-arabic" id="insp-arabic" dir="rtl" lang="ar"></div>
+          <p class="inspector-english" id="insp-english"></p>
+
+          <div>
+            <span class="coord-label" style="margin-bottom:var(--space-xs);">Contextual Analysis</span>
+            <p id="insp-analysis" style="color:var(--on-surface-variant);"></p>
+          </div>
+
+          <div>
+            <span class="coord-label" style="margin-bottom:var(--space-xs);">Key Arabic Terms</span>
+            <div class="lexical-grid" id="insp-lexical"></div>
+          </div>
+
+          <div class="reflection-box">
+            <span class="coord-label">Reflective Prompt</span>
+            <p class="reflection-prompt" id="insp-prompt"></p>
+            <label for="reflection-textarea" class="field-label" id="reflection-label">Your reflection on Verse 86:1</label>
+            <textarea id="reflection-textarea" class="field-control" placeholder="Write a personal takeaway, linguistic observation, or question for this verse…"></textarea>
+            <div class="inspector-actions">
+              <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" onclick="saveCurrentReflection()">Save Reflection</button>
+                <button type="button" class="btn" id="toggle-studied-btn" onclick="toggleCurrentStudied()">Mark as Studied</button>
+              </div>
+              <span class="status-note" id="reflection-status"></span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 4: Interactive Mastery Lab -->
+    <section class="study-section" id="mastery-lab">
+      <div class="section-head">
+        <div>
+          <span class="coord-label">Section 04 · Active Recall &amp; Testing</span>
+          <h2 class="section-title">Mastery <em>Lab</em></h2>
+          <p class="section-intro">
+            Test your retention of Surah At-Tariq with two active study tools: reversible Arabic–English verse flashcards and an 8-item comprehension and imagery check.
+          </p>
+        </div>
+        <span class="badge badge-brass" id="flash-mastered-pill">0 / 17 Flashcards Mastered</span>
+      </div>
+
+      <div class="mastery-grid">
+        <!-- Flashcard Deck -->
+        <div class="panel" style="display:grid;gap:var(--space-md);">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <div>
+              <span class="coord-label">Tool A · Active Recall</span>
+              <h3 style="font-size:1.45rem;margin-top:var(--space-xs);">Verse Flashcard Deck</h3>
+            </div>
+            <div>
+              <label for="flash-mode-select" class="field-label">Front side</label>
+              <select id="flash-mode-select" class="field-control" onchange="setFlashMode(this.value)">
+                <option value="ar-to-en">Arabic Verse</option>
+                <option value="en-to-ar">English Translation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flashcard-stage" id="flashcard-stage" role="button" tabindex="0" onclick="flipFlashcard()" onkeydown="handleFlashcardKey(event)" aria-label="Flip flashcard">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+              <span class="coord-label" id="fc-coord">CARD 1 / 17 · 86:1</span>
+              <span class="badge" id="fc-side-badge">Prompt</span>
+            </div>
+            <div id="fc-main-content"></div>
+            <div id="fc-hint" style="font-size:0.9rem;color:var(--on-surface-variant);">
+              Click card or press Enter to reveal the counterpart and key theme.
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <div style="display:flex;gap:var(--space-sm);">
+              <button type="button" class="btn" onclick="moveFlashcard(-1)">Previous</button>
+              <button type="button" class="btn" onclick="flipFlashcard()">Flip Card</button>
+              <button type="button" class="btn" onclick="moveFlashcard(1)">Next</button>
+            </div>
+            <button type="button" class="btn" id="fc-master-btn" onclick="toggleFlashcardMastered()">Mark Mastered</button>
+          </div>
+        </div>
+
+        <!-- Recall Quiz -->
+        <div class="panel" style="display:grid;gap:var(--space-md);">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <div>
+              <span class="coord-label">Tool B · Comprehension Check</span>
+              <h3 style="font-size:1.45rem;margin-top:var(--space-xs);">Thematic &amp; Textual Quiz</h3>
+            </div>
+            <span class="badge badge-mint tabular" id="quiz-progress-badge">Question 1 / 8</span>
+          </div>
+
+          <div class="observation-well" id="quiz-container">
+            <span class="coord-label" id="quiz-ref">Focus: 86:1–3</span>
+            <p id="quiz-question" style="font-family:var(--font-headline);font-size:1.3rem;line-height:1.35;margin-top:var(--space-xs);"></p>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">
+            <div style="display:flex;gap:var(--space-sm);">
+              <button type="button" class="btn" id="quiz-prev-btn" onclick="moveQuiz(-1)">Prev Question</button>
+              <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="moveQuiz(1)">Next Question</button>
+            </div>
+            <button type="button" class="btn" id="quiz-reset-btn" onclick="resetQuizInline(this)">Reset Quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Reflection Archive & Export -->
+    <section class="study-section" id="reflection-archive">
+      <div class="section-head">
+        <div>
+          <span class="coord-label">Section 05 · Study Journal</span>
+          <h2 class="section-title">Saved Reflections <em>&amp;</em> Export</h2>
+          <p class="section-intro">
+            All personal notes saved in the Verse-by-Verse Bench appear here. Export your completed notes for offline review or reset your study record.
+          </p>
+        </div>
+        <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" onclick="exportStudyNotes()">Export Study Notes (.txt)</button>
+          <button type="button" class="btn btn-danger" id="reset-all-btn" onclick="resetAllProgress(this)">Reset All Progress</button>
+        </div>
+      </div>
+
+      <div id="archive-container"></div>
+
+      <footer class="study-footer">
+        <span>Source basis: Arabic text and English translation of Chapter 86 (Surah At-Tariq, verses 86:1–86:17) from the provided study source.</span>
+        <span class="coord-label">Nocturne Study Edition · Local State Synced</span>
+      </footer>
+    </section>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // GROUNDED DATA: SURAH AT-TARIQ (CHAPTER 86, VERSES 1-17)
+    // =========================================================================
+    const VERSES = [
+      {
+        num: 1,
+        ref: `86:1`,
+        theme: `oath`,
+        themeLabel: `Celestial Oath`,
+        movement: 0,
+        ar: `وَالسَّمَاءِ وَالطَّارِق`,
+        en: `By the sky and the night comer`,
+        analysis: `The chapter opens with a solemn oath pairing the vast sky with At-Tariq—literally one who comes or knocks by night, arriving out of darkness.`,
+        terms: [
+          { ar: `السَّمَاءِ`, translit: `As-Sama'`, meaning: `The sky / celestial expanse` },
+          { ar: `الطَّارِق`, translit: `At-Tariq`, meaning: `The night comer (knocker in the night)` }
+        ],
+        prompt: `Why does the surah begin by pairing the immense expanse of the sky with a single night visitor?`
+      },
+      {
+        num: 2,
+        ref: `86:2`,
+        theme: `oath`,
+        themeLabel: `Celestial Oath`,
+        movement: 0,
+        ar: `وَمَا أَدْرَاكَ مَا الطَّارِقُ`,
+        en: `And what can make you know what is the night comer?`,
+        analysis: `A rhetorical question signals awe and elevates the object beyond ordinary observation before defining it.`,
+        terms: [
+          { ar: `وَمَا أَدْرَاكَ`, translit: `Wa ma adraka`, meaning: `And what can make you know` }
+        ],
+        prompt: `How does pausing with a question before naming the star shift your attention as a reader?`
+      },
+      {
+        num: 3,
+        ref: `86:3`,
+        theme: `oath`,
+        themeLabel: `Celestial Oath`,
+        movement: 0,
+        ar: `النَّجْمُ الثَّاقِبُ`,
+        en: `It is the piercing star`,
+        analysis: `At-Tariq is identified as An-Najm Ath-Thaqib—a luminous star whose radiance pierces cleanly through the darkness of night.`,
+        terms: [
+          { ar: `النَّجْمُ`, translit: `An-Najm`, meaning: `The star` },
+          { ar: `الثَّاقِبُ`, translit: `Ath-Thaqib`, meaning: `The piercing / penetrating light` }
+        ],
+        prompt: `What does the image of light piercing darkness suggest about truth breaking through concealment?`
+      },
+      {
+        num: 4,
+        ref: `86:4`,
+        theme: `oath`,
+        themeLabel: `Soul & Guardian`,
+        movement: 0,
+        ar: `إِنْ كُلُّ نَفْسٍ لَمَّا عَلَيْهَا حَافِظٌ`,
+        en: `There is no soul but that it has over it a protector.`,
+        analysis: `The response to the celestial oath arrives immediately: just as light penetrates the night sky, no soul lives unobserved; each carries an appointed protector and watcher.`,
+        terms: [
+          { ar: `كُلُّ نَفْسٍ`, translit: `Kullu nafsin`, meaning: `Every single soul` },
+          { ar: `حَافِظٌ`, translit: `Hafiz`, meaning: `A protector / guardian watcher` }
+        ],
+        prompt: `How does knowing every soul has a protector over it change how you view solitude and accountability?`
+      },
+      {
+        num: 5,
+        ref: `86:5`,
+        theme: `creation`,
+        themeLabel: `Creation & Return`,
+        movement: 1,
+        ar: `فَلْيَنْظُرِ الْإِنْسَانُ مِمَّ خُلِقَ`,
+        en: `So let man observe from what he was created.`,
+        analysis: `The gaze turns inward from the night sky to human biology: humanity is invited to examine its own humble beginning.`,
+        terms: [
+          { ar: `فَلْيَنْظُرِ`, translit: `Falyanzur`, meaning: `So let him look / observe` },
+          { ar: `الْإِنْسَانُ`, translit: `Al-Insan`, meaning: `Man / the human being` }
+        ],
+        prompt: `Why does the chapter move directly from looking up at a piercing star to looking closely at human origin?`
+      },
+      {
+        num: 6,
+        ref: `86:6`,
+        theme: `creation`,
+        themeLabel: `Creation & Return`,
+        movement: 1,
+        ar: `خُلِقَ مِنْ مَاءٍ دَافِق`,
+        en: `He was created from a fluid, ejected,`,
+        analysis: `Human life begins not from self-made strength, but from a surging, gushing drop of fluid.`,
+        terms: [
+          { ar: `مَاءٍ دَافِق`, translit: `Ma'in dafiq`, meaning: `An ejected / gushing fluid` }
+        ],
+        prompt: `What humility emerges from remembering that human life began in such fragility?`
+      },
+      {
+        num: 7,
+        ref: `86:7`,
+        theme: `creation`,
+        themeLabel: `Creation & Return`,
+        movement: 1,
+        ar: `يَخْرُجُ مِنْ بَيْنِ الصُّلْبِ وَالتَّرَائِبِ`,
+        en: `Emerging from between the backbone and the ribs.`,
+        analysis: `Specifies the hidden anatomical origin from which life emerges—echoing how the piercing star emerges out of hidden night.`,
+        terms: [
+          { ar: `الصُّلْبِ`, translit: `As-Sulb`, meaning: `The backbone / loins` },
+          { ar: `التَّرَائِبِ`, translit: `At-Tara'ib`, meaning: `The ribs / chest wall` }
+        ],
+        prompt: `How do hidden physical beginnings prepare the mind to trust unseen restoration?`
+      },
+      {
+        num: 8,
+        ref: `86:8`,
+        theme: `creation`,
+        themeLabel: `Creation & Return`,
+        movement: 1,
+        ar: `إِنَّهُ عَلَىٰ رَجْعِهِ لَقَادِرٌ`,
+        en: `Indeed, Allah, to return him [to life], is Able.`,
+        analysis: `The logical conclusion of verses 5–7: the Creator who originated humanity from an unseen drop is fully capable of returning him to life.`,
+        terms: [
+          { ar: `رَجْعِهِ`, translit: `Raj'ihi`, meaning: `Returning him [to life]` },
+          { ar: `لَقَادِرٌ`, translit: `Laqadir`, meaning: `Surely Able / Capable` }
+        ],
+        prompt: `Notice the word Raj' (return) here—how does it foreshadow the "returning sky" in verse 86:11?`
+      },
+      {
+        num: 9,
+        ref: `86:9`,
+        theme: `trial`,
+        themeLabel: `Day of Secrets`,
+        movement: 1,
+        ar: `يَوْمَ تُبْلَى السَّرَائِرُ`,
+        en: `The Day when secrets will be put on trial,`,
+        analysis: `Just as the star pierces the darkness, the Day of Return penetrates every hidden intention, motive, and secret.`,
+        terms: [
+          { ar: `تُبْلَى`, translit: `Tubla`, meaning: `Will be examined / put on trial` },
+          { ar: `السَّرَائِرُ`, translit: `As-Sara'ir`, meaning: `Inner secrets / concealed motives` }
+        ],
+        prompt: `If inner secrets are what will be tested most closely, what habits of intention deserve attention today?`
+      },
+      {
+        num: 10,
+        ref: `86:10`,
+        theme: `trial`,
+        themeLabel: `Day of Secrets`,
+        movement: 1,
+        ar: `فَمَا لَهُ مِنْ قُوَّةٍ وَلَا نَاصِرٍ`,
+        en: `Then man will have no power or any helper.`,
+        analysis: `In that hour of complete transparency, neither personal strength nor outside allies can shield what is exposed.`,
+        terms: [
+          { ar: `قُوَّةٍ`, translit: `Quwwah`, meaning: `Internal strength or power` },
+          { ar: `نَاصِرٍ`, translit: `Nasir`, meaning: `External helper or defender` }
+        ],
+        prompt: `Why does the verse negate both inner power and external help together?`
+      },
+      {
+        num: 11,
+        ref: `86:11`,
+        theme: `revelation`,
+        themeLabel: `Cosmic Cycle & Word`,
+        movement: 2,
+        ar: `وَالسَّمَاءِ ذَاتِ الرَّجْعِ`,
+        en: `By the sky which returns [rain]`,
+        analysis: `A second oath opens Movement III: the sky continually cycles water back down to earth—linking natural "return" (Raj') with human return in verse 8.`,
+        terms: [
+          { ar: `ذَاتِ الرَّجْعِ`, translit: `Dhatir-raj'`, meaning: `Possessor of return (cyclical rain)` }
+        ],
+        prompt: `How does the everyday rhythm of rain returning from the sky make resurrection feel less distant?`
+      },
+      {
+        num: 12,
+        ref: `86:12`,
+        theme: `revelation`,
+        themeLabel: `Cosmic Cycle & Word`,
+        movement: 2,
+        ar: `وَالْأَرْضِ ذَاتِ الصَّدْعِ`,
+        en: `And [by] the earth which cracks open,`,
+        analysis: `The earth splits open to bring forth vegetation after rain—a living parallel to buried life breaking forth and truth cleaving falsehood.`,
+        terms: [
+          { ar: `ذَاتِ الصَّدْعِ`, translit: `Dhatis-sad'`, meaning: `Which cracks / splits open for growth` }
+        ],
+        prompt: `Where have you seen quiet water and patience split open what looked completely sealed?`
+      },
+      {
+        num: 13,
+        ref: `86:13`,
+        theme: `revelation`,
+        themeLabel: `Word & Respite`,
+        movement: 2,
+        ar: `إِنَّهُ لَقَوْلٌ فَصْلٌ`,
+        en: `Indeed, the Qur'an is a decisive statement,`,
+        analysis: `The answer to the second oath: revelation descends like rain to split truth from illusion—it is a clear, decisive word.`,
+        terms: [
+          { ar: `لَقَوْلٌ فَصْلٌ`, translit: `Laqawlun fasl`, meaning: `A decisive, separating statement` }
+        ],
+        prompt: `What distinguishes a "decisive statement" from casual opinion or passing noise?`
+      },
+      {
+        num: 14,
+        ref: `86:14`,
+        theme: `revelation`,
+        themeLabel: `Word & Respite`,
+        movement: 2,
+        ar: `وَمَا هُوَ بِالْهَزْلِ`,
+        en: `And it is not amusement.`,
+        analysis: `Reinforces verse 13 by negation: this message carries ultimate seriousness and consequence, never idle entertainment or jest.`,
+        terms: [
+          { ar: `بِالْهَزْلِ`, translit: `Bil-hazl`, meaning: `Amusement / frivolous jest` }
+        ],
+        prompt: `How does treating revelation as decisive rather than amusement reshape how we read a short chapter like this?`
+      },
+      {
+        num: 15,
+        ref: `86:15`,
+        theme: `revelation`,
+        themeLabel: `Rival Plans & Respite`,
+        movement: 3,
+        ar: `إِنَّهُمْ يَكِيدُونَ كَيْدًا`,
+        en: `Indeed, they are planning a plan,`,
+        analysis: `Opponents scheme against the decisive message, weaving hidden plots just as the night conceals movement.`,
+        terms: [
+          { ar: `يَكِيدُونَ كَيْدًا`, translit: `Yakiduna kayda`, meaning: `They devise a subtle plan / plot` }
+        ],
+        prompt: `Why does the surah acknowledge human scheming openly rather than ignoring it?`
+      },
+      {
+        num: 16,
+        ref: `86:16`,
+        theme: `revelation`,
+        themeLabel: `Rival Plans & Respite`,
+        movement: 3,
+        ar: `وَأَكِيدُ كَيْدًا`,
+        en: `But I am planning a plan.`,
+        analysis: `A calm, asymmetrical response: divine counter-planning encompasses and outlasts every mortal scheme.`,
+        terms: [
+          { ar: `وَأَكِيدُ كَيْدًا`, translit: `Wa akidu kayda`, meaning: `And I am planning a plan` }
+        ],
+        prompt: `Contrast the frantic urgency of human plotting with the quiet certainty of "But I am planning a plan."`
+      },
+      {
+        num: 17,
+        ref: `86:17`,
+        theme: `revelation`,
+        themeLabel: `Rival Plans & Respite`,
+        movement: 3,
+        ar: `فَمَهِّلِ الْكَافِرِينَ أَمْهِلْهُمْ رُوَيْدًا`,
+        en: `So allow time for the disbelievers. Leave them awhile.`,
+        analysis: `The chapter closes in measured composure—granting a brief respite without haste, trusting the returning sky, the protector, and the Day of Secrets.`,
+        terms: [
+          { ar: `فَمَهِّلِ`, translit: `Famahhil`, meaning: `So grant respite / allow time` },
+          { ar: `رُوَيْدًا`, translit: `Ruwayda`, meaning: `Gently / for a little while` }
+        ],
+        prompt: `Why does the entire chapter end on patience and "a little while" rather than immediate force?`
+      }
+    ];
+
+    const MOVEMENTS = [
+      {
+        span: `Verses 86:1–4`,
+        title: `The Piercing Star & Guarded Soul`,
+        summary: `Opens with an oath by the sky and At-Tariq—the night comer, identified as the piercing star—to establish that no soul exists without a protector watching over it.`,
+        hinge: `Light piercing darkness mirrors the watcher stationed over every human soul.`,
+        verseNums: [1, 2, 3, 4],
+        filter: `oath`
+      },
+      {
+        span: `Verses 86:5–10`,
+        title: `Origin, Return & Trial of Secrets`,
+        summary: `Calls humanity to reflect on its origin from an ejected fluid emerging between backbone and ribs, proving Allah's power to return life on the Day secrets are tried without power or helper.`,
+        hinge: `The word Raj' (return, 86:8) links biological origination directly to moral accountability.`,
+        verseNums: [5, 6, 7, 8, 9, 10],
+        filter: `creation`
+      },
+      {
+        span: `Verses 86:11–14`,
+        title: `Returning Sky, Splitting Earth & Decisive Word`,
+        summary: `Swears by the sky that returns rain and the earth that cracks open to affirm that the Qur'an is a decisive statement, not amusement.`,
+        hinge: `Nature's cycle of return and cleavage validates revelation as life-giving and decisive.`,
+        verseNums: [11, 12, 13, 14],
+        filter: `revelation`
+      },
+      {
+        span: `Verses 86:15–17`,
+        title: `Rival Plans & Measured Respite`,
+        summary: `Contrasts the schemes of opponents with divine planning, concluding with calm instruction to allow the disbelievers time and leave them awhile.`,
+        hinge: `Every plot operates within the brief respite of a watched, accountable universe.`,
+        verseNums: [15, 16, 17],
+        filter: `revelation`
+      }
+    ];
+
+    const SCROLLY_BEATS = [
+      {
+        ref: `86:1–3`,
+        coord: `PLATE 01 · CELESTIAL VAULT`,
+        title: `The Night Comer Pierces the Dark`,
+        ar: `وَالسَّمَاءِ وَالطَّارِق ۝ وَمَا أَدْرَاكَ مَا الطَّارِقُ ۝ النَّجْمُ الثَّاقِبُ`,
+        body: `The chapter opens at night: "By the sky and the night comer… It is the piercing star." Radiance cuts through obscurity, preparing the mind for an unseen reality that sees cleanly through cover.`,
+        caption: `A piercing star breaks through the dark expanse—introducing light penetrating obscurity (86:1–3).`,
+        litLayers: [`layer-star`]
+      },
+      {
+        ref: `86:4`,
+        coord: `PLATE 02 · GUARDED ORBIT`,
+        title: `Over Every Soul, a Protector`,
+        ar: `إِنْ كُلُّ نَفْسٍ لَمَّا عَلَيْهَا حَافِظٌ`,
+        body: `The oath lands on a universal constant: "There is no soul but that it has over it a protector." No life drifts unobserved; each soul is held under constant watch.`,
+        caption: `Watchful orbital vectors anchor above the soul node—no soul stands unguarded (86:4).`,
+        litLayers: [`layer-star`, `layer-guardian`]
+      },
+      {
+        ref: `86:5–8`,
+        coord: `PLATE 03 · ORIGIN & RETURN ARC`,
+        title: `From Ejected Fluid to Resurrection`,
+        ar: `فَلْيَنْظُرِ الْإِنْسَانُ مِمَّ خُلِقَ ۝ خُلِقَ مِنْ مَاءٍ دَافِق ۝ يَخْرُجُ مِنْ بَيْنِ الصُّلْبِ وَالتَّرَائِبِ ۝ إِنَّهُ عَلَىٰ رَجْعِهِ لَقَادِرٌ`,
+        body: `Observe what human life began from: an ejected fluid emerging from between the backbone and the ribs. Origination from hidden fragility demonstrates that Allah is able to return him to life.`,
+        caption: `The green origin vector arcs into the brass return path—creation proves the capacity for return (86:5–8).`,
+        litLayers: [`layer-guardian`, `layer-origin`]
+      },
+      {
+        ref: `86:9–10`,
+        coord: `PLATE 04 · MORAL EXPOSURE`,
+        title: `The Day Secrets Are Put on Trial`,
+        ar: `يَوْمَ تُبْلَى السَّرَائِرُ ۝ فَمَا لَهُ مِنْ قُوَّةٍ وَلَا نَاصِرٍ`,
+        body: `At the Day of Return, inner secrets are placed on trial. Every outer shield falls away, leaving man with neither inner power nor any external helper.`,
+        caption: `Coral exposure axes open the central core—hidden motives tested without power or helper (86:9–10).`,
+        litLayers: [`layer-origin`, `layer-secrets`]
+      },
+      {
+        ref: `86:11–17`,
+        coord: `PLATE 05 · SKY, EARTH & RESPITE`,
+        title: `Returning Sky, Splitting Earth & Patient Time`,
+        ar: `وَالسَّمَاءِ ذَاتِ الرَّجْعِ ۝ وَالْأَرْضِ ذَاتِ الصَّدْعِ ۝ إِنَّهُ لَقَوْلٌ فَصْلٌ`,
+        body: `The returning sky sends rain; the earth cracks open with life. So too is the Qur'an a decisive statement—not amusement. Against human plots, divine planning grants a measured awhile.`,
+        caption: `Rain descends from the returning sky to split the earth—framing the decisive word and calm respite (86:11–17).`,
+        litLayers: [`layer-star`, `layer-cycle`]
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        ref: `86:1–3`,
+        question: `How does Surah At-Tariq define "the night comer" (At-Tariq)?`,
+        options: [
+          `The piercing star`,
+          `The crescent moon at dawn`,
+          `A wandering comet of smoke`,
+          `The wind that gathers rain`
+        ],
+        correct: 0,
+        explanation: `Verses 86:2–3 ask "And what can make you know what is the night comer?" and immediately answer: "It is the piercing star."`
+      },
+      {
+        ref: `86:4`,
+        question: `What universal truth follows the opening oath by the sky and the piercing star?`,
+        options: [
+          `Every soul will eventually vanish into dust`,
+          `There is no soul but that it has over it a protector`,
+          `Only prophets are watched by angels`,
+          `The heavens outlast all human deeds`
+        ],
+        correct: 1,
+        explanation: `Verse 86:4 states: "There is no soul but that it has over it a protector."`
+      },
+      {
+        ref: `86:5–7`,
+        question: `What does verse 86:5 urge humanity to observe about its own beginning?`,
+        options: [
+          `The stars that shaped its calendar`,
+          `The clay of distant mountains`,
+          `From what he was created—an ejected fluid emerging from between the backbone and the ribs`,
+          `The strength of ancient builders`
+        ],
+        correct: 2,
+        explanation: `Verses 86:5–7 direct attention to human creation from "a fluid, ejected, emerging from between the backbone and the ribs."`
+      },
+      {
+        ref: `86:8`,
+        question: `What theological conclusion is drawn from human origination in verse 86:8?`,
+        options: [
+          `Indeed, Allah, to return him [to life], is Able`,
+          `Humanity controls its own lifespan`,
+          `Creation happens only once without return`,
+          `Earthly wealth secures eternal life`
+        ],
+        correct: 0,
+        explanation: `Verse 86:8 concludes: "Indeed, Allah, to return him [to life], is Able."`
+      },
+      {
+        ref: `86:9–10`,
+        question: `What happens on "The Day when secrets will be put on trial" according to 86:9–10?`,
+        options: [
+          `Allies will negotiate on one's behalf`,
+          `Man will have no power or any helper`,
+          `Secrets remain hidden until earth speaks`,
+          `Strength of lineage provides shelter`
+        ],
+        correct: 1,
+        explanation: `Verse 86:10 states: "Then man will have no power or any helper."`
+      },
+      {
+        ref: `86:11–12`,
+        question: `Which pair of natural phenomena forms the second oath in verses 86:11–12?`,
+        options: [
+          `The blazing sun and the deep ocean`,
+          `The towering mountains and the desert wind`,
+          `The sky which returns [rain] and the earth which cracks open`,
+          `The night that retreats and the dawn that breathes`
+        ],
+        correct: 2,
+        explanation: `Verses 86:11–12 swear: "By the sky which returns [rain] / And [by] the earth which cracks open."`
+      },
+      {
+        ref: `86:13–14`,
+        question: `What claim does the second oath affirm about the Qur'an?`,
+        options: [
+          `It is a decisive statement, and it is not amusement`,
+          `It is poetry meant for nightly leisure`,
+          `It is an encrypted code for astronomers`,
+          `It is a record of ancient kings alone`
+        ],
+        correct: 0,
+        explanation: `Verses 86:13–14 declare: "Indeed, the Qur'an is a decisive statement, / And it is not amusement."`
+      },
+      {
+        ref: `86:15–17`,
+        question: `How does the surah conclude regarding those who plot against the message?`,
+        options: [
+          `Call down immediate thunder upon them`,
+          `Retreat into silence and abandon recitation`,
+          `Allow time for the disbelievers; leave them awhile`,
+          `Debate their plots until midnight`
+        ],
+        correct: 2,
+        explanation: `After "Indeed, they are planning a plan, / But I am planning a plan" (86:15–16), verse 86:17 closes: "So allow time for the disbelievers. Leave them awhile."`
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT
+    // =========================================================================
+    const DEFAULT_STATE = {
+      activeVerseNum: 1,
+      activeMovement: 0,
+      themeFilter: `all`,
+      searchQuery: ``,
+      arabicScale: `standard`,
+      studiedVerses: [],
+      notes: {},
+      flashIndex: 0,
+      flashFlipped: false,
+      flashMode: `ar-to-en`,
+      masteredCards: [],
+      quizIndex: 0,
+      quizAnswers: {}
+    };
+
+    let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    let persistTimer = null;
+
+    function mergeState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (typeof saved.activeVerseNum === `number` && saved.activeVerseNum >= 1 && saved.activeVerseNum <= 17) {
+        appState.activeVerseNum = saved.activeVerseNum;
+      }
+      if (typeof saved.activeMovement === `number` && saved.activeMovement >= 0 && saved.activeMovement < MOVEMENTS.length) {
+        appState.activeMovement = saved.activeMovement;
+      }
+      if (typeof saved.themeFilter === `string`) appState.themeFilter = saved.themeFilter;
+      if (typeof saved.arabicScale === `string`) appState.arabicScale = saved.arabicScale;
+      if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses.filter((n) => typeof n === `number`);
+      if (saved.notes && typeof saved.notes === `object`) appState.notes = saved.notes;
+      if (typeof saved.flashIndex === `number` && saved.flashIndex >= 0 && saved.flashIndex < VERSES.length) {
+        appState.flashIndex = saved.flashIndex;
+      }
+      if (typeof saved.flashMode === `string`) appState.flashMode = saved.flashMode;
+      if (Array.isArray(saved.masteredCards)) appState.masteredCards = saved.masteredCards.filter((n) => typeof n === `number`);
+      if (typeof saved.quizIndex === `number` && saved.quizIndex >= 0 && saved.quizIndex < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = saved.quizIndex;
+      }
+      if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Graceful no-op outside host environment
+        }
+      }
+    }
+
+    function schedulePersist() {
+      clearTimeout(persistTimer);
+      persistTimer = setTimeout(() => {
+        persistState();
+      }, 150);
+    }
+
+    // =========================================================================
+    // TELEMETRY & PROGRESS
+    // =========================================================================
+    function updateTelemetry() {
+      const studiedCount = appState.studiedVerses.length;
+      const notesCount = Object.values(appState.notes).filter((txt) => typeof txt === `string` && txt.trim().length > 0).length;
+      const quizCorrect = QUIZ_QUESTIONS.reduce((acc, q, idx) => {
+        return acc + (appState.quizAnswers[idx] === q.correct ? 1 : 0);
+      }, 0);
+      const masteredCount = appState.masteredCards.length;
+
+      // Weighted mastery percentage: 50% verses studied, 30% quiz score, 20% flashcards
+      const pct = Math.round(
+        (studiedCount / 17) * 50 +
+        (quizCorrect / QUIZ_QUESTIONS.length) * 30 +
+        (masteredCount / 17) * 20
+      );
+
+      const elStudied = document.getElementById(`metric-studied`);
+      const elNotes = document.getElementById(`metric-notes`);
+      const elQuiz = document.getElementById(`metric-quiz`);
+      const elPct = document.getElementById(`metric-pct`);
+      const elFill = document.getElementById(`mastery-progress-fill`);
+      const elBadge = document.getElementById(`mastery-stage-badge`);
+      const elBenchPill = document.getElementById(`bench-studied-pill`);
+      const elFlashPill = document.getElementById(`flash-mastered-pill`);
+
+      if (elStudied) elStudied.textContent = `${studiedCount} / 17`;
+      if (elNotes) elNotes.textContent = `${notesCount}`;
+      if (elQuiz) elQuiz.textContent = `${quizCorrect} / ${QUIZ_QUESTIONS.length}`;
+      if (elPct) elPct.textContent = `${pct}%`;
+      if (elFill) elFill.style.width = `${pct}%`;
+      if (elBenchPill) elBenchPill.textContent = `${studiedCount} / 17 Studied`;
+      if (elFlashPill) elFlashPill.textContent = `${masteredCount} / 17 Flashcards Mastered`;
+
+      if (elBadge) {
+        if (pct >= 85) {
+          elBadge.textContent = `Chapter Mastered`;
+          elBadge.className = `badge badge-mint`;
+        } else if (pct >= 40) {
+          elBadge.textContent = `In Progress`;
+          elBadge.className = `badge badge-brass`;
+        } else {
+          elBadge.textContent = `Beginning Study`;
+          elBadge.className = `badge badge-brass`;
+        }
+      }
+    }
+
+    // =========================================================================
+    // SECTION 1: MOVEMENT ARCHITECTURE
+    // =========================================================================
+    function selectMovement(index) {
+      if (index < 0 || index >= MOVEMENTS.length) return;
+      appState.activeMovement = index;
+      const mov = MOVEMENTS[index];
+
+      document.querySelectorAll(`[data-mov]`).forEach((el) => {
+        el.classList.toggle(`is-selected`, Number(el.dataset.mov) === index);
+      });
+      document.querySelectorAll(`[data-mov-card]`).forEach((el) => {
+        el.classList.toggle(`is-selected`, Number(el.dataset.movCard) === index);
+      });
+
+      const spanEl = document.getElementById(`mov-detail-span`);
+      const titleEl = document.getElementById(`mov-detail-title`);
+      const sumEl = document.getElementById(`mov-detail-summary`);
+      const hingeEl = document.getElementById(`mov-detail-hinge`);
+      const listEl = document.getElementById(`mov-detail-verses`);
+
+      if (spanEl) spanEl.textContent = mov.span;
+      if (titleEl) titleEl.textContent = mov.title;
+      if (sumEl) sumEl.textContent = mov.summary;
+      if (hingeEl) hingeEl.textContent = mov.hinge;
+
+      if (listEl) {
+        listEl.innerHTML = mov.verseNums.map((vNum) => {
+          const v = VERSES[vNum - 1];
+          return `
+            <div class="mini-verse-item">
+              <span class="coord-label">${v.ref}</span>
+              <span style="flex:1;font-size:0.94rem;color:var(--on-surface);">${v.en}</span>
+              <span class="arabic-text" dir="rtl" lang="ar" style="font-size:1.1rem;color:var(--primary);">${v.ar}</span>
+            </div>
+          `;
+        }).join(``);
+      }
+
+      schedulePersist();
+    }
+
+    function jumpToMovementInBench() {
+      const mov = MOVEMENTS[appState.activeMovement];
+      if (!mov) return;
+      setThemeFilter(`all`);
+      selectVerse(mov.verseNums[0]);
+      const benchEl = document.getElementById(`study-bench`);
+      if (benchEl) benchEl.scrollIntoView({ behavior: `smooth` });
+    }
+
+    // =========================================================================
+    // SECTION 2: SCROLLYTELLING OBSERVATORY
+    // =========================================================================
+    function buildScrollySteps() {
+      const stepsEl = document.getElementById(`scrolly-steps`);
+      if (!stepsEl) return;
+      stepsEl.innerHTML = SCROLLY_BEATS.map((b, i) => `
+        <div class="step" data-step="${i}">
+          <div class="step-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+              <span class="coord-label">Beat ${i + 1} / ${SCROLLY_BEATS.length}</span>
+              <span class="badge badge-brass">${b.ref}</span>
+            </div>
+            <h3>${b.title}</h3>
+            <div class="arabic-text arabic-quote" dir="rtl" lang="ar">${b.ar}</div>
+            <p style="color:var(--on-surface-variant);">${b.body}</p>
+          </div>
+        </div>
+      `).join(``);
+    }
+
+    function renderGraphic(i) {
+      const beat = SCROLLY_BEATS[i];
+      if (!beat) return;
+
+      const beatBadge = document.getElementById(`obs-beat-badge`);
+      const obsCoord = document.getElementById(`obs-coord`);
+      const obsRef = document.getElementById(`obs-ref`);
+      const obsCap = document.getElementById(`obs-caption`);
+
+      if (beatBadge) beatBadge.textContent = `Beat ${i + 1} / ${SCROLLY_BEATS.length} · ${beat.ref}`;
+      if (obsCoord) obsCoord.textContent = beat.coord;
+      if (obsRef) obsRef.textContent = beat.ref;
+      if (obsCap) obsCap.textContent = beat.caption;
+
+      const allLayers = [`layer-star`, `layer-guardian`, `layer-origin`, `layer-secrets`, `layer-cycle`];
+      allLayers.forEach((id) => {
+        const node = document.getElementById(id);
+        if (!node) return;
+        const lit = beat.litLayers.includes(id);
+        node.classList.toggle(`is-lit`, lit);
+        node.classList.toggle(`is-dim`, !lit);
+      });
+    }
+
+    function initScrolly() {
+      buildScrollySteps();
+      renderGraphic(0);
+
+      const stepNodes = document.querySelectorAll(`.scrolly .step`);
+      function activateStep(idx) {
+        stepNodes.forEach((n, k) => n.classList.toggle(`is-active`, k === idx));
+        renderGraphic(idx);
+      }
+      if (stepNodes.length > 0) stepNodes[0].classList.add(`is-active`);
+
+      if (window.scrollama) {
+        const scroller = window.scrollama();
+        scroller
+          .setup({ step: `.scrolly .step`, offset: 0.55 })
+          .onStepEnter(({ index }) => activateStep(index));
+        window.addEventListener(`resize`, scroller.resize);
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                activateStep(Number(entry.target.dataset.step));
+              }
+            });
+          },
+          { rootMargin: `-42% 0px -42% 0px`, threshold: 0 }
+        );
+        stepNodes.forEach((n) => io.observe(n));
+      }
+    }
+
+    // =========================================================================
+    // SECTION 3: VERSE-BY-VERSE STUDY BENCH
+    // =========================================================================
+    function getFilteredVerses() {
+      const q = appState.searchQuery.trim().toLowerCase();
+      return VERSES.filter((v) => {
+        const themeMatch = appState.themeFilter === `all` || v.theme === appState.themeFilter;
+        if (!themeMatch) return false;
+        if (!q) return true;
+        const termText = v.terms.map((t) => `${t.translit} ${t.meaning}`).join(` `).toLowerCase();
+        return (
+          v.ref.toLowerCase().includes(q) ||
+          v.en.toLowerCase().includes(q) ||
+          v.analysis.toLowerCase().includes(q) ||
+          termText.includes(q)
+        );
+      });
+    }
+
+    function setThemeFilter(filter) {
+      appState.themeFilter = filter;
+      document.querySelectorAll(`[data-theme-filter]`).forEach((btn) => {
+        btn.classList.toggle(`btn-active`, btn.dataset.themeFilter === filter);
+      });
+      const visible = getFilteredVerses();
+      if (visible.length > 0 && !visible.some((v) => v.num === appState.activeVerseNum)) {
+        appState.activeVerseNum = visible[0].num;
+      }
+      renderVerseRail();
+      renderVerseInspector();
+      schedulePersist();
+    }
+
+    function handleSearchInput(val) {
+      appState.searchQuery = val;
+      const visible = getFilteredVerses();
+      if (visible.length > 0 && !visible.some((v) => v.num === appState.activeVerseNum)) {
+        appState.activeVerseNum = visible[0].num;
+      }
+      renderVerseRail();
+      renderVerseInspector();
+    }
+
+    function setArabicScale(scale) {
+      appState.arabicScale = scale;
+      const el = document.getElementById(`insp-arabic`);
+      const sel = document.getElementById(`arabic-size-select`);
+      if (sel) sel.value = scale;
+      if (el) {
+        if (scale === `xlarge`) {
+          el.style.fontSize = `clamp(2.1rem, 1.7rem + 1.4vw, 2.9rem)`;
+        } else if (scale === `large`) {
+          el.style.fontSize = `clamp(1.9rem, 1.55rem + 1.2vw, 2.55rem)`;
+        } else {
+          el.style.fontSize = `clamp(1.65rem, 1.4rem + 1vw, 2.25rem)`;
+        }
+      }
+      schedulePersist();
+    }
+
+    function renderVerseRail() {
+      const rail = document.getElementById(`verse-rail`);
+      if (!rail) return;
+      const visible = getFilteredVerses();
+      if (visible.length === 0) {
+        rail.innerHTML = `
+          <div class="empty-state">
+            <span class="coord-label">No Matching Verses</span>
+            <p style="color:var(--on-surface-variant);">Try clearing your search filter or switching back to All 17 Verses.</p>
+            <button type="button" class="btn" onclick="clearVerseFilters()">Show All 17 Verses</button>
+          </div>
+        `;
+        return;
+      }
+
+      rail.innerHTML = visible.map((v) => {
+        const isActive = v.num === appState.activeVerseNum;
+        const isStudied = appState.studiedVerses.includes(v.num);
+        const hasNote = typeof appState.notes[v.num] === `string` && appState.notes[v.num].trim().length > 0;
+        return `
+          <button type="button" class="verse-row ${isActive ? `is-active` : ``}" onclick="selectVerse(${v.num})">
+            <div class="verse-row-top">
+              <span class="coord-label">${v.ref} · ${v.themeLabel}</span>
+              <span style="display:inline-flex;gap:var(--space-xs);">
+                ${hasNote ? `<span class="badge badge-brass">Note</span>` : ``}
+                ${isStudied ? `<span class="badge badge-mint">Studied</span>` : ``}
+              </span>
+            </div>
+            <div class="arabic-text" dir="rtl" lang="ar" style="font-size:1.25rem;text-align:right;">${v.ar}</div>
+            <div class="verse-row-en">${v.en}</div>
+          </button>
+        `;
+      }).join(``);
+    }
+
+    function clearVerseFilters() {
+      appState.searchQuery = ``;
+      const searchInput = document.getElementById(`verse-search-input`);
+      if (searchInput) searchInput.value = ``;
+      setThemeFilter(`all`);
+    }
+
+    function selectVerse(num) {
+      if (num < 1 || num > 17) return;
+      appState.activeVerseNum = num;
+      renderVerseRail();
+      renderVerseInspector();
+      schedulePersist();
+    }
+
+    function stepVerse(delta) {
+      const next = appState.activeVerseNum + delta;
+      if (next < 1 || next > 17) return;
+      selectVerse(next);
+    }
+
+    function renderVerseInspector() {
+      const v = VERSES[appState.activeVerseNum - 1];
+      if (!v) return;
+
+      const coord = document.getElementById(`insp-coord`);
+      const badge = document.getElementById(`insp-theme-badge`);
+      const ar = document.getElementById(`insp-arabic`);
+      const en = document.getElementById(`insp-english`);
+      const analysis = document.getElementById(`insp-analysis`);
+      const lexical = document.getElementById(`insp-lexical`);
+      const prompt = document.getElementById(`insp-prompt`);
+      const label = document.getElementById(`reflection-label`);
+      const textarea = document.getElementById(`reflection-textarea`);
+      const studiedBtn = document.getElementById(`toggle-studied-btn`);
+      const prevBtn = document.getElementById(`insp-prev-btn`);
+      const nextBtn = document.getElementById(`insp-next-btn`);
+      const status = document.getElementById(`reflection-status`);
+
+      if (coord) coord.textContent = `VERSE ${v.ref}`;
+      if (badge) badge.textContent = v.themeLabel;
+      if (ar) ar.textContent = v.ar;
+      if (en) en.textContent = v.en;
+      if (analysis) analysis.textContent = v.analysis;
+      if (prompt) prompt.textContent = v.prompt;
+      if (label) label.textContent = `Your reflection on Verse ${v.ref}`;
+      if (textarea) textarea.value = appState.notes[v.num] || ``;
+      if (status) status.textContent = ``;
+
+      if (lexical) {
+        lexical.innerHTML = v.terms.map((t) => `
+          <div class="lexical-card">
+            <span class="arabic-text" dir="rtl" lang="ar" style="font-size:1.3rem;color:var(--primary);text-align:right;">${t.ar}</span>
+            <span class="coord-label" style="color:var(--tertiary);">${t.translit}</span>
+            <span style="font-size:0.9rem;color:var(--on-surface-variant);">${t.meaning}</span>
+          </div>
+        `).join(``);
+      }
+
+      const isStudied = appState.studiedVerses.includes(v.num);
+      if (studiedBtn) {
+        studiedBtn.textContent = isStudied ? `Studied ✓` : `Mark as Studied`;
+        studiedBtn.className = isStudied ? `btn btn-mint` : `btn`;
+      }
+      if (prevBtn) prevBtn.disabled = v.num <= 1;
+      if (nextBtn) nextBtn.disabled = v.num >= 17;
+
+      setArabicScale(appState.arabicScale);
+    }
+
+    function saveCurrentReflection() {
+      const textarea = document.getElementById(`reflection-textarea`);
+      const status = document.getElementById(`reflection-status`);
+      if (!textarea) return;
+      const text = textarea.value.trim();
+      const vNum = appState.activeVerseNum;
+      if (text.length === 0) {
+        delete appState.notes[vNum];
+        if (status) status.textContent = `Note cleared for 86:${vNum}.`;
+      } else {
+        appState.notes[vNum] = text;
+        if (!appState.studiedVerses.includes(vNum)) {
+          appState.studiedVerses.push(vNum);
+        }
+        if (status) status.textContent = `Reflection saved for 86:${vNum}.`;
+      }
+      renderVerseRail();
+      renderVerseInspector();
+      if (status) status.textContent = text.length ? `Reflection saved for 86:${vNum}.` : `Note cleared for 86:${vNum}.`;
+      renderArchive();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function toggleCurrentStudied() {
+      const vNum = appState.activeVerseNum;
+      const idx = appState.studiedVerses.indexOf(vNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(vNum);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      renderVerseRail();
+      renderVerseInspector();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    // =========================================================================
+    // SECTION 4: MASTERY LAB (FLASHCARDS + QUIZ)
+    // =========================================================================
+    function renderFlashcard() {
+      const v = VERSES[appState.flashIndex];
+      if (!v) return;
+
+      const fcCoord = document.getElementById(`fc-coord`);
+      const fcSide = document.getElementById(`fc-side-badge`);
+      const fcMain = document.getElementById(`fc-main-content`);
+      const fcHint = document.getElementById(`fc-hint`);
+      const fcMasterBtn = document.getElementById(`fc-master-btn`);
+      const fcModeSel = document.getElementById(`flash-mode-select`);
+
+      if (fcModeSel) fcModeSel.value = appState.flashMode;
+      if (fcCoord) fcCoord.textContent = `CARD ${appState.flashIndex + 1} / 17 · ${v.ref}`;
+
+      const showingAnswer = appState.flashFlipped;
+      if (fcSide) {
+        fcSide.textContent = showingAnswer ? `Answer` : `Prompt`;
+        fcSide.className = showingAnswer ? `badge badge-brass` : `badge`;
+      }
+
+      if (fcMain) {
+        const showArabic = (appState.flashMode === `ar-to-en` && !showingAnswer) || (appState.flashMode === `en-to-ar` && showingAnswer);
+        if (showArabic) {
+          fcMain.innerHTML = `<div class="arabic-text" dir="rtl" lang="ar" style="font-size:clamp(1.65rem,1.4rem + 1vw,2.25rem);text-align:right;">${v.ar}</div>`;
+        } else {
+          fcMain.innerHTML = `<p style="font-family:var(--font-headline);font-size:1.5rem;line-height:1.35;">${v.en}</p>`;
+        }
+      }
+
+      if (fcHint) {
+        fcHint.textContent = showingAnswer
+          ? `${v.themeLabel}: ${v.analysis}`
+          : `Click card or press Enter to reveal the counterpart and key theme.`;
+      }
+
+      const isMastered = appState.masteredCards.includes(v.num);
+      if (fcMasterBtn) {
+        fcMasterBtn.textContent = isMastered ? `Mastered ✓` : `Mark Mastered`;
+        fcMasterBtn.className = isMastered ? `btn btn-mint` : `btn`;
+      }
+    }
+
+    function flipFlashcard() {
+      appState.flashFlipped = !appState.flashFlipped;
+      renderFlashcard();
+    }
+
+    function handleFlashcardKey(event) {
+      if (event.key === `Enter` || event.key === ` `) {
+        event.preventDefault();
+        flipFlashcard();
+      }
+    }
+
+    function moveFlashcard(delta) {
+      appState.flashIndex = (appState.flashIndex + delta + VERSES.length) % VERSES.length;
+      appState.flashFlipped = false;
+      renderFlashcard();
+      schedulePersist();
+    }
+
+    function setFlashMode(mode) {
+      appState.flashMode = mode;
+      appState.flashFlipped = false;
+      renderFlashcard();
+      schedulePersist();
+    }
+
+    function toggleFlashcardMastered() {
+      const vNum = VERSES[appState.flashIndex].num;
+      const idx = appState.masteredCards.indexOf(vNum);
+      if (idx === -1) {
+        appState.masteredCards.push(vNum);
+      } else {
+        appState.masteredCards.splice(idx, 1);
+      }
+      renderFlashcard();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function renderQuiz() {
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx];
+      if (!q) return;
+
+      const progBadge = document.getElementById(`quiz-progress-badge`);
+      const refEl = document.getElementById(`quiz-ref`);
+      const qEl = document.getElementById(`quiz-question`);
+      const optsEl = document.getElementById(`quiz-options`);
+      const fbEl = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      if (progBadge) progBadge.textContent = `Question ${idx + 1} / ${QUIZ_QUESTIONS.length}`;
+      if (refEl) refEl.textContent = `Focus: ${q.ref}`;
+      if (qEl) qEl.textContent = q.question;
+
+      const chosen = appState.quizAnswers[idx];
+      const hasAnswered = typeof chosen === `number`;
+
+      if (optsEl) {
+        optsEl.innerHTML = q.options.map((opt, oIdx) => {
+          let cls = `btn quiz-option`;
+          if (hasAnswered) {
+            if (oIdx === q.correct) cls += ` is-correct`;
+            else if (oIdx === chosen) cls += ` is-wrong`;
+          }
+          return `<button type="button" class="${cls}" onclick="answerQuiz(${oIdx})" ${hasAnswered ? `disabled` : ``}>${opt}</button>`;
+        }).join(``);
+      }
+
+      if (fbEl) {
+        if (hasAnswered) {
+          const isRight = chosen === q.correct;
+          fbEl.hidden = false;
+          fbEl.innerHTML = `
+            <span class="coord-label" style="color:${isRight ? `var(--positive)` : `var(--error)`};">${isRight ? `Correct` : `Review Note`}</span>
+            <p style="margin-top:var(--space-xs);color:var(--on-surface-variant);">${q.explanation}</p>
+          `;
+        } else {
+          fbEl.hidden = true;
+          fbEl.innerHTML = ``;
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = idx <= 0;
+      if (nextBtn) nextBtn.disabled = idx >= QUIZ_QUESTIONS.length - 1;
+    }
+
+    function answerQuiz(optIdx) {
+      appState.quizAnswers[appState.quizIndex] = optIdx;
+      renderQuiz();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function moveQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next < 0 || next >= QUIZ_QUESTIONS.length) return;
+      appState.quizIndex = next;
+      renderQuiz();
+      schedulePersist();
+    }
+
+    function resetQuizInline(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirm Quiz Reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Quiz`;
+          }
+        }, 4000);
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset Quiz`;
+      }
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      renderQuiz();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    // =========================================================================
+    // SECTION 5: ARCHIVE, EXPORT & RESET
+    // =========================================================================
+    function renderArchive() {
+      const container = document.getElementById(`archive-container`);
+      if (!container) return;
+
+      const entries = Object.entries(appState.notes)
+        .filter((pair) => typeof pair[1] === `string` && pair[1].trim().length > 0)
+        .sort((a, b) => Number(a[0]) - Number(b[0]));
+
+      if (entries.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <span class="coord-label">No Saved Reflections Yet</span>
+            <p style="color:var(--on-surface-variant);max-width:58ch;">
+              Your personal notes will collect here as you write reflections in the Verse-by-Verse Study Bench above.
+            </p>
+            <a href="#study-bench" class="btn" style="text-decoration:none;">Go to Verse 86:1</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `<div class="archive-grid">` + entries.map(([vNumStr, note]) => {
+        const v = VERSES[Number(vNumStr) - 1];
+        if (!v) return ``;
+        return `
+          <article class="panel-low" style="display:grid;gap:var(--space-sm);align-content:start;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+              <span class="coord-label">${v.ref} · ${v.themeLabel}</span>
+              <button type="button" class="btn" style="min-height:36px;padding:var(--space-xs) var(--space-sm);" onclick="editNoteFromArchive(${v.num})">Edit</button>
+            </div>
+            <p style="font-family:var(--font-headline);font-size:1.15rem;color:var(--primary);">${v.en}</p>
+            <p style="color:var(--on-surface);white-space:pre-wrap;font-size:0.95rem;">${escapeHtml(note)}</p>
+          </article>
+        `;
+      }).join(``) + `</div>`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`)
+        .replace(/'/g, `&#39;`);
+    }
+
+    function editNoteFromArchive(vNum) {
+      selectVerse(vNum);
+      const bench = document.getElementById(`study-bench`);
+      if (bench) bench.scrollIntoView({ behavior: `smooth` });
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AT-TARIQ (CHAPTER 86) — STUDY & MASTERY NOTES`,
+        `===================================================`,
+        `Verses Studied: ${appState.studiedVerses.length} / 17`,
+        `Flashcards Mastered: ${appState.masteredCards.length} / 17`,
+        ``
+      ];
+      VERSES.forEach((v) => {
+        const note = appState.notes[v.num] ? appState.notes[v.num].trim() : ``;
+        const studiedFlag = appState.studiedVerses.includes(v.num) ? `[Studied]` : `[Unmarked]`;
+        lines.push(`${v.ref} ${studiedFlag}`);
+        lines.push(`AR: ${v.ar}`);
+        lines.push(`EN: ${v.en}`);
+        if (note) {
+          lines.push(`Reflection: ${note}`);
+        }
+        lines.push(``);
+      });
+      const content = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-at-tariq-study-notes.txt`
+        });
+      } else {
+        const blob = new Blob([content], { type: `text/plain;charset=utf-8` });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement(`a`);
+        a.href = url;
+        a.download = `surah-at-tariq-study-notes.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click Again to Erase Progress`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset All Progress`;
+          }
+        }, 4000);
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset All Progress`;
+      }
+      appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      const searchInput = document.getElementById(`verse-search-input`);
+      if (searchInput) searchInput.value = ``;
+      renderAll();
+      persistState();
+    }
+
+    function renderAll() {
+      selectMovement(appState.activeMovement);
+      setThemeFilter(appState.themeFilter);
+      selectVerse(appState.activeVerseNum);
+      renderFlashcard();
+      renderQuiz();
+      renderArchive();
+      updateTelemetry();
+    }
+
+    // =========================================================================
+    // BOOTSTRAP
+    // =========================================================================
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          mergeState(saved);
+        } catch (err) {
+          // Proceed with default state if host state unavailable
+        }
+      }
+
+      initScrolly();
+      renderAll();
+
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

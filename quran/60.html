@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Mumtahanah (Chapter 60) — Interactive Study Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-border: #c98a6b;
+      --emerald-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --brass-stop-edge: #d8c3b0;
+      --brass-stop-mid: #b5893e;
+      --error-border: #dfb3b3;
+      --error-wash: #faecec;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9d3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: var(--primary);
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', Georgia, serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.375rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1.03125rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --shadow-tint: rgb(38 27 21 / 0.04);
+      --shadow-tint-raised: rgb(38 27 21 / 0.08);
+      --soft-shadow: 0 4px 18px var(--shadow-tint);
+      --soft-shadow-raised: 0 8px 28px var(--shadow-tint-raised);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-stop-edge), var(--brass-stop-mid), var(--brass-stop-edge));
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; scroll-behavior: smooth; }
+    header { position: static !important; }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero & Masthead */
+    .hero-block {
+      padding-block: var(--space-xl) var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .arabic-hero-title {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--secondary);
+      line-height: 1.4;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-sm);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Navigation Jump Bar */
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid transparent;
+      color: var(--on-surface);
+      text-decoration: none;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background-color: var(--surface-container-high);
+      border-color: var(--outline-variant);
+    }
+    .nav-pill.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Study Progress Strip */
+    .study-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+
+    .progress-track {
+      flex: 1 1 220px;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Arch Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      line-height: 1.08;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--tertiary);
+      line-height: 1.4;
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--featured-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--secondary-btn-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.8125rem;
+    }
+
+    /* Sections */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: var(--warm-hairline);
+    }
+
+    .section-header {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .section-sub {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    .prose-lead {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    /* Structural Ring Composition Interactive Panel */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .ring-explorer {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .ring-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .ring-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .ring-btn:hover {
+      background: var(--surface-container);
+    }
+    .ring-btn.is-selected {
+      background: var(--primary-container);
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+
+    .ring-code {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      min-width: 2.2rem;
+    }
+
+    .ring-detail {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    /* Tab Bar for Sub-Views (within sections) */
+    .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .tab-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+    }
+    .tab-btn:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+    .tab-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Historical Context Split */
+    .history-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .history-fact {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .fact-label {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Verse Explorer Controls & Cards */
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: end;
+      background: var(--surface-container);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+    }
+
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+      flex: 1 1 200px;
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .input-control, .select-control, .textarea-control {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      transition: box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .select-control {
+      padding-right: var(--space-xl);
+    }
+    .textarea-control {
+      min-height: 92px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .input-control:focus, .select-control:focus, .textarea-control:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-studied {
+      box-shadow: var(--soft-shadow), inset 4px 0 0 var(--tertiary);
+    }
+
+    .verse-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+      padding-bottom: var(--space-sm);
+    }
+
+    .verse-num-badge {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+      line-height: 2.05;
+      text-align: right;
+      direction: rtl;
+      color: var(--on-surface);
+      background: var(--background);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: clamp(1.1875rem, 1.05rem + 0.45vw, 1.375rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .verse-analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    .analysis-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Linguistic & Theology Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .lexicon-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .lexicon-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--primary);
+      direction: rtl;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    /* Comparison Table */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    /* Reflections */
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Quiz */
+    .quiz-shell {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      box-shadow: inset 4px 0 0 var(--tertiary);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-wash);
+      color: var(--error);
+      box-shadow: inset 4px 0 0 var(--error);
+    }
+
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: var(--warm-hairline);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--emerald-border);
+      color: var(--on-tertiary-container);
+    }
+    .quiz-feedback.is-wrong {
+      background: var(--error-wash);
+      border-color: var(--error-border);
+      color: var(--error);
+    }
+
+    /* Sources Footer */
+    .source-footer {
+      padding-block: var(--space-xl);
+      border-top: var(--warm-hairline);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .empty-state {
+      padding: var(--space-xl);
+      text-align: center;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      display: grid;
+      gap: var(--space-md);
+      justify-items: center;
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    /* Container queries */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 520px) {
+      .verse-analysis-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .ring-explorer {
+        grid-template-columns: 1fr;
+      }
+      .verse-arabic {
+        padding: var(--space-md);
+        line-height: 1.9;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO / OVERVIEW -->
+    <section id="overview" class="hero-block">
+      <div class="kicker-row">
+        <span class="kicker">Quranic Study Monograph · Juz 28 · Madinan Revelation</span>
+        <span class="badge-emerald">Surah 60 · 13 Verses</span>
+      </div>
+
+      <p class="arabic-hero-title" lang="ar" dir="rtl">سورة الممتحنة</p>
+      <h1 class="title">Surah Al-Mumtahanah: <em>Loyalty, Justice</em>, and the Tested Heart</h1>
+      <p class="lede">
+        Revealed in Madinah in the charged period between the Treaty of Hudaybiyyah (6 AH) and the Conquest of Makkah (8 AH), Surah Al-Mumtahanah (“She That Is to Be Examined”) establishes Islam’s ethical architecture for allegiance, peaceful coexistence with non-combatants, the prophetic model of Abraham, and legal protections for emigrant women.
+      </p>
+
+      <div class="ornament-rule">◆ Chapter 60 ◆ Six Movements ◆ Ring Composition ◆</div>
+
+      <nav class="section-nav" aria-label="Study Guide Sections">
+        <a class="nav-pill is-active" href="#overview" onclick="setActiveNav(this)">Overview</a>
+        <a class="nav-pill" href="#structure" onclick="setActiveNav(this)">Structure &amp; Flow</a>
+        <a class="nav-pill" href="#history" onclick="setActiveNav(this)">Historical Context</a>
+        <a class="nav-pill" href="#verses" onclick="setActiveNav(this)">Verse Explorer (1–13)</a>
+        <a class="nav-pill" href="#theology" onclick="setActiveNav(this)">Linguistics &amp; Theology</a>
+        <a class="nav-pill" href="#reflections" onclick="setActiveNav(this)">Reflections &amp; Notes</a>
+        <a class="nav-pill" href="#quiz" onclick="setActiveNav(this)">Knowledge Check</a>
+      </nav>
+
+      <div class="arch-grid">
+        <article class="arch-card is-featured">
+          <span class="arch-label">Chapter Span</span>
+          <div class="arch-figure">13 Verses</div>
+          <div class="arch-caption">Bookended by 60:1 and 60:13 in deliberate ring composition</div>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Core Distinction</span>
+          <div class="arch-figure">Birr &amp; Qist</div>
+          <div class="arch-caption">Benevolence and justice mandated toward peaceful non-combatants (60:8)</div>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Prophetic Archetype</span>
+          <div class="arch-figure">Uswah Hasanah</div>
+          <div class="arch-caption">Abraham’s principled boundary and prayer of reliance (60:4–6)</div>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Civic Covenant</span>
+          <div class="arch-figure">6 Pledges</div>
+          <div class="arch-caption">Bay’at al-Nisa’ — the moral &amp; civic oath of believing women (60:12)</div>
+        </article>
+      </div>
+
+      <div class="study-bar">
+        <div>
+          <div class="fact-label">Your Study Progress</div>
+          <div id="study-summary-text" class="status-note">0 of 13 verses studied · Quiz 0/8 answered</div>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="study-progress-fill" class="progress-fill"></div>
+        </div>
+        <div class="tab-row">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="exportStudyNotes()">
+            <i data-lucide="download" aria-hidden="true"></i>
+            <span>Export Study Notes</span>
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="reset-all-btn" onclick="resetAllProgress(this)">
+            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+            <span>Reset Progress</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: STRUCTURAL ARCHITECTURE & RING COMPOSITION -->
+    <section id="structure" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 01 · Literary Architecture</span>
+        <h2 class="section-heading">A Symmetric Ring Linking <em>Private Conscience</em> to Public Diplomacy</h2>
+        <p class="section-sub">
+          Far from a disconnected series of rulings, Surah Al-Mumtahanah forms a tight rhetorical arc: it opens and closes with the prohibition of compromising alliances (60:1 and 60:13), pivots at 60:7 on Allah’s power to transform hostility into affection, and anchors bilateral justice in 60:8–9 before legislating for vulnerable emigrant women in 60:10–12.
+        </p>
+      </div>
+
+      <div class="panel ring-explorer">
+        <div class="ring-list" role="tablist" aria-label="Structural Movements of Surah Al-Mumtahanah">
+          <button type="button" class="ring-btn is-selected" data-ring="0" onclick="selectRingPart(0)">
+            <div>
+              <div class="fact-label">Movement A · Verses 60:1–3</div>
+              <strong>Prohibition of Secret Alliance with Active Hostiles</strong>
+            </div>
+            <span class="ring-code">A</span>
+          </button>
+          <button type="button" class="ring-btn" data-ring="1" onclick="selectRingPart(1)">
+            <div>
+              <div class="fact-label">Movement B · Verses 60:4–6</div>
+              <strong>The Abrahamic Model (Uswah Hasanah) &amp; Boundary of Prayer</strong>
+            </div>
+            <span class="ring-code">B</span>
+          </button>
+          <button type="button" class="ring-btn" data-ring="2" onclick="selectRingPart(2)">
+            <div>
+              <div class="fact-label">Hinge C · Verse 60:7</div>
+              <strong>The Turn of Hope: Enmity Transformed into Affection</strong>
+            </div>
+            <span class="ring-code">C</span>
+          </button>
+          <button type="button" class="ring-btn" data-ring="3" onclick="selectRingPart(3)">
+            <div>
+              <div class="fact-label">Movement D · Verses 60:8–9</div>
+              <strong>Bilateral Charter: Peaceful Coexistence vs. Aggression</strong>
+            </div>
+            <span class="ring-code">D</span>
+          </button>
+          <button type="button" class="ring-btn" data-ring="4" onclick="selectRingPart(4)">
+            <div>
+              <div class="fact-label">Movement E · Verses 60:10–12</div>
+              <strong>Examining Emigrant Women, Marital Equity &amp; Bay’at al-Nisa’</strong>
+            </div>
+            <span class="ring-code">E</span>
+          </button>
+          <button type="button" class="ring-btn" data-ring="5" onclick="selectRingPart(5)">
+            <div>
+              <div class="fact-label">Closing Echo A’ · Verse 60:13</div>
+              <strong>Final Ring Closure: Avoiding Despairing Alliances</strong>
+            </div>
+            <span class="ring-code">A’</span>
+          </button>
+        </div>
+
+        <div id="ring-detail-panel" class="ring-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: HISTORICAL CONTEXT (ASBAB AL-NUZUL) -->
+    <section id="history" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 02 · Historical Context (Asbab al-Nuzul)</span>
+        <h2 class="section-heading">Four Historical Moments That Forged <em>Surah 60</em></h2>
+        <p class="section-sub">
+          Every section of Surah Al-Mumtahanah responds to concrete diplomatic, military, and domestic dilemmas faced by the Madinan community between 6 AH and 8 AH. Select any episode below to examine its historical setting, key actors, and legislative outcome.
+        </p>
+      </div>
+
+      <div class="tab-row" role="tablist" aria-label="Historical Episodes">
+        <button type="button" class="tab-btn is-active" data-hist="0" onclick="selectHistory(0)">1. Hatib ibn Abi Balta’ah (60:1–3)</button>
+        <button type="button" class="tab-btn" data-hist="1" onclick="selectHistory(1)">2. Ibrahim &amp; His People (60:4–6)</button>
+        <button type="button" class="tab-btn" data-hist="2" onclick="selectHistory(2)">3. Hudaybiyyah &amp; Emigrant Women (60:10–11)</button>
+        <button type="button" class="tab-btn" data-hist="3" onclick="selectHistory(3)">4. The Women’s Pledge (60:12)</button>
+      </div>
+
+      <div id="history-stage" class="history-card" aria-live="polite"></div>
+    </section>
+
+    <!-- SECTION 3: VERSE-BY-VERSE BREAKDOWN -->
+    <section id="verses" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 03 · Complete Text &amp; Exegesis</span>
+        <h2 class="section-heading">Verse-by-Verse Explorer <em>(60:1–60:13)</em></h2>
+        <p class="section-sub">
+          Read the complete Arabic script and English translation from the source text alongside verse-level thematic analysis, linguistic notes, and Divine Names. Filter by thematic movement or search by concept, and mark verses as studied to track your progress.
+        </p>
+      </div>
+
+      <div class="controls-row">
+        <div class="field-group">
+          <label class="field-label" for="verse-theme-filter">Filter by Movement</label>
+          <select id="verse-theme-filter" class="select-control" onchange="renderVerses()">
+            <option value="all">All 13 Verses (60:1–13)</option>
+            <option value="loyalty">Loyalty &amp; Hatib’s Incident (60:1–3)</option>
+            <option value="abraham">The Model of Abraham (60:4–6)</option>
+            <option value="relations">Hope &amp; Bilateral Justice (60:7–9)</option>
+            <option value="women">Emigrant Women &amp; Pledge (60:10–12)</option>
+            <option value="closing">Closing Warning (60:13)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="verse-search-input">Search Text or Concept</label>
+          <input id="verse-search-input" type="search" class="input-control" placeholder="e.g., Abraham, affection, justly, pledge, graves…" oninput="renderVerses()">
+        </div>
+
+        <div class="field-group" style="flex: 0 0 auto;">
+          <label class="field-label" for="verse-study-filter">Study Status</label>
+          <select id="verse-study-filter" class="select-control" onchange="renderVerses()">
+            <option value="all">Show All</option>
+            <option value="unstudied">Unstudied Only</option>
+            <option value="studied">Studied Only</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="verse-results-meta" class="status-note">Showing 13 of 13 verses</div>
+      <div id="verse-container" class="verse-list"></div>
+    </section>
+
+    <!-- SECTION 4: LINGUISTICS & CORE THEOLOGY -->
+    <section id="theology" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 04 · Key Linguistic Insights &amp; Core Theology</span>
+        <h2 class="section-heading">Precision of Language, <em>Clarity of Justice</em></h2>
+        <p class="section-sub">
+          Surah Al-Mumtahanah guards against moral confusion by pairing exact Arabic terminology with explicit Divine Names at verse endings. Explore the six defining concepts below and examine the Quran’s two-tier legal framework for intercommunal relations.
+        </p>
+      </div>
+
+      <div class="card-grid" id="lexicon-grid"></div>
+
+      <div class="section-header" style="margin-top: var(--space-md);">
+        <span class="kicker">Theological Matrix · Verses 60:8–9</span>
+        <h3 class="section-heading" style="font-size: var(--subhead-size);">Bilateral Relations: Distinguishing Non-Combatants from Hostile Aggressors</h3>
+        <p class="prose-lead">
+          Verses 60:8 and 60:9 are foundational in Islamic political ethics and international law. The Arabic particle <em>innama</em> (“only”) in 60:9 restricts the prohibition of political alliance strictly to active belligerents, preserving <em>birr</em> (benevolence) and <em>qist</em> (scrupulous justice) for all peaceful non-believers.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category in Surah 60</th>
+              <th>Defining Criteria (Arabic Text)</th>
+              <th>Quranic Ruling</th>
+              <th>Theological Grounding</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Peaceful Non-Combatants</strong><br><span class="badge-emerald">Verse 60:8</span></td>
+              <td>Those who neither fight you over religion (<em>lam yuqatilukum fi al-din</em>) nor expel you from your homes (<em>lam yukhrijukum min diyarikum</em>).</td>
+              <td><strong>Permitted &amp; Praised:</strong> Show them deep righteousness (<em>an tabarruhum</em>) and act equitably toward them (<em>tuqsitu ilayhim</em>).</td>
+              <td><em>Inna Allaha yuhibbu al-muqsitin</em> — “Indeed, Allah loves those who act justly.”</td>
+            </tr>
+            <tr>
+              <td><strong>Active Aggressors &amp; Enablers</strong><br><span class="badge-brass">Verses 60:1–2, 60:9</span></td>
+              <td>Those who fight you because of religion, expel you from your homes, and actively aid in your expulsion (<em>zaharu ‘ala ikhrajikum</em>).</td>
+              <td><strong>Strictly Prohibited:</strong> Do not take them as strategic/protective allies (<em>an tawallawhum</em>) or confide state secrets out of affection.</td>
+              <td><em>Fa-ula’ika hum al-zalimun</em> — “Whoever allies with them, it is they who are the wrongdoers.”</td>
+            </tr>
+            <tr>
+              <td><strong>Potential Future Friends</strong><br><span class="badge-emerald">Verse 60:7</span></td>
+              <td>Former adversaries whose hearts may turn away from hostility toward reconciliation and faith.</td>
+              <td><strong>Hope &amp; Restraint:</strong> Leave room for mercy and reconciliation; enmity is never presumed permanent.</td>
+              <td><em>Wallahu Qadirun, wallahu Ghafurun Rahim</em> — Allah is Competent, Forgiving, Merciful.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-md);">
+        <div class="kicker">Core Theological Anchors · Al-Asma’ al-Husna</div>
+        <p class="prose-lead">
+          Notice how Surah 60 closes its commands with paired Divine Names that govern human motivation:
+        </p>
+        <div class="card-grid" id="theology-names-grid"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REFLECTIONS & PERSONAL JOURNAL -->
+    <section id="reflections" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 05 · Contemplative Application</span>
+        <h2 class="section-heading">Enduring <em>Reflections</em> from Surah Al-Mumtahanah</h2>
+        <p class="section-sub">
+          Beyond its 7th-century setting, the Surah speaks to timeless tensions: family affection versus integrity, praying not to become a stumbling block for others, and practicing generous justice toward neighbors of different faiths. Record your personal takeaways below — your notes persist automatically.
+        </p>
+      </div>
+
+      <div class="card-grid" id="reflections-container"></div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE KNOWLEDGE CHECK -->
+    <section id="quiz" class="study-section">
+      <div class="section-header">
+        <span class="kicker">Section 06 · Mastery Assessment</span>
+        <h2 class="section-heading">Interactive <em>Knowledge Check</em></h2>
+        <p class="section-sub">
+          Test your comprehension of Surah Al-Mumtahanah’s verses, historical occasions, linguistic distinctions, and theological principles across eight source-grounded questions.
+        </p>
+      </div>
+
+      <div class="quiz-shell">
+        <div class="kicker-row">
+          <span id="quiz-progress-label" class="kicker">Question 1 of 8</span>
+          <span id="quiz-score-badge" class="badge-emerald">Score: 0 / 8</span>
+        </div>
+
+        <div id="quiz-stage"></div>
+
+        <div class="kicker-row">
+          <div class="tab-row">
+            <button type="button" class="btn btn-secondary btn-sm" id="quiz-prev-btn" onclick="stepQuiz(-1)">
+              <i data-lucide="arrow-left" aria-hidden="true"></i>
+              <span>Previous</span>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="quiz-next-btn" onclick="stepQuiz(1)">
+              <span>Next Question</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="quiz-reset-btn" onclick="resetQuizOnly(this)">
+            <i data-lucide="refresh-cw" aria-hidden="true"></i>
+            <span>Restart Quiz</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <strong>Source &amp; Methodological Note</strong>
+      <span>All 13 Arabic verses and English translations are drawn directly from the user-provided source text (60..pdf, Sahih International rendering of Surah Al-Mumtahanah, Chapter 60). Historical contextualization (Asbab al-Nuzul: Hatib ibn Abi Balta’ah, the Treaty of Hudaybiyyah, Umm Kulthum bint Uqbah, and Bay’at al-Nisa’) and Arabic morphological notes follow classical Quranic exegesis (tafsir) and prophetic biography (sirah) literature.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    /* =====================================================================
+       DATA: 13 VERSES OF SURAH AL-MUMTAHANAH (FROM SOURCE 60..PDF)
+       ===================================================================== */
+    const VERSES = [
+      {
+        num: 1,
+        theme: `loyalty`,
+        themeLabel: `Loyalty & Hatib’s Incident`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَّخِذُوا عَدُوِّي وَعَدُوَّكُمْ أَوْلِيَاءَ تُلْقُونَ إِلَيْهِمْ بِالْمَوَدَّةِ وَقَدْ كَفَرُوا بِمَا جَاءَكُمْ مِنَ الْحَقِّ يُخْرِجُونَ الرَّسُولَ وَإِيَّاكُمْ أَنْ تُؤْمِنُوا بِاللَّهِ رَبِّكُمْ إِنْ كُنْتُمْ خَرَجْتُمْ جِهَادًا فِي سَبِيلِي وَابْتِغَاءَ مَرْضَاتِي تُسِرُّونَ إِلَيْهِمْ بِالْمَوَدَّةِ وَأَنَا أَعْلَمُ بِمَا أَخْفَيْتُمْ وَمَا أَعْلَنْتُمْ وَمَنْ يَفْعَلْهُ مِنْكُمْ فَقَدْ ضَلَّ سَوَاءَ السَّبِيلِ`,
+        translation: `O you who have believed, do not take My enemies and your enemies as allies, extending to them affection while they have disbelieved in what came to you of the truth, having driven out the Prophet and yourselves [only] because you believe in Allah, your Lord. If you have come out for jihad in My cause and seeking means to My approval, [take them not as friends]. You confide to them affection, but I am most knowing of what you have concealed and what you have declared. And whoever does it among you has certainly strayed from the soundness of the way.`,
+        context: `Revealed regarding Hatib ibn Abi Balta’ah prior to the Conquest of Makkah (8 AH). Seeking to protect his vulnerable relatives in Makkah, Hatib sent a secret warning letter to Quraysh. Notice that Allah still addresses the offenders as "O you who have believed" — affirming Hatib’s faith while rebuking his breach of strategic trust.`,
+        linguistics: `Key terms: Awliya’ (protective allies/confidants), Tulquna bil-mawaddah (casting/extending affection), Tusirruna (confiding in secret), Sawa’ al-sabil (the even, balanced path). The repetition of mawaddah highlights how private emotional attachment can quietly compromise communal security.`
+      },
+      {
+        num: 2,
+        theme: `loyalty`,
+        themeLabel: `Loyalty & Hatib’s Incident`,
+        arabic: `إِنْ يَثْقَفُوكُمْ يَكُونُوا لَكُمْ أَعْدَاءً وَيَبْسُطُوا إِلَيْكُمْ أَيْدِيَهُمْ وَأَلْسِنَتَهُمْ بِالسُّوءِ وَوَدُّوا لَوْ تَكْفُرُونَ`,
+        translation: `If they gain dominance over you, they would be to you as enemies and extend against you their hands and their tongues with evil, and they wish you would disbelieve.`,
+        context: `Strips away naive political illusions: hostile adversaries who drove out the community would not reciprocate Hatib’s quiet favor if they held military upper hand.`,
+        linguistics: `Yathqafukum comes from thaqifa — to seize, overpower, or catch off guard. Pairing "hands" (physical violence) with "tongues" (propaganda, slander, humiliation) underscores total hostility whenever power shifts.`
+      },
+      {
+        num: 3,
+        theme: `loyalty`,
+        themeLabel: `Loyalty & Hatib’s Incident`,
+        arabic: `لَنْ تَنْفَعَكُمْ أَرْحَامُكُمْ وَلَا أَوْلَادُكُمْ يَوْمَ الْقِيَامَةِ يَفْصِلُ بَيْنَكُمْ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ`,
+        translation: `Never will your relatives or your children benefit you; the Day of Resurrection He will judge between you. And Allah, of what you do, is Seeing.`,
+        context: `Directly addresses Hatib’s stated motive — protecting his blood relatives and children left behind in Makkah. On the Day of Judgment, each soul stands by its own moral fidelity rather than tribal or familial ties.`,
+        linguistics: `Yafsilu baynakum (He will decisively separate/judge between you) contrasts with misplaced worldly attachment. Closes with the Divine Name Basir (All-Seeing), affirming Allah saw Hatib’s sincere faith alongside his error.`
+      },
+      {
+        num: 4,
+        theme: `abraham`,
+        themeLabel: `The Model of Abraham`,
+        arabic: `قَدْ كَانَتْ لَكُمْ أُسْوَةٌ حَسَنَةٌ فِي إِبْرَاهِيمَ وَالَّذِينَ مَعَهُ إِذْ قَالُوا لِقَوْمِهِمْ إِنَّا بُرَاءُ مِنْكُمْ وَمِمَّا تَعْبُدُونَ مِنْ دُونِ اللَّهِ كَفَرْنَا بِكُمْ وَبَدَا بَيْنَنَا وَبَيْنَكُمُ الْعَدَاوَةُ وَالْبَغْضَاءُ أَبَدًا حَتَّى تُؤْمِنُوا بِاللَّهِ وَحْدَهُ إِلَّا قَوْلَ إِبْرَاهِيمَ لِأَبِيهِ لَأَسْتَغْفِرَنَّ لَكَ وَمَا أَمْلِكُ لَكَ مِنَ اللَّهِ مِنْ شَيْءٍ رَبَّنَا عَلَيْكَ تَوَكَّلْنَا وَإِلَيْكَ أَنَبْنَا وَإِلَيْكَ الْمَصِيرُ`,
+        translation: `There has already been for you an excellent pattern in Abraham and those with him, when they said to their people, "Indeed, we are disassociated from you and from whatever you worship other than Allah. We have denied you, and there has appeared between us and you animosity and hatred forever until you believe in Allah alone" except for the saying of Abraham to his father, "I will surely ask forgiveness for you, but I have not [power to do] for you anything against Allah. Our Lord, upon You we have relied, and to You we have returned, and to You is the destination.`,
+        context: `Presents Prophet Ibrahim and his companions as the moral archetype (uswah hasanah) when facing hostile idolatry. Critically, it inserts an explicit exception: believers must NOT imitate Ibrahim’s later prayer of forgiveness for his persistently polytheistic father once his hostility to God was clear.`,
+        linguistics: `Bura’ (plural of bari’: wholly disassociated/free from guilt) precedes the prayer of three movements: Tawakkul (reliance), Inabah (penitent turning), and Masir (final return to Allah).`
+      },
+      {
+        num: 5,
+        theme: `abraham`,
+        themeLabel: `The Model of Abraham`,
+        arabic: `رَبَّنَا لَا تَجْعَلْنَا فِتْنَةً لِلَّذِينَ كَفَرُوا وَاغْفِرْ لَنَا رَبَّنَا ۖ إِنَّكَ أَنْتَ الْعَزِيزُ الْحَكِيمُ`,
+        translation: `Our Lord, make us not [objects of] torment for the disbelievers and forgive us, our Lord. Indeed, it is You who is the Exalted in Might, the Wise."`,
+        context: `Continuation of the Abrahamic supplication. Commentators explain two dimensions of not becoming a fitnah: (1) do not let them overpower and persecute us, and (2) do not let our defeat or moral failings tempt them into thinking falsehood has triumphed over truth.`,
+        linguistics: `Closes with the paired Divine Names al-‘Aziz (Exalted in Might — capable of protecting believers) and al-Hakim (All-Wise — governing when trial or relief occurs).`
+      },
+      {
+        num: 6,
+        theme: `abraham`,
+        themeLabel: `The Model of Abraham`,
+        arabic: `لَقَدْ كَانَ لَكُمْ فِيهِمْ أُسْوَةٌ حَسَنَةٌ لِمَنْ كَانَ يَرْجُو اللَّهَ وَالْيَوْمَ الْآخِرَ وَمَنْ يَتَوَلَّ فَإِنَّ اللَّهَ هُوَ الْغَنِيُّ الْحَمِيدُ`,
+        translation: `There has certainly been for you in them an excellent pattern for anyone whose hope is in Allah and the Last Day. And whoever turns away - then indeed, Allah is the Free of need, the Praiseworthy.`,
+        context: `Repeats uswah hasanah for emphatic closure, linking moral courage directly to hope in Allah and the Last Day rather than short-term tribal security.`,
+        linguistics: `Wa man yatawalla (whoever turns away from this standard) plays phonetically against the warning against tawalli (wrongful allegiance). Ends with al-Ghani al-Hamid (Self-Sufficient, Praiseworthy): God’s cause does not depend on compromising human alliances.`
+      },
+      {
+        num: 7,
+        theme: `relations`,
+        themeLabel: `Hope & Bilateral Justice`,
+        arabic: `عَسَى اللَّهُ أَنْ يَجْعَلَ بَيْنَكُمْ وَبَيْنَ الَّذِينَ عَادَيْتُمْ مِنْهُمْ مَوَدَّةً ۚ وَاللَّهُ قَدِيرٌ وَاللَّهُ غَفُورٌ رَحِيمٌ`,
+        translation: `Perhaps Allah will put, between you and those to whom you have been enemies among them, affection. And Allah is competent, and Allah is Forgiving and Merciful.`,
+        context: `The emotional and structural hinge of Surah 60. Enmity is never permanent. Classical exegetes note its swift fulfillment: following the Conquest of Makkah, former Makkan adversaries entered Islam in waves, and kinship bonds (such as the Prophet’s marriage to Umm Habibah, daughter of Abu Sufyan) turned former hostility into genuine mawaddah.`,
+        linguistics: `Notice the return of the exact word mawaddah (affection) from 60:1 — what believers were forbidden to leak out of weakness in 60:1, Allah Himself promises to plant legitimately in 60:7 through His power (Qadir) and mercy (Ghafur Rahim).`
+      },
+      {
+        num: 8,
+        theme: `relations`,
+        themeLabel: `Hope & Bilateral Justice`,
+        arabic: `لَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ لَمْ يُقَاتِلُوكُمْ فِي الدِّينِ وَلَمْ يُخْرِجُوكُمْ مِنْ دِيَارِكُمْ أَنْ تَبَرُّوهُمْ وَتُقْسِطُوا إِلَيْهِمْ إِنَّ اللَّهَ يُحِبُّ الْمُقْسِطِينَ`,
+        translation: `Allah does not forbid you from those who do not fight you because of religion and do not expel you from your homes - from being righteous toward them and acting justly toward them. Indeed, Allah loves those who act justly.`,
+        context: `The Quran’s cornerstone charter for interfaith and civic coexistence. Prompted in part by Asma bint Abi Bakr asking whether she could maintain kind ties and give gifts to her non-Muslim mother Qutaylah when she visited Madinah — the Prophet replied yes, treat her kindly.`,
+        linguistics: `Tabarruhum derives from birr — the highest Quranic term for generous kindness, filial piety, and warmth (not mere tolerance). Tuqsitu derives from qist — scrupulous, even-handed equity. Crucially, Allah declares He LOVES (yuhibbu) those who practice this justice.`
+      },
+      {
+        num: 9,
+        theme: `relations`,
+        themeLabel: `Hope & Bilateral Justice`,
+        arabic: `إِنَّمَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ قَاتَلُوكُمْ فِي الدِّينِ وَأَخْرَجُوكُمْ مِنْ دِيَارِكُمْ وَظَاهَرُوا عَلَى إِخْرَاجِكُمْ أَنْ تَوَلَّوْهُمْ وَمَنْ يَتَوَلَّهُمْ فَأُولَئِكَ هُمُ الظَّالِمُونَ`,
+        translation: `Allah only forbids you from those who fight you because of religion and expel you from your homes and aid in your expulsion - [forbids] that you make allies of them. And whoever makes allies of them, then it is those who are the wrongdoers.`,
+        context: `Clarifies the exact boundary of 60:8 so believers do not conflate peaceful non-Muslims with hostile combatants. Even military alliances are restricted specifically toward those engaged in active religious persecution, forced displacement, or material backing for expulsion.`,
+        linguistics: `Innama is a particle of strict restriction ("only"). Zaharu (‘ala ikhrajikum) means backing or lending support from behind — holding enablers of persecution accountable alongside direct combatants.`
+      },
+      {
+        num: 10,
+        theme: `women`,
+        themeLabel: `Emigrant Women & Pledge`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا جَاءَكُمُ الْمُؤْمِنَاتُ مُهَاجِرَاتٍ فَامْتَحِنُوهُنَّ ۖ اللَّهُ أَعْلَمُ بِإِيمَانِهِنَّ ۖ فَإِنْ عَلِمْتُمُوهُنَّ مُؤْمِنَاتٍ فَلَا تَرْجِعُوهُنَّ إِلَى الْكُفَّارِ لَا هُنَّ حِلٌّ لَهُمْ وَلَا هُمْ يَحِلُّونَ لَهُنَّ وَآتُوهُمْ مَا أَنْفَقُوا وَلَا جُنَاحَ عَلَيْكُمْ أَنْ تَنْكِحُوهُنَّ إِذَا آتَيْتُمُوهُنَّ أُجُورَهُنَّ ۚ وَلَا تُمْسِكُوا بِعِصَمِ الْكَوَافِرِ وَاسْأَلُوا مَا أَنْفَقْتُمْ وَلْيَسْأَلُوا مَا أَنْفَقُوا ذُلِكُمْ حُكْمُ اللَّهِ يَحْكُمُ بَيْنَكُمْ ۚ وَاللَّهُ عَلِيمٌ حَكِيمٌ`,
+        translation: `O you who have believed, when the believing women come to you as emigrants, examine them. Allah is most knowing as to their faith. And if you know them to be believers, then do not return them to the disbelievers; they are not lawful [wives] for them, nor are they lawful [husbands] for them. But give the disbelievers what they have spent. And there is no blame upon you if you marry them when you have given them their due compensation. And hold not to marriage bonds with disbelieving women, but ask for what you have spent and let them ask for what they have spent. That is the judgement of Allah; He judges between you. And Allah is Knowing and Wise.`,
+        context: `Revealed after the Treaty of Hudaybiyyah when Umm Kulthum bint Uqbah ibn Abi Mu’ayt migrated alone to Madinah and her brothers demanded her return under the treaty. Because the treaty named "men" (rijal), Allah forbade returning believing women to persecution, while mandating full financial restitution of dowry (mahr) to their former Makkan husbands.`,
+        linguistics: `Famtahinuhunna ("examine them") gives this Surah its title Al-Mumtahanah ("She Who Is Examined"). The examination verified that a woman migrated solely out of faith — not to escape a husband or pursue worldly gain — while immediately acknowledging that "Allah is most knowing as to their faith."`
+      },
+      {
+        num: 11,
+        theme: `women`,
+        themeLabel: `Emigrant Women & Pledge`,
+        arabic: `وَإِنْ فَاتَكُمْ شَيْءٌ مِنْ أَزْوَاجِكُمْ إِلَى الْكُفَّارِ فَعَاقَبْتُمْ فَآتُوا الَّذِينَ ذَهَبَتْ أَزْوَاجُهُمْ مِثْلَ مَا أَنْفَقُوا وَاتَّقُوا اللَّهَ الَّذِي أَنْتُمْ بِهِ مُؤْمِنُونَ`,
+        translation: `And if you have lost any of your wives to the disbelievers and you subsequently obtain [something], then give those whose wives have gone the equivalent of what they had spent. And fear Allah, in whom you are believers.`,
+        context: `Ensures financial reciprocity when Makkan leaders refused to refund the dowry (mahr) of Muslim husbands whose wives remained in or defected to Makkah. The Madinan public treasury was instructed to reimburse those husbands from later state revenues or gains.`,
+        linguistics: `Fa-‘aqabtum indicates obtaining a subsequent turn or recompense after a loss. Together with 60:10, it establishes meticulous economic justice even in wartime diplomacy.`
+      },
+      {
+        num: 12,
+        theme: `women`,
+        themeLabel: `Emigrant Women & Pledge`,
+        arabic: `يَا أَيُّهَا النَّبِيُّ إِذَا جَاءَكَ الْمُؤْمِنَاتُ يُبَايِعْنَكَ عَلَىٰ أَنْ لَا يُشْرِكْنَ بِاللَّهِ شَيْئًا وَلَا يَسْرِقْنَ وَلَا يَزْنِينَ وَلَا يَقْتُلْنَ أَوْلَادَهُنَّ وَلَا يَأْتِينَ بِبُهْتَانِ يَفْتَرِينَهُ بَيْنَ أَيْدِيهِنَّ وَأَرْجُلِهِنَّ وَلَا يَعْصِينَكَ فِي مَعْرُوفٍ فَبَايِعْهُنَّ وَاسْتَغْفِرْ لَهُنَّ اللَّهَ ۖ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`,
+        translation: `O Prophet, when the believing women come to you pledging to you that they will not associate anything with Allah, nor will they steal, nor will they commit unlawful sexual intercourse, nor will they kill their children, nor will they bring forth a slander they have invented between their arms and legs, nor will they disobey you in what is right - then accept their pledge and ask forgiveness for them of Allah. Indeed, Allah is Forgiving and Merciful.`,
+        context: `Codifies Bay’at al-Nisa’ (the Women’s Pledge of Allegiance), affirmed both for emigrant women and famously at the Conquest of Makkah. Women enter the community directly as independent moral subjects swearing six foundational theological, ethical, and civic commitments.`,
+        linguistics: `Buhtan ("staggering slander") "between their hands and feet" classically refers both to falsely attributing an illegitimate child to a husband’s lineage and to malicious defamation. Fi ma’ruf ("in what is right/recognized as good") signals that prophetic authority itself operates within moral goodness.`
+      },
+      {
+        num: 13,
+        theme: `closing`,
+        themeLabel: `Closing Warning`,
+        arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَوَلَّوْا قَوْمًا غَضِبَ اللَّهُ عَلَيْهِمْ قَدْ يَئِسُوا مِنَ الْآخِرَةِ كَمَا يَئِسَ الْكُفَّارُ مِنْ أَصْحَابِ الْقُبُورِ`,
+        translation: `O you who have believed, do not make allies of a people with whom Allah has become angry. They have despaired of [reward in] the Hereafter just as the disbelievers have despaired of [meeting] the inhabitants of the graves.`,
+        context: `Completes the Surah’s ring composition by returning to the exact address of 60:1 ("O you who have believed"). Warns against tying one’s spiritual destiny to factions who have utterly abandoned belief in accountability after death.`,
+        linguistics: `A striking double simile: ya’isu min al-akhirah ("despaired of the Hereafter") mirrors the despair of disbelievers over the inhabitants of the graves (ashab al-qubur) — either that the dead will never rise again, or that those in the graves have lost all hope of comfort.`
+      }
+    ];
+
+    /* =====================================================================
+       DATA: RING COMPOSITION MOVEMENTS
+       ===================================================================== */
+    const RING_PARTS = [
+      {
+        code: `A`,
+        span: `Verses 60:1–3`,
+        title: `Warning Against Secret Political Alliance`,
+        role: `Opening Ring Frame — Accountability Under Divine Sight`,
+        summary: `Opens by addressing believers directly ("Ya ayyuha alladhina amanu") and warning against confiding strategic affection (mawaddah) to enemies who expelled the Prophet and community. Establishes that on the Day of Resurrection neither blood ties nor children can shield anyone, for Allah is Basir (All-Seeing).`,
+        names: `Rabbukum (Your Lord) · Al-Basir (The All-Seeing)`,
+        pair: `Mirrors Closing Echo A’ (60:13), which repeats the exact opening address and warning against wrongful alliance (tawalli).`
+      },
+      {
+        code: `B`,
+        span: `Verses 60:4–6`,
+        title: `The Abrahamic Paradigm (Uswah Hasanah)`,
+        role: `Historical & Spiritual Anchor — Principled Disassociation`,
+        summary: `Shifts from warning to positive exemplar: Abraham and his companions stood firm against their own people’s idolatry while anchoring themselves in tawakkul (reliance) and a plea not to become a fitnah (temptation/torment) for disbelievers. Includes the surgical caveat excluding Abraham’s prayer for his persistently idolatrous father.`,
+        names: `Al-‘Aziz al-Hakim (Exalted in Might, Wise) · Al-Ghani al-Hamid (Free of Need, Praiseworthy)`,
+        pair: `Balances Movement E (60:10–12): just as Abraham modeled principled separation from hostile kin, emigrant women enacted that exact migration (hijrah) in Madinah.`
+      },
+      {
+        code: `C`,
+        span: `Verse 60:7`,
+        title: `The Pivot of Hope — Enmity Transformed`,
+        role: `Central Hinge — Divine Sovereignty Over Human Hearts`,
+        summary: `Breaks any fatalistic reading of conflict: "'Asa Allahu an yaj’ala baynakum wa bayna alladhina ‘adaytum minhum mawaddah" — Allah can turn present hostility into future affection. Directly bridges the strictness of 60:1–6 into the charter of peaceful coexistence in 60:8–9.`,
+        names: `Qadir (All-Powerful) · Ghafur Rahim (Forgiving, Merciful)`,
+        pair: `Forms the thematic pivot of the entire Surah, echoing and redeeming the word mawaddah from 60:1.`
+      },
+      {
+        code: `D`,
+        span: `Verses 60:8–9`,
+        title: `The Charter of Birr and Qist`,
+        role: `Universal Civic Ethic — Distinguishing Peace from Aggression`,
+        summary: `Draws the clearest boundary in Quranic ethics between peaceful non-believers (toward whom generous righteousness, birr, and scrupulous justice, qist, are praised and beloved by Allah) and active persecutors who expel believers or aid in their expulsion.`,
+        names: `Allah loves Al-Muqsitin (Those Who Act Justly)`,
+        pair: `Operationalizes the hope of 60:7 by ensuring believers never treat peaceful neighbors as enemies.`
+      },
+      {
+        code: `E`,
+        span: `Verses 60:10–12`,
+        title: `Examining Emigrant Women & Bay’at al-Nisa’`,
+        role: `Applied Diplomacy, Marital Equity & Moral Covenant`,
+        summary: `Translates abstract principles into treaty law and women’s protection: believing women fleeing Makkan persecution must be tested for sincerity (imtihan) and never sent back; their former husbands receive fair dowry restitution; and the Prophet accepts the women’s six-point moral and civic pledge.`,
+        names: `‘Alim Hakim (Knowing, Wise) · Ghafur Rahim (Forgiving, Merciful)`,
+        pair: `Parallels Movement B (60:4–6): the female emigrants embody Abraham’s courage by leaving hostile households for Madinah.`
+      },
+      {
+        code: `A’`,
+        span: `Verse 60:13`,
+        title: `Closing Ring Frame — Spiritual Despair vs. Hope`,
+        role: `Inclusio Closure — Echoing 60:1`,
+        summary: `Closes the chapter by returning to the opening formula ("Ya ayyuha alladhina amanu la tatawallaw...") and contrasting believers whose hope rests in Allah and the Last Day (60:6) with factions who have despaired of the Hereafter as disbelievers despair of those in the graves.`,
+        names: `Al-Akhirah (Accountability in the Hereafter)`,
+        pair: `Completes the ring opened at 60:1, leaving the believer grounded in hope and moral discernment.`
+      }
+    ];
+
+    /* =====================================================================
+       DATA: HISTORICAL EPISODES (ASBAB AL-NUZUL)
+       ===================================================================== */
+    const HISTORY_EPISODES = [
+      {
+        badge: `8 AH · Prior to Conquest of Makkah`,
+        title: `The Incident of Hatib ibn Abi Balta’ah (Verses 60:1–3)`,
+        overview: `As the Prophet Muhammad (peace be upon him) prepared a confidential march to liberate Makkah in 8 AH, Hatib ibn Abi Balta’ah — a respected veteran of the Battle of Badr — wrote a secret letter to Quraysh leaders warning them of the impending advance. He entrusted it to a woman traveling to Makkah, who hid it in her hair.`,
+        resolution: `Informed by revelation, the Prophet dispatched Ali ibn Abi Talib, al-Zubayr, and al-Miqdad to intercept the courier at Rawdat Khakh. When questioned, Hatib swore he had not apostatized; unlike the Muhajirun from Quraysh, he was an ally without powerful tribal protection in Makkah and hoped a personal favor might shield his wife and children. Umar ibn al-Khattab asked to execute him as a traitor, but the Prophet refused — affirming Hatib’s Badr legacy — while Verses 60:1–3 descended to correct the danger of misplaced private affection.`,
+        actors: `Prophet Muhammad, Hatib ibn Abi Balta’ah, Ali ibn Abi Talib, Umar ibn al-Khattab`,
+        lesson: `Sincere faith does not excuse breaches of communal trust; yet even grave errors by believers are addressed within the fold of faith ("O you who have believed") rather than hasty accusations of disbelief.`
+      },
+      {
+        badge: `Prophetic Archetype · Abraham’s Stand`,
+        title: `Abraham, His Companions, and the Father Exception (Verses 60:4–6)`,
+        overview: `For Madinan believers whose relatives still lived in hostile Makkah, cutting political ties with kinsmen felt wrenching. To steady them, the Quran invokes Prophet Ibrahim and the believers with him, who confronted their own idolatrous community with clarity: loyalty to truth takes precedence over ancestral comfort.`,
+        resolution: `Crucially, Verse 60:4 guards against misreading Abraham’s story. Earlier in his mission, Ibrahim had promised his father Azar, "I will surely ask forgiveness for you" (referenced in 19:47 and 9:114). Surah 60 explicitly marks this single promise as an exception not to be imitated once persistent hostility to God is established, while enshrining Abraham’s collective prayer of tawakkul (reliance) and protection from becoming a fitnah (60:5).`,
+        actors: `Prophet Ibrahim (Abraham), his believing companions, and his father`,
+        lesson: `Love for family never authorizes compromising truth, and believers pray not to become a moral stumbling block or object of triumph for those who reject faith.`
+      },
+      {
+        badge: `6–7 AH · Post-Hudaybiyyah Diplomacy`,
+        title: `Umm Kulthum bint Uqbah & Testing Emigrant Women (Verses 60:10–11)`,
+        overview: `Under the Treaty of Hudaybiyyah (6 AH), Madinah agreed to return any Makkan man who migrated to the Prophet without guardian permission. Shortly thereafter, Umm Kulthum bint Uqbah ibn Abi Mu’ayt walked alone from Makkah to Madinah seeking sanctuary for her faith. Her brothers arrived demanding her extradition.`,
+        resolution: `Verse 60:10 intervened decisively: the treaty clause applied to men, not women. Returning believing women to hostile husbands who would coerce their faith was forbidden. Instead, the Prophet was instructed to examine (imtihan) emigrant women to confirm they migrated for Allah and His Messenger rather than fleeing marital discord or seeking wealth — and then to refund their disbelieving husbands the dowry (mahr) they had paid. Verse 60:11 extended reciprocal financial reimbursement to Muslim men whose wives remained with or returned to the disbelievers.`,
+        actors: `Umm Kulthum bint Uqbah, Makkan envoys, Madinan community`,
+        lesson: `Protects women’s freedom of conscience and bodily safety while upholding scrupulous financial fairness even across warring treaty lines.`
+      },
+      {
+        badge: `Madinah & 8 AH Conquest · Civic Covenant`,
+        title: `The Women’s Pledge of Allegiance — Bay’at al-Nisa’ (Verse 60:12)`,
+        overview: `Unlike the Pledge of Aqabah or Hudaybiyyah’s pledge of defense, believing women entered the Islamic polity through a distinct covenant called Bay’at al-Nisa’. Verse 60:12 sets out its six foundational articles when women came directly to the Prophet to pledge allegiance.`,
+        resolution: `The six commitments span theology (no shirk), property ethics (no theft), family sanctity (no zina and no killing children/infanticide), social truthfulness (no invented slander/buhtan, including false paternity claims), and civic solidarity (not disobeying the Prophet in ma’ruf — recognized righteousness). The Prophet accepted their pledge verbally without shaking hands and prayed for their forgiveness.`,
+        actors: `Prophet Muhammad and believing women (including new Makkan converts at the Conquest)`,
+        lesson: `Affirms women as autonomous moral and political citizens whose loyalty to Allah and ethical society stands directly on par with men’s.`
+      }
+    ];
+
+    /* =====================================================================
+       DATA: KEY LINGUISTIC TERMS & DIVINE NAMES
+       ===================================================================== */
+    const LEXICON = [
+      {
+        arabic: `أَوْلِيَاء / تَوَلِّي`,
+        translit: `Awliya’ / Tawalli (60:1, 60:9, 60:13)`,
+        meaning: `Protective alliance, strategic patronage, or deep political alignment.`,
+        insight: `Surah 60 forbids tawalli specifically toward active persecutors who wage war and expel believers — distinguishing strategic alignment from basic human courtesy.`
+      },
+      {
+        arabic: `بِرّ وَقِسْط`,
+        translit: `Birr & Qist (60:8)`,
+        meaning: `Active benevolence/filial warmth (birr) and scrupulous equity/justice (qist).`,
+        insight: `Birr is the very word used for honoring one’s parents. Requiring both birr and qist toward peaceful non-Muslims elevates coexistence far above reluctant tolerance.`
+      },
+      {
+        arabic: `أُسْوَةٌ حَسَنَةٌ`,
+        translit: `Uswah Hasanah (60:4, 60:6)`,
+        meaning: `An exemplary, enduring moral pattern to be emulated.`,
+        insight: `Used in the Quran almost exclusively for Prophet Muhammad (33:21) and Prophet Ibrahim (60:4, 6). Here it pairs Ibrahim with "those with him," universalizing prophetic courage.`
+      },
+      {
+        arabic: `امْتِحَان`,
+        translit: `Imtihan — "Famtahinuhunna" (60:10)`,
+        meaning: `Testing, smelting, or examining sincerity under scrutiny.`,
+        insight: `Gives Surah Al-Mumtahanah ("She That Is Examined") its name. The verb comes from mahana — purifying silver or testing sincerity — yet immediately reminds judges that only Allah truly knows inner faith.`
+      },
+      {
+        arabic: `فِتْنَة`,
+        translit: `Fitnah (60:5)`,
+        meaning: `Persecution, torment, or a trial that shakes conviction.`,
+        insight: `In 60:5 ("make us not a fitnah for the disbelievers"), believers ask neither to be crushed by torment nor to become a moral failure that hardens others against truth.`
+      },
+      {
+        arabic: `بُهْتَان`,
+        translit: `Buhtan (60:12)`,
+        meaning: `A fabricated, staggering slander that leaves people stunned.`,
+        insight: `In the Women’s Pledge, "buhtan invented between their hands and feet" addresses both false attribution of lineage and malicious social defamation.`
+      }
+    ];
+
+    const DIVINE_NAMES = [
+      {
+        verse: `60:3`,
+        name: `Al-Basir (The All-Seeing)`,
+        insight: `Reminds believers that hidden motives and genuine faith are completely transparent to Allah — guarding both against secret betrayal and against harsh human judgment.`
+      },
+      {
+        verse: `60:5`,
+        name: `Al-‘Aziz al-Hakim (Exalted in Might, All-Wise)`,
+        insight: `Anchors Abraham’s prayer: Allah possesses absolute power (al-‘Aziz) to protect the vulnerable, yet exercises it according to perfect wisdom (al-Hakim).`
+      },
+      {
+        verse: `60:6`,
+        name: `Al-Ghani al-Hamid (Free of Need, Praiseworthy)`,
+        insight: `God never needs human compromises or unjust treaties to preserve His religion; obedience benefits the believer alone.`
+      },
+      {
+        verse: `60:7 & 60:12`,
+        name: `Qadir · Ghafur Rahim (Competent, Forgiving, Merciful)`,
+        insight: `Appears twice — first guaranteeing Allah’s power to transform enemies into friends (60:7), and finally embracing repentant women entering the pledge (60:12).`
+      },
+      {
+        verse: `60:8`,
+        name: `Yuhibbu al-Muqsitin (Loves Those Who Act Justly)`,
+        insight: `Turns fair treatment of peaceful non-Muslims from a mere legal permission into an act that directly earns the love of Allah.`
+      },
+      {
+        verse: `60:10`,
+        name: `‘Alim Hakim (All-Knowing, All-Wise)`,
+        insight: `Seals the complex legislation on emigrant women, marriage dissolution, and dowry restitution as deeply informed by human reality and equitable wisdom.`
+      }
+    ];
+
+    /* =====================================================================
+       DATA: REFLECTIONS
+       ===================================================================== */
+    const REFLECTIONS = [
+      {
+        id: `ref_loyalty`,
+        verse: `60:1–3`,
+        title: `Family Love vs. Moral Integrity`,
+        prompt: `Hatib’s error did not come from hatred of Islam, but from anxious concern for his family in Makkah. Where in modern life can concern for comfort, status, or family ties quietly pressure someone into compromising principle?`
+      },
+      {
+        id: `ref_fitnah`,
+        verse: `60:5`,
+        title: `Praying Not to Be a Fitnah`,
+        prompt: `Abraham’s community prayed: "Make us not a fitnah for those who disbelieve." How can our conduct, humility, and steadiness ensure we never become a stumbling block that pushes others away from truth?`
+      },
+      {
+        id: `ref_hope`,
+        verse: `60:7`,
+        title: `Refusing Permanent Despair Over Others`,
+        prompt: `"Perhaps Allah will put affection between you and those to whom you have been enemies." How does holding space for transformation (60:7) change the way we navigate strained relationships or civic polarization?`
+      },
+      {
+        id: `ref_justice`,
+        verse: `60:8`,
+        title: `Birr and Qist in Daily Neighborhood Life`,
+        prompt: `Verse 60:8 pairs warm righteousness (birr) with impartial equity (qist) toward peaceful neighbors of other faiths. What concrete acts of birr and qist can you practice in your community this week?`
+      }
+    ];
+
+    /* =====================================================================
+       DATA: KNOWLEDGE CHECK QUIZ (8 QUESTIONS)
+       ===================================================================== */
+    const QUIZ_QUESTIONS = [
+      {
+        question: `Which historical incident prompted the revelation of Verses 60:1–3 prior to the Conquest of Makkah?`,
+        options: [
+          `Hatib ibn Abi Balta’ah sending a secret letter to Quraysh warning of the Prophet’s advance`,
+          `The refusal of Makkan leaders to allow Muslims to perform Umrah at Hudaybiyyah`,
+          `A dispute over the distribution of agricultural lands in Khaybar`,
+          `The migration of Asma bint Abi Bakr from Makkah to Madinah`
+        ],
+        correct: 0,
+        explanation: `Correct: Hatib ibn Abi Balta’ah, a veteran of Badr, secretly sent a letter via a courier to Quraysh hoping to protect his vulnerable family in Makkah. Verses 60:1–3 rebuked the act while still addressing him among the believers (60:1).`
+      },
+      {
+        question: `From which verse and Arabic command does Surah Al-Mumtahanah ("She That Is to Be Examined") derive its name?`,
+        options: [
+          `Verse 60:4 — "We are disassociated from you"`,
+          `Verse 60:8 — "Be righteous and just toward them"`,
+          `Verse 60:10 — "When believing women come to you as emigrants, examine them (famtahinuhunna)"`,
+          `Verse 60:12 — "Accept their pledge and ask forgiveness for them"`
+        ],
+        correct: 2,
+        explanation: `Verse 60:10 commands "famtahinuhunna" ("examine them"), referring to verifying the sincerity of believing women migrating from Makkah (such as Umm Kulthum bint Uqbah) so they would not be returned under the Treaty of Hudaybiyyah.`
+      },
+      {
+        question: `In Verse 60:4, Abraham and his companions are called an "excellent pattern" (uswah hasanah) with one explicit exception. What is that exception?`,
+        options: [
+          `Abraham’s migration away from his homeland`,
+          `Abraham’s promise to his father: "I will surely ask forgiveness for you"`,
+          `Abraham’s supplication asking Allah not to make believers a fitnah`,
+          `Abraham’s reliance (tawakkul) upon Allah alone`
+        ],
+        correct: 1,
+        explanation: `Verse 60:4 explicitly states: "except for the saying of Abraham to his father, ‘I will surely ask forgiveness for you...’" — clarifying that believers should not pray for forgiveness for those who persist in hostile polytheism once their stance is clear.`
+      },
+      {
+        question: `What two qualities does Verse 60:8 permit and praise toward non-Muslims who neither fight Muslims over religion nor expel them from their homes?`,
+        options: [
+          `Silence and complete social avoidance`,
+          `Military alliance (walayah) and shared secret intelligence`,
+          `Righteousness/kindness (birr) and scrupulous justice (qist)`,
+          `Financial restitution (ujur) only without social contact`
+        ],
+        correct: 2,
+        explanation: `Verse 60:8 states that Allah does not forbid "an tabarruhum wa tuqsitu ilayhim" (being righteous/kind toward them and acting justly toward them), concluding: "Indeed, Allah loves those who act justly (al-muqsitin)."`
+      },
+      {
+        question: `According to Verse 60:9, to whom is the prohibition of taking political/military allies (tawalli) restricted?`,
+        options: [
+          `All non-Muslim populations regardless of their conduct`,
+          `Only those who fight you because of religion, expel you from your homes, or aid in your expulsion`,
+          `Any neighbor with whom you have a commercial disagreement`,
+          `Relatives who live in another city`
+        ],
+        correct: 1,
+        explanation: `Verse 60:9 opens with the restrictive particle "innama" ("Allah ONLY forbids you from..."), limiting the prohibition strictly to active belligerents who fight over faith, expel believers, or assist (zaharu) in expulsion.`
+      },
+      {
+        question: `Under Verses 60:10–11, what financial obligation accompanies the separation of an emigrant believing woman from her disbelieving Makkan husband?`,
+        options: [
+          `No financial settlement is required because the marriage is void`,
+          `The woman must return to Makkah after one year`,
+          `Give the disbelievers what they had spent (the dowry/mahr), with reciprocal reimbursement rules for Muslim husbands whose wives defected`,
+          `Confiscate the Makkan husband’s trade goods in Madinah`
+        ],
+        correct: 2,
+        explanation: `Verse 60:10 commands: "give the disbelievers what they have spent," while Verse 60:11 ensures Muslim husbands whose wives went to the disbelievers receive equivalent compensation from communal resources — establishing strict bilateral equity.`
+      },
+      {
+        question: `Which of the following is NOT one of the six commitments in the Women’s Pledge of Allegiance (Bay’at al-Nisa’) in Verse 60:12?`,
+        options: [
+          `Not associating anything with Allah (shirk) and not stealing`,
+          `Not committing unlawful sexual intercourse or killing their children`,
+          `Not bringing forth invented slander (buhtan) and not disobeying the Prophet in what is right (ma’ruf)`,
+          `Taking an oath to participate in frontline military campaigns`
+        ],
+        correct: 3,
+        explanation: `Verse 60:12 lists six theological, ethical, and civic commitments — no shirk, no theft, no zina, no killing children, no buhtan (slander), and no disobedience in ma’ruf — without stipulating military combat.`
+      },
+      {
+        question: `How does Verse 60:13 complete the Surah’s ring composition (inclusio) opened in Verse 60:1?`,
+        options: [
+          `By repeating the address "O you who have believed" and warning against allying with people who have despaired of the Hereafter`,
+          `By listing all the tribes of Quraysh by name`,
+          `By prescribing the exact ritual wording of Friday prayer`,
+          `By revoking the peaceful coexistence charter of Verse 60:8`
+        ],
+        correct: 0,
+        explanation: `Verse 60:13 echoes 60:1’s opening ("O you who have believed, do not make allies...") and contrasts the believer’s hope in the Last Day (60:6) with factions who despair of the Hereafter just as disbelievers despair of the inhabitants of the graves.`
+      }
+    ];
+
+    /* =====================================================================
+       STATE & PERSISTENCE (notebookAppApi)
+       ===================================================================== */
+    let appState = {
+      studiedVerses: [],
+      selectedRing: 0,
+      selectedHistory: 0,
+      reflectionNotes: {},
+      quizIndex: 0,
+      quizAnswers: {}
+    };
+
+    function safeNotifyReady() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    async function loadPersistedState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = {
+              studiedVerses: Array.isArray(saved.studiedVerses) ? saved.studiedVerses : [],
+              selectedRing: typeof saved.selectedRing === `number` ? saved.selectedRing : 0,
+              selectedHistory: typeof saved.selectedHistory === `number` ? saved.selectedHistory : 0,
+              reflectionNotes: saved.reflectionNotes && typeof saved.reflectionNotes === `object` ? saved.reflectionNotes : {},
+              quizIndex: typeof saved.quizIndex === `number` ? saved.quizIndex : 0,
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === `object` ? saved.quizAnswers : {}
+            };
+          }
+        }
+      } catch (err) {
+        /* Proceed with clean default state if host shim unavailable */
+      }
+    }
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        /* Ignore in local preview */
+      }
+    }
+
+    /* =====================================================================
+       HOISTED INTERACTION HANDLERS
+       ===================================================================== */
+    function setActiveNav(linkEl) {
+      const links = document.querySelectorAll(`.nav-pill`);
+      links.forEach(function (el) {
+        el.classList.remove(`is-active`);
+      });
+      if (linkEl) linkEl.classList.add(`is-active`);
+    }
+
+    function selectRingPart(index) {
+      if (index < 0 || index >= RING_PARTS.length) return;
+      appState.selectedRing = index;
+      const buttons = document.querySelectorAll(`.ring-btn`);
+      buttons.forEach(function (btn, idx) {
+        if (idx === index) {
+          btn.classList.add(`is-selected`);
+        } else {
+          btn.classList.remove(`is-selected`);
+        }
+      });
+      renderRingDetail();
+      persistState();
+    }
+
+    function selectHistory(index) {
+      if (index < 0 || index >= HISTORY_EPISODES.length) return;
+      appState.selectedHistory = index;
+      const buttons = document.querySelectorAll(`[data-hist]`);
+      buttons.forEach(function (btn, idx) {
+        if (idx === index) {
+          btn.classList.add(`is-active`);
+        } else {
+          btn.classList.remove(`is-active`);
+        }
+      });
+      renderHistoryDetail();
+      persistState();
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(verseNum);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      renderVerses();
+      updateStudyProgress();
+      persistState();
+    }
+
+    function clearVerseFilters() {
+      const themeSel = document.getElementById(`verse-theme-filter`);
+      const searchIn = document.getElementById(`verse-search-input`);
+      const statusSel = document.getElementById(`verse-study-filter`);
+      if (themeSel) themeSel.value = `all`;
+      if (searchIn) searchIn.value = ``;
+      if (statusSel) statusSel.value = `all`;
+      renderVerses();
+    }
+
+    function updateReflectionNote(refId, val) {
+      appState.reflectionNotes[refId] = val;
+      const savedBadge = document.getElementById(`saved-${refId}`);
+      if (savedBadge) {
+        savedBadge.textContent = val.trim().length > 0 ? `Saved to notebook` : `No note yet`;
+      }
+      persistState();
+    }
+
+    function answerQuizOption(optionIdx) {
+      const qIdx = appState.quizIndex;
+      if (typeof appState.quizAnswers[qIdx] === `number`) return;
+      appState.quizAnswers[qIdx] = optionIdx;
+      renderQuiz();
+      updateStudyProgress();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next < 0 || next >= QUIZ_QUESTIONS.length) return;
+      appState.quizIndex = next;
+      renderQuiz();
+      persistState();
+    }
+
+    function resetQuizOnly(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to restart quiz`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="refresh-cw" aria-hidden="true"></i><span>Restart Quiz</span>`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+      appState.quizIndex = 0;
+      appState.quizAnswers = {};
+      renderQuiz();
+      updateStudyProgress();
+      persistState();
+    }
+
+    function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Reset Progress</span>`;
+      }
+      appState = {
+        studiedVerses: [],
+        selectedRing: 0,
+        selectedHistory: 0,
+        reflectionNotes: {},
+        quizIndex: 0,
+        quizAnswers: {}
+      };
+      selectRingPart(0);
+      selectHistory(0);
+      renderReflections();
+      renderVerses();
+      renderQuiz();
+      updateStudyProgress();
+      persistState();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-MUMTAHANAH (CHAPTER 60) — STUDY NOTES`,
+        `Studied Verses: ${appState.studiedVerses.slice().sort(function (a, b) { return a - b; }).join(`, `) || `None marked yet`}`,
+        `Quiz Answered: ${Object.keys(appState.quizAnswers).length} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `--- PERSONAL REFLECTIONS ---`
+      ];
+      REFLECTIONS.forEach(function (ref) {
+        const note = appState.reflectionNotes[ref.id] || `(No note recorded)`;
+        lines.push(`${ref.title} [${ref.verse}]`);
+        lines.push(`Prompt: ${ref.prompt}`);
+        lines.push(`Note: ${note}`);
+        lines.push(``);
+      });
+      const content = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-mumtahanah-study-notes.txt`
+        });
+      }
+    }
+
+    /* =====================================================================
+       RENDERING FUNCTIONS
+       ===================================================================== */
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function renderRingDetail() {
+      const panel = document.getElementById(`ring-detail-panel`);
+      if (!panel) return;
+      const part = RING_PARTS[appState.selectedRing] || RING_PARTS[0];
+      panel.innerHTML = `
+        <div class="kicker-row">
+          <span class="badge-brass">Part ${escapeHtml(part.code)} · ${escapeHtml(part.span)}</span>
+          <span class="kicker">${escapeHtml(part.role)}</span>
+        </div>
+        <h3 class="section-heading" style="font-size: var(--subhead-size);">${escapeHtml(part.title)}</h3>
+        <p class="prose-lead">${escapeHtml(part.summary)}</p>
+        <div class="history-grid">
+          <div class="history-fact">
+            <div class="fact-label">Divine Names &amp; Anchors</div>
+            <div>${escapeHtml(part.names)}</div>
+          </div>
+          <div class="history-fact">
+            <div class="fact-label">Structural Symmetry</div>
+            <div>${escapeHtml(part.pair)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHistoryDetail() {
+      const stage = document.getElementById(`history-stage`);
+      if (!stage) return;
+      const ep = HISTORY_EPISODES[appState.selectedHistory] || HISTORY_EPISODES[0];
+      stage.innerHTML = `
+        <div class="kicker-row">
+          <span class="badge-emerald">${escapeHtml(ep.badge)}</span>
+          <span class="fact-label" style="margin: 0;">Key Figures: ${escapeHtml(ep.actors)}</span>
+        </div>
+        <h3 class="section-heading" style="font-size: var(--subhead-size);">${escapeHtml(ep.title)}</h3>
+        <div class="history-grid">
+          <div class="history-fact">
+            <div class="fact-label">Historical Occasion</div>
+            <p style="margin: 0;">${escapeHtml(ep.overview)}</p>
+          </div>
+          <div class="history-fact">
+            <div class="fact-label">Prophetic &amp; Quranic Resolution</div>
+            <p style="margin: 0;">${escapeHtml(ep.resolution)}</p>
+          </div>
+        </div>
+        <div class="analysis-box">
+          <div class="fact-label">Enduring Legal &amp; Moral Principle</div>
+          <p style="margin: 0;">${escapeHtml(ep.lesson)}</p>
+        </div>
+      `;
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verse-container`);
+      const metaEl = document.getElementById(`verse-results-meta`);
+      const themeSel = document.getElementById(`verse-theme-filter`);
+      const searchIn = document.getElementById(`verse-search-input`);
+      const statusSel = document.getElementById(`verse-study-filter`);
+      if (!container || !metaEl) return;
+
+      const themeVal = themeSel ? themeSel.value : `all`;
+      const queryVal = searchIn ? searchIn.value.trim().toLowerCase() : ``;
+      const statusVal = statusSel ? statusSel.value : `all`;
+
+      const filtered = VERSES.filter(function (v) {
+        if (themeVal !== `all` && v.theme !== themeVal) return false;
+        const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+        if (statusVal === `studied` && !isStudied) return false;
+        if (statusVal === `unstudied` && isStudied) return false;
+        if (queryVal) {
+          const hay = (
+            `60:` + v.num + ` ` +
+            v.translation + ` ` +
+            v.context + ` ` +
+            v.linguistics + ` ` +
+            v.themeLabel
+          ).toLowerCase();
+          if (hay.indexOf(queryVal) === -1) return false;
+        }
+        return true;
+      });
+
+      metaEl.textContent = `Showing ${filtered.length} of ${VERSES.length} verses`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div>
+              <strong>No verses match your current filters.</strong>
+              <p class="section-sub">Try clearing the search term or switching back to all 13 verses.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="clearVerseFilters()">Reset Verse Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(function (v) {
+        const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+        return `
+          <article class="verse-card card-wrapper ${isStudied ? `is-studied` : ``}">
+            <div class="verse-top">
+              <div class="tab-row">
+                <span class="verse-num-badge">Verse 60:${v.num}</span>
+                <span class="badge-emerald">${escapeHtml(v.themeLabel)}</span>
+              </div>
+              <button
+                type="button"
+                class="btn btn-sm ${isStudied ? `btn-primary` : `btn-secondary`}"
+                onclick="toggleVerseStudied(${v.num})"
+                aria-pressed="${isStudied ? `true` : `false`}">
+                <i data-lucide="${isStudied ? `check-circle-2` : `circle`}" aria-hidden="true"></i>
+                <span>${isStudied ? `Studied` : `Mark Studied`}</span>
+              </button>
+            </div>
+
+            <div class="verse-arabic" lang="ar" dir="rtl">${escapeHtml(v.arabic)}</div>
+            <p class="verse-translation">${escapeHtml(v.translation)}</p>
+
+            <div class="verse-analysis-grid">
+              <div class="analysis-box">
+                <div class="fact-label">Thematic &amp; Historical Context</div>
+                <p style="margin: 0;">${escapeHtml(v.context)}</p>
+              </div>
+              <div class="analysis-box">
+                <div class="fact-label">Linguistic &amp; Structural Insights</div>
+                <p style="margin: 0;">${escapeHtml(v.linguistics)}</p>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join(``);
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderLexiconAndTheology() {
+      const lexGrid = document.getElementById(`lexicon-grid`);
+      if (lexGrid) {
+        lexGrid.innerHTML = LEXICON.map(function (item) {
+          return `
+            <article class="lexicon-card">
+              <div class="lexicon-ar" lang="ar" dir="rtl">${escapeHtml(item.arabic)}</div>
+              <div class="fact-label" style="margin: 0;">${escapeHtml(item.translit)}</div>
+              <p style="margin: 0;"><strong>${escapeHtml(item.meaning)}</strong></p>
+              <p style="margin: 0; color: var(--on-surface-variant);">${escapeHtml(item.insight)}</p>
+            </article>
+          `;
+        }).join(``);
+      }
+
+      const namesGrid = document.getElementById(`theology-names-grid`);
+      if (namesGrid) {
+        namesGrid.innerHTML = DIVINE_NAMES.map(function (d) {
+          return `
+            <div class="analysis-box">
+              <div class="fact-label">Verse ${escapeHtml(d.verse)}</div>
+              <p style="margin: 0 0 var(--space-xs) 0;"><strong>${escapeHtml(d.name)}</strong></p>
+              <p style="margin: 0; color: var(--on-surface-variant);">${escapeHtml(d.insight)}</p>
+            </div>
+          `;
+        }).join(``);
+      }
+    }
+
+    function renderReflections() {
+      const container = document.getElementById(`reflections-container`);
+      if (!container) return;
+      container.innerHTML = REFLECTIONS.map(function (ref) {
+        const note = appState.reflectionNotes[ref.id] || ``;
+        return `
+          <article class="reflection-card">
+            <div class="kicker-row">
+              <span class="badge-brass">Verse ${escapeHtml(ref.verse)}</span>
+              <span id="saved-${ref.id}" class="status-note">${note.trim().length > 0 ? `Saved to notebook` : `No note yet`}</span>
+            </div>
+            <h3 class="section-heading" style="font-size: var(--subhead-size);">${escapeHtml(ref.title)}</h3>
+            <p style="margin: 0;">${escapeHtml(ref.prompt)}</p>
+            <div class="field-group">
+              <label class="field-label" for="note-${ref.id}">Your Study Reflection</label>
+              <textarea
+                id="note-${ref.id}"
+                class="textarea-control"
+                placeholder="Write a personal reflection or takeaway…"
+                oninput="updateReflectionNote('${ref.id}', this.value)">${escapeHtml(note)}</textarea>
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function renderQuiz() {
+      const stage = document.getElementById(`quiz-stage`);
+      const progressLbl = document.getElementById(`quiz-progress-label`);
+      const scoreBadge = document.getElementById(`quiz-score-badge`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+      if (!stage || !progressLbl || !scoreBadge) return;
+
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx];
+      const chosen = appState.quizAnswers[idx];
+      const hasAnswered = typeof chosen === `number`;
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (item, qIndex) {
+        if (appState.quizAnswers[qIndex] === item.correct) correctCount += 1;
+      });
+
+      progressLbl.textContent = `Question ${idx + 1} of ${QUIZ_QUESTIONS.length}`;
+      scoreBadge.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) {
+        nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+      }
+
+      const letters = [`A`, `B`, `C`, `D`];
+      const optionsHtml = q.options.map(function (opt, oIdx) {
+        let cls = `quiz-option`;
+        if (hasAnswered) {
+          if (oIdx === q.correct) cls += ` is-correct`;
+          else if (oIdx === chosen) cls += ` is-wrong`;
+        }
+        return `
+          <button
+            type="button"
+            class="${cls}"
+            ${hasAnswered ? `disabled` : ``}
+            onclick="answerQuizOption(${oIdx})">
+            <strong style="color: var(--primary); min-width: 1.5rem;">${letters[oIdx]}.</strong>
+            <span>${escapeHtml(opt)}</span>
+          </button>
+        `;
+      }).join(``);
+
+      let feedbackHtml = ``;
+      if (hasAnswered) {
+        const isCorrect = chosen === q.correct;
+        feedbackHtml = `
+          <div class="quiz-feedback ${isCorrect ? `is-correct` : `is-wrong`}">
+            <strong>${isCorrect ? `Correct Answer` : `Review Note`}</strong>
+            <span>${escapeHtml(q.explanation)}</span>
+          </div>
+        `;
+      }
+
+      stage.innerHTML = `
+        <h3 class="section-heading" style="font-size: var(--subhead-size); margin-bottom: var(--space-md);">${escapeHtml(q.question)}</h3>
+        <div class="quiz-options">${optionsHtml}</div>
+        ${feedbackHtml}
+      `;
+    }
+
+    function updateStudyProgress() {
+      const summaryEl = document.getElementById(`study-summary-text`);
+      const fillEl = document.getElementById(`study-progress-fill`);
+      if (!summaryEl || !fillEl) return;
+
+      const studiedCount = appState.studiedVerses.length;
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      const totalItems = VERSES.length + QUIZ_QUESTIONS.length;
+      const pct = Math.round(((studiedCount + answeredCount) / totalItems) * 100);
+
+      summaryEl.textContent = `${studiedCount} of ${VERSES.length} verses studied · Quiz ${answeredCount}/${QUIZ_QUESTIONS.length} answered`;
+      fillEl.style.width = `${pct}%`;
+    }
+
+    /* =====================================================================
+       BOOT SEQUENCE
+       ===================================================================== */
+    async function initApp() {
+      await loadPersistedState();
+
+      renderLexiconAndTheology();
+      selectRingPart(appState.selectedRing);
+      selectHistory(appState.selectedHistory);
+      renderVerses();
+      renderReflections();
+      renderQuiz();
+      updateStudyProgress();
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      safeNotifyReady();
+    }
+
+    if (document.readyState === `loading`) {
+      document.addEventListener(`DOMContentLoaded`, initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>

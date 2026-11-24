@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Bayyinah (Chapter 98) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Terracotta Style Tokens */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders & Rules */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border-soft: #c98a6b;
+      --tertiary-border-soft: #b5d6c9;
+      --btn-secondary-border: #c4b29e;
+      --brass-muted: #d8c3b0;
+      --brass-bright: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9d3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --secondary-container: #f2e8d5;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fae8e6;
+      --on-error-container: #7d1a1a;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.08);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-muted), var(--brass-bright), var(--brass-muted));
+
+      /* 3. Shared Foundation Tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Narrative Type Scale (Cormorant stepped up slightly for small x-height) */
+      --display-size: clamp(2.45rem, 1.55rem + 3.6vw, 4.1rem);
+      --headline-size: clamp(1.85rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing Scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1160px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Tonal Courtyard Bands */
+    .band-plaster {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    /* Typography Helpers */
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+      max-width: 34ch;
+    }
+    .section-intro {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    /* Brass Diamond Divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-xl);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges & Pills */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Arabic Typography */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 2;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      font-weight: 600;
+      color: var(--primary);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--btn-secondary-border);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-emerald {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--on-tertiary-container);
+    }
+    .btn-compact {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    /* Riad Arch Metric Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .arch-card {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+      transform: translateY(-2px);
+    }
+    .arch-card.is-featured {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+      margin-bottom: var(--space-xs);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Quick Study Landmarks */
+    .landmark-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      padding-top: var(--space-sm);
+    }
+    .landmark-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .landmark-btn:hover {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Section 1: Verse Explorer Workspace */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      align-items: center;
+    }
+    .filter-chip {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--btn-secondary-border);
+      background-color: var(--background);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .filter-chip.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .verse-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .verse-ledger {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-row {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  opacity var(--dur-short) var(--ease-out);
+    }
+    .verse-row:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .verse-row.is-selected {
+      background-color: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary), var(--soft-shadow-raised);
+    }
+    .verse-row.is-dimmed {
+      opacity: 0.42;
+    }
+    .verse-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .verse-num {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .master-toggle {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--btn-secondary-border);
+      background-color: var(--background);
+      color: var(--on-surface-variant);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .master-toggle.is-mastered {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+      border-color: var(--tertiary);
+    }
+    .verse-arabic {
+      font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+      text-align: right;
+      margin: var(--space-xs) 0 var(--space-sm);
+      line-height: 2.05;
+    }
+    .verse-translit {
+      font-size: 0.9375rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin: 0 0 var(--space-xs);
+    }
+    .verse-translation {
+      font-size: 1rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Sticky Lexical Inspector Panel */
+    .inspector-panel {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      position: sticky;
+      top: var(--space-lg);
+    }
+    .inspector-header {
+      border-bottom: var(--warm-hairline);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .term-list {
+      display: grid;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .term-item {
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .term-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .term-translit {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9375rem;
+    }
+    .term-arabic {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      font-size: 1.25rem;
+      color: var(--on-surface);
+    }
+    .term-gloss {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Section 2: Arrival of Clear Proof Interactive Schematic */
+    .proof-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .stage-buttons {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .stage-btn {
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .stage-btn.is-active {
+      background-color: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .stage-btn-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .stage-btn-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: var(--on-surface);
+      display: block;
+    }
+    .schematic-card {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .schematic-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Section 3: Paradox of Division Interactive Stepper */
+    .paradox-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .paradox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .paradox-panel {
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .paradox-panel.is-highlight {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    /* Section 4: Fourfold Essential Religion */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    .pillar-card {
+      text-align: left;
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      cursor: pointer;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .pillar-card.is-selected {
+      background-color: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary), var(--soft-shadow-raised);
+    }
+    .pillar-detail-box {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    /* Section 5: Dichotomy & Spiritual Ascent */
+    .dichotomy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    .destiny-card {
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border: var(--warm-hairline);
+      box-shadow: var(--soft-shadow);
+    }
+    .destiny-sharr {
+      background-color: var(--error-container);
+      border-color: var(--primary-border-soft);
+    }
+    .destiny-khayr {
+      background-color: var(--tertiary-container);
+      border-color: var(--tertiary-border-soft);
+    }
+    .destiny-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-md);
+      font-size: 0.9375rem;
+    }
+    .destiny-table th, .destiny-table td {
+      text-align: left;
+      padding: var(--space-sm) var(--space-xs);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    .destiny-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      background-color: var(--surface-container);
+    }
+
+    /* 4-Tier Spiritual Ascent Ladder */
+    .ascent-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .ascent-steps {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .ascent-step {
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .ascent-step.is-active {
+      background-color: var(--tertiary-container);
+      box-shadow: 0 0 0 2px var(--tertiary);
+    }
+    .ascent-detail {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 6: Interactive Mastery Studio */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .quiz-card, .flash-card-panel, .journal-panel {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .quiz-opt {
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-opt:hover:not(:disabled) {
+      background-color: var(--primary-container);
+    }
+    .quiz-opt.is-correct {
+      background-color: var(--tertiary-container);
+      box-shadow: 0 0 0 2px var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-opt.is-wrong {
+      background-color: var(--error-container);
+      box-shadow: 0 0 0 2px var(--error);
+      color: var(--on-error-container);
+    }
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      margin-bottom: var(--space-md);
+    }
+    .quiz-feedback.is-positive {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .quiz-feedback.is-negative {
+      background-color: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    .flashcard-stage {
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+      margin-block: var(--space-md);
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .form-field {
+      display: grid;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .form-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .form-textarea, .form-select {
+      width: 100%;
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      color: var(--on-surface);
+    }
+    .form-select {
+      padding-right: var(--space-xl);
+      min-height: 44px;
+    }
+    .form-textarea:focus, .form-select:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+
+    /* Container Queries for Adaptive Cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 480px) {
+      .verse-arabic { font-size: 1.35rem; }
+    }
+
+    /* Scroll Reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .verse-workspace,
+      .proof-layout,
+      .pillar-detail-box,
+      .ascent-wrapper,
+      .studio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .inspector-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .band-plaster {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .verse-row-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Architectural Overview -->
+    <header class="hero-block">
+      <div class="kicker-row">
+        <span class="kicker">Surah Al-Bayyinah · Chapter 98 · 8 Verses</span>
+        <span class="badge-emerald" id="hero-mastery-badge">0 of 8 Verses Mastered</span>
+      </div>
+      <h1 class="title">The Architecture of <em>Clear</em> Proof</h1>
+      <p class="lede">
+        Surah Al-Bayyinah compresses human religious history into eight decisive verses: the arrival of an undeniable Messenger reciting purified scriptures, the tragic paradox of division after clarity rather than before it, the fourfold essence of upright faith, and the ultimate parting of creation into eternal alienation or mutual divine pleasure.
+      </p>
+
+      <div class="landmark-strip" aria-label="Study sections">
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-verses')">1. Verse &amp; Lexical Explorer</button>
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-proof')">2. The Clear Proof (1–3)</button>
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-paradox')">3. Paradox of Division (4)</button>
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-religion')">4. Essential Religion (5)</button>
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-destiny')">5. Dichotomy &amp; Mutual Pleasure (6–8)</button>
+        <button type="button" class="landmark-btn" onclick="scrollToSection('sec-mastery')">6. Mastery Studio</button>
+      </div>
+
+      <div class="ornament-rule">◆ Structural Overview ◆</div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-label">Verses</div>
+          <div class="arch-figure">8</div>
+          <div class="arch-caption">From deadlock to eternity</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Focal Term</div>
+          <div class="arch-figure">Al-Bayyinah</div>
+          <div class="arch-caption">Clear Evidence (98:1, 98:4)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Upright Pillars</div>
+          <div class="arch-figure">4</div>
+          <div class="arch-caption">Sincerity, Hanif, Salah, Zakah</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Study Mastery</div>
+          <div class="arch-figure" id="metric-mastery-pct">0%</div>
+          <div class="arch-caption" id="metric-mastery-sub">Verses &amp; recall progress</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 1: Complete 8-Verse Ledger & Lexical Inspector -->
+    <section id="sec-verses" class="reveal-section">
+      <h2 class="section-heading">Eight verses trace a deliberate symmetry from <em>deadlock</em> to divine pleasure</h2>
+      <p class="section-intro">
+        Select any verse in the ledger to inspect its Arabic keywords, root concepts, and structural role in the right-hand panel. Filter by thematic movement or mark verses as mastered to record your progress.
+      </p>
+
+      <div class="filter-bar" role="group" aria-label="Filter verses by thematic movement">
+        <button type="button" class="filter-chip is-active" id="filter-all" onclick="setVerseFilter('all')">All 8 Verses</button>
+        <button type="button" class="filter-chip" id="filter-proof" onclick="setVerseFilter('proof')">Clear Proof (1–3)</button>
+        <button type="button" class="filter-chip" id="filter-paradox" onclick="setVerseFilter('paradox')">Division Paradox (4)</button>
+        <button type="button" class="filter-chip" id="filter-religion" onclick="setVerseFilter('religion')">Essential Religion (5)</button>
+        <button type="button" class="filter-chip" id="filter-destiny" onclick="setVerseFilter('destiny')">Ultimate Dichotomy (6–8)</button>
+      </div>
+
+      <div class="verse-workspace">
+        <div class="verse-ledger card-wrapper" id="verse-ledger"></div>
+
+        <aside class="inspector-panel" id="lexical-inspector" aria-live="polite">
+          <div class="inspector-header">
+            <span class="kicker" id="insp-kicker">Verse 98:1 · Thematic Entry</span>
+            <h3 class="subhead" id="insp-title">Breaking the Historical Deadlock</h3>
+            <p class="term-gloss" id="insp-summary"></p>
+          </div>
+          <div>
+            <span class="arch-label">Key Arabic Vocabulary</span>
+            <div class="term-list" id="insp-terms"></div>
+          </div>
+          <div>
+            <span class="arch-label">Structural Connection</span>
+            <p id="insp-structure" style="margin: var(--space-xs) 0 0; font-size: 0.9375rem; color: var(--on-surface-variant);"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Section 2: Arrival of the Clear Proof (98:1-3) -->
+    <section id="sec-proof" class="band-plaster reveal-section">
+      <div class="kicker-row">
+        <span class="kicker">Movement I · Verses 98:1–98:3</span>
+        <span class="badge-terracotta">Al-Bayyinah · The Clear Proof</span>
+      </div>
+      <h2 class="section-heading">Revelation did not arrive as an abstraction—it arrived as a <em>living</em> Messenger with purified pages</h2>
+      <p class="section-intro">
+        Verses 1 through 3 answer two foundational questions: why humanity could not extricate itself from inherited misbelief on its own, and what form the decisive intervention took. Click any stage below to trace how the Surah defines Al-Bayyinah.
+      </p>
+
+      <div class="proof-layout">
+        <div class="stage-buttons" role="group" aria-label="Three stages of the Clear Proof">
+          <button type="button" class="stage-btn is-active" id="proof-btn-0" onclick="selectProofStage(0)">
+            <span class="stage-btn-kicker">Verse 98:1 · The Impasse</span>
+            <span class="stage-btn-title">Two Groups Unwilling to Part from Misbelief</span>
+          </button>
+          <button type="button" class="stage-btn" id="proof-btn-1" onclick="selectProofStage(1)">
+            <span class="stage-btn-kicker">Verse 98:2 · The Embodied Proof</span>
+            <span class="stage-btn-title">A Messenger Reciting Purified Scriptures</span>
+          </button>
+          <button type="button" class="stage-btn" id="proof-btn-2" onclick="selectProofStage(2)">
+            <span class="stage-btn-kicker">Verse 98:3 · The Substance</span>
+            <span class="stage-btn-title">Within Which Are Upright, Enduring Decrees</span>
+          </button>
+        </div>
+
+        <div class="schematic-card">
+          <svg class="schematic-svg" viewBox="0 0 520 210" role="img" aria-label="Diagram showing the three-part unfolding of Al-Bayyinah across verses 98:1 to 98:3">
+            <defs>
+              <marker id="arrow-terracotta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--primary)"></path>
+              </marker>
+            </defs>
+            <!-- Connector arrows -->
+            <line x1="160" y1="88" x2="188" y2="88" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow-terracotta)"></line>
+            <line x1="336" y1="88" x2="364" y2="88" stroke="var(--primary)" stroke-width="2" marker-end="url(#arrow-terracotta)"></line>
+
+            <!-- Node 1 -->
+            <g id="svg-node-0">
+              <rect x="10" y="28" width="146" height="120" rx="14" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2"></rect>
+              <text x="83" y="54" text-anchor="middle" font-size="11" font-weight="700" fill="var(--primary)" font-family="Plus Jakarta Sans, sans-serif">98:1 · AL-BAYYINAH</text>
+              <text x="83" y="84" text-anchor="middle" font-size="16" font-weight="600" fill="var(--on-surface)" font-family="Cormorant Garamond, serif">Clear Evidence</text>
+              <text x="83" y="108" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">Ends the deadlock of</text>
+              <text x="83" y="124" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">scripture &amp; polytheism</text>
+            </g>
+
+            <!-- Node 2 -->
+            <g id="svg-node-1">
+              <rect x="192" y="28" width="140" height="120" rx="14" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+              <text x="262" y="54" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary)" font-family="Plus Jakarta Sans, sans-serif">98:2 · RASŪL</text>
+              <text x="262" y="84" text-anchor="middle" font-size="16" font-weight="600" fill="var(--on-surface)" font-family="Cormorant Garamond, serif">Living Messenger</text>
+              <text x="262" y="108" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">Reciting purified</text>
+              <text x="262" y="124" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">pages (Ṣuḥuf)</text>
+            </g>
+
+            <!-- Node 3 -->
+            <g id="svg-node-2">
+              <rect x="368" y="28" width="142" height="120" rx="14" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+              <text x="439" y="54" text-anchor="middle" font-size="11" font-weight="700" fill="var(--tertiary)" font-family="Plus Jakarta Sans, sans-serif">98:3 · QAYYIMAH</text>
+              <text x="439" y="84" text-anchor="middle" font-size="16" font-weight="600" fill="var(--on-surface)" font-family="Cormorant Garamond, serif">Upright Decrees</text>
+              <text x="439" y="108" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">Correct writings</text>
+              <text x="439" y="124" text-anchor="middle" font-size="11" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif">guiding straight</text>
+            </g>
+
+            <text x="260" y="186" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--secondary)" font-family="Plus Jakarta Sans, sans-serif">
+              Grammatical Apposition: Al-Bayyinah (98:1) = A Messenger reciting purified scriptures (98:2)
+            </text>
+          </svg>
+
+          <div id="proof-detail">
+            <p class="arabic-text" id="proof-arabic" style="font-size: 1.45rem; text-align: right; margin: 0 0 var(--space-xs);"></p>
+            <h3 class="subhead" id="proof-heading"></h3>
+            <p id="proof-body" style="margin: 0; color: var(--on-surface-variant);"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Paradox of Sectarian Division (98:4) -->
+    <section id="sec-paradox" class="reveal-section">
+      <div class="kicker-row">
+        <span class="kicker">Movement II · Verse 98:4</span>
+        <span class="badge-emerald">The Structural Twist</span>
+      </div>
+      <h2 class="section-heading">Sectarian division erupted <em>after</em> clarity arrived—proving the barrier was moral, not intellectual</h2>
+      <p class="section-intro">
+        Ordinary human intuition assumes that ambiguity causes division and clear proof produces unity. Verse 98:4 reverses that assumption: those given earlier Scripture did not fracture out of lack of evidence, but specifically after the Clear Proof arrived. Step through the sequence below to compare human assumption with the Quranic diagnosis.
+      </p>
+
+      <div class="paradox-controls" role="group" aria-label="Step through the paradox of division">
+        <button type="button" class="filter-chip is-active" id="paradox-btn-0" onclick="selectParadoxStep(0)">Phase 1: Before Al-Bayyinah</button>
+        <button type="button" class="filter-chip" id="paradox-btn-1" onclick="selectParadoxStep(1)">Phase 2: Arrival of Proof</button>
+        <button type="button" class="filter-chip" id="paradox-btn-2" onclick="selectParadoxStep(2)">Phase 3: After Clarity (98:4)</button>
+      </div>
+
+      <div class="paradox-grid">
+        <div class="paradox-panel">
+          <span class="arch-label">What Human Intuition Expects</span>
+          <h3 class="subhead" id="paradox-exp-title">Uncertainty breeds disagreement</h3>
+          <p id="paradox-exp-body" style="color: var(--on-surface-variant); margin: 0;"></p>
+        </div>
+        <div class="paradox-panel is-highlight">
+          <span class="arch-label" style="color: var(--primary);">What Surah Al-Bayyinah Reveals</span>
+          <h3 class="subhead" id="paradox-rev-title">Shared anticipation before the test</h3>
+          <p id="paradox-rev-body" style="color: var(--on-surface); margin: 0;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Universal Essential Religion (98:5) -->
+    <section id="sec-religion" class="band-plaster reveal-section">
+      <div class="kicker-row">
+        <span class="kicker">Movement III · Verse 98:5</span>
+        <span class="badge-emerald">Dīn al-Qayyimah · Upright Religion</span>
+      </div>
+      <h2 class="section-heading">Across revelation, the command remained strikingly <em>simple</em>: pure devotion, prayer, and charity</h2>
+      <p class="section-intro">
+        In direct response to the sectarian fracturing of verse 98:4, verse 98:5 strips religion back to its four universal essentials (<span class="arabic-inline" lang="ar" dir="rtl">وَمَا أُمِرُوا إِلَّا</span> — “And they were not commanded except...”). Inspect each pillar below to examine how inward sincerity and outward practice interlock into <em>Dīn al-Qayyimah</em>.
+      </p>
+
+      <div class="pillars-grid" role="group" aria-label="Four pillars of the essential religion">
+        <button type="button" class="pillar-card is-selected" id="pillar-card-0" onclick="selectPillar(0)">
+          <div class="arch-label">Pillar 01 · Inward Purity</div>
+          <div class="arabic-text" style="font-size: 1.3rem; text-align: center; line-height: 1.7;">مُخْلِصِينَ لَهُ الدِّينَ</div>
+          <div class="arch-caption">Sincere to Him in religion</div>
+        </button>
+        <button type="button" class="pillar-card" id="pillar-card-1" onclick="selectPillar(1)">
+          <div class="arch-label">Pillar 02 · True Orientation</div>
+          <div class="arabic-text" style="font-size: 1.3rem; text-align: center; line-height: 1.7;">حُنَفَاءَ</div>
+          <div class="arch-caption">Inclining to pure monotheism</div>
+        </button>
+        <button type="button" class="pillar-card" id="pillar-card-2" onclick="selectPillar(2)">
+          <div class="arch-label">Pillar 03 · Vertical Axis</div>
+          <div class="arabic-text" style="font-size: 1.3rem; text-align: center; line-height: 1.7;">وَيُقِيمُوا الصَّلَاةَ</div>
+          <div class="arch-caption">Establishing regular prayer</div>
+        </button>
+        <button type="button" class="pillar-card" id="pillar-card-3" onclick="selectPillar(3)">
+          <div class="arch-label">Pillar 04 · Horizontal Axis</div>
+          <div class="arabic-text" style="font-size: 1.3rem; text-align: center; line-height: 1.7;">وَيُؤْتُوا الزَّكَاةَ</div>
+          <div class="arch-caption">Giving purifying zakah</div>
+        </button>
+      </div>
+
+      <div class="pillar-detail-box" aria-live="polite">
+        <div>
+          <span class="kicker" id="pillar-detail-kicker">Pillar 01 · Ikhlāṣ</span>
+          <h3 class="subhead" id="pillar-detail-title">Worshiping Allah with Undivided Sincerity</h3>
+          <p id="pillar-detail-body" style="color: var(--on-surface-variant); margin: 0 0 var(--space-sm);"></p>
+          <p id="pillar-detail-echo" style="font-weight: 600; color: var(--tertiary); margin: 0; font-size: 0.9375rem;"></p>
+        </div>
+        <div style="background: var(--background); border: var(--warm-hairline); border-radius: var(--rounded); padding: var(--space-md);">
+          <span class="arch-label">Linguistic Symmetry Across the Surah</span>
+          <p style="margin: var(--space-xs) 0 0; font-size: 0.9375rem; color: var(--on-surface);">
+            Notice the root echo linking revelation and practice: verse <strong>98:3</strong> describes the scriptures as holding <span class="arabic-inline" lang="ar" dir="rtl">كُتُبٌ قَيِّمَةٌ</span> (<em>upright writings</em>), and verse <strong>98:5</strong> concludes that living these four commands is <span class="arabic-inline" lang="ar" dir="rtl">دِينُ الْقَيِّمَةِ</span> (<em>the upright religion</em>). Straightness in text mirrors straightness in life.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: The Ultimate Dichotomy & Spiritual Summit (98:6-8) -->
+    <section id="sec-destiny" class="reveal-section">
+      <div class="kicker-row">
+        <span class="kicker">Movement IV &amp; V · Verses 98:6–98:8</span>
+        <span class="badge-terracotta">Sharr vs. Khayr al-Bariyyah</span>
+      </div>
+      <h2 class="section-heading">Creation divides into two ultimate stations—culminating in <em>mutual</em> divine pleasure</h2>
+      <p class="section-intro">
+        Having established clarity (98:1–3), exposed willful division (98:4), and defined the essential path (98:5), the closing three verses draw an uncompromising line between the worst of creation and the best of creation.
+      </p>
+
+      <div class="dichotomy-grid">
+        <article class="destiny-card destiny-sharr">
+          <span class="arch-label" style="color: var(--error);">Verse 98:6 · Moral Rejection</span>
+          <h3 class="subhead">Sharr al-Bariyyah — Worst of Creatures</h3>
+          <p class="arabic-text" style="font-size: 1.35rem; text-align: right; margin-block: var(--space-xs);">أُولَئِكَ هُمْ شَرُّ الْبَرِيَّةِ</p>
+          <p style="color: var(--on-surface-variant); margin-bottom: var(--space-md);">
+            Those among the People of the Scripture and the polytheists who persist in disbelief after clear evidence arrives.
+          </p>
+          <table class="destiny-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Description in 98:6</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Echo of 98:1</strong></td>
+                <td>Repeats the exact pair from 98:1: disbelievers from People of the Scripture and polytheists.</td>
+              </tr>
+              <tr>
+                <td><strong>Abode</strong></td>
+                <td>Fire of Hell (<em>nār jahannam</em>), abiding eternally therein (<em>khālidīna fīhā</em>).</td>
+              </tr>
+              <tr>
+                <td><strong>Verdict</strong></td>
+                <td><em>Sharr al-bariyyah</em> — the worst of all creatures.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="destiny-card destiny-khayr">
+          <span class="arch-label" style="color: var(--tertiary);">Verses 98:7–8 · Faith &amp; Righteousness</span>
+          <h3 class="subhead">Khayr al-Bariyyah — Best of Creatures</h3>
+          <p class="arabic-text" style="font-size: 1.35rem; text-align: right; margin-block: var(--space-xs);">أُولَئِكَ هُمْ خَيْرُ الْبَرِيَّةِ</p>
+          <p style="color: var(--on-surface-variant); margin-bottom: var(--space-md);">
+            Those who believed (<em>āmanū</em>) and carried out righteous deeds (<em>ʿamilū aṣ-ṣāliḥāt</em>)—uniting conviction with lived integrity.
+          </p>
+          <table class="destiny-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Description in 98:7–8</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Proximity</strong></td>
+                <td>Rewarded <em>ʿinda Rabbihim</em> — in the honored presence of their Lord.</td>
+              </tr>
+              <tr>
+                <td><strong>Abode</strong></td>
+                <td>Gardens of perpetual residence (<em>Jannāt ʿAdn</em>) beneath which rivers flow, forever (<em>abadan</em>).</td>
+              </tr>
+              <tr>
+                <td><strong>Summit</strong></td>
+                <td>Mutual pleasure: Allah pleased with them, and they with Him—for whoever feared/revered his Lord.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <div class="ornament-rule">◆ The Summit of Verse 98:8 ◆</div>
+
+      <div class="ascent-wrapper">
+        <div class="ascent-steps" role="group" aria-label="Four-tier ascent of Surah Al-Bayyinah 98:7-8">
+          <button type="button" class="ascent-step is-active" id="ascent-btn-0" onclick="selectAscentTier(0)">
+            <span>
+              <span class="arch-label" style="display:block; margin:0;">Tier 1 · Foundation</span>
+              <strong>Faith &amp; Righteous Action</strong>
+            </span>
+            <span class="arabic-inline" lang="ar" dir="rtl">آمَنُوا وَعَمِلُوا الصَّالِحَاتِ</span>
+          </button>
+          <button type="button" class="ascent-step" id="ascent-btn-1" onclick="selectAscentTier(1)">
+            <span>
+              <span class="arch-label" style="display:block; margin:0;">Tier 2 · Moral Rank</span>
+              <strong>Best of Creation</strong>
+            </span>
+            <span class="arabic-inline" lang="ar" dir="rtl">خَيْرُ الْبَرِيَّةِ</span>
+          </button>
+          <button type="button" class="ascent-step" id="ascent-btn-2" onclick="selectAscentTier(2)">
+            <span>
+              <span class="arch-label" style="display:block; margin:0;">Tier 3 · Eternal Abode</span>
+              <strong>Gardens of Perpetual Residence</strong>
+            </span>
+            <span class="arabic-inline" lang="ar" dir="rtl">جَنَّاتُ عَدْنٍ</span>
+          </button>
+          <button type="button" class="ascent-step" id="ascent-btn-3" onclick="selectAscentTier(3)">
+            <span>
+              <span class="arch-label" style="display:block; margin:0;">Tier 4 · The Peak</span>
+              <strong>Mutual Pleasure &amp; Reverent Awe</strong>
+            </span>
+            <span class="arabic-inline" lang="ar" dir="rtl">رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ</span>
+          </button>
+        </div>
+
+        <div class="ascent-detail" aria-live="polite">
+          <span class="kicker" id="ascent-kicker">Tier 1 · Verse 98:7</span>
+          <p class="arabic-text" id="ascent-arabic" style="font-size: 1.45rem; text-align: right; margin: var(--space-xs) 0;"></p>
+          <h3 class="subhead" id="ascent-title"></h3>
+          <p id="ascent-body" style="color: var(--on-surface-variant); margin: 0;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Interactive Mastery Studio -->
+    <section id="sec-mastery" class="band-plaster reveal-section">
+      <div class="kicker-row">
+        <span class="kicker">Active Recall &amp; Persistence</span>
+        <span class="badge-emerald" id="studio-score-badge">Quiz: 0 / 6 Correct</span>
+      </div>
+      <h2 class="section-heading">Test your mastery of Surah Al-Bayyinah’s structure, <em>Arabic</em> terms, and themes</h2>
+      <p class="section-intro">
+        Verify your grasp of the Surah through six targeted comprehension checks, review key Arabic expressions, and capture personal reflection notes. Your progress saves automatically across sessions.
+      </p>
+
+      <div class="studio-grid">
+        <!-- Left: 6-Question Comprehension Check -->
+        <div class="quiz-card">
+          <div class="kicker-row" style="margin-bottom: var(--space-sm);">
+            <span class="arch-label" id="quiz-progress-label">Question 1 of 6</span>
+            <span class="arch-label" id="quiz-topic-label">Clear Proof</span>
+          </div>
+          <h3 class="subhead" id="quiz-question"></h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+          <div class="action-row">
+            <button type="button" class="btn btn-secondary btn-compact" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous</button>
+            <button type="button" class="btn btn-primary btn-compact" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question</button>
+          </div>
+        </div>
+
+        <!-- Right: Arabic Key Term Flash Recall + Reflection Journal -->
+        <div style="display: grid; gap: var(--space-lg);">
+          <div class="flash-card-panel">
+            <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+              <span class="arch-label" id="flash-counter">Term 1 of 8</span>
+              <span class="arch-label" id="flash-mastered-count">0 Terms Mastered</span>
+            </div>
+            <div class="flashcard-stage">
+              <span class="arch-label" id="flash-verse-ref">Verse 98:1</span>
+              <div class="arabic-text" id="flash-arabic" style="font-size: 1.85rem; line-height: 1.7;"></div>
+              <div id="flash-translit" style="font-style: italic; color: var(--secondary); font-weight: 600;"></div>
+              <div id="flash-meaning" style="color: var(--on-surface); font-weight: 600;" hidden></div>
+            </div>
+            <div class="action-row" style="justify-content: space-between;">
+              <div class="action-row">
+                <button type="button" class="btn btn-secondary btn-compact" onclick="stepFlashcard(-1)">Prev</button>
+                <button type="button" class="btn btn-primary btn-compact" id="flash-reveal-btn" onclick="toggleFlashMeaning()">Reveal Meaning</button>
+                <button type="button" class="btn btn-secondary btn-compact" onclick="stepFlashcard(1)">Next</button>
+              </div>
+              <button type="button" class="btn btn-emerald btn-compact" id="flash-master-btn" onclick="toggleFlashMastered()">Mark Mastered</button>
+            </div>
+          </div>
+
+          <div class="journal-panel">
+            <h3 class="subhead">Personal Mastery &amp; Reflection Notes</h3>
+            <div class="form-field">
+              <label class="form-label" for="focus-theme-select">Primary Study Focus</label>
+              <select class="form-select" id="focus-theme-select" onchange="saveReflectionState()">
+                <option value="al-bayyinah">The Arrival of Clear Proof (98:1–3)</option>
+                <option value="paradox">Resisting Division After Clarity (98:4)</option>
+                <option value="din-al-qayyimah">Living the Fourfold Essential Religion (98:5)</option>
+                <option value="khashyah">Cultivating Khashyah &amp; Mutual Pleasure (98:6–8)</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="reflection-notes">Reflection &amp; Memorization Notes</label>
+              <textarea class="form-textarea" id="reflection-notes" rows="3" oninput="saveReflectionState()" placeholder="Record a verse insight, linguistic connection, or personal takeaway from Surah Al-Bayyinah…"></textarea>
+            </div>
+            <div class="action-row" style="justify-content: space-between;">
+              <div class="action-row">
+                <button type="button" class="btn btn-primary btn-compact" onclick="exportStudySummary()">Export Summary</button>
+                <button type="button" class="btn btn-secondary btn-compact" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset Progress</button>
+              </div>
+              <span class="status-note" id="save-status" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top: var(--warm-hairline); padding-top: var(--space-lg); color: var(--on-surface-variant); font-size: 0.9rem;">
+      <p style="margin: 0;">
+        Grounded in the complete Arabic text and English translation of Surah Al-Bayyinah (Chapter 98, verses 1–8) from the provided study source.
+      </p>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        group: `proof`,
+        groupLabel: `Clear Proof (1–3)`,
+        title: `Breaking the Historical Deadlock`,
+        arabic: `لَمْ يَكُنِ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ مُنْفَكِّينَ حَتَّى تَأْتِيَهُمُ الْبَيِّنَةُ`,
+        translit: `Lam yakuni alladhīna kafarū min ahl al-kitābi wa-l-mushrikīna munfakkīna ḥattā taʾtiyahumu al-bayyinah`,
+        translation: `Those who disbelieved among the People of the Scripture and the polytheists were not to be parted [from misbelief] until there came to them clear evidence`,
+        summary: `The Surah opens by naming two distinct communities—disbelievers from among those who possessed earlier revelation (Ahl al-Kitāb) and the polytheists (al-Mushrikīn). Both remained bound to their entrenched paths until the arrival of undeniable, decisive evidence.`,
+        terms: [
+          { arabic: `مُنْفَكِّينَ`, translit: `Munfakkīn`, gloss: `Parted, disengaged, or separated from their state of misbelief.` },
+          { arabic: `أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ`, translit: `Ahl al-Kitāb wa-l-Mushrikīn`, gloss: `People of the Scripture and the polytheists—the exact pair repeated in 98:6.` },
+          { arabic: `الْبَيِّنَةُ`, translit: `Al-Bayyinah`, gloss: `The Clear Evidence / Clear Proof that leaves no ambiguity or excuse.` }
+        ],
+        structure: `Forms a structural bookend with verse 98:6, which repeats “those who disbelieved among the People of the Scripture and the polytheists” verbatim.`
+      },
+      {
+        num: 2,
+        group: `proof`,
+        groupLabel: `Clear Proof (1–3)`,
+        title: `The Living Messenger & Purified Pages`,
+        arabic: `رَسُولٌ مِنَ اللَّهِ يَتْلُو صُحُفًا مُطَهَّرَةً`,
+        translit: `Rasūlun mina Allāhi yatlū ṣuḥufan muṭahharah`,
+        translation: `A Messenger from Allah, reciting purified scriptures`,
+        summary: `Verse 2 defines what Al-Bayyinah is: not a vague sign, but a Messenger directly from Allah actively reciting purified scriptures, uncorrupted by falsehood or spiritual impurity.`,
+        terms: [
+          { arabic: `رَسُولٌ مِنَ اللَّهِ`, translit: `Rasūlun min Allāh`, gloss: `A Messenger commissioned from Allah—serving as the grammatical apposition (badal) defining Al-Bayyinah.` },
+          { arabic: `يَتْلُو`, translit: `Yatlū`, gloss: `Recites aloud and conveys continuously.` },
+          { arabic: `صُحُفًا مُطَهَّرَةً`, translit: `Ṣuḥufan muṭahharah`, gloss: `Purified scriptures / pages preserved from distortion and impurity.` }
+        ],
+        structure: `Connects the messenger-person and the recited-word as one unified proof: living moral integrity paired with pure revelation.`
+      },
+      {
+        num: 3,
+        group: `proof`,
+        groupLabel: `Clear Proof (1–3)`,
+        title: `Upright & Enduring Decrees`,
+        arabic: `فِيهَا كُتُبٌ قَيِّمَةٌ`,
+        translit: `Fīhā kutubun qayyimah`,
+        translation: `Within which are correct writings`,
+        summary: `Inside those purified pages reside “kutubun qayyimah”—correct, upright, and steadfast decrees that establish clear truth and straighten human affairs.`,
+        terms: [
+          { arabic: `فِيهَا`, translit: `Fīhā`, gloss: `Within them (referring back to the purified scriptures of 98:2).` },
+          { arabic: `كُتُبٌ قَيِّمَةٌ`, translit: `Kutubun qayyimah`, gloss: `Correct writings; upright, balanced, and enduring laws and truths.` }
+        ],
+        structure: `The adjective qayyimah (“upright/correct”) directly anticipates dīn al-qayyimah (“the correct/upright religion”) in verse 98:5.`
+      },
+      {
+        num: 4,
+        group: `paradox`,
+        groupLabel: `Division Paradox (4)`,
+        title: `Division After—Not Before—Clarity`,
+        arabic: `وَمَا تَفَرَّقَ الَّذِينَ أُوتُوا الْكِتَابَ إِلَّا مِنْ بَعْدِ مَا جَاءَتْهُمُ الْبَيِّنَةُ`,
+        translit: `Wa mā tafarraqa alladhīna ūtū al-kitāba illā min baʿdi mā jāʾathumu al-bayyinah`,
+        translation: `Nor did those who were given the Scripture become divided until after there had come to them clear evidence`,
+        summary: `Here lies the Surah’s sharpest paradox. People given earlier Scripture did not fracture because truth was obscure; they split precisely after the Clear Proof arrived—exposing sectarian division as a willful refusal to submit to recognized truth.`,
+        terms: [
+          { arabic: `وَمَا تَفَرَّقَ`, translit: `Wa mā tafarraqa`, gloss: `Nor did they become divided or splintered into factions.` },
+          { arabic: `الَّذِينَ أُوتُوا الْكِتَابَ`, translit: `Alladhīna ūtū al-kitāb`, gloss: `Those who had been given the Scripture (highlighting prior familiarity with revelation).` },
+          { arabic: `إِلَّا مِنْ بَعْدِ مَا جَاءَتْهُمُ الْبَيِّنَةُ`, translit: `Illā min baʿdi mā jāʾathumu al-bayyinah`, gloss: `Except after the clear evidence had come to them.` }
+        ],
+        structure: `Repeats Al-Bayyinah from 98:1 to create a stark contrast: clarity should end stagnation, yet stubborn attachment turns clarity into division.`
+      },
+      {
+        num: 5,
+        group: `religion`,
+        groupLabel: `Essential Religion (5)`,
+        title: `The Universal Fourfold Command`,
+        arabic: `وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ وَيُقِيمُوا الصَّلَاةَ وَيُؤْتُوا الزَّكَاةَ وَذَٰلِكَ دِينُ الْقَيِّمَةِ`,
+        translit: `Wa mā umirū illā li-yaʿbudū Allāha mukhliṣīna lahu ad-dīna ḥunafāʾa wa yuqīmū aṣ-ṣalāta wa yuʾtū az-zakāh, wa dhālika dīnu al-qayyimah`,
+        translation: `And they were not commanded except to worship Allah, [being] sincere to Him in religion, inclining to truth, and to establish prayer and to give zakah. And that is the correct religion`,
+        summary: `Nothing obscure or divisive was ever demanded. Every authentic command converges on four universal pillars: sincere worship of Allah alone, pure monotheistic orientation, establishing prayer, and giving zakah.`,
+        terms: [
+          { arabic: `مُخْلِصِينَ لَهُ الدِّينَ`, translit: `Mukhliṣīna lahu ad-dīn`, gloss: `Purifying religion and devotion exclusively for Allah.` },
+          { arabic: `حُنَفَاءَ`, translit: `Ḥunafāʾ`, gloss: `Inclining uprightly toward truth and turning away from all false worship.` },
+          { arabic: `وَيُقِيمُوا الصَّلَاةَ وَيُؤْتُوا الزَّكَاةَ`, translit: `Yuqīmū aṣ-ṣalāh wa yuʾtū az-zakāh`, gloss: `Establishing regular prayer and giving purifying charity (zakah).` },
+          { arabic: `دِينُ الْقَيِّمَةِ`, translit: `Dīn al-Qayyimah`, gloss: `The upright, true, and enduring religion.` }
+        ],
+        structure: `Forms the moral center of the Surah—answering the division of 98:4 by naming the timeless simplicity shared across revelation.`
+      },
+      {
+        num: 6,
+        group: `destiny`,
+        groupLabel: `Ultimate Dichotomy (6–8)`,
+        title: `Alienation & The Worst of Creation`,
+        arabic: `إِنَّ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ فِي نَارِ جَهَنَّمَ خَالِدِينَ فِيهَا ۚ أُولَئِكَ هُمْ شَرُّ الْبَرِيَّةِ`,
+        translit: `Inna alladhīna kafarū min ahl al-kitābi wa-l-mushrikīna fī nāri jahannama khālidīna fīhā, ulāʾika hum sharr al-bariyyah`,
+        translation: `Indeed, they who disbelieved among the People of the Scripture and the polytheists will be in the fire of Hell, abiding eternally therein. Those are the worst of creatures.`,
+        summary: `Rejecting clear truth and fracturing over pride carries an ultimate consequence. Both groups from 98:1 reappear here, judged not by lineage or social rank, but by their refusal of clarity—declared the worst of creatures.`,
+        terms: [
+          { arabic: `نَارِ جَهَنَّمَ خَالِدِينَ فِيهَا`, translit: `Nār jahannam khālidīna fīhā`, gloss: `The fire of Hell, abiding eternally therein.` },
+          { arabic: `شَرُّ الْبَرِيَّةِ`, translit: `Sharr al-bariyyah`, gloss: `The worst of all creatures / created beings.` }
+        ],
+        structure: `Directly contrasts with verse 98:7 using mirrored cadence: ulāʾika hum sharr al-bariyyah versus ulāʾika hum khayr al-bariyyah.`
+      },
+      {
+        num: 7,
+        group: `destiny`,
+        groupLabel: `Ultimate Dichotomy (6–8)`,
+        title: `Faith Joined with Action: Best of Creation`,
+        arabic: `إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ أُولَئِكَ هُمْ خَيْرُ الْبَرِيَّةِ`,
+        translit: `Inna alladhīna āmanū wa ʿamilū aṣ-ṣāliḥāti ulāʾika hum khayr al-bariyyah`,
+        translation: `Indeed, they who have believed and done righteous deeds — those are the best of creatures`,
+        summary: `In sharp contrast to verse 6, true nobility belongs to whoever unites inward faith (āmānū) with outward righteous action (ʿamilū aṣ-ṣāliḥāt). They stand as the finest of all creation.`,
+        terms: [
+          { arabic: `آمَنُوا وَعَمِلُوا الصَّالِحَاتِ`, translit: `Āmanū wa ʿamilū aṣ-ṣāliḥāt`, gloss: `Those who believed and consistently performed righteous deeds.` },
+          { arabic: `خَيْرُ الْبَرِيَّةِ`, translit: `Khayr al-bariyyah`, gloss: `The best of all creatures / created beings.` }
+        ],
+        structure: `Replaces sectarian identity with moral accountability: faith paired with righteous deeds defines khayr al-bariyyah.`
+      },
+      {
+        num: 8,
+        group: `destiny`,
+        groupLabel: `Ultimate Dichotomy (6–8)`,
+        title: `Perpetual Gardens & Mutual Divine Pleasure`,
+        arabic: `جَزَاؤُهُمْ عِنْدَ رَبِّهِمْ جَنَّاتُ عَدْنٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا ۖ رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ ذَلِكَ لِمَنْ خَشِيَ رَبَّهُ`,
+        translit: `Jazāʾuhum ʿinda Rabbihim jannātu ʿadnin tajrī min taḥtihā al-anhāru khālidīna fīhā abadan, raḍiya Allāhu ʿanhum wa raḍū ʿanhu, dhālika li-man khashiya Rabbah`,
+        translation: `Their reward with Allah will be gardens of perpetual residence beneath which rivers flow, wherein they will abide forever, Allah being pleased with them and they with Him. That is for whoever has feared his Lord`,
+        summary: `The Surah closes at the summit of human spiritual attainment: perpetual gardens in the presence of their Lord, crowned by mutual pleasure—Allah is pleased with them, and they are deeply satisfied with Him—an attainment belonging to whoever revered their Lord.`,
+        terms: [
+          { arabic: `جَنَّاتُ عَدْنٍ`, translit: `Jannāt ʿAdn`, gloss: `Gardens of perpetual residence and settled permanence.` },
+          { arabic: `رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ`, translit: `Raḍiya Allāhu ʿanhum wa raḍū ʿanhu`, gloss: `Mutual divine pleasure: Allah being pleased with them and they with Him.` },
+          { arabic: `لِمَنْ خَشِيَ رَبَّهُ`, translit: `Li-man khashiya Rabbah`, gloss: `For whoever has feared and revered his Lord with conscious awe.` }
+        ],
+        structure: `Provides the spiritual root of the entire Surah: khashyah (reverent awe of one’s Lord) unlocks sincerity in 98:5 and mutual pleasure in 98:8.`
+      }
+    ];
+
+    const PROOF_STAGES = [
+      {
+        arabic: `لَمْ يَكُنِ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ مُنْفَكِّينَ حَتَّى تَأْتِيَهُمُ الْبَيِّنَةُ`,
+        heading: `98:1 — An Impasse Broken Only by Clear Evidence`,
+        body: `Before revelation arrived, both those who held prior scripture yet disbelieved and the polytheists were locked in misguidance—not parting (munfakkīn) from their ways until Al-Bayyinah came to establish decisive accountability.`
+      },
+      {
+        arabic: `رَسُولٌ مِنَ اللَّهِ يَتْلُو صُحُفًا مُطَهَّرَةً`,
+        heading: `98:2 — A Living Messenger Reciting Purified Pages`,
+        body: `Verse 98:2 clarifies Al-Bayyinah through apposition: the clear evidence is “a Messenger from Allah” actively reciting “purified scriptures” (ṣuḥufan muṭahharah)—protected from distortion, falsehood, and spiritual impurity.`
+      },
+      {
+        arabic: `فِيهَا كُتُبٌ قَيِّمَةٌ`,
+        heading: `98:3 — Upright Decrees That Straighten Life`,
+        body: `Inside those purified scriptures are “correct writings” (kutubun qayyimah): upright, balanced decrees that set human worship and conduct straight, directly foreshadowing dīn al-qayyimah in verse 98:5.`
+      }
+    ];
+
+    const PARADOX_STEPS = [
+      {
+        expTitle: `Uncertainty breeds disagreement`,
+        expBody: `Human logic assumes people only disagree when instructions are vague, missing, or contradictory—so before clear proof arrives, factions should be scattered.`,
+        revTitle: `Shared anticipation before the test`,
+        revBody: `Verses 98:1 and 98:4 imply that before Al-Bayyinah came, those given Scripture were not yet fractured over this decisive proof—the decisive test had not yet confronted their allegiances.`
+      },
+      {
+        expTitle: `Clear proof should produce immediate consensus`,
+        expBody: `When a Messenger arrives reciting purified scriptures with upright decrees, one expects honest seekers to recognize the truth and unite around it.`,
+        revTitle: `Clarity forces hidden motives into the open`,
+        revBody: `Al-Bayyinah removes the shield of ignorance. Every person must now choose between upright devotion and entrenched privilege, pride, or partisan loyalty.`
+      },
+      {
+        expTitle: `Evidence settles all disputes`,
+        expBody: `If division still exists afterward, we normally blame the evidence for being unclear or incomplete.`,
+        revTitle: `Division occurs after clarity (98:4)`,
+        revBody: `Verse 98:4 states explicitly: “Nor did those who were given the Scripture become divided until after there had come to them clear evidence.” The fault lies not in the proof, but in resistance to it.`
+      }
+    ];
+
+    const PILLARS = [
+      {
+        kicker: `Pillar 01 · Ikhlāṣ (Sincerity)`,
+        title: `Worshiping Allah with Undivided Devotion`,
+        body: `Mukhliṣīna lahu ad-dīn means purifying religion exclusively for Allah—worshiping without performative ostentation, hidden agendas, or divided loyalty between Creator and creation.`,
+        echo: `Inward anchor: purifies the intention behind every act of worship.`
+      },
+      {
+        kicker: `Pillar 02 · Ḥanīfiyyah (True Monotheism)`,
+        title: `Inclining Decisively Toward Truth`,
+        body: `Ḥunafāʾ describes those who turn away from every crooked path of idolatry or sectarian excess and incline wholly toward pure monotheism—walking straight rather than compromising truth.`,
+        echo: `Directional anchor: aligns worldview away from falsehood toward one Lord.`
+      },
+      {
+        kicker: `Pillar 03 · Ṣalāh (Prayer)`,
+        title: `Establishing Upright, Regular Prayer`,
+        body: `Yuqīmū aṣ-ṣalāh calls not merely for perfunctory gestures, but for establishing prayer—keeping it upright, consistent, and conscious as the vertical lifeline between the believer and Allah.`,
+        echo: `Vertical anchor: sustains constant remembrance and humility.`
+      },
+      {
+        kicker: `Pillar 04 · Zakāh (Purifying Charity)`,
+        title: `Giving Zakah to Sustain Community`,
+        body: `Yuʾtū az-zakāh pairs devotion to Allah with responsibility to human beings—purifying one’s wealth and caring for the vulnerable so upright faith transforms social life.`,
+        echo: `Horizontal anchor: proves sincerity toward God through generosity to humanity.`
+      }
+    ];
+
+    const ASCENT_TIERS = [
+      {
+        kicker: `Tier 1 · Verse 98:7`,
+        arabic: `إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ`,
+        title: `Faith United with Righteous Action`,
+        body: `Verse 98:7 pairs conviction (āmanū) with ethical and devotional action (ʿamilū aṣ-ṣāliḥāt). Neither abstract claim without deeds nor hollow ritual without faith suffices; together they anchor the believer on the upright path.`
+      },
+      {
+        kicker: `Tier 2 · Verse 98:7`,
+        arabic: `أُولَئِكَ هُمْ خَيْرُ الْبَرِيَّةِ`,
+        title: `Elevated as the Best of Creation`,
+        body: `Directly mirroring the verdict of 98:6, those who respond to Clear Proof with faith and good works are honored as khayr al-bariyyah—the finest of creatures regardless of lineage or status.`
+      },
+      {
+        kicker: `Tier 3 · Verse 98:8`,
+        arabic: `جَزَاؤُهُمْ عِنْدَ رَبِّهِمْ جَنَّاتُ عَدْنٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا`,
+        title: `Perpetual Gardens in the Presence of Their Lord`,
+        body: `Their reward is “with their Lord” (ʿinda Rabbihim): Gardens of perpetual residence (Jannāt ʿAdn) beneath which rivers flow, where they abide forever—untouched by loss, decay, or exile.`
+      },
+      {
+        kicker: `Tier 4 · Verse 98:8 (The Peak)`,
+        arabic: `رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ ذَلِكَ لِمَنْ خَشِيَ رَبَّهُ`,
+        title: `Mutual Divine Pleasure Born of Reverent Awe`,
+        body: `Above physical bliss stands mutual satisfaction: Allah is pleased with them, and they are completely pleased with Him. The final clause reveals the gateway to this summit—it belongs to “whoever has feared/revered his Lord” (man khashiya Rabbahu).`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        topic: `Clear Proof (98:1–2)`,
+        question: `In verses 98:1–2, how does Surah Al-Bayyinah concretely define “Al-Bayyinah” (the clear evidence)?`,
+        options: [
+          `As a Messenger from Allah reciting purified scriptures`,
+          `As a cosmic miracle witnessed exclusively by the polytheists`,
+          `As an internal debate among the People of the Scripture`,
+          `As an abstract philosophical argument independent of revelation`
+        ],
+        correct: 0,
+        explanation: `Verse 98:2 stands in apposition to Al-Bayyinah in 98:1: “A Messenger from Allah, reciting purified scriptures,” within which are correct writings (98:3).`
+      },
+      {
+        topic: `Paradox of Division (98:4)`,
+        question: `According to verse 98:4, when did those who were given the Scripture become divided?`,
+        options: [
+          `Long before any Messenger or scripture reached them`,
+          `Only after the clear evidence (Al-Bayyinah) had come to them`,
+          `Because the purified scriptures lacked upright decrees`,
+          `Only after the Day of Judgment was announced`
+        ],
+        correct: 1,
+        explanation: `Verse 98:4 highlights the moral paradox: “Nor did those who were given the Scripture become divided until after there had come to them clear evidence.”`
+      },
+      {
+        topic: `Essential Religion (98:5)`,
+        question: `Which four elements summarize the universal command of “dīn al-qayyimah” in verse 98:5?`,
+        options: [
+          `Lineage, ritual complexity, fasting, and migration`,
+          `Sincere worship of Allah, inclining to truth (ḥunafāʾ), establishing prayer, and giving zakah`,
+          `Debating scripture, memorizing poetry, solitude, and silence`,
+          `Fear alone without charity or communal obligations`
+        ],
+        correct: 1,
+        explanation: `Verse 98:5 states they were commanded only to worship Allah sincerely in religion, inclining to truth (ḥunafāʾ), establish prayer, and give zakah.`
+      },
+      {
+        topic: `Linguistic Symmetry (98:3 & 98:5)`,
+        question: `Which shared Arabic concept directly links the content of the scriptures in 98:3 with the essential religion in 98:5?`,
+        options: [
+          `Munfakkīn (parted/disengaged)`,
+          `Al-Qayyimah (correct, upright, and enduring)`,
+          `Al-Bariyyah (creatures/creation)`,
+          `Jannāt ʿAdn (gardens of perpetual residence)`
+        ],
+        correct: 1,
+        explanation: `Verse 98:3 speaks of “kutubun qayyimah” (correct writings), and verse 98:5 concludes “wa dhālika dīnu al-qayyimah” (and that is the correct/upright religion).`
+      },
+      {
+        topic: `Ultimate Dichotomy (98:6–7)`,
+        question: `What separates “sharr al-bariyyah” (worst of creatures) from “khayr al-bariyyah” (best of creatures) in 98:6–7?`,
+        options: [
+          `Whether one belonged to the People of the Scripture by heritage`,
+          `Rejecting clear proof in disbelief versus believing and doing righteous deeds`,
+          `Having wealth versus living in poverty`,
+          `Speaking Arabic versus speaking another language`
+        ],
+        correct: 1,
+        explanation: `Verse 98:6 identifies those who disbelieved after clear proof as sharr al-bariyyah, while 98:7 identifies those who believed and did righteous deeds as khayr al-bariyyah.`
+      },
+      {
+        topic: `Spiritual Peak (98:8)`,
+        question: `Verse 98:8 crowns perpetual gardens with mutual pleasure (“Allah being pleased with them and they with Him”). To whom does the closing phrase grant this attainment?`,
+        options: [
+          `Whoever possessed earlier scripture regardless of response`,
+          `Whoever feared and revered his Lord (man khashiya Rabbahu)`,
+          `Whoever avoided all worldly community`,
+          `Whoever debated the meaning of Al-Bayyinah`
+        ],
+        correct: 1,
+        explanation: `Verse 98:8 concludes: “That is for whoever has feared his Lord” (dhālika li-man khashiya Rabbahu), tying reverent awe to the summit of mutual pleasure.`
+      }
+    ];
+
+    const FLASHCARDS = [
+      { verse: `98:1`, arabic: `مُنْفَكِّينَ`, translit: `Munfakkīn`, meaning: `Parted or disengaged (from their misbelief)` },
+      { verse: `98:1, 98:4`, arabic: `الْبَيِّنَةُ`, translit: `Al-Bayyinah`, meaning: `The Clear Evidence / Clear Proof` },
+      { verse: `98:2`, arabic: `صُحُفًا مُطَهَّرَةً`, translit: `Ṣuḥufan Muṭahharah`, meaning: `Purified scriptures / pages` },
+      { verse: `98:3`, arabic: `كُتُبٌ قَيِّمَةٌ`, translit: `Kutubun Qayyimah`, meaning: `Correct, upright writings` },
+      { verse: `98:5`, arabic: `مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ`, translit: `Mukhliṣīna lahu ad-dīn ḥunafāʾ`, meaning: `Sincere to Him in religion, inclining to truth` },
+      { verse: `98:6`, arabic: `شَرُّ الْبَرِيَّةِ`, translit: `Sharr al-Bariyyah`, meaning: `The worst of creatures` },
+      { verse: `98:7`, arabic: `خَيْرُ الْبَرِيَّةِ`, translit: `Khayr al-Bariyyah`, meaning: `The best of creatures` },
+      { verse: `98:8`, arabic: `رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ`, translit: `Raḍiya Allāhu ʿanhum wa raḍū ʿanhu`, meaning: `Allah being pleased with them and they with Him` }
+    ];
+
+    const appState = {
+      selectedVerse: 1,
+      verseFilter: `all`,
+      masteredVerses: [],
+      proofStage: 0,
+      paradoxStep: 0,
+      selectedPillar: 0,
+      ascentTier: 0,
+      quizIndex: 0,
+      quizAnswers: {},
+      flashIndex: 0,
+      flashRevealed: false,
+      masteredTerms: [],
+      focusTheme: `al-bayyinah`,
+      notes: ``
+    };
+
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function renderAll() {
+      renderVerseLedger();
+      renderInspector();
+      renderProofStage();
+      renderParadoxStep();
+      renderPillarDetail();
+      renderAscentTier();
+      renderQuiz();
+      renderFlashcard();
+      renderJournalFields();
+      updateMasteryMetrics();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function renderVerseLedger() {
+      const container = document.getElementById(`verse-ledger`);
+      if (!container) return;
+
+      container.innerHTML = VERSES.map(function (v) {
+        const isSelected = appState.selectedVerse === v.num;
+        const isMastered = appState.masteredVerses.indexOf(v.num) !== -1;
+        const isDimmed = appState.verseFilter !== `all` && appState.verseFilter !== v.group;
+        const classes = [
+          `verse-row`,
+          isSelected ? `is-selected` : ``,
+          isDimmed ? `is-dimmed` : ``
+        ].filter(Boolean).join(` `);
+
+        return (
+          `<article class="${classes}" onclick="selectVerse(${v.num})" tabindex="0" onkeydown="handleVerseKeydown(event, ${v.num})">` +
+            `<div class="verse-row-top">` +
+              `<span class="verse-num">Verse 98:${v.num} · ${v.groupLabel}</span>` +
+              `<div class="verse-actions">` +
+                `<button type="button" class="master-toggle ${isMastered ? `is-mastered` : ``}" onclick="toggleVerseMastered(event, ${v.num})" aria-pressed="${isMastered}">` +
+                  `<i data-lucide="${isMastered ? `check-circle-2` : `circle`}" aria-hidden="true" style="width:16px;height:16px;"></i>` +
+                  `<span>${isMastered ? `Mastered` : `Mark Mastered`}</span>` +
+                `</button>` +
+              `</div>` +
+            `</div>` +
+            `<p class="arabic-text verse-arabic" lang="ar" dir="rtl">${v.arabic}</p>` +
+            `<p class="verse-translit">${v.translit}</p>` +
+            `<p class="verse-translation">${v.translation}</p>` +
+          `</article>`
+        );
+      }).join(``);
+    }
+
+    function handleVerseKeydown(evt, num) {
+      if (evt.key === `Enter` || evt.key === ` `) {
+        if (evt.target && evt.target.tagName === `BUTTON`) return;
+        evt.preventDefault();
+        selectVerse(num);
+      }
+    }
+
+    function selectVerse(num) {
+      appState.selectedVerse = num;
+      renderVerseLedger();
+      renderInspector();
+      persistState();
+    }
+
+    function setVerseFilter(filterKey) {
+      appState.verseFilter = filterKey;
+      const keys = [`all`, `proof`, `paradox`, `religion`, `destiny`];
+      keys.forEach(function (k) {
+        const btn = document.getElementById(`filter-${k}`);
+        if (btn) btn.classList.toggle(`is-active`, k === filterKey);
+      });
+      renderVerseLedger();
+      persistState();
+    }
+
+    function toggleVerseMastered(evt, num) {
+      evt.stopPropagation();
+      const idx = appState.masteredVerses.indexOf(num);
+      if (idx === -1) {
+        appState.masteredVerses.push(num);
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      renderVerseLedger();
+      updateMasteryMetrics();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      persistState();
+    }
+
+    function renderInspector() {
+      const v = VERSES.find(function (item) { return item.num === appState.selectedVerse; }) || VERSES[0];
+      const kicker = document.getElementById(`insp-kicker`);
+      const title = document.getElementById(`insp-title`);
+      const summary = document.getElementById(`insp-summary`);
+      const termsEl = document.getElementById(`insp-terms`);
+      const structureEl = document.getElementById(`insp-structure`);
+
+      if (kicker) kicker.textContent = `Verse 98:${v.num} · ${v.groupLabel}`;
+      if (title) title.textContent = v.title;
+      if (summary) summary.textContent = v.summary;
+      if (structureEl) structureEl.textContent = v.structure;
+
+      if (termsEl) {
+        termsEl.innerHTML = v.terms.map(function (t) {
+          return (
+            `<div class="term-item">` +
+              `<div class="term-top">` +
+                `<span class="term-translit">${t.translit}</span>` +
+                `<span class="term-arabic" lang="ar" dir="rtl">${t.arabic}</span>` +
+              `</div>` +
+              `<p class="term-gloss">${t.gloss}</p>` +
+            `</div>`
+          );
+        }).join(``);
+      }
+    }
+
+    function selectProofStage(index) {
+      appState.proofStage = index;
+      renderProofStage();
+      persistState();
+    }
+
+    function renderProofStage() {
+      const stage = PROOF_STAGES[appState.proofStage] || PROOF_STAGES[0];
+      const arabic = document.getElementById(`proof-arabic`);
+      const heading = document.getElementById(`proof-heading`);
+      const body = document.getElementById(`proof-body`);
+
+      if (arabic) arabic.textContent = stage.arabic;
+      if (heading) heading.textContent = stage.heading;
+      if (body) body.textContent = stage.body;
+
+      [0, 1, 2].forEach(function (i) {
+        const btn = document.getElementById(`proof-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === appState.proofStage);
+
+        const node = document.getElementById(`svg-node-${i}`);
+        if (node) {
+          const rect = node.querySelector(`rect`);
+          if (rect) {
+            rect.setAttribute(`fill`, i === appState.proofStage ? `var(--primary-container)` : `var(--background)`);
+            rect.setAttribute(`stroke`, i === appState.proofStage ? `var(--primary)` : `var(--outline-variant)`);
+            rect.setAttribute(`stroke-width`, i === appState.proofStage ? `2` : `1.5`);
+          }
+        }
+      });
+    }
+
+    function selectParadoxStep(index) {
+      appState.paradoxStep = index;
+      renderParadoxStep();
+      persistState();
+    }
+
+    function renderParadoxStep() {
+      const step = PARADOX_STEPS[appState.paradoxStep] || PARADOX_STEPS[0];
+      const expTitle = document.getElementById(`paradox-exp-title`);
+      const expBody = document.getElementById(`paradox-exp-body`);
+      const revTitle = document.getElementById(`paradox-rev-title`);
+      const revBody = document.getElementById(`paradox-rev-body`);
+
+      if (expTitle) expTitle.textContent = step.expTitle;
+      if (expBody) expBody.textContent = step.expBody;
+      if (revTitle) revTitle.textContent = step.revTitle;
+      if (revBody) revBody.textContent = step.revBody;
+
+      [0, 1, 2].forEach(function (i) {
+        const btn = document.getElementById(`paradox-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === appState.paradoxStep);
+      });
+    }
+
+    function selectPillar(index) {
+      appState.selectedPillar = index;
+      renderPillarDetail();
+      persistState();
+    }
+
+    function renderPillarDetail() {
+      const p = PILLARS[appState.selectedPillar] || PILLARS[0];
+      const kicker = document.getElementById(`pillar-detail-kicker`);
+      const title = document.getElementById(`pillar-detail-title`);
+      const body = document.getElementById(`pillar-detail-body`);
+      const echo = document.getElementById(`pillar-detail-echo`);
+
+      if (kicker) kicker.textContent = p.kicker;
+      if (title) title.textContent = p.title;
+      if (body) body.textContent = p.body;
+      if (echo) echo.textContent = p.echo;
+
+      [0, 1, 2, 3].forEach(function (i) {
+        const card = document.getElementById(`pillar-card-${i}`);
+        if (card) card.classList.toggle(`is-selected`, i === appState.selectedPillar);
+      });
+    }
+
+    function selectAscentTier(index) {
+      appState.ascentTier = index;
+      renderAscentTier();
+      persistState();
+    }
+
+    function renderAscentTier() {
+      const tier = ASCENT_TIERS[appState.ascentTier] || ASCENT_TIERS[0];
+      const kicker = document.getElementById(`ascent-kicker`);
+      const arabic = document.getElementById(`ascent-arabic`);
+      const title = document.getElementById(`ascent-title`);
+      const body = document.getElementById(`ascent-body`);
+
+      if (kicker) kicker.textContent = tier.kicker;
+      if (arabic) arabic.textContent = tier.arabic;
+      if (title) title.textContent = tier.title;
+      if (body) body.textContent = tier.body;
+
+      [0, 1, 2, 3].forEach(function (i) {
+        const btn = document.getElementById(`ascent-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-active`, i === appState.ascentTier);
+      });
+    }
+
+    function renderQuiz() {
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[idx];
+
+      const progressEl = document.getElementById(`quiz-progress-label`);
+      const topicEl = document.getElementById(`quiz-topic-label`);
+      const questionEl = document.getElementById(`quiz-question`);
+      const optionsEl = document.getElementById(`quiz-options`);
+      const feedbackEl = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      if (progressEl) progressEl.textContent = `Question ${idx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (topicEl) topicEl.textContent = q.topic;
+      if (questionEl) questionEl.textContent = q.question;
+
+      if (optionsEl) {
+        optionsEl.innerHTML = q.options.map(function (optText, optIdx) {
+          let cls = `quiz-opt`;
+          if (chosen !== undefined) {
+            if (optIdx === q.correct) cls += ` is-correct`;
+            else if (optIdx === chosen) cls += ` is-wrong`;
+          }
+          return (
+            `<button type="button" class="${cls}" onclick="answerQuiz(${optIdx})">${optText}</button>`
+          );
+        }).join(``);
+      }
+
+      if (feedbackEl) {
+        if (chosen === undefined) {
+          feedbackEl.hidden = true;
+          feedbackEl.textContent = ``;
+        } else {
+          const isRight = chosen === q.correct;
+          feedbackEl.hidden = false;
+          feedbackEl.className = `quiz-feedback ${isRight ? `is-positive` : `is-negative`}`;
+          feedbackEl.textContent = `${isRight ? `Correct: ` : `Not quite: `}${q.explanation}`;
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+    }
+
+    function answerQuiz(optIdx) {
+      appState.quizAnswers[appState.quizIndex] = optIdx;
+      renderQuiz();
+      updateMasteryMetrics();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next >= 0 && next < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = next;
+        renderQuiz();
+        persistState();
+      }
+    }
+
+    function renderFlashcard() {
+      const idx = appState.flashIndex;
+      const card = FLASHCARDS[idx] || FLASHCARDS[0];
+      const isMastered = appState.masteredTerms.indexOf(idx) !== -1;
+
+      const counterEl = document.getElementById(`flash-counter`);
+      const masteredCountEl = document.getElementById(`flash-mastered-count`);
+      const refEl = document.getElementById(`flash-verse-ref`);
+      const arabicEl = document.getElementById(`flash-arabic`);
+      const translitEl = document.getElementById(`flash-translit`);
+      const meaningEl = document.getElementById(`flash-meaning`);
+      const revealBtn = document.getElementById(`flash-reveal-btn`);
+      const masterBtn = document.getElementById(`flash-master-btn`);
+
+      if (counterEl) counterEl.textContent = `Term ${idx + 1} of ${FLASHCARDS.length}`;
+      if (masteredCountEl) masteredCountEl.textContent = `${appState.masteredTerms.length} Terms Mastered`;
+      if (refEl) refEl.textContent = `Verse ${card.verse}`;
+      if (arabicEl) arabicEl.textContent = card.arabic;
+      if (translitEl) translitEl.textContent = card.translit;
+      if (meaningEl) {
+        meaningEl.textContent = card.meaning;
+        meaningEl.hidden = !appState.flashRevealed;
+      }
+      if (revealBtn) revealBtn.textContent = appState.flashRevealed ? `Hide Meaning` : `Reveal Meaning`;
+      if (masterBtn) masterBtn.textContent = isMastered ? `Mastered ✓` : `Mark Mastered`;
+    }
+
+    function stepFlashcard(delta) {
+      appState.flashIndex = (appState.flashIndex + delta + FLASHCARDS.length) % FLASHCARDS.length;
+      appState.flashRevealed = false;
+      renderFlashcard();
+      persistState();
+    }
+
+    function toggleFlashMeaning() {
+      appState.flashRevealed = !appState.flashRevealed;
+      renderFlashcard();
+    }
+
+    function toggleFlashMastered() {
+      const idx = appState.flashIndex;
+      const pos = appState.masteredTerms.indexOf(idx);
+      if (pos === -1) {
+        appState.masteredTerms.push(idx);
+      } else {
+        appState.masteredTerms.splice(pos, 1);
+      }
+      renderFlashcard();
+      updateMasteryMetrics();
+      persistState();
+    }
+
+    function renderJournalFields() {
+      const selectEl = document.getElementById(`focus-theme-select`);
+      const notesEl = document.getElementById(`reflection-notes`);
+      if (selectEl) selectEl.value = appState.focusTheme || `al-bayyinah`;
+      if (notesEl) notesEl.value = appState.notes || ``;
+    }
+
+    function saveReflectionState() {
+      const selectEl = document.getElementById(`focus-theme-select`);
+      const notesEl = document.getElementById(`reflection-notes`);
+      if (selectEl) appState.focusTheme = selectEl.value;
+      if (notesEl) appState.notes = notesEl.value;
+      const statusEl = document.getElementById(`save-status`);
+      if (statusEl) statusEl.textContent = `Notes saved.`;
+      persistState();
+    }
+
+    function updateMasteryMetrics() {
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach(function (q, idx) {
+        if (appState.quizAnswers[idx] === q.correct) quizCorrect += 1;
+      });
+
+      const totalItems = VERSES.length + QUIZ_QUESTIONS.length + FLASHCARDS.length;
+      const completed = appState.masteredVerses.length + quizCorrect + appState.masteredTerms.length;
+      const pct = Math.round((completed / totalItems) * 100);
+
+      const heroBadge = document.getElementById(`hero-mastery-badge`);
+      const pctEl = document.getElementById(`metric-mastery-pct`);
+      const subEl = document.getElementById(`metric-mastery-sub`);
+      const quizBadge = document.getElementById(`studio-score-badge`);
+
+      if (heroBadge) heroBadge.textContent = `${appState.masteredVerses.length} of ${VERSES.length} Verses Mastered`;
+      if (pctEl) pctEl.textContent = `${pct}%`;
+      if (subEl) subEl.textContent = `${completed} of ${totalItems} mastery items complete`;
+      if (quizBadge) quizBadge.textContent = `Quiz: ${quizCorrect} / ${QUIZ_QUESTIONS.length} Correct`;
+    }
+
+    function exportStudySummary() {
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach(function (q, idx) {
+        if (appState.quizAnswers[idx] === q.correct) quizCorrect += 1;
+      });
+      const lines = [
+        `Surah Al-Bayyinah (Chapter 98) — Study & Mastery Summary`,
+        `=======================================================`,
+        `Mastered Verses (${appState.masteredVerses.length}/8): ${appState.masteredVerses.sort(function (a, b) { return a - b; }).map(function (n) { return `98:` + n; }).join(`, `) || `None yet`}`,
+        `Comprehension Quiz Score: ${quizCorrect} / ${QUIZ_QUESTIONS.length}`,
+        `Mastered Arabic Terms: ${appState.masteredTerms.length} / ${FLASHCARDS.length}`,
+        `Primary Study Focus: ${appState.focusTheme}`,
+        ``,
+        `Personal Reflection Notes:`,
+        appState.notes || `(No notes recorded yet.)`
+      ];
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines.join(`\n`),
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-bayyinah-mastery-summary.txt`
+        });
+      }
+      const statusEl = document.getElementById(`save-status`);
+      if (statusEl) statusEl.textContent = `Summary exported.`;
+    }
+
+    function handleResetProgress(btn) {
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Progress`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+
+      appState.masteredVerses = [];
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      appState.masteredTerms = [];
+      appState.flashIndex = 0;
+      appState.flashRevealed = false;
+      appState.notes = ``;
+      appState.focusTheme = `al-bayyinah`;
+
+      renderAll();
+      const statusEl = document.getElementById(`save-status`);
+      if (statusEl) statusEl.textContent = `Progress reset.`;
+      persistState();
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          const statusEl = document.getElementById(`save-status`);
+          if (statusEl) statusEl.textContent = `Unable to save right now.`;
+        }
+      }
+    }
+
+    function setupScrollReveal() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        sections.forEach(function (s) { s.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(function (s) { observer.observe(s); });
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (typeof saved.selectedVerse === `number`) appState.selectedVerse = saved.selectedVerse;
+            if (typeof saved.verseFilter === `string`) appState.verseFilter = saved.verseFilter;
+            if (Array.isArray(saved.masteredVerses)) appState.masteredVerses = saved.masteredVerses;
+            if (typeof saved.proofStage === `number`) appState.proofStage = saved.proofStage;
+            if (typeof saved.paradoxStep === `number`) appState.paradoxStep = saved.paradoxStep;
+            if (typeof saved.selectedPillar === `number`) appState.selectedPillar = saved.selectedPillar;
+            if (typeof saved.ascentTier === `number`) appState.ascentTier = saved.ascentTier;
+            if (typeof saved.quizIndex === `number`) appState.quizIndex = saved.quizIndex;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (typeof saved.flashIndex === `number`) appState.flashIndex = saved.flashIndex;
+            if (typeof saved.flashRevealed === `boolean`) appState.flashRevealed = saved.flashRevealed;
+            if (Array.isArray(saved.masteredTerms)) appState.masteredTerms = saved.masteredTerms;
+            if (typeof saved.focusTheme === `string`) appState.focusTheme = saved.focusTheme;
+            if (typeof saved.notes === `string`) appState.notes = saved.notes;
+          }
+        } catch (err) {
+          /* Proceed with initial defaults if state load fails */
+        }
+      }
+
+      setVerseFilter(appState.verseFilter);
+      renderAll();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

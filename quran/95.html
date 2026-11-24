@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah At-Tin: Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Terracotta Style Palette & Surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-border: #c98a6b;
+      --emerald-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --error-container: #fae8e8;
+      --error-border: #e3b2b2;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Map tones */
+      --map-sea: #e9dfd1;
+      --map-land: #f6efe5;
+      --map-land-active: #efe1ce;
+      --map-border: #c9b7a2;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.08);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* 3. Shared tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .section-intro {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 2;
+      font-weight: 400;
+    }
+
+    /* Brass Diamond Ornamental Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges & Pills */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      color: var(--secondary);
+      border: var(--warm-hairline);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--soft-shadow);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--on-primary-container);
+      box-shadow: var(--soft-shadow-raised);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--secondary-btn-border);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+    }
+
+    .btn-emerald {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--on-tertiary-container);
+    }
+
+    /* Hero & Arch Cards */
+    .hero-header {
+      padding-top: var(--space-md);
+    }
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+      transform: translateY(-2px);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.65rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Quick Study Bar */
+    .study-nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      margin-top: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .study-anchors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .anchor-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--background);
+      border: var(--warm-hairline);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .anchor-pill:hover {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .study-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Tonal Plaster Band */
+    .plaster-band {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: Verse-by-Verse & Lexical Breakdown */
+    .verse-workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-active {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--featured-border), var(--soft-shadow-raised);
+    }
+
+    .verse-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .verse-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--rounded-full);
+      background: var(--on-surface);
+      color: var(--background);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-theme-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .verse-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--background);
+      border: var(--warm-hairline);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .mini-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .mini-btn.is-studied {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--emerald-border);
+    }
+
+    .verse-arabic-row {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      margin-bottom: var(--space-md);
+      direction: rtl;
+    }
+
+    .word-chip {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.65rem, 1.3rem + 1vw, 2.25rem);
+      line-height: 1.75;
+      letter-spacing: 0;
+      text-transform: none;
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 44px;
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .word-chip:hover {
+      background: var(--surface-container-low);
+      color: var(--primary);
+    }
+    .word-chip.is-selected {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .verse-transliteration {
+      font-size: 0.9375rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin: 0 0 var(--space-xs);
+    }
+
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.45rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Sticky Lexical Inspector */
+    .lexical-panel {
+      position: sticky;
+      top: var(--space-lg);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .lexical-word-hero {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+    .lexical-arabic-large {
+      font-family: var(--font-arabic);
+      font-size: 2.75rem;
+      line-height: 1.6;
+      letter-spacing: 0;
+      color: var(--primary);
+      display: block;
+    }
+    .lexical-translit {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-top: var(--space-xs);
+    }
+    .lexical-meaning {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 0;
+    }
+
+    .lexical-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .lexical-meta-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .meta-k {
+      display: block;
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: 2px;
+    }
+    .meta-v {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    .lexical-word-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+    .lex-nav-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .lex-nav-btn:hover { background: var(--surface-container-high); }
+
+    /* Section 2: Sacred Geographies Map & Oaths */
+    .oath-explorer {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .map-frame {
+      background: var(--map-sea);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+      box-shadow: var(--soft-shadow);
+      position: relative;
+    }
+    #oath-map-container {
+      width: 100%;
+      min-height: 410px;
+      height: 420px;
+      position: relative;
+    }
+    .map-caption-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border-top: var(--warm-hairline);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .oath-cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .oath-selector-card {
+      text-align: left;
+      width: 100%;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .oath-selector-card:hover {
+      background: var(--background);
+      box-shadow: var(--soft-shadow);
+    }
+    .oath-selector-card.is-selected {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--featured-border), var(--soft-shadow);
+    }
+    .oath-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .oath-arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      color: var(--primary);
+      letter-spacing: 0;
+      direction: rtl;
+    }
+    .oath-detail-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-sm);
+    }
+
+    /* Section 3: Human Stature & Moral Trajectory */
+    .lens-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .lens-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-btn-border);
+      background: var(--background);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .lens-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .trajectory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .trajectory-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .trajectory-card.is-taqweem {
+      border-top: 4px solid var(--secondary);
+    }
+    .trajectory-card.is-safileen {
+      border-top: 4px solid var(--data-4);
+    }
+    .trajectory-card.is-exception {
+      background: var(--tertiary-container);
+      border-color: var(--emerald-border);
+      border-top: 4px solid var(--tertiary);
+    }
+
+    .schematic-container {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .justice-pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .justice-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .justice-card.is-crown {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+
+    /* Section 4: Reflection Prompts */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .reflection-label {
+      display: block;
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+    .reflection-hint {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .reflection-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+    .reflection-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8125rem;
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    /* Section 5: Self-Assessment Study Tools */
+    .mastery-tools-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .flashcard-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .flashcard-stage {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-xl) var(--space-lg);
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      margin: var(--space-md) 0;
+      box-shadow: var(--soft-shadow);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .flashcard-stage:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .flashcard-stage.is-flipped {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .flashcard-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .quiz-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .quiz-progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .quiz-question-text {
+      font-family: var(--font-headline);
+      font-size: 1.45rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0 0 var(--space-md);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .quiz-option-btn {
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      box-shadow: 0 0 0 2px var(--tertiary);
+    }
+    .quiz-option-btn.is-wrong {
+      background: var(--error-container);
+      color: var(--error);
+      box-shadow: 0 0 0 2px var(--error);
+    }
+
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: var(--warm-hairline);
+      font-size: 0.9375rem;
+    }
+
+    /* Comparison table */
+    .lexical-summary-table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    table.terracotta-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    .terracotta-table thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .terracotta-table tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    .terracotta-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Container queries */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 420px) {
+      .lexical-meta-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Footer Colophon */
+    .colophon {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    .status-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Reveal animation */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 900px) {
+      .verse-workbench,
+      .oath-explorer,
+      .mastery-tools-grid {
+        grid-template-columns: 1fr;
+      }
+      .lexical-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .plaster-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .verse-card {
+        padding: var(--space-md);
+      }
+      .study-nav-bar {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page-grid">
+
+    <!-- HERO & OVERVIEW -->
+    <header class="hero-header">
+      <div class="hero-top-row">
+        <p class="kicker">Surah 95 &middot; Al-Qur&rsquo;an Al-Karim &middot; Makkan Period</p>
+        <span class="badge-emerald" id="global-progress-badge">
+          <i data-lucide="book-open" style="width:14px;height:14px;" aria-hidden="true"></i>
+          <span id="global-progress-text">0 of 8 Verses Studied</span>
+        </span>
+      </div>
+
+      <h1 class="title">Surah At-Tin: Interactive <em>Study</em> &amp; Mastery Guide</h1>
+      <p class="lede">
+        A structured study companion to the eight verses of Chapter 95—uniting complete vocalized Arabic text and word-by-word morphology with its fourfold prophetic oaths, the twin horizons of human stature, and the crowning certainty of divine justice.
+      </p>
+
+      <div class="ornament-rule">&#9670; Eight Verses &middot; Thirty-Four Words &middot; Four Sacred Oaths &#9670;</div>
+
+      <section class="arch-grid" aria-label="Surah At-Tin Structural Overview">
+        <div class="arch-card">
+          <div class="arch-label">Revelation Structure</div>
+          <div class="arch-value">8</div>
+          <div class="arch-caption">Verses (Ayat 95:1&ndash;95:8)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Sacred Oaths</div>
+          <div class="arch-value">4</div>
+          <div class="arch-caption">Fig, Olive, Sinai &amp; Makkah</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Central Thesis</div>
+          <div class="arch-value">Taqweem</div>
+          <div class="arch-caption">Created in the Best of Stature</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Your Mastery</div>
+          <div class="arch-value" id="hero-mastery-pct">0%</div>
+          <div class="arch-caption" id="hero-mastery-detail">Verses, Cards &amp; Quiz</div>
+        </div>
+      </section>
+
+      <nav class="study-nav-bar" aria-label="Study Guide Sections">
+        <div class="study-anchors">
+          <a class="anchor-pill" href="#verse-explorer">1. Verse &amp; Lexical Explorer</a>
+          <a class="anchor-pill" href="#sacred-oaths">2. Fourfold Sacred Oaths</a>
+          <a class="anchor-pill" href="#human-arc">3. Taqweem &amp; Justice</a>
+          <a class="anchor-pill" href="#reflections">4. Reflections</a>
+          <a class="anchor-pill" href="#mastery-check">5. Mastery Tools</a>
+        </div>
+        <div class="study-actions">
+          <span class="status-toast" id="save-status-indicator" aria-live="polite">Ready</span>
+          <button type="button" class="btn btn-secondary" onclick="exportStudyNotes()">
+            <i data-lucide="download" style="width:16px;height:16px;" aria-hidden="true"></i>
+            Export Notes
+          </button>
+          <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">
+            <i data-lucide="rotate-ccw" style="width:16px;height:16px;" aria-hidden="true"></i>
+            Reset Progress
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- SECTION 1: COMPLETE VERSE-BY-VERSE & LEXICAL BREAKDOWN -->
+    <section id="verse-explorer" class="reveal-section">
+      <p class="kicker">Section I &middot; Text, Translation &amp; Morphology</p>
+      <h2 class="section-heading">Every Word Connects Sound, Root, and <em>Meaning</em></h2>
+      <p class="section-intro">
+        Select any Arabic word below to inspect its triliteral root, grammatical form, and exegetical nuance in the lexical inspector. Mark each verse as studied as you complete its breakdown.
+      </p>
+
+      <div class="verse-workbench">
+        <div class="verse-list" id="verse-list-container">
+          <!-- Populated by JavaScript from verified source data -->
+        </div>
+
+        <aside class="lexical-panel card-wrapper" aria-label="Lexical Word Inspector">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+            <span class="badge-brass" id="lex-verse-badge">Ayah 95:1 &middot; Word 1</span>
+            <span class="badge-emerald" id="lex-pos-badge">Particle + Noun</span>
+          </div>
+
+          <div class="lexical-word-hero">
+            <span class="lexical-arabic-large arabic-text" lang="ar" dir="rtl" id="lex-arabic-word">وَالتِّينِ</span>
+            <div class="lexical-translit" id="lex-translit">wa-t-tīn</div>
+            <div class="lexical-meaning" id="lex-meaning">&ldquo;By the fig&rdquo;</div>
+          </div>
+
+          <div class="lexical-meta-grid">
+            <div class="lexical-meta-box">
+              <span class="meta-k">Arabic Root</span>
+              <span class="meta-v" id="lex-root">ت ي ن (t-y-n)</span>
+            </div>
+            <div class="lexical-meta-box">
+              <span class="meta-k">Grammar &amp; Case</span>
+              <span class="meta-v" id="lex-grammar">Oath particle + Genitive noun</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:var(--space-md);">
+            <span class="meta-k">Exegetical &amp; Structural Note</span>
+            <p id="lex-note" style="margin:var(--space-xs) 0 0;color:var(--on-surface-variant);font-size:0.9375rem;">
+              Loading lexical insight…
+            </p>
+          </div>
+
+          <div class="lexical-word-pills" id="lex-verse-words-strip" aria-label="Words in active verse">
+            <!-- Word selector buttons for current verse -->
+          </div>
+
+          <div style="display:flex;justify-content:space-between;gap:var(--space-sm);margin-top:var(--space-md);">
+            <button type="button" class="btn btn-secondary" onclick="stepLexicalWord(-1)">
+              <i data-lucide="arrow-left" style="width:16px;height:16px;" aria-hidden="true"></i>
+              Previous Word
+            </button>
+            <button type="button" class="btn btn-primary" onclick="stepLexicalWord(1)">
+              Next Word
+              <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THEMATIC DEEP-DIVE I — FOURFOLD SACRED OATHS -->
+    <section id="sacred-oaths" class="plaster-band reveal-section">
+      <p class="kicker">Section II &middot; Verses 1&ndash;3 &middot; Al-Muqsam Bihi</p>
+      <h2 class="section-heading">Four Oaths Trace Three <em>Prophetic</em> Sanctuaries From North to South</h2>
+      <p class="section-intro">
+        In Quranic rhetoric, divine oaths summon witnesses that corroborate the claim to follow. Surah At-Tin opens with four linked oaths—moving across three sacred geographies associated with revelation, law, and sanctuary.
+      </p>
+
+      <div class="oath-explorer">
+        <div class="map-frame">
+          <div id="oath-map-container" role="region" aria-label="Vector map of the three sacred geographies in Surah At-Tin"></div>
+          <div class="map-caption-bar">
+            <span><strong>Sacred Corridor:</strong> Levant &rarr; Sinai Peninsula &rarr; Hijaz (Makkah)</span>
+            <span>Boundaries: Natural Earth (public domain)</span>
+          </div>
+        </div>
+
+        <div class="oath-cards-stack">
+          <button type="button" class="oath-selector-card is-selected" id="oath-btn-0" onclick="selectOathStop(0)">
+            <div class="oath-card-top">
+              <span class="badge-brass">Oaths 1 &amp; 2 &middot; Verse 95:1</span>
+              <span class="oath-arabic-inline arabic-text" lang="ar" dir="rtl">وَالتِّينِ وَالزَّيْتُونِ</span>
+            </div>
+            <h3 class="subhead" style="margin-bottom:var(--space-xs);">The Fig &amp; The Olive &mdash; Jerusalem &amp; the Levant</h3>
+            <p style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;">
+              Symbolizing both physical nourishment and the blessed Levantine groves where Prophet Isa (Jesus) and earlier Israelite prophets walked.
+            </p>
+          </button>
+
+          <button type="button" class="oath-selector-card" id="oath-btn-1" onclick="selectOathStop(1)">
+            <div class="oath-card-top">
+              <span class="badge-brass">Oath 3 &middot; Verse 95:2</span>
+              <span class="oath-arabic-inline arabic-text" lang="ar" dir="rtl">وَطُورِ سِينِينَ</span>
+            </div>
+            <h3 class="subhead" style="margin-bottom:var(--space-xs);">Mount Sinai &mdash; Sanctuary of Direct Revelation</h3>
+            <p style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;">
+              The granite peak in Sinai where Prophet Musa (Moses) received the Tablets of Law and spoke directly with Allah.
+            </p>
+          </button>
+
+          <button type="button" class="oath-selector-card" id="oath-btn-2" onclick="selectOathStop(2)">
+            <div class="oath-card-top">
+              <span class="badge-brass">Oath 4 &middot; Verse 95:3</span>
+              <span class="oath-arabic-inline arabic-text" lang="ar" dir="rtl">وَهَٰذَا الْبَلَدِ الْأَمِينِ</span>
+            </div>
+            <h3 class="subhead" style="margin-bottom:var(--space-xs);">This Secure City &mdash; Makkah Al-Mukarramah</h3>
+            <p style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;">
+              Addressed with the immediate demonstrative &ldquo;this&rdquo; (<span class="arabic-text" lang="ar" dir="rtl">هَٰذَا</span>), honoring the sanctuary built by Ibrahim and entrusted with the final revelation.
+            </p>
+          </button>
+
+          <div class="oath-detail-box" id="oath-detail-panel">
+            <!-- Dynamically updated by selectOathStop() -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THEMATIC DEEP-DIVE II — HUMAN STATURE, DESCENT, EXCEPTION & JUSTICE -->
+    <section id="human-arc" class="reveal-section">
+      <p class="kicker">Section III &middot; Verses 4&ndash;8 &middot; Moral Architecture</p>
+      <h2 class="section-heading">From <em>Ahsan Taqweem</em> to <em>Asfala Safileen</em>&mdash;and the Unbroken Exception</h2>
+      <p class="section-intro">
+        Having sworn by the three prophetic sanctuaries, Allah unveils the central thesis (<em>Jawab al-Qasam</em>): the majestic elevation of human design, the peril of its collapse, and the sole path that preserves human worth. Explore this arc across three classical exegetical lenses.
+      </p>
+
+      <div class="lens-switcher" role="group" aria-label="Exegetical Lenses">
+        <button type="button" class="lens-btn is-active" id="lens-btn-spiritual" onclick="setExegeticalLens('spiritual')">Spiritual &amp; Ethical Lens</button>
+        <button type="button" class="lens-btn" id="lens-btn-linguistic" onclick="setExegeticalLens('linguistic')">Lexical &amp; Root Connections</button>
+        <button type="button" class="lens-btn" id="lens-btn-temporal" onclick="setExegeticalLens('temporal')">Physical &amp; Temporal Lens</button>
+      </div>
+
+      <div class="trajectory-grid">
+        <article class="trajectory-card is-taqweem">
+          <span class="badge-brass">Verse 95:4 &middot; The Elevation</span>
+          <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.55rem;color:var(--primary);">فِي أَحْسَنِ تَقْوِيمٍ</div>
+          <h3 class="subhead" id="lens-taqweem-title">Ahsan Taqweem: Harmonious Uprightness</h3>
+          <p id="lens-taqweem-body" style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;"></p>
+        </article>
+
+        <article class="trajectory-card is-safileen">
+          <span class="badge-brass">Verse 95:5 &middot; The Descent</span>
+          <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.55rem;color:var(--data-4);">أَسْفَلَ سَافِلِينَ</div>
+          <h3 class="subhead" id="lens-safileen-title">Asfala Safileen: The Lowest of the Low</h3>
+          <p id="lens-safileen-body" style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;"></p>
+        </article>
+
+        <article class="trajectory-card is-exception">
+          <span class="badge-emerald">Verse 95:6 &middot; The Preservation</span>
+          <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.55rem;color:var(--tertiary);">أَجْرٌ غَيْرُ مَمْنُونٍ</div>
+          <h3 class="subhead" id="lens-exception-title">Uninterrupted Reward Without Reproach</h3>
+          <p id="lens-exception-body" style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;"></p>
+        </article>
+      </div>
+
+      <!-- Schematic Diagram: Structural Symmetry of Surah At-Tin -->
+      <div class="schematic-container">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:var(--space-sm);margin-bottom:var(--space-md);">
+          <h3 class="subhead" style="margin:0;">Architectural Symmetry Across the Eight Verses</h3>
+          <span class="badge-emerald">Ring &amp; Root Mirroring: Al-Amin (v.3) &harr; Amanu (v.6)</span>
+        </div>
+        <svg viewBox="0 0 920 210" width="100%" style="display:block;height:auto;max-height:230px;" role="img" aria-label="Diagram showing the narrative arc from the four sacred oaths through Ahsan Taqweem, Asfala Safileen, the exception of faith and deeds, to Ahkam al-Hakimeen">
+          <!-- Connecting curve -->
+          <path d="M 90 130 C 190 40, 290 40, 360 62 C 420 82, 460 165, 535 162 C 625 158, 675 55, 830 55"
+                fill="none" stroke="var(--outline)" stroke-width="2" stroke-dasharray="5 4" />
+
+          <!-- Node 1: Oaths -->
+          <circle cx="90" cy="130" r="18" fill="var(--surface-container-high)" stroke="var(--secondary)" stroke-width="2.5" />
+          <text x="90" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-surface)">1&ndash;3</text>
+          <text x="90" y="168" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-surface)">Sacred Oaths</text>
+          <text x="90" y="185" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">Al-Balad al-Amin</text>
+
+          <!-- Node 2: Ahsan Taqweem -->
+          <circle cx="350" cy="60" r="22" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5" />
+          <text x="350" y="65" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-primary-container)">v.4</text>
+          <text x="350" y="25" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--primary)">Ahsan Taqweem</text>
+
+          <!-- Node 3: Asfala Safileen -->
+          <circle cx="530" cy="160" r="20" fill="var(--error-container)" stroke="var(--data-4)" stroke-width="2.5" />
+          <text x="530" y="165" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--data-4)">v.5</text>
+          <text x="530" y="196" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--data-4)">Asfala Safileen</text>
+
+          <!-- Node 4: Exception -->
+          <circle cx="690" cy="75" r="22" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2.5" />
+          <text x="690" y="80" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-tertiary-container)">v.6</text>
+          <text x="690" y="38" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--tertiary)">Amanu + Salih Deeds</text>
+
+          <!-- Node 5: Ahkam al-Hakimeen -->
+          <circle cx="835" cy="55" r="22" fill="var(--primary)" stroke="var(--on-primary-container)" stroke-width="2" />
+          <text x="835" y="60" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-primary)">7&ndash;8</text>
+          <text x="835" y="96" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700" fill="var(--on-surface)">Ahkam al-Hakimeen</text>
+          <text x="835" y="113" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="var(--on-surface-variant)">Absolute Justice</text>
+        </svg>
+      </div>
+
+      <!-- Verses 7-8: Reckoning & Divine Justice -->
+      <div class="justice-pair">
+        <div class="justice-card">
+          <span class="badge-brass">Verse 95:7 &middot; The Moral Challenge</span>
+          <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.6rem;color:var(--on-surface);margin:var(--space-sm) 0;">فَمَا يُكَذِّبُكَ بَعْدُ بِالدِّينِ</div>
+          <h3 class="subhead">&ldquo;So what yet causes you to deny the Recompense?&rdquo;</h3>
+          <p style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;">
+            Notice the shift to direct second-person address (<em>yukadhdhibuka</em>): after observing the brilliance of human creation alongside the reality of moral decline, denying <em>ad-Din</em> (the Day of Moral Reckoning) becomes intellectually indefensible.
+          </p>
+        </div>
+
+        <div class="justice-card is-crown">
+          <span class="badge-emerald">Verse 95:8 &middot; The Crowning Seal</span>
+          <div class="arabic-text" lang="ar" dir="rtl" style="font-size:1.6rem;color:var(--primary);margin:var(--space-sm) 0;">أَلَيْسَ اللَّهُ بِأَحْكَمِ الْحَاكِمِينَ</div>
+          <h3 class="subhead">&ldquo;Is not Allah the most just of judges?&rdquo;</h3>
+          <p style="margin:0;color:var(--on-surface-variant);font-size:0.9375rem;">
+            The superlative <em>Ahkam al-Hakimeen</em> unites wisdom (<em>hikmah</em>) with impartial judgment (<em>hukm</em>). Because human actions produce divergent moral outcomes in verses 4&ndash;6, divine justice necessitates a final court where every deed receives its exact measure.
+          </p>
+        </div>
+      </div>
+
+      <!-- Complete Lexical Reference Table -->
+      <div class="lexical-summary-table-wrap">
+        <table class="terracotta-table">
+          <thead>
+            <tr>
+              <th>Ayah</th>
+              <th>Key Arabic Phrase</th>
+              <th>Root &amp; Form</th>
+              <th>Thematic Role in Surah At-Tin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>95:1&ndash;3</strong></td>
+              <td><span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">التِّينِ &middot; الزَّيْتُونِ &middot; طُورِ سِينِينَ &middot; الْبَلَدِ الْأَمِينِ</span></td>
+              <td>Oaths (<em>Al-Muqsam bihi</em>)</td>
+              <td>Consecrates the three prophetic landscapes uniting Isa, Musa, Ibrahim, and Muhammad &#65018;.</td>
+            </tr>
+            <tr>
+              <td><strong>95:4</strong></td>
+              <td><span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">أَحْسَنِ تَقْوِيمٍ</span></td>
+              <td><em>ḥ-s-n</em> + <em>q-w-m</em> (Form II)</td>
+              <td>Establishes humanity&rsquo;s noble original design—physical proportion, intellect, and moral agency.</td>
+            </tr>
+            <tr>
+              <td><strong>95:5</strong></td>
+              <td><span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">أَسْفَلَ سَافِلِينَ</span></td>
+              <td><em>s-f-l</em> (Elative + Participle)</td>
+              <td>Warns of inversion: squandered potential through arrogance, or bodily decline stripped of faith.</td>
+            </tr>
+            <tr>
+              <td><strong>95:6</strong></td>
+              <td><span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">أَجْرٌ غَيْرُ مَمْنُونٍ</span></td>
+              <td><em>ʾ-j-r</em> + <em>m-n-n</em> (Passive)</td>
+              <td>Secures the believer&rsquo;s rank with an unending reward free from diminution or reproach.</td>
+            </tr>
+            <tr>
+              <td><strong>95:7&ndash;8</strong></td>
+              <td><span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">بِالدِّينِ &middot; بِأَحْكَمِ الْحَاكِمِينَ</span></td>
+              <td><em>d-y-n</em> + <em>ḥ-k-m</em> (Superlative)</td>
+              <td>Grounds accountability in the absolute wisdom and fairness of the Supreme Judge.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE REFLECTION PROMPTS -->
+    <section id="reflections" class="plaster-band reveal-section">
+      <p class="kicker">Section IV &middot; Tadabbur &amp; Personal Journal</p>
+      <h2 class="section-heading">Reflective Prompts for <em>Personal</em> Application</h2>
+      <p class="section-intro">
+        Classical scholars emphasize that Surah At-Tin moves from cosmic witness to intimate self-reckoning. Your entries below save automatically to your notebook session and can be exported anytime.
+      </p>
+
+      <div class="reflection-grid">
+        <div class="reflection-card">
+          <label class="reflection-label" for="refl-1">1. Guarding Ahsan Taqweem (95:4)</label>
+          <p class="reflection-hint">Which intellectual, moral, or spiritual capacities in your life feel most like a trust from your Creator—and how are you cultivating them?</p>
+          <textarea class="reflection-textarea" id="refl-1" placeholder="Write your reflection on human dignity and stewardship…" oninput="saveReflection('r1', this.value)"></textarea>
+          <div class="reflection-footer">
+            <span id="refl-status-r1">Not yet written</span>
+            <span id="refl-count-r1">0 chars</span>
+          </div>
+        </div>
+
+        <div class="reflection-card">
+          <label class="reflection-label" for="refl-2">2. Recognizing Asfala Safileen (95:5)</label>
+          <p class="reflection-hint">Where do daily habits, distractions, or heedlessness pull you away from your highest moral posture toward lower impulses?</p>
+          <textarea class="reflection-textarea" id="refl-2" placeholder="Identify patterns that diminish your clarity or purpose…" oninput="saveReflection('r2', this.value)"></textarea>
+          <div class="reflection-footer">
+            <span id="refl-status-r2">Not yet written</span>
+            <span id="refl-count-r2">0 chars</span>
+          </div>
+        </div>
+
+        <div class="reflection-card">
+          <label class="reflection-label" for="refl-3">3. Faith &amp; Uninterrupted Deeds (95:6)</label>
+          <p class="reflection-hint">Verse 6 pairs belief (<em>amanu</em>) with righteous action (<em>al-salihat</em>). What is one consistent, small righteous deed you want to anchor into this season?</p>
+          <textarea class="reflection-textarea" id="refl-3" placeholder="Name a sustainable righteous deed that outlives fleeting moods…" oninput="saveReflection('r3', this.value)"></textarea>
+          <div class="reflection-footer">
+            <span id="refl-status-r3">Not yet written</span>
+            <span id="refl-count-r3">0 chars</span>
+          </div>
+        </div>
+
+        <div class="reflection-card">
+          <label class="reflection-label" for="refl-4">4. Living Under Ahkam al-Hakimeen (95:8)</label>
+          <p class="reflection-hint">How does remembering that Allah is the Most Just of Judges reshape your response to an unanswered grievance or an unseen act of integrity?</p>
+          <textarea class="reflection-textarea" id="refl-4" placeholder="Reflect on how certainty in divine justice brings inner steadiness…" oninput="saveReflection('r4', this.value)"></textarea>
+          <div class="reflection-footer">
+            <span id="refl-status-r4">Not yet written</span>
+            <span id="refl-count-r4">0 chars</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: SELF-ASSESSMENT STUDY TOOLS -->
+    <section id="mastery-check" class="reveal-section">
+      <p class="kicker">Section V &middot; Active Recall &amp; Diagnostic Quiz</p>
+      <h2 class="section-heading">Consolidate Your <em>Mastery</em> of Surah At-Tin</h2>
+      <p class="section-intro">
+        Strengthen retention using two complementary modes: test your instant recognition of key Arabic phrases with the recall deck, then complete the 8-question diagnostic assessment.
+      </p>
+
+      <div class="mastery-tools-grid">
+        <!-- Tool A: Recall Flashcards -->
+        <div class="flashcard-box">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);">
+            <span class="badge-brass" id="fc-counter">Card 1 of 8</span>
+            <span class="badge-emerald" id="fc-mastered-count">0 Mastered</span>
+          </div>
+
+          <div class="flashcard-stage" id="flashcard-stage" role="button" tabindex="0" onclick="flipFlashcard()" onkeydown="handleFlashcardKey(event)" aria-label="Study flashcard, click or press Enter to flip">
+            <div id="fc-front">
+              <span class="meta-k" id="fc-ref-label">Ayah 95:1</span>
+              <div class="arabic-text" lang="ar" dir="rtl" style="font-size:2.2rem;color:var(--primary);margin:var(--space-sm) 0;" id="fc-arabic">وَالتِّينِ وَالزَّيْتُونِ</div>
+              <p style="margin:0;font-size:0.875rem;color:var(--on-surface-variant);">Click card to reveal translation &amp; lexical key</p>
+            </div>
+            <div id="fc-back" hidden>
+              <span class="meta-k" id="fc-translit-back">wa-t-tīni wa-z-zaytūn</span>
+              <div class="subhead" style="margin:var(--space-xs) 0;" id="fc-english-back">By the fig and the olive</div>
+              <p style="margin:0;font-size:0.9375rem;color:var(--on-surface-variant);" id="fc-insight-back"></p>
+            </div>
+          </div>
+
+          <div class="flashcard-controls">
+            <div style="display:flex;gap:var(--space-sm);">
+              <button type="button" class="btn btn-secondary" onclick="stepFlashcard(-1)">Prev</button>
+              <button type="button" class="btn btn-secondary" onclick="stepFlashcard(1)">Next</button>
+            </div>
+            <button type="button" class="btn btn-emerald" id="fc-master-btn" onclick="toggleFlashcardMastered()">
+              <i data-lucide="check-circle" style="width:16px;height:16px;" aria-hidden="true"></i>
+              Mark Mastered
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool B: 8-Question Mastery Assessment -->
+        <div class="quiz-box">
+          <div class="quiz-progress-row">
+            <span class="badge-brass" id="quiz-progress-label">Question 1 of 8</span>
+            <span class="badge-emerald" id="quiz-score-label">Score: 0 / 8</span>
+          </div>
+
+          <div id="quiz-body">
+            <h3 class="quiz-question-text" id="quiz-question">Loading question…</h3>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);margin-top:var(--space-md);">
+              <button type="button" class="btn btn-secondary" onclick="restartQuiz()">Restart Quiz</button>
+              <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="nextQuizQuestion()">
+                Next Question
+                <i data-lucide="arrow-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON & SOURCES -->
+    <footer class="colophon">
+      <div>
+        <strong>Sources &amp; Grounding:</strong> Verse-by-verse Arabic text and Sahih International English translation drawn from the provided Surah At-Tin source text (Quran 95:1&ndash;8); root morphology and thematic exegesis structured from classical Quranic linguistic scholarship; vector boundaries from Natural Earth (public domain).
+      </div>
+      <div>
+        <span>Surah At-Tin Mastery Guide</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // 1. VERIFIED DATA MODELS (BACKTICK LITERALS FOR ALL TEXT STRINGS)
+    // =========================================================================
+
+    const VERSES = [
+      {
+        num: 1,
+        arabic: `وَالتِّينِ وَالزَّيْتُونِ`,
+        translit: `Wa-t-tīni wa-z-zaytūn`,
+        translation: `By the fig and the olive`,
+        theme: `Oaths 1 & 2 · Levantine Sanctuary`,
+        words: [
+          {
+            arabic: `وَالتِّينِ`,
+            translit: `wa-t-tīn`,
+            meaning: `By the fig`,
+            pos: `Oath Particle + Noun`,
+            root: `ت ي ن (t-y-n)`,
+            grammar: `Wāw al-Qasam + Genitive definite noun`,
+            note: `Allah opens the surah with an oath by the fig—renowned both as a wholesome fruit of remarkable balance and as an emblem of Damascus/Jerusalem and the Levantine prophetic lands.`
+          },
+          {
+            arabic: `وَالزَّيْتُونِ`,
+            translit: `wa-z-zaytūn`,
+            meaning: `and the olive`,
+            pos: `Conjunction + Noun`,
+            root: `ز ي ت (z-y-t)`,
+            grammar: `Wāw al-ʿAṭf + Genitive definite noun`,
+            note: `Paired with the fig, the olive points to the blessed Mount of Olives and Bayt al-Maqdis (Jerusalem), illuminating the prophetic mission of Prophet Isa (Jesus) and earlier messengers.`
+          }
+        ]
+      },
+      {
+        num: 2,
+        arabic: `وَطُورِ سِينِينَ`,
+        translit: `Wa-ṭūri sīnīn`,
+        meaning: `And [by] Mount Sinai`,
+        theme: `Oath 3 · Mosaic Revelation`,
+        words: [
+          {
+            arabic: `وَطُورِ`,
+            translit: `wa-ṭūri`,
+            meaning: `And [by] Mount`,
+            pos: `Conjunction + Construct Noun`,
+            root: `ط و ر (ṭ-w-r)`,
+            grammar: `Genitive noun in iḍāfah (construct state)`,
+            note: `In classical Arabic and Aramaic usage, Ṭūr denotes a sacred or verdant mountain where divine decree descends.`
+          },
+          {
+            arabic: `سِينِينَ`,
+            translit: `sīnīn`,
+            meaning: `Sinai`,
+            pos: `Proper Noun`,
+            root: `Proper toponym`,
+            grammar: `Genitive (muḍāf ilayhi), ending in -īn`,
+            note: `Refers to Mount Sinai in Egypt, where Prophet Musa (Moses) received the Torah and spoke directly with Allah—the second major prophetic sanctuary in the oath sequence.`
+          }
+        ]
+      },
+      {
+        num: 3,
+        arabic: `وَهَٰذَا الْبَلَدِ الْأَمِينِ`,
+        translit: `Wa-hādhā l-baladi l-amīn`,
+        meaning: `And [by] this secure city [Makkah],`,
+        theme: `Oath 4 · Abrahamic Sanctuary`,
+        words: [
+          {
+            arabic: `وَهَٰذَا`,
+            translit: `wa-hādhā`,
+            meaning: `And [by] this`,
+            pos: `Conjunction + Demonstrative`,
+            root: `Demonstrative pronoun`,
+            grammar: `Mubtadaʾ / genitive apposition (hādhā)`,
+            note: `The proximal demonstrative “this” indicates that the surah was revealed right inside Makkah, pointing directly to the living sanctuary around the Prophet ﷺ.`
+          },
+          {
+            arabic: `الْبَلَدِ`,
+            translit: `al-balad`,
+            meaning: `the city / land`,
+            pos: `Definite Noun`,
+            root: `ب ل د (b-l-d)`,
+            grammar: `Genitive noun (badal of hādhā)`,
+            note: `Designates Makkah, the Mother of Cities, consecrated by Prophet Ibrahim and Ismail as an inviolable precinct of worship.`
+          },
+          {
+            arabic: `الْأَمِينِ`,
+            translit: `al-amīn`,
+            meaning: `the secure`,
+            pos: `Adjective`,
+            root: `أ م ن (ʾ-m-n)`,
+            grammar: `Genitive adjective (faʿīl pattern)`,
+            note: `From the root ʾ-m-n (safety, trust, faithfulness)—echoed deliberately in verse 6 (āmanū, “those who believe”), linking outer sanctuary with inner faith.`
+          }
+        ]
+      },
+      {
+        num: 4,
+        arabic: `لَقَدْ خَلَقْنَا الْإِنسَانَ فِي أَحْسَنِ تَقْوِيمٍ`,
+        translit: `Laqad khalaqnā l-insāna fī aḥsani taqwīm`,
+        meaning: `We have certainly created man in the best of stature;`,
+        theme: `Central Thesis · Ahsan Taqweem`,
+        words: [
+          {
+            arabic: `لَقَدْ`,
+            translit: `laqad`,
+            meaning: `Certainly / Indeed`,
+            pos: `Emphatic Particles`,
+            root: `Lām al-Qasam + Qad`,
+            grammar: `Double oath-corroboration particle`,
+            note: `Introduces the Jawāb al-Qasam (the core statement sworn to by the four oaths in verses 1–3).`
+          },
+          {
+            arabic: `خَلَقْنَا`,
+            translit: `khalaqnā`,
+            meaning: `We created`,
+            pos: `Verb (Form I Past)`,
+            root: `خ ل ق (kh-l-q)`,
+            grammar: `1st person plural (royal plural of majesty)`,
+            note: `Signifies deliberate measuring, proportioning, and bringing into existence with purposeful design.`
+          },
+          {
+            arabic: `الْإِنسَانَ`,
+            translit: `al-insān`,
+            meaning: `man / humankind`,
+            pos: `Definite Noun`,
+            root: `أ ن س (ʾ-n-s)`,
+            grammar: `Accusative direct object (generic al-)`,
+            note: `Encompasses the entire human species—honored with upright posture, language, reason, and moral accountability.`
+          },
+          {
+            arabic: `فِي`,
+            translit: `fī`,
+            meaning: `in`,
+            pos: `Preposition`,
+            root: `Particle`,
+            grammar: `Preposition of state/envelopment`,
+            note: `Indicates that humanity is enveloped inside this state of excellence at its very creation.`
+          },
+          {
+            arabic: `أَحْسَنِ`,
+            translit: `aḥsan`,
+            meaning: `the best`,
+            pos: `Elative / Superlative`,
+            root: `ح س ن (ḥ-s-n)`,
+            grammar: `Genitive elative noun (afʿal pattern)`,
+            note: `Denotes unsurpassed beauty, harmony, and functional perfection—used here in construct with taqwīm.`
+          },
+          {
+            arabic: `تَقْوِيمٍ`,
+            translit: `taqwīm`,
+            meaning: `stature / upright form`,
+            pos: `Verbal Noun (Form II)`,
+            root: `ق و م (q-w-m)`,
+            grammar: `Genitive maṣdar (tafʿīl pattern)`,
+            note: `From q-w-m (to stand upright, straighten, calibrate). Refers both to physical symmetry and to intellectual, moral, and spiritual capacity.`
+          }
+        ]
+      },
+      {
+        num: 5,
+        arabic: `ثُمَّ رَدَدْنَاهُ أَسْفَلَ سَافِلِينَ`,
+        translit: `Thumma radadnāhu asfala sāfilīn`,
+        meaning: `Then We return him to the lowest of the low,`,
+        theme: `The Inversion · Asfala Safileen`,
+        words: [
+          {
+            arabic: `ثُمَّ`,
+            translit: `thumma`,
+            meaning: `Then`,
+            pos: `Conjunction`,
+            root: `Particle`,
+            grammar: `Conjunction of sequence and moral contrast`,
+            note: `Highlights the stark gulf between humanity’s noble origin (v.4) and the tragic decline that follows squandered potential.`
+          },
+          {
+            arabic: `رَدَدْنَاهُ`,
+            translit: `radadnāhu`,
+            meaning: `We return him`,
+            pos: `Verb + Object Pronoun`,
+            root: `ر د د (r-d-d)`,
+            grammar: `Form I past 1st pl. + 3rd masc. sg. pronoun`,
+            note: `Means turning back or reversing a course—either spiritually into heedlessness and Hellfire, or physically into frail old age.`
+          },
+          {
+            arabic: `أَسْفَلَ`,
+            translit: `asfala`,
+            meaning: `the lowest`,
+            pos: `Elative Noun`,
+            root: `س ف ل (s-f-l)`,
+            grammar: `Accusative adverbial/state noun`,
+            note: `The opposite of upright elevation (taqwīm): sinking beneath the dignity for which one was fashioned.`
+          },
+          {
+            arabic: `سَافِلِينَ`,
+            translit: `sāfilīn`,
+            meaning: `of the low`,
+            pos: `Active Participle Plural`,
+            root: `س ف ل (s-f-l)`,
+            grammar: `Genitive sound masculine plural`,
+            note: `Repetition of the root s-f-l intensifies the descent—lowest among those who stoop low through ingratitude and corruption.`
+          }
+        ]
+      },
+      {
+        num: 6,
+        arabic: `إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَلَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ`,
+        translit: `Illā lladhīna āmanū wa-ʿamilū ṣ-ṣāliḥāti fa-lahum ajrun ghayru mamnūn`,
+        meaning: `Except for those who believe and do righteous deeds, for they will have a reward uninterrupted.`,
+        theme: `The Exception · Unbroken Reward`,
+        words: [
+          {
+            arabic: `إِلَّا`,
+            translit: `illā`,
+            meaning: `Except for`,
+            pos: `Particle of Exception`,
+            root: `Particle`,
+            grammar: `Adāt istithnāʾ`,
+            note: `Marks the decisive rescue clause: human decline is not inevitable; faith and righteous action preserve human nobility.`
+          },
+          {
+            arabic: `الَّذِينَ`,
+            translit: `alladhīna`,
+            meaning: `those who`,
+            pos: `Relative Pronoun`,
+            root: `Pronoun`,
+            grammar: `Masculine plural relative pronoun`,
+            note: `Opens the category of the preserved—anyone, in any age or land, who unites inward conviction with outward integrity.`
+          },
+          {
+            arabic: `آمَنُوا`,
+            translit: `āmanū`,
+            meaning: `believe`,
+            pos: `Verb (Form IV Past)`,
+            root: `أ م ن (ʾ-m-n)`,
+            grammar: `3rd person masculine plural`,
+            note: `Shares the exact root ʾ-m-n with al-Balad al-Amīn (v.3): true faith anchors the heart in spiritual security.`
+          },
+          {
+            arabic: `وَعَمِلُوا`,
+            translit: `wa-ʿamilū`,
+            meaning: `and do`,
+            pos: `Conjunction + Verb`,
+            root: `ع م ل (ʿ-m-l)`,
+            grammar: `Form I past, 3rd person plural`,
+            note: `Demonstrates that Quranic belief is never passive; inner trust must express itself in purposeful, sustained action.`
+          },
+          {
+            arabic: `الصَّالِحَاتِ`,
+            translit: `aṣ-ṣāliḥāt`,
+            meaning: `righteous deeds`,
+            pos: `Substantive Plural`,
+            root: `ص ل ح (ṣ-l-ḥ)`,
+            grammar: `Accusative sound feminine plural`,
+            note: `From ṣ-l-ḥ (wholesomeness, repair, suitability)—deeds that mend, heal, and harmonize human society.`
+          },
+          {
+            arabic: `فَلَهُمْ`,
+            translit: `fa-lahum`,
+            meaning: `for they will have`,
+            pos: `Resultative + Prep + Pronoun`,
+            root: `Particle + Pronoun`,
+            grammar: `Fāʾ + Lām of possession + 3rd pl.`,
+            note: `Signals an immediate, assured consequence belonging exclusively to this group.`
+          },
+          {
+            arabic: `أَجْرٌ`,
+            translit: `ajr`,
+            meaning: `a reward`,
+            pos: `Indefinite Noun`,
+            root: `أ ج ر (ʾ-j-r)`,
+            grammar: `Nominative subject (mubtadaʾ muʾakhkhar)`,
+            note: `Compensation and honor granted by Allah, framed indefinitely to magnify its immensity.`
+          },
+          {
+            arabic: `غَيْرُ`,
+            translit: `ghayru`,
+            meaning: `not / without`,
+            pos: `Noun of Negation`,
+            root: `غ ي ر (gh-y-r)`,
+            grammar: `Nominative adjective to ajrun`,
+            note: `Negates any limitation or interruption in what follows.`
+          },
+          {
+            arabic: `مَمْنُونٍ`,
+            translit: `mamnūn`,
+            meaning: `uninterrupted`,
+            pos: `Passive Participle`,
+            root: `م ن ن (m-n-n)`,
+            grammar: `Genitive mafʿūl pattern`,
+            note: `Carries two classic meanings: (1) never cut off or exhausted, even in frail old age when deeds slow down; and (2) never reminded with reproach.`
+          }
+        ]
+      },
+      {
+        num: 7,
+        arabic: `فَمَا يُكَذِّبُكَ بَعْدُ بِالدِّينِ`,
+        translit: `Fa-mā yukadhdhibuka baʿdu bi-d-dīn`,
+        meaning: `So what yet causes you to deny the Recompense?`,
+        theme: `Moral Reckoning · Ad-Din`,
+        words: [
+          {
+            arabic: `فَمَا`,
+            translit: `fa-mā`,
+            meaning: `So what`,
+            pos: `Conjunction + Interrogative`,
+            root: `Particle`,
+            grammar: `Fāʾ of consequence + mā al-istifhāmiyyah`,
+            note: `Challenges the listener’s conscience after presenting the clear polarity of human potential and moral outcome.`
+          },
+          {
+            arabic: `يُكَذِّبُكَ`,
+            translit: `yukadhdhibuka`,
+            meaning: `causes you to deny`,
+            pos: `Verb (Form II) + Pronoun`,
+            root: `ك ذ ب (k-dh-b)`,
+            grammar: `Imperfect 3rd masc. sg. + 2nd sg. object`,
+            note: `Addresses the individual directly: what internal excuse still drives you to call the Day of Judgment a lie?`
+          },
+          {
+            arabic: `بَعْدُ`,
+            translit: `baʿdu`,
+            meaning: `yet / after this`,
+            pos: `Adverb of Time`,
+            root: `ب ع د (b-ʿ-d)`,
+            grammar: `Indeclinable adverb ending in ḍammah`,
+            note: `Means “after all these unmistakable signs” in human creation, history, and prophetic testimony.`
+          },
+          {
+            arabic: `بِالدِّينِ`,
+            translit: `bi-d-dīn`,
+            meaning: `the Recompense`,
+            pos: `Preposition + Noun`,
+            root: `د ي ن (d-y-n)`,
+            grammar: `Genitive noun`,
+            note: `From d-y-n (settling an account, requital, judgment). Here it means the final Day of Recompense when moral truth is settled.`
+          }
+        ]
+      },
+      {
+        num: 8,
+        arabic: `أَلَيْسَ اللَّهُ بِأَحْكَمِ الْحَاكِمِينَ`,
+        translit: `A-laysa llāhu bi-aḥkami l-ḥākimīn`,
+        meaning: `Is not Allah the most just of judges?`,
+        theme: `Crowning Seal · Divine Justice`,
+        words: [
+          {
+            arabic: `أَلَيْسَ`,
+            translit: `a-laysa`,
+            meaning: `Is not`,
+            pos: `Interrogative + Negative Verb`,
+            root: `ل ي س (l-y-s)`,
+            grammar: `Hamzat al-Istifhām + laysa (affirmative rhetorical question)`,
+            note: `In Arabic rhetoric, a negative question (“Is not…?”) compels an emphatic affirmative answer: “Indeed, yes—and to Him we bear witness.”`
+          },
+          {
+            arabic: `اللَّهُ`,
+            translit: `Allāhu`,
+            meaning: `Allah`,
+            pos: `Proper Name of God`,
+            root: `أ ل ه (ʾ-l-h)`,
+            grammar: `Nominative (ism laysa)`,
+            note: `Places the Divine Name at the heart of the surah’s resolution, answering the human predicament of verses 4–7.`
+          },
+          {
+            arabic: `بِأَحْكَمِ`,
+            translit: `bi-aḥkami`,
+            meaning: `the most just / wisest`,
+            pos: `Emphatic Preposition + Elative`,
+            root: `ح ك م (ḥ-k-m)`,
+            grammar: `Emphatic bāʾ + genitive elative noun`,
+            note: `The root ḥ-k-m unites absolute wisdom (ḥikmah) with flawless judgment (ḥukm): Allah’s rulings are neither arbitrary nor flawed.`
+          },
+          {
+            arabic: `الْحَاكِمِينَ`,
+            translit: `al-ḥākimīn`,
+            meaning: `of judges`,
+            pos: `Active Participle Plural`,
+            root: `ح ك م (ḥ-k-m)`,
+            grammar: `Genitive sound masculine plural`,
+            note: `Closes Surah At-Tin on complete moral certainty: no noble effort goes unrewarded and no injustice escapes the Supreme Judge.`
+          }
+        ]
+      }
+    ];
+
+    const OATH_STOPS = [
+      {
+        id: `levant`,
+        name: `Jerusalem & the Levant`,
+        oathLabel: `Oaths 1 & 2 · At-Tin & Az-Zaytun (95:1)`,
+        coords: [35.2137, 31.7683],
+        prophet: `Prophet Isa (Jesus) & Earlier Prophets`,
+        arabic: `وَالتِّينِ وَالزَّيْتُونِ`,
+        literal: `Literally, the fig and the olive—two extraordinarily nutritious Mediterranean fruits symbolizing peace, light, and sustenance.`,
+        geographic: `Classical exegetes (including Ibn Abbas, Qatadah, and Ibn Kathir) note that the fig and olive evoke the fertile hills of Syria-Palestine and Mount of Olives in Jerusalem, the cradle of Prophet Isa (Jesus).`,
+        synthesis: `Together, they open the oath sequence from the northern prophetic heartland, pairing tangible earthly blessing with the heritage of revelation.`
+      },
+      {
+        id: `sinai`,
+        name: `Mount Sinai (Tur Sinin)`,
+        oathLabel: `Oath 3 · Tur Sinin (95:2)`,
+        coords: [33.975, 28.5392],
+        prophet: `Prophet Musa (Moses)`,
+        arabic: `وَطُورِ سِينِينَ`,
+        literal: `Ṭūr refers to a sacred or tree-clad mountain; Sīnīn identifies the Sinai massif.`,
+        geographic: `Located in the southern Sinai Peninsula, where Allah spoke directly to Prophet Musa and revealed the Torah as moral law and guidance.`,
+        synthesis: `Moving southward from Jerusalem to Sinai, the oaths bridge the Gospel heritage of Isa back to the Mosaic covenant of Law.`
+      },
+      {
+        id: `makkah`,
+        name: `Makkah (Al-Balad al-Amin)`,
+        oathLabel: `Oath 4 · Al-Balad al-Amin (95:3)`,
+        coords: [39.8262, 21.4225],
+        prophet: `Prophet Ibrahim & Prophet Muhammad ﷺ`,
+        arabic: `وَهَٰذَا الْبَلَدِ الْأَمِينِ`,
+        literal: `“This secure city”—the proximal demonstrative hādhā marks immediacy during the Makkan revelation.`,
+        geographic: `Situated in the Hijaz valley around the Kaʿbah, established by Ibrahim as an inviolable sanctuary where bloodshed and fear give way to safety (amn).`,
+        synthesis: `The sequence culminates in Makkah and Prophet Muhammad ﷺ, uniting three prophetic dispensations before declaring humanity’s noble creation in verse 4.`
+      }
+    ];
+
+    const LENS_CONTENT = {
+      spiritual: {
+        taqweemTitle: `Ahsan Taqweem: Moral & Spiritual Capacity`,
+        taqweemBody: `Beyond upright anatomy, taqwīm signifies the inner calibration of intellect, conscience, and free will—equipping humanity to know Allah, carry stewardship (amānah), and choose virtue freely.`,
+        safileenTitle: `Asfala Safileen: Self-Inflicted Spiritual Collapse`,
+        safileenBody: `When a human being severs reason from revelation and serves lower appetites, the very faculties meant for transcendence invert—sinking below creatures that act purely by instinct.`,
+        exceptionTitle: `Faith & Righteous Deeds: Preserving Original Dignity`,
+        exceptionBody: `Only īmān (rooted trust) joined to ṣāliḥāt (healing, constructive deeds) keeps human stature intact, yielding ajrun ghayru mamnūn—an unbroken spiritual reward free of reproach.`
+      },
+      linguistic: {
+        taqweemTitle: `Root q-w-m (ق-و-م) & Root ḥ-s-n (ح-س-ن)`,
+        taqweemBody: `Taqwīm is the Form II verbal noun from q-w-m (making straight, upright, and balanced), intensified by the elative aḥsan (“most harmonious/best”)—the highest structural praise in Arabic.`,
+        safileenTitle: `Root s-f-l (س-ف-ل): Elative + Active Participle`,
+        safileenBody: `Asfala sāfilīn pairs the superlative (“lowest”) with the plural participle (“those who descend”), creating a sharp linguistic mirror to aḥsani taqwīm across verses 4 and 5.`,
+        exceptionTitle: `Root Echo: Al-Amīn (v.3) ↔ Āmanū (v.6)`,
+        exceptionBody: `Both words spring from ʾ-m-n (أ-م-ن, security and trust). Meanwhile, mamnūn (from m-n-n) carries a double nuance: neither cut off in duration nor tainted by obligation or reminder.`
+      },
+      temporal: {
+        taqweemTitle: `The Prime of Youth, Energy & Agency`,
+        taqweemBody: `In the physical-temporal reading of Ibn Abbas and others, aḥsan taqwīm describes human vigor at the height of strength, clarity, and physical independence.`,
+        safileenTitle: `Frailty of Advanced Old Age (Arḍal al-ʿUmur)`,
+        safileenBody: `Thumma radadnāhu asfala sāfilīn also portrays the natural return to dependency and weakness in extreme old age—a reminder that bodily strength alone is fleeting.`,
+        exceptionTitle: `Continuous Credit Even When Strength Fades`,
+        exceptionBody: `Classical commentators observe that “uninterrupted reward” (ghayru mamnūn) promises believers that the good deeds of their youth remain credited even when old age limits their capacity.`
+      }
+    };
+
+    const FLASHCARDS = [
+      {
+        ref: `Ayah 95:1`,
+        arabic: `وَالتِّينِ وَالزَّيْتُونِ`,
+        translit: `Wa-t-tīni wa-z-zaytūn`,
+        english: `By the fig and the olive`,
+        insight: `The opening twin oaths evoking both wholesome sustenance and the prophetic groves of the Levant and Jerusalem.`
+      },
+      {
+        ref: `Ayah 95:2`,
+        arabic: `وَطُورِ سِينِينَ`,
+        translit: `Wa-ṭūri sīnīn`,
+        english: `And [by] Mount Sinai`,
+        insight: `The sacred mountain where Prophet Musa received revelation and spoke directly with Allah.`
+      },
+      {
+        ref: `Ayah 95:3`,
+        arabic: `وَهَٰذَا الْبَلَدِ الْأَمِينِ`,
+        translit: `Wa-hādhā l-baladi l-amīn`,
+        english: `And [by] this secure city [Makkah]`,
+        insight: `Points directly to Makkah; al-Amīn shares the root ʾ-m-n (security/faith) with āmanū in verse 6.`
+      },
+      {
+        ref: `Ayah 95:4`,
+        arabic: `فِي أَحْسَنِ تَقْوِيمٍ`,
+        translit: `Fī aḥsani taqwīm`,
+        english: `In the best of stature`,
+        insight: `The Jawāb al-Qasam (central thesis): humankind is crafted in supreme physical, intellectual, and moral proportion.`
+      },
+      {
+        ref: `Ayah 95:5`,
+        arabic: `أَسْفَلَ سَافِلِينَ`,
+        translit: `Asfala sāfilīn`,
+        english: `The lowest of the low`,
+        insight: `Signifies both spiritual degradation through ingratitude and bodily frailty in advanced age.`
+      },
+      {
+        ref: `Ayah 95:6`,
+        arabic: `أَجْرٌ غَيْرُ مَمْنُونٍ`,
+        translit: `Ajrun ghayru mamnūn`,
+        english: `A reward uninterrupted`,
+        insight: `From m-n-n: an endless reward never cut off (even in old age) and never accompanied by reproach.`
+      },
+      {
+        ref: `Ayah 95:7`,
+        arabic: `فَمَا يُكَذِّبُكَ بَعْدُ بِالدِّينِ`,
+        translit: `Fa-mā yukadhdhibuka baʿdu bi-d-dīn`,
+        english: `So what yet causes you to deny the Recompense?`,
+        insight: `A direct rhetorical challenge: after seeing human nobility and decline, rejecting final accountability has no rational basis.`
+      },
+      {
+        ref: `Ayah 95:8`,
+        arabic: `أَلَيْسَ اللَّهُ بِأَحْكَمِ الْحَاكِمِينَ`,
+        translit: `A-laysa llāhu bi-aḥkami l-ḥākimīn`,
+        english: `Is not Allah the most just of judges?`,
+        insight: `From ḥ-k-m (wisdom + judgment): seals the surah by affirming absolute divine fairness.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        question: `Which three prophetic sanctuaries are traced by the fourfold oaths in verses 95:1–3?`,
+        options: [
+          `Jerusalem/Levant (fig & olive), Mount Sinai, and Makkah`,
+          `Madinah, Baghdad, and Mount Arafat`,
+          `Mount Hira, Damascus, and Jerusalem`,
+          `Egypt’s Nile Valley, Madinah, and Mount Sinai`
+        ],
+        correct: 0,
+        explanation: `Verses 1–3 move geographically from the Levant/Jerusalem (fig and olive, cradle of Isa and earlier prophets) to Mount Sinai (Musa) to Makkah (al-Balad al-Amīn, Ibrahim and Muhammad ﷺ).`
+      },
+      {
+        question: `What grammatical role does verse 95:4 (“We have certainly created man in the best of stature”) play in relation to verses 1–3?`,
+        options: [
+          `An unrelated historical footnote`,
+          `The Jawāb al-Qasam—the central thesis corroborated by the four oaths`,
+          `An exception clause (istithnāʾ)`,
+          `A rhetorical question addressed to the disbelievers`
+        ],
+        correct: 1,
+        explanation: `Introduced by the double emphatic laqad, verse 4 is the Jawāb al-Qasam: the solemn truth that the four preceding oaths witness and reinforce.`
+      },
+      {
+        question: `What is the Arabic root and core meaning of taqwīm in “aḥsani taqwīm” (95:4)?`,
+        options: [
+          `s-f-l (س-ف-ل): sinking or lowering`,
+          `q-w-m (ق-و-م): uprightness, proportion, and harmonious calibration`,
+          `d-y-n (د-ي-ن): recompense and debt`,
+          `k-dh-b (ك-ذ-ب): denial or falsehood`
+        ],
+        correct: 1,
+        explanation: `Taqwīm is a Form II verbal noun from q-w-m, conveying straightness, upright posture, symmetry, and calibrated moral-intellectual stature.`
+      },
+      {
+        question: `How do classical exegetes explain “Thumma radadnāhu asfala sāfilīn” (95:5)?`,
+        options: [
+          `Only as a metaphor for economic poverty`,
+          `Both as moral/spiritual degradation through rejection of truth and as physical frailty in old age`,
+          `As a command to abandon worldly society`,
+          `Solely as a description of pre-creation`
+        ],
+        correct: 1,
+        explanation: `Classical tafsīr holds both dimensions in harmony: spiritually, turning away from guidance plunges humanity below its honor; temporally, bodily vigor also returns to frailty—which makes verse 6’s exception vital.`
+      },
+      {
+        question: `Which pair of words in Surah At-Tin shares the exact Arabic root ʾ-m-n (أ-م-ن), linking sacred sanctuary with human faith?`,
+        options: [
+          `at-Tīn (v.1) and ad-Dīn (v.7)`,
+          `al-Amīn (v.3) and āmanū (v.6)`,
+          `taqwīm (v.4) and ḥākimīn (v.8)`,
+          `ṭūr (v.2) and ajr (v.6)`
+        ],
+        correct: 1,
+        explanation: `Al-Balad al-Amīn (“the secure city”) in verse 3 and āmanū (“those who believe”) in verse 6 both derive from ʾ-m-n, uniting outer sanctuary with inner spiritual security.`
+      },
+      {
+        question: `What two meanings are carried by “ajrun ghayru mamnūn” in verse 95:6?`,
+        options: [
+          `A temporary reward given only in this world`,
+          `A reward neither cut off/interrupted nor given with reproach`,
+          `A hidden reward that cannot be spoken of`,
+          `An earthly inheritance restricted to scholars`
+        ],
+        correct: 1,
+        explanation: `From the root m-n-n, ghayru mamnūn means both uninterrupted in duration (even when aging limits new deeds) and completely free of reminders of obligation.`
+      },
+      {
+        question: `In verse 95:7 (“Fa-mā yukadhdhibuka baʿdu bi-d-dīn”), what does “ad-Dīn” specifically refer to?`,
+        options: [
+          `Agricultural customs of the Levant`,
+          `The Day of Recompense / Final Judgment`,
+          `The physical boundaries of Makkah`,
+          `Arabic poetry and grammar`
+        ],
+        correct: 1,
+        explanation: `Ad-Dīn here carries its core sense of final requital and moral reckoning—asking what excuse remains to deny judgment after witnessing human nature’s two horizons.`
+      },
+      {
+        question: `Why does verse 95:8 conclude with the negative question “A-laysa Allāhu bi-aḥkami l-ḥākimīn”?`,
+        options: [
+          `To express uncertainty about who will judge`,
+          `As an emphatic rhetorical affirmation that Allah unites absolute wisdom and flawless justice`,
+          `To shift the subject back to botanical symbolism`,
+          `To suggest that human judges hold equal authority`
+        ],
+        correct: 1,
+        explanation: `In Arabic grammar, a negative interrogative with a-laysa elicits an immediate affirmative (“Yes, indeed!”), anchoring moral accountability in the Supreme Judge whose ḥikmah and ḥukm are absolute.`
+      }
+    ];
+
+    // =========================================================================
+    // 2. APPLICATION STATE (PERSISTED VIA notebookAppApi)
+    // =========================================================================
+
+    const DEFAULT_STATE = {
+      activeVerseNum: 1,
+      activeWordIdx: 0,
+      studiedVerses: [],
+      selectedOathIdx: 0,
+      exegeticalLens: `spiritual`,
+      reflections: { r1: ``, r2: ``, r3: ``, r4: `` },
+      flashcardIdx: 0,
+      flashcardFlipped: false,
+      masteredCards: [],
+      quizIdx: 0,
+      quizAnswers: {},
+      quizScore: 0
+    };
+
+    let appState = cloneState(DEFAULT_STATE);
+    let saveTimer = null;
+
+    function cloneState(src) {
+      return JSON.parse(JSON.stringify(src));
+    }
+
+    function mergeState(saved) {
+      if (!saved || typeof saved !== `object`) return cloneState(DEFAULT_STATE);
+      return {
+        activeVerseNum: Number(saved.activeVerseNum) >= 1 && Number(saved.activeVerseNum) <= 8 ? Number(saved.activeVerseNum) : 1,
+        activeWordIdx: Number.isInteger(saved.activeWordIdx) && saved.activeWordIdx >= 0 ? saved.activeWordIdx : 0,
+        studiedVerses: Array.isArray(saved.studiedVerses) ? saved.studiedVerses : [],
+        selectedOathIdx: Number.isInteger(saved.selectedOathIdx) && saved.selectedOathIdx >= 0 && saved.selectedOathIdx <= 2 ? saved.selectedOathIdx : 0,
+        exegeticalLens: [`spiritual`, `linguistic`, `temporal`].includes(saved.exegeticalLens) ? saved.exegeticalLens : `spiritual`,
+        reflections: Object.assign({ r1: ``, r2: ``, r3: ``, r4: `` }, saved.reflections || {}),
+        flashcardIdx: Number.isInteger(saved.flashcardIdx) && saved.flashcardIdx >= 0 && saved.flashcardIdx < FLASHCARDS.length ? saved.flashcardIdx : 0,
+        flashcardFlipped: Boolean(saved.flashcardFlipped),
+        masteredCards: Array.isArray(saved.masteredCards) ? saved.masteredCards : [],
+        quizIdx: Number.isInteger(saved.quizIdx) && saved.quizIdx >= 0 && saved.quizIdx < QUIZ_QUESTIONS.length ? saved.quizIdx : 0,
+        quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === `object` ? saved.quizAnswers : {},
+        quizScore: Number.isInteger(saved.quizScore) ? saved.quizScore : 0
+      };
+    }
+
+    async function persistState(immediate) {
+      const statusEl = document.getElementById(`save-status-indicator`);
+      if (statusEl) statusEl.textContent = `Saving…`;
+
+      const commit = async () => {
+        try {
+          if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+            await window.notebookAppApi.setAppState(appState);
+          }
+          if (statusEl) statusEl.textContent = `Progress saved`;
+        } catch (err) {
+          if (statusEl) statusEl.textContent = `Local session active`;
+        }
+      };
+
+      if (immediate) {
+        if (saveTimer) clearTimeout(saveTimer);
+        await commit();
+      } else {
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(commit, 320);
+      }
+    }
+
+    // =========================================================================
+    // 3. RENDERERS & INTERACTIVE HANDLERS (HOISTED FUNCTIONS)
+    // =========================================================================
+
+    function updateProgressSummary() {
+      const studiedCount = appState.studiedVerses.length;
+      const masteredCount = appState.masteredCards.length;
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      const correctCount = Object.entries(appState.quizAnswers).filter(
+        ([qIdx, choiceIdx]) => QUIZ_QUESTIONS[Number(qIdx)] && QUIZ_QUESTIONS[Number(qIdx)].correct === choiceIdx
+      ).length;
+      appState.quizScore = correctCount;
+
+      // Weighted mastery index: 8 verses + 8 flashcards + 8 quiz correct = 24 units
+      const totalPct = Math.round(((studiedCount + masteredCount + correctCount) / 24) * 100);
+
+      const badgeText = document.getElementById(`global-progress-text`);
+      if (badgeText) badgeText.textContent = `${studiedCount} of 8 Verses Studied`;
+
+      const heroPct = document.getElementById(`hero-mastery-pct`);
+      if (heroPct) heroPct.textContent = `${totalPct}%`;
+
+      const heroDetail = document.getElementById(`hero-mastery-detail`);
+      if (heroDetail) heroDetail.textContent = `${studiedCount}/8 Ayahs · ${masteredCount}/8 Cards · ${correctCount}/${answeredCount || 8} Quiz`;
+    }
+
+    function renderVerseList() {
+      const container = document.getElementById(`verse-list-container`);
+      if (!container) return;
+
+      container.innerHTML = VERSES.map((v) => {
+        const isActive = v.num === appState.activeVerseNum;
+        const isStudied = appState.studiedVerses.includes(v.num);
+        const wordsHtml = v.words.map((w, wIdx) => {
+          const isWordSelected = isActive && wIdx === appState.activeWordIdx;
+          return `<button type="button" class="word-chip ${isWordSelected ? `is-selected` : ``}" onclick="selectWord(${v.num}, ${wIdx})" aria-label="Inspect word ${w.translit}: ${w.meaning}">${w.arabic}</button>`;
+        }).join(``);
+
+        return `
+          <article class="verse-card ${isActive ? `is-active` : ``}" id="verse-card-${v.num}">
+            <div class="verse-card-header">
+              <div class="verse-ref">
+                <span class="verse-num-badge">95:${v.num}</span>
+                <span class="verse-theme-tag">${v.theme}</span>
+              </div>
+              <div class="verse-controls">
+                <button type="button" class="mini-btn" onclick="selectVerse(${v.num})">
+                  Inspect Words
+                </button>
+                <button type="button" class="mini-btn ${isStudied ? `is-studied` : ``}" onclick="toggleVerseStudied(${v.num})">
+                  ${isStudied ? `Studied ✓` : `Mark Studied`}
+                </button>
+              </div>
+            </div>
+            <div class="verse-arabic-row" lang="ar" dir="rtl">
+              ${wordsHtml}
+            </div>
+            <p class="verse-transliteration">${v.translit}</p>
+            <p class="verse-translation">&ldquo;${v.translation}&rdquo;</p>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function renderLexicalPanel() {
+      const verse = VERSES.find((v) => v.num === appState.activeVerseNum) || VERSES[0];
+      const safeIdx = Math.min(appState.activeWordIdx, verse.words.length - 1);
+      appState.activeWordIdx = safeIdx;
+      const word = verse.words[safeIdx];
+
+      const setTxt = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      setTxt(`lex-verse-badge`, `Ayah 95:${verse.num} · Word ${safeIdx + 1} of ${verse.words.length}`);
+      setTxt(`lex-pos-badge`, word.pos);
+      setTxt(`lex-arabic-word`, word.arabic);
+      setTxt(`lex-translit`, word.translit);
+      setTxt(`lex-meaning`, `“${word.meaning}”`);
+      setTxt(`lex-root`, word.root);
+      setTxt(`lex-grammar`, word.grammar);
+      setTxt(`lex-note`, word.note);
+
+      const strip = document.getElementById(`lex-verse-words-strip`);
+      if (strip) {
+        strip.innerHTML = verse.words.map((w, idx) => `
+          <button type="button" class="lex-nav-btn" style="${idx === safeIdx ? `background:var(--primary);color:var(--on-primary);border-color:var(--primary);` : ``}" onclick="selectWord(${verse.num}, ${idx})">
+            <span class="arabic-text" lang="ar" dir="rtl" style="font-size:1.1rem;line-height:1.2;">${w.arabic}</span>
+            <span style="margin-left:4px;">(${w.meaning})</span>
+          </button>
+        `).join(``);
+      }
+    }
+
+    function selectVerse(verseNum) {
+      appState.activeVerseNum = verseNum;
+      appState.activeWordIdx = 0;
+      renderVerseList();
+      renderLexicalPanel();
+      persistState(false);
+    }
+
+    function selectWord(verseNum, wordIdx) {
+      appState.activeVerseNum = verseNum;
+      appState.activeWordIdx = wordIdx;
+      renderVerseList();
+      renderLexicalPanel();
+      persistState(false);
+    }
+
+    function stepLexicalWord(delta) {
+      // Flatten word navigation across all 8 verses
+      const flat = [];
+      VERSES.forEach((v) => {
+        v.words.forEach((_, idx) => flat.push({ v: v.num, w: idx }));
+      });
+      const currentPos = flat.findIndex((item) => item.v === appState.activeVerseNum && item.w === appState.activeWordIdx);
+      const nextPos = (currentPos + delta + flat.length) % flat.length;
+      const target = flat[nextPos];
+      selectWord(target.v, target.w);
+    }
+
+    function toggleVerseStudied(verseNum) {
+      const idx = appState.studiedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(verseNum);
+        appState.studiedVerses.sort((a, b) => a - b);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      renderVerseList();
+      updateProgressSummary();
+      persistState(true);
+    }
+
+    // =========================================================================
+    // 4. SACRED GEOGRAPHIES D3 VECTOR MAP & OATH EXPLORER
+    // =========================================================================
+
+    let mapPinsSelection = null;
+
+    function initSacredMap() {
+      const container = document.getElementById(`oath-map-container`);
+      if (!container) return;
+
+      const width = Math.max(container.clientWidth || 560, 320);
+      const height = 420;
+
+      // Clear any previous SVG
+      container.innerHTML = ``;
+
+      if (typeof d3 === `undefined`) {
+        renderFallbackSchematicMap(container);
+        return;
+      }
+
+      const svg = d3.select(container)
+        .append(`svg`)
+        .attr(`viewBox`, `0 0 ${width} ${height}`)
+        .attr(`width`, `100%`)
+        .attr(`height`, `100%`)
+        .style(`display`, `block`);
+
+      const projection = d3.geoMercator()
+        .center([36.8, 27.2])
+        .scale(width * 2.15)
+        .translate([width / 2, height / 2]);
+
+      const path = d3.geoPath(projection);
+
+      // Subtle latitude/longitude graticule
+      const graticule = d3.geoGraticule().step([5, 5]);
+      svg.append(`path`)
+        .datum(graticule())
+        .attr(`d`, path)
+        .attr(`fill`, `none`)
+        .attr(`stroke`, `var(--outline-variant)`)
+        .attr(`stroke-width`, 0.7)
+        .attr(`stroke-dasharray`, `3 3`);
+
+      const mapLayer = svg.append(`g`);
+      const routeLayer = svg.append(`g`);
+      const pinLayer = svg.append(`g`);
+
+      function drawOathOverlays() {
+        const lineGeo = {
+          type: `LineString`,
+          coordinates: OATH_STOPS.map((s) => s.coords)
+        };
+
+        routeLayer.selectAll(`path.oath-arc`)
+          .data([lineGeo])
+          .join(`path`)
+          .attr(`class`, `oath-arc`)
+          .attr(`d`, path)
+          .attr(`fill`, `none`)
+          .attr(`stroke`, `var(--secondary)`)
+          .attr(`stroke-width`, 2.5)
+          .attr(`stroke-dasharray`, `6 5`);
+
+        mapPinsSelection = pinLayer.selectAll(`g.oath-pin`)
+          .data(OATH_STOPS)
+          .join(`g`)
+          .attr(`class`, `oath-pin`)
+          .attr(`transform`, (d) => {
+            const p = projection(d.coords);
+            return `translate(${p[0]}, ${p[1]})`;
+          })
+          .style(`cursor`, `pointer`)
+          .on(`click`, (_, d) => {
+            const idx = OATH_STOPS.findIndex((s) => s.id === d.id);
+            if (idx !== -1) selectOathStop(idx);
+          });
+
+        mapPinsSelection.append(`circle`)
+          .attr(`class`, `pin-halo`)
+          .attr(`r`, 18)
+          .attr(`fill`, `var(--primary-container)`)
+          .attr(`fill-opacity`, 0.55)
+          .attr(`stroke`, `var(--primary)`)
+          .attr(`stroke-width`, 1.2);
+
+        mapPinsSelection.append(`circle`)
+          .attr(`class`, `pin-core`)
+          .attr(`r`, 8)
+          .attr(`fill`, `var(--primary)`)
+          .attr(`stroke`, `var(--background)`)
+          .attr(`stroke-width`, 2);
+
+        mapPinsSelection.append(`text`)
+          .attr(`x`, 14)
+          .attr(`y`, 4)
+          .attr(`font-family`, `Plus Jakarta Sans, sans-serif`)
+          .attr(`font-size`, `12`)
+          .attr(`font-weight`, `700`)
+          .attr(`fill`, `var(--on-surface)`)
+          .text((d, i) => `${i + 1}. ${d.name.split(` (`)[0]}`);
+
+        updateMapActivePin();
+      }
+
+      // Load Natural Earth 50m public-domain countries TopoJSON
+      if (typeof topojson !== `undefined`) {
+        fetch(`https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json`)
+          .then((res) => res.json())
+          .then((topo) => {
+            const countries = topojson.feature(topo, topo.objects.countries);
+            const focusCountries = new Set([`Egypt`, `Israel`, `Palestine`, `Jordan`, `Syria`, `Lebanon`, `Saudi Arabia`]);
+
+            mapLayer.selectAll(`path.country-poly`)
+              .data(countries.features)
+              .join(`path`)
+              .attr(`class`, `country-poly`)
+              .attr(`d`, path)
+              .attr(`fill`, (d) => focusCountries.has(d.properties && d.properties.name) ? `var(--map-land-active)` : `var(--map-land)`)
+              .attr(`stroke`, `var(--map-border)`)
+              .attr(`stroke-width`, 0.9);
+
+            // Region water labels for geographic orientation
+            const labels = [
+              { name: `Mediterranean Sea`, coords: [32.2, 33.2] },
+              { name: `Red Sea`, coords: [37.4, 23.8] },
+              { name: `Sinai`, coords: [33.8, 29.6] },
+              { name: `Hijaz`, coords: [39.9, 23.6] }
+            ];
+            mapLayer.selectAll(`text.geo-label`)
+              .data(labels)
+              .join(`text`)
+              .attr(`class`, `geo-label`)
+              .attr(`transform`, (d) => {
+                const pt = projection(d.coords);
+                return `translate(${pt[0]}, ${pt[1]})`;
+              })
+              .attr(`text-anchor`, `middle`)
+              .attr(`font-family`, `Cormorant Garamond, serif`)
+              .attr(`font-style`, `italic`)
+              .attr(`font-size`, `13`)
+              .attr(`fill`, `var(--on-surface-variant)`)
+              .text((d) => d.name);
+
+            drawOathOverlays();
+          })
+          .catch(() => {
+            drawOathOverlays();
+          });
+      } else {
+        drawOathOverlays();
+      }
+    }
+
+    function renderFallbackSchematicMap(container) {
+      container.innerHTML = `
+        <svg viewBox="0 0 500 380" width="100%" height="100%" aria-hidden="true">
+          <rect width="500" height="380" fill="var(--map-sea)" />
+          <path d="M 220 75 L 185 165 L 330 305" fill="none" stroke="var(--secondary)" stroke-width="2.5" stroke-dasharray="6 5" />
+          <circle cx="220" cy="75" r="10" fill="var(--primary)" />
+          <circle cx="185" cy="165" r="10" fill="var(--primary)" />
+          <circle cx="330" cy="305" r="10" fill="var(--primary)" />
+        </svg>
+      `;
+    }
+
+    function updateMapActivePin() {
+      if (!mapPinsSelection) return;
+      mapPinsSelection.each(function(d, idx) {
+        const isSel = idx === appState.selectedOathIdx;
+        d3.select(this).select(`.pin-halo`)
+          .attr(`r`, isSel ? 22 : 14)
+          .attr(`fill`, isSel ? `var(--primary)` : `var(--primary-container)`)
+          .attr(`fill-opacity`, isSel ? 0.25 : 0.45);
+        d3.select(this).select(`.pin-core`)
+          .attr(`r`, isSel ? 10 : 7)
+          .attr(`fill`, isSel ? `var(--primary)` : `var(--tertiary)`);
+      });
+    }
+
+    function selectOathStop(idx) {
+      appState.selectedOathIdx = idx;
+      for (let i = 0; i < OATH_STOPS.length; i++) {
+        const btn = document.getElementById(`oath-btn-${i}`);
+        if (btn) btn.classList.toggle(`is-selected`, i === idx);
+      }
+
+      const stop = OATH_STOPS[idx];
+      const panel = document.getElementById(`oath-detail-panel`);
+      if (panel && stop) {
+        panel.innerHTML = `
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">
+            <span class="badge-emerald">${stop.prophet}</span>
+            <span style="font-size:0.8125rem;font-weight:600;color:var(--secondary);">${stop.oathLabel}</span>
+          </div>
+          <p style="margin:0 0 var(--space-xs);font-size:0.9375rem;"><strong>Literal &amp; Lexical Sense:</strong> ${stop.literal}</p>
+          <p style="margin:0 0 var(--space-xs);font-size:0.9375rem;"><strong>Geographic &amp; Prophetic Witness:</strong> ${stop.geographic}</p>
+          <p style="margin:0;font-size:0.9375rem;color:var(--on-surface-variant);"><strong>Thematic Synthesis:</strong> ${stop.synthesis}</p>
+        `;
+      }
+
+      updateMapActivePin();
+      persistState(false);
+    }
+
+    // =========================================================================
+    // 5. EXEGETICAL LENSES (TAQWEEM / SAFILEEN / EXCEPTION)
+    // =========================================================================
+
+    function setExegeticalLens(lensKey) {
+      appState.exegeticalLens = lensKey;
+      const keys = [`spiritual`, `linguistic`, `temporal`];
+      keys.forEach((k) => {
+        const btn = document.getElementById(`lens-btn-${k}`);
+        if (btn) btn.classList.toggle(`is-active`, k === lensKey);
+      });
+
+      const data = LENS_CONTENT[lensKey] || LENS_CONTENT.spiritual;
+      const setTxt = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+      setTxt(`lens-taqweem-title`, data.taqweemTitle);
+      setTxt(`lens-taqweem-body`, data.taqweemBody);
+      setTxt(`lens-safileen-title`, data.safileenTitle);
+      setTxt(`lens-safileen-body`, data.safileenBody);
+      setTxt(`lens-exception-title`, data.exceptionTitle);
+      setTxt(`lens-exception-body`, data.exceptionBody);
+
+      persistState(false);
+    }
+
+    // =========================================================================
+    // 6. REFLECTION PROMPTS (PERSISTED & EXPORTABLE)
+    // =========================================================================
+
+    function renderReflections() {
+      const mapping = [
+        { id: `refl-1`, key: `r1` },
+        { id: `refl-2`, key: `r2` },
+        { id: `refl-3`, key: `r3` },
+        { id: `refl-4`, key: `r4` }
+      ];
+      mapping.forEach((m) => {
+        const ta = document.getElementById(m.id);
+        const val = appState.reflections[m.key] || ``;
+        if (ta) ta.value = val;
+        updateReflectionMeta(m.key, val);
+      });
+    }
+
+    function updateReflectionMeta(key, val) {
+      const statusEl = document.getElementById(`refl-status-${key}`);
+      const countEl = document.getElementById(`refl-count-${key}`);
+      const trimmed = (val || ``).trim();
+      if (statusEl) statusEl.textContent = trimmed.length > 0 ? `Saved in study notebook` : `Not yet written`;
+      if (countEl) countEl.textContent = `${val.length} chars`;
+    }
+
+    function saveReflection(key, value) {
+      appState.reflections[key] = value;
+      updateReflectionMeta(key, value);
+      persistState(false);
+    }
+
+    function exportStudyNotes() {
+      const studiedList = appState.studiedVerses.length > 0
+        ? appState.studiedVerses.map((n) => `95:${n}`).join(`, `)
+        : `None marked yet`;
+
+      const lines = [
+        `SURAH AT-TIN (CHAPTER 95) — PERSONAL STUDY & REFLECTION JOURNAL`,
+        `================================================================`,
+        `Verses Marked Studied: ${studiedList} (${appState.studiedVerses.length}/8)`,
+        `Recall Cards Mastered: ${appState.masteredCards.length}/${FLASHCARDS.length}`,
+        `Diagnostic Quiz Score: ${appState.quizScore}/${QUIZ_QUESTIONS.length}`,
+        ``,
+        `1. GUARDING AHSAN TAQWEEM (95:4)`,
+        appState.reflections.r1 || `[No reflection recorded yet]`,
+        ``,
+        `2. RECOGNIZING ASFALA SAFILEEN (95:5)`,
+        appState.reflections.r2 || `[No reflection recorded yet]`,
+        ``,
+        `3. FAITH & UNINTERRUPTED DEEDS (95:6)`,
+        appState.reflections.r3 || `[No reflection recorded yet]`,
+        ``,
+        `4. LIVING UNDER AHKAM AL-HAKIMEEN (95:8)`,
+        appState.reflections.r4 || `[No reflection recorded yet]`
+      ].join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-at-tin-study-notes.txt`
+        });
+      } else {
+        const blob = new Blob([lines], { type: `text/plain;charset=utf-8` });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement(`a`);
+        a.href = url;
+        a.download = `surah-at-tin-study-notes.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    // =========================================================================
+    // 7. SELF-ASSESSMENT: FLASHCARDS & 8-QUESTION DIAGNOSTIC QUIZ
+    // =========================================================================
+
+    function renderFlashcard() {
+      const card = FLASHCARDS[appState.flashcardIdx] || FLASHCARDS[0];
+      const stage = document.getElementById(`flashcard-stage`);
+      const front = document.getElementById(`fc-front`);
+      const back = document.getElementById(`fc-back`);
+      const counter = document.getElementById(`fc-counter`);
+      const masteredBadge = document.getElementById(`fc-mastered-count`);
+      const masterBtn = document.getElementById(`fc-master-btn`);
+
+      if (counter) counter.textContent = `Card ${appState.flashcardIdx + 1} of ${FLASHCARDS.length}`;
+      if (masteredBadge) masteredBadge.textContent = `${appState.masteredCards.length} Mastered`;
+
+      const setTxt = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+      setTxt(`fc-ref-label`, card.ref);
+      setTxt(`fc-arabic`, card.arabic);
+      setTxt(`fc-translit-back`, card.translit);
+      setTxt(`fc-english-back`, card.english);
+      setTxt(`fc-insight-back`, card.insight);
+
+      if (stage) stage.classList.toggle(`is-flipped`, appState.flashcardFlipped);
+      if (front) front.hidden = appState.flashcardFlipped;
+      if (back) back.hidden = !appState.flashcardFlipped;
+
+      const isMastered = appState.masteredCards.includes(appState.flashcardIdx);
+      if (masterBtn) {
+        masterBtn.textContent = isMastered ? `Mastered ✓ (Click to Undo)` : `Mark Mastered`;
+      }
+    }
+
+    function flipFlashcard() {
+      appState.flashcardFlipped = !appState.flashcardFlipped;
+      renderFlashcard();
+    }
+
+    function handleFlashcardKey(event) {
+      if (event.key === `Enter` || event.key === ` `) {
+        event.preventDefault();
+        flipFlashcard();
+      }
+    }
+
+    function stepFlashcard(delta) {
+      appState.flashcardIdx = (appState.flashcardIdx + delta + FLASHCARDS.length) % FLASHCARDS.length;
+      appState.flashcardFlipped = false;
+      renderFlashcard();
+      persistState(false);
+    }
+
+    function toggleFlashcardMastered() {
+      const idx = appState.flashcardIdx;
+      const pos = appState.masteredCards.indexOf(idx);
+      if (pos === -1) {
+        appState.masteredCards.push(idx);
+      } else {
+        appState.masteredCards.splice(pos, 1);
+      }
+      renderFlashcard();
+      updateProgressSummary();
+      persistState(true);
+    }
+
+    function renderQuiz() {
+      const qIdx = appState.quizIdx;
+      const q = QUIZ_QUESTIONS[qIdx] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[qIdx];
+      const hasAnswered = chosen !== undefined;
+
+      const progLabel = document.getElementById(`quiz-progress-label`);
+      const scoreLabel = document.getElementById(`quiz-score-label`);
+      const qText = document.getElementById(`quiz-question`);
+      const optsContainer = document.getElementById(`quiz-options`);
+      const feedbackEl = document.getElementById(`quiz-feedback`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      const totalCorrect = Object.entries(appState.quizAnswers).filter(
+        ([idx, ans]) => QUIZ_QUESTIONS[Number(idx)] && QUIZ_QUESTIONS[Number(idx)].correct === ans
+      ).length;
+
+      if (progLabel) progLabel.textContent = `Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (scoreLabel) scoreLabel.textContent = `Score: ${totalCorrect} / ${QUIZ_QUESTIONS.length}`;
+      if (qText) qText.textContent = q.question;
+
+      if (optsContainer) {
+        const letters = [`A`, `B`, `C`, `D`];
+        optsContainer.innerHTML = q.options.map((opt, idx) => {
+          let cls = `quiz-option-btn`;
+          if (hasAnswered) {
+            if (idx === q.correct) cls += ` is-correct`;
+            else if (idx === chosen) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="answerQuiz(${idx})">
+              <strong style="min-width:22px;">${letters[idx]}.</strong>
+              <span>${opt}</span>
+            </button>
+          `;
+        }).join(``);
+      }
+
+      if (feedbackEl) {
+        if (hasAnswered) {
+          const isCorrect = chosen === q.correct;
+          feedbackEl.hidden = false;
+          feedbackEl.innerHTML = `
+            <strong style="color:${isCorrect ? `var(--tertiary)` : `var(--error)`};">
+              ${isCorrect ? `Correct.` : `Review Note:`}
+            </strong>
+            ${q.explanation}
+          `;
+        } else {
+          feedbackEl.hidden = true;
+          feedbackEl.textContent = ``;
+        }
+      }
+
+      if (nextBtn) {
+        nextBtn.textContent = qIdx === QUIZ_QUESTIONS.length - 1 ? `View First Question` : `Next Question`;
+      }
+    }
+
+    function answerQuiz(choiceIdx) {
+      appState.quizAnswers[appState.quizIdx] = choiceIdx;
+      renderQuiz();
+      updateProgressSummary();
+      persistState(true);
+    }
+
+    function nextQuizQuestion() {
+      appState.quizIdx = (appState.quizIdx + 1) % QUIZ_QUESTIONS.length;
+      renderQuiz();
+      persistState(false);
+    }
+
+    function restartQuiz() {
+      appState.quizIdx = 0;
+      appState.quizAnswers = {};
+      appState.quizScore = 0;
+      renderQuiz();
+      updateProgressSummary();
+      persistState(true);
+    }
+
+    // Inline two-step confirmation for Reset Progress (no window.confirm)
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Progress`;
+          }
+        }, 4500);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+      appState = cloneState(DEFAULT_STATE);
+      renderAll();
+      persistState(true);
+    }
+
+    // =========================================================================
+    // 8. INITIALIZATION & SCROLL REVEAL
+    // =========================================================================
+
+    function setupScrollReveal() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        sections.forEach((s) => s.classList.add(`is-visible`));
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      sections.forEach((s) => observer.observe(s));
+    }
+
+    function renderAll() {
+      renderVerseList();
+      renderLexicalPanel();
+      selectOathStop(appState.selectedOathIdx);
+      setExegeticalLens(appState.exegeticalLens);
+      renderReflections();
+      renderFlashcard();
+      renderQuiz();
+      updateProgressSummary();
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            appState = mergeState(saved);
+          }
+        }
+      } catch (err) {
+        appState = cloneState(DEFAULT_STATE);
+      }
+
+      initSacredMap();
+      renderAll();
+      setupScrollReveal();
+
+      if (typeof lucide !== `undefined` && typeof lucide.createIcons === `function`) {
+        lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

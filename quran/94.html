@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Ash-Sharh (Chapter 94) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --button-outline: #c4b29e;
+      --brass-edge: #d8c3b0;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3b1a;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fbe8e8;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #1d6356;
+      --positive-container: #e1efe9;
+      --warning: #8f6524;
+      --warning-container: #f7efe0;
+
+      /* Focus ring */
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', 'Cormorant Garamond', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-display: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.08);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-edge), var(--data-3), var(--brass-edge));
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Page layout */
+    .page-shell {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+    }
+
+    .section-band {
+      padding-block: var(--space-2xl);
+      border-top: var(--warm-hairline);
+    }
+
+    .section-band--tinted {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-xl);
+      margin-block: var(--space-xl);
+      border: 1px solid var(--outline-variant);
+    }
+
+    /* Typography helpers */
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .hero-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-intro {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-xl);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    /* Arabic typography */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.9;
+    }
+
+    /* Ornamental rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges & pills */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Arch cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-card__label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-card__value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.7rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+      margin-bottom: var(--space-xs);
+    }
+    .arch-card.is-featured .arch-card__value {
+      color: var(--primary);
+    }
+    .arch-card__caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Mastery Bar */
+    .mastery-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      margin-top: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .mastery-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .mastery-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mastery-stat__label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mastery-stat__val {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      width: 180px;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .mastery-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: var(--button-outline);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    .btn-emerald {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--on-tertiary-container);
+    }
+
+    /* Quick Jump Index */
+    .anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .anchor-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      color: var(--on-surface);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .anchor-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+      color: var(--on-primary-container);
+    }
+
+    /* Verse Explorer (Asymmetric 2-column layout) */
+    .verse-workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .verse-selector {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 54px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      color: var(--on-surface);
+      font-family: inherit;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-selector:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .verse-selector.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .verse-selector__left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      min-width: 0;
+    }
+    .verse-selector__num {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--rounded-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-selector.is-active .verse-selector__num {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .verse-selector.is-mastered .verse-selector__num {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    .verse-selector__preview {
+      min-width: 0;
+    }
+    .verse-selector__arabic {
+      display: block;
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+    }
+    .verse-selector__trans {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 30ch;
+    }
+
+    .verse-selector__status {
+      flex-shrink: 0;
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+    }
+
+    /* Active Verse Detail Panel */
+    .verse-detail-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      container-type: inline-size;
+    }
+
+    .verse-detail__top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .verse-detail__arabic-box {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    .verse-detail__arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-display);
+      line-height: 1.9;
+      color: var(--on-surface);
+      direction: rtl;
+      margin: 0 0 var(--space-sm);
+    }
+
+    .verse-detail__translit {
+      font-family: var(--font-headline);
+      font-style: italic;
+      font-size: 1.1875rem;
+      color: var(--secondary);
+      margin: 0 0 var(--space-xs);
+    }
+
+    .verse-detail__translation {
+      font-weight: 600;
+      font-size: 1.0625rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Word-by-word chips */
+    .lexicon-box {
+      margin-bottom: var(--space-lg);
+    }
+    .lexicon-box__label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-sm);
+    }
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .word-chip {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .word-chip:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .word-chip.is-selected {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+    .word-chip__ar {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      direction: rtl;
+    }
+    .word-chip__gl {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+    }
+    .word-chip.is-selected .word-chip__gl {
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+
+    .word-inspector {
+      background: var(--tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-tertiary-container);
+    }
+    .word-inspector__head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .word-inspector__root {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .word-inspector__note {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+    }
+
+    .verse-commentary {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .verse-commentary p {
+      margin: 0 0 var(--space-sm);
+      max-width: 65ch;
+    }
+
+    .verse-detail__footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-md);
+    }
+
+    /* Four Thematic Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .pillar-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .pillar-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .pillar-card__arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.5rem;
+      color: var(--primary);
+      direction: rtl;
+    }
+    .pillar-card__root {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .pillar-card p {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: 0.96875rem;
+    }
+
+    /* Grammatical Schematic Container */
+    .schematic-panel {
+      margin-top: var(--space-xl);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+    .schematic-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .schematic-svg-wrap {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+    .schematic-svg-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Ad-Duha & Ash-Sharh Twin Comparison */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .filter-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .filter-btn.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .comparison-table-wrap {
+      overflow-x: auto;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+    }
+    table.twin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-variant-numeric: tabular-nums;
+    }
+    .twin-table thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .twin-table tbody td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    .twin-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .twin-table tbody tr.is-highlighted {
+      background: var(--primary-container);
+    }
+
+    /* Callout quote for Verses 7-8 */
+    .devotion-callout {
+      margin-top: var(--space-xl);
+      background: var(--primary-container);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg) var(--space-xl);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    /* Mastery Modules (Quiz + Reflection Journal) */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .module-panel {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-q-card {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .quiz-q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      width: 100%;
+      min-height: 44px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .quiz-option.is-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+    }
+
+    /* Reflection form */
+    .reflection-item {
+      margin-bottom: var(--space-lg);
+    }
+    .reflection-label {
+      display: block;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .reflection-sub {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-sm);
+    }
+    .reflection-textarea {
+      width: 100%;
+      min-height: 92px;
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--on-surface);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      resize: vertical;
+      transition: border-color var(--dur-micro) var(--ease-out);
+    }
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.25em;
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-xl);
+      margin-top: var(--space-2xl);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    /* Reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @container (max-width: 440px) {
+      .verse-detail__top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .verse-workbench,
+      .schematic-grid,
+      .modules-grid,
+      .devotion-callout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+      }
+      .section-band--tinted,
+      .verse-detail-card,
+      .schematic-panel,
+      .module-panel {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .arch-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <!-- Hero Header -->
+    <header>
+      <div class="kicker-row">
+        <span class="kicker">Quranic Textual &amp; Thematic Mastery Guide</span>
+        <span class="badge-emerald">Surah 94 · Ash-Sharh / Al-Inshirah</span>
+      </div>
+
+      <h1 class="hero-title">From Crushing Burden to <em>Expanded</em> Ease</h1>
+      <p class="hero-lede">
+        Revealed in early Mecca at a moment of profound personal and prophetic strain, Chapter 94 of the Quran maps a complete architecture of resilience—recalling three past acts of divine grace, establishing an enduring law of relief within hardship, and redirecting finished labor into worshipful longing.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">Meccan Revelation ◆ 8 Verses ◆ Twin to Ad-Duha</div>
+
+      <!-- 4 Key Figures in Riad Arch Cards -->
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-card__label">Structure</div>
+          <div class="arch-card__value">8 Verses</div>
+          <div class="arch-card__caption">Three rhetorical movements</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card__label">Past Favors</div>
+          <div class="arch-card__value">3 Gifts</div>
+          <div class="arch-card__caption">Expansion, unburdening, elevation</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-card__label">Core Promise</div>
+          <div class="arch-card__value">1 : 2</div>
+          <div class="arch-card__caption">One definite hardship, two eases</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card__label">Canonical Pairing</div>
+          <div class="arch-card__value">93 ↔ 94</div>
+          <div class="arch-card__caption">Linked with Surah Ad-Duha</div>
+        </div>
+      </div>
+
+      <!-- Navigation Anchors -->
+      <nav class="anchor-nav" aria-label="Guide sections">
+        <a class="anchor-pill" href="#verse-explorer">1. Verse-by-Verse Explorer</a>
+        <a class="anchor-pill" href="#linguistic-pillars">2. Four Linguistic Pillars</a>
+        <a class="anchor-pill" href="#historical-twin">3. Meccan Context &amp; Ad-Duha</a>
+        <a class="anchor-pill" href="#study-modules">4. Mastery Check &amp; Reflections</a>
+      </nav>
+
+      <!-- Live Study Mastery Strip -->
+      <div class="mastery-strip" aria-live="polite">
+        <div class="mastery-stats">
+          <div class="mastery-stat">
+            <span class="mastery-stat__label">Verses Mastered</span>
+            <span class="mastery-stat__val" id="stat-verses-mastered">0 / 8</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="mastery-progress-fill"></div>
+          </div>
+          <div class="mastery-stat">
+            <span class="mastery-stat__label">Mastery Check</span>
+            <span class="mastery-stat__val" id="stat-quiz-score">0 / 6</span>
+          </div>
+          <div class="mastery-stat">
+            <span class="mastery-stat__label">Reflections Saved</span>
+            <span class="mastery-stat__val" id="stat-reflections-count">0 / 4</span>
+          </div>
+        </div>
+        <div class="mastery-actions">
+          <button type="button" class="btn btn-secondary" id="btn-export-notes" onclick="exportStudyNotes()">
+            Export Study Notes
+          </button>
+          <button type="button" class="btn btn-secondary" id="btn-reset-progress" onclick="resetStudyProgress(this)">
+            Reset Progress
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: Verse-by-Verse Textual Analysis -->
+    <section id="verse-explorer" class="section-band reveal-on-scroll">
+      <div class="kicker">Section 01 · Textual Analysis &amp; Morphology</div>
+      <h2 class="section-heading">Eight Verses Across <em>Three</em> Spiritual Movements</h2>
+      <p class="section-intro">
+        Select any verse to inspect its Arabic script, translation, grammatical voice, and contextual commentary. Click individual Arabic words inside the lexicon strip to examine their trilateral roots and exact semantic force.
+      </p>
+
+      <div class="verse-workbench">
+        <!-- Left column: Verse selector list -->
+        <div class="verse-list" id="verse-list" role="tablist" aria-label="Verses of Surah Ash-Sharh"></div>
+
+        <!-- Right column: Active Verse Detail Panel -->
+        <article class="verse-detail-card" id="verse-detail-panel" aria-live="polite">
+          <div class="verse-detail__top">
+            <span class="badge-terracotta" id="detail-verse-badge">Verse 94:1</span>
+            <span class="badge-emerald" id="detail-movement-badge">Movement I · Past Favor</span>
+          </div>
+
+          <div class="verse-detail__arabic-box">
+            <p class="verse-detail__arabic arabic-text" dir="rtl" lang="ar" id="detail-arabic"></p>
+            <p class="verse-detail__translit" id="detail-translit"></p>
+            <p class="verse-detail__translation" id="detail-translation"></p>
+          </div>
+
+          <div class="lexicon-box">
+            <div class="lexicon-box__label">Word-by-Word Linguistic Breakdown (Click a word)</div>
+            <div class="word-chips" id="detail-word-chips"></div>
+            <div class="word-inspector" id="word-inspector">
+              <div class="word-inspector__head">
+                <strong id="inspector-word"></strong>
+                <span class="word-inspector__root" id="inspector-root"></span>
+              </div>
+              <p class="word-inspector__note" id="inspector-note"></p>
+            </div>
+          </div>
+
+          <div class="verse-commentary" id="detail-commentary"></div>
+
+          <div class="verse-detail__footer">
+            <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+              <button type="button" class="btn btn-secondary" id="btn-prev-verse" onclick="stepVerse(-1)">
+                ← Previous
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-next-verse" onclick="stepVerse(1)">
+                Next →
+              </button>
+            </div>
+            <button type="button" class="btn btn-emerald" id="btn-toggle-mastered" onclick="toggleCurrentVerseMastered()">
+              Mark Verse Mastered
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Thematic & Linguistic Insights -->
+    <section id="linguistic-pillars" class="section-band reveal-on-scroll">
+      <div class="kicker">Section 02 · Thematic &amp; Linguistic Insights</div>
+      <h2 class="section-heading">Four Anchors of <em>Quranic</em> Precision</h2>
+      <p class="section-intro">
+        Every metaphor and grammatical inflection in Surah Ash-Sharh carries layered meaning. Together, these four concepts move the reader from inner constriction to spiritual spaciousness.
+      </p>
+
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <div class="pillar-card__header">
+            <h3 class="subhead" style="margin:0;">1. Expansion of the Chest</h3>
+            <span class="arabic-text pillar-card__arabic" dir="rtl" lang="ar">شَرْح الصَّدْر</span>
+          </div>
+          <div class="pillar-card__root">Root: Sh-R-H (ش ر ح) · Verse 94:1</div>
+          <p>
+            The verb <em>sharaha</em> means to open wide, cleave open, or illuminate an enclosed space. Classical exegesis notes that the Quran distinguishes between <em>sadr</em> (the chest, the outer threshold where anxiety and whisperings strike) and <em>qalb</em> (the inner heart). Expanding the <em>sadr</em> enlarges a person’s emotional and spiritual capacity so that hostility, grief, and heavy responsibility no longer suffocate the spirit.
+          </p>
+          <p>
+            Framed as a rhetorical question—<em>“Did We not expand…”</em>—it invites immediate gratitude by recalling past inner steadiness during present pressure.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <div class="pillar-card__header">
+            <h3 class="subhead" style="margin:0;">2. Lifting the Crushing Burden</h3>
+            <span class="arabic-text pillar-card__arabic" dir="rtl" lang="ar">أَنْقَضَ ظَهْرَكَ</span>
+          </div>
+          <div class="pillar-card__root">Roots: W-Z-R &amp; N-Q-D · Verses 94:2–3</div>
+          <p>
+            <em>Wizr</em> denotes a crushing mountain-like weight, while <em>anqada</em> evokes the audible groaning and creaking of a wooden saddle frame about to snap under an overloaded pack animal. The verse captures the intense psychological weight the Prophet Muhammad felt regarding humanity’s straying and the opposition in Mecca.
+          </p>
+          <p>
+            Crucially, God uses the verb <em>wada‘na</em>—to gently set down or lift off—showing that the burden is removed directly by divine care rather than abandoned halfway.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <div class="pillar-card__header">
+            <h3 class="subhead" style="margin:0;">3. Elevation of Mention</h3>
+            <span class="arabic-text pillar-card__arabic" dir="rtl" lang="ar">رَفْع الذِّكْر</span>
+          </div>
+          <div class="pillar-card__root">Root: Dh-K-R (ذ ك ر) · Verse 94:4</div>
+          <p>
+            At a time when Meccan elites sought to erase or ridicule his reputation, God promised: <em>“And raised high for you your repute.”</em> Classical commentators point to its tangible fulfillment: his name is paired alongside God’s own in the testimony of faith (<em>Shahadah</em>), in the five daily calls to prayer (<em>Adhan</em>) echoing continuously around the globe, and in every ritual prayer.
+          </p>
+          <p>
+            Human mockery is fleeting; divine elevation endures across centuries and geographies.
+          </p>
+        </article>
+
+        <article class="pillar-card">
+          <div class="pillar-card__header">
+            <h3 class="subhead" style="margin:0;">4. Hardship Paired With Ease</h3>
+            <span class="arabic-text pillar-card__arabic" dir="rtl" lang="ar">مَعَ الْعُسْرِ يُسْرًا</span>
+          </div>
+          <div class="pillar-card__root">Preposition Ma‘a + Definite Rule · Verses 94:5–6</div>
+          <p>
+            Verse 94:5 begins with <em>fa-inna</em> (“for indeed”), binding the preceding favors to a universal law. Two linguistic features stand out: first, the preposition is <strong><em>ma‘a</em> (“with / alongside”)</strong> rather than <em>ba‘da</em> (“after”), teaching that ease coexists inside hardship from its very onset.
+          </p>
+          <p>
+            Second, <em>al-‘usr</em> (“the hardship”) is definite in both verses, whereas <em>yusran</em> (“ease”) is indefinite in both—yielding two distinct eases for one single hardship.
+          </p>
+        </article>
+      </div>
+
+      <!-- Grammatical Schematic of 94:5 and 94:6 -->
+      <div class="schematic-panel">
+        <div class="schematic-grid">
+          <div class="schematic-svg-wrap">
+            <svg viewBox="0 0 560 250" role="img" aria-label="Grammatical diagram comparing definite hardship and indefinite ease across verses 94:5 and 94:6">
+              <!-- Titles -->
+              <text x="20" y="28" fill="var(--secondary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">GRAMMATICAL ARCHITECTURE · VERSES 94:5 &amp; 94:6</text>
+
+              <!-- Verse 5 box -->
+              <rect x="20" y="48" width="245" height="84" rx="8" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="1"/>
+              <text x="34" y="70" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">VERSE 94:5</text>
+              <text x="142" y="102" text-anchor="middle" fill="var(--on-surface)" font-family="Amiri, serif" font-size="22" font-weight="700">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا</text>
+              <text x="142" y="122" text-anchor="middle" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif" font-size="11">“For indeed, with the hardship [is] an ease”</text>
+
+              <!-- Verse 6 box -->
+              <rect x="295" y="48" width="245" height="84" rx="8" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="1"/>
+              <text x="309" y="70" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">VERSE 94:6</text>
+              <text x="417" y="102" text-anchor="middle" fill="var(--on-surface)" font-family="Amiri, serif" font-size="22" font-weight="700">إِنَّ مَعَ الْعُسْرِ يُسْرًا</text>
+              <text x="417" y="122" text-anchor="middle" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif" font-size="11">“Indeed, with the hardship [is] an ease”</text>
+
+              <!-- Arc connecting definite Al-Usr -->
+              <path d="M 145 136 C 145 182, 420 182, 420 136" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="196" y="162" width="172" height="26" rx="13" fill="var(--primary-container)" stroke="var(--primary-border)" stroke-width="1"/>
+              <text x="282" y="179" text-anchor="middle" fill="var(--on-primary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">DEFINITE (الْعُسْرِ) = SAME 1 TRIAL</text>
+
+              <!-- Separate badges for indefinite Yusran -->
+              <line x1="78" y1="136" x2="78" y2="205" stroke="var(--tertiary)" stroke-width="2" stroke-dasharray="4 3"/>
+              <rect x="20" y="205" width="176" height="28" rx="14" fill="var(--tertiary-container)" stroke="var(--tertiary-border)" stroke-width="1"/>
+              <text x="108" y="223" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">INDEFINITE 1 (يُسْرًا) · EASE A</text>
+
+              <line x1="480" y1="136" x2="480" y2="205" stroke="var(--tertiary)" stroke-width="2" stroke-dasharray="4 3"/>
+              <rect x="364" y="205" width="176" height="28" rx="14" fill="var(--tertiary-container)" stroke="var(--tertiary-border)" stroke-width="1"/>
+              <text x="452" y="223" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">INDEFINITE 2 (يُسْرًا) · EASE B</text>
+            </svg>
+          </div>
+          <div>
+            <span class="badge-terracotta" style="margin-bottom:var(--space-sm);">Classical Arabic Grammar Rule</span>
+            <h3 class="subhead">Why One Hardship Cannot Defeat Two Eases</h3>
+            <p style="margin:0 0 var(--space-sm); color:var(--on-surface-variant);">
+              In Arabic syntax, when a <strong>definite noun</strong> (marked by the prefix <em>al-</em>, “the”) is repeated, the second instance refers back to the exact same entity as the first. Thus <em>al-‘usr</em> in 94:5 and 94:6 denotes a single, bounded hardship.
+            </p>
+            <p style="margin:0; color:var(--on-surface-variant);">
+              By contrast, when an <strong>indefinite noun</strong> (<em>yusran</em>, lacking <em>al-</em>) is repeated, each occurrence introduces a fresh, distinct instance—yielding two forms of ease (often understood as inner relief in this world and lasting reward in the next).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Historical Context & Connections to Surah Ad-Duha -->
+    <section id="historical-twin" class="section-band section-band--tinted reveal-on-scroll">
+      <div class="kicker">Section 03 · Meccan Context &amp; Canonical Pairing</div>
+      <h2 class="section-heading">Twin Consolations: How <em>Ad-Duha</em> Prepares <em>Ash-Sharh</em></h2>
+      <p class="section-intro">
+        Revealed during the difficult Meccan years—amid mockery, social ostracism, and an anxious pause in revelation (<em>fatrat al-wahy</em>)—Surah Ad-Duha (Ch. 93) and Surah Ash-Sharh (Ch. 94) form a single literary and spiritual diptych. Filter the thematic parallels below to trace how external care mirrors internal renewal.
+      </p>
+
+      <div class="filter-row" role="group" aria-label="Filter structural parallels">
+        <button type="button" class="filter-btn is-active" data-filter="all" onclick="filterTwinTable('all', this)">All 4 Parallels</button>
+        <button type="button" class="filter-btn" data-filter="favors" onclick="filterTwinTable('favors', this)">Past Care (External vs. Internal)</button>
+        <button type="button" class="filter-btn" data-filter="promise" onclick="filterTwinTable('promise', this)">Future Promise</button>
+        <button type="button" class="filter-btn" data-filter="response" onclick="filterTwinTable('response', this)">Believer’s Response</button>
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="twin-table" id="twin-comparison-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">Thematic Axis</th>
+              <th style="width:41%;">Surah Ad-Duha (Chapter 93)</th>
+              <th style="width:41%;">Surah Ash-Sharh (Chapter 94)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-cat="favors">
+              <td><strong>1. Reassurance Against Abandonment</strong></td>
+              <td>
+                <strong>93:3</strong> — <em>“Your Lord has not taken leave of you, nor has He detested [you].”</em> Answers external mockery during the pause in revelation.
+              </td>
+              <td>
+                <strong>94:1</strong> — <em>“Did We not expand for you your breast?”</em> Shifts inward to remind the heart of the serenity already granted.
+              </td>
+            </tr>
+            <tr data-cat="favors">
+              <td><strong>2. Three Past Divine Favors</strong></td>
+              <td>
+                <strong>93:6–8 (Material &amp; Social):</strong> Sheltered as an orphan, guided when searching for truth, enriched when needy.
+              </td>
+              <td>
+                <strong>94:1–4 (Spiritual &amp; Prophetic):</strong> Chest expanded, crushing burden lifted from the back, and mention elevated across time.
+              </td>
+            </tr>
+            <tr data-cat="promise">
+              <td><strong>3. Trajectory of Relief</strong></td>
+              <td>
+                <strong>93:4–5</strong> — <em>“The Hereafter is better for you than the first [life], and your Lord is going to give you, and you will be satisfied.”</em> Relief stretched across time.
+              </td>
+              <td>
+                <strong>94:5–6</strong> — <em>“For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease.”</em> Ease embedded simultaneously inside present difficulty.
+              </td>
+            </tr>
+            <tr data-cat="response">
+              <td><strong>4. Practical &amp; Devotional Duty</strong></td>
+              <td>
+                <strong>93:9–11 (Horizontal / Social Ethics):</strong> Do not oppress the orphan, do not repel the petitioner, and proclaim the favor of your Lord.
+              </td>
+              <td>
+                <strong>94:7–8 (Vertical / Inner Discipline):</strong> When daily duties finish, rise upright in devoted exertion (<em>fansab</em>) and direct longing solely to your Lord (<em>farghab</em>).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Verses 7-8 synthesis callout -->
+      <div class="devotion-callout">
+        <div>
+          <span class="kicker" style="display:block; margin-bottom:var(--space-xs);">Closing Synthesis · Verses 94:7–8</span>
+          <h3 class="subhead">Rest Is Not Vacancy—It Is Redirection</h3>
+          <p style="margin:0; color:var(--on-surface-variant); max-width:62ch;">
+            After promising two eases, the Surah closes with two imperatives: <em>fansab</em> (from <em>nasab</em>, to exert oneself strenuously in worship) and <em>farghab</em> (from <em>raghbah</em>, earnest, hopeful yearning). When public labor, study, or hardship ends, the heart prevents complacency by turning immediately toward prayer and anchoring all desire in God alone.
+          </p>
+        </div>
+        <div style="text-align:right;">
+          <div class="arabic-text" dir="rtl" lang="ar" style="font-size:1.75rem; color:var(--primary);">فَإِذَا فَرَغْتَ فَانْصَبْ ۝ وَإِلَىٰ رَبِّكَ فَارْغَبْ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Reflective Study Modules -->
+    <section id="study-modules" class="section-band reveal-on-scroll">
+      <div class="kicker">Section 04 · Interactive Mastery &amp; Reflection</div>
+      <h2 class="section-heading">Test Your Mastery &amp; <em>Anchor</em> Personal Reflections</h2>
+      <p class="section-intro">
+        Consolidate the linguistic and historical insights with a six-question diagnostic check, then record your personal reflections on how the Surah’s rhythm of unburdening and purposeful devotion applies today. Your progress saves automatically in your notebook.
+      </p>
+
+      <div class="modules-grid">
+        <!-- Module A: Diagnostic Mastery Check -->
+        <div class="module-panel">
+          <div class="kicker-row" style="margin-bottom:var(--space-md);">
+            <span class="kicker">Module A · Mastery Check</span>
+            <span class="badge-emerald" id="quiz-progress-badge">Question 1 of 6</span>
+          </div>
+
+          <div id="quiz-container">
+            <div class="quiz-q-card">
+              <div class="quiz-q-meta">
+                <span id="quiz-topic-label">Linguistics</span>
+                <span id="quiz-score-inline">Score: 0 / 6</span>
+              </div>
+              <h3 class="subhead" id="quiz-question-text" style="margin-bottom:var(--space-sm);"></h3>
+              <div class="quiz-options" id="quiz-options-list"></div>
+              <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+              <button type="button" class="btn btn-secondary" id="btn-quiz-prev" onclick="moveQuiz(-1)">← Previous Question</button>
+              <button type="button" class="btn btn-primary" id="btn-quiz-next" onclick="moveQuiz(1)">Next Question →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module B: Personal Reflection Journal -->
+        <div class="module-panel">
+          <div class="kicker-row" style="margin-bottom:var(--space-md);">
+            <span class="kicker">Module B · Reflective Study Journal</span>
+            <span class="status-note" id="reflection-save-status">Ready</span>
+          </div>
+
+          <div class="reflection-item">
+            <label class="reflection-label" for="reflect-1">1. Constriction to Expansion (94:1)</label>
+            <span class="reflection-sub">Where in your life do you feel emotionally constricted, and what past steadiness can remind you of inner spaciousness?</span>
+            <textarea class="reflection-textarea" id="reflect-1" placeholder="Write your reflection on verse 94:1…" oninput="handleReflectionInput(0, this.value)"></textarea>
+          </div>
+
+          <div class="reflection-item">
+            <label class="reflection-label" for="reflect-2">2. Naming the Heavy Burden (94:2–3)</label>
+            <span class="reflection-sub">What responsibility feels like an unbearable load upon your back right now, and how might trust lighten its grip?</span>
+            <textarea class="reflection-textarea" id="reflect-2" placeholder="Write your reflection on verses 94:2–3…" oninput="handleReflectionInput(1, this.value)"></textarea>
+          </div>
+
+          <div class="reflection-item">
+            <label class="reflection-label" for="reflect-3">3. Recognizing Ease Inside Hardship (94:5–6)</label>
+            <span class="reflection-sub">Because ease is promised “with” (ma‘a) hardship—not merely after it—what quiet relief or support already coexists with a current challenge?</span>
+            <textarea class="reflection-textarea" id="reflect-3" placeholder="Write your reflection on verses 94:5–6…" oninput="handleReflectionInput(2, this.value)"></textarea>
+          </div>
+
+          <div class="reflection-item" style="margin-bottom:var(--space-md);">
+            <label class="reflection-label" for="reflect-4">4. Redirecting Finished Duties (94:7–8)</label>
+            <span class="reflection-sub">When your daily obligations conclude, what intentional spiritual practice or devotion will you stand up to pursue?</span>
+            <textarea class="reflection-textarea" id="reflect-4" placeholder="Write your reflection on verses 94:7–8…" oninput="handleReflectionInput(3, this.value)"></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+            <span style="font-size:0.8125rem; color:var(--on-surface-variant);">Notes auto-save to your session state.</span>
+            <button type="button" class="btn btn-primary" onclick="exportStudyNotes()">Download Reflection &amp; Study Summary</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <p style="margin:0 0 var(--space-xs);">
+        <strong>Source Attribution:</strong> Quranic Arabic text and English translation of Chapter 94 (Surah Ash-Sharh, verses 94:1–94:8) grounded in the user-provided source document <em>94..pdf</em>. Linguistic root analysis, definite/indefinite grammatical framework (<em>al-‘usr</em> vs. <em>yusran</em>), Meccan historical context, and thematic pairing with Surah Ad-Duha (Chapter 93) draw upon established classical Quranic exegesis and Arabic morphology.
+      </p>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA: Verses 94:1 - 94:8
+    // =========================================================================
+    const SURAH_VERSES = [
+      {
+        num: 1,
+        ref: `94:1`,
+        movement: `Movement I · Past Divine Favor`,
+        arabic: `أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ`,
+        translit: `Alam nashrah laka sadrak`,
+        translation: `Did We not expand for you, [O Muhammad], your breast?`,
+        words: [
+          {
+            ar: `أَلَمْ`,
+            gloss: `Did not?`,
+            root: `Particle (Hamzat al-Istifham + Lam)`,
+            note: `A rhetorical interrogative of affirmation (istifham taqriri): “Have We not indeed…?” It gently summons the listener to recognize an undeniable past kindness.`
+          },
+          {
+            ar: `نَشْرَحْ`,
+            gloss: `We expand`,
+            root: `Sh-R-H (ش ر ح)`,
+            note: `Present jussive verb from sharaha — to open wide, cleave open, dilate, or make spacious and serene. Used for both spiritual clarity and emotional breadth.`
+          },
+          {
+            ar: `لَكَ`,
+            gloss: `for you`,
+            root: `Preposition + Pronoun`,
+            note: `“For your sake / for your benefit.” Emphasizes personal, tender divine care directed specifically to the Prophet in a period of isolation.`
+          },
+          {
+            ar: `صَدْرَكَ`,
+            gloss: `your breast`,
+            root: `S-D-R (ص د ر)`,
+            note: `Sadr refers to the chest — the outer courtyard of the inner heart (qalb) where anxiety, hostility, and doubts first press in. Expanding it provides serenity against external pressure.`
+          }
+        ],
+        commentary: [
+          `Surah Ash-Sharh opens not with a command, but with a tender reminder. By asking “Did We not expand for you your breast?”, God anchors the Prophet’s present endurance in lived memory: the One who enlarged his chest before will not leave him constricted now.`,
+          `Classical exegetes connect this expansion both to the spiritual illumination of receiving revelation and to the recorded Prophetic tradition of the physical cleansing and filling of the heart with wisdom and tranquility.`
+        ]
+      },
+      {
+        num: 2,
+        ref: `94:2`,
+        movement: `Movement I · Past Divine Favor`,
+        arabic: `وَوَضَعْنَا عَنْكَ وِزْرَكَ`,
+        translit: `Wa wada‘na ‘anka wizrak`,
+        translation: `And We removed from you your burden`,
+        words: [
+          {
+            ar: `وَوَضَعْنَا`,
+            gloss: `And We removed`,
+            root: `W-D-‘ (و ض ع)`,
+            note: `Wada‘a literally means “to set down gently” or “place off.” It evokes someone lifting a heavy pack off a traveler’s shoulders and laying it on the ground.`
+          },
+          {
+            ar: `عَنْكَ`,
+            gloss: `from you`,
+            root: `Preposition ‘an + Pronoun`,
+            note: `Signals complete separation and relief — moving the weight off and away from the bearer.`
+          },
+          {
+            ar: `وِزْرَكَ`,
+            gloss: `your burden`,
+            root: `W-Z-R (و ز ر)`,
+            note: `Derived from wazar (an imposing mountain or refuge), wizr denotes a heavy, oppressive load. Here it points to the immense anxiety and pre-revelation striving for truth.`
+          }
+        ],
+        commentary: [
+          `Before revelation began at Mount Hira, the Prophet (peace be upon him) carried intense sorrow over the moral and spiritual condition of Meccan society, coupled with the daunting weight of prophetic responsibility once revelation arrived.`,
+          `Notice the active divine agency: “We removed from you.” Human effort alone could not unfasten that weight; divine grace lifted it and replaced confusion with clarity of mission.`
+        ]
+      },
+      {
+        num: 3,
+        ref: `94:3`,
+        movement: `Movement I · Past Divine Favor`,
+        arabic: `الَّذِي أَنْقَضَ ظَهْرَكَ`,
+        translit: `Alladhi anqada zahrak`,
+        translation: `Which had weighed upon your back`,
+        words: [
+          {
+            ar: `الَّذِي`,
+            gloss: `Which`,
+            root: `Relative Pronoun`,
+            note: `Connects directly back to “your burden” (wizrak) in verse 2, intensifying the sensory imagery of how severe the strain had been.`
+          },
+          {
+            ar: `أَنْقَضَ`,
+            gloss: `had weighed down`,
+            root: `N-Q-D (ن ق ض)`,
+            note: `Onomatopoeic verb denoting the creaking, groaning sound of a wooden saddle frame or joints about to crack under excessive weight.`
+          },
+          {
+            ar: `ظَهْرَكَ`,
+            gloss: `your back`,
+            root: `Z-H-R (ظ ه ر)`,
+            note: `Zahr means the spine or back — the structural pillar of the body. The metaphor conveys how close the burden came to breaking human endurance.`
+          }
+        ],
+        commentary: [
+          `Verse 3 makes the abstract burden visceral. Anqada captures the audible creak of timber straining under an unbearable load, validating how real and exhausting the struggle truly was.`,
+          `By acknowledging the severity of the weight, the Surah reassures believers that feeling overwhelmed does not signify weak faith — even the Prophet’s back groaned before God relieved it.`
+        ]
+      },
+      {
+        num: 4,
+        ref: `94:4`,
+        movement: `Movement I · Past Divine Favor`,
+        arabic: `وَرَفَعْنَا لَكَ ذِكْرَكَ`,
+        translit: `Wa rafa‘na laka dhikrak`,
+        translation: `And raised high for you your repute.`,
+        words: [
+          {
+            ar: `وَرَفَعْنَا`,
+            gloss: `And We raised high`,
+            root: `R-F-‘ (ر ف ع)`,
+            note: `Rafa‘a means to elevate, exalt, and place in a position of honor above reach of detractors.`
+          },
+          {
+            ar: `لَكَ`,
+            gloss: `for you`,
+            root: `Preposition + Pronoun`,
+            note: `Reiterates personal gift: the elevation is granted by God’s decree, independent of Meccan tribal approval.`
+          },
+          {
+            ar: `ذِكْرَكَ`,
+            gloss: `your repute`,
+            root: `Dh-K-R (ذ ك ر)`,
+            note: `Dhikr encompasses remembrance, mention, honor, and reputation. Whenever God is testified to in the Shahadah or Adhan, the Prophet’s mention is elevated alongside.`
+          }
+        ],
+        commentary: [
+          `In early Mecca, opponents mocked the Prophet with epithets and tried to isolate his message. Verse 4 answers their campaign with an astonishing historical guarantee: his remembrance would be raised globally.`,
+          `Classical scholars (including Mujahid and Qatadah) highlight the unbroken call to prayer (Adhan) sweeping continuously across time zones, linking God’s praise with His messenger’s name.`
+        ]
+      },
+      {
+        num: 5,
+        ref: `94:5`,
+        movement: `Movement II · The Divine Law`,
+        arabic: `فَإِنَّ مَعَ الْعُسْرِ يُسْرًا`,
+        translit: `Fa-inna ma‘a al-‘usri yusra`,
+        translation: `For indeed, with hardship [will be] ease.`,
+        words: [
+          {
+            ar: `فَإِنَّ`,
+            gloss: `For indeed`,
+            root: `Conjunction fa + Particle inna`,
+            note: `Fa links verses 1–4 as logical proof for this universal maxim; inna adds emphatic certainty (“verily / without doubt”).`
+          },
+          {
+            ar: `مَعَ`,
+            gloss: `with / alongside`,
+            root: `Adverbial Preposition`,
+            note: `Crucially uses ma‘a (“with / accompanied by”) rather than ba‘da (“after”). Relief is braided into the hardship itself, not postponed until all difficulty ends.`
+          },
+          {
+            ar: `الْعُسْرِ`,
+            gloss: `the hardship`,
+            root: `‘-S-R (ع س ر)`,
+            note: `Marked with the definite article al- (“the”), making it a single, bounded, identifiable hardship.`
+          },
+          {
+            ar: `يُسْرًا`,
+            gloss: `an ease`,
+            root: `Y-S-R (ي س ر)`,
+            note: `Indefinite (tanwin), signaling boundless, multifaceted ease — comfort, opening, and relief that exceed expectation.`
+          }
+        ],
+        commentary: [
+          `Verse 5 transitions from the Prophet’s personal biography to a cosmic law for every believer. Because God expanded his chest, lifted his burden, and raised his mention, it follows (“fa-inna”) that ease always accompanies hardship.`,
+          `Notice the preposition ma‘a (“with”): even while the trial persists, inner composure, supportive companions, and hidden openings are already present alongside it.`
+        ]
+      },
+      {
+        num: 6,
+        ref: `94:6`,
+        movement: `Movement II · The Divine Law`,
+        arabic: `إِنَّ مَعَ الْعُسْرِ يُسْرًا`,
+        translit: `Inna ma‘a al-‘usri yusra`,
+        translation: `Indeed, with hardship [will be] ease.`,
+        words: [
+          {
+            ar: `إِنَّ`,
+            gloss: `Indeed`,
+            root: `Emphatic Particle`,
+            note: `Drops the introductory fa- of verse 5 to deliver a standalone, echoing oath-like reassurance.`
+          },
+          {
+            ar: `مَعَ`,
+            gloss: `with`,
+            root: `Adverbial Preposition`,
+            note: `Reaffirms simultaneity: ease travels right beside difficulty.`
+          },
+          {
+            ar: `الْعُسْرِ`,
+            gloss: `the hardship`,
+            root: `‘-S-R (ع س ر)`,
+            note: `Second occurrence of the definite noun al-‘usr. Under Arabic grammatical convention, a repeated definite noun refers to the very same single hardship.`
+          },
+          {
+            ar: `يُسْرًا`,
+            gloss: `an ease`,
+            root: `Y-S-R (ي س ر)`,
+            note: `Second occurrence of the indefinite noun yusran. In Arabic grammar, a repeated indefinite noun denotes a second, distinct instance — yielding two eases for one hardship.`
+          }
+        ],
+        commentary: [
+          `Rather than mere poetic repetition, verse 6 encodes a famous grammatical asymmetry recognized by early linguists and exegetes: “One hardship will never overcome two eases.”`,
+          `Many commentators interpret the two eases as spiritual strength and relief within this worldly life, paired with lasting ease and honor in the Hereafter.`
+        ]
+      },
+      {
+        num: 7,
+        ref: `94:7`,
+        movement: `Movement III · Purposeful Devotion`,
+        arabic: `فَإِذَا فَرَغْتَ فَانْصَبْ`,
+        translit: `Fa-idha faraghta fansab`,
+        translation: `So when you have finished [your duties], then stand up [for worship].`,
+        words: [
+          {
+            ar: `فَإِذَا`,
+            gloss: `So when`,
+            root: `Conjunction fa + Conditional idha`,
+            note: `Turns the promise of ease into actionable spiritual discipline: gratitude for relief expresses itself in purposeful motion.`
+          },
+          {
+            ar: `فَرَغْتَ`,
+            gloss: `you have finished`,
+            root: `F-R-Gh (ف ر غ)`,
+            note: `Faragha means to become free, empty of a task, or complete an obligation (such as daytime duties, preaching, or community care).`
+          },
+          {
+            ar: `فَانْصَبْ`,
+            gloss: `then strive / stand`,
+            root: `N-S-B (ن ص ب)`,
+            note: `Imperative from nasaba — to stand upright and exert oneself diligently in worship, night prayer, and supplication.`
+          }
+        ],
+        commentary: [
+          `Relief from hardship does not invite spiritual laziness. Verse 7 teaches a rhythm of continuous service: when outward responsibilities conclude, transition immediately to inward devotion.`,
+          `Classical scholars explain that “finishing” can refer to completing daily worldly work, finishing the ritual prayer (moving into supplication), or completing military/civic duties (moving into worship).`
+        ]
+      },
+      {
+        num: 8,
+        ref: `94:8`,
+        movement: `Movement III · Purposeful Devotion`,
+        arabic: `وَإِلَىٰ رَبِّكَ فَارْغَبْ`,
+        translit: `Wa ila Rabbika farghab`,
+        translation: `And to your Lord direct [your] longing.`,
+        words: [
+          {
+            ar: `وَإِلَىٰ`,
+            gloss: `And to`,
+            root: `Conjunction + Preposition`,
+            note: `Placed at the very front of the clause (taqdim al-ma‘mul) for grammatical exclusivity: “To your Lord alone — and nowhere else.”`
+          },
+          {
+            ar: `رَبِّكَ`,
+            gloss: `your Lord`,
+            root: `R-B-B (ر ب ب)`,
+            note: `Rabb conveys nurturing, sustaining, and protective Lordship — echoing the intimate warmth of Surah Ad-Duha.`
+          },
+          {
+            ar: `فَارْغَبْ`,
+            gloss: `direct longing`,
+            root: `R-Gh-B (ر غ ب)`,
+            note: `Raghaba ila means to turn with earnest, hopeful yearning and desire toward someone. With ila fronted, all hope and reliance belong exclusively to God.`
+          }
+        ],
+        commentary: [
+          `Notice the intentional Arabic wordplay linking the final two verses: faraghta (becoming free of tasks) is answered by farghab (turning your longing upward). Empty time is never left to drift into anxiety.`,
+          `By placing “to your Lord” before the verb, the Surah concludes by freeing the heart from dependence on human validation — the ultimate completion of the expanded breast promised in Verse 1.`
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // DATA: Diagnostic Mastery Check (6 Questions)
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        topic: `Grammar · Verses 94:5–6`,
+        question: `Why do classical scholars say “one hardship can never overcome two eases” based on Verses 94:5 and 94:6?`,
+        options: [
+          `Because “al-‘usr” (the hardship) is definite in both verses (referring to the same single trial), while “yusran” (ease) is indefinite in both (signaling two distinct eases).`,
+          `Because the word “hardship” appears only once in the Surah while “ease” appears twice.`,
+          `Because “yusran” is a plural noun in Arabic morphology.`,
+          `Because Verse 94:6 cancels out the hardship mentioned in Verse 94:5.`
+        ],
+        correctIndex: 0,
+        explanation: `In Arabic grammar, a repeated definite noun (al-‘usr) refers back to the exact same entity, whereas a repeated indefinite noun (yusran) denotes a second, distinct instance—giving two eases for one hardship.`
+      },
+      {
+        topic: `Preposition Nuance · Verse 94:5`,
+        question: `What spiritual insight comes from the Quran using the preposition “ma‘a” (with) rather than “ba‘da” (after) in “ma‘a al-‘usri yusra”?`,
+        options: [
+          `Ease is delayed strictly until the Hereafter.`,
+          `Ease is woven alongside and inside the hardship from the beginning, not merely waiting after it ends.`,
+          `Hardship always lasts longer than ease.`,
+          `Only physical relief counts as ease.`
+        ],
+        correctIndex: 1,
+        explanation: `Ma‘a (“with / alongside”) teaches simultaneity: even in the middle of difficulty, inner steadiness, hidden openings, and divine support already coexist with the trial.`
+      },
+      {
+        topic: `Arabic Morphology · Verse 94:3`,
+        question: `What vivid physical image does the verb “anqada” (أَنْقَضَ) convey in Verse 94:3 (“Which had weighed upon your back”)?`,
+        options: [
+          `Water flowing gently over smooth stones.`,
+          `A bird soaring effortlessly above the clouds.`,
+          `The audible groaning and creaking of a wooden saddle frame straining to snap under an overloaded pack.`,
+          `Footsteps disappearing across desert sand.`
+        ],
+        correctIndex: 2,
+        explanation: `From the root N-Q-D, anqada captures the creaking sound made when a burden pushes structural supports to their limit—showing deep divine empathy for the Prophet’s strain.`
+      },
+      {
+        topic: `Heart & Mind · Verse 94:1`,
+        question: `How does “sharh as-sadr” (expansion of the chest) relate to emotional resilience in Verse 94:1?`,
+        options: [
+          `It means ignoring all external challenges completely.`,
+          `It signifies enlarging the outer threshold of the heart (sadr) so hostility, grief, and heavy responsibility do not constrict the spirit.`,
+          `It refers exclusively to memorizing poetry.`,
+          `It commands the listener to conceal all emotions.`
+        ],
+        correctIndex: 1,
+        explanation: `Sharaha means to open wide and illuminate. Expanding the sadr gives the believer inner breadth and composure to bear adversity without losing serenity.`
+      },
+      {
+        topic: `Twin Surahs · 93 ↔ 94`,
+        question: `How do the past divine favors in Surah Ad-Duha (93:6–8) complement those in Surah Ash-Sharh (94:1–4)?`,
+        options: [
+          `Ad-Duha recalls outward care (shelter, guidance, sufficiency), while Ash-Sharh recalls inward & prophetic care (chest expanded, burden lifted, mention elevated).`,
+          `Both chapters list the exact same three material miracles.`,
+          `Ad-Duha focuses solely on the laws of inheritance.`,
+          `Ash-Sharh was revealed centuries after Ad-Duha.`
+        ],
+        correctIndex: 0,
+        explanation: `Together they form a paired consolation: Ad-Duha addresses external vulnerability (orphanhood, lack of direction, poverty), while Ash-Sharh addresses internal weight and prophetic stature.`
+      },
+      {
+        topic: `Devotional Discipline · Verses 94:7–8`,
+        question: `What does the pairing of “faraghta” (finished duties) with “fansab” and “farghab” in Verses 94:7–8 teach?`,
+        options: [
+          `Once daily duties end, one should abandon spiritual effort until morning.`,
+          `Completion of outward duties is the cue to rise in devoted worship (fansab) and direct all hopeful longing exclusively to God (farghab).`,
+          `Only public preaching counts as worship.`,
+          `Human approval is the primary goal of finished work.`
+        ],
+        correctIndex: 1,
+        explanation: `Faraghta (“you have finished”) leads directly to fansab (“strive upright in devotion”) and “to your Lord direct your longing,” preventing emptiness from slipping into spiritual lethargy.`
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT (with notebookAppApi persistence)
+    // =========================================================================
+    let appState = {
+      activeVerseIndex: 0,
+      selectedWordIndex: 0,
+      masteredVerses: [],
+      quizIndex: 0,
+      quizAnswers: {},
+      reflections: [``, ``, ``, ``]
+    };
+
+    let saveTimer = null;
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        // Silently degrade if running outside host shell
+      }
+    }
+
+    function scheduleStateSave() {
+      const statusEl = document.getElementById('reflection-save-status');
+      if (statusEl) statusEl.textContent = `Saving…`;
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async () => {
+        await persistState();
+        const s = document.getElementById('reflection-save-status');
+        if (s) s.textContent = `Saved to notebook`;
+      }, 260);
+    }
+
+    // =========================================================================
+    // RENDER: Verse List & Active Detail
+    // =========================================================================
+    function renderVerseList() {
+      const listEl = document.getElementById('verse-list');
+      if (!listEl) return;
+
+      listEl.innerHTML = SURAH_VERSES.map((v, idx) => {
+        const isActive = idx === appState.activeVerseIndex;
+        const isMastered = appState.masteredVerses.includes(v.num);
+        const cls = [
+          'verse-selector',
+          isActive ? 'is-active' : '',
+          isMastered ? 'is-mastered' : ''
+        ].filter(Boolean).join(' ');
+
+        return `
+          <button
+            type="button"
+            class="${cls}"
+            role="tab"
+            aria-selected="${isActive ? 'true' : 'false'}"
+            onclick="selectVerse(${idx})"
+          >
+            <span class="verse-selector__left">
+              <span class="verse-selector__num">${v.num}</span>
+              <span class="verse-selector__preview">
+                <span class="verse-selector__arabic" dir="rtl" lang="ar">${v.arabic}</span>
+                <span class="verse-selector__trans">${v.translation}</span>
+              </span>
+            </span>
+            <span class="verse-selector__status">${isMastered ? 'Mastered ✓' : v.ref}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderActiveVerse() {
+      const v = SURAH_VERSES[appState.activeVerseIndex];
+      if (!v) return;
+
+      const verseBadge = document.getElementById('detail-verse-badge');
+      const moveBadge = document.getElementById('detail-movement-badge');
+      const arabicEl = document.getElementById('detail-arabic');
+      const translitEl = document.getElementById('detail-translit');
+      const transEl = document.getElementById('detail-translation');
+      const chipsEl = document.getElementById('detail-word-chips');
+      const commEl = document.getElementById('detail-commentary');
+      const prevBtn = document.getElementById('btn-prev-verse');
+      const nextBtn = document.getElementById('btn-next-verse');
+      const masterBtn = document.getElementById('btn-toggle-mastered');
+
+      if (verseBadge) verseBadge.textContent = `Verse ${v.ref}`;
+      if (moveBadge) moveBadge.textContent = v.movement;
+      if (arabicEl) arabicEl.textContent = v.arabic;
+      if (translitEl) translitEl.textContent = v.translit;
+      if (transEl) transEl.textContent = `“${v.translation}”`;
+
+      if (appState.selectedWordIndex >= v.words.length) {
+        appState.selectedWordIndex = 0;
+      }
+
+      if (chipsEl) {
+        chipsEl.innerHTML = v.words.map((w, wIdx) => {
+          const isSel = wIdx === appState.selectedWordIndex;
+          return `
+            <button
+              type="button"
+              class="word-chip ${isSel ? 'is-selected' : ''}"
+              onclick="selectWord(${wIdx})"
+            >
+              <span class="word-chip__ar" dir="rtl" lang="ar">${w.ar}</span>
+              <span class="word-chip__gl">${w.gloss}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      renderWordInspector();
+
+      if (commEl) {
+        commEl.innerHTML = v.commentary.map(p => `<p>${p}</p>`).join('');
+      }
+
+      if (prevBtn) prevBtn.disabled = appState.activeVerseIndex === 0;
+      if (nextBtn) nextBtn.disabled = appState.activeVerseIndex === SURAH_VERSES.length - 1;
+
+      if (masterBtn) {
+        const isMastered = appState.masteredVerses.includes(v.num);
+        masterBtn.textContent = isMastered ? `Mastered ✓ (Click to Unmark)` : `Mark Verse ${v.ref} Mastered`;
+        masterBtn.className = isMastered ? `btn btn-secondary` : `btn btn-emerald`;
+      }
+    }
+
+    function renderWordInspector() {
+      const v = SURAH_VERSES[appState.activeVerseIndex];
+      if (!v) return;
+      const w = v.words[appState.selectedWordIndex] || v.words[0];
+      if (!w) return;
+
+      const wordEl = document.getElementById('inspector-word');
+      const rootEl = document.getElementById('inspector-root');
+      const noteEl = document.getElementById('inspector-note');
+
+      if (wordEl) wordEl.textContent = `${w.ar} — “${w.gloss}”`;
+      if (rootEl) rootEl.textContent = w.root;
+      if (noteEl) noteEl.textContent = w.note;
+    }
+
+    // Hoisted verse handlers
+    function selectVerse(index) {
+      if (index < 0 || index >= SURAH_VERSES.length) return;
+      appState.activeVerseIndex = index;
+      appState.selectedWordIndex = 0;
+      renderVerseList();
+      renderActiveVerse();
+      persistState();
+    }
+
+    function stepVerse(delta) {
+      selectVerse(appState.activeVerseIndex + delta);
+    }
+
+    function selectWord(wordIdx) {
+      appState.selectedWordIndex = wordIdx;
+      renderActiveVerse();
+      persistState();
+    }
+
+    function toggleCurrentVerseMastered() {
+      const v = SURAH_VERSES[appState.activeVerseIndex];
+      if (!v) return;
+      const pos = appState.masteredVerses.indexOf(v.num);
+      if (pos === -1) {
+        appState.masteredVerses.push(v.num);
+      } else {
+        appState.masteredVerses.splice(pos, 1);
+      }
+      renderVerseList();
+      renderActiveVerse();
+      updateMasteryStats();
+      persistState();
+    }
+
+    // =========================================================================
+    // TWIN SURAH FILTER
+    // =========================================================================
+    function filterTwinTable(category, btnEl) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('is-active'));
+      if (btnEl) btnEl.classList.add('is-active');
+
+      const rows = document.querySelectorAll('#twin-comparison-table tbody tr');
+      rows.forEach(row => {
+        const cat = row.getAttribute('data-cat');
+        if (category === 'all' || cat === category) {
+          row.style.display = '';
+          row.classList.toggle('is-highlighted', category !== 'all');
+        } else {
+          row.style.display = 'none';
+          row.classList.remove('is-highlighted');
+        }
+      });
+    }
+
+    // =========================================================================
+    // QUIZ MODULE
+    // =========================================================================
+    function computeQuizScore() {
+      let score = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (appState.quizAnswers[idx] === q.correctIndex) {
+          score += 1;
+        }
+      });
+      return score;
+    }
+
+    function renderQuiz() {
+      const qIdx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[qIdx];
+      if (!q) return;
+
+      const badgeEl = document.getElementById('quiz-progress-badge');
+      const topicEl = document.getElementById('quiz-topic-label');
+      const scoreEl = document.getElementById('quiz-score-inline');
+      const textEl = document.getElementById('quiz-question-text');
+      const optsEl = document.getElementById('quiz-options-list');
+      const fbEl = document.getElementById('quiz-feedback');
+      const prevBtn = document.getElementById('btn-quiz-prev');
+      const nextBtn = document.getElementById('btn-quiz-next');
+
+      const currentScore = computeQuizScore();
+      if (badgeEl) badgeEl.textContent = `Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (topicEl) topicEl.textContent = q.topic;
+      if (scoreEl) scoreEl.textContent = `Score: ${currentScore} / ${QUIZ_QUESTIONS.length}`;
+      if (textEl) textEl.textContent = q.question;
+
+      const userChoice = appState.quizAnswers[qIdx];
+      const hasAnswered = typeof userChoice === 'number';
+
+      if (optsEl) {
+        optsEl.innerHTML = q.options.map((opt, oIdx) => {
+          let cls = 'quiz-option';
+          if (hasAnswered) {
+            if (oIdx === q.correctIndex) cls += ' is-correct';
+            else if (oIdx === userChoice) cls += ' is-wrong';
+          }
+          return `
+            <button
+              type="button"
+              class="${cls}"
+              ${hasAnswered ? 'disabled' : ''}
+              onclick="answerQuiz(${oIdx})"
+            >
+              ${opt}
+            </button>
+          `;
+        }).join('');
+      }
+
+      if (fbEl) {
+        if (hasAnswered) {
+          const isCorrect = userChoice === q.correctIndex;
+          fbEl.hidden = false;
+          fbEl.innerHTML = `<strong>${isCorrect ? 'Correct.' : 'Review Insight:'}</strong> ${q.explanation}`;
+        } else {
+          fbEl.hidden = true;
+          fbEl.innerHTML = '';
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = qIdx === 0;
+      if (nextBtn) nextBtn.disabled = qIdx === QUIZ_QUESTIONS.length - 1;
+    }
+
+    function answerQuiz(optionIdx) {
+      appState.quizAnswers[appState.quizIndex] = optionIdx;
+      renderQuiz();
+      updateMasteryStats();
+      persistState();
+    }
+
+    function moveQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next < 0 || next >= QUIZ_QUESTIONS.length) return;
+      appState.quizIndex = next;
+      renderQuiz();
+      persistState();
+    }
+
+    // =========================================================================
+    // REFLECTIONS & STATS
+    // =========================================================================
+    function handleReflectionInput(idx, val) {
+      appState.reflections[idx] = val;
+      updateMasteryStats();
+      scheduleStateSave();
+    }
+
+    function syncReflectionInputs() {
+      const ids = ['reflect-1', 'reflect-2', 'reflect-3', 'reflect-4'];
+      ids.forEach((id, idx) => {
+        const el = document.getElementById(id);
+        if (el) el.value = appState.reflections[idx] || ``;
+      });
+    }
+
+    function updateMasteryStats() {
+      const masteredCount = appState.masteredVerses.length;
+      const quizScore = computeQuizScore();
+      const reflectionsFilled = appState.reflections.filter(r => r && r.trim().length > 0).length;
+
+      const versesEl = document.getElementById('stat-verses-mastered');
+      const fillEl = document.getElementById('mastery-progress-fill');
+      const quizEl = document.getElementById('stat-quiz-score');
+      const refEl = document.getElementById('stat-reflections-count');
+
+      if (versesEl) versesEl.textContent = `${masteredCount} / 8`;
+      if (fillEl) fillEl.style.width = `${Math.round((masteredCount / 8) * 100)}%`;
+      if (quizEl) quizEl.textContent = `${quizScore} / ${QUIZ_QUESTIONS.length}`;
+      if (refEl) refEl.textContent = `${reflectionsFilled} / 4`;
+    }
+
+    // =========================================================================
+    // EXPORT & RESET
+    // =========================================================================
+    function exportStudyNotes() {
+      const prompts = [
+        `1. Constriction to Expansion (94:1)`,
+        `2. Naming the Heavy Burden (94:2-3)`,
+        `3. Recognizing Ease Inside Hardship (94:5-6)`,
+        `4. Redirecting Finished Duties (94:7-8)`
+      ];
+      const lines = [
+        `SURAH ASH-SHARH (CHAPTER 94) — STUDY & MASTERY SUMMARY`,
+        `=======================================================`,
+        `Verses Mastered: ${appState.masteredVerses.length} / 8 (${appState.masteredVerses.sort((a,b) => a - b).join(', ') || 'None yet'})`,
+        `Mastery Check Score: ${computeQuizScore()} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `PERSONAL REFLECTIONS`,
+        `--------------------`
+      ];
+
+      prompts.forEach((p, idx) => {
+        lines.push(p);
+        lines.push(appState.reflections[idx] && appState.reflections[idx].trim() ? appState.reflections[idx].trim() : `(No reflection written yet)`);
+        lines.push(``);
+      });
+
+      const content = lines.join('\n');
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-ash-sharh-study-notes.txt'
+        });
+      }
+      const statusEl = document.getElementById('reflection-save-status');
+      if (statusEl) statusEl.textContent = `Study summary exported`;
+    }
+
+    function resetStudyProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.textContent = `Reset Progress`;
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = 'false';
+      btn.textContent = `Reset Progress`;
+
+      appState = {
+        activeVerseIndex: 0,
+        selectedWordIndex: 0,
+        masteredVerses: [],
+        quizIndex: 0,
+        quizAnswers: {},
+        reflections: [``, ``, ``, ``]
+      };
+
+      renderVerseList();
+      renderActiveVerse();
+      renderQuiz();
+      syncReflectionInputs();
+      updateMasteryStats();
+      persistState();
+
+      const statusEl = document.getElementById('reflection-save-status');
+      if (statusEl) statusEl.textContent = `Progress reset`;
+    }
+
+    // =========================================================================
+    // SCROLL REVEAL & INITIALIZATION
+    // =========================================================================
+    function initScrollReveals() {
+      const els = document.querySelectorAll('.reveal-on-scroll');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(el => observer.observe(el));
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            appState = {
+              activeVerseIndex: typeof saved.activeVerseIndex === 'number' ? saved.activeVerseIndex : 0,
+              selectedWordIndex: typeof saved.selectedWordIndex === 'number' ? saved.selectedWordIndex : 0,
+              masteredVerses: Array.isArray(saved.masteredVerses) ? saved.masteredVerses : [],
+              quizIndex: typeof saved.quizIndex === 'number' ? saved.quizIndex : 0,
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === 'object' ? saved.quizAnswers : {},
+              reflections: Array.isArray(saved.reflections) && saved.reflections.length === 4 ? saved.reflections : [``, ``, ``, ``]
+            };
+          }
+        }
+      } catch (err) {
+        // Fallback to initial state
+      }
+
+      renderVerseList();
+      renderActiveVerse();
+      renderQuiz();
+      syncReflectionInputs();
+      updateMasteryStats();
+      initScrollReveals();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

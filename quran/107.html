@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Ma'un (Chapter 107) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-border: #c98a6b;
+      --emerald-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fae6e6;
+      --on-error-container: #7c1919;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Semantic & Focus */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+      --arabic-size: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero & Typography */
+    .hero {
+      padding-top: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-sm);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Arch Metric Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.125rem, 1.8rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .arch-card.is-featured .arch-value {
+      color: var(--on-primary-container);
+    }
+    .arch-caption {
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Badges & Pills */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--featured-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--secondary-btn-border);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+    }
+    .btn-secondary.is-active {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--featured-border);
+    }
+    .btn-emerald {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--emerald-border);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald.is-mastered {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+      border-color: var(--tertiary);
+    }
+
+    /* Sections & Narrative Rhythm */
+    .story-section {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .section-band {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .section-header {
+      display: grid;
+      gap: var(--space-xs);
+      max-width: 68ch;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-prose {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    /* Two-column asymmetric grid for architecture + table */
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .panel-card {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .panel-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    /* Interactive SVG Schematic */
+    .schematic-wrap {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .schematic-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .schematic-node {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out);
+    }
+    .schematic-node:hover rect,
+    .schematic-node:focus-visible rect {
+      stroke: var(--primary);
+      stroke-width: 2;
+    }
+    .node-inspector {
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+      background-color: var(--surface-container-low);
+    }
+    table.study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    table.study-table thead th {
+      background-color: var(--surface-container-high);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    table.study-table tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    table.study-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Verse Study Deck */
+    .study-controls {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .control-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .control-group-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-right: var(--space-xs);
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .verse-wrapper {
+      container-type: inline-size;
+    }
+
+    .verse-card {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+      transition: box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      background-color: var(--background);
+      border-color: var(--emerald-border);
+    }
+
+    .verse-top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    @container (max-width: 680px) {
+      .verse-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .verse-arabic-box {
+      direction: rtl;
+      text-align: right;
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      min-height: 5.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .verse-arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 1.9;
+      font-weight: 600;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+      transition: filter var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+    }
+    .verse-arabic-text.is-masked,
+    .verse-english-text.is-masked {
+      filter: blur(7px);
+      user-select: none;
+      opacity: 0.45;
+    }
+
+    .key-term-highlight {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      padding: 0 var(--space-xs);
+      border-radius: var(--rounded);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .verse-english-box {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .verse-english-text {
+      font-family: var(--font-headline);
+      font-size: clamp(1.375rem, 1.15rem + 0.6vw, 1.75rem);
+      line-height: 1.3;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0;
+      transition: filter var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+    }
+    .verse-note {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    .verse-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-md);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+    }
+    @container (max-width: 600px) {
+      .verse-footer {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .input-field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background-color: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+    }
+    .text-input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+      border-color: var(--primary);
+    }
+
+    /* Lexicon & Flashcard Studio */
+    .lexicon-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .flashcard-stage {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--featured-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-lg);
+      text-align: center;
+    }
+
+    .flashcard-face {
+      background-color: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-xl) var(--space-lg);
+      min-height: 13rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-sm);
+      cursor: pointer;
+    }
+
+    .flashcard-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+      line-height: 1.7;
+      font-weight: 700;
+      color: var(--on-surface);
+      direction: rtl;
+      letter-spacing: 0;
+    }
+
+    .flashcard-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .lexicon-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .lexicon-item {
+      width: 100%;
+      text-align: left;
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .lexicon-item:hover {
+      background-color: var(--surface-container-high);
+    }
+    .lexicon-item.is-selected {
+      background-color: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+
+    /* Mastery Checks: Sequence Builder & Quiz */
+    .sequence-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .sequence-row {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+    }
+    .sequence-row.is-correct {
+      background-color: var(--tertiary-container);
+      border-color: var(--emerald-border);
+    }
+    .sequence-row.is-wrong {
+      background-color: var(--error-container);
+      border-color: var(--error);
+    }
+
+    .slot-index {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      min-width: 2.25rem;
+    }
+
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-card {
+      background-color: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-question {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background-color: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background-color: var(--surface-container);
+    }
+    .quiz-option.is-chosen-correct {
+      background-color: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-chosen-wrong {
+      background-color: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+
+    .feedback-banner {
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .feedback-banner.is-ok {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-border);
+    }
+    .feedback-banner.is-err {
+      background-color: var(--error-container);
+      color: var(--on-error-container);
+      border: 1px solid var(--error);
+    }
+
+    .status-note {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    /* Scroll reveal */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .arch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .split-grid,
+      .lexicon-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .section-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .arch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .sequence-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO & OVERVIEW -->
+    <header class="hero">
+      <div class="kicker-row">
+        <p class="kicker">Chapter 107 · Study &amp; Mastery Guide</p>
+        <span class="badge-emerald" id="hero-status-badge">0 of 7 Verses Mastered</span>
+      </div>
+
+      <h1 class="title">Surah <em>Al-Ma'un</em></h1>
+      <p class="lede">
+        Seven concise verses that bind faith to everyday mercy: how denying the Recompense reveals itself in driving away the orphan and neglecting the poor, and how heedless, ostentatious prayer collapses into withholding simple assistance.
+      </p>
+
+      <div class="ornament-rule">◆ Chapter Architecture ◆</div>
+
+      <section class="arch-grid" aria-label="Chapter summary metrics">
+        <article class="arch-card">
+          <span class="arch-label">Scope</span>
+          <span class="arch-value">7</span>
+          <span class="arch-caption">Verses (107:1–107:7)</span>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Structure</span>
+          <span class="arch-value">2</span>
+          <span class="arch-caption">Moral Movements</span>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Traits Named</span>
+          <span class="arch-value">5</span>
+          <span class="arch-caption">Social &amp; Ritual Signs</span>
+        </article>
+        <article class="arch-card is-featured">
+          <span class="arch-label">Your Mastery</span>
+          <span class="arch-value" id="overall-mastery-pct">0%</span>
+          <span class="arch-caption" id="overall-mastery-caption">Begin with Verse 107:1</span>
+        </article>
+      </section>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" onclick="scrollToStudyDeck()">Start Verse Study</button>
+        <button type="button" class="btn btn-secondary" onclick="exportStudyNotes()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export Study Sheet
+        </button>
+        <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset Progress</button>
+      </div>
+      <p class="status-note" id="global-status-note" aria-live="polite"></p>
+    </header>
+
+    <!-- SECTION 1: TWO-PART MORAL ARCHITECTURE -->
+    <section class="story-section reveal-item" aria-labelledby="sec-architecture-title">
+      <div class="section-header">
+        <p class="kicker">01 · Structural Synthesis</p>
+        <h2 class="section-heading" id="sec-architecture-title">Faith and Everyday Assistance Form a <em>Single</em> Moral Thread</h2>
+        <p class="section-prose">
+          Surah Al-Ma'un unfolds in two mirror movements. Verses 1–3 diagnose the singular denier of the Recompense through two social failures toward the vulnerable. Verses 4–7 shift to plural worshippers whose prayer is undermined by heedlessness, outward show, and refusal of small help.
+        </p>
+      </div>
+
+      <div class="split-grid">
+        <div class="panel-card">
+          <h3 class="panel-title">Interactive Chapter Blueprint</h3>
+          <p class="status-note">Select any stage in the diagram to inspect how the verses connect.</p>
+          <div class="schematic-wrap">
+            <svg class="schematic-svg" viewBox="0 0 600 280" role="img" aria-label="Structural diagram linking Verses 107:1-3 and Verses 107:4-7">
+              <defs>
+                <marker id="arrow-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--secondary)"></path>
+                </marker>
+              </defs>
+
+              <!-- Connecting lines -->
+              <line x1="190" y1="86" x2="230" y2="86" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"></line>
+              <line x1="190" y1="194" x2="230" y2="194" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"></line>
+              <line x1="410" y1="86" x2="448" y2="122" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"></line>
+              <line x1="410" y1="194" x2="448" y2="158" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"></line>
+
+              <!-- Node 1: 107:1 -->
+              <g class="schematic-node" tabindex="0" role="button" aria-label="Inspect 107:1 Denying the Recompense" onclick="selectBlueprintNode('denial')" onkeydown="handleBlueprintKey(event, 'denial')">
+                <rect x="16" y="46" width="172" height="80" rx="8" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="1.5"></rect>
+                <text x="102" y="72" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-primary-container)">107:1 · ROOT CAUSE</text>
+                <text x="102" y="96" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="600" fill="var(--on-surface)">Denies Recompense</text>
+                <text x="102" y="114" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">Singular: “the one who”</text>
+              </g>
+
+              <!-- Node 2: 107:2-3 -->
+              <g class="schematic-node" tabindex="0" role="button" aria-label="Inspect 107:2-3 Social Neglect" onclick="selectBlueprintNode('social')" onkeydown="handleBlueprintKey(event, 'social')">
+                <rect x="234" y="46" width="176" height="80" rx="8" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+                <text x="322" y="72" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--primary)">107:2–3 · SOCIAL SIGNS</text>
+                <text x="322" y="96" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="600" fill="var(--on-surface)">Orphan &amp; Poor</text>
+                <text x="322" y="114" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">Drives away; fails to urge</text>
+              </g>
+
+              <!-- Node 3: 107:4-5 -->
+              <g class="schematic-node" tabindex="0" role="button" aria-label="Inspect 107:4-5 Heedless Prayer" onclick="selectBlueprintNode('prayer')" onkeydown="handleBlueprintKey(event, 'prayer')">
+                <rect x="16" y="154" width="172" height="80" rx="8" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="1.5"></rect>
+                <text x="102" y="180" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-tertiary-container)">107:4–5 · WARNING</text>
+                <text x="102" y="204" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="600" fill="var(--on-surface)">Heedless in Prayer</text>
+                <text x="102" y="222" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">Plural: “those who pray”</text>
+              </g>
+
+              <!-- Node 4: 107:6-7 -->
+              <g class="schematic-node" tabindex="0" role="button" aria-label="Inspect 107:6-7 Show and Withholding" onclick="selectBlueprintNode('show')" onkeydown="handleBlueprintKey(event, 'show')">
+                <rect x="234" y="154" width="176" height="80" rx="8" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+                <text x="322" y="180" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--tertiary)">107:6–7 · OUTWARD SIGNS</text>
+                <text x="322" y="204" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="600" fill="var(--on-surface)">Show &amp; Withhold</text>
+                <text x="322" y="222" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">Ostentation; denies help</text>
+              </g>
+
+              <!-- Node 5: Convergence -->
+              <g class="schematic-node" tabindex="0" role="button" aria-label="Inspect Chapter Thesis" onclick="selectBlueprintNode('thesis')" onkeydown="handleBlueprintKey(event, 'thesis')">
+                <rect x="450" y="92" width="136" height="96" rx="10" fill="var(--surface-container-high)" stroke="var(--secondary)" stroke-width="1.5"></rect>
+                <text x="518" y="122" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--secondary)">CORE LINK</text>
+                <text x="518" y="146" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="600" fill="var(--on-surface)">Al-Ma'un</text>
+                <text x="518" y="166" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">Sincere worship</text>
+                <text x="518" y="180" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--on-surface-variant)">yields mercy</text>
+              </g>
+            </svg>
+
+            <div class="node-inspector" id="blueprint-inspector" aria-live="polite">
+              <span class="kicker" id="inspector-kicker">107:1 · Opening Question</span>
+              <strong id="inspector-title">Denying the Recompense (<span class="arabic-inline" lang="ar" dir="rtl">يُكَذِّبُ بِالدِّينِ</span>)</strong>
+              <p class="section-prose" id="inspector-body">
+                The chapter opens by asking the listener to look directly at the moral evidence: “Have you seen the one who denies the Recompense?” Instead of an abstract debate, the next two verses point to visible conduct toward the orphan and the poor.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="study-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Movement I (107:1–3)</th>
+                <th>Movement II (107:4–7)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Opening Cue</strong></td>
+                <td>Rhetorical question: <em>“Have you seen…”</em></td>
+                <td>Stern warning: <em>“So woe to those who pray”</em></td>
+              </tr>
+              <tr>
+                <td><strong>Grammatical Shift</strong></td>
+                <td>Singular <span class="arabic-inline" lang="ar" dir="rtl">الَّذِي</span> (“the one who”)</td>
+                <td>Plural <span class="arabic-inline" lang="ar" dir="rtl">الَّذِينَ</span> (“those who”)</td>
+              </tr>
+              <tr>
+                <td><strong>Inner Defect</strong></td>
+                <td>Denies the Recompense (<span class="arabic-inline" lang="ar" dir="rtl">بِالدِّينِ</span>)</td>
+                <td>Heedless of their prayer (<span class="arabic-inline" lang="ar" dir="rtl">سَاهُونَ</span>) &amp; making show (<span class="arabic-inline" lang="ar" dir="rtl">يُرَاءُونَ</span>)</td>
+              </tr>
+              <tr>
+                <td><strong>Social Consequence</strong></td>
+                <td>Drives away the orphan; does not encourage feeding the poor</td>
+                <td>Withholds simple assistance (<span class="arabic-inline" lang="ar" dir="rtl">الْمَاعُونَ</span>)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: VERSE-BY-VERSE STUDY DECK -->
+    <section class="story-section reveal-item" id="verse-study-section" aria-labelledby="sec-verses-title">
+      <div class="section-header">
+        <p class="kicker">02 · Text &amp; Active Recall</p>
+        <h2 class="section-heading" id="sec-verses-title">Seven Verses, Read Slowly and <em>Tested</em> in Context</h2>
+        <p class="section-prose">
+          Study each verse alongside its Arabic text, English rendering, and structural note. Switch into Active Recall mode to mask either language and test your memory before marking each verse mastered.
+        </p>
+      </div>
+
+      <div class="study-controls" role="region" aria-label="Verse study controls">
+        <div class="control-group">
+          <span class="control-group-label">Recall Mode:</span>
+          <button type="button" class="btn btn-secondary is-active" id="mode-full-btn" onclick="setRecallMode('full')">Full Text</button>
+          <button type="button" class="btn btn-secondary" id="mode-hide-en-btn" onclick="setRecallMode('hide-en')">Test English</button>
+          <button type="button" class="btn btn-secondary" id="mode-hide-ar-btn" onclick="setRecallMode('hide-ar')">Test Arabic</button>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-label">Filter:</span>
+          <button type="button" class="btn btn-secondary is-active" id="filter-all-btn" onclick="setVerseFilter('all')">All (7)</button>
+          <button type="button" class="btn btn-secondary" id="filter-review-btn" onclick="setVerseFilter('review')">Needs Review</button>
+          <button type="button" class="btn btn-secondary" id="filter-mastered-btn" onclick="setVerseFilter('mastered')">Mastered</button>
+          <button type="button" class="btn btn-secondary" id="toggle-highlights-btn" onclick="toggleKeyTerms()">Highlight Key Terms</button>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container"></div>
+    </section>
+
+    <!-- SECTION 3: CORE LEXICON & FLASHCARD STUDIO -->
+    <section class="section-band reveal-item" aria-labelledby="sec-lexicon-title">
+      <div class="section-header">
+        <p class="kicker">03 · Lexical Anchors</p>
+        <h2 class="section-heading" id="sec-lexicon-title">Seven Anchoring Terms That Carry the <em>Argument</em></h2>
+        <p class="section-prose">
+          Each verse turns on a decisive Arabic phrase—moving from the cosmic accountability of the Recompense in 107:1 to the everyday generosity of simple assistance in 107:7. Select a term to inspect it or drill with the recall card.
+        </p>
+      </div>
+
+      <div class="lexicon-layout">
+        <div class="flashcard-stage">
+          <div class="kicker-row">
+            <span class="badge-terracotta" id="flashcard-verse-badge">107:1</span>
+            <span class="status-note" id="flashcard-counter">Card 1 of 7</span>
+          </div>
+
+          <div class="flashcard-face" id="flashcard-face" tabindex="0" role="button" aria-label="Flip flashcard" onclick="flipFlashcard()" onkeydown="handleFlashcardKey(event)">
+            <div class="flashcard-arabic" id="flashcard-arabic" lang="ar" dir="rtl">بِالدِّينِ</div>
+            <div class="flashcard-english" id="flashcard-english" hidden>the Recompense</div>
+            <p class="section-prose" id="flashcard-context" hidden></p>
+            <span class="status-note" id="flashcard-tap-hint">Click card to reveal meaning and verse context</span>
+          </div>
+
+          <div class="btn-row" style="justify-content: center;">
+            <button type="button" class="btn btn-secondary" onclick="stepFlashcard(-1)">Previous</button>
+            <button type="button" class="btn btn-primary" onclick="flipFlashcard()" id="flip-card-btn">Flip Card</button>
+            <button type="button" class="btn btn-emerald" onclick="markFlashcardKnown()" id="known-card-btn">Mark Known</button>
+            <button type="button" class="btn btn-secondary" onclick="stepFlashcard(1)">Next</button>
+          </div>
+        </div>
+
+        <div class="lexicon-list" id="lexicon-list-container" role="list" aria-label="Key terms in Surah Al-Ma'un"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MASTERY VERIFICATION (SEQUENCE + COMPREHENSION) -->
+    <section class="story-section reveal-item" aria-labelledby="sec-mastery-title">
+      <div class="section-header">
+        <p class="kicker">04 · Mastery Verification</p>
+        <h2 class="section-heading" id="sec-mastery-title">Verify Recall: Verse <em>Order</em> and Textual Precision</h2>
+        <p class="section-prose">
+          Reconstruct the seven verses in order from 107:1 to 107:7, then complete the five-question textual comprehension check grounded directly in the chapter.
+        </p>
+      </div>
+
+      <div class="panel-card">
+        <div class="kicker-row">
+          <div>
+            <h3 class="panel-title">Exercise A · Reconstruct the Seven-Verse Sequence</h3>
+            <p class="status-note">Use Move Up / Move Down to arrange the English verses in their exact order from 107:1 to 107:7.</p>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" onclick="shuffleSequence()">Shuffle Verses</button>
+            <button type="button" class="btn btn-primary" onclick="checkSequenceOrder()">Check Order</button>
+          </div>
+        </div>
+
+        <div class="sequence-list" id="sequence-list-container"></div>
+        <div id="sequence-feedback" aria-live="polite"></div>
+      </div>
+
+      <div class="panel-card">
+        <div class="kicker-row">
+          <div>
+            <h3 class="panel-title">Exercise B · Grounded Comprehension Check</h3>
+            <p class="status-note">Select the answer supported directly by the wording of Chapter 107.</p>
+          </div>
+          <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+
+        <div class="quiz-grid" id="quiz-container"></div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span>Source material: Excerpts from “107-1 .pdf” (Chapter 107, Verses 107:1–107:7, Arabic text and English translation).</span>
+      <span>Progress and personal notes save automatically to your notebook session.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        ref: `107:1`,
+        arabic: `أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ`,
+        english: `Have you seen the one who denies the Recompense?`,
+        keyTermAr: `بِالدِّينِ`,
+        keyTermEn: `the Recompense`,
+        movement: `Movement I · Denial & Social Neglect`,
+        note: `Opens with a direct, singular question (“Have you seen the one who…”), framing denial of accountability not as mere opinion but as a visible moral posture.`
+      },
+      {
+        num: 2,
+        ref: `107:2`,
+        arabic: `فَذَلِكَ الَّذِي يَدُلُّ الْيَتِيمَ`,
+        english: `For that is the one who drives away the orphan`,
+        keyTermAr: `الْيَتِيمَ`,
+        keyTermEn: `the orphan`,
+        movement: `Movement I · Denial & Social Neglect`,
+        note: `Connects directly with “For that is…” to identify the first outward sign of denying the Recompense: harshly pushing aside the vulnerable orphan.`
+      },
+      {
+        num: 3,
+        ref: `107:3`,
+        arabic: `وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينَ`,
+        english: `And does not encourage the feeding of the poor.`,
+        keyTermAr: `طَعَامِ الْمِسْكِينَ`,
+        keyTermEn: `feeding of the poor`,
+        movement: `Movement I · Denial & Social Neglect`,
+        note: `Notice the precision of “does not encourage”: the critique reaches beyond withholding one’s own food to failing even to urge communal care for the poor.`
+      },
+      {
+        num: 4,
+        ref: `107:4`,
+        arabic: `فَوَيْلٌ لِلْمُصَلِّينَ`,
+        english: `So woe to those who pray`,
+        keyTermAr: `لِلْمُصَلِّينَ`,
+        keyTermEn: `those who pray`,
+        movement: `Movement II · Heedless & Performative Worship`,
+        note: `Marks a decisive grammatical and thematic turn from the singular denier to the plural “those who pray”—qualifying the warning strictly in verses 5–7.`
+      },
+      {
+        num: 5,
+        ref: `107:5`,
+        arabic: `الَّذِينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَ`,
+        english: `[But] who are heedless of their prayer`,
+        keyTermAr: `سَاهُونَ`,
+        keyTermEn: `heedless`,
+        movement: `Movement II · Heedless & Performative Worship`,
+        note: `Defines the first trait of those warned: they are heedless “of” their prayer, treating the act of worship without mindfulness or sincerity.`
+      },
+      {
+        num: 6,
+        ref: `107:6`,
+        arabic: `الَّذِينَ هُمْ يُرَاءُونَ`,
+        english: `Those who make show [of their deeds]`,
+        keyTermAr: `يُرَاءُونَ`,
+        keyTermEn: `make show [of their deeds]`,
+        movement: `Movement II · Heedless & Performative Worship`,
+        note: `Repeats the plural “Those who…” to expose performative piety—deeds done to be seen by others rather than out of genuine accountability.`
+      },
+      {
+        num: 7,
+        ref: `107:7`,
+        arabic: `وَيَمْنَعُونَ الْمَاعُونَ`,
+        english: `And withhold [simple] assistance.`,
+        keyTermAr: `الْمَاعُونَ`,
+        keyTermEn: `[simple] assistance`,
+        movement: `Movement II · Heedless & Performative Worship`,
+        note: `Closes the chapter with the word Al-Ma'un (“[simple] assistance”), showing how hollow worship culminates in refusing ordinary kindness to neighbors.`
+      }
+    ];
+
+    const LEXICON = [
+      {
+        id: `din`,
+        ref: `107:1`,
+        arabic: `بِالدِّينِ`,
+        meaning: `the Recompense`,
+        context: `Used in 107:1 (“denies the Recompense”), anchoring the entire chapter in moral accountability.`
+      },
+      {
+        id: `yatim`,
+        ref: `107:2`,
+        arabic: `الْيَتِيمَ`,
+        meaning: `the orphan`,
+        context: `The vulnerable child driven away in 107:2 by the one who denies the Recompense.`
+      },
+      {
+        id: `miskin`,
+        ref: `107:3`,
+        arabic: `طَعَامِ الْمِسْكِينَ`,
+        meaning: `the feeding of the poor`,
+        context: `In 107:3, the denier does not even encourage others toward feeding the poor.`
+      },
+      {
+        id: `musallin`,
+        ref: `107:4`,
+        arabic: `لِلْمُصَلِّينَ`,
+        meaning: `those who pray`,
+        context: `Introduces the plural subject of Movement II in 107:4, immediately qualified by verses 5–7.`
+      },
+      {
+        id: `sahun`,
+        ref: `107:5`,
+        arabic: `سَاهُونَ`,
+        meaning: `heedless`,
+        context: `Describes those who are heedless of their prayer in 107:5.`
+      },
+      {
+        id: `yuraun`,
+        ref: `107:6`,
+        arabic: `يُرَاءُونَ`,
+        meaning: `make show [of their deeds]`,
+        context: `Named in 107:6 as performative action aimed at human onlookers.`
+      },
+      {
+        id: `maun`,
+        ref: `107:7`,
+        arabic: `الْمَاعُونَ`,
+        meaning: `[simple] assistance`,
+        context: `The closing term in 107:7 that names Chapter 107 (Surah Al-Ma'un).`
+      }
+    ];
+
+    const BLUEPRINT_NODES = {
+      denial: {
+        kicker: `107:1 · Opening Question`,
+        title: `Denying the Recompense (يُكَذِّبُ بِالدِّينِ)`,
+        body: `The chapter opens by asking the listener to look directly at moral evidence: “Have you seen the one who denies the Recompense?” Instead of an abstract debate, verses 2–3 point straight to conduct toward the orphan and the poor.`
+      },
+      social: {
+        kicker: `107:2–3 · Social Neglect`,
+        title: `Driving Away the Orphan & Neglecting the Poor`,
+        body: `Denial of accountability manifests as cruelty and indifference: driving away the orphan (107:2) and failing even to encourage feeding the poor (107:3).`
+      },
+      prayer: {
+        kicker: `107:4–5 · Shift to Plural Warning`,
+        title: `Woe to Those Who Are Heedless of Their Prayer`,
+        body: `Verse 4 widens from the singular denier to the plural “those who pray,” immediately specifying in 107:5 that the warning applies to those who are heedless of their prayer.`
+      },
+      show: {
+        kicker: `107:6–7 · Performative Piety & Withholding`,
+        title: `Making Show of Deeds and Withholding Simple Assistance`,
+        body: `Heedless prayer pairs with ostentation (“make show [of their deeds]” in 107:6) and culminates in refusing everyday generosity (“withhold [simple] assistance” in 107:7).`
+      },
+      thesis: {
+        kicker: `107:1–7 · Unified Takeaway`,
+        title: `Al-Ma'un Bridges Devotion and Everyday Care`,
+        body: `By naming the chapter after its final word—Al-Ma'un (“[simple] assistance”)—the text unites belief in the Recompense and sincerity in prayer with tangible care for neighbors and the vulnerable.`
+      }
+    };
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `1. What opening question launches Chapter 107 in verse 107:1?`,
+        options: [
+          `“Have you seen the one who denies the Recompense?”`,
+          `“So woe to those who pray”`,
+          `“And withhold [simple] assistance.”`,
+          `“Have you seen the one who makes show of deeds?”`
+        ],
+        correctIndex: 0,
+        explanation: `Verse 107:1 begins with the rhetorical question: “Have you seen the one who denies the Recompense?”`
+      },
+      {
+        id: `q2`,
+        prompt: `2. According to 107:2–3, which two social behaviors characterize the one who denies the Recompense?`,
+        options: [
+          `Making show of deeds and being heedless of prayer`,
+          `Driving away the orphan and not encouraging the feeding of the poor`,
+          `Praying in public and refusing to travel`,
+          `Forgetting the poor and withholding prayer`
+        ],
+        correctIndex: 1,
+        explanation: `Verses 107:2–3 state: “For that is the one who drives away the orphan / And does not encourage the feeding of the poor.”`
+      },
+      {
+        id: `q3`,
+        prompt: `3. How does verse 107:3 phrase the failure regarding the poor?`,
+        options: [
+          `“Does not forgive the poor”`,
+          `“Takes the food of the poor”`,
+          `“Does not encourage the feeding of the poor”`,
+          `“Hides from the poor”`
+        ],
+        correctIndex: 2,
+        explanation: `Verse 107:3 specifically highlights inaction even in urging others: “And does not encourage the feeding of the poor.”`
+      },
+      {
+        id: `q4`,
+        prompt: `4. Which three traits follow the warning “So woe to those who pray” (107:4)?`,
+        options: [
+          `Driving away orphans, denying the Recompense, and fasting`,
+          `Being heedless of prayer, making show of deeds, and withholding simple assistance`,
+          `Speaking harshly, traveling far, and refusing charity`,
+          `Ignoring orphans, forgetting names, and boasting of wealth`
+        ],
+        correctIndex: 1,
+        explanation: `Verses 107:5–7 specify all three traits: heedless of their prayer (107:5), making show of their deeds (107:6), and withholding simple assistance (107:7).`
+      },
+      {
+        id: `q5`,
+        prompt: `5. What does the closing term Al-Ma'un (الْمَاعُونَ) in 107:7 translate to in the source text?`,
+        options: [
+          `The Recompense`,
+          `Heedless prayer`,
+          `Feeding of the poor`,
+          `[Simple] assistance`
+        ],
+        correctIndex: 3,
+        explanation: `Verse 107:7 concludes: “And withhold [simple] assistance” (وَيَمْنَعُونَ الْمَاعُونَ).`
+      }
+    ];
+
+    let appState = {
+      masteredVerses: [],
+      revealedInRecall: [],
+      verseNotes: {},
+      recallMode: `full`,
+      verseFilter: `all`,
+      highlightKeyTerms: false,
+      flashcardIndex: 0,
+      flashcardFlipped: false,
+      knownTerms: [],
+      sequenceOrder: [3, 1, 6, 2, 7, 4, 5],
+      sequenceChecked: false,
+      quizAnswers: {}
+    };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`)
+        .replace(/'/g, `&#39;`);
+    }
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          console.error(`State save failed:`, err);
+        }
+      }
+    }
+
+    function updateMasteryMetrics() {
+      const verseCount = appState.masteredVerses.length;
+      const termCount = appState.knownTerms.length;
+      const quizCorrectCount = QUIZ_QUESTIONS.reduce((acc, q) => {
+        return acc + (appState.quizAnswers[q.id] === q.correctIndex ? 1 : 0);
+      }, 0);
+
+      const totalUnits = 7 + 7 + 5;
+      const earnedUnits = verseCount + termCount + quizCorrectCount;
+      const pct = Math.round((earnedUnits / totalUnits) * 100);
+
+      const pctEl = document.getElementById(`overall-mastery-pct`);
+      const capEl = document.getElementById(`overall-mastery-caption`);
+      const badgeEl = document.getElementById(`hero-status-badge`);
+
+      if (pctEl) pctEl.textContent = `${pct}%`;
+      if (badgeEl) badgeEl.textContent = `${verseCount} of 7 Verses Mastered`;
+      if (capEl) {
+        if (pct === 0) {
+          capEl.textContent = `Begin with Verse 107:1`;
+        } else if (pct < 100) {
+          capEl.textContent = `${termCount}/7 Terms · ${quizCorrectCount}/5 Quiz`;
+        } else {
+          capEl.textContent = `Complete Chapter Mastery`;
+        }
+      }
+    }
+
+    function scrollToStudyDeck() {
+      const target = document.getElementById(`verse-study-section`);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth` });
+      }
+    }
+
+    function selectBlueprintNode(key) {
+      const data = BLUEPRINT_NODES[key];
+      if (!data) return;
+      const kickerEl = document.getElementById(`inspector-kicker`);
+      const titleEl = document.getElementById(`inspector-title`);
+      const bodyEl = document.getElementById(`inspector-body`);
+      if (kickerEl) kickerEl.textContent = data.kicker;
+      if (titleEl) titleEl.textContent = data.title;
+      if (bodyEl) bodyEl.textContent = data.body;
+    }
+
+    function handleBlueprintKey(event, key) {
+      if (event.key === `Enter` || event.key === ` `) {
+        event.preventDefault();
+        selectBlueprintNode(key);
+      }
+    }
+
+    function formatArabicText(verse) {
+      const safeFull = escapeHtml(verse.arabic);
+      if (!appState.highlightKeyTerms) return safeFull;
+      const safeTerm = escapeHtml(verse.keyTermAr);
+      return safeFull.replace(safeTerm, `<span class="key-term-highlight">${safeTerm}</span>`);
+    }
+
+    function formatEnglishText(verse) {
+      const safeFull = escapeHtml(verse.english);
+      if (!appState.highlightKeyTerms) return safeFull;
+      const safeTerm = escapeHtml(verse.keyTermEn);
+      const idx = safeFull.toLowerCase().indexOf(safeTerm.toLowerCase());
+      if (idx === -1) return safeFull;
+      const matched = safeFull.slice(idx, idx + safeTerm.length);
+      return safeFull.slice(0, idx) + `<span class="key-term-highlight">${matched}</span>` + safeFull.slice(idx + safeTerm.length);
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verse-list-container`);
+      if (!container) return;
+
+      const filtered = VERSES.filter((v) => {
+        const isMastered = appState.masteredVerses.includes(v.num);
+        if (appState.verseFilter === `mastered`) return isMastered;
+        if (appState.verseFilter === `review`) return !isMastered;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="panel-card">
+            <p class="panel-title">No verses match this filter</p>
+            <p class="section-prose">Switch the filter back to “All (7)” to view the full chapter.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="setVerseFilter('all')">Show All 7 Verses</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((v) => {
+        const isMastered = appState.masteredVerses.includes(v.num);
+        const isRevealed = appState.revealedInRecall.includes(v.num);
+        const maskAr = appState.recallMode === `hide-ar` && !isRevealed;
+        const maskEn = appState.recallMode === `hide-en` && !isRevealed;
+        const noteVal = appState.verseNotes[v.num] || ``;
+        const showRevealBtn = appState.recallMode !== `full`;
+
+        return `
+          <div class="verse-wrapper">
+            <article class="verse-card ${isMastered ? `is-mastered` : ``}">
+              <div class="verse-top-bar">
+                <div class="control-group">
+                  <span class="${isMastered ? `badge-emerald` : `badge-terracotta`}">${v.ref}</span>
+                  <span class="status-note">${escapeHtml(v.movement)}</span>
+                </div>
+                <div class="btn-row">
+                  ${showRevealBtn ? `
+                    <button type="button" class="btn btn-secondary" onclick="toggleVerseReveal(${v.num})">
+                      ${isRevealed ? `Hide Prompt` : `Reveal Answer`}
+                    </button>
+                  ` : ``}
+                  <button type="button" class="btn btn-emerald ${isMastered ? `is-mastered` : ``}" onclick="toggleVerseMastered(${v.num})">
+                    ${isMastered ? `Mastered` : `Mark Mastered`}
+                  </button>
+                </div>
+              </div>
+
+              <div class="verse-body">
+                <div class="verse-arabic-box">
+                  <p class="verse-arabic-text ${maskAr ? `is-masked` : ``}" lang="ar" dir="rtl">${formatArabicText(v)}</p>
+                </div>
+                <div class="verse-english-box">
+                  <p class="verse-english-text ${maskEn ? `is-masked` : ``}">${formatEnglishText(v)}</p>
+                  <p class="verse-note">${escapeHtml(v.note)}</p>
+                </div>
+              </div>
+
+              <div class="verse-footer">
+                <div class="input-field-group">
+                  <label class="field-label" for="note-input-${v.num}">Personal Study Note for ${v.ref}</label>
+                  <input
+                    id="note-input-${v.num}"
+                    type="text"
+                    class="text-input"
+                    value="${escapeHtml(noteVal)}"
+                    onchange="saveVerseNote(${v.num}, this.value)"
+                  />
+                </div>
+                <span class="status-note">Key anchor: <span class="arabic-inline" lang="ar" dir="rtl">${escapeHtml(v.keyTermAr)}</span></span>
+              </div>
+            </article>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function updateStudyControlButtons() {
+      const modeMap = {
+        full: `mode-full-btn`,
+        'hide-en': `mode-hide-en-btn`,
+        'hide-ar': `mode-hide-ar-btn`
+      };
+      Object.keys(modeMap).forEach((key) => {
+        const el = document.getElementById(modeMap[key]);
+        if (el) el.classList.toggle(`is-active`, appState.recallMode === key);
+      });
+
+      const filterMap = {
+        all: `filter-all-btn`,
+        review: `filter-review-btn`,
+        mastered: `filter-mastered-btn`
+      };
+      Object.keys(filterMap).forEach((key) => {
+        const el = document.getElementById(filterMap[key]);
+        if (el) el.classList.toggle(`is-active`, appState.verseFilter === key);
+      });
+
+      const hlBtn = document.getElementById(`toggle-highlights-btn`);
+      if (hlBtn) hlBtn.classList.toggle(`is-active`, appState.highlightKeyTerms);
+    }
+
+    function setRecallMode(mode) {
+      appState.recallMode = mode;
+      appState.revealedInRecall = [];
+      updateStudyControlButtons();
+      renderVerses();
+      persistState();
+    }
+
+    function setVerseFilter(filter) {
+      appState.verseFilter = filter;
+      updateStudyControlButtons();
+      renderVerses();
+      persistState();
+    }
+
+    function toggleKeyTerms() {
+      appState.highlightKeyTerms = !appState.highlightKeyTerms;
+      updateStudyControlButtons();
+      renderVerses();
+      persistState();
+    }
+
+    function toggleVerseReveal(num) {
+      const idx = appState.revealedInRecall.indexOf(num);
+      if (idx === -1) {
+        appState.revealedInRecall.push(num);
+      } else {
+        appState.revealedInRecall.splice(idx, 1);
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function toggleVerseMastered(num) {
+      const idx = appState.masteredVerses.indexOf(num);
+      if (idx === -1) {
+        appState.masteredVerses.push(num);
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      updateMasteryMetrics();
+      renderVerses();
+      persistState();
+    }
+
+    function saveVerseNote(num, val) {
+      appState.verseNotes[num] = val;
+      persistState();
+      const noteEl = document.getElementById(`global-status-note`);
+      if (noteEl) noteEl.textContent = `Saved note for 107:${num}.`;
+    }
+
+    /* Lexicon & Flashcard Studio */
+    function renderFlashcard() {
+      const card = LEXICON[appState.flashcardIndex] || LEXICON[0];
+      const badgeEl = document.getElementById(`flashcard-verse-badge`);
+      const counterEl = document.getElementById(`flashcard-counter`);
+      const arEl = document.getElementById(`flashcard-arabic`);
+      const enEl = document.getElementById(`flashcard-english`);
+      const ctxEl = document.getElementById(`flashcard-context`);
+      const hintEl = document.getElementById(`flashcard-tap-hint`);
+      const knownBtn = document.getElementById(`known-card-btn`);
+
+      if (badgeEl) badgeEl.textContent = card.ref;
+      if (counterEl) counterEl.textContent = `Card ${appState.flashcardIndex + 1} of ${LEXICON.length}`;
+      if (arEl) arEl.textContent = card.arabic;
+      if (enEl) {
+        enEl.textContent = card.meaning;
+        enEl.hidden = !appState.flashcardFlipped;
+      }
+      if (ctxEl) {
+        ctxEl.textContent = card.context;
+        ctxEl.hidden = !appState.flashcardFlipped;
+      }
+      if (hintEl) {
+        hintEl.textContent = appState.flashcardFlipped
+          ? `Click card to return to Arabic prompt`
+          : `Click card to reveal meaning and verse context`;
+      }
+
+      const isKnown = appState.knownTerms.includes(card.id);
+      if (knownBtn) {
+        knownBtn.classList.toggle(`is-mastered`, isKnown);
+        knownBtn.textContent = isKnown ? `Known Term` : `Mark Known`;
+      }
+    }
+
+    function renderLexiconList() {
+      const container = document.getElementById(`lexicon-list-container`);
+      if (!container) return;
+
+      container.innerHTML = LEXICON.map((item, idx) => {
+        const isSelected = idx === appState.flashcardIndex;
+        const isKnown = appState.knownTerms.includes(item.id);
+        return `
+          <button type="button" class="lexicon-item ${isSelected ? `is-selected` : ``}" onclick="selectLexiconCard(${idx})">
+            <div>
+              <span class="kicker" style="display:block;">${item.ref}</span>
+              <strong>${escapeHtml(item.meaning)}</strong>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--space-sm);">
+              ${isKnown ? `<span class="badge-emerald">Known</span>` : ``}
+              <span class="arabic-inline" lang="ar" dir="rtl">${escapeHtml(item.arabic)}</span>
+            </div>
+          </button>
+        `;
+      }).join(``);
+    }
+
+    function selectLexiconCard(idx) {
+      appState.flashcardIndex = idx;
+      appState.flashcardFlipped = false;
+      renderFlashcard();
+      renderLexiconList();
+      persistState();
+    }
+
+    function flipFlashcard() {
+      appState.flashcardFlipped = !appState.flashcardFlipped;
+      renderFlashcard();
+      persistState();
+    }
+
+    function handleFlashcardKey(event) {
+      if (event.key === `Enter` || event.key === ` `) {
+        event.preventDefault();
+        flipFlashcard();
+      }
+    }
+
+    function stepFlashcard(delta) {
+      const len = LEXICON.length;
+      appState.flashcardIndex = (appState.flashcardIndex + delta + len) % len;
+      appState.flashcardFlipped = false;
+      renderFlashcard();
+      renderLexiconList();
+      persistState();
+    }
+
+    function markFlashcardKnown() {
+      const card = LEXICON[appState.flashcardIndex];
+      if (!card) return;
+      const idx = appState.knownTerms.indexOf(card.id);
+      if (idx === -1) {
+        appState.knownTerms.push(card.id);
+      } else {
+        appState.knownTerms.splice(idx, 1);
+      }
+      updateMasteryMetrics();
+      renderFlashcard();
+      renderLexiconList();
+      persistState();
+    }
+
+    /* Exercise A: Sequence Builder */
+    function renderSequenceBuilder() {
+      const container = document.getElementById(`sequence-list-container`);
+      const fbEl = document.getElementById(`sequence-feedback`);
+      if (!container) return;
+
+      let exactCount = 0;
+      container.innerHTML = appState.sequenceOrder.map((verseNum, positionIdx) => {
+        const verse = VERSES.find((v) => v.num === verseNum);
+        const expectedNum = positionIdx + 1;
+        const isRightPos = verseNum === expectedNum;
+        if (isRightPos) exactCount += 1;
+
+        let statusClass = ``;
+        if (appState.sequenceChecked) {
+          statusClass = isRightPos ? `is-correct` : `is-wrong`;
+        }
+
+        return `
+          <div class="sequence-row ${statusClass}">
+            <span class="slot-index">Slot ${expectedNum}</span>
+            <div>
+              <strong>${verse ? escapeHtml(verse.english) : ``}</strong>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-secondary" onclick="moveSequenceItem(${positionIdx}, -1)" ${positionIdx === 0 ? `disabled` : ``}>Move Up</button>
+              <button type="button" class="btn btn-secondary" onclick="moveSequenceItem(${positionIdx}, 1)" ${positionIdx === appState.sequenceOrder.length - 1 ? `disabled` : ``}>Move Down</button>
+            </div>
+          </div>
+        `;
+      }).join(``);
+
+      if (fbEl) {
+        if (!appState.sequenceChecked) {
+          fbEl.innerHTML = ``;
+        } else if (exactCount === VERSES.length) {
+          fbEl.innerHTML = `<div class="feedback-banner is-ok">All 7 verses are in exact canonical order from 107:1 to 107:7.</div>`;
+        } else {
+          fbEl.innerHTML = `<div class="feedback-banner is-err">${exactCount} of 7 verses are in the right slot. Adjust the highlighted rows and check again.</div>`;
+        }
+      }
+    }
+
+    function moveSequenceItem(idx, delta) {
+      const targetIdx = idx + delta;
+      if (targetIdx < 0 || targetIdx >= appState.sequenceOrder.length) return;
+      const copy = appState.sequenceOrder.slice();
+      const temp = copy[idx];
+      copy[idx] = copy[targetIdx];
+      copy[targetIdx] = temp;
+      appState.sequenceOrder = copy;
+      appState.sequenceChecked = false;
+      renderSequenceBuilder();
+      persistState();
+    }
+
+    function shuffleSequence() {
+      const arr = [1, 2, 3, 4, 5, 6, 7];
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
+      if (arr.every((v, idx) => v === idx + 1)) {
+        const first = arr[0];
+        arr[0] = arr[1];
+        arr[1] = first;
+      }
+      appState.sequenceOrder = arr;
+      appState.sequenceChecked = false;
+      renderSequenceBuilder();
+      persistState();
+    }
+
+    function checkSequenceOrder() {
+      appState.sequenceChecked = true;
+      renderSequenceBuilder();
+      persistState();
+    }
+
+    /* Exercise B: Comprehension Quiz */
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      const badgeEl = document.getElementById(`quiz-score-badge`);
+      if (!container) return;
+
+      let score = 0;
+      container.innerHTML = QUIZ_QUESTIONS.map((q) => {
+        const chosenIdx = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosenIdx === `number`;
+        const isCorrect = hasAnswered && chosenIdx === q.correctIndex;
+        if (isCorrect) score += 1;
+
+        return `
+          <article class="quiz-card">
+            <h4 class="quiz-question">${escapeHtml(q.prompt)}</h4>
+            <div class="quiz-options">
+              ${q.options.map((opt, optIdx) => {
+                let cls = ``;
+                if (hasAnswered) {
+                  if (optIdx === q.correctIndex) cls = `is-chosen-correct`;
+                  else if (optIdx === chosenIdx) cls = `is-chosen-wrong`;
+                }
+                return `
+                  <button type="button" class="quiz-option ${cls}" onclick="answerQuiz('${q.id}', ${optIdx})">
+                    ${escapeHtml(opt)}
+                  </button>
+                `;
+              }).join(``)}
+            </div>
+            ${hasAnswered ? `
+              <div class="feedback-banner ${isCorrect ? `is-ok` : `is-err`}">
+                ${isCorrect ? `Correct.` : `Not quite.`} ${escapeHtml(q.explanation)}
+              </div>
+            ` : ``}
+          </article>
+        `;
+      }).join(``);
+
+      if (badgeEl) badgeEl.textContent = `Score: ${score} / ${QUIZ_QUESTIONS.length}`;
+    }
+
+    function answerQuiz(qId, optIdx) {
+      appState.quizAnswers[qId] = optIdx;
+      updateMasteryMetrics();
+      renderQuiz();
+      persistState();
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-MA'UN (CHAPTER 107) — PERSONAL STUDY SHEET`,
+        `Source: Excerpts from "107-1 .pdf"`,
+        `Verses Mastered: ${appState.masteredVerses.length} / 7`,
+        `Key Terms Known: ${appState.knownTerms.length} / 7`,
+        ``,
+        `--- VERSES & PERSONAL NOTES ---`
+      ];
+      VERSES.forEach((v) => {
+        const masteredTag = appState.masteredVerses.includes(v.num) ? `[MASTERED]` : `[REVIEW]`;
+        const note = appState.verseNotes[v.num] ? `Note: ${appState.verseNotes[v.num]}` : `Note: (none)`;
+        lines.push(`${v.ref} ${masteredTag}`);
+        lines.push(`Arabic: ${v.arabic}`);
+        lines.push(`English: ${v.english}`);
+        lines.push(note);
+        lines.push(``);
+      });
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-maun-study-sheet.txt`
+        });
+      }
+      const noteEl = document.getElementById(`global-status-note`);
+      if (noteEl) noteEl.textContent = `Study sheet exported as surah-al-maun-study-sheet.txt.`;
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click Again to Reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+
+      appState = {
+        masteredVerses: [],
+        revealedInRecall: [],
+        verseNotes: {},
+        recallMode: `full`,
+        verseFilter: `all`,
+        highlightKeyTerms: false,
+        flashcardIndex: 0,
+        flashcardFlipped: false,
+        knownTerms: [],
+        sequenceOrder: [3, 1, 6, 2, 7, 4, 5],
+        sequenceChecked: false,
+        quizAnswers: {}
+      };
+      renderAll();
+      persistState();
+      const noteEl = document.getElementById(`global-status-note`);
+      if (noteEl) noteEl.textContent = `Study progress cleared.`;
+    }
+
+    function setupScrollReveal() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach((el) => el.classList.add(`is-visible`));
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      items.forEach((el) => observer.observe(el));
+    }
+
+    function renderAll() {
+      updateMasteryMetrics();
+      updateStudyControlButtons();
+      renderVerses();
+      renderFlashcard();
+      renderLexiconList();
+      renderSequenceBuilder();
+      renderQuiz();
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign(appState, saved);
+          }
+        } catch (err) {
+          console.error(`Failed to load saved state:`, err);
+        }
+      }
+
+      renderAll();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

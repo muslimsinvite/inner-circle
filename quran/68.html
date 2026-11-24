@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Qalam (The Pen) — Interactive Study & Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Terracotta style palette */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders & rules */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-button: #c4b29e;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3d1c;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --secondary-container: #f4ebd8;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fae6e6;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Semantic */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', Georgia, serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--outline-variant), var(--data-3), var(--outline-variant));
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+
+      /* Spacing Scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    p {
+      margin: 0 0 var(--space-md);
+      max-width: 68ch;
+      color: var(--on-surface);
+    }
+
+    .kicker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin-bottom: var(--space-md);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      line-height: 1.65;
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+      display: block;
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 1.9;
+      direction: rtl;
+      text-align: right;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      font-weight: 400;
+    }
+
+    /* Brass diamond ornament */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Riad arch cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+    .arch-link {
+      margin-top: var(--space-xs);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-label);
+    }
+    .arch-link:hover {
+      background: var(--surface-container);
+    }
+
+    /* Mastery Banner & Status Bar */
+    .mastery-strip {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-block: var(--space-sm);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .badge-emerald {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .badge-brass {
+      background: var(--secondary-container);
+      color: var(--secondary);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--rounded-full);
+      padding: 0.625rem 1.25rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out), transform var(--dur-micro) var(--ease-out);
+      text-decoration: none;
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--outline-button);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .btn-tertiary {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+    }
+    .btn-tertiary:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Tonal section bands */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-xl);
+      border-top: var(--warm-hairline);
+    }
+
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+
+    .surface-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: Character Contrast Explorer */
+    .contrast-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .trait-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .trait-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      min-height: 44px;
+      font-family: var(--font-body);
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out);
+    }
+    .trait-btn:hover {
+      background: var(--surface-container);
+    }
+    .trait-btn.is-selected {
+      background: var(--primary-container);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+    .trait-btn.is-prophetic.is-selected {
+      background: var(--tertiary-container);
+      box-shadow: inset 3px 0 0 var(--tertiary);
+    }
+
+    .trait-meta {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      flex-shrink: 0;
+    }
+
+    .verse-spotlight {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    /* Section 2: Parable of the Garden Stepper */
+    .parable-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+
+    .stage-pill {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-body);
+      color: var(--on-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: background-color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out);
+    }
+    .stage-pill:hover {
+      background: var(--surface-container-high);
+    }
+    .stage-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--soft-shadow);
+    }
+    .stage-pill.is-active .stage-verses {
+      color: var(--primary-container);
+    }
+    .stage-num {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .stage-verses {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+    }
+
+    .parable-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .parable-verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .parable-verse-item {
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      border-radius: var(--rounded);
+      border-left: 3px solid var(--secondary);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Section 3: Rhetorical Interrogation Map */
+    .rhetoric-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .question-stack {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .question-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      color: var(--on-surface);
+      display: grid;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-in-out);
+    }
+    .question-btn:hover {
+      background: var(--surface-container);
+    }
+    .question-btn.is-active {
+      background: var(--primary-container);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+
+    /* Section 4: Ring Structure SVG Schematic */
+    .ring-diagram-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .ring-pair-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .ring-comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .ring-side {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Section 5: Complete 52-Verse Mastery Studio */
+    .controls-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .select-input, .textarea-input {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: 0.625rem 0.875rem;
+      min-height: 44px;
+      width: 100%;
+    }
+    .select-input {
+      padding-right: 2.25rem;
+    }
+    .text-input:focus, .select-input:focus, .textarea-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .verse-row {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      transition: background-color var(--dur-short) var(--ease-in-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-row.is-mastered {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border);
+    }
+    .verse-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-row.is-mastered .verse-ref {
+      color: var(--on-tertiary-container);
+    }
+
+    .recall-hidden {
+      filter: blur(6px);
+      user-select: none;
+      cursor: pointer;
+      transition: filter var(--dur-short) var(--ease-out);
+    }
+    .recall-hidden.is-revealed {
+      filter: none;
+      user-select: text;
+    }
+
+    /* Section 6: Mastery Quiz & Reflection */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--on-surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      transition: background-color var(--dur-micro) var(--ease-in-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .feedback-box {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .feedback-box.is-visible {
+      display: block;
+    }
+    .feedback-box.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+    }
+    .feedback-box.is-wrong {
+      background: var(--error-container);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+
+    .study-notes-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .empty-state {
+      background: var(--surface-container-low);
+      border: 1px dashed var(--outline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      display: grid;
+      gap: var(--space-md);
+      justify-items: center;
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    /* Reveal animation */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .contrast-layout,
+      .rhetoric-grid,
+      .controls-bar,
+      .study-notes-grid,
+      .mastery-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .tonal-band,
+      .verse-spotlight,
+      .parable-card,
+      .quiz-card {
+        padding: var(--space-lg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Structural Overview -->
+    <header>
+      <div class="kicker-row">
+        <span>Chapter 68 · Surah Al-Qalam</span>
+        <span>52 Verses · Four Movements</span>
+      </div>
+      <h1 class="title">By the <em>Pen</em> and Moral Character</h1>
+      <p class="hero-lede">
+        Surah Al-Qalam opens with a solemn oath by the pen and closes by declaring the Qur'an a reminder to the worlds. Between those two poles, it defends the Prophet's moral integrity, contrasts character with arrogance, narrates the parable of the garden owners who excluded the poor, and interrogates every false claim of judgment.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Structural Map of the Surah ◆</div>
+
+      <div class="arch-grid" aria-label="Four movements of Surah Al-Qalam">
+        <article class="arch-card is-featured">
+          <span class="arch-label">Movement I · 68:1–16</span>
+          <div class="arch-figure">16</div>
+          <div class="arch-caption">Oath, Character &amp; the Denier</div>
+          <button type="button" class="arch-link" onclick="jumpToSection('movement-1')">
+            <span>Read Movement</span>
+            <i data-lucide="arrow-down" aria-hidden="true"></i>
+          </button>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Movement II · 68:17–33</span>
+          <div class="arch-figure">17</div>
+          <div class="arch-caption">Companions of the Garden</div>
+          <button type="button" class="arch-link" onclick="jumpToSection('movement-2')">
+            <span>Step Parable</span>
+            <i data-lucide="arrow-down" aria-hidden="true"></i>
+          </button>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Movement III · 68:34–47</span>
+          <div class="arch-figure">14</div>
+          <div class="arch-caption">Justice &amp; Divine Reckoning</div>
+          <button type="button" class="arch-link" onclick="jumpToSection('movement-3')">
+            <span>Examine Claims</span>
+            <i data-lucide="arrow-down" aria-hidden="true"></i>
+          </button>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Movement IV · 68:48–52</span>
+          <div class="arch-figure">5</div>
+          <div class="arch-caption">Patience &amp; Universal Reminder</div>
+          <button type="button" class="arch-link" onclick="jumpToSection('movement-4')">
+            <span>See Symmetry</span>
+            <i data-lucide="arrow-down" aria-hidden="true"></i>
+          </button>
+        </article>
+      </div>
+    </header>
+
+    <!-- Live Mastery Progress Banner -->
+    <section class="mastery-strip" aria-label="Study and mastery progress">
+      <div>
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-xs);">
+          <span class="badge-emerald" id="mastery-status-badge">0 / 52 Verses Mastered</span>
+          <span class="badge-brass" id="quiz-status-badge">Quiz: 0 / 8 Checked</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="52" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-progress-fill"></div>
+        </div>
+        <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);" id="mastery-hint">
+          Start by exploring the four thematic movements below, or mark verses as mastered in the full 52-verse study studio. Your progress saves automatically.
+        </p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+        <button type="button" class="btn btn-secondary" onclick="jumpToSection('verse-studio')">
+          <i data-lucide="book-open" aria-hidden="true"></i>
+          <span>Study All 52 Verses</span>
+        </button>
+        <button type="button" class="btn btn-primary" onclick="jumpToSection('mastery-quiz')">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Test Mastery</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Movement I: Character vs Denier -->
+    <section id="movement-1" class="study-section reveal-on-scroll">
+      <div>
+        <span class="section-kicker">Movement I · Verses 68:1–16</span>
+        <h2 class="section-heading">Great Moral Character Stands Against Nine Traits of Corruption</h2>
+        <p>
+          The Surah begins by refuting the charge of madness (<em>majnun</em>, 68:2) with two positive assurances—an uninterrupted reward (68:3) and great moral character (68:4)—before issuing a sharp warning not to compromise (68:8–9) with a figure defined by nine moral defects (68:10–15). Select any trait to inspect the exact verse.
+        </p>
+      </div>
+
+      <div class="contrast-layout">
+        <div class="trait-list" role="listbox" aria-label="Prophetic assurances and denier traits">
+          <button type="button" class="trait-btn is-prophetic is-selected" data-trait="0" onclick="selectTrait(0)">
+            <div>
+              <strong>The Oath &amp; Vindication</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">By the pen, favor, and uninterrupted reward</div>
+            </div>
+            <span class="trait-meta">68:1–3</span>
+          </button>
+          <button type="button" class="trait-btn is-prophetic" data-trait="1" onclick="selectTrait(1)">
+            <div>
+              <strong>Great Moral Character</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">The ethical anchor of the Messenger</div>
+            </div>
+            <span class="trait-meta">68:4</span>
+          </button>
+          <button type="button" class="trait-btn is-prophetic" data-trait="2" onclick="selectTrait(2)">
+            <div>
+              <strong>Refusal to Soften / Compromise</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">Firmness against the deniers' wish for mutual concession</div>
+            </div>
+            <span class="trait-meta">68:8–9</span>
+          </button>
+          <button type="button" class="trait-btn" data-trait="3" onclick="selectTrait(3)">
+            <div>
+              <strong>Worthless Habitual Swearer &amp; Scorner</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">Trivializing truth with oaths and malicious gossip</div>
+            </div>
+            <span class="trait-meta">68:10–11</span>
+          </button>
+          <button type="button" class="trait-btn" data-trait="4" onclick="selectTrait(4)">
+            <div>
+              <strong>Preventer of Good &amp; Cruel Pretender</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">Transgressing, sinful, harsh, and claiming false status</div>
+            </div>
+            <span class="trait-meta">68:12–13</span>
+          </button>
+          <button type="button" class="trait-btn" data-trait="5" onclick="selectTrait(5)">
+            <div>
+              <strong>Arrogance of Wealth &amp; Dismissal of Revelation</strong>
+              <div style="font-size: 0.875rem; color: var(--on-surface-variant);">Calling verses "legends of the former peoples"</div>
+            </div>
+            <span class="trait-meta">68:14–16</span>
+          </button>
+        </div>
+
+        <aside class="verse-spotlight" aria-live="polite" id="trait-spotlight">
+          <!-- Populated by JS -->
+        </aside>
+      </div>
+    </section>
+
+    <!-- Movement II: Parable of the Garden -->
+    <section id="movement-2" class="study-section tonal-band reveal-on-scroll">
+      <div>
+        <span class="section-kicker">Movement II · Verses 68:17–33</span>
+        <h2 class="section-heading">How Secret Exclusion Turned Abundance into Ruin Before Dawn</h2>
+        <p>
+          To illustrate the folly of trusting in wealth while blocking goodness (68:12, 68:14), the Surah narrates the trial of the Companions of the Garden across six rapid scenes—from a self-assured oath without exception to mutual blame and repentance. Step through the sequence to trace every turning point.
+        </p>
+      </div>
+
+      <div class="parable-timeline" role="tablist" aria-label="Stages of the garden parable">
+        <button type="button" class="stage-pill is-active" data-stage="0" onclick="selectParableStage(0)">
+          <span class="stage-num">1. The Oath</span>
+          <span class="stage-verses">68:17–18</span>
+        </button>
+        <button type="button" class="stage-pill" data-stage="1" onclick="selectParableStage(1)">
+          <span class="stage-num">2. Night Affliction</span>
+          <span class="stage-verses">68:19–20</span>
+        </button>
+        <button type="button" class="stage-pill" data-stage="2" onclick="selectParableStage(2)">
+          <span class="stage-num">3. Secret Plot</span>
+          <span class="stage-verses">68:21–25</span>
+        </button>
+        <button type="button" class="stage-pill" data-stage="3" onclick="selectParableStage(3)">
+          <span class="stage-num">4. The Shock</span>
+          <span class="stage-verses">68:26–27</span>
+        </button>
+        <button type="button" class="stage-pill" data-stage="4" onclick="selectParableStage(4)">
+          <span class="stage-num">5. Awakening</span>
+          <span class="stage-verses">68:28–32</span>
+        </button>
+        <button type="button" class="stage-pill" data-stage="5" onclick="selectParableStage(5)">
+          <span class="stage-num">6. The Lesson</span>
+          <span class="stage-verses">68:33</span>
+        </button>
+      </div>
+
+      <div class="parable-card" id="parable-stage-display" aria-live="polite">
+        <!-- Populated by JS -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+        <button type="button" class="btn btn-secondary" id="parable-prev-btn" onclick="stepParable(-1)">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+          <span>Previous Scene</span>
+        </button>
+        <span style="font-family: var(--font-label); font-size: var(--label-size); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-surface-variant);" id="parable-step-counter">Scene 1 of 6</span>
+        <button type="button" class="btn btn-primary" id="parable-next-btn" onclick="stepParable(1)">
+          <span>Next Scene</span>
+          <i data-lucide="arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Movement III: Rhetorical Interrogation -->
+    <section id="movement-3" class="study-section reveal-on-scroll">
+      <div>
+        <span class="section-kicker">Movement III · Verses 68:34–47</span>
+        <h2 class="section-heading">Five Interlocking Questions Dismantle the Claim of Equal Outcomes</h2>
+        <p>
+          Having established that the righteous receive the Gardens of Pleasure (68:34), the Surah turns directly to the deniers with a courtroom series of rhetorical questions—challenging their logic, scripture, oaths, guarantors, and hidden knowledge—before revealing the Day when prostration becomes impossible (68:42–43) and warning of gradual reckoning (68:44–45).
+        </p>
+      </div>
+
+      <div class="rhetoric-grid">
+        <div class="question-stack">
+          <button type="button" class="question-btn is-active" data-q="0" onclick="selectRhetoric(0)">
+            <span class="trait-meta">Challenge 1 · 68:35–36</span>
+            <strong>"Will We treat the Muslims like the criminals?"</strong>
+          </button>
+          <button type="button" class="question-btn" data-q="1" onclick="selectRhetoric(1)">
+            <span class="trait-meta">Challenge 2 · 68:37–38</span>
+            <strong>"Do you have a scripture in which you learn… whatever you choose?"</strong>
+          </button>
+          <button type="button" class="question-btn" data-q="2" onclick="selectRhetoric(2)">
+            <span class="trait-meta">Challenge 3 · 68:39–41</span>
+            <strong>"Do you have oaths binding upon Us… or partners?"</strong>
+          </button>
+          <button type="button" class="question-btn" data-q="3" onclick="selectRhetoric(3)">
+            <span class="trait-meta">Reckoning · 68:42–45</span>
+            <strong>"Invited to prostration while they were sound" &amp; Gradual Leading</strong>
+          </button>
+          <button type="button" class="question-btn" data-q="4" onclick="selectRhetoric(4)">
+            <span class="trait-meta">Challenge 4 &amp; 5 · 68:46–47</span>
+            <strong>"Do you ask them a payment… or have they the unseen?"</strong>
+          </button>
+        </div>
+
+        <aside class="verse-spotlight" id="rhetoric-spotlight" aria-live="polite">
+          <!-- Populated by JS -->
+        </aside>
+      </div>
+    </section>
+
+    <!-- Movement IV: Ring Structure Symmetry -->
+    <section id="movement-4" class="study-section reveal-on-scroll">
+      <div>
+        <span class="section-kicker">Movement IV · Verses 68:48–52 &amp; Structural Ring</span>
+        <h2 class="section-heading">Closing Echoes Return to the Pen, the Charge of Madness, and Patience</h2>
+        <p>
+          Surah Al-Qalam forms a deliberate literary ring (<em>inclusio</em>): its closing five verses mirror its opening seven. The Prophet is told to be patient and not like the Companion of the Fish (Jonah, 68:48–50), while the disbelievers' hostility and the accusation "Indeed, he is mad" (68:51) echo 68:2—answered finally by declaring the revelation a reminder to all worlds (68:52).
+        </p>
+      </div>
+
+      <div class="ring-diagram-wrap">
+        <svg viewBox="0 0 760 150" width="100%" style="max-height: 150px; display: block;" aria-hidden="true">
+          <path d="M 85 110 C 85 20, 675 20, 675 110" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 4" />
+          <path d="M 210 110 C 210 48, 550 48, 550 110" fill="none" stroke="var(--tertiary)" stroke-width="2" />
+          <path d="M 325 110 C 325 78, 435 78, 435 110" fill="none" stroke="var(--secondary)" stroke-width="2" />
+
+          <circle cx="85" cy="110" r="7" fill="var(--primary)" />
+          <circle cx="675" cy="110" r="7" fill="var(--primary)" />
+          <circle cx="210" cy="110" r="7" fill="var(--tertiary)" />
+          <circle cx="550" cy="110" r="7" fill="var(--tertiary)" />
+          <circle cx="325" cy="110" r="7" fill="var(--secondary)" />
+          <circle cx="435" cy="110" r="7" fill="var(--secondary)" />
+
+          <text x="85" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-surface)">68:1–2 (Pen &amp; "Madman")</text>
+          <text x="675" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-surface)">68:51–52 ("Mad" &amp; Reminder)</text>
+          <text x="210" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="var(--tertiary)">68:3–7 (Favor &amp; Guidance)</text>
+          <text x="550" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="var(--tertiary)">68:48–50 (Jonah's Favor)</text>
+          <text x="380" y="135" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="var(--secondary)">68:17–47 (Parable &amp; Judgment)</text>
+        </svg>
+
+        <div class="ring-pair-buttons" role="tablist" aria-label="Symmetry pairs in Surah Al-Qalam">
+          <button type="button" class="btn btn-primary" data-ring="0" onclick="selectRingPair(0)">Pair A: Madness Refuted &amp; Answered (68:1–2 ↔ 68:51–52)</button>
+          <button type="button" class="btn btn-secondary" data-ring="1" onclick="selectRingPair(1)">Pair B: Favor &amp; Guidance (68:2–7 ↔ 68:48–50)</button>
+          <button type="button" class="btn btn-secondary" data-ring="2" onclick="selectRingPair(2)">Pair C: Writing &amp; Inscription (68:1 ↔ 68:47)</button>
+        </div>
+
+        <div class="ring-comparison" id="ring-comparison" aria-live="polite">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament-rule" aria-hidden="true">◆ Verse-by-Verse Mastery Studio ◆</div>
+
+    <!-- Section 5: Complete 52-Verse Study & Mastery Explorer -->
+    <section id="verse-studio" class="study-section" style="border-top: none; padding-top: 0;">
+      <div>
+        <span class="section-kicker">Complete Text · Verses 68:1–52</span>
+        <h2 class="section-heading">Search, Filter, and Master Every Verse</h2>
+        <p>
+          Browse all 52 verses of Surah Al-Qalam with the Arabic text and English translation from the source. Toggle <strong>Recall Mode</strong> to blur English translations and test your memory before clicking a verse to reveal it, and mark each verse mastered as you study.
+        </p>
+      </div>
+
+      <div class="controls-bar">
+        <div class="field-group">
+          <label for="verse-search" class="field-label">Search English or Verse Number</label>
+          <input type="search" id="verse-search" class="text-input" placeholder="e.g. garden, pen, patience, 28..." oninput="updateVerseFilters()">
+        </div>
+        <div class="field-group">
+          <label for="movement-filter" class="field-label">Filter by Movement</label>
+          <select id="movement-filter" class="select-input" onchange="updateVerseFilters()">
+            <option value="all">All 52 Verses (68:1–52)</option>
+            <option value="m1">Movement I: Oath &amp; Character (68:1–16)</option>
+            <option value="m2">Movement II: Garden Parable (68:17–33)</option>
+            <option value="m3">Movement III: Justice &amp; Reckoning (68:34–47)</option>
+            <option value="m4">Movement IV: Patience &amp; Reminder (68:48–52)</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <span class="field-label">Study Mode</span>
+          <button type="button" class="btn btn-secondary" id="recall-toggle-btn" onclick="toggleRecallMode()">
+            <i data-lucide="eye-off" aria-hidden="true"></i>
+            <span>Recall Mode: Off</span>
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+        <div class="filter-pills" role="group" aria-label="Mastery status filter">
+          <button type="button" class="btn btn-primary" id="status-all-btn" onclick="setStatusFilter('all')">All</button>
+          <button type="button" class="btn btn-secondary" id="status-unmastered-btn" onclick="setStatusFilter('unmastered')">Needs Review</button>
+          <button type="button" class="btn btn-secondary" id="status-mastered-btn" onclick="setStatusFilter('mastered')">Mastered</button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center;">
+          <span style="font-size: 0.875rem; color: var(--on-surface-variant);" id="verse-count-caption">Showing 52 of 52 verses</span>
+          <button type="button" class="btn btn-tertiary" onclick="markVisibleMastered()">
+            <i data-lucide="check-check" aria-hidden="true"></i>
+            <span>Mark Visible Mastered</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 6: Mastery Quiz & Personal Study Notes -->
+    <section id="mastery-quiz" class="study-section reveal-on-scroll">
+      <div>
+        <span class="section-kicker">Active Recall · 8-Question Mastery Check</span>
+        <h2 class="section-heading">Verify Comprehension Across All Four Movements</h2>
+        <p>
+          Each question tests a specific verse, parable turning point, or structural contrast from Surah Al-Qalam. Your answers and personal study reflections persist automatically and can be exported as a plain-text study summary.
+        </p>
+      </div>
+
+      <div class="study-notes-grid">
+        <div class="quiz-card" id="quiz-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <aside class="surface-panel" style="display: grid; gap: var(--space-md);">
+          <div>
+            <span class="section-kicker">Study Journal</span>
+            <h3 style="font-size: var(--subhead-size);">Personal Reflections &amp; Takeaways</h3>
+          </div>
+          <div class="field-group">
+            <label for="study-notes-input" class="field-label">Notes on Surah Al-Qalam (Saved Automatically)</label>
+            <textarea id="study-notes-input" class="textarea-input" rows="7" placeholder="Record themes, Arabic phrases to memorize, or reflections on verses 68:1–52..." oninput="saveNotesInput(this.value)"></textarea>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+            <button type="button" class="btn btn-primary" onclick="exportStudySummary()">
+              <i data-lucide="download" aria-hidden="true"></i>
+              <span>Export Summary (.txt)</span>
+            </button>
+            <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="resetAllProgress(this)">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              <span>Reset Progress</span>
+            </button>
+          </div>
+          <p id="action-status-msg" style="margin: 0; font-size: 0.875rem; color: var(--tertiary); min-height: 1.4em;" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span>Source: Complete Arabic text and English translation of Chapter 68 (Surah Al-Qalam / The Pen), verses 68:1–68:52, from provided study material.</span>
+      <span>Self-contained interactive study &amp; mastery guide.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const SURAH_VERSES = [
+      { n: 1, m: `m1`, ar: `ن وَالْقَلَمِ وَمَا يَسْطُرُونَ`, en: `Nun. By the pen and what they inscribe,` },
+      { n: 2, m: `m1`, ar: `مَا أَنْتَ بِنِعْمَةِ رَبِّكَ بِمَجْنُونٍ`, en: `You are not, [O Muhammad], by the favor of your Lord, a madman.` },
+      { n: 3, m: `m1`, ar: `وَإِنَّ لَكَ لَأَجْرًا غَيْرَ مَمْنُونٍ`, en: `And indeed, for you is a reward uninterrupted.` },
+      { n: 4, m: `m1`, ar: `وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ`, en: `And indeed, you are of a great moral character.` },
+      { n: 5, m: `m1`, ar: `فَسَتُبْصِرُ وَيُبْصِرُونَ`, en: `So you will see and they will see` },
+      { n: 6, m: `m1`, ar: `بِأَيْيِكُمُ الْمَفْتُونُ`, en: `Which of you is the afflicted [by a devil].` },
+      { n: 7, m: `m1`, ar: `إِنَّ رَبَّكَ هُوَ أَعْلَمُ بِمَنْ ضَلَّ عَنْ سَبِيلِهِ وَهُوَ أَعْلَمُ بِالْمُهْتَدِينَ`, en: `Indeed, your Lord is most knowing of who has gone astray from His way, and He is most knowing of the [rightly] guided.` },
+      { n: 8, m: `m1`, ar: `فَلَا تُطِعِ الْمُكَذِّبِينَ`, en: `Then do not obey the deniers.` },
+      { n: 9, m: `m1`, ar: `وَدُّوا لَوْ تُدْهِنُ فَيُدْهِنُونَ`, en: `They wish that you would soften [in your position], so they would soften [toward you].` },
+      { n: 10, m: `m1`, ar: `وَلَا تُطِعْ كُلَّ حَلَّافٍ مَهِينٍ`, en: `And do not obey every worthless habitual swearer` },
+      { n: 11, m: `m1`, ar: `هَمَّازٍ مَشَّاءٍ بِنَمِيمٍ`, en: `[And] scorner, going about with malicious gossip -` },
+      { n: 12, m: `m1`, ar: `مَنَّاعٍ لِلْخَيْرِ مُعْتَدٍ أَثِيمٍ`, en: `A preventer of good, transgressing and sinful,` },
+      { n: 13, m: `m1`, ar: `عُتُل بَعْدَ ذَلِكَ زَنِيمٍ`, en: `Cruel, moreover, and an illegitimate pretender.` },
+      { n: 14, m: `m1`, ar: `أَنْ كَانَ ذَا مَالٍ وَبَنِينَ`, en: `Because he is a possessor of wealth and children,` },
+      { n: 15, m: `m1`, ar: `إِذَا تُتْلَى عَلَيْهِ آيَاتُنَا قَالَ أَسَاطِيرُ الْأَوَّلِينَ`, en: `When Our verses are recited to him, he says, "Legends of the former peoples."` },
+      { n: 16, m: `m1`, ar: `سَنَسِمُهُ عَلَى الْخُرْطُومِ`, en: `We will brand him upon the snout.` },
+      { n: 17, m: `m2`, ar: `إِنَّا بَلَوْنَاهُمْ كَمَا بَلَوْنَا أَصْحَابَ الْجَنَّةِ إِذْ أَقْسَمُوا لَيَصْرِمُنَّهَا مُصْبِحِينَ`, en: `Indeed, We have tried them as We tried the companions of the garden, when they swore to cut its fruit in the [early] morning` },
+      { n: 18, m: `m2`, ar: `وَلَا يَسْتَثْنُونَ`, en: `Without making exception.` },
+      { n: 19, m: `m2`, ar: `فَطَافَ عَلَيْهَا طَائِفٌ مِنْ رَبِّكَ وَهُمْ نَائِمُونَ`, en: `So there came upon the garden an affliction from your Lord while they were asleep.` },
+      { n: 20, m: `m2`, ar: `فَأَصْبَحَتْ كَالصَّرِيمِ`, en: `And it became as though reaped.` },
+      { n: 21, m: `m2`, ar: `فَتَنَادَوْا مُصْبِحِينَ`, en: `And they called one another at morning,` },
+      { n: 22, m: `m2`, ar: `أَنِ اغْدُوا عَلَى حَرْثِكُمْ إِنْ كُنْتُمْ صَارِمِينَ`, en: `[Saying], "Go early to your crop if you would cut the fruit."` },
+      { n: 23, m: `m2`, ar: `فَانْطَلَقُوا وَهُمْ يَتَخَافَتُونَ`, en: `So they set out, while lowering their voices,` },
+      { n: 24, m: `m2`, ar: `أَنْ لَا يَدْخُلَنَّهَا الْيَوْمَ عَلَيْكُمْ مِسْكِينٌ`, en: `[Saying], "There will surely not enter it today upon you [any] poor person."` },
+      { n: 25, m: `m2`, ar: `وَغَدَوْا عَلَىٰ حَرْدٍ قَادِرِينَ`, en: `And they went early in determination, [assuming themselves] able.` },
+      { n: 26, m: `m2`, ar: `فَلَمَّا رَأَوْهَا قَالُوا إِنَّا لَضَالُّونَ`, en: `But when they saw it, they said, "Indeed, we are lost;` },
+      { n: 27, m: `m2`, ar: `بَلْ نَحْنُ مَحْرُومُونَ`, en: `Rather, we have been deprived."` },
+      { n: 28, m: `m2`, ar: `قَالَ أَوْسَطُهُمْ أَلَمْ أَقُلْ لَكُمْ لَوْلَا تُسَبِّحُونَ`, en: `The most moderate of them said, "Did I not say to you, 'Why do you not exalt [Allah]?' "` },
+      { n: 29, m: `m2`, ar: `قَالُوا سُبْحَانَ رَبِّنَا إِنَّا كُنَّا ظَالِمِينَ`, en: `They said, "Exalted is our Lord! Indeed, we were wrongdoers."` },
+      { n: 30, m: `m2`, ar: `فَأَقْبَلَ بَعْضُهُمْ عَلَىٰ بَعْضٍ يَتَلَاوَمُونَ`, en: `Then they approached one another, blaming each other.` },
+      { n: 31, m: `m2`, ar: `قَالُوا يَا وَيْلَنَا إِنَّا كُنَّا طَاغِينَ`, en: `They said, "O woe to us; indeed we were transgressors.` },
+      { n: 32, m: `m2`, ar: `عَسَى رَبُّنَا أَنْ يُبْدِلَنَا خَيْرًا مِنْهَا إِنَّا إِلَىٰ رَبِّنَا رَاغِبُونَ`, en: `Perhaps our Lord will substitute for us [one] better than it. Indeed, we are toward our Lord desirous."` },
+      { n: 33, m: `m2`, ar: `كَذَلِكَ الْعَذَابُ وَلَعَذَابُ الْآخِرَةِ أَكْبَرُ لَوْ كَانُوا يَعْلَمُونَ`, en: `Such is the punishment [of this world]. And the punishment of the Hereafter is greater, if they only knew.` },
+      { n: 34, m: `m3`, ar: `إِنَّ لِلْمُتَّقِينَ عِنْدَ رَبِّهِمْ جَنَّاتِ النَّعِيمِ`, en: `Indeed, for the righteous with their Lord are the Gardens of Pleasure.` },
+      { n: 35, m: `m3`, ar: `أَفَنَجْعَلُ الْمُسْلِمِينَ كَالْمُجْرِمِينَ`, en: `Then will We treat the Muslims like the criminals?` },
+      { n: 36, m: `m3`, ar: `مَا لَكُمْ كَيْفَ تَحْكُمُونَ`, en: `What is [the matter] with you? How do you judge?` },
+      { n: 37, m: `m3`, ar: `أَمْ لَكُمْ كِتَابٌ فِيهِ تَدْرُسُونَ`, en: `Or do you have a scripture in which you learn` },
+      { n: 38, m: `m3`, ar: `إِنَّ لَكُمْ فِيهِ لَمَا تَخَيَّرُونَ`, en: `That indeed for you is whatever you choose?` },
+      { n: 39, m: `m3`, ar: `أَمْ لَكُمْ أَيْمَانٌ عَلَيْنَا بَالِغَةٌ إِلَى يَوْمِ الْقِيَامَةِ إِنَّ لَكُمْ لَمَا تَحْكُمُونَ`, en: `Or do you have oaths [binding] upon Us, extending until the Day of Resurrection, that indeed for you is whatever you judge?` },
+      { n: 40, m: `m3`, ar: `سَلْهُمْ أَيُّهُمْ بِذَلِكَ زَعِيمٌ`, en: `Ask them which of them, for that [claim], is responsible.` },
+      { n: 41, m: `m3`, ar: `أَمْ لَهُمْ شُرَكَاءُ فَلْيَأْتُوا بِشُرَكَائِهِمْ إِنْ كَانُوا صَادِقِينَ`, en: `Or do they have partners? Then let them bring their partners, if they should be truthful.` },
+      { n: 42, m: `m3`, ar: `يَوْمَ يُكْشَفُ عَنْ سَاقٍ وَيُدْعَوْنَ إِلَى السُّجُودِ فَلَا يَسْتَطِيعُونَ`, en: `The Day the shin will be uncovered and they are invited to prostration but the disbelievers will not be able,` },
+      { n: 43, m: `m3`, ar: `خَاشِعَةً أَبْصَارُهُمْ تَرْهَقُهُمْ ذِلَّةٌ ۖ وَقَدْ كَانُوا يُدْعَوْنَ إِلَى السُّجُودِ وَهُمْ سَالِمُونَ`, en: `Their eyes humbled, humiliation will cover them. And they used to be invited to prostration while they were sound.` },
+      { n: 44, m: `m3`, ar: `فَذَرْنِي وَمَنْ يُكَذِّبُ بِهُذَا الْحَدِيثِ سَنَسْتَدْرِجُهُمْ مِنْ حَيْثُ لَا يَعْلَمُونَ`, en: `So leave Me, [O Muhammad], with [the matter of] whoever denies the Qur'an. We will progressively lead them [to punishment] from where they do not know.` },
+      { n: 45, m: `m3`, ar: `وَأُمْلِي لَهُمْ إِنَّ كَيْدِي مَتِينٌ`, en: `And I will give them time. Indeed, My plan is firm.` },
+      { n: 46, m: `m3`, ar: `أَمْ تَسْأَلُهُمْ أَجْرًا فَهُمْ مِنْ مَغْرَمٍ مُثْقَلُونَ`, en: `Or do you ask of them a payment, so they are by debt burdened down?` },
+      { n: 47, m: `m3`, ar: `أَمْ عِنْدَهُمُ الْغَيْبُ فَهُمْ يَكْتُبُونَ`, en: `Or have they [knowledge of] the unseen, so they write [it] down?` },
+      { n: 48, m: `m4`, ar: `فَاصْبِرْ لِحُكْمِ رَبِّكَ وَلَا تَكُنْ كَصَاحِبِ الْحُوتِ إِذْ نَادَى وَهُوَ مَكْظُومٌ`, en: `Then be patient for the decision of your Lord, [O Muhammad], and be not like the companion of the fish when he called out while he was distressed.` },
+      { n: 49, m: `m4`, ar: `لَوْلَا أَنْ تَدَارَكَهُ نِعْمَةٌ مِنْ رَبِّهِ لَنُبِذَ بِالْعَرَاءِ وَهُوَ مَذْمُومٌ`, en: `If not that a favor from his Lord overtook him, he would have been thrown onto the naked shore while he was censured.` },
+      { n: 50, m: `m4`, ar: `فَاجْتَبَاهُ رَبُّهُ فَجَعَلَهُ مِنَ الصَّالِحِينَ`, en: `And his Lord chose him and made him of the righteous.` },
+      { n: 51, m: `m4`, ar: `وَإِنْ يَكَادُ الَّذِينَ كَفَرُوا لَيُزْلِقُونَكَ بِأَبْصَارِهِمْ لَمَّا سَمِعُوا الذِّكْرَ وَيَقُولُونَ إِنَّهُ لَمَجْنُونٌ`, en: `And indeed, those who disbelieve would almost make you slip with their eyes when they hear the message, and they say, "Indeed, he is mad."` },
+      { n: 52, m: `m4`, ar: `وَمَا هُوَ إِلَّا ذِكْرٌ لِلْعَالَمِينَ`, en: `But it is not except a reminder to the worlds.` }
+    ];
+
+    const TRAIT_DATA = [
+      {
+        title: `The Oath by the Pen & Vindication`,
+        verses: [1, 2, 3],
+        badge: `Prophetic Assurance`,
+        isProphetic: true,
+        insight: `Before addressing opponents, the Surah invokes the Pen and what is inscribed, immediately clearing the Prophet of the accusation of madness and grounding his mission in divine favor and an uninterrupted reward.`
+      },
+      {
+        title: `Great Moral Character (Khuluq 'Azim)`,
+        verses: [4],
+        badge: `Moral Anchor`,
+        isProphetic: true,
+        insight: `Rather than arguing abstractly, verse 68:4 places the Prophet's own character as the decisive evidence against slander—followed in 68:5–7 by the assurance that Allah knows best who has strayed and who is rightly guided.`
+      },
+      {
+        title: `Steadfastness Against Compromise`,
+        verses: [8, 9],
+        badge: `Principle of Integrity`,
+        isProphetic: true,
+        insight: `The deniers do not merely oppose; they hope for mutual softening ("tudhinu fa-yudhinun"). Verse 68:8 forbids obeying the deniers at the expense of truth.`
+      },
+      {
+        title: `Worthless Habitual Swearer & Malicious Gossiper`,
+        verses: [10, 11],
+        badge: `Warning · Traits 1–4`,
+        isProphetic: false,
+        insight: `The portrait begins with corrupted speech: reckless oath-taking (hallaf), worthlessness (mahin), constant scorning/defaming (hammaz), and spreading malicious gossip (mashsha'in bi-namim).`
+      },
+      {
+        title: `Preventer of Good, Transgressor, Sinful, Cruel & Pretender`,
+        verses: [12, 13],
+        badge: `Warning · Traits 5–9`,
+        isProphetic: false,
+        insight: `Corrupted speech expands into corrupted action: blocking charity and goodness (manna' lil-khayr), crossing boundaries (mu'tad), sinfulness (athim), harsh cruelty ('utull), and false lineage/status pretension (zanim).`
+      },
+      {
+        title: `Entitlement of Wealth & Dismissing Revelation`,
+        verses: [14, 15, 16],
+        badge: `Root & Consequence`,
+        isProphetic: false,
+        insight: `Verse 68:14 reveals the psychological root—possessing wealth and children breeds arrogance—leading him to dismiss recited verses as "legends of the former peoples" (68:15), met with a stern warning of lasting disgrace (68:16).`
+      }
+    ];
+
+    const PARABLE_STAGES = [
+      {
+        title: `1. The Unconditional Oath`,
+        verses: [17, 18],
+        takeaway: `The owners swore to harvest their orchard at first light—without making exception (i.e., without saying "if Allah wills" or setting aside the share of the poor).`
+      },
+      {
+        title: `2. The Nocturnal Affliction`,
+        verses: [19, 20],
+        takeaway: `While they slept in confidence, an affliction from their Lord passed over the garden, leaving it stripped bare as though already reaped.`
+      },
+      {
+        title: `3. Whispered Strategy to Exclude the Poor`,
+        verses: [21, 22, 23, 24, 25],
+        takeaway: `Unaware of the ruin, they woke early, lowered their voices in secret agreement that no poor person (miskin) would enter that day, and marched out assuming themselves fully able.`
+      },
+      {
+        title: `4. Shock and Realization of Deprivation`,
+        verses: [26, 27],
+        takeaway: `Confronting the blackened crop, they first thought they had taken the wrong road ("Indeed, we are lost"), then realized the truth: "Rather, we have been deprived."`
+      },
+      {
+        title: `5. Conscience, Mutual Blame & Repentance`,
+        verses: [28, 29, 30, 31, 32],
+        takeaway: `The most moderate among them reminded them of his earlier warning ("Why do you not exalt Allah?"). They glorified Allah, confessed they were wrongdoers and transgressors, blamed one another, and turned back hoping for a better replacement.`
+      },
+      {
+        title: `6. Earthly Loss vs. the Hereafter`,
+        verses: [33],
+        takeaway: `The parable closes with a sobering comparison: worldly loss is a real punishment, yet the punishment of the Hereafter is far greater—if only people knew.`
+      }
+    ];
+
+    const RHETORIC_DATA = [
+      {
+        title: `Equal Treatment Challenge`,
+        verses: [34, 35, 36],
+        claim: `Deniers assume they will enjoy the same favor as the righteous, regardless of their deeds.`,
+        refutation: `After affirming Gardens of Pleasure for the righteous (68:34), Allah asks: "Then will We treat the Muslims like the criminals? What is with you? How do you judge?"`
+      },
+      {
+        title: `Appeal to a Private Scripture`,
+        verses: [37, 38],
+        claim: `Perhaps they rely on a revealed book granting them whatever outcome they prefer.`,
+        refutation: `No such scripture exists where they study that they get "whatever you choose."`
+      },
+      {
+        title: `Binding Oaths, Guarantors & Partners`,
+        verses: [39, 40, 41],
+        claim: `Perhaps they hold binding promises from Allah extending to the Day of Resurrection, or rival partners who will defend them.`,
+        refutation: `Allah challenges them to name one person responsible (za'im) for that claim, or to produce their alleged partners if they are truthful.`
+      },
+      {
+        title: `The Day of Prostration & Gradual Reckoning`,
+        verses: [42, 43, 44, 45],
+        claim: `Delay in punishment is misread by deniers as immunity.`,
+        refutation: `On the Day the shin is uncovered, those who refused to prostrate while sound will be unable to prostrate, covered in humiliation. Meanwhile, Allah gives respite only as a firm plan leading deniers gradually from where they do not know.`
+      },
+      {
+        title: `Burden of Payment & Claim to the Unseen`,
+        verses: [46, 47],
+        claim: `Deniers act as though the Prophet demands a crushing fee, or as though they possess written access to the unseen.`,
+        refutation: `He asks for no payment (68:46), and they possess no knowledge of the unseen from which to write down guarantees (68:47).`
+      }
+    ];
+
+    const RING_PAIRS = [
+      {
+        label: `Pair A: Accusation of Madness Answered`,
+        leftTitle: `Opening · Verses 68:1–2`,
+        leftVerses: [1, 2],
+        leftNote: `Begins by swearing by the Pen and refuting the smear: "You are not, by the favor of your Lord, a madman."`,
+        rightTitle: `Closing · Verses 68:51–52`,
+        rightVerses: [51, 52],
+        rightNote: `Shows the disbelievers still glaring with hostility and saying, "Indeed, he is mad"—immediately answered: "But it is not except a reminder to the worlds."`
+      },
+      {
+        label: `Pair B: Divine Favor Over Distress`,
+        leftTitle: `Opening · Verses 68:2–7`,
+        leftVerses: [2, 7],
+        leftNote: `The Prophet stands upon his Lord's favor (ni'mah), assured that his Lord knows who is astray and who is guided.`,
+        rightTitle: `Closing · Verses 68:48–50`,
+        rightVerses: [48, 50],
+        rightNote: `Instructed to be patient and not like the Companion of the Fish when distressed—who was rescued by his Lord's favor (ni'mah) and made among the righteous.`
+      },
+      {
+        label: `Pair C: The Pen vs. False Writing`,
+        leftTitle: `Opening · Verse 68:1`,
+        leftVerses: [1],
+        leftNote: `Opens with the sacred Pen and true inscription: "By the pen and what they inscribe."`,
+        rightTitle: `Pre-Closing · Verse 68:47`,
+        rightVerses: [47],
+        rightNote: `Exposes the deniers' lack of authority: "Or have they [knowledge of] the unseen, so they write [it] down?"`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `What are the two opening assurances given directly after the oath by the Pen in 68:2–4?`,
+        options: [
+          `Immediate worldly wealth and victory over neighboring tribes`,
+          `Protection from madness, an uninterrupted reward, and great moral character`,
+          `Knowledge of the unseen and exemption from patience`,
+          `A physical sign in the sky and a written ledger for opponents`
+        ],
+        correct: 1,
+        explanation: `Verses 68:2–4 declare that by Allah's favor the Prophet is not a madman, that for him is an uninterrupted reward, and that he is of a great moral character.`
+      },
+      {
+        q: `According to 68:9, what do the deniers wish the Prophet would do?`,
+        options: [
+          `Soften in his position so they would soften toward him`,
+          `Relocate to another city before reciting`,
+          `Demand a fee so they could negotiate terms`,
+          `Divide the garden's harvest with them`
+        ],
+        correct: 0,
+        explanation: `Verse 68:9 states: "They wish that you would soften [in your position], so they would soften [toward you]."`
+      },
+      {
+        q: `In 68:14–15, what fuels the arrogant denier's dismissal of Allah's verses as "Legends of the former peoples"?`,
+        options: [
+          `His poverty and isolation from society`,
+          `His possession of wealth and children`,
+          `His mastery of ancient scriptures`,
+          `His fear of nocturnal storms`
+        ],
+        correct: 1,
+        explanation: `Verse 68:14 directly links his dismissal in 68:15 to "Because he is a possessor of wealth and children."`
+      },
+      {
+        q: `In the Parable of the Garden (68:17–24), why did the companions lower their voices as they walked out early?`,
+        options: [
+          `They wanted to surprise their neighbors with gifts`,
+          `They resolved that no poor person would enter the garden upon them that day`,
+          `They saw that the crop had already been destroyed`,
+          `They were reciting prayers of gratitude`
+        ],
+        correct: 1,
+        explanation: `Verses 68:23–24 state they lowered their voices saying, "There will surely not enter it today upon you [any] poor person."`
+      },
+      {
+        q: `When the companions of the garden saw the ruined crop (68:28–32), what did "the most moderate of them" say?`,
+        options: [
+          `"Let us blame the poor who came yesterday."`,
+          `"Did I not say to you, 'Why do you not exalt [Allah]?' "`,
+          `"We must abandon the land and never return."`,
+          `"Let us hire guards for next season."`
+        ],
+        correct: 1,
+        explanation: `In 68:28, the most moderate of them said, "Did I not say to you, 'Why do you not exalt [Allah]?' "—prompting their confession and hope for renewal.`
+      },
+      {
+        q: `On the Day described in 68:42–43, why will the disbelievers' eyes be humbled and covered in humiliation?`,
+        options: [
+          `They will be invited to prostration but will be unable, though they used to be invited while sound`,
+          `They will have forgotten the Arabic language of the scripture`,
+          `They will be forced to pay a debt to the companions of the garden`,
+          `They will be asked to rebuild the garden before dawn`
+        ],
+        correct: 0,
+        explanation: `Verses 68:42–43 describe the Day they are invited to prostration and cannot, having previously been invited to prostration while they were sound.`
+      },
+      {
+        q: `What does 68:44–45 mean by Allah saying "Leave Me with whoever denies the Qur'an"?`,
+        options: [
+          `The Prophet should abandon preaching altogether`,
+          `Allah will progressively lead them to punishment from where they do not know, giving them time as His plan is firm`,
+          `The deniers have already escaped accountability`,
+          `They will be forgiven without repentance`
+        ],
+        correct: 1,
+        explanation: `Verses 68:44–45 state: "We will progressively lead them [to punishment] from where they do not know. And I will give them time. Indeed, My plan is firm."`
+      },
+      {
+        q: `How does the closing of Surah Al-Qalam (68:48–52) relate to the Prophet Jonah ("companion of the fish") and the opening of the Surah?`,
+        options: [
+          `It advises impatience and withdraws the promise of reward`,
+          `It commands patience unlike Jonah's distressed moment, recalls Allah's favor rescuing Jonah, and answers the renewed smear of madness by calling the message a reminder to the worlds`,
+          `It introduces an entirely unrelated legal code`,
+          `It declares that only one tribe will understand the reminder`
+        ],
+        correct: 1,
+        explanation: `Verses 68:48–52 counsel patience, contrast Jonah's distress with Allah's rescuing favor, and echo 68:2 by answering the disbelievers' "Indeed, he is mad" with "But it is not except a reminder to the worlds."`
+      }
+    ];
+
+    /* Persistent application state */
+    let appState = {
+      masteredVerses: [],
+      quizAnswers: {},
+      studyNotes: ``,
+      recallMode: false,
+      selectedMovement: `all`,
+      statusFilter: `all`,
+      searchQuery: ``,
+      activeTrait: 0,
+      activeParableStage: 0,
+      activeRhetoric: 0,
+      activeRingPair: 0,
+      currentQuizIdx: 0
+    };
+
+    function getVerseByNum(num) {
+      return SURAH_VERSES.find(function (v) { return v.n === num; });
+    }
+
+    function isVerseMastered(num) {
+      return appState.masteredVerses.indexOf(num) !== -1;
+    }
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            masteredVerses: appState.masteredVerses,
+            quizAnswers: appState.quizAnswers,
+            studyNotes: appState.studyNotes,
+            recallMode: appState.recallMode,
+            selectedMovement: appState.selectedMovement,
+            statusFilter: appState.statusFilter,
+            searchQuery: appState.searchQuery,
+            activeTrait: appState.activeTrait,
+            activeParableStage: appState.activeParableStage,
+            activeRhetoric: appState.activeRhetoric,
+            activeRingPair: appState.activeRingPair,
+            currentQuizIdx: appState.currentQuizIdx
+          });
+        }
+      } catch (err) {
+        /* Fail safely inside standalone preview */
+      }
+    }
+
+    function restoreFromState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (Array.isArray(saved.masteredVerses)) appState.masteredVerses = saved.masteredVerses;
+      if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+      if (typeof saved.studyNotes === `string`) appState.studyNotes = saved.studyNotes;
+      if (typeof saved.recallMode === `boolean`) appState.recallMode = saved.recallMode;
+      if (typeof saved.selectedMovement === `string`) appState.selectedMovement = saved.selectedMovement;
+      if (typeof saved.statusFilter === `string`) appState.statusFilter = saved.statusFilter;
+      if (typeof saved.searchQuery === `string`) appState.searchQuery = saved.searchQuery;
+      if (typeof saved.activeTrait === `number`) appState.activeTrait = saved.activeTrait;
+      if (typeof saved.activeParableStage === `number`) appState.activeParableStage = saved.activeParableStage;
+      if (typeof saved.activeRhetoric === `number`) appState.activeRhetoric = saved.activeRhetoric;
+      if (typeof saved.activeRingPair === `number`) appState.activeRingPair = saved.activeRingPair;
+      if (typeof saved.currentQuizIdx === `number`) appState.currentQuizIdx = saved.currentQuizIdx;
+    }
+
+    function jumpToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    /* Movement I: Trait Explorer */
+    function selectTrait(idx) {
+      appState.activeTrait = idx;
+      const buttons = document.querySelectorAll(`.trait-btn`);
+      buttons.forEach(function (btn, i) {
+        if (i === idx) btn.classList.add(`is-selected`);
+        else btn.classList.remove(`is-selected`);
+      });
+      renderTraitSpotlight();
+      persistState();
+    }
+
+    function renderTraitSpotlight() {
+      const box = document.getElementById(`trait-spotlight`);
+      if (!box) return;
+      const item = TRAIT_DATA[appState.activeTrait] || TRAIT_DATA[0];
+      const badgeClass = item.isProphetic ? `badge-emerald` : `badge-brass`;
+      let versesHtml = ``;
+      item.verses.forEach(function (num) {
+        const v = getVerseByNum(num);
+        if (!v) return;
+        versesHtml += `
+          <div style="padding: var(--space-md); background: var(--background); border-radius: var(--rounded); border-left: 3px solid ${item.isProphetic ? `var(--tertiary)` : `var(--primary)`}; display: grid; gap: var(--space-xs);">
+            <span class="verse-ref">Verse 68:${v.n}</span>
+            <div class="arabic-text" dir="rtl" lang="ar">${v.ar}</div>
+            <div style="font-size: 1rem;">${v.en}</div>
+          </div>
+        `;
+      });
+      box.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="${badgeClass}">${item.badge}</span>
+          <span class="trait-meta">Verses ${item.verses.map(function (n) { return `68:` + n; }).join(`, `)}</span>
+        </div>
+        <h3 style="font-size: var(--subhead-size);">${item.title}</h3>
+        <p style="margin: 0; color: var(--on-surface-variant);">${item.insight}</p>
+        <div style="display: grid; gap: var(--space-sm);">${versesHtml}</div>
+      `;
+    }
+
+    /* Movement II: Parable Stepper */
+    function selectParableStage(idx) {
+      appState.activeParableStage = idx;
+      const pills = document.querySelectorAll(`.stage-pill`);
+      pills.forEach(function (pill, i) {
+        if (i === idx) pill.classList.add(`is-active`);
+        else pill.classList.remove(`is-active`);
+      });
+      renderParableStage();
+      persistState();
+    }
+
+    function stepParable(delta) {
+      const next = Math.max(0, Math.min(PARABLE_STAGES.length - 1, appState.activeParableStage + delta));
+      selectParableStage(next);
+    }
+
+    function renderParableStage() {
+      const box = document.getElementById(`parable-stage-display`);
+      const counter = document.getElementById(`parable-step-counter`);
+      const prevBtn = document.getElementById(`parable-prev-btn`);
+      const nextBtn = document.getElementById(`parable-next-btn`);
+      if (!box) return;
+
+      const stage = PARABLE_STAGES[appState.activeParableStage] || PARABLE_STAGES[0];
+      let versesHtml = ``;
+      stage.verses.forEach(function (num) {
+        const v = getVerseByNum(num);
+        if (!v) return;
+        versesHtml += `
+          <div class="parable-verse-item">
+            <span class="verse-ref">Verse 68:${v.n}</span>
+            <div class="arabic-text" dir="rtl" lang="ar">${v.ar}</div>
+            <div>${v.en}</div>
+          </div>
+        `;
+      });
+
+      box.innerHTML = `
+        <div style="display: grid; gap: var(--space-xs);">
+          <span class="badge-brass" style="justify-self: start;">Parable Scene ${appState.activeParableStage + 1} of ${PARABLE_STAGES.length}</span>
+          <h3 style="font-size: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);">${stage.title}</h3>
+          <p style="margin: 0; color: var(--on-surface-variant);">${stage.takeaway}</p>
+        </div>
+        <div class="parable-verse-list">${versesHtml}</div>
+      `;
+
+      if (counter) counter.textContent = `Scene ${appState.activeParableStage + 1} of ${PARABLE_STAGES.length}`;
+      if (prevBtn) prevBtn.disabled = appState.activeParableStage === 0;
+      if (nextBtn) nextBtn.disabled = appState.activeParableStage === PARABLE_STAGES.length - 1;
+    }
+
+    /* Movement III: Rhetorical Interrogation */
+    function selectRhetoric(idx) {
+      appState.activeRhetoric = idx;
+      const buttons = document.querySelectorAll(`.question-btn`);
+      buttons.forEach(function (btn, i) {
+        if (i === idx) btn.classList.add(`is-active`);
+        else btn.classList.remove(`is-active`);
+      });
+      renderRhetoricSpotlight();
+      persistState();
+    }
+
+    function renderRhetoricSpotlight() {
+      const box = document.getElementById(`rhetoric-spotlight`);
+      if (!box) return;
+      const item = RHETORIC_DATA[appState.activeRhetoric] || RHETORIC_DATA[0];
+      let versesHtml = ``;
+      item.verses.forEach(function (num) {
+        const v = getVerseByNum(num);
+        if (!v) return;
+        versesHtml += `
+          <div style="padding: var(--space-md); background: var(--background); border-radius: var(--rounded); border-left: 3px solid var(--primary); display: grid; gap: var(--space-xs);">
+            <span class="verse-ref">Verse 68:${v.n}</span>
+            <div class="arabic-text" dir="rtl" lang="ar">${v.ar}</div>
+            <div>${v.en}</div>
+          </div>
+        `;
+      });
+
+      box.innerHTML = `
+        <h3 style="font-size: var(--subhead-size);">${item.title}</h3>
+        <div style="display: grid; gap: var(--space-xs); padding: var(--space-md); background: var(--surface-container); border-radius: var(--rounded);">
+          <div style="font-size: 0.875rem;"><strong>Tested Assumption:</strong> ${item.claim}</div>
+          <div style="font-size: 0.875rem; color: var(--on-tertiary-container);"><strong>Qur'anic Refutation:</strong> ${item.refutation}</div>
+        </div>
+        <div style="display: grid; gap: var(--space-sm);">${versesHtml}</div>
+      `;
+    }
+
+    /* Movement IV: Ring Structure Symmetry */
+    function selectRingPair(idx) {
+      appState.activeRingPair = idx;
+      const buttons = document.querySelectorAll(`[data-ring]`);
+      buttons.forEach(function (btn, i) {
+        btn.classList.remove(`btn-primary`, `btn-secondary`);
+        btn.classList.add(i === idx ? `btn-primary` : `btn-secondary`);
+      });
+      renderRingComparison();
+      persistState();
+    }
+
+    function renderRingComparison() {
+      const box = document.getElementById(`ring-comparison`);
+      if (!box) return;
+      const pair = RING_PAIRS[appState.activeRingPair] || RING_PAIRS[0];
+
+      function buildSide(title, verseNums, note) {
+        let html = `<span class="badge-emerald" style="justify-self: start;">${title}</span>`;
+        html += `<p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">${note}</p>`;
+        verseNums.forEach(function (num) {
+          const v = getVerseByNum(num);
+          if (!v) return;
+          html += `
+            <div style="padding-top: var(--space-sm); border-top: var(--warm-hairline); display: grid; gap: var(--space-xs);">
+              <span class="verse-ref">68:${v.n}</span>
+              <div class="arabic-text" dir="rtl" lang="ar">${v.ar}</div>
+              <div>${v.en}</div>
+            </div>
+          `;
+        });
+        return `<div class="ring-side">${html}</div>`;
+      }
+
+      box.innerHTML = buildSide(pair.leftTitle, pair.leftVerses, pair.leftNote) +
+                      buildSide(pair.rightTitle, pair.rightVerses, pair.rightNote);
+    }
+
+    /* Section 5: 52-Verse Studio */
+    function getFilteredVerses() {
+      const query = appState.searchQuery.trim().toLowerCase();
+      return SURAH_VERSES.filter(function (v) {
+        if (appState.selectedMovement !== `all` && v.m !== appState.selectedMovement) return false;
+        const mastered = isVerseMastered(v.n);
+        if (appState.statusFilter === `mastered` && !mastered) return false;
+        if (appState.statusFilter === `unmastered` && mastered) return false;
+        if (query) {
+          const numMatch = String(v.n) === query || (`68:` + v.n).indexOf(query) !== -1;
+          const textMatch = v.en.toLowerCase().indexOf(query) !== -1 || v.ar.indexOf(query) !== -1;
+          if (!numMatch && !textMatch) return false;
+        }
+        return true;
+      });
+    }
+
+    function updateVerseFilters() {
+      const searchEl = document.getElementById(`verse-search`);
+      const movEl = document.getElementById(`movement-filter`);
+      if (searchEl) appState.searchQuery = searchEl.value;
+      if (movEl) appState.selectedMovement = movEl.value;
+      renderVerseList();
+      persistState();
+    }
+
+    function setStatusFilter(status) {
+      appState.statusFilter = status;
+      const map = { all: `status-all-btn`, unmastered: `status-unmastered-btn`, mastered: `status-mastered-btn` };
+      Object.keys(map).forEach(function (k) {
+        const btn = document.getElementById(map[k]);
+        if (!btn) return;
+        btn.classList.remove(`btn-primary`, `btn-secondary`);
+        btn.classList.add(k === status ? `btn-primary` : `btn-secondary`);
+      });
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleRecallMode() {
+      appState.recallMode = !appState.recallMode;
+      updateRecallButton();
+      renderVerseList();
+      persistState();
+    }
+
+    function updateRecallButton() {
+      const btn = document.getElementById(`recall-toggle-btn`);
+      if (!btn) return;
+      btn.classList.remove(`btn-primary`, `btn-secondary`);
+      btn.classList.add(appState.recallMode ? `btn-primary` : `btn-secondary`);
+      btn.innerHTML = appState.recallMode
+        ? `<i data-lucide="eye" aria-hidden="true"></i><span>Recall Mode: On</span>`
+        : `<i data-lucide="eye-off" aria-hidden="true"></i><span>Recall Mode: Off</span>`;
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function toggleRevealVerse(el) {
+      if (el) el.classList.toggle(`is-revealed`);
+    }
+
+    function toggleVerseMastered(num) {
+      const idx = appState.masteredVerses.indexOf(num);
+      if (idx === -1) appState.masteredVerses.push(num);
+      else appState.masteredVerses.splice(idx, 1);
+      appState.masteredVerses.sort(function (a, b) { return a - b; });
+      updateMasteryBanner();
+      renderVerseList();
+      persistState();
+    }
+
+    function markVisibleMastered() {
+      const visible = getFilteredVerses();
+      visible.forEach(function (v) {
+        if (appState.masteredVerses.indexOf(v.n) === -1) {
+          appState.masteredVerses.push(v.n);
+        }
+      });
+      appState.masteredVerses.sort(function (a, b) { return a - b; });
+      updateMasteryBanner();
+      renderVerseList();
+      persistState();
+    }
+
+    function clearVerseFilters() {
+      appState.searchQuery = ``;
+      appState.selectedMovement = `all`;
+      appState.statusFilter = `all`;
+      const searchEl = document.getElementById(`verse-search`);
+      const movEl = document.getElementById(`movement-filter`);
+      if (searchEl) searchEl.value = ``;
+      if (movEl) movEl.value = `all`;
+      setStatusFilter(`all`);
+    }
+
+    function renderVerseList() {
+      const listEl = document.getElementById(`verse-list`);
+      const countCaption = document.getElementById(`verse-count-caption`);
+      if (!listEl) return;
+
+      const filtered = getFilteredVerses();
+      if (countCaption) countCaption.textContent = `Showing ${filtered.length} of 52 verses`;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="empty-state">
+            <strong>No verses match your current filter</strong>
+            <p style="margin: 0; color: var(--on-surface-variant);">Try clearing your search term or switching the movement and mastery filters back to All.</p>
+            <button type="button" class="btn btn-primary" onclick="clearVerseFilters()">Show All 52 Verses</button>
+          </div>
+        `;
+        return;
+      }
+
+      const movLabels = {
+        m1: `Movement I · Oath &amp; Character`,
+        m2: `Movement II · Garden Parable`,
+        m3: `Movement III · Justice &amp; Reckoning`,
+        m4: `Movement IV · Patience &amp; Reminder`
+      };
+
+      let html = ``;
+      filtered.forEach(function (v) {
+        const mastered = isVerseMastered(v.n);
+        const recallCls = appState.recallMode ? `recall-hidden` : ``;
+        const recallHint = appState.recallMode ? `title="Click to reveal English translation" onclick="toggleRevealVerse(this)"` : ``;
+        html += `
+          <article class="verse-row ${mastered ? `is-mastered` : ``}">
+            <div class="verse-row-header">
+              <div style="display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+                <span class="verse-ref">Surah Al-Qalam 68:${v.n}</span>
+                <span style="font-size: 0.75rem; color: var(--on-surface-variant);">${movLabels[v.m]}</span>
+              </div>
+              <button type="button" class="btn ${mastered ? `btn-tertiary` : `btn-secondary`}" onclick="toggleVerseMastered(${v.n})" aria-pressed="${mastered ? `true` : `false`}">
+                <i data-lucide="${mastered ? `check-circle` : `circle`}" aria-hidden="true"></i>
+                <span>${mastered ? `Mastered` : `Mark Mastered`}</span>
+              </button>
+            </div>
+            <div class="arabic-text" dir="rtl" lang="ar">${v.ar}</div>
+            <p style="margin: 0;" class="${recallCls}" ${recallHint}>${v.en}</p>
+          </article>
+        `;
+      });
+      listEl.innerHTML = html;
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function updateMasteryBanner() {
+      const count = appState.masteredVerses.length;
+      const badge = document.getElementById(`mastery-status-badge`);
+      const fill = document.getElementById(`mastery-progress-fill`);
+      const bar = document.getElementById(`mastery-progressbar`);
+      const hint = document.getElementById(`mastery-hint`);
+      const quizBadge = document.getElementById(`quiz-status-badge`);
+
+      if (badge) badge.textContent = `${count} / 52 Verses Mastered`;
+      if (fill) fill.style.width = `${Math.round((count / 52) * 100)}%`;
+      if (bar) bar.setAttribute(`aria-valuenow`, String(count));
+
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      let correctCount = 0;
+      Object.keys(appState.quizAnswers).forEach(function (idx) {
+        const q = QUIZ_QUESTIONS[Number(idx)];
+        if (q && appState.quizAnswers[idx] === q.correct) correctCount += 1;
+      });
+      if (quizBadge) quizBadge.textContent = `Quiz: ${correctCount} / ${QUIZ_QUESTIONS.length} Correct (${answeredCount} Checked)`;
+
+      if (hint) {
+        if (count === 0) {
+          hint.textContent = `Start by exploring the four thematic movements below, or mark verses as mastered in the full 52-verse study studio. Your progress saves automatically.`;
+        } else if (count < 52) {
+          hint.textContent = `You have mastered ${count} of 52 verses (${Math.round((count / 52) * 100)}%). Continue through the remaining verses or review with Recall Mode.`;
+        } else {
+          hint.textContent = `All 52 verses of Surah Al-Qalam are marked mastered. Test full recall with the 8-question mastery check below.`;
+        }
+      }
+    }
+
+    /* Section 6: Mastery Quiz & Study Notes */
+    function renderQuiz() {
+      const box = document.getElementById(`quiz-container`);
+      if (!box) return;
+      const idx = appState.currentQuizIdx;
+      const item = QUIZ_QUESTIONS[idx] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[String(idx)];
+      const hasAnswered = typeof chosen === `number`;
+
+      let optionsHtml = ``;
+      item.options.forEach(function (opt, optIdx) {
+        let cls = `quiz-option`;
+        if (hasAnswered) {
+          if (optIdx === item.correct) cls += ` is-correct`;
+          else if (optIdx === chosen) cls += ` is-wrong`;
+        }
+        optionsHtml += `
+          <button type="button" class="${cls}" onclick="answerQuiz(${idx}, ${optIdx})">
+            <span>${opt}</span>
+            ${hasAnswered && optIdx === item.correct ? `<i data-lucide="check" aria-hidden="true"></i>` : ``}
+          </button>
+        `;
+      });
+
+      const isCorrect = hasAnswered && chosen === item.correct;
+      const feedbackCls = hasAnswered ? (isCorrect ? `feedback-box is-visible is-correct` : `feedback-box is-visible is-wrong`) : `feedback-box`;
+      const feedbackText = hasAnswered
+        ? (isCorrect ? `Correct. ` + item.explanation : `Not quite. ` + item.explanation)
+        : ``;
+
+      box.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="badge-brass">Question ${idx + 1} of ${QUIZ_QUESTIONS.length}</span>
+          <span style="font-size: 0.875rem; color: var(--on-surface-variant);">Select the accurate answer</span>
+        </div>
+        <h3 style="font-size: var(--subhead-size); line-height: 1.35;">${item.q}</h3>
+        <div class="quiz-options">${optionsHtml}</div>
+        <div class="${feedbackCls}" role="status">${feedbackText}</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <button type="button" class="btn btn-secondary" onclick="stepQuiz(-1)" ${idx === 0 ? `disabled` : ``}>
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Previous</span>
+          </button>
+          <button type="button" class="btn btn-primary" onclick="stepQuiz(1)" ${idx === QUIZ_QUESTIONS.length - 1 ? `disabled` : ``}>
+            <span>Next Question</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      `;
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function answerQuiz(qIdx, optIdx) {
+      appState.quizAnswers[String(qIdx)] = optIdx;
+      renderQuiz();
+      updateMasteryBanner();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      appState.currentQuizIdx = Math.max(0, Math.min(QUIZ_QUESTIONS.length - 1, appState.currentQuizIdx + delta));
+      renderQuiz();
+      persistState();
+    }
+
+    function saveNotesInput(val) {
+      appState.studyNotes = val;
+      const msg = document.getElementById(`action-status-msg`);
+      if (msg) msg.textContent = `Notes saved.`;
+      persistState();
+    }
+
+    function exportStudySummary() {
+      const masteredList = appState.masteredVerses.map(function (n) { return `68:` + n; }).join(`, `) || `None marked yet`;
+      const lines = [
+        `SURAH AL-QALAM (CHAPTER 68 / THE PEN) — STUDY SUMMARY`,
+        `=======================================================`,
+        `Verses Mastered: ${appState.masteredVerses.length} / 52`,
+        `Mastered References: ${masteredList}`,
+        ``,
+        `QUIZ CHECK:`,
+        `Questions Answered: ${Object.keys(appState.quizAnswers).length} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `PERSONAL STUDY NOTES:`,
+        appState.studyNotes || `(No notes recorded yet)`
+      ];
+      const content = lines.join(`\n`);
+      const msg = document.getElementById(`action-status-msg`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-qalam-study-summary.txt`
+        });
+        if (msg) msg.textContent = `Exported study summary (.txt).`;
+      } else {
+        if (msg) msg.textContent = `Export requires the Notebook viewer runtime.`;
+      }
+    }
+
+    function resetAllProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.innerHTML = `<i data-lucide="alert-triangle" aria-hidden="true"></i><span>Click Again to Reset</span>`;
+        if (window.lucide) window.lucide.createIcons();
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Reset Progress</span>`;
+      appState.masteredVerses = [];
+      appState.quizAnswers = {};
+      appState.studyNotes = ``;
+      appState.currentQuizIdx = 0;
+      const notesEl = document.getElementById(`study-notes-input`);
+      if (notesEl) notesEl.value = ``;
+      const msg = document.getElementById(`action-status-msg`);
+      if (msg) msg.textContent = `All mastery progress and notes have been reset.`;
+      updateMasteryBanner();
+      renderVerseList();
+      renderQuiz();
+      persistState();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    /* Scroll reveal */
+    function initScrollReveal() {
+      const targets = document.querySelectorAll(`.reveal-on-scroll`);
+      if (!(`IntersectionObserver` in window)) {
+        targets.forEach(function (el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(function (el) { observer.observe(el); });
+    }
+
+    /* App bootstrap */
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) restoreFromState(saved);
+        }
+      } catch (err) {
+        /* Safe fallback when no saved state exists */
+      }
+
+      const searchEl = document.getElementById(`verse-search`);
+      const movEl = document.getElementById(`movement-filter`);
+      const notesEl = document.getElementById(`study-notes-input`);
+      if (searchEl) searchEl.value = appState.searchQuery;
+      if (movEl) movEl.value = appState.selectedMovement;
+      if (notesEl) notesEl.value = appState.studyNotes;
+
+      selectTrait(appState.activeTrait);
+      selectParableStage(appState.activeParableStage);
+      selectRhetoric(appState.activeRhetoric);
+      selectRingPair(appState.activeRingPair);
+      setStatusFilter(appState.statusFilter);
+      updateRecallButton();
+      updateMasteryBanner();
+      renderVerseList();
+      renderQuiz();
+      initScrollReveal();
+
+      if (window.lucide) window.lucide.createIcons();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

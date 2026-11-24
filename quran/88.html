@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Ghashiyah (Chapter 88) — Interactive Study Guide &amp; Mastery Explainer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --outline-button-border: #c4b29e;
+      --error-border: #d9a0a0;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --secondary-container: #f5ebd8;
+      --on-secondary-container: #634312;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fae8e8;
+      --on-error-container: #7c1c1c;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Shared semantic & focus tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Narrative type scale (stepped up for Cormorant Garamond headline legibility) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.65vw, 1.5625rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: 0.75rem;
+      --arabic-lg: clamp(1.625rem, 1.35rem + 1vw, 2.25rem);
+      --arabic-md: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1140px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    h2.section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    h2.section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    h3.subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .prose + .prose { margin-top: var(--space-md); }
+
+    .arabic {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.85;
+      font-weight: 400;
+      color: var(--on-surface);
+    }
+    .arabic-display {
+      font-size: var(--arabic-lg);
+    }
+    .arabic-verse {
+      font-size: var(--arabic-md);
+    }
+
+    .translit {
+      font-style: italic;
+      color: var(--secondary);
+      font-size: 0.9375rem;
+    }
+    .is-hidden { display: none !important; }
+
+    /* Brass ornament rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Hero section */
+    .hero-block {
+      text-align: center;
+      padding-top: var(--space-lg);
+    }
+    .hero-block .lede {
+      margin-inline: auto;
+    }
+    .hero-arabic-banner {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.5rem);
+      color: var(--secondary);
+      margin-bottom: var(--space-sm);
+      line-height: 1.6;
+    }
+
+    /* Arch cards (signature Terracotta treatment) */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      color: inherit;
+      text-decoration: none;
+      width: 100%;
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.35rem);
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+    .arch-delta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--tertiary);
+    }
+
+    /* Courtyard control bar */
+    .study-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .progress-readout {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .progress-bar-track {
+      width: 140px;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--featured-border);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-in-out), transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--outline-button-border);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container);
+    }
+    .btn-secondary[aria-pressed="true"] {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--tertiary-border);
+    }
+    .btn-primary:disabled,
+    .btn-secondary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Section tonal bands */
+    .study-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: 26-Ayah Structural Cadence Explorer */
+    .act-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .ayah-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: var(--space-sm);
+    }
+    .ayah-pill {
+      min-height: 44px;
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 600;
+      font-size: 0.875rem;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-in-out), transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .ayah-pill:hover {
+      background: var(--surface-container-high);
+      transform: translateY(-1px);
+    }
+    .ayah-pill .rhyme-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      line-height: 1.1;
+    }
+    .ayah-pill.act-inquiry { border-bottom: 3px solid var(--secondary); }
+    .ayah-pill.act-warning { border-bottom: 3px solid var(--primary); }
+    .ayah-pill.act-garden { border-bottom: 3px solid var(--tertiary); }
+    .ayah-pill.act-signs { border-bottom: 3px solid var(--data-3); }
+    .ayah-pill.act-mandate { border-bottom: 3px solid var(--data-4); }
+
+    .ayah-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .ayah-pill.is-active .rhyme-tag {
+      color: var(--on-primary);
+    }
+
+    .verse-inspector-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .verse-display-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+    .verse-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+    .cadence-note-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* Section 2: Proportion & Two Fates Mirror */
+    .proportion-strip {
+      display: flex;
+      width: 100%;
+      height: 36px;
+      border-radius: var(--rounded);
+      overflow: hidden;
+      border: var(--warm-hairline);
+    }
+    .prop-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-inline: var(--space-xs);
+    }
+    .prop-warning {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      width: 40%;
+      border-right: var(--warm-hairline);
+    }
+    .prop-garden {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      width: 60%;
+    }
+
+    .mirror-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .mirror-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-button-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-in-out), color var(--dur-short) var(--ease-in-out);
+    }
+    .mirror-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .mirror-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .mirror-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+    .fate-card {
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      border: var(--warm-hairline);
+      box-shadow: var(--soft-shadow);
+    }
+    .fate-card.fate-fire {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .fate-card.fate-garden {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border);
+    }
+    .fate-synthesis {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    /* Section 3: Linguistic Nuances Lab */
+    .nuance-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .nuance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .nuance-chip-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Section 4: Four Cosmic Signs */
+    .signs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .sign-arch {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+      color: inherit;
+    }
+    .sign-arch:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .sign-arch.is-selected {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .sign-svg {
+      width: 72px;
+      height: 56px;
+      color: var(--primary);
+    }
+    .sign-detail-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    /* Section 5: Prophetic Role & Boundary Flow */
+    .role-contrast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+    }
+    .role-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .role-card.is-affirmed {
+      border-left: 4px solid var(--tertiary);
+    }
+    .role-card.is-negated {
+      border-left: 4px solid var(--primary);
+    }
+    .flow-diagram-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      overflow-x: auto;
+    }
+    .scenario-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Section 6: Mastery Check & Study Notes */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      width: 100%;
+      min-height: 44px;
+      text-align: left;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-in-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error-border);
+      color: var(--on-error-container);
+    }
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--surface-container);
+      border-left: 4px solid var(--secondary);
+    }
+
+    .notes-area {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-md);
+      background: var(--background);
+      color: var(--on-surface);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .notes-area:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+    .input-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+    }
+    table.study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    table.study-table th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    table.study-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    table.study-table tr:last-child td { border-bottom: none; }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-pending {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .arch-grid,
+      .signs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .verse-inspector-grid,
+      .sign-detail-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .arch-grid,
+      .signs-grid,
+      .mirror-columns,
+      .role-contrast-grid {
+        grid-template-columns: 1fr;
+      }
+      .tonal-band,
+      .verse-display-card,
+      .quiz-card {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .study-toolbar {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO & ARCHITECTURAL OVERVIEW -->
+    <header class="hero-block">
+      <div class="hero-arabic-banner arabic" lang="ar" dir="rtl">سُورَةُ الْغَاشِيَةِ</div>
+      <p class="kicker">Chapter 88 · Interactive Study Guide &amp; Mastery Explainer</p>
+      <h1 class="title">The Architecture of <em>Awakening</em></h1>
+      <p class="lede">
+        Across twenty-six tightly woven verses, Surah Al-Ghashiyah moves from an arresting question about the Overwhelming Day to a mirrored portrait of two human outcomes, four visible signs across the desert horizon, and a clear boundary around the prophetic duty to remind.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Chapter 88 · 26 Verses · Four Movements ◆</div>
+
+      <div class="arch-grid" role="navigation" aria-label="Chapter movements">
+        <button type="button" class="arch-card" onclick="jumpToSection('sec-structure', 1)">
+          <span class="arch-label">Act I · Verse 1</span>
+          <span class="arch-figure">1</span>
+          <span class="arch-caption">The Opening Inquiry</span>
+          <span class="arch-delta">Al-Ghāshiyah</span>
+        </button>
+
+        <button type="button" class="arch-card is-featured" onclick="jumpToSection('sec-fates', 2)">
+          <span class="arch-label">Act II · Verses 2–16</span>
+          <span class="arch-figure">15</span>
+          <span class="arch-caption">The Two Fates</span>
+          <span class="arch-delta">6 Warning · 9 Ease</span>
+        </button>
+
+        <button type="button" class="arch-card" onclick="jumpToSection('sec-signs', 17)">
+          <span class="arch-label">Act III · Verses 17–20</span>
+          <span class="arch-figure">4</span>
+          <span class="arch-caption">Cosmic Signs</span>
+          <span class="arch-delta">Passive Design</span>
+        </button>
+
+        <button type="button" class="arch-card" onclick="jumpToSection('sec-role', 21)">
+          <span class="arch-label">Act IV · Verses 21–26</span>
+          <span class="arch-figure">6</span>
+          <span class="arch-caption">Prophetic Mandate</span>
+          <span class="arch-delta">Return &amp; Account</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- STUDY CONTROLS & PERSISTENT PROGRESS -->
+    <section class="study-toolbar" aria-label="Study display and progress controls">
+      <div class="progress-readout">
+        <span class="badge-emerald" id="mastery-badge">Mastery: 0 / 6</span>
+        <div class="progress-bar-track" aria-hidden="true">
+          <div class="progress-bar-fill" id="mastery-bar-fill"></div>
+        </div>
+        <span class="arch-label" id="verses-explored-label">0 / 26 verses inspected</span>
+      </div>
+
+      <div class="toolbar-group">
+        <button type="button" class="btn-secondary" id="toggle-translit-btn" aria-pressed="true" onclick="toggleTransliteration()">
+          Transliteration: On
+        </button>
+        <button type="button" class="btn-secondary" onclick="jumpToSection('sec-mastery', null)">
+          Jump to Mastery Check
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 1: THEMATIC STRUCTURE & ACOUSTIC CADENCE -->
+    <section id="sec-structure" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Movement Map · Verses 1–26</p>
+        <h2 class="section-title">How Rhyme Cadence Signals Meaning Across <em>26 Verses</em></h2>
+        <p class="prose">
+          The chapter opens in the interrogative voice—<em>Has there reached you the report of the Overwhelming?</em>—and binds verses 1–16 together with a sustained <strong>-iyah / -ah</strong> ending cadence. Only twice in that span does the rhythm break: at verses 6–7 (<em>ḍarīʿ</em> and <em>jūʿ</em>), where the abrupt vowel halt underscores bitter thorny food that fails to satisfy hunger. From verse 17 onward, the rhyme shifts with each thematic pivot: passive verbs ending in <strong>-at</strong> for creation, <strong>-ir</strong> for the reminder’s role, and <strong>-ahum</strong> for final return.
+        </p>
+      </div>
+
+      <div class="tonal-band">
+        <div class="verse-meta-row" style="margin-bottom: var(--space-md);">
+          <h3 class="subhead" style="margin: 0;">Interactive 26-Ayah Structural Ribbon</h3>
+          <div class="act-legend">
+            <span class="badge-brass">v. 1 Inquiry</span>
+            <span class="badge-terracotta">vv. 2–7 Humbled Fate</span>
+            <span class="badge-emerald">vv. 8–16 Radiant Fate</span>
+            <span class="badge-brass">vv. 17–20 Signs</span>
+            <span class="badge-terracotta">vv. 21–26 Mandate</span>
+          </div>
+        </div>
+
+        <div class="ayah-ribbon" id="ayah-ribbon" role="listbox" aria-label="Select a verse from 88:1 to 88:26"></div>
+
+        <div class="verse-inspector-grid" style="margin-top: var(--space-lg);">
+          <div class="verse-display-card">
+            <div>
+              <div class="verse-meta-row">
+                <span class="badge-terracotta" id="inspector-ref">Surah 88 : 1</span>
+                <span class="badge-emerald" id="inspector-act">Act I · Opening Inquiry</span>
+              </div>
+              <p class="arabic arabic-display" lang="ar" dir="rtl" id="inspector-arabic" style="margin: var(--space-lg) 0 var(--space-sm); text-align: right;">
+                هَلْ أَتَاكَ حَدِيثُ الْغَاشِيَةِ
+              </p>
+              <p class="translit" id="inspector-translit" style="margin: 0 0 var(--space-sm);">
+                Hal atāka ḥadīthu al-ghāshiyah
+              </p>
+              <p class="prose" id="inspector-english" style="font-size: 1.125rem; font-weight: 500;">
+                Has there reached you the report of the Overwhelming [event]?
+              </p>
+            </div>
+
+            <div class="verse-nav-row">
+              <button type="button" class="btn-secondary" id="prev-verse-btn" onclick="stepVerse(-1)">
+                Previous Verse
+              </button>
+              <span class="arch-label" id="inspector-rhyme">Ending Cadence: -iyah</span>
+              <button type="button" class="btn-primary" id="next-verse-btn" onclick="stepVerse(1)">
+                Next Verse
+              </button>
+            </div>
+          </div>
+
+          <aside class="cadence-note-card" aria-label="Verse structural and linguistic note">
+            <span class="kicker" style="margin: 0;">Structural &amp; Linguistic Note</span>
+            <h3 class="subhead" id="inspector-note-title" style="margin: 0;">An Arresting Opening Question</h3>
+            <p class="prose" id="inspector-note-body">
+              Addressing the listener directly with "Has there reached you...?" frames the Day of Judgment as an already certain reality whose news demands immediate reflection.
+            </p>
+            <div style="margin-top: auto; padding-top: var(--space-md); border-top: var(--warm-hairline);">
+              <span class="arch-label">Key Root / Word Focus</span>
+              <p id="inspector-key-term" style="margin: var(--space-xs) 0 0; font-weight: 600; color: var(--primary);">
+                al-Ghāshiyah — that which covers and overwhelms everything
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTRAST BETWEEN THE TWO FATES -->
+    <section id="sec-fates" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Act II · Verses 2–16</p>
+        <h2 class="section-title">Two Mirrored Destinies: <em>Exhaustion</em> vs. Serenity</h2>
+        <p class="prose">
+          Instead of describing abstract rewards or punishments, the Surah begins both portraits with <strong>faces</strong> (<em>wujūh</em>)—the immediate mirror of inner state. Notice the intentional asymmetry in length: six verses depict hardship and deprivation, while nine verses unfold an unhurried scene of elevated repose, dedicating four consecutive verses solely to tactile hospitality.
+        </p>
+      </div>
+
+      <div class="panel-card">
+        <div class="verse-meta-row" style="margin-bottom: var(--space-sm);">
+          <span class="arch-label">Narrative Space Inside Act II (15 Verses)</span>
+          <span class="arch-label">6 Verses (40%) vs. 9 Verses (60%)</span>
+        </div>
+        <div class="proportion-strip" role="img" aria-label="Proportion comparison: 6 verses for humbled faces (40 percent) versus 9 verses for radiant faces (60 percent)">
+          <div class="prop-seg prop-warning">vv. 2–7 · Humbled &amp; Exhausted (6 vv.)</div>
+          <div class="prop-seg prop-garden">vv. 8–16 · Pleased &amp; Elevated Garden (9 vv.)</div>
+        </div>
+      </div>
+
+      <div class="mirror-selector" role="tablist" aria-label="Select a contrast pair between the two fates">
+        <button type="button" class="mirror-btn is-active" onclick="selectMirrorPair(0)">1. Countenance (v. 2 vs. v. 8)</button>
+        <button type="button" class="mirror-btn" onclick="selectMirrorPair(1)">2. Effort &amp; Result (v. 3 vs. v. 9)</button>
+        <button type="button" class="mirror-btn" onclick="selectMirrorPair(2)">3. The Spring (v. 5 vs. v. 12)</button>
+        <button type="button" class="mirror-btn" onclick="selectMirrorPair(3)">4. Nourishment &amp; Speech (vv. 6–7 vs. vv. 11, 14)</button>
+        <button type="button" class="mirror-btn" onclick="selectMirrorPair(4)">5. Dwelling &amp; Posture (v. 4 vs. vv. 10, 13, 15–16)</button>
+      </div>
+
+      <div class="mirror-columns">
+        <article class="fate-card fate-fire">
+          <div class="verse-meta-row">
+            <span class="badge-terracotta" id="mirror-fire-ref">88:2</span>
+            <span class="arch-label">Humbled Fate</span>
+          </div>
+          <p class="arabic arabic-verse" lang="ar" dir="rtl" id="mirror-fire-ar" style="margin: 0; text-align: right;">
+            وُجُوهٌ يَوْمَئِذٍ خَاشِعَةٌ
+          </p>
+          <p class="translit" id="mirror-fire-tr" style="margin: 0;">
+            Wujūhun yawma’idhin khāshiʿah
+          </p>
+          <p class="prose" id="mirror-fire-en" style="font-weight: 600;">
+            [Some] faces, that Day, will be humbled,
+          </p>
+          <p class="prose" id="mirror-fire-note" style="color: var(--on-surface-variant); font-size: 0.9375rem;">
+            Humiliation and dread register immediately on the face—the same opening phrase (“Wujūhun yawma’idhin…”) sets up the direct contrast six verses later.
+          </p>
+        </article>
+
+        <article class="fate-card fate-garden">
+          <div class="verse-meta-row">
+            <span class="badge-emerald" id="mirror-garden-ref">88:8</span>
+            <span class="arch-label">Radiant Fate</span>
+          </div>
+          <p class="arabic arabic-verse" lang="ar" dir="rtl" id="mirror-garden-ar" style="margin: 0; text-align: right;">
+            وُجُوهٌ يَوْمَئِذٍ نَاعِمَةٌ
+          </p>
+          <p class="translit" id="mirror-garden-tr" style="margin: 0;">
+            Wujūhun yawma’idhin nāʿimah
+          </p>
+          <p class="prose" id="mirror-garden-en" style="font-weight: 600;">
+            [Other] faces, that Day, will show pleasure.
+          </p>
+          <p class="prose" id="mirror-garden-note" style="color: var(--on-surface-variant); font-size: 0.9375rem;">
+            Softness, ease, and visible joy mark the faces of the righteous, inverting the very grammar of verse 2 word for word.
+          </p>
+        </article>
+      </div>
+
+      <div class="fate-synthesis">
+        <span class="kicker" style="margin-bottom: var(--space-xs);">Comparative Insight</span>
+        <p class="prose" id="mirror-synthesis" style="max-width: 75ch;">
+          Both groups open with the identical syntactic frame—<em>wujūhun yawma’idhin</em> (“faces, that Day”)—forcing the listener to compare two diverging states of the exact same human faculty.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: LINGUISTIC NUANCES LAB -->
+    <section id="sec-linguistics" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Linguistic Architecture</p>
+        <h2 class="section-title">Three Arabic Patterns That Carry <em>Subtle Meaning</em></h2>
+        <p class="prose">
+          Beyond its vivid imagery, Surah Al-Ghashiyah relies on deliberate grammatical shifts—changing word patterns, shared roots, and voice—to link the unseen Hereafter with the physical world.
+        </p>
+      </div>
+
+      <div class="tonal-band">
+        <div class="nuance-tabs" role="tablist" aria-label="Select a linguistic lens">
+          <button type="button" class="btn-primary" id="nuance-btn-0" onclick="selectNuance(0)">1. Passive Participles (vv. 13–16)</button>
+          <button type="button" class="btn-secondary" id="nuance-btn-1" onclick="selectNuance(1)">2. The Shared Root "ʿAyn" &amp; "R-F-ʿ"</button>
+          <button type="button" class="btn-secondary" id="nuance-btn-2" onclick="selectNuance(2)">3. Pure Passive Design (vv. 17–20)</button>
+        </div>
+
+        <div id="nuance-panel" style="margin-top: var(--space-lg);">
+          <h3 class="subhead" id="nuance-title">Prepared Hospitality: Four Passive Participles (Mafʿūlah)</h3>
+          <p class="prose" id="nuance-desc" style="margin-bottom: var(--space-lg);">
+            In verses 13–16, every noun of comfort is paired with a feminine passive participle on the <em>mafʿūlah</em> pattern. Nothing has to be assembled or labored over—effort (<em>saʿy</em>) belonged to worldly life and has already earned satisfaction (v. 9).
+          </p>
+          <div class="nuance-grid" id="nuance-cards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE FOUR COSMIC SIGNS OF REFLECTION -->
+    <section id="sec-signs" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Act III · Verses 17–20</p>
+        <h2 class="section-title">Four Cosmic Signs: A Guided <em>Eye-Sweep</em> of Creation</h2>
+        <p class="prose">
+          After portraying the unseen Hereafter, verse 17 pivots abruptly: <em>“Then do they not look…?”</em> (<em>a-fa-lā yanẓurūna</em>). Notice the visual choreography for an observer standing outdoors—moving from an animal at eye level, upward to the sky, across to the mountains, and downward to the earth beneath their feet.
+        </p>
+      </div>
+
+      <div class="signs-grid" role="tablist" aria-label="Four cosmic signs of reflection">
+        <button type="button" class="sign-arch is-selected" onclick="selectSign(0)">
+          <span class="arch-label">Sign 01 · v. 17</span>
+          <svg class="sign-svg" viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 44h56" opacity="0.35"/>
+            <path d="M22 44V31c0-3 2-5 5-5h4c3-7 8-10 13-10 5 0 8 5 11 10h5c3 0 5-4 6-8 1-2 4-2 5 0 1 2-1 6-4 8l-2 18"/>
+            <path d="M29 31v13M46 32v12M54 32v12"/>
+          </svg>
+          <span class="arabic arabic-verse" lang="ar" dir="rtl">الْإِبِلِ</span>
+          <span class="arch-caption">The Camels</span>
+          <span class="arch-delta">Eye-Level · khuliqat</span>
+        </button>
+
+        <button type="button" class="sign-arch" onclick="selectSign(1)">
+          <span class="arch-label">Sign 02 · v. 18</span>
+          <svg class="sign-svg" viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 38c14-18 46-18 60 0"/>
+            <path d="M18 44c12-12 32-12 44 0" opacity="0.45"/>
+            <circle cx="40" cy="14" r="3"/>
+            <path d="M24 20l2 2M56 20l-2 2M40 7v2"/>
+          </svg>
+          <span class="arabic arabic-verse" lang="ar" dir="rtl">السَّمَاءِ</span>
+          <span class="arch-caption">The Sky</span>
+          <span class="arch-delta">Zenith · rufiʿat</span>
+        </button>
+
+        <button type="button" class="sign-arch" onclick="selectSign(2)">
+          <span class="arch-label">Sign 03 · v. 19</span>
+          <svg class="sign-svg" viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 44L26 16l12 18 14-22 20 32H8z"/>
+            <path d="M26 16l5 8M52 12l6 10" opacity="0.5"/>
+          </svg>
+          <span class="arabic arabic-verse" lang="ar" dir="rtl">الْجِبَالِ</span>
+          <span class="arch-caption">The Mountains</span>
+          <span class="arch-delta">Horizon · nuṣibat</span>
+        </button>
+
+        <button type="button" class="sign-arch" onclick="selectSign(3)">
+          <span class="arch-label">Sign 04 · v. 20</span>
+          <svg class="sign-svg" viewBox="0 0 80 56" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 26h64"/>
+            <path d="M14 34h52" opacity="0.7"/>
+            <path d="M22 42h36" opacity="0.45"/>
+            <path d="M40 16v7M36 19l4 4 4-4"/>
+          </svg>
+          <span class="arabic arabic-verse" lang="ar" dir="rtl">الْأَرْضِ</span>
+          <span class="arch-caption">The Earth</span>
+          <span class="arch-delta">Ground · suṭiḥat</span>
+        </button>
+      </div>
+
+      <div class="sign-detail-panel" id="sign-detail-panel">
+        <div>
+          <div class="verse-meta-row" style="margin-bottom: var(--space-sm);">
+            <span class="badge-terracotta" id="sign-ref">88:17</span>
+            <span class="badge-emerald" id="sign-gaze">Gaze: Eye-Level</span>
+          </div>
+          <p class="arabic arabic-display" lang="ar" dir="rtl" id="sign-arabic" style="margin: var(--space-sm) 0; text-align: right;">
+            أَفَلَا يَنْظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ
+          </p>
+          <p class="translit" id="sign-translit" style="margin: 0 0 var(--space-sm);">
+            A-fa-lā yanẓurūna ilā al-ibili kayfa khuliqat
+          </p>
+          <p class="prose" id="sign-english" style="font-weight: 600;">
+            Then do they not look at the camels - how they are created?
+          </p>
+        </div>
+
+        <div class="cadence-note-card">
+          <span class="kicker" style="margin: 0;">Reflective Question: “How?” (Kayfa)</span>
+          <h3 class="subhead" id="sign-focus-title" style="margin: 0;">Biological Endurance in Harsh Terrain</h3>
+          <p class="prose" id="sign-focus-body">
+            The Surah does not ask merely whether camels exist, but <em>how</em> (<em>kayfa</em>) they were fashioned—calling attention to intentional proportion and suitability for survival in an arid landscape.
+          </p>
+          <div style="border-top: var(--warm-hairline); padding-top: var(--space-sm);">
+            <span class="arch-label">Passive Verb &amp; Structural Link</span>
+            <p id="sign-link" style="margin: var(--space-xs) 0 0; font-size: 0.9375rem; color: var(--on-surface-variant);">
+              <strong>khuliqat</strong> (“was created”): Opens the fourfold passive sequence demonstrating that the One who originates such intricate forms can also bring about the Overwhelming Day.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PROPHETIC ROLE OF REMINDING & ACCOUNTABILITY -->
+    <section id="sec-role" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Act IV · Verses 21–26</p>
+        <h2 class="section-title">A Reminder, Not a Controller: The Boundary of <em>Guidance</em></h2>
+        <p class="prose">
+          Having laid out the Overwhelming event, the two fates, and four observable signs, the final six verses turn directly to the Prophet Muhammad with a two-part definition of mission—followed by a solemn reassignment of judgment back to God alone.
+        </p>
+      </div>
+
+      <div class="role-contrast-grid">
+        <article class="role-card is-affirmed">
+          <span class="badge-emerald" style="align-self: flex-start;">Affirmed Duty · 88:21</span>
+          <p class="arabic arabic-verse" lang="ar" dir="rtl" style="margin: var(--space-xs) 0; text-align: right;">
+            فَذَكِّرْ إِنَّمَا أَنْتَ مُذَكِّرٌ
+          </p>
+          <p class="translit" style="margin: 0;">Fa-dhakkir innamā anta mudhakkir</p>
+          <p class="prose" style="font-weight: 600;">“So remind, [O Muhammad]; you are only a reminder.”</p>
+          <p class="prose" style="color: var(--on-surface-variant); font-size: 0.9375rem;">
+            The particle <em>innamā</em> (“only”) narrows the prophetic responsibility to clear, persistent reminding—awakening what human conscience can already recognize in creation.
+          </p>
+        </article>
+
+        <article class="role-card is-negated">
+          <span class="badge-terracotta" style="align-self: flex-start;">Negated Authority · 88:22</span>
+          <p class="arabic arabic-verse" lang="ar" dir="rtl" style="margin: var(--space-xs) 0; text-align: right;">
+            لَسْتَ عَلَيْهِمْ بِمُصَيْطِرٍ
+          </p>
+          <p class="translit" style="margin: 0;">Lasta ʿalayhim bi-muṣayṭir</p>
+          <p class="prose" style="font-weight: 600;">“You are not over them a controller.”</p>
+          <p class="prose" style="color: var(--on-surface-variant); font-size: 0.9375rem;">
+            Conscience cannot be coerced. The emphatic negation <em>lasta… bi-muṣayṭir</em> relieves the messenger from forcing outcomes and preserves human moral agency.
+          </p>
+        </article>
+      </div>
+
+      <div class="flow-diagram-box">
+        <span class="arch-label" style="display: block; margin-bottom: var(--space-sm);">Accountability Arc (Verses 21–26)</span>
+        <svg viewBox="0 0 880 150" style="width: 100%; min-width: 600px; height: auto; display: block;" role="img" aria-label="Flow diagram of verses 21 to 26: Prophetic reminder leads to human response, and turning away returns to Allah for account">
+          <defs>
+            <marker id="arrow-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--secondary)"/>
+            </marker>
+          </defs>
+          <!-- Step 1 -->
+          <rect x="10" y="20" width="240" height="106" rx="10" fill="var(--tertiary-container)" stroke="var(--tertiary-border)" stroke-width="1.5"/>
+          <text x="28" y="46" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-tertiary-container)">VERSES 21–22 · MISSION</text>
+          <text x="28" y="72" font-family="Cormorant Garamond, serif" font-size="20" font-weight="700" fill="var(--on-surface)">Remind Without Control</text>
+          <text x="28" y="96" font-family="Plus Jakarta Sans, sans-serif" font-size="12.5" fill="var(--on-surface-variant)">Mudhakkir, not Muṣayṭir</text>
+          <text x="28" y="114" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" fill="var(--on-tertiary-container)">Deliver the clarity of signs</text>
+
+          <line x1="254" y1="73" x2="310" y2="73" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"/>
+
+          <!-- Step 2 -->
+          <rect x="318" y="20" width="240" height="106" rx="10" fill="var(--primary-container)" stroke="var(--featured-border)" stroke-width="1.5"/>
+          <text x="336" y="46" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--on-primary-container)">VERSES 23–24 · REJECTION</text>
+          <text x="336" y="72" font-family="Cormorant Garamond, serif" font-size="20" font-weight="700" fill="var(--on-surface)">Turning Away &amp; Disbelief</text>
+          <text x="336" y="96" font-family="Plus Jakarta Sans, sans-serif" font-size="12.5" fill="var(--on-surface-variant)">Tawallā wa-kafara</text>
+          <text x="336" y="114" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" fill="var(--on-primary-container)">Meets the greatest punishment</text>
+
+          <line x1="562" y1="73" x2="618" y2="73" stroke="var(--secondary)" stroke-width="2" marker-end="url(#arrow-head)"/>
+
+          <!-- Step 3 -->
+          <rect x="626" y="20" width="244" height="106" rx="10" fill="var(--surface-container)" stroke="var(--outline-variant)" stroke-width="1.5"/>
+          <text x="644" y="46" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="var(--secondary)">VERSES 25–26 · CLOSURE</text>
+          <text x="644" y="72" font-family="Cormorant Garamond, serif" font-size="20" font-weight="700" fill="var(--on-surface)">Return &amp; Account</text>
+          <text x="644" y="96" font-family="Plus Jakarta Sans, sans-serif" font-size="12.5" fill="var(--on-surface-variant)">Ilaynā iyābahum · ʿalaynā ḥisābahum</text>
+          <text x="644" y="114" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" fill="var(--on-surface-variant)">Final judgment belongs to Allah</text>
+        </svg>
+      </div>
+
+      <div class="panel-card">
+        <span class="kicker" style="margin-bottom: var(--space-xs);">Check the Textual Logic</span>
+        <div class="scenario-list" style="margin-bottom: var(--space-md);">
+          <button type="button" class="mirror-btn is-active" onclick="selectRoleCase(0)">Why “only a reminder”?</button>
+          <button type="button" class="mirror-btn" onclick="selectRoleCase(1)">What does v. 23 exempt?</button>
+          <button type="button" class="mirror-btn" onclick="selectRoleCase(2)">Why end with iyāb &amp; ḥisāb?</button>
+        </div>
+        <p class="prose" id="role-case-answer">
+          Verse 21 uses <em>innamā</em> (“only”) alongside <em>mudhakkir</em> to clarify that the Prophet’s role is awakening people to truths they can already witness (the signs of vv. 17–20), while verse 22 removes any burden of forcing belief upon unwilling hearts.
+        </p>
+      </div>
+
+      <!-- Full Reference Table of Closing Verses -->
+      <div class="table-wrap">
+        <table class="study-table">
+          <thead>
+            <tr>
+              <th>Verse</th>
+              <th>Arabic</th>
+              <th>Translation</th>
+              <th>Role in Closure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>88:23</strong></td>
+              <td class="arabic" lang="ar" dir="rtl">إِلَّا مَنْ تَوَلَّىٰ وَكَفَرَ</td>
+              <td>However, he who turns away and disbelieves</td>
+              <td>Identifies willful rejection after reminder</td>
+            </tr>
+            <tr>
+              <td><strong>88:24</strong></td>
+              <td class="arabic" lang="ar" dir="rtl">فَيُعَذِّبُهُ اللَّهُ الْعَذَابَ الْأَكْبَرَ</td>
+              <td>Then Allah will punish him with the greatest punishment.</td>
+              <td>Places retribution with Allah, not the messenger</td>
+            </tr>
+            <tr>
+              <td><strong>88:25</strong></td>
+              <td class="arabic" lang="ar" dir="rtl">إِنَّ إِلَيْنَا إِيَابَهُمْ</td>
+              <td>Indeed, to Us is their return.</td>
+              <td><em>Ilaynā</em> fronted for exclusivity: “to Us alone”</td>
+            </tr>
+            <tr>
+              <td><strong>88:26</strong></td>
+              <td class="arabic" lang="ar" dir="rtl">ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُمْ</td>
+              <td>Then indeed, upon Us is their account.</td>
+              <td><em>ʿAlaynā</em> fronted: final reckoning closes the Surah</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE MASTERY CHECK & PERSISTENT STUDY NOTES -->
+    <section id="sec-mastery" class="study-section reveal-section">
+      <div>
+        <p class="kicker">Mastery Check &amp; Study Log</p>
+        <h2 class="section-title">Test Your Grasp of <em>Surah Al-Ghashiyah</em></h2>
+        <p class="prose">
+          Work through six synthesis questions spanning structure, Arabic nuance, contrasting fates, cosmic signs, and prophetic mandate. Your answers and personal study reflections are saved automatically.
+        </p>
+      </div>
+
+      <div class="quiz-card">
+        <div class="verse-meta-row">
+          <span class="badge-brass" id="quiz-progress-pill">Question 1 of 6</span>
+          <span class="badge-emerald" id="quiz-score-pill">Score: 0 / 6</span>
+        </div>
+
+        <h3 class="subhead" id="quiz-question" style="margin: 0;">
+          In verses 1–16, which verses break the chapter’s opening “-iyah / -ah” rhyme cadence, and why?
+        </h3>
+
+        <div class="quiz-options" id="quiz-options"></div>
+
+        <div class="quiz-feedback is-hidden" id="quiz-feedback" aria-live="polite">
+          <p class="prose" id="quiz-feedback-text" style="margin: 0;"></p>
+        </div>
+
+        <div class="verse-nav-row">
+          <button type="button" class="btn-secondary" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous Question</button>
+          <div class="toolbar-group">
+            <button type="button" class="btn-secondary" id="reset-progress-btn" onclick="resetStudyProgress(this)">Reset Progress</button>
+            <button type="button" class="btn-primary" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <label for="study-notes-input" class="input-label">Personal Reflection &amp; Study Notes (Saved Automatically)</label>
+        <textarea id="study-notes-input" class="notes-area" placeholder="Record connections between the two fates, Arabic roots you want to review, or reflections on the four cosmic signs…" oninput="handleNotesInput(this.value)"></textarea>
+        <div class="verse-meta-row" style="margin-top: var(--space-md);">
+          <span class="arch-label" id="save-status-label">Ready</span>
+          <button type="button" class="btn-secondary" onclick="exportStudySummary()">Export Study Summary (.txt)</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span><strong>Source Basis:</strong> Arabic text and English translation of Chapter 88 (Surah Al-Ghashiyah, verses 1–26) from the provided study source.</span>
+      <span>Designed as a self-contained study guide for thematic, linguistic, and structural mastery.</span>
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES = [
+      {
+        num: 1,
+        act: `Act I · Opening Inquiry`,
+        actClass: `act-inquiry`,
+        rhyme: `-iyah`,
+        arabic: `هَلْ أَتَاكَ حَدِيثُ الْغَاشِيَةِ`,
+        translit: `Hal atāka ḥadīthu al-ghāshiyah`,
+        english: `Has there reached you the report of the Overwhelming [event]?`,
+        noteTitle: `An Arresting Opening Question`,
+        noteBody: `Addressing the listener directly with "Has there reached you...?" frames the Day of Judgment as an already certain reality whose news demands immediate reflection.`,
+        keyTerm: `al-Ghāshiyah — that which covers and overwhelms everything`
+      },
+      {
+        num: 2,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-ah`,
+        arabic: `وُجُوهٌ يَوْمَئِذٍ خَاشِعَةٌ`,
+        translit: `Wujūhun yawma’idhin khāshiʿah`,
+        english: `[Some] faces, that Day, will be humbled,`,
+        noteTitle: `The Face as Mirror of Destiny`,
+        noteBody: `The Surah begins its portrait of the Hereafter with faces (wujūh), establishing the exact syntactic template ("Wujūhun yawma’idhin...") echoed six verses later in 88:8.`,
+        keyTerm: `khāshiʿah — humbled, downcast in dread`
+      },
+      {
+        num: 3,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-ah`,
+        arabic: `عَامِلَةٌ نَاصِبَةٌ`,
+        translit: `ʿĀmilatun nāṣibah`,
+        english: `Working [hard] and exhausted.`,
+        noteTitle: `Unrewarded Toil`,
+        noteBody: `Two active participles placed side by side convey relentless labor that yields only fatigue, contrasting sharply with the satisfied effort (li-saʿyihā rāḍiyah) in verse 9.`,
+        keyTerm: `ʿāmilatun nāṣibah — laboring hard and worn out`
+      },
+      {
+        num: 4,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-iyah`,
+        arabic: `تَصْلَىٰ نَارًا حَامِيَةً`,
+        translit: `Taṣlā nāran ḥāmiyah`,
+        english: `They will [enter to] burn in an intensely hot Fire.`,
+        noteTitle: `Scorching Enclosure`,
+        noteBody: `Returning to the -iyah cadence, verse 4 names the destination as an intensely blazing Fire, contrasting with the elevated garden (jannatin ʿāliyah) of verse 10.`,
+        keyTerm: `nāran ḥāmiyah — a fiercely blazing Fire`
+      },
+      {
+        num: 5,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-iyah`,
+        arabic: `تُسْقَى مِنْ عَيْنٍ آنِيَةٍ`,
+        translit: `Tusqā min ʿaynin āniyah`,
+        english: `They will be given drink from a boiling spring.`,
+        noteTitle: `The First "Spring" (ʿAyn)`,
+        noteBody: `Notice the exact noun ʿayn ("spring") used here with āniyah (at peak boiling point), directly mirrored in verse 12 by ʿaynun jāriyah (a cool, flowing spring).`,
+        keyTerm: `ʿaynin āniyah — a spring heated to its utmost boiling point`
+      },
+      {
+        num: 6,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-īʿ (break)`,
+        arabic: `لَيْسَ لَهُمْ طَعَامٌ إِلَّا مِنْ ضَرِيع`,
+        translit: `Laysa lahum ṭaʿāmun illā min ḍarīʿ`,
+        english: `For them there will be no food except from a poisonous, thorny plant`,
+        noteTitle: `Acoustic Rupture on Ḍarīʿ`,
+        noteBody: `Here the -iyah/-ah rhyme abruptly halts on the harsh consonant of ḍarīʿ, acoustically underscoring bitter, thorny deprivation.`,
+        keyTerm: `ḍarīʿ — a bitter, poisonous, thorny desert plant`
+      },
+      {
+        num: 7,
+        act: `Act II · Humbled Fate`,
+        actClass: `act-warning`,
+        rhyme: `-ūʿ (break)`,
+        arabic: `لَا يُسْمِنُ وَلَا يُغْنِي مِنْ جُوعٍ`,
+        translit: `Lā yusminu wa-lā yughnī min jūʿ`,
+        english: `Which neither nourishes nor avails against hunger.`,
+        noteTitle: `Sustenance Without Relief`,
+        noteBody: `Closing the warning section on jūʿ ("hunger"), the verse highlights futility: even eating fails to nourish or quiet the ache of want.`,
+        keyTerm: `lā yughnī min jūʿ — fails to relieve hunger`
+      },
+      {
+        num: 8,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-ah`,
+        arabic: `وُجُوهٌ يَوْمَئِذٍ نَاعِمَةٌ`,
+        translit: `Wujūhun yawma’idhin nāʿimah`,
+        english: `[Other] faces, that Day, will show pleasure.`,
+        noteTitle: `The Counterpart Returns`,
+        noteBody: `Resuming the opening -ah cadence, verse 8 mirrors verse 2 word for word before replacing khāshiʿah (humbled) with nāʿimah (soft, radiant, pleased).`,
+        keyTerm: `nāʿimah — serene, radiant, enjoying ease`
+      },
+      {
+        num: 9,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-iyah`,
+        arabic: `لِسَعْيِهَا رَاضِيَةٌ`,
+        translit: `Li-saʿyihā rāḍiyah`,
+        english: `With their effort [they are] satisfied`,
+        noteTitle: `Effort Crowned with Contentment`,
+        noteBody: `In stark contrast to ʿāmilatun nāṣibah (exhausted toil in v. 3), worldly striving (saʿy) now produces lasting inward satisfaction (rāḍiyah).`,
+        keyTerm: `li-saʿyihā rāḍiyah — deeply pleased with their prior striving`
+      },
+      {
+        num: 10,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-iyah`,
+        arabic: `فِي جَنَّةٍ عَالِيَةٍ`,
+        translit: `Fī jannatin ʿāliyah`,
+        english: `In an elevated garden,`,
+        noteTitle: `Elevation in Rank and Place`,
+        noteBody: `The word ʿāliyah signals both physical height and spiritual honor, initiating an upward spatial motif that continues with raised couches (v. 13) and the raised sky (v. 18).`,
+        keyTerm: `jannatin ʿāliyah — an elevated, lofty garden`
+      },
+      {
+        num: 11,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-iyah`,
+        arabic: `لَا تَسْمَعُ فِيهَا لَاغِيَةً`,
+        translit: `Lā tasmaʿu fīhā lāghiyah`,
+        english: `Wherein they will hear no unsuitable speech.`,
+        noteTitle: `Acoustic Peace`,
+        noteBody: `True rest requires quietness of mind as well as comfort of body: neither idle chatter nor hurtful speech disturbs the Garden.`,
+        keyTerm: `lāghiyah — vain, unsuitable, or discordant speech`
+      },
+      {
+        num: 12,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-iyah`,
+        arabic: `فِيهَا عَيْنٌ جَارِيَةٌ`,
+        translit: `Fīhā ʿaynun jāriyah`,
+        english: `Within it is a flowing spring.`,
+        noteTitle: `The Second "Spring" (ʿAyn)`,
+        noteBody: `Pairing the identical noun ʿayn from verse 5 with jāriyah ("freely flowing") completes a direct lexical mirror between torment and refreshment.`,
+        keyTerm: `ʿaynun jāriyah — a clear, continuously flowing spring`
+      },
+      {
+        num: 13,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-ah`,
+        arabic: `فِيهَا سُرُرٌ مَرْفُوعَةٌ`,
+        translit: `Fīhā sururun marfūʿah`,
+        english: `Within it are couches raised high`,
+        noteTitle: `First Passive Participle of Ease`,
+        noteBody: `Begins a quartet of four mafʿūlah passive participles (vv. 13–16). Notice marfūʿah ("raised") shares its root r-f-ʿ with rufiʿat ("how the sky is raised") in v. 18.`,
+        keyTerm: `marfūʿah — raised high (root r-f-ʿ)`
+      },
+      {
+        num: 14,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-ah`,
+        arabic: `وَأَكْوَابٌ مَوْضُوعَةٌ`,
+        translit: `Wa-akwābun mawḍūʿah`,
+        english: `And cups put in place`,
+        noteTitle: `Readiness Without Waiting`,
+        noteBody: `Vessels are already placed within reach (mawḍūʿah), symbolizing unhurried hospitality where every need is anticipated.`,
+        keyTerm: `mawḍūʿah — set in place and ready`
+      },
+      {
+        num: 15,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-ah`,
+        arabic: `وَنَمَارِقُ مَصْفُوفَةٌ`,
+        translit: `Wa-namāriqu maṣfūfah`,
+        english: `And cushions lined up`,
+        noteTitle: `Orderly Repose`,
+        noteBody: `Cushions arranged in orderly rows (maṣfūfah) evoke a serene gathering space prepared for unhurried companionship.`,
+        keyTerm: `maṣfūfah — arranged in neat rows`
+      },
+      {
+        num: 16,
+        act: `Act II · Radiant Fate`,
+        actClass: `act-garden`,
+        rhyme: `-ah`,
+        arabic: `وَزَرَابِيُّ مَبْثُوثَةٌ`,
+        translit: `Wa-zarābiyyu mabthūthah`,
+        english: `And carpets spread around.`,
+        noteTitle: `Abundance to the Horizon of the Room`,
+        noteBody: `Closing the description of the Garden, rich carpets (zarābiyy) are spread abundantly everywhere, sealing the contrast with the bare deprivation of vv. 6–7.`,
+        keyTerm: `mabthūthah — spread abundantly all around`
+      },
+      {
+        num: 17,
+        act: `Act III · Cosmic Signs`,
+        actClass: `act-signs`,
+        rhyme: `-at`,
+        arabic: `أَفَلَا يَنْظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ`,
+        translit: `A-fa-lā yanẓurūna ilā al-ibili kayfa khuliqat`,
+        english: `Then do they not look at the camels - how they are created?`,
+        noteTitle: `Shift to Observable Evidence`,
+        noteBody: `If the unseen Hereafter seems distant, the Surah invites immediate observation of what stands right before the eyes—beginning at eye level with the camel.`,
+        keyTerm: `kayfa khuliqat — how they were created (passive design)`
+      },
+      {
+        num: 18,
+        act: `Act III · Cosmic Signs`,
+        actClass: `act-signs`,
+        rhyme: `-at`,
+        arabic: `وَإِلَى السَّمَاءِ كَيْفَ رُفِعَتْ`,
+        translit: `Wa-ilā al-samāʾi kayfa rufiʿat`,
+        english: `And at the sky - how it is raised?`,
+        noteTitle: `Looking Upward`,
+        noteBody: `The gaze rises from desert earth to the vast canopy above, echoing the root r-f-ʿ used earlier for elevated couches (marfūʿah, v. 13).`,
+        keyTerm: `kayfa rufiʿat — how it was raised high`
+      },
+      {
+        num: 19,
+        act: `Act III · Cosmic Signs`,
+        actClass: `act-signs`,
+        rhyme: `-at`,
+        arabic: `وَإِلَى الْجِبَالِ كَيْفَ نُصِبَتْ`,
+        translit: `Wa-ilā al-jibāli kayfa nuṣibat`,
+        english: `And at the mountains - how they are erected?`,
+        noteTitle: `Scanning the Horizon`,
+        noteBody: `Descending from the sky to the horizon, the mountains stand firmly planted (nuṣibat), anchoring the landscape with monumental stability.`,
+        keyTerm: `kayfa nuṣibat — how they were firmly erected`
+      },
+      {
+        num: 20,
+        act: `Act III · Cosmic Signs`,
+        actClass: `act-signs`,
+        rhyme: `-at`,
+        arabic: `وَإِلَى الْأَرْضِ كَيْفَ سُطِحَتْ`,
+        translit: `Wa-ilā al-arḍi kayfa suṭiḥat`,
+        english: `And at the earth - how it is spread out?`,
+        noteTitle: `Resting at One’s Feet`,
+        noteBody: `Completing the visual arc, the ground beneath human feet is spread out (suṭiḥat) as an inhabitable expanse—parallel to the spread carpets (mabthūthah) of v. 16.`,
+        keyTerm: `kayfa suṭiḥat — how it was spread out for habitation`
+      },
+      {
+        num: 21,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ir`,
+        arabic: `فَذَكِّرْ إِنَّمَا أَنْتَ مُذَكِّرٌ`,
+        translit: `Fa-dhakkir innamā anta mudhakkir`,
+        english: `So remind, [O Muhammad]; you are only a reminder.`,
+        noteTitle: `Purpose Defined by Root`,
+        noteBody: `Notice "Fa-" ("So..."), linking the cosmic signs directly to the prophetic duty: because creation already testifies, your task is simply to remind (dhakkir / mudhakkir).`,
+        keyTerm: `mudhakkir — one whose role is to awaken remembrance`
+      },
+      {
+        num: 22,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ir`,
+        arabic: `لَسْتَ عَلَيْهِمْ بِمُصَيْطِرٍ`,
+        translit: `Lasta ʿalayhim bi-muṣayṭir`,
+        english: `You are not over them a controller.`,
+        noteTitle: `Freedom From Coercion`,
+        noteBody: `The emphatic prefix bi- on muṣayṭir decisively rules out compulsion or domination over listeners’ consciences.`,
+        keyTerm: `muṣayṭir — controller, overseer compelling belief`
+      },
+      {
+        num: 23,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ar`,
+        arabic: `إِلَّا مَنْ تَوَلَّىٰ وَكَفَرَ`,
+        translit: `Illā man tawallā wa-kafara`,
+        english: `However, he who turns away and disbelieves`,
+        noteTitle: `The Pivot of Choice`,
+        noteBody: `Turning away (tawallā) denotes physically or morally turning one’s back on the reminder, paired with willful rejection (kafara).`,
+        keyTerm: `tawallā wa-kafara — turns away and rejects`
+      },
+      {
+        num: 24,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ar`,
+        arabic: `فَيُعَذِّبُهُ اللَّهُ الْعَذَابَ الْأَكْبَرَ`,
+        translit: `Fa-yuʿadhdhibuhu Allāhu al-ʿadhāba al-akbar`,
+        english: `Then Allah will punish him with the greatest punishment.`,
+        noteTitle: `Accountability Reserved for God`,
+        noteBody: `Because the Prophet is not a controller (v. 22), ultimate reckoning for persistent rejection rests solely with Allah.`,
+        keyTerm: `al-ʿadhāba al-akbar — the greatest punishment`
+      },
+      {
+        num: 25,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ahum`,
+        arabic: `إِنَّ إِلَيْنَا إِيَابَهُمْ`,
+        translit: `Inna ilaynā iyābahum`,
+        english: `Indeed, to Us is their return.`,
+        noteTitle: `Fronted Exclusivity`,
+        noteBody: `Placing ilaynā ("to Us") before iyābahum ("their return") emphasizes exclusivity: every path leads back to Allah alone.`,
+        keyTerm: `iyābahum — their final, inevitable return`
+      },
+      {
+        num: 26,
+        act: `Act IV · Prophetic Mandate`,
+        actClass: `act-mandate`,
+        rhyme: `-ahum`,
+        arabic: `ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُمْ`,
+        translit: `Thumma inna ʿalaynā ḥisābahum`,
+        english: `Then indeed, upon Us is their account.`,
+        noteTitle: `Solemn Closure`,
+        noteBody: `Mirroring verse 25 grammatically (ʿalaynā fronted before ḥisābahum), the Surah closes by returning full circle to the Overwhelming Day of reckoning introduced in verse 1.`,
+        keyTerm: `ḥisābahum — their complete reckoning and account`
+      }
+    ];
+
+    const MIRROR_PAIRS = [
+      {
+        fireRef: `88:2`,
+        fireAr: `وُجُوهٌ يَوْمَئِذٍ خَاشِعَةٌ`,
+        fireTr: `Wujūhun yawma’idhin khāshiʿah`,
+        fireEn: `[Some] faces, that Day, will be humbled,`,
+        fireNote: `Humiliation and dread register immediately on the face—the opening phrase (“Wujūhun yawma’idhin…”) sets up a direct contrast six verses later.`,
+        gardenRef: `88:8`,
+        gardenAr: `وُجُوهٌ يَوْمَئِذٍ نَاعِمَةٌ`,
+        gardenTr: `Wujūhun yawma’idhin nāʿimah`,
+        gardenEn: `[Other] faces, that Day, will show pleasure.`,
+        gardenNote: `Softness, ease, and visible joy mark the faces of the righteous, inverting the very grammar of verse 2 word for word.`,
+        synthesis: `Both groups open with the identical syntactic frame—wujūhun yawma’idhin (“faces, that Day”)—forcing the listener to compare two diverging states of the exact same human faculty.`
+      },
+      {
+        fireRef: `88:3`,
+        fireAr: `عَامِلَةٌ نَاصِبَةٌ`,
+        fireTr: `ʿĀmilatun nāṣibah`,
+        fireEn: `Working [hard] and exhausted.`,
+        fireNote: `Exhausting labor yields no fulfillment; two active descriptors convey relentless toil culminating in weariness.`,
+        gardenRef: `88:9`,
+        gardenAr: `لِسَعْيِهَا رَاضِيَةٌ`,
+        gardenTr: `Li-saʿyihā rāḍiyah`,
+        gardenEn: `With their effort [they are] satisfied`,
+        gardenNote: `Prior striving (saʿy) is not forgotten—it is transformed into lasting contentment and peace of heart.`,
+        synthesis: `Both fates involve human effort—yet misplaced effort (ʿāmilatun nāṣibah) ends in exhaustion, while purposeful striving (saʿy) culminates in satisfaction (rāḍiyah).`
+      },
+      {
+        fireRef: `88:5`,
+        fireAr: `تُسْقَى مِنْ عَيْنٍ آنِيَةٍ`,
+        fireTr: `Tusqā min ʿaynin āniyah`,
+        fireEn: `They will be given drink from a boiling spring.`,
+        fireNote: `The passive verb tusqā ("they are made to drink") pairs the word ʿayn ("spring") with āniyah—water heated to extreme boiling.`,
+        gardenRef: `88:12`,
+        gardenAr: `فِيهَا عَيْنٌ جَارِيَةٌ`,
+        gardenTr: `Fīhā ʿaynun jāriyah`,
+        gardenEn: `Within it is a flowing spring.`,
+        gardenNote: `The identical Arabic noun ʿayn ("spring") returns, now paired with jāriyah—abundant, cool, and freely flowing.`,
+        synthesis: `Using the exact same word ʿayn (“spring”) in both verses sharpens the contrast: the very source of refreshment becomes torment in one fate and serene abundance in the other.`
+      },
+      {
+        fireRef: `88:6–7`,
+        fireAr: `لَيْسَ لَهُمْ طَعَامٌ إِلَّا مِنْ ضَرِيعٍ ۝ لَا يُسْمِنُ وَلَا يُغْنِي مِنْ جُوعٍ`,
+        fireTr: `Laysa lahum ṭaʿāmun illā min ḍarīʿ · Lā yusminu wa-lā yughnī min jūʿ`,
+        fireEn: `For them there will be no food except from a poisonous, thorny plant — Which neither nourishes nor avails against hunger.`,
+        fireNote: `Food is harsh and futile (breaking the Surah’s smooth -iyah cadence on ḍarīʿ and jūʿ), leaving hunger unresolved.`,
+        gardenRef: `88:11 & 88:14`,
+        gardenAr: `لَا تَسْمَعُ فِيهَا لَاغِيَةً ۝ وَأَكْوَابٌ مَوْضُوعَةٌ`,
+        gardenTr: `Lā tasmaʿu fīhā lāghiyah · Wa-akwābun mawḍūʿah`,
+        gardenEn: `Wherein they will hear no unsuitable speech · And cups put in place`,
+        gardenNote: `Instead of unresolved hunger and harshness, the Garden offers undisturbed speech and ready cups already set in place.`,
+        synthesis: `Notice how verse 6–7 emphasize scarcity (“no food except…”) and futility (“neither nourishes nor avails”), whereas the Garden surrounds its dwellers with effortless abundance and quietness of soul.`
+      },
+      {
+        fireRef: `88:4`,
+        fireAr: `تَصْلَىٰ نَارًا حَامِيَةً`,
+        fireTr: `Taṣlā nāran ḥāmiyah`,
+        fireEn: `They will [enter to] burn in an intensely hot Fire.`,
+        fireNote: `Confinement in intense heat leaves no space for comfort, dignity, or rest.`,
+        gardenRef: `88:10, 13, 15–16`,
+        gardenAr: `فِي جَنَّةٍ عَالِيَةٍ ۝ فِيهَا سُرُرٌ مَرْفُوعَةٌ ۝ وَنَمَارِقُ مَصْفُوفَةٌ ۝ وَزَرَابِيُّ مَبْثُوثَةٌ`,
+        gardenTr: `Fī jannatin ʿāliyah · sururun marfūʿah · namāriqu maṣfūfah · zarābiyyu mabthūthah`,
+        gardenEn: `In an elevated garden · Within it are couches raised high · And cushions lined up · And carpets spread around.`,
+        gardenNote: `Four layered images of spatial elevation and tactile comfort unfold in calm succession, giving the Garden spaciousness and rest.`,
+        synthesis: `Where a single terse clause suffices for burning Fire (v. 4), the Surah lingers over four distinct architectural details of the Garden—elevated setting, raised couches, aligned cushions, and spread carpets.`
+      }
+    ];
+
+    const NUANCES = [
+      {
+        title: `Prepared Hospitality: Four Passive Participles (Mafʿūlah)`,
+        desc: `In verses 13–16, every noun of comfort is paired with a feminine passive participle on the mafʿūlah pattern. Nothing has to be assembled or labored over—effort (saʿy) belonged to worldly life and has already earned satisfaction (v. 9).`,
+        cards: [
+          { ar: `سُرُرٌ مَرْفُوعَةٌ`, tr: `sururun marfūʿah`, en: `Couches raised high (v. 13)`, note: `Dignified vantage point and ease` },
+          { ar: `أَكْوَابٌ مَوْضُوعَةٌ`, tr: `akwābun mawḍūʿah`, en: `Cups put in place (v. 14)`, note: `Anticipated hospitality within reach` },
+          { ar: `نَمَارِقُ مَصْفُوفَةٌ`, tr: `namāriqu maṣfūfah`, en: `Cushions lined up (v. 15)`, note: `Orderly repose and companionship` },
+          { ar: `زَرَابِيُّ مَبْثُوثَةٌ`, tr: `zarābiyyu mabthūthah`, en: `Carpets spread around (v. 16)`, note: `Abundant softness covering the ground` }
+        ]
+      },
+      {
+        title: `Echoing Roots Across Worlds: "ʿAyn" & "R-F-ʿ"`,
+        desc: `Surah Al-Ghashiyah stitches its sections together using recurring Arabic words and roots so that the two fates and the physical cosmos speak to one another directly.`,
+        cards: [
+          { ar: `عَيْنٍ آنِيَةٍ ↔ عَيْنٌ جَارِيَةٌ`, tr: `ʿaynin āniyah ↔ ʿaynun jāriyah`, en: `Boiling spring (v. 5) vs. Flowing spring (v. 12)`, note: `Exact same noun (ʿayn) inverted by one adjective` },
+          { ar: `سُرُرٌ مَرْفُوعَةٌ ↔ كَيْفَ رُفِعَتْ`, tr: `marfūʿah (v. 13) ↔ rufiʿat (v. 18)`, en: `Raised couches ↔ Raised sky`, note: `Shared root r-f-ʿ connects Garden dignity with celestial height` },
+          { ar: `زَرَابِيُّ مَبْثُوثَةٌ ↔ كَيْفَ سُطِحَتْ`, tr: `mabthūthah (v. 16) ↔ suṭiḥat (v. 20)`, en: `Spread carpets ↔ Spread-out earth`, note: `Parallels carpeted comfort with the habitable ground` },
+          { ar: `فَذَكِّرْ ↔ مُذَكِّرٌ`, tr: `fa-dhakkir ↔ mudhakkir (v. 21)`, en: `Remind ↔ Reminder`, note: `Verb and agent noun from root dh-k-r bind duty to identity` }
+        ]
+      },
+      {
+        title: `Pure Passive Design in Verses 17–20 (-at Cadence)`,
+        desc: `Whereas verses 2–9 focus on active human states (khāshiʿah, ʿāmilah, rāḍiyah), verses 17–20 shift abruptly to four passive past-tense verbs ending in -at. Removing human agency from the grammar leaves the observer contemplating the sheer craft of creation.`,
+        cards: [
+          { ar: `كَيْفَ خُلِقَتْ`, tr: `kayfa khuliqat`, en: `How they are created (v. 17)`, note: `Biological complexity of the camel` },
+          { ar: `كَيْفَ رُفِعَتْ`, tr: `kayfa rufiʿat`, en: `How it is raised (v. 18)`, note: `Unsupported expanse of the sky` },
+          { ar: `كَيْفَ نُصِبَتْ`, tr: `kayfa nuṣibat`, en: `How they are erected (v. 19)`, note: `Monumental anchoring of mountains` },
+          { ar: `كَيْفَ سُطِحَتْ`, tr: `kayfa suṭiḥat`, en: `How it is spread out (v. 20)`, note: `Level habitability of the earth` }
+        ]
+      }
+    ];
+
+    const SIGNS = [
+      {
+        ref: `88:17`,
+        gaze: `Gaze: Eye-Level`,
+        ar: `أَفَلَا يَنْظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ`,
+        tr: `A-fa-lā yanẓurūna ilā al-ibili kayfa khuliqat`,
+        en: `Then do they not look at the camels - how they are created?`,
+        title: `Living Design in Familiar Terrain`,
+        body: `The Surah begins with what is closest and most indispensable to a desert listener: the camel. Rather than asking merely whether it exists, it asks "how" (kayfa) it was created—inviting wonder at a creature engineered for endurance.`,
+        link: `khuliqat (“was created”): Opens the fourfold passive sequence demonstrating that the One who originates such intricate forms can also bring about the Overwhelming Day.`
+      },
+      {
+        ref: `88:18`,
+        gaze: `Gaze: Zenith (Upward)`,
+        ar: `وَإِلَى السَّمَاءِ كَيْفَ رُفِعَتْ`,
+        tr: `Wa-ilā al-samāʾi kayfa rufiʿat`,
+        en: `And at the sky - how it is raised?`,
+        title: `An Unsupported Canopy Overhead`,
+        body: `Lifting the eyes upward from eye level, the observer confronts the sky—vast, elevated, and held aloft without visible columns.`,
+        link: `rufiʿat (“was raised”): Echoes the root r-f-ʿ of the raised couches (marfūʿah, v. 13), subtly linking heavenly architecture with the dignity promised in the Garden.`
+      },
+      {
+        ref: `88:19`,
+        gaze: `Gaze: Horizon`,
+        ar: `وَإِلَى الْجِبَالِ كَيْفَ نُصِبَتْ`,
+        tr: `Wa-ilā al-jibāli kayfa nuṣibat`,
+        en: `And at the mountains - how they are erected?`,
+        title: `Firmly Anchored Pillars on the Horizon`,
+        body: `Lowering the gaze from the zenith to the distant horizon brings the mountains into view—towering forms set firmly upright against shifting sands and plains.`,
+        link: `nuṣibat (“was erected”): Highlights monumental stability—contrasting the steadiness of creation with the unsteadiness of human denial.`
+      },
+      {
+        ref: `88:20`,
+        gaze: `Gaze: Ground Beneath Feet`,
+        ar: `وَإِلَى الْأَرْضِ كَيْفَ سُطِحَتْ`,
+        tr: `Wa-ilā al-arḍi kayfa suṭiḥat`,
+        en: `And at the earth - how it is spread out?`,
+        title: `A Habitable Expanse Underfoot`,
+        body: `Finally, the gaze comes all the way down to the earth beneath one’s feet—spread out into valleys, paths, and plains where human beings can travel, build, and dwell.`,
+        link: `suṭiḥat (“was spread out”): Completes the 360-degree visual sweep (eye-level → zenith → horizon → ground) right before commanding the Prophet in v. 21: “So remind!”`
+      }
+    ];
+
+    const ROLE_CASES = [
+      `Verse 21 uses innamā (“only”) alongside mudhakkir to clarify that the Prophet’s role is awakening people to truths they can already witness (the signs of vv. 17–20), while verse 22 removes any burden of forcing belief upon unwilling hearts.`,
+      `Verse 23 (“However, he who turns away and disbelieves”) separates the Prophet’s duty from the listener’s response: even when someone rejects the reminder, the messenger has fulfilled his mission, and Allah handles the consequence (v. 24).`,
+      `Verses 25–26 close the entire Surah with emphatic inversion—putting ilaynā (“to Us”) and ʿalaynā (“upon Us”) before iyābahum (“their return”) and ḥisābahum (“their account”)—giving complete closure back to the Overwhelming Day of verse 1.`
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        question: `In verses 1–16, which verses break the chapter’s opening “-iyah / -ah” rhyme cadence, and what does that break emphasize?`,
+        options: [
+          `Verses 6–7 (ending in ḍarīʿ and jūʿ), emphasizing harsh thorny food that fails to relieve hunger`,
+          `Verses 13–14 (ending in marfūʿah and mawḍūʿah), emphasizing elevated repose`,
+          `Verses 8–9 (ending in nāʿimah and rāḍiyah), emphasizing visible joy`,
+          `Verses 1–2 (ending in al-ghāshiyah and khāshiʿah), emphasizing dread`
+        ],
+        correct: 0,
+        explanation: `Verses 1–5 and 8–16 sustain the -iyah / -ah ending cadence; only verses 6–7 break away onto ḍarīʿ and jūʿ, acoustically underscoring bitter deprivation and unresolved hunger.`
+      },
+      {
+        question: `How does Surah Al-Ghashiyah use the exact same Arabic noun “ʿayn” (spring) to sharpen the contrast between the two fates?`,
+        options: [
+          `It uses ʿayn in verse 2 for faces and in verse 16 for carpets`,
+          `It contrasts ʿaynin āniyah (a boiling spring, v. 5) with ʿaynun jāriyah (a flowing spring, v. 12)`,
+          `It contrasts ʿayn in verse 17 with the sky in verse 18`,
+          `It pairs ʿayn with ḍarīʿ in verse 6 to describe thorny desert plants`
+        ],
+        correct: 1,
+        explanation: `Verse 5 states “tusqā min ʿaynin āniyah” (boiling spring), while verse 12 states “fīhā ʿaynun jāriyah” (flowing spring)—using the identical noun to invert torment into refreshment.`
+      },
+      {
+        question: `What grammatical form unites the four comforts of verses 13–16 (marfūʿah, mawḍūʿah, maṣfūfah, mabthūthah)?`,
+        options: [
+          `Imperative verbs commanding the inhabitants to prepare their own resting places`,
+          `Active participles describing continuous labor and weariness`,
+          `Passive participles (mafʿūlah) showing that hospitality is already prepared and ready`,
+          `Passive past-tense verbs ending in -at`
+        ],
+        correct: 2,
+        explanation: `All four descriptors are passive participles on the mafʿūlah pattern—raised, put in place, lined up, and spread around—signaling complete readiness without effort.`
+      },
+      {
+        question: `In verses 17–20, what is the visual trajectory of the four cosmic signs?`,
+        options: [
+          `Earth (ground) → Mountains (horizon) → Sky (zenith) → Camels (eye-level)`,
+          `Camels (eye-level) → Sky (upward zenith) → Mountains (horizon) → Earth (ground underfoot)`,
+          `Sky (zenith) → Camels (eye-level) → Earth (ground) → Mountains (horizon)`,
+          `Mountains (horizon) → Camels (eye-level) → Sky (zenith) → Earth (ground)`
+        ],
+        correct: 1,
+        explanation: `The eye sweeps naturally from the living camel at eye level (v. 17), upward to the raised sky (v. 18), across to the erected mountains (v. 19), and down to the spread-out earth (v. 20).`
+      },
+      {
+        question: `What relationship is established between “mudhakkir” (v. 21) and “muṣayṭir” (v. 22)?`,
+        options: [
+          `Both titles are affirmed equally as duties of the Prophet`,
+          `Mudhakkir (reminder) is affirmed as his sole role, while muṣayṭir (controller) is explicitly negated`,
+          `Muṣayṭir means a cosmic sign, while mudhakkir means a mountain`,
+          `Both terms refer to those who turn away and disbelieve in verse 23`
+        ],
+        correct: 1,
+        explanation: `Verse 21 defines the Prophet as “only a reminder” (innamā anta mudhakkir), and verse 22 immediately clarifies “You are not over them a controller” (lasta ʿalayhim bi-muṣayṭir).`
+      },
+      {
+        question: `How do the final two verses (88:25–26) bring structural closure to the chapter?`,
+        options: [
+          `By introducing a new list of desert animals to reflect upon`,
+          `By commanding the Prophet to compile a written record`,
+          `By placing “to Us” (ilaynā) and “upon Us” (ʿalaynā) first to reserve final return (iyābahum) and account (ḥisābahum) for Allah alone`,
+          `By repeating the four comforts of the Garden word for word`
+        ],
+        correct: 2,
+        explanation: `Verses 25–26 front ilaynā (“to Us”) and ʿalaynā (“upon Us”) before iyābahum (return) and ḥisābahum (account), tying the end of the Surah back to the Day of Judgment announced in verse 1.`
+      }
+    ];
+
+    /* Persistent application state */
+    let appState = {
+      activeVerse: 1,
+      visitedVerses: [1],
+      showTranslit: true,
+      activeMirror: 0,
+      activeNuance: 0,
+      activeSign: 0,
+      activeRoleCase: 0,
+      quizIndex: 0,
+      quizAnswers: {},
+      notes: ``
+    };
+
+    let saveTimer = null;
+
+    async function persistState() {
+      const statusEl = document.getElementById(`save-status-label`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+          if (statusEl) statusEl.textContent = `Saved`;
+        } catch (err) {
+          if (statusEl) statusEl.textContent = `Local session only`;
+        }
+      } else {
+        if (statusEl) statusEl.textContent = `Session active`;
+      }
+    }
+
+    function updateProgressUI() {
+      const exploredCount = Array.isArray(appState.visitedVerses) ? appState.visitedVerses.length : 0;
+      const exploredEl = document.getElementById(`verses-explored-label`);
+      if (exploredEl) exploredEl.textContent = exploredCount + ` / 26 verses inspected`;
+
+      let correctCount = 0;
+      const ans = appState.quizAnswers || {};
+      QUIZ_QUESTIONS.forEach(function (q, idx) {
+        if (ans[idx] === q.correct) correctCount += 1;
+      });
+
+      const masteryBadge = document.getElementById(`mastery-badge`);
+      if (masteryBadge) masteryBadge.textContent = `Mastery: ` + correctCount + ` / ` + QUIZ_QUESTIONS.length;
+
+      const quizScore = document.getElementById(`quiz-score-pill`);
+      if (quizScore) quizScore.textContent = `Score: ` + correctCount + ` / ` + QUIZ_QUESTIONS.length;
+
+      const barFill = document.getElementById(`mastery-bar-fill`);
+      if (barFill) {
+        const pct = Math.round((correctCount / QUIZ_QUESTIONS.length) * 100);
+        barFill.style.width = pct + `%`;
+      }
+    }
+
+    function applyTranslitVisibility() {
+      const translits = document.querySelectorAll(`.translit`);
+      translits.forEach(function (el) {
+        if (appState.showTranslit) {
+          el.classList.remove(`is-hidden`);
+        } else {
+          el.classList.add(`is-hidden`);
+        }
+      });
+      const btn = document.getElementById(`toggle-translit-btn`);
+      if (btn) {
+        btn.setAttribute(`aria-pressed`, appState.showTranslit ? `true` : `false`);
+        btn.textContent = appState.showTranslit ? `Transliteration: On` : `Transliteration: Off`;
+      }
+    }
+
+    function toggleTransliteration() {
+      appState.showTranslit = !appState.showTranslit;
+      applyTranslitVisibility();
+      persistState();
+    }
+
+    function jumpToSection(sectionId, verseNum) {
+      if (typeof verseNum === `number`) {
+        selectVerse(verseNum);
+      }
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function renderAyahRibbon() {
+      const ribbon = document.getElementById(`ayah-ribbon`);
+      if (!ribbon) return;
+      ribbon.innerHTML = ``;
+      VERSES.forEach(function (v) {
+        const btn = document.createElement(`button`);
+        btn.type = `button`;
+        btn.className = `ayah-pill ` + v.actClass + (v.num === appState.activeVerse ? ` is-active` : ``);
+        btn.setAttribute(`role`, `option`);
+        btn.setAttribute(`aria-selected`, v.num === appState.activeVerse ? `true` : `false`);
+        btn.setAttribute(`aria-label`, `Verse 88:` + v.num);
+        btn.onclick = function () { selectVerse(v.num); };
+
+        const numSpan = document.createElement(`span`);
+        numSpan.textContent = String(v.num);
+        const tagSpan = document.createElement(`span`);
+        tagSpan.className = `rhyme-tag`;
+        tagSpan.textContent = v.rhyme.replace(` (break)`, `!`);
+
+        btn.appendChild(numSpan);
+        btn.appendChild(tagSpan);
+        ribbon.appendChild(btn);
+      });
+    }
+
+    function selectVerse(num) {
+      const clamped = Math.max(1, Math.min(26, num));
+      appState.activeVerse = clamped;
+      if (!Array.isArray(appState.visitedVerses)) appState.visitedVerses = [];
+      if (appState.visitedVerses.indexOf(clamped) === -1) {
+        appState.visitedVerses.push(clamped);
+      }
+
+      const v = VERSES[clamped - 1];
+      if (!v) return;
+
+      const refEl = document.getElementById(`inspector-ref`);
+      const actEl = document.getElementById(`inspector-act`);
+      const arEl = document.getElementById(`inspector-arabic`);
+      const trEl = document.getElementById(`inspector-translit`);
+      const enEl = document.getElementById(`inspector-english`);
+      const rhymeEl = document.getElementById(`inspector-rhyme`);
+      const ntEl = document.getElementById(`inspector-note-title`);
+      const nbEl = document.getElementById(`inspector-note-body`);
+      const ktEl = document.getElementById(`inspector-key-term`);
+      const prevBtn = document.getElementById(`prev-verse-btn`);
+      const nextBtn = document.getElementById(`next-verse-btn`);
+
+      if (refEl) refEl.textContent = `Surah 88 : ` + v.num;
+      if (actEl) actEl.textContent = v.act;
+      if (arEl) arEl.textContent = v.arabic;
+      if (trEl) trEl.textContent = v.translit;
+      if (enEl) enEl.textContent = v.english;
+      if (rhymeEl) rhymeEl.textContent = `Ending Cadence: ` + v.rhyme;
+      if (ntEl) ntEl.textContent = v.noteTitle;
+      if (nbEl) nbEl.textContent = v.noteBody;
+      if (ktEl) ktEl.textContent = v.keyTerm;
+      if (prevBtn) prevBtn.disabled = clamped <= 1;
+      if (nextBtn) nextBtn.disabled = clamped >= 26;
+
+      renderAyahRibbon();
+      updateProgressUI();
+      persistState();
+    }
+
+    function stepVerse(delta) {
+      selectVerse(appState.activeVerse + delta);
+    }
+
+    function selectMirrorPair(idx) {
+      const pair = MIRROR_PAIRS[idx];
+      if (!pair) return;
+      appState.activeMirror = idx;
+
+      const btns = document.querySelectorAll(`.mirror-selector .mirror-btn`);
+      btns.forEach(function (b, i) {
+        if (i === idx) b.classList.add(`is-active`);
+        else b.classList.remove(`is-active`);
+      });
+
+      const map = [
+        [`mirror-fire-ref`, pair.fireRef],
+        [`mirror-fire-ar`, pair.fireAr],
+        [`mirror-fire-tr`, pair.fireTr],
+        [`mirror-fire-en`, pair.fireEn],
+        [`mirror-fire-note`, pair.fireNote],
+        [`mirror-garden-ref`, pair.gardenRef],
+        [`mirror-garden-ar`, pair.gardenAr],
+        [`mirror-garden-tr`, pair.gardenTr],
+        [`mirror-garden-en`, pair.gardenEn],
+        [`mirror-garden-note`, pair.gardenNote],
+        [`mirror-synthesis`, pair.synthesis]
+      ];
+      map.forEach(function (entry) {
+        const el = document.getElementById(entry[0]);
+        if (el) el.textContent = entry[1];
+      });
+
+      persistState();
+    }
+
+    function selectNuance(idx) {
+      const item = NUANCES[idx];
+      if (!item) return;
+      appState.activeNuance = idx;
+
+      for (let i = 0; i < NUANCES.length; i += 1) {
+        const b = document.getElementById(`nuance-btn-` + i);
+        if (b) {
+          b.className = i === idx ? `btn-primary` : `btn-secondary`;
+        }
+      }
+
+      const titleEl = document.getElementById(`nuance-title`);
+      const descEl = document.getElementById(`nuance-desc`);
+      const cardsEl = document.getElementById(`nuance-cards`);
+      if (titleEl) titleEl.textContent = item.title;
+      if (descEl) descEl.textContent = item.desc;
+
+      if (cardsEl) {
+        cardsEl.innerHTML = ``;
+        item.cards.forEach(function (c) {
+          const card = document.createElement(`div`);
+          card.className = `nuance-chip-card`;
+
+          const arP = document.createElement(`p`);
+          arP.className = `arabic arabic-verse`;
+          arP.setAttribute(`lang`, `ar`);
+          arP.setAttribute(`dir`, `rtl`);
+          arP.style.margin = `0`;
+          arP.style.textAlign = `right`;
+          arP.textContent = c.ar;
+
+          const trP = document.createElement(`p`);
+          trP.className = `translit` + (appState.showTranslit ? `` : ` is-hidden`);
+          trP.style.margin = `0`;
+          trP.textContent = c.tr;
+
+          const enP = document.createElement(`p`);
+          enP.style.margin = `0`;
+          enP.style.fontWeight = `600`;
+          enP.textContent = c.en;
+
+          const noteP = document.createElement(`p`);
+          noteP.style.margin = `0`;
+          noteP.style.fontSize = `0.875rem`;
+          noteP.style.color = `var(--on-surface-variant)`;
+          noteP.textContent = c.note;
+
+          card.appendChild(arP);
+          card.appendChild(trP);
+          card.appendChild(enP);
+          card.appendChild(noteP);
+          cardsEl.appendChild(card);
+        });
+      }
+
+      persistState();
+    }
+
+    function selectSign(idx) {
+      const s = SIGNS[idx];
+      if (!s) return;
+      appState.activeSign = idx;
+
+      const cards = document.querySelectorAll(`.signs-grid .sign-arch`);
+      cards.forEach(function (c, i) {
+        if (i === idx) c.classList.add(`is-selected`);
+        else c.classList.remove(`is-selected`);
+      });
+
+      const updates = [
+        [`sign-ref`, s.ref],
+        [`sign-gaze`, s.gaze],
+        [`sign-arabic`, s.ar],
+        [`sign-translit`, s.tr],
+        [`sign-english`, s.en],
+        [`sign-focus-title`, s.title],
+        [`sign-focus-body`, s.body],
+        [`sign-link`, s.link]
+      ];
+      updates.forEach(function (u) {
+        const el = document.getElementById(u[0]);
+        if (el) el.textContent = u[1];
+      });
+
+      persistState();
+    }
+
+    function selectRoleCase(idx) {
+      const text = ROLE_CASES[idx];
+      if (!text) return;
+      appState.activeRoleCase = idx;
+
+      const btns = document.querySelectorAll(`.scenario-list .mirror-btn`);
+      btns.forEach(function (b, i) {
+        if (i === idx) b.classList.add(`is-active`);
+        else b.classList.remove(`is-active`);
+      });
+
+      const ansEl = document.getElementById(`role-case-answer`);
+      if (ansEl) ansEl.textContent = text;
+
+      persistState();
+    }
+
+    function renderQuiz() {
+      const idx = Math.max(0, Math.min(QUIZ_QUESTIONS.length - 1, appState.quizIndex || 0));
+      appState.quizIndex = idx;
+      const q = QUIZ_QUESTIONS[idx];
+      if (!q) return;
+
+      const pill = document.getElementById(`quiz-progress-pill`);
+      const qEl = document.getElementById(`quiz-question`);
+      const optsEl = document.getElementById(`quiz-options`);
+      const fbBox = document.getElementById(`quiz-feedback`);
+      const fbText = document.getElementById(`quiz-feedback-text`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      if (pill) pill.textContent = `Question ` + (idx + 1) + ` of ` + QUIZ_QUESTIONS.length;
+      if (qEl) qEl.textContent = q.question;
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+
+      const chosen = appState.quizAnswers ? appState.quizAnswers[idx] : undefined;
+      const isAnswered = typeof chosen === `number`;
+
+      if (optsEl) {
+        optsEl.innerHTML = ``;
+        q.options.forEach(function (optText, optIdx) {
+          const btn = document.createElement(`button`);
+          btn.type = `button`;
+          btn.className = `quiz-option`;
+          if (isAnswered) {
+            btn.disabled = true;
+            if (optIdx === q.correct) btn.classList.add(`is-correct`);
+            else if (optIdx === chosen) btn.classList.add(`is-wrong`);
+          }
+          btn.onclick = function () { answerQuiz(idx, optIdx); };
+
+          const txtSpan = document.createElement(`span`);
+          txtSpan.textContent = optText;
+          btn.appendChild(txtSpan);
+
+          if (isAnswered && optIdx === q.correct) {
+            const tag = document.createElement(`span`);
+            tag.className = `arch-label`;
+            tag.textContent = `Correct`;
+            btn.appendChild(tag);
+          } else if (isAnswered && optIdx === chosen) {
+            const tag = document.createElement(`span`);
+            tag.className = `arch-label`;
+            tag.textContent = `Selected`;
+            btn.appendChild(tag);
+          }
+
+          optsEl.appendChild(btn);
+        });
+      }
+
+      if (fbBox && fbText) {
+        if (isAnswered) {
+          fbBox.classList.remove(`is-hidden`);
+          fbText.textContent = (chosen === q.correct ? `Correct — ` : `Review — `) + q.explanation;
+        } else {
+          fbBox.classList.add(`is-hidden`);
+          fbText.textContent = ``;
+        }
+      }
+
+      updateProgressUI();
+    }
+
+    function answerQuiz(qIdx, optIdx) {
+      if (!appState.quizAnswers) appState.quizAnswers = {};
+      appState.quizAnswers[qIdx] = optIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      appState.quizIndex = Math.max(0, Math.min(QUIZ_QUESTIONS.length - 1, appState.quizIndex + delta));
+      renderQuiz();
+      persistState();
+    }
+
+    function handleNotesInput(val) {
+      appState.notes = val;
+      const statusEl = document.getElementById(`save-status-label`);
+      if (statusEl) statusEl.textContent = `Saving…`;
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        persistState();
+      }, 300);
+    }
+
+    function resetStudyProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Progress`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+
+      appState = {
+        activeVerse: 1,
+        visitedVerses: [1],
+        showTranslit: appState.showTranslit,
+        activeMirror: 0,
+        activeNuance: 0,
+        activeSign: 0,
+        activeRoleCase: 0,
+        quizIndex: 0,
+        quizAnswers: {},
+        notes: ``
+      };
+
+      const notesEl = document.getElementById(`study-notes-input`);
+      if (notesEl) notesEl.value = ``;
+
+      selectVerse(1);
+      selectMirrorPair(0);
+      selectNuance(0);
+      selectSign(0);
+      selectRoleCase(0);
+      renderQuiz();
+      persistState();
+    }
+
+    function exportStudySummary() {
+      let score = 0;
+      QUIZ_QUESTIONS.forEach(function (q, i) {
+        if (appState.quizAnswers && appState.quizAnswers[i] === q.correct) score += 1;
+      });
+      const lines = [
+        `SURAH AL-GHASHIYAH (CHAPTER 88) — STUDY SUMMARY`,
+        `===============================================`,
+        `Verses Inspected: ` + (appState.visitedVerses ? appState.visitedVerses.length : 0) + ` / 26`,
+        `Mastery Score: ` + score + ` / ` + QUIZ_QUESTIONS.length,
+        ``,
+        `FOUR MOVEMENTS:`,
+        `1. Act I (v. 1): Opening Inquiry — Al-Ghashiyah`,
+        `2. Act II (vv. 2–16): Contrast of Two Fates (6 verses Humbled vs. 9 verses Radiant)`,
+        `3. Act III (vv. 17–20): Four Cosmic Signs (Camels, Sky, Mountains, Earth)`,
+        `4. Act IV (vv. 21–26): Prophetic Reminder (Mudhakkir vs. Musaytir) & Return`,
+        ``,
+        `PERSONAL REFLECTION NOTES:`,
+        appState.notes && appState.notes.trim() ? appState.notes.trim() : `(No personal notes recorded yet.)`
+      ];
+      const content = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-88-al-ghashiyah-study-notes.txt`
+        });
+      } else {
+        const blob = new Blob([content], { type: `text/plain;charset=utf-8` });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement(`a`);
+        link.href = url;
+        link.download = `surah-88-al-ghashiyah-study-notes.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    function setupScrollReveal() {
+      if (!(`IntersectionObserver` in window)) return;
+      const sections = document.querySelectorAll(`.reveal-section`);
+      sections.forEach(function (sec) {
+        sec.classList.add(`is-pending`);
+      });
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove(`is-pending`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(function (sec) {
+        observer.observe(sec);
+      });
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign(appState, saved);
+          }
+        } catch (err) {
+          // Keep default initial state
+        }
+      }
+
+      const notesEl = document.getElementById(`study-notes-input`);
+      if (notesEl && typeof appState.notes === `string`) {
+        notesEl.value = appState.notes;
+      }
+
+      applyTranslitVisibility();
+      selectVerse(appState.activeVerse || 1);
+      selectMirrorPair(appState.activeMirror || 0);
+      selectNuance(appState.activeNuance || 0);
+      selectSign(appState.activeSign || 0);
+      selectRoleCase(appState.activeRoleCase || 0);
+      renderQuiz();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, function () {
+      initApp();
+    });
+  </script>
+</body>
+</html>

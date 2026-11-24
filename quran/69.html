@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Haqqah (Chapter 69) — Interactive Study & Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --border-featured: #c98a6b;
+      --border-emerald: #b5d6c9;
+      --border-btn-secondary: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #f9e3e3;
+      --on-error-container: #7a1c1c;
+
+      /* Semantic & Focus */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.4rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.85rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-display-size: clamp(1.65rem, 1.35rem + 1.1vw, 2.25rem);
+      --arabic-verse-size: clamp(1.4rem, 1.25rem + 0.65vw, 1.85rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .title i, .title em,
+    .section-heading i, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .lede {
+      font-size: clamp(1.08rem, 1rem + 0.3vw, 1.22rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: var(--space-md) 0 0;
+      line-height: 1.65;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-verse-size);
+      line-height: 2.05;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+    }
+
+    .arabic-display {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-display-size);
+      line-height: 1.9;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+    }
+
+    /* Brass diamond ornamental divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Riad arch metric & feature cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.2vw, 2.65rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Badges */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--border-featured);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      border: var(--warm-hairline);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active:not(:disabled) { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border-color: var(--border-btn-secondary);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container-low);
+    }
+    .btn-secondary.is-active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+    }
+
+    .btn-emerald {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--border-emerald);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    /* Section & Band architecture */
+    .hero-block {
+      padding-top: var(--space-md);
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+    .jump-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .jump-btn:hover {
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+
+    .band-plaster {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+
+    .panel-low {
+      background: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border: var(--warm-hairline);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Movement I: Triad explorer */
+    .split-narrative {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .triad-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .triad-item {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .triad-item:hover {
+      background: var(--surface-container);
+    }
+    .triad-item.is-selected {
+      background: var(--primary-container);
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+    .triad-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    /* Movement II: Past Civilizations */
+    .civ-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .civ-card {
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-height: 44px;
+      transition: transform var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .civ-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .civ-card.is-selected {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .civ-card.is-ark.is-selected {
+      background: var(--tertiary-container);
+      border-color: var(--border-emerald);
+    }
+    .civ-verse-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .civ-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.45rem;
+      color: var(--on-surface);
+    }
+    .civ-instrument {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+
+    .civ-detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .verse-quote-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    /* Comparison table */
+    .study-table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    .study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .study-table th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .study-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    .study-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tabular-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    /* Movement III: Cosmic Rupture Stepper */
+    .cosmic-stage-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .stage-pill {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .stage-pill:hover {
+      background: var(--surface-container);
+      color: var(--on-surface);
+    }
+    .stage-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .cosmic-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .cosmic-schematic-wrap {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 310px;
+    }
+
+    /* Movement IV: Two Records Dual Column */
+    .records-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .records-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .record-panel {
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .record-right {
+      background: var(--tertiary-container);
+      border-color: var(--border-emerald);
+    }
+    .record-left {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .record-verse-line {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .rhyme-highlight {
+      background: var(--surface-container-high);
+      padding: 0 var(--space-xs);
+      border-radius: var(--rounded);
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .record-right .rhyme-highlight {
+      color: var(--tertiary);
+    }
+
+    .root-causes-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Movement V: Oath & Refutation */
+    .oath-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    /* Complete Verse-by-Verse Explorer */
+    .explorer-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-md);
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .text-area {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      color: var(--on-surface);
+      width: 100%;
+    }
+    .text-input:focus, .text-area:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+    .text-area {
+      min-height: 76px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-card-wrap {
+      container-type: inline-size;
+    }
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-studied {
+      box-shadow: inset 4px 0 0 var(--tertiary), var(--soft-shadow);
+    }
+    .verse-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .verse-card-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    @container (max-width: 620px) {
+      .verse-card-body {
+        grid-template-columns: 1fr;
+      }
+    }
+    .verse-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.22rem, 1.1rem + 0.35vw, 1.4rem);
+      font-weight: 600;
+      line-height: 1.38;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .verse-commentary {
+      font-size: 0.94rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .verse-note-drawer {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .hidden { display: none !important; }
+
+    /* Knowledge Checks */
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: var(--warm-hairline);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      box-shadow: inset 4px 0 0 var(--tertiary);
+    }
+    .quiz-option.is-incorrect {
+      background: var(--error-container);
+      color: var(--on-error-container);
+      box-shadow: inset 4px 0 0 var(--error);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald);
+    }
+    .quiz-feedback.is-incorrect {
+      background: var(--error-container);
+      color: var(--on-error-container);
+      border: 1px solid var(--error);
+    }
+
+    .footer-note {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-entering {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    @media (max-width: 820px) {
+      .split-narrative,
+      .civ-detail-grid,
+      .cosmic-grid,
+      .records-grid,
+      .explorer-toolbar {
+        grid-template-columns: 1fr;
+      }
+      .band-plaster {
+        padding: var(--space-lg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      aside { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Orientation -->
+    <header class="hero-block" id="top">
+      <div class="kicker">
+        <span>Quranic Thematic &amp; Verse Study Guide</span>
+        <span>Chapter 69 · 52 Verses</span>
+      </div>
+      <h1 class="title">Surah Al-Haqqah: The Inevitable <em>Reality</em></h1>
+      <p class="lede">
+        Opening with an urgent three-fold question and closing with the declaration of absolute certainty,
+        Surah Al-Haqqah weaves together the ruins of ancient empires, the single cosmic blast of Resurrection,
+        the dramatic polarity of the two books of deeds, and the vindication of revelation.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Five Movements from Question to Certainty ◆</div>
+
+      <div class="arch-grid" aria-label="Chapter overview and learner progress">
+        <div class="arch-card is-featured">
+          <div class="arch-label">Structure</div>
+          <div class="arch-figure">52</div>
+          <div class="arch-caption">Verses · 5 Movements</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Historical Proofs</div>
+          <div class="arch-figure">7 Nights / 8 Days</div>
+          <div class="arch-caption">Duration of wind upon &apos;Aad (v. 7)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Verses Studied</div>
+          <div class="arch-figure" id="stat-verses-studied">0 / 52</div>
+          <div class="arch-caption" id="stat-verses-pct">0% completed</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Mastery Checks</div>
+          <div class="arch-figure" id="stat-quiz-score">0 / 6</div>
+          <div class="arch-caption" id="stat-quiz-status">Ready to begin</div>
+        </div>
+      </div>
+
+      <nav class="quick-nav" aria-label="Jump to section">
+        <button type="button" class="jump-btn" onclick="scrollToSection('movement-1')">I. The Inevitable Question (1–3)</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('movement-2')">II. Fallen Empires &amp; The Ark (4–12)</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('movement-3')">III. The Cosmic Rupture (13–18)</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('movement-4')">IV. Right vs. Left Hand (19–37)</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('movement-5')">V. Revelation &amp; Certainty (38–52)</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('verse-explorer')">Full 52-Verse Explorer</button>
+        <button type="button" class="jump-btn" onclick="scrollToSection('knowledge-checks')">Knowledge Checks</button>
+      </nav>
+    </header>
+
+    <!-- Movement I: The Inevitable Question -->
+    <section id="movement-1" class="band-plaster reveal-section" aria-labelledby="h-movement-1">
+      <div class="kicker">
+        <span>Movement I · Verses 1–3</span>
+        <span>Linguistic &amp; Theological Opening</span>
+      </div>
+      <h2 class="section-heading" id="h-movement-1">Why the Surah Opens with Three Consecutive Questions About <em>Al-Haqqah</em></h2>
+      <div class="split-narrative">
+        <div>
+          <p class="prose">
+            From its very first word, the surah arrests attention through rhetorical escalation.
+            <strong>Al-Haqqah</strong> derives from the root meaning what is true, binding, and certain to materialize.
+            Rather than defining it immediately in abstract terms, the opening three verses announce the name,
+            interrogate its nature, and place its true magnitude beyond ordinary human estimation.
+          </p>
+          <p class="prose">
+            Notice the structural bookend across the entire chapter: what begins in verse 1–3 as the awe-inspiring
+            question <em>"What can make you know what is the Inevitable Reality?"</em> reaches its explicit resolution
+            in verse 51, where the Qur&apos;an is named <strong>Haqq al-Yaqin</strong> ("the truth of certainty").
+            Select any opening verse to inspect its rhetorical role.
+          </p>
+          <div class="triad-list" role="tablist" aria-label="Opening verses 1 to 3">
+            <button type="button" class="triad-item is-selected" data-triad="1" onclick="selectTriad(1)">
+              <div class="triad-meta">
+                <span>Verse 69:1 · Declaration</span>
+                <span>Al-Haqqah</span>
+              </div>
+              <div class="arabic-text" lang="ar" dir="rtl">الْحَاقَّةُ</div>
+              <div>"The Inevitable Reality"</div>
+            </button>
+            <button type="button" class="triad-item" data-triad="2" onclick="selectTriad(2)">
+              <div class="triad-meta">
+                <span>Verse 69:2 · Direct Inquiry</span>
+                <span>Ma al-Haqqah</span>
+              </div>
+              <div class="arabic-text" lang="ar" dir="rtl">مَا الْحَاقَّةُ</div>
+              <div>"What is the Inevitable Reality?"</div>
+            </button>
+            <button type="button" class="triad-item" data-triad="3" onclick="selectTriad(3)">
+              <div class="triad-meta">
+                <span>Verse 69:3 · Transcendent Scale</span>
+                <span>Wa ma adraka</span>
+              </div>
+              <div class="arabic-text" lang="ar" dir="rtl">وَمَا أَدْرَاكَ مَا الْحَاقَّةُ</div>
+              <div>"And what can make you know what is the Inevitable Reality?"</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-low" id="triad-detail-panel" aria-live="polite">
+          <div class="badge-terracotta" id="triad-badge">Verse 69:1 · Opening Announcement</div>
+          <h3 class="subhead" style="margin-top: var(--space-md);" id="triad-heading">A Single Word That Commands Silence</h3>
+          <p class="prose" id="triad-body">
+            The chapter opens not with a conditional clause or a story, but with a solitary definite noun:
+            <strong>Al-Haqqah</strong>. In Arabic grammar, the active participle signals both an event that is
+            guaranteed to occur and one that makes every hidden truth manifest.
+          </p>
+          <div class="verse-quote-box">
+            <div class="arch-label" style="text-align: left;">Thematic Thread Across the Surah</div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem; color: var(--on-surface-variant);" id="triad-link">
+              The word <em>Al-Haqqah</em> (69:1) is answered by <em>Al-Qari&apos;ah</em> ("the Striking Calamity", 69:4),
+              <em>Al-Waqi&apos;ah</em> ("the Resurrection", 69:15), and culminates in <em>Haqq al-Yaqin</em> ("the truth of certainty", 69:51).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Movement II: Past Civilizations & The Ark -->
+    <section id="movement-2" class="reveal-section" aria-labelledby="h-movement-2">
+      <div class="kicker">
+        <span>Movement II · Verses 4–12</span>
+        <span>Historical Context &amp; Moral Memory</span>
+      </div>
+      <h2 class="section-heading" id="h-movement-2">Fallen Civilizations Prove Denial Never Stops <em>The Reckoning</em></h2>
+      <p class="prose">
+        Immediately after asking what can make humanity grasp <em>Al-Haqqah</em>, the surah points to tangible
+        precedents in historical memory: Thamud, &apos;Aad, Pharaoh, the overturned cities, and the saving Ark of Noah.
+        Each civilization possessed formidable earthly strength, yet each collapsed when it rejected moral accountability
+        and the messengers sent to warn them. Choose a historical case below to examine its verses and structural lesson.
+      </p>
+
+      <div class="civ-selector" role="tablist" aria-label="Historical civilizations in verses 4 to 12">
+        <button type="button" class="civ-card is-selected" data-civ="thamud" onclick="selectCiv('thamud')">
+          <span class="civ-verse-tag">Verses 69:4–5</span>
+          <span class="civ-title">Thamud</span>
+          <span class="civ-instrument">Destroyed by the overpowering blast (al-Taghiyah)</span>
+        </button>
+        <button type="button" class="civ-card" data-civ="aad" onclick="selectCiv('aad')">
+          <span class="civ-verse-tag">Verses 69:4, 6–8</span>
+          <span class="civ-title">&apos;Aad</span>
+          <span class="civ-instrument">7 nights &amp; 8 days of screaming wind</span>
+        </button>
+        <button type="button" class="civ-card" data-civ="pharaoh" onclick="selectCiv('pharaoh')">
+          <span class="civ-verse-tag">Verses 69:9–10</span>
+          <span class="civ-title">Pharaoh &amp; Overturned Cities</span>
+          <span class="civ-instrument">An exceeding seizure (akhdhatan rabiyah)</span>
+        </button>
+        <button type="button" class="civ-card is-ark" data-civ="ark" onclick="selectCiv('ark')">
+          <span class="civ-verse-tag">Verses 69:11–12</span>
+          <span class="civ-title">The Sailing Ship (Al-Jariyah)</span>
+          <span class="civ-instrument">Preservation for a conscious ear</span>
+        </button>
+      </div>
+
+      <div class="panel-low civ-detail-grid" id="civ-detail-panel" aria-live="polite">
+        <div>
+          <span class="badge-terracotta" id="civ-badge">Historical Case · Verses 69:4–5</span>
+          <h3 class="subhead" style="margin-top: var(--space-md);" id="civ-heading">Thamud: Instant Collapse by the Overpowering Blast</h3>
+          <p class="prose" id="civ-analysis">
+            Thamud and &apos;Aad are paired in verse 4 because both denied <em>Al-Qari&apos;ah</em> (the Striking Calamity),
+            another name for the Day of Judgment. For Thamud, denial was answered by <em>al-Taghiyah</em> — an overpowering
+            acoustic blast that crossed every boundary of their rock-carved defenses in a single decisive strike.
+          </p>
+          <div class="arch-label" style="text-align: left; margin-top: var(--space-md);">Key Arabic Concept</div>
+          <p style="margin: var(--space-xs) 0 0; color: var(--on-surface-variant);" id="civ-lexical">
+            <strong>Al-Taghiyah (الطَّاغِيَةِ)</strong> — literally "that which exceeds all bounds." Notice the subtle
+            verbal symmetry with verse 11, where the Flood waters also "overflowed" (<em>tagha al-ma&apos;</em>):
+            the same root of excess destroys the arrogant yet lifts the saved upon the Ark.
+          </p>
+        </div>
+
+        <div class="verse-quote-box">
+          <div class="arch-label" style="text-align: left;">Source Text</div>
+          <div id="civ-verses" style="display: grid; gap: var(--space-md); margin-top: var(--space-sm);"></div>
+        </div>
+      </div>
+
+      <div class="study-table-wrap" aria-label="Comparative matrix of verses 4 to 12">
+        <table class="study-table">
+          <thead>
+            <tr>
+              <th scope="col">People / Event</th>
+              <th scope="col">Verses</th>
+              <th scope="col">Root Offense</th>
+              <th scope="col">Instrument / Outcome</th>
+              <th scope="col">Enduring Reminder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Thamud</strong></td>
+              <td class="tabular-num">69:4–5</td>
+              <td>Denied the Striking Calamity (<em>Al-Qari&apos;ah</em>)</td>
+              <td>Destroyed by the overpowering blast (<em>al-Taghiyah</em>)</td>
+              <td>Earthly fortresses cannot shield against divine decree</td>
+            </tr>
+            <tr>
+              <td><strong>&apos;Aad</strong></td>
+              <td class="tabular-num">69:4, 6–8</td>
+              <td>Denied the Striking Calamity (<em>Al-Qari&apos;ah</em>)</td>
+              <td>Screaming, violent wind for 7 nights &amp; 8 days</td>
+              <td>Left like hollow palm trunks with zero remains (<em>min baqiyah</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>Pharaoh &amp; Overturned Cities</strong></td>
+              <td class="tabular-num">69:9–10</td>
+              <td>Came with sin; disobeyed the messenger of their Lord</td>
+              <td>Seized with an exceeding seizure (<em>akhdhatan rabiyah</em>)</td>
+              <td>Political sovereignty collapses when paired with disobedience</td>
+            </tr>
+            <tr>
+              <td><strong>Ancestors in the Sailing Ship</strong></td>
+              <td class="tabular-num">69:11–12</td>
+              <td>Flood waters overflowed (contrast of salvation)</td>
+              <td>Carried safely in <em>Al-Jariyah</em> (the sailing ship)</td>
+              <td>A reminder (<em>tadhkirah</em>) for a conscious ear (<em>udhunun wa&apos;iyah</em>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Movement III: The Cosmic Rupture -->
+    <section id="movement-3" class="band-plaster reveal-section" aria-labelledby="h-movement-3">
+      <div class="kicker">
+        <span>Movement III · Verses 13–18</span>
+        <span>Eschatological Sequence</span>
+      </div>
+      <h2 class="section-heading" id="h-movement-3">One Blast, One Blow, and Total Exposure Before <em>The Throne</em></h2>
+      <p class="prose">
+        Where &apos;Aad fell over seven nights and eight days, the cosmic dissolution of the universe requires
+        only <em>one</em> blast and <em>one</em> blow. Step through verses 13–18 to trace the sequence from the
+        sounding of the Horn to the moment every human secret stands unveiled.
+      </p>
+
+      <div class="cosmic-stage-bar" role="tablist" aria-label="Cosmic sequence stages">
+        <button type="button" class="stage-pill is-active" data-stage="0" onclick="selectCosmicStage(0)">1. The Single Blast (v. 13)</button>
+        <button type="button" class="stage-pill" data-stage="1" onclick="selectCosmicStage(1)">2. Earth &amp; Mountains Leveled (v. 14)</button>
+        <button type="button" class="stage-pill" data-stage="2" onclick="selectCosmicStage(2)">3. The Event &amp; Split Heaven (v. 15–16)</button>
+        <button type="button" class="stage-pill" data-stage="3" onclick="selectCosmicStage(3)">4. Angels &amp; Eight Bearers (v. 17)</button>
+        <button type="button" class="stage-pill" data-stage="4" onclick="selectCosmicStage(4)">5. Nothing Concealed (v. 18)</button>
+      </div>
+
+      <div class="cosmic-grid">
+        <div class="panel-low" id="cosmic-text-panel" aria-live="polite">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-terracotta" id="cosmic-badge">Stage 1 of 5 · Verse 69:13</span>
+            <div style="display: flex; gap: var(--space-sm);">
+              <button type="button" class="btn btn-secondary" id="cosmic-prev" onclick="stepCosmic(-1)">Previous</button>
+              <button type="button" class="btn btn-primary" id="cosmic-next" onclick="stepCosmic(1)">Next Stage</button>
+            </div>
+          </div>
+          <div class="arabic-display" lang="ar" dir="rtl" style="margin-top: var(--space-md);" id="cosmic-arabic">
+            فَإِذَا نُفِخَ فِي الصُّورِ نَفْخَةٌ وَاحِدَةٌ
+          </div>
+          <p class="verse-english" style="margin-top: var(--space-sm);" id="cosmic-english">
+            "Then when the Horn is blown with one blast"
+          </p>
+          <p class="prose" style="margin-bottom: 0;" id="cosmic-note">
+            The adjective <em>wahidah</em> ("one") underscores effortless divine command: the entire physical order
+            responds instantaneously to a single signal, with no struggle or repetition required.
+          </p>
+        </div>
+
+        <div class="cosmic-schematic-wrap">
+          <svg id="cosmic-svg" viewBox="0 0 360 280" width="100%" height="260" aria-hidden="true">
+            <!-- Dynamic SVG schematic updated by JS using CSS token colors -->
+          </svg>
+          <div class="arch-label" id="cosmic-diagram-caption" style="margin-top: var(--space-sm);">
+            Acoustic Signal: Nafkhatan Wahidah (One Blast)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Movement IV: The Two Records -->
+    <section id="movement-4" class="reveal-section" aria-labelledby="h-movement-4">
+      <div class="kicker">
+        <span>Movement IV · Verses 19–37</span>
+        <span>Moral Polarity &amp; Literary Echo</span>
+      </div>
+      <h2 class="section-heading" id="h-movement-4">The Two Books: How One Arabic Rhyme Captures Both Joy and <em>Regret</em></h2>
+      <p class="prose">
+        In verses 19–29, Surah Al-Haqqah achieves one of its most striking literary effects: both the blessed and
+        the condemned speak in lines ending with the breathless <em>-iyah</em> cadence (<em>Ha&apos; al-Sakt</em>).
+        In the right hand, that breath sounds like exhilarated release; in the left hand, it sounds like a gasp of
+        ruin. Toggle the cadence highlight below to see the mirror structure side by side.
+      </p>
+
+      <div class="records-controls">
+        <button type="button" class="btn btn-secondary" id="toggle-rhyme-btn" onclick="toggleRhymeMode()">
+          Highlight -iyah Cadence &amp; Mirrors
+        </button>
+        <span class="badge-brass" id="rhyme-status">Showing full Arabic &amp; English translation</span>
+      </div>
+
+      <div class="records-grid">
+        <!-- Right Hand -->
+        <article class="record-panel record-right" aria-label="Recipient of the right hand, verses 19 to 24">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-emerald">Right Hand · Verses 69:19–24</span>
+            <span class="arch-label" style="margin: 0; color: var(--on-tertiary-container);">Certainty Rewarded</span>
+          </div>
+          <h3 class="subhead">"Here, Read My Record!"</h3>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-right="1">
+              فَأَمَّا مَنْ أُوتِيَ كِتَابَهُ بِيَمِينِهِ فَيَقُولُ هَاؤُمُ اقْرَءُوا كِتَابِيَهْ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:19:</strong> So as for he who is given his record in his right hand, he will say,
+              "Here, read my <span class="rhyme-target">record!</span>"
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-right="2">
+              إِنِّي ظَنَنْتُ أَنِّي مُلَاقٍ حِسَابِيَهْ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:20:</strong> "Indeed, I was certain that I would be meeting my <span class="rhyme-target">account.</span>"
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-right="3">
+              فَهُوَ فِي عِيشَةٍ رَاضِيَةٍ ۝ فِي جَنَّةٍ عَالِيَةٍ ۝ قُطُوفُهَا دَانِيَةٌ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:21–23:</strong> So he will be in a pleasant <span class="rhyme-target">life</span>, in an elevated
+              <span class="rhyme-target">garden</span>, its [fruit] to be picked hanging <span class="rhyme-target">near</span>.
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-right="4">
+              كُلُوا وَاشْرَبُوا هَنِيئًا بِمَا أَسْلَفْتُمْ فِي الْأَيَّامِ الْخَالِيَةِ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:24:</strong> [They will be told], "Eat and drink in satisfaction for what you put forth in the days past."
+            </p>
+          </div>
+        </article>
+
+        <!-- Left Hand -->
+        <article class="record-panel record-left" aria-label="Recipient of the left hand, verses 25 to 37">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-terracotta">Left Hand · Verses 69:25–37</span>
+            <span class="arch-label" style="margin: 0; color: var(--on-primary-container);">Illusions Stripped</span>
+          </div>
+          <h3 class="subhead">"Oh, I Wish I Had Not Been Given My Record"</h3>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-left="1">
+              وَأَمَّا مَنْ أُوتِيَ كِتَابَهُ بِشِمَالِهِ فَيَقُولُ يَا لَيْتَنِي لَمْ أُوتَ كِتَابِيَهْ ۝ وَلَمْ أَدْرِ مَا حِسَابِيَهْ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:25–26:</strong> But as for he who is given his record in his left hand, he will say,
+              "Oh, I wish I had not been given my <span class="rhyme-target">record</span>, and had not known what is my <span class="rhyme-target">account</span>."
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl" data-rhyme-left="2">
+              يَا لَيْتَهَا كَانَتِ الْقَاضِيَةَ ۝ مَا أَغْنَى عَنِّي مَالِيَة ۝ هَلَكَ عَنِّي سُلْطَانِيَة
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:27–29:</strong> "I wish my death had been the <span class="rhyme-target">decisive one</span>.
+              My <span class="rhyme-target">wealth</span> has not availed me. Gone from me is my <span class="rhyme-target">authority</span>."
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl">
+              خُذُوهُ فَغُلُّوهُ ۝ ثُمَّ الْجَحِيمَ صَلُّوهُ ۝ ثُمَّ فِي سِلْسِلَةٍ ذَرْعُهَا سَبْعُونَ ذِرَاعًا فَاسْلُكُوهُ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:30–32:</strong> [Allah will say], "Seize him and shackle him. Then into Hellfire drive him.
+              Then into a chain whose length is seventy cubits insert him."
+            </p>
+          </div>
+
+          <div class="record-verse-line">
+            <div class="arabic-text" lang="ar" dir="rtl">
+              فَلَيْسَ لَهُ الْيَوْمَ هَاهُنَا حَمِيمٌ ۝ وَلَا طَعَامٌ إِلَّا مِنْ غِسْلِين ۝ لَا يَأْكُلُهُ إِلَّا الْخَاطِئُونَ
+            </div>
+            <p style="margin: var(--space-xs) 0 0; font-size: 0.95rem;">
+              <strong>69:35–37:</strong> So there is not for him here this Day any devoted friend, nor any food
+              except from the discharge of wounds; none will eat it except the sinners.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="root-causes-box" aria-label="Root causes named in verses 33 and 34">
+        <div>
+          <span class="badge-terracotta">Root Cause 1 · Verse 69:33</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Severed Relationship with God</h3>
+          <div class="arabic-text" lang="ar" dir="rtl">إِنَّهُ كَانَ لَا يُؤْمِنُ بِاللَّهِ الْعَظِيمِ</div>
+          <p class="prose" style="margin-top: var(--space-xs); margin-bottom: 0;">
+            "Indeed, he did not used to believe in Allah, the Most Great" — neglecting the majesty of
+            <em>Allah al-&apos;Azim</em>, the very title the believer is commanded to exalt in the chapter&apos;s final verse (69:52).
+          </p>
+        </div>
+        <div>
+          <span class="badge-terracotta">Root Cause 2 · Verse 69:34</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Severed Responsibility to the Vulnerable</h3>
+          <div class="arabic-text" lang="ar" dir="rtl">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِين</div>
+          <p class="prose" style="margin-top: var(--space-xs); margin-bottom: 0;">
+            "Nor did he encourage the feeding of the poor." Notice the precision of the phrasing: not merely failing to
+            feed the poor himself, but failing even to urge others toward compassion while hoarding wealth and authority.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Movement V: Defense of Revelation & Final Certainty -->
+    <section id="movement-5" class="band-plaster reveal-section" aria-labelledby="h-movement-5">
+      <div class="kicker">
+        <span>Movement V · Verses 38–52</span>
+        <span>Oath, Integrity &amp; Epilogue</span>
+      </div>
+      <h2 class="section-heading" id="h-movement-5">By the Seen and the Unseen: The Vindication of Revelation as <em>Haqq al-Yaqin</em></h2>
+      <p class="prose">
+        In its closing act, Surah Al-Haqqah shifts from the scenes of judgment back to the listener standing before
+        the Qur&apos;an itself. Allah swears by <em>"what you see and what you do not see"</em> (69:38–39) that this
+        message is neither the verse of a poet nor the cryptic rhyming of a soothsayer, but a revelation from the
+        Lord of the worlds — closing the arc opened in verse 1.
+      </p>
+
+      <div class="oath-cards">
+        <div class="panel-low">
+          <span class="badge-brass">69:38–43</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Not Poetry, Not Soothsaying</h3>
+          <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">
+            Contemporary critics tried to dismiss the Prophet&apos;s recitation as <em>qawl sha&apos;ir</em> (a poet&apos;s speech)
+            or <em>qawl kahin</em> (a soothsayer&apos;s speech). The surah rejects both: "little do you believe... little do you remember,"
+            affirming it as <em>tanzil min Rabb al-&apos;Alamin</em>.
+          </p>
+        </div>
+        <div class="panel-low">
+          <span class="badge-terracotta">69:44–47</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">The Solemn Hypothetical Guarantee</h3>
+          <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">
+            To underscore total fidelity in transmission, verses 44–47 state that if Muhammad had fabricated false sayings
+            about God, God would have seized him by the right hand and cut the aorta (<em>al-watin</em>), with none able
+            to shield him.
+          </p>
+        </div>
+        <div class="panel-low">
+          <span class="badge-emerald">69:48–52</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Reminder, Regret, and Certainty</h3>
+          <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">
+            The same revelation acts as a <em>tadhkirah</em> (reminder) for the righteous and a <em>hasrah</em> (regret)
+            for the deniers, before culminating in <strong>Haqq al-Yaqin</strong> ("the truth of certainty", 69:51) and
+            glorifying <em>Rabbika al-&apos;Azim</em> (69:52).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete 52-Verse Interactive Explorer -->
+    <section id="verse-explorer" class="reveal-section" aria-labelledby="h-explorer">
+      <div class="kicker">
+        <span>Complete Text &amp; Personal Study Log</span>
+        <span>Verses 69:1 — 69:52</span>
+      </div>
+      <h2 class="section-heading" id="h-explorer">Verse-by-Verse <em>Exploration</em></h2>
+      <p class="prose">
+        Read all 52 verses with Arabic text, English translation, and concise thematic notes. Mark verses as studied
+        and record personal study notes; your progress and reflections persist automatically across sessions.
+      </p>
+
+      <div class="explorer-toolbar">
+        <div class="field-group">
+          <label class="field-label" for="verse-search">Search Arabic, English translation, or verse number</label>
+          <input type="search" id="verse-search" class="text-input" placeholder="e.g. wind, 19, garden, aorta, Thamud" oninput="renderVerseExplorer()">
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+          <button type="button" class="btn btn-emerald" onclick="markFilteredStudied()">Mark Visible Studied</button>
+          <button type="button" class="btn btn-secondary" onclick="exportStudyNotes()">Export Notes (.txt)</button>
+        </div>
+      </div>
+
+      <div class="filter-pills" role="group" aria-label="Filter verses by movement">
+        <button type="button" class="btn btn-secondary is-active" data-filter="all" onclick="setMovementFilter('all')">All 52 Verses</button>
+        <button type="button" class="btn btn-secondary" data-filter="m1" onclick="setMovementFilter('m1')">I. Opening (1–3)</button>
+        <button type="button" class="btn btn-secondary" data-filter="m2" onclick="setMovementFilter('m2')">II. History (4–12)</button>
+        <button type="button" class="btn btn-secondary" data-filter="m3" onclick="setMovementFilter('m3')">III. Resurrection (13–18)</button>
+        <button type="button" class="btn btn-secondary" data-filter="m4" onclick="setMovementFilter('m4')">IV. Two Books (19–37)</button>
+        <button type="button" class="btn btn-secondary" data-filter="m5" onclick="setMovementFilter('m5')">V. Revelation (38–52)</button>
+        <button type="button" class="btn btn-secondary" data-filter="unstudied" onclick="setMovementFilter('unstudied')">Unstudied Only</button>
+      </div>
+
+      <div id="explorer-count-status" class="arch-label" style="text-align: left; margin-bottom: var(--space-md);">
+        Showing 52 of 52 verses
+      </div>
+
+      <div id="verse-list" class="verse-list"></div>
+    </section>
+
+    <!-- Knowledge Checks -->
+    <section id="knowledge-checks" class="band-plaster reveal-section" aria-labelledby="h-quiz">
+      <div class="kicker">
+        <span>Interactive Knowledge Checks</span>
+        <span>6 Mastery Questions</span>
+      </div>
+      <h2 class="section-heading" id="h-quiz">Test Your Understanding of <em>Surah Al-Haqqah</em></h2>
+      <p class="prose">
+        Check your grasp of the surah&apos;s thematic arc, historical details, cosmic imagery, and ethical lessons.
+        Each response gives immediate verse-grounded feedback.
+      </p>
+
+      <div id="quiz-container" class="quiz-grid"></div>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--warm-hairline);">
+        <div id="quiz-summary-line" style="font-weight: 600; color: var(--on-surface);">
+          Answered 0 of 6 questions · Score: 0 / 6
+        </div>
+        <button type="button" class="btn btn-secondary" id="reset-progress-btn" onclick="handleResetProgress(this)">
+          Reset Study &amp; Quiz Progress
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>Source grounding: Complete Arabic text and English translation of Chapter 69 (Surah Al-Haqqah, verses 1–52) from provided source material.</span>
+      <span id="save-status-indicator">Progress saved locally in workspace</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const VERSES = [
+      { n: 1, m: `m1`, movement: `I. The Inevitable Question`, ar: `الْحَاقَّةُ`, en: `The Inevitable Reality`, note: `Opening definite noun announcing the Hour as an inescapable truth that reveals every reality.` },
+      { n: 2, m: `m1`, movement: `I. The Inevitable Question`, ar: `مَا الْحَاقَّةُ`, en: `What is the Inevitable Reality?`, note: `Direct rhetorical question heightening awe and attention.` },
+      { n: 3, m: `m1`, movement: `I. The Inevitable Question`, ar: `وَمَا أَدْرَاكَ مَا الْحَاقَّةُ`, en: `And what can make you know what is the Inevitable Reality?`, note: `Signals that human imagination alone cannot fathom its magnitude without revelation.` },
+      { n: 4, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `كَذَّبَتْ ثَمُودُ وَعَادٌ بِالْقَارِعَةِ`, en: `Thamud and 'Aad denied the Striking Calamity.`, note: `Introduces the ancient Arabian peoples who rejected the warning of Judgment (Al-Qari'ah).` },
+      { n: 5, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `فَأَمَّا ثَمُودُ فَأُهْلِكُوا بِالطَّاغِيَةِ`, en: `So as for Thamud, they were destroyed by the overpowering [blast].`, note: `Al-Taghiyah denotes an overwhelming, boundary-crossing blast that ended Thamud.` },
+      { n: 6, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `وَأَمَّا عَادٌ فَأُهْلِكُوا بِرِيحٍ صَرْصَرٍ عَاتِيَةٍ`, en: `And as for 'Aad, they were destroyed by a screaming, violent wind`, note: `Rih sarsar 'atiyah: a freezing, roaring gale beyond mortal control.` },
+      { n: 7, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `سَخَّرَهَا عَلَيْهِمْ سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ حُسُومًا فَتَرَى الْقَوْمَ فِيهَا صَرْعَى كَأَنَّهُمْ أَعْجَازُ نَخْلٍ خَاوِيَةٍ`, en: `Which Allah imposed upon them for seven nights and eight days in succession, so you would see the people therein fallen as if they were hollow trunks of palm trees.`, note: `Unrelenting duration (7 nights, 8 days) and vivid simile contrasting their famed stature with hollow, felled palms.` },
+      { n: 8, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `فَهَلْ تَرَىٰ لَهُمْ مِنْ بَاقِيَةٍ`, en: `Then do you see of them any remains?`, note: `Rhetorical question pointing to the utter erasure of their civilization.` },
+      { n: 9, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `وَجَاءَ فِرْعَوْنُ وَمَنْ قَبْلَهُ وَالْمُؤْتَفِكَاتُ بِالْخَاطِئَةِ`, en: `And there came Pharaoh and those before him and the overturned cities with sin.`, note: `Broadens the historical lens to Pharaoh and the overturned cities (Al-Mu'tafikat).` },
+      { n: 10, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `فَعَصَوْا رَسُولَ رَبِّهِمْ فَأَخَذَهُمْ أَخْذَةً رَابِيَةً`, en: `And they disobeyed the messenger of their Lord, so He seized them with a seizure exceeding [in severity].`, note: `Links collective ruin directly to disobeying the messenger sent by their Lord.` },
+      { n: 11, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `إِنَّا لَمَّا طَغَى الْمَاءُ حَمَلْنَاكُمْ فِي الْجَارِيَةِ`, en: `Indeed, when the water overflowed, We carried your ancestors in the sailing ship`, note: `Recall of divine mercy during the Flood: humanity survives inside Al-Jariyah ("the sailing ship").` },
+      { n: 12, m: `m2`, movement: `II. Historical Proofs & The Ark`, ar: `لِنَجْعَلَهَا لَكُمْ تَذْكِرَةً وَتَعِيَهَا أُذُنٌ وَاعِيَةٌ`, en: `That We might make it for you a reminder and [that] a conscious ear would be conscious of it.`, note: `States the moral purpose of sacred history: a reminder (tadhkirah) retained by an attentive, conscious ear.` },
+      { n: 13, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `فَإِذَا نُفِخَ فِي الصُّورِ نَفْخَةٌ وَاحِدَةٌ`, en: `Then when the Horn is blown with one blast`, note: `Marks the abrupt transition from human history to the cosmic Resurrection with a single blast.` },
+      { n: 14, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `وَحُمِلَتِ الْأَرْضُ وَالْجِبَالُ فَدُكَّتَا دَكَّةً وَاحِدَةً`, en: `And the earth and the mountains are lifted and leveled with one blow`, note: `The emblems of terrestrial permanence — earth and mountains — are lifted and crushed in a single stroke.` },
+      { n: 15, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `فَيَوْمَئِذٍ وَقَعَتِ الْوَاقِعَةُ`, en: `Then on that Day, the Resurrection will occur,`, note: `Al-Waqi'ah: the unavoidable Event comes to pass.` },
+      { n: 16, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `وَانْشَقَّتِ السَّمَاءُ فَهِيَ يَوْمَئِذٍ وَاهِيَةٌ`, en: `And the heaven will split [open], for that Day it is infirm.`, note: `Even the vast sky loses all structural cohesion and splits open.` },
+      { n: 17, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `وَالْمَلَكُ عَلَىٰ أَرْجَائِهَا وَيَحْمِلُ عَرْشَ رَبِّكَ فَوْقَهُمْ يَوْمَئِذٍ ثَمَانِيَةٌ`, en: `And the angels are at its edges. And there will bear the Throne of your Lord above them, that Day, eight [of them].`, note: `Angels stand at the borders of the split sky while eight bear the Throne above them.` },
+      { n: 18, m: `m3`, movement: `III. The Cosmic Rupture`, ar: `يَوْمَئِذٍ تُعْرَضُونَ لَا تَخْفَى مِنْكُمْ خَافِيَةٌ`, en: `That Day, you will be exhibited [for judgement]; not hidden among you is anything concealed.`, note: `Climax of Movement III: absolute transparency where no inward intention or deed remains hidden.` },
+      { n: 19, m: `m4`, movement: `IV. The Two Records`, ar: `فَأَمَّا مَنْ أُوتِيَ كِتَابَهُ بِيَمِينِهِ فَيَقُولُ هَاؤُمُ اقْرَءُوا كِتَابِيَهْ`, en: `So as for he who is given his record in his right hand, he will say, "Here, read my record!`, note: `Euphoric openness: the right-hand recipient invites everyone around to inspect his record.` },
+      { n: 20, m: `m4`, movement: `IV. The Two Records`, ar: `إِنِّي ظَنَنْتُ أَنِّي مُلَاقٍ حِسَابِيَهْ`, en: `Indeed, I was certain that I would be meeting my account."`, note: `Explains the secret of his salvation: living in earthly certainty of meeting his moral account.` },
+      { n: 21, m: `m4`, movement: `IV. The Two Records`, ar: `فَهُوَ فِي عِيشَةٍ رَاضِيَةٍ`, en: `So he will be in a pleasant life`, note: `Describes a state of deep, enduring contentment ('ishatin radiyah).` },
+      { n: 22, m: `m4`, movement: `IV. The Two Records`, ar: `فِي جَنَّةٍ عَالِيَةٍ`, en: `In an elevated garden,`, note: `Both spatially exalted and spiritually honored.` },
+      { n: 23, m: `m4`, movement: `IV. The Two Records`, ar: `قُطُوفُهَا دَانِيَةٌ`, en: `Its [fruit] to be picked hanging near.`, note: `Contrast of elevation and accessibility: an elevated garden whose fruit bends effortlessly within reach.` },
+      { n: 24, m: `m4`, movement: `IV. The Two Records`, ar: `كُلُوا وَاشْرَبُوا هَنِيئًا بِمَا أَسْلَفْتُمْ فِي الْأَيَّامِ الْخَالِيَةِ`, en: `[They will be told], "Eat and drink in satisfaction for what you put forth in the days past."`, note: `Honorific welcome tying eternal satisfaction to righteous deeds sent ahead during earthly life.` },
+      { n: 25, m: `m4`, movement: `IV. The Two Records`, ar: `وَأَمَّا مَنْ أُوتِيَ كِتَابَهُ بِشِمَالِهِ فَيَقُولُ يَا لَيْتَنِي لَمْ أُوتَ كِتَابِيَهْ`, en: `But as for he who is given his record in his left hand, he will say, "Oh, I wish I had not been given my record`, note: `Immediate recoil in shame, mirroring verse 19 word-for-word in opposite polarity.` },
+      { n: 26, m: `m4`, movement: `IV. The Two Records`, ar: `وَلَمْ أَدْرِ مَا حِسَابِيَهْ`, en: `And had not known what is my account.`, note: `Wishes for ignorance of the reckoning he had dismissed during life.` },
+      { n: 27, m: `m4`, movement: `IV. The Two Records`, ar: `يَا لَيْتَهَا كَانَتِ الْقَاضِيَةَ`, en: `I wish my death had been the decisive one.`, note: `Longs that physical death had meant total annihilation rather than awakening to judgment.` },
+      { n: 28, m: `m4`, movement: `IV. The Two Records`, ar: `مَا أَغْنَى عَنِّي مَالِيَة`, en: `My wealth has not availed me.`, note: `Confesses the total bankruptcy of accumulated material possessions.` },
+      { n: 29, m: `m4`, movement: `IV. The Two Records`, ar: `هَلَكَ عَنِّي سُلْطَانِيَة`, en: `Gone from me is my authority."`, note: `Power, status, and persuasive influence vanish completely.` },
+      { n: 30, m: `m4`, movement: `IV. The Two Records`, ar: `خُذُوهُ فَغُلُّوهُ`, en: `[Allah will say], "Seize him and shackle him.`, note: `Curt, rhythmic divine command signaling the end of excuses.` },
+      { n: 31, m: `m4`, movement: `IV. The Two Records`, ar: `ثُمَّ الْجَحِيمَ صَلُّوهُ`, en: `Then into Hellfire drive him.`, note: `Second imperative in the triad of judgment.` },
+      { n: 32, m: `m4`, movement: `IV. The Two Records`, ar: `ثُمَّ فِي سِلْسِلَةٍ ذَرْعُهَا سَبْعُونَ ذِرَاعًا فَاسْلُكُوهُ`, en: `Then into a chain whose length is seventy cubits insert him."`, note: `Describes the binding restraint of seventy cubits.` },
+      { n: 33, m: `m4`, movement: `IV. The Two Records`, ar: `إِنَّهُ كَانَ لَا يُؤْمِنُ بِاللَّهِ الْعَظِيمِ`, en: `Indeed, he did not used to believe in Allah, the Most Great,`, note: `First root cause of his downfall: disbelief in Allah, the Most Great (Al-'Azim).` },
+      { n: 34, m: `m4`, movement: `IV. The Two Records`, ar: `وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِين`, en: `Nor did he encourage the feeding of the poor.`, note: `Second root cause: social indifference — not even encouraging care for the destitute.` },
+      { n: 35, m: `m4`, movement: `IV. The Two Records`, ar: `فَلَيْسَ لَهُ الْيَوْمَ هَاهُنَا حَمِيمٌ`, en: `So there is not for him here this Day any devoted friend`, note: `Relational isolation matching his former isolation from the poor.` },
+      { n: 36, m: `m4`, movement: `IV. The Two Records`, ar: `وَلَا طَعَامٌ إِلَّا مِنْ غِسْلِين`, en: `Nor any food except from the discharge of wounds;`, note: `Stark inversion of the garden's near fruit and pleasant sustenance (vv. 23–24).` },
+      { n: 37, m: `m4`, movement: `IV. The Two Records`, ar: `لَا يَأْكُلُهُ إِلَّا الْخَاطِئُونَ`, en: `None will eat it except the sinners.`, note: `Connects the penalty to deliberate, persistent sin (al-khati'un, echoing v. 9).` },
+      { n: 38, m: `m5`, movement: `V. Revelation & Certainty`, ar: `فَلَا أُقْسِمُ بِمَا تُبْصِرُونَ`, en: `So I swear by what you see`, note: `Comprehensive oath invoking the entire visible creation.` },
+      { n: 39, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَمَا لَا تُبْصِرُونَ`, en: `And what you do not see`, note: `Expands the oath to all unseen realms, angels, and realities beyond human perception.` },
+      { n: 40, m: `m5`, movement: `V. Revelation & Certainty`, ar: `إِنَّهُ لَقَوْلُ رَسُولٍ كَرِيمٍ`, en: `[That] indeed, the Qur'an is the word of a noble Messenger.`, note: `Affirms the nobility and trustworthiness of the Messenger who conveys the revelation.` },
+      { n: 41, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَمَا هُوَ بِقَوْلِ شَاعِرٍ قَلِيلًا مَا تُؤْمِنُونَ`, en: `And it is not the word of a poet; little do you believe.`, note: `Refutes the charge of poetic invention; diagnoses the core barrier as lack of faith.` },
+      { n: 42, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَلَا بِقَوْلِ كَاهِنٍ قَلِيلًا مَا تَذَكَّرُونَ`, en: `Nor the word of a soothsayer; little do you remember.`, note: `Refutes the charge of occult divination; diagnoses neglect of remembrance.` },
+      { n: 43, m: `m5`, movement: `V. Revelation & Certainty`, ar: `تَنْزِيلٌ مِنْ رَبِّ الْعَالَمِينَ`, en: `[It is] a revelation from the Lord of the worlds.`, note: `Positive declaration of origin: sent down directly from Rabb al-'Alamin.` },
+      { n: 44, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَلَوْ تَقَوَّلَ عَلَيْنَا بَعْضَ الْأَقَاوِيلِ`, en: `And if Muhammad had made up about Us some [false] sayings,`, note: `Solemn hypothetical premise affirming absolute prophetic truthfulness.` },
+      { n: 45, m: `m5`, movement: `V. Revelation & Certainty`, ar: `لَأَخَذْنَا مِنْهُ بِالْيَمِينِ`, en: `We would have seized him by the right hand;`, note: `Immediate divine intervention if even a single false saying were attributed to God.` },
+      { n: 46, m: `m5`, movement: `V. Revelation & Certainty`, ar: `ثُمَّ لَقَطَعْنَا مِنْهُ الْوَتِينَ`, en: `Then We would have cut from him the aorta.`, note: `Al-Watin (the aorta): cutting the life-artery conveys zero tolerance for fabricated revelation.` },
+      { n: 47, m: `m5`, movement: `V. Revelation & Certainty`, ar: `فَمَا مِنْكُمْ مِنْ أَحَدٍ عَنْهُ حَاجِزِينَ`, en: `And there is no one of you who could prevent [Us] from him.`, note: `Underscores that no human ally could obstruct divine accountability.` },
+      { n: 48, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَإِنَّهُ لَتَذْكِرَةٌ لِلْمُتَّقِينَ`, en: `And indeed, the Qur'an is a reminder for the righteous.`, note: `Echoes verse 12 (tadhkirah): just as the Ark was a reminder, so is the Qur'an for the God-conscious.` },
+      { n: 49, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَإِنَّا لَنَعْلَمُ أَنَّ مِنْكُمْ مُكَذِّبِينَ`, en: `And indeed, We know that among you are deniers.`, note: `Acknowledges present rejection while echoing the deniers of verse 4.` },
+      { n: 50, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَإِنَّهُ لَحَسْرَةٌ عَلَى الْكَافِرِينَ`, en: `And indeed, it will be [a cause of] regret upon the disbelievers.`, note: `Links back to the bitter regret of the left-hand recipient (vv. 25–29).` },
+      { n: 51, m: `m5`, movement: `V. Revelation & Certainty`, ar: `وَإِنَّهُ لَحَقُّ الْيَقِينِ`, en: `And indeed, it is the truth of certainty.`, note: `Completes the surah's conceptual circle from Al-Haqqah (v. 1) to Haqq al-Yaqin (v. 51).` },
+      { n: 52, m: `m5`, movement: `V. Revelation & Certainty`, ar: `فَسَبِّحْ بِاسْمِ رَبِّكَ الْعَظِيمِ`, en: `So exalt the name of your Lord, the Most Great.`, note: `Final devotional imperative glorifying Al-'Azim — directly answering the negligence of verse 33.` }
+    ];
+
+    const TRIAD_DATA = {
+      1: {
+        badge: `Verse 69:1 · Opening Announcement`,
+        heading: `A Single Word That Commands Silence`,
+        body: `The chapter opens not with a conditional clause or a story, but with a solitary definite noun: <strong>Al-Haqqah</strong>. In Arabic grammar, the active participle signals both an event that is guaranteed to occur and one that makes every hidden truth manifest.`,
+        link: `The word <em>Al-Haqqah</em> (69:1) is echoed by <em>Al-Qari'ah</em> ("the Striking Calamity", 69:4), <em>Al-Waqi'ah</em> ("the Resurrection", 69:15), and resolves in <em>Haqq al-Yaqin</em> ("the truth of certainty", 69:51).`
+      },
+      2: {
+        badge: `Verse 69:2 · Direct Inquiry`,
+        heading: `Turning Announcement into Interrogation`,
+        body: `Instead of moving straight into description, verse 2 repeats the title as an explicit question: <strong>Ma al-Haqqah?</strong> ("What is the Inevitable Reality?"). The repetition forces the listener to pause and ask whether their assumptions about life and power can withstand it.`,
+        link: `By repeating <em>Al-Haqqah</em> at the close of three consecutive verses (1, 2, 3), the opening establishes sonic weight before pivoting to concrete history in verse 4.`
+      },
+      3: {
+        badge: `Verse 69:3 · Transcendent Scale`,
+        heading: `Beyond Ordinary Human Estimation`,
+        body: `In Qur'anic rhetoric, the phrase <strong>Wa ma adraka</strong> ("And what can make you know...") always signals a reality beyond ordinary empirical imagination. It prepares the listener to hear both ancient historical ruins and cosmic upheaval as signs of its truth.`,
+        link: `What human reason cannot fully measure on its own is illuminated step by step through the rest of the surah — ending in <em>Haqq al-Yaqin</em> (69:51).`
+      }
+    };
+
+    const CIV_DATA = {
+      thamud: {
+        badge: `Historical Case · Verses 69:4–5`,
+        badgeClass: `badge-terracotta`,
+        heading: `Thamud: Instant Collapse by the Overpowering Blast`,
+        analysis: `Thamud and 'Aad are paired in verse 4 because both denied <em>Al-Qari'ah</em> (the Striking Calamity), another name for the Day of Judgment. For Thamud, denial was answered by <em>al-Taghiyah</em> — an overpowering acoustic blast that crossed every boundary of their rock-carved defenses in a single decisive strike.`,
+        lexical: `<strong>Al-Taghiyah (الطَّاغِيَةِ)</strong> — literally "that which exceeds all bounds." Notice the subtle verbal symmetry with verse 11, where the Flood waters also "overflowed" (<em>tagha al-ma'</em>): the same root of excess destroys the arrogant yet lifts the saved upon the Ark.`,
+        verseNums: [4, 5]
+      },
+      aad: {
+        badge: `Historical Case · Verses 69:6–8`,
+        badgeClass: `badge-terracotta`,
+        heading: `'Aad: Seven Nights and Eight Days of Unrelenting Wind`,
+        analysis: `If Thamud fell suddenly, 'Aad experienced prolonged, inescapable devastation: a screaming, violent wind (<em>rihin sarsarin 'atiyah</em>) imposed continuously for <strong>seven nights and eight days</strong>. The surah paints a stark visual of their aftermath: mighty people fallen like hollow trunks of palm trees, with not a single remnant left standing.`,
+        lexical: `<strong>Husuman (حُسُومًا)</strong> — unbroken, decisive, cutting off every trace. The question in verse 8 ("Then do you see of them any remains?") invites the listener to scan the silent horizon.`,
+        verseNums: [6, 7, 8]
+      },
+      pharaoh: {
+        badge: `Historical Case · Verses 69:9–10`,
+        badgeClass: `badge-terracotta`,
+        heading: `Pharaoh & the Overturned Cities: The Cost of Disobedience`,
+        analysis: `Verses 9–10 widen the horizon beyond Arabia to Pharaoh, earlier peoples, and the overturned cities (<em>al-mu'tafikat</em>). Their shared indictment is explicit: they came with sin (<em>al-khati'ah</em>) and disobeyed the messenger of their Lord, bringing upon themselves a seizure exceeding in severity (<em>akhdhatan rabiyah</em>).`,
+        lexical: `<strong>Al-Khati'ah (الْخَاطِئَةِ)</strong> — deliberate, grave transgression. Later in verse 37, the condemned are called <em>al-khati'un</em> ("the sinners"), binding ancient collective arrogance to individual accountability on the Last Day.`,
+        verseNums: [9, 10]
+      },
+      ark: {
+        badge: `Saving Counterpoint · Verses 69:11–12`,
+        badgeClass: `badge-emerald`,
+        heading: `The Sailing Ship: Preservation for a Conscious Ear`,
+        analysis: `After three portraits of destruction, verses 11–12 pivot to rescue and gratitude: when the water overflowed, God carried humanity's ancestors in <em>Al-Jariyah</em> ("the sailing ship"). History is therefore not merely a warning of ruin — our very existence owes itself to divine preservation, meant to become a living reminder for anyone willing to listen.`,
+        lexical: `<strong>Udhunun Wa'iyah (أُذُنٌ وَاعِيَةٌ)</strong> — "a conscious ear," an ear that retains, reflects, and acts upon what it hears, rather than letting warnings pass like empty sound.`,
+        verseNums: [11, 12]
+      }
+    };
+
+    const COSMIC_STAGES = [
+      {
+        badge: `Stage 1 of 5 · Verse 69:13`,
+        ar: `فَإِذَا نُفِخَ فِي الصُّورِ نَفْخَةٌ وَاحِدَةٌ`,
+        en: `"Then when the Horn is blown with one blast"`,
+        note: `The adjective wahidah ("one") underscores effortless divine command: the entire physical order responds instantaneously to a single signal, with no struggle or repetition required.`,
+        caption: `Acoustic Signal: Nafkhatan Wahidah (One Blast)`
+      },
+      {
+        badge: `Stage 2 of 5 · Verse 69:14`,
+        ar: `وَحُمِلَتِ الْأَرْضُ وَالْجِبَالُ فَدُكَّتَا دَكَّةً وَاحِدَةً`,
+        en: `"And the earth and the mountains are lifted and leveled with one blow"`,
+        note: `Earth and mountains — the very emblems of geological permanence and human shelter — are lifted from their foundations and crushed flat in a single stroke (dakkatan wahidah).`,
+        caption: `Terrestrial Dissolution: Earth & Mountains Leveled`
+      },
+      {
+        badge: `Stage 3 of 5 · Verses 69:15–16`,
+        ar: `فَيَوْمَئِذٍ وَقَعَتِ الْوَاقِعَةُ ۝ وَانْشَقَّتِ السَّمَاءُ فَهِيَ يَوْمَئِذٍ وَاهِيَةٌ`,
+        en: `"Then on that Day, the Resurrection will occur, And the heaven will split [open], for that Day it is infirm."`,
+        note: `Above the leveled earth, the canopy of heaven loses its cohesion (wahiyah — fragile, infirm) and splits apart, marking the arrival of Al-Waqi'ah.`,
+        caption: `Celestial Rupture: The Heaven Splits Open`
+      },
+      {
+        badge: `Stage 4 of 5 · Verse 69:17`,
+        ar: `وَالْمَلَكُ عَلَىٰ أَرْجَائِهَا وَيَحْمِلُ عَرْشَ رَبِّكَ فَوْقَهُمْ يَوْمَئِذٍ ثَمَانِيَةٌ`,
+        en: `"And the angels are at its edges. And there will bear the Throne of your Lord above them, that Day, eight [of them]."`,
+        note: `Angels station themselves around the torn edges of heaven while eight angels bear the Throne of the Lord above them — a scene of solemn courtly majesty.`,
+        caption: `Celestial Court: Angels at the Edges & Eight Throne-Bearers`
+      },
+      {
+        badge: `Stage 5 of 5 · Verse 69:18`,
+        ar: `يَوْمَئِذٍ تُعْرَضُونَ لَا تَخْفَى مِنْكُمْ خَافِيَةٌ`,
+        en: `"That Day, you will be exhibited [for judgement]; not hidden among you is anything concealed."`,
+        note: `Every physical screen has collapsed; humanity stands exhibited in complete moral transparency where not a single concealed motive or secret remains hidden.`,
+        caption: `Total Exhibition: Nothing Concealed`
+      }
+    ];
+
+    const QUIZ_DATA = [
+      {
+        q: `How does Surah Al-Haqqah create a thematic bookend between its opening (69:1–3) and its conclusion (69:51)?`,
+        options: [
+          `It opens by naming the Last Day Al-Haqqah ("the Inevitable Reality") and closes by declaring the Qur'an Haqq al-Yaqin ("the truth of certainty").`,
+          `It opens by describing Paradise and closes by describing the Flood.`,
+          `It opens with an oath by the stars and closes with an oath by the wind.`,
+          `It opens by addressing Pharaoh and closes by addressing 'Aad.`
+        ],
+        correct: 0,
+        explanation: `Verses 69:1–3 introduce Al-Haqqah through three escalating lines, and verse 69:51 resolves that arc by confirming the revelation as Haqq al-Yaqin ("the truth of certainty").`
+      },
+      {
+        q: `How did the destruction of 'Aad differ from that of Thamud in verses 69:5–7?`,
+        options: [
+          `Thamud perished in the Flood, whereas 'Aad was swallowed by an earthquake.`,
+          `Thamud was destroyed by an overpowering blast (al-Taghiyah), whereas 'Aad was destroyed by a screaming, violent wind for seven nights and eight days.`,
+          `'Aad was destroyed in a single hour, whereas Thamud endured eight days of fire.`,
+          `Both peoples were destroyed simultaneously by the same floodwaters.`
+        ],
+        correct: 1,
+        explanation: `Verse 69:5 states Thamud was destroyed by al-Taghiyah (the overpowering blast), while verses 69:6–7 detail 'Aad's destruction by a screaming, violent wind imposed for seven nights and eight days in succession.`
+      },
+      {
+        q: `According to verse 69:12, why were humanity's ancestors carried in the sailing ship (Al-Jariyah) when the waters overflowed?`,
+        options: [
+          `To prove that shipbuilding is superior to stone architecture.`,
+          `To show that Pharaoh's navy could survive the flood.`,
+          `To make it a reminder (tadhkirah) retained by a conscious ear (udhunun wa'iyah).`,
+          `To explain how the mountains were lifted.`
+        ],
+        correct: 2,
+        explanation: `Verse 69:12 explicitly gives the purpose: "That We might make it for you a reminder and [that] a conscious ear would be conscious of it."`
+      },
+      {
+        q: `In the cosmic sequence of verses 69:13–18, what characterizes the transition to the Resurrection and who bears the Throne above the angels?`,
+        options: [
+          `Seven blasts of the Horn over eight days, with four bearers.`,
+          `One blast of the Horn, one blow leveling earth and mountains, and eight angels bearing the Throne above them.`,
+          `A silent eclipse followed by twelve angels at the edges of the earth.`,
+          `A gradual melting of the oceans followed by the rebuilding of the cities.`
+        ],
+        correct: 1,
+        explanation: `Verses 69:13–14 emphasize "one blast" and "one blow," while verse 69:17 states that the angels are at heaven's edges and "eight [of them]" bear the Throne of your Lord above them.`
+      },
+      {
+        q: `Which two root causes are explicitly cited in verses 69:33–34 for the fate of the person given his record in his left hand?`,
+        options: [
+          `Lack of wealth and lack of political authority.`,
+          `Forgetting poetry and avoiding travel.`,
+          `Disbelief in Allah, the Most Great, and failing to encourage the feeding of the poor.`,
+          `Building high gardens and speaking too loudly.`
+        ],
+        correct: 2,
+        explanation: `Verses 69:33–34 pair vertical spiritual failure ("did not used to believe in Allah, the Most Great") with horizontal social neglect ("nor did he encourage the feeding of the poor").`
+      },
+      {
+        q: `What two false labels for the Qur'an are refuted in verses 69:41–42 after the oath by the seen and unseen?`,
+        options: [
+          `The word of a historian and the word of a king.`,
+          `The word of a poet (sha'ir) and the word of a soothsayer (kahin).`,
+          `The word of an astronomer and the word of a merchant.`,
+          `The word of an angel and the word of a scribe.`
+        ],
+        correct: 1,
+        explanation: `Verses 69:41–42 reject both charges: "And it is not the word of a poet; little do you believe. Nor the word of a soothsayer; little do you remember."`
+      }
+    ];
+
+    /* Persistent application state */
+    let appState = {
+      studiedVerses: [],
+      quizAnswers: {},
+      notes: {},
+      activeTriad: 1,
+      activeCiv: `thamud`,
+      activeCosmicStage: 0,
+      rhymeHighlighted: false,
+      movementFilter: `all`
+    };
+
+    let openNoteVerse = null;
+
+    function getApi() {
+      return typeof window !== `undefined` && window.notebookAppApi ? window.notebookAppApi : null;
+    }
+
+    async function persistState() {
+      const indicator = document.getElementById(`save-status-indicator`);
+      const api = getApi();
+      if (api && typeof api.setAppState === `function`) {
+        try {
+          await api.setAppState(appState);
+          if (indicator) indicator.textContent = `Progress saved`;
+        } catch (err) {
+          if (indicator) indicator.textContent = `Unable to sync progress`;
+        }
+      }
+    }
+
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    /* Movement I: Triad selection */
+    function selectTriad(num) {
+      appState.activeTriad = num;
+      const buttons = document.querySelectorAll(`.triad-item`);
+      buttons.forEach((btn) => {
+        const isMatch = Number(btn.getAttribute(`data-triad`)) === num;
+        btn.classList.toggle(`is-selected`, isMatch);
+      });
+      const data = TRIAD_DATA[num];
+      if (!data) return;
+      const badgeEl = document.getElementById(`triad-badge`);
+      const headEl = document.getElementById(`triad-heading`);
+      const bodyEl = document.getElementById(`triad-body`);
+      const linkEl = document.getElementById(`triad-link`);
+      if (badgeEl) badgeEl.textContent = data.badge;
+      if (headEl) headEl.textContent = data.heading;
+      if (bodyEl) bodyEl.innerHTML = data.body;
+      if (linkEl) linkEl.innerHTML = data.link;
+      persistState();
+    }
+
+    /* Movement II: Civilization selection */
+    function selectCiv(key) {
+      appState.activeCiv = key;
+      const cards = document.querySelectorAll(`.civ-card`);
+      cards.forEach((card) => {
+        card.classList.toggle(`is-selected`, card.getAttribute(`data-civ`) === key);
+      });
+      const data = CIV_DATA[key];
+      if (!data) return;
+      const badgeEl = document.getElementById(`civ-badge`);
+      const headEl = document.getElementById(`civ-heading`);
+      const analysisEl = document.getElementById(`civ-analysis`);
+      const lexicalEl = document.getElementById(`civ-lexical`);
+      const versesEl = document.getElementById(`civ-verses`);
+
+      if (badgeEl) {
+        badgeEl.className = data.badgeClass;
+        badgeEl.textContent = data.badge;
+      }
+      if (headEl) headEl.textContent = data.heading;
+      if (analysisEl) analysisEl.innerHTML = data.analysis;
+      if (lexicalEl) lexicalEl.innerHTML = data.lexical;
+      if (versesEl) {
+        versesEl.innerHTML = data.verseNums.map((vNum) => {
+          const v = VERSES.find((item) => item.n === vNum);
+          if (!v) return ``;
+          return `
+            <div style="padding-bottom: var(--space-sm); border-bottom: var(--warm-hairline);">
+              <div class="arch-label" style="text-align: left; color: var(--primary);">Verse 69:${v.n}</div>
+              <div class="arabic-text" lang="ar" dir="rtl">${v.ar}</div>
+              <div style="font-size: 0.96rem; margin-top: var(--space-xs);">${v.en}</div>
+            </div>
+          `;
+        }).join(``);
+      }
+      persistState();
+    }
+
+    /* Movement III: Cosmic Sequence */
+    function renderCosmicSvg(stageIdx) {
+      const svg = document.getElementById(`cosmic-svg`);
+      if (!svg) return;
+      const cPrimary = `var(--primary)`;
+      const cTertiary = `var(--tertiary)`;
+      const cSecondary = `var(--secondary)`;
+      const cOutline = `var(--outline)`;
+      const cSurface = `var(--surface-container-low)`;
+
+      if (stageIdx === 0) {
+        svg.innerHTML = `
+          <circle cx="180" cy="140" r="22" fill="${cPrimary}" opacity="0.9"/>
+          <circle cx="180" cy="140" r="48" fill="none" stroke="${cPrimary}" stroke-width="2" stroke-dasharray="4 4"/>
+          <circle cx="180" cy="140" r="82" fill="none" stroke="${cSecondary}" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="180" cy="140" r="116" fill="none" stroke="${cOutline}" stroke-width="1" opacity="0.5"/>
+          <text x="180" y="145" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700">1</text>
+          <text x="180" y="262" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600">ONE DECISIVE BLAST (v. 13)</text>
+        `;
+      } else if (stageIdx === 1) {
+        svg.innerHTML = `
+          <polygon points="50,210 115,105 180,210" fill="none" stroke="${cOutline}" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <polygon points="150,210 225,85 300,210" fill="none" stroke="${cOutline}" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <line x1="36" y1="212" x2="324" y2="212" stroke="${cPrimary}" stroke-width="4" stroke-linecap="round"/>
+          <line x1="115" y1="120" x2="115" y2="198" stroke="${cPrimary}" stroke-width="2"/>
+          <polyline points="107,188 115,198 123,188" fill="none" stroke="${cPrimary}" stroke-width="2"/>
+          <line x1="225" y1="100" x2="225" y2="198" stroke="${cPrimary}" stroke-width="2"/>
+          <polyline points="217,188 225,198 233,188" fill="none" stroke="${cPrimary}" stroke-width="2"/>
+          <text x="180" y="245" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600">LIFTED &amp; LEVELED IN ONE BLOW (v. 14)</text>
+        `;
+      } else if (stageIdx === 2) {
+        svg.innerHTML = `
+          <path d="M 40 120 Q 170 40 175 110" fill="none" stroke="${cPrimary}" stroke-width="2.5"/>
+          <path d="M 320 120 Q 190 40 185 110" fill="none" stroke="${cPrimary}" stroke-width="2.5"/>
+          <line x1="180" y1="38" x2="180" y2="185" stroke="${cSecondary}" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <circle cx="180" cy="128" r="18" fill="${cSurface}" stroke="${cPrimary}" stroke-width="2"/>
+          <line x1="40" y1="220" x2="320" y2="220" stroke="${cOutline}" stroke-width="1.5"/>
+          <text x="180" y="250" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600">HEAVEN SPLITS OPEN · WAHIYAH (v. 15–16)</text>
+        `;
+      } else if (stageIdx === 3) {
+        const angels = [56, 94, 132, 162, 198, 228, 266, 304];
+        const dots = angels.map((x) => `<circle cx="${x}" cy="118" r="7" fill="${cTertiary}"/><line x1="${x}" y1="74" x2="${x}" y2="110" stroke="${cSecondary}" stroke-width="1.5"/>`).join(``);
+        svg.innerHTML = `
+          <rect x="44" y="44" width="272" height="30" rx="8" fill="${cSurface}" stroke="${cSecondary}" stroke-width="2"/>
+          <text x="180" y="64" text-anchor="middle" fill="var(--on-surface)" font-size="12" font-weight="700">THRONE ABOVE EIGHT BEARERS</text>
+          ${dots}
+          <path d="M 36 175 Q 180 145 324 175" fill="none" stroke="${cOutline}" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <circle cx="44" cy="172" r="5" fill="${cPrimary}"/>
+          <circle cx="316" cy="172" r="5" fill="${cPrimary}"/>
+          <text x="180" y="220" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600">ANGELS AT EDGES · 8 BEAR THE THRONE (v. 17)</text>
+        `;
+      } else {
+        svg.innerHTML = `
+          <circle cx="180" cy="130" r="76" fill="${cSurface}" stroke="${cTertiary}" stroke-width="2"/>
+          <circle cx="180" cy="130" r="46" fill="none" stroke="${cPrimary}" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="180" cy="130" r="14" fill="${cTertiary}"/>
+          <line x1="72" y1="130" x2="288" y2="130" stroke="${cOutline}" stroke-width="1"/>
+          <line x1="180" y1="36" x2="180" y2="224" stroke="${cOutline}" stroke-width="1"/>
+          <text x="180" y="250" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="600">NOTHING CONCEALED REMAINS HIDDEN (v. 18)</text>
+        `;
+      }
+    }
+
+    function selectCosmicStage(idx) {
+      const clamped = Math.max(0, Math.min(COSMIC_STAGES.length - 1, idx));
+      appState.activeCosmicStage = clamped;
+      const pills = document.querySelectorAll(`.stage-pill`);
+      pills.forEach((p) => {
+        p.classList.toggle(`is-active`, Number(p.getAttribute(`data-stage`)) === clamped);
+      });
+      const st = COSMIC_STAGES[clamped];
+      const badgeEl = document.getElementById(`cosmic-badge`);
+      const arEl = document.getElementById(`cosmic-arabic`);
+      const enEl = document.getElementById(`cosmic-english`);
+      const noteEl = document.getElementById(`cosmic-note`);
+      const capEl = document.getElementById(`cosmic-diagram-caption`);
+      const prevBtn = document.getElementById(`cosmic-prev`);
+      const nextBtn = document.getElementById(`cosmic-next`);
+
+      if (badgeEl) badgeEl.textContent = st.badge;
+      if (arEl) arEl.textContent = st.ar;
+      if (enEl) enEl.textContent = st.en;
+      if (noteEl) noteEl.textContent = st.note;
+      if (capEl) capEl.textContent = st.caption;
+      if (prevBtn) prevBtn.disabled = clamped === 0;
+      if (nextBtn) nextBtn.disabled = clamped === COSMIC_STAGES.length - 1;
+      renderCosmicSvg(clamped);
+      persistState();
+    }
+
+    function stepCosmic(delta) {
+      selectCosmicStage(appState.activeCosmicStage + delta);
+    }
+
+    /* Movement IV: Rhyme & Mirror toggle */
+    function applyRhymeVisuals() {
+      const active = Boolean(appState.rhymeHighlighted);
+      const btn = document.getElementById(`toggle-rhyme-btn`);
+      const status = document.getElementById(`rhyme-status`);
+      const targets = document.querySelectorAll(`.rhyme-target`);
+      if (btn) btn.classList.toggle(`is-active`, active);
+      if (status) {
+        status.textContent = active
+          ? `Highlighting -iyah cadence & mirrored terms (Kitabiyah, Hisabiyah, Maliyah, Sultaniyah)`
+          : `Showing full Arabic & English translation`;
+      }
+      targets.forEach((el) => {
+        el.classList.toggle(`rhyme-highlight`, active);
+      });
+    }
+
+    function toggleRhymeMode() {
+      appState.rhymeHighlighted = !appState.rhymeHighlighted;
+      applyRhymeVisuals();
+      persistState();
+    }
+
+    /* Verse Explorer */
+    function setMovementFilter(filterKey) {
+      appState.movementFilter = filterKey;
+      const btns = document.querySelectorAll(`[data-filter]`);
+      btns.forEach((b) => {
+        b.classList.toggle(`is-active`, b.getAttribute(`data-filter`) === filterKey);
+      });
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function toggleVerseStudied(vNum) {
+      const idx = appState.studiedVerses.indexOf(vNum);
+      if (idx === -1) {
+        appState.studiedVerses.push(vNum);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      updateHeroStats();
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function toggleNoteDrawer(vNum) {
+      openNoteVerse = openNoteVerse === vNum ? null : vNum;
+      renderVerseExplorer();
+    }
+
+    function saveVerseNote(vNum, text) {
+      const trimmed = text.trim();
+      if (trimmed) {
+        appState.notes[String(vNum)] = text;
+      } else {
+        delete appState.notes[String(vNum)];
+      }
+      persistState();
+    }
+
+    function getFilteredVerses() {
+      const searchEl = document.getElementById(`verse-search`);
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : ``;
+      return VERSES.filter((v) => {
+        if (appState.movementFilter === `unstudied` && appState.studiedVerses.includes(v.n)) {
+          return false;
+        }
+        if (appState.movementFilter !== `all` && appState.movementFilter !== `unstudied` && v.m !== appState.movementFilter) {
+          return false;
+        }
+        if (!query) return true;
+        return (
+          String(v.n) === query ||
+          (`69:${v.n}`).includes(query) ||
+          v.en.toLowerCase().includes(query) ||
+          v.note.toLowerCase().includes(query) ||
+          v.ar.includes(query)
+        );
+      });
+    }
+
+    function markFilteredStudied() {
+      const visible = getFilteredVerses();
+      visible.forEach((v) => {
+        if (!appState.studiedVerses.includes(v.n)) {
+          appState.studiedVerses.push(v.n);
+        }
+      });
+      updateHeroStats();
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function renderVerseExplorer() {
+      const listEl = document.getElementById(`verse-list`);
+      const statusEl = document.getElementById(`explorer-count-status`);
+      if (!listEl) return;
+
+      const filtered = getFilteredVerses();
+      if (statusEl) {
+        statusEl.textContent = `Showing ${filtered.length} of 52 verses · ${appState.studiedVerses.length} marked studied`;
+      }
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="panel-low" style="text-align: center;">
+            <p class="prose" style="margin: 0 auto var(--space-md);">
+              No verses match your current filter or search term.
+            </p>
+            <button type="button" class="btn btn-secondary" onclick="clearExplorerFilters()">Reset Filter &amp; Search</button>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map((v) => {
+        const studied = appState.studiedVerses.includes(v.n);
+        const noteText = appState.notes[String(v.n)] || ``;
+        const hasNote = noteText.trim().length > 0;
+        const isDrawerOpen = openNoteVerse === v.n;
+        return `
+          <div class="verse-card-wrap">
+            <article class="verse-card ${studied ? `is-studied` : ``}">
+              <div class="verse-card-header">
+                <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+                  <span class="badge-terracotta">69:${v.n}</span>
+                  <span class="arch-label" style="margin: 0;">${v.movement}</span>
+                  ${hasNote ? `<span class="badge-brass">Note Saved</span>` : ``}
+                </div>
+                <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+                  <button type="button" class="btn btn-secondary" onclick="toggleNoteDrawer(${v.n})">
+                    ${isDrawerOpen ? `Close Note` : (hasNote ? `Edit Note` : `Add Note`)}
+                  </button>
+                  <button type="button" class="btn ${studied ? `btn-emerald` : `btn-secondary`}" onclick="toggleVerseStudied(${v.n})">
+                    ${studied ? `Studied` : `Mark Studied`}
+                  </button>
+                </div>
+              </div>
+              <div class="verse-card-body">
+                <div>
+                  <p class="verse-english">${escapeHtml(v.en)}</p>
+                  <p class="verse-commentary">${escapeHtml(v.note)}</p>
+                </div>
+                <div class="arabic-text" lang="ar" dir="rtl">${v.ar}</div>
+              </div>
+              <div class="verse-note-drawer ${isDrawerOpen ? `` : `hidden`}">
+                <label class="field-label" for="note-input-${v.n}">Personal reflection on Verse 69:${v.n}</label>
+                <textarea id="note-input-${v.n}" class="text-area" oninput="saveVerseNote(${v.n}, this.value)" placeholder="Write a study note or reflection for verse 69:${v.n}">${escapeHtml(noteText)}</textarea>
+              </div>
+            </article>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function clearExplorerFilters() {
+      const searchEl = document.getElementById(`verse-search`);
+      if (searchEl) searchEl.value = ``;
+      setMovementFilter(`all`);
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-HAQQAH (CHAPTER 69) — STUDY NOTES & PROGRESS`,
+        `Studied Verses: ${appState.studiedVerses.length} / 52`,
+        ``
+      ];
+      VERSES.forEach((v) => {
+        const studiedFlag = appState.studiedVerses.includes(v.n) ? `[STUDIED]` : `[ ]`;
+        const note = appState.notes[String(v.n)];
+        if (studiedFlag === `[STUDIED]` || (note && note.trim())) {
+          lines.push(`69:${v.n} ${studiedFlag} — ${v.en}`);
+          lines.push(`Arabic: ${v.ar}`);
+          if (note && note.trim()) {
+            lines.push(`Reflection: ${note.trim()}`);
+          }
+          lines.push(``);
+        }
+      });
+      if (lines.length === 3) {
+        lines.push(`No verses marked studied or notes recorded yet.`);
+      }
+      const content = lines.join(`\n`);
+      const api = getApi();
+      if (api && typeof api.triggerFileDownload === `function`) {
+        api.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-haqqah-study-notes.txt`
+        });
+      } else {
+        const statusEl = document.getElementById(`save-status-indicator`);
+        if (statusEl) statusEl.textContent = `Export is available inside the Notebook workspace`;
+      }
+    }
+
+    /* Knowledge Checks */
+    function answerQuiz(qIdx, optIdx) {
+      appState.quizAnswers[String(qIdx)] = optIdx;
+      renderQuiz();
+      updateHeroStats();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      const summaryEl = document.getElementById(`quiz-summary-line`);
+      if (!container) return;
+
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      container.innerHTML = QUIZ_DATA.map((item, qIdx) => {
+        const chosen = appState.quizAnswers[String(qIdx)];
+        const isAnswered = chosen !== undefined && chosen !== null;
+        const isRight = isAnswered && Number(chosen) === item.correct;
+        if (isAnswered) answeredCount += 1;
+        if (isRight) correctCount += 1;
+
+        const optsHtml = item.options.map((opt, optIdx) => {
+          let cls = `quiz-option`;
+          if (isAnswered) {
+            if (optIdx === item.correct) cls += ` is-correct`;
+            else if (optIdx === Number(chosen)) cls += ` is-incorrect`;
+          }
+          const letter = String.fromCharCode(65 + optIdx);
+          return `
+            <button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${optIdx})">
+              <span style="font-weight: 700;">${letter}.</span>
+              <span>${escapeHtml(opt)}</span>
+            </button>
+          `;
+        }).join(``);
+
+        const feedbackHtml = isAnswered ? `
+          <div class="quiz-feedback ${isRight ? `is-correct` : `is-incorrect`}">
+            <strong>${isRight ? `Correct.` : `Review needed.`}</strong> ${escapeHtml(item.explanation)}
+          </div>
+        ` : ``;
+
+        return `
+          <article class="quiz-card">
+            <div class="arch-label" style="text-align: left; color: var(--primary);">Question ${qIdx + 1} of ${QUIZ_DATA.length}</div>
+            <h3 class="subhead" style="margin-top: var(--space-xs);">${escapeHtml(item.q)}</h3>
+            <div class="quiz-options">${optsHtml}</div>
+            ${feedbackHtml}
+          </article>
+        `;
+      }).join(``);
+
+      if (summaryEl) {
+        summaryEl.textContent = `Answered ${answeredCount} of ${QUIZ_DATA.length} questions · Score: ${correctCount} / ${QUIZ_DATA.length}`;
+      }
+    }
+
+    function updateHeroStats() {
+      const studiedCount = appState.studiedVerses.length;
+      const pct = Math.round((studiedCount / 52) * 100);
+      const studiedEl = document.getElementById(`stat-verses-studied`);
+      const pctEl = document.getElementById(`stat-verses-pct`);
+      if (studiedEl) studiedEl.textContent = `${studiedCount} / 52`;
+      if (pctEl) pctEl.textContent = `${pct}% completed`;
+
+      let answered = 0;
+      let correct = 0;
+      QUIZ_DATA.forEach((item, idx) => {
+        const chosen = appState.quizAnswers[String(idx)];
+        if (chosen !== undefined && chosen !== null) {
+          answered += 1;
+          if (Number(chosen) === item.correct) correct += 1;
+        }
+      });
+
+      const scoreEl = document.getElementById(`stat-quiz-score`);
+      const statusEl = document.getElementById(`stat-quiz-status`);
+      if (scoreEl) scoreEl.textContent = `${correct} / ${QUIZ_DATA.length}`;
+      if (statusEl) {
+        if (answered === 0) statusEl.textContent = `Ready to begin`;
+        else if (answered < QUIZ_DATA.length) statusEl.textContent = `${answered} of ${QUIZ_DATA.length} answered`;
+        else statusEl.textContent = correct === QUIZ_DATA.length ? `Complete mastery` : `All ${QUIZ_DATA.length} checked`;
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Study & Quiz Progress`;
+      appState.studiedVerses = [];
+      appState.quizAnswers = {};
+      appState.notes = {};
+      openNoteVerse = null;
+      updateHeroStats();
+      renderVerseExplorer();
+      renderQuiz();
+      persistState();
+    }
+
+    function setupRevealObserver() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) return;
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove(`is-entering`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach((sec) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top > window.innerHeight * 0.9) {
+          sec.classList.add(`is-entering`);
+        }
+        observer.observe(sec);
+      });
+    }
+
+    async function initApp() {
+      const api = getApi();
+      if (api && typeof api.getAppState === `function`) {
+        try {
+          const saved = await api.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (saved.notes && typeof saved.notes === `object`) appState.notes = saved.notes;
+            if (typeof saved.activeTriad === `number`) appState.activeTriad = saved.activeTriad;
+            if (typeof saved.activeCiv === `string`) appState.activeCiv = saved.activeCiv;
+            if (typeof saved.activeCosmicStage === `number`) appState.activeCosmicStage = saved.activeCosmicStage;
+            if (typeof saved.rhymeHighlighted === `boolean`) appState.rhymeHighlighted = saved.rhymeHighlighted;
+            if (typeof saved.movementFilter === `string`) appState.movementFilter = saved.movementFilter;
+          }
+        } catch (err) {
+          /* Start with clean default state */
+        }
+      }
+
+      selectTriad(appState.activeTriad);
+      selectCiv(appState.activeCiv);
+      selectCosmicStage(appState.activeCosmicStage);
+      applyRhymeVisuals();
+      setMovementFilter(appState.movementFilter);
+      renderQuiz();
+      updateHeroStats();
+      setupRevealObserver();
+
+      if (api && typeof api.notifyAppReady === `function`) {
+        api.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

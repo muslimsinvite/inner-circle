@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Muddaththir (Chapter 74) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Terracotta style palette */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders & rules */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --terracotta-border: #c98a6b;
+      --emerald-border: #b5d6c9;
+      --sand-border: #c4b29e;
+      --brass-light: #d8c3b0;
+      --brass-mid: #b5893e;
+      --brass-gradient: linear-gradient(90deg, var(--brass-light), var(--brass-mid), var(--brass-light));
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fae8e8;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+
+      /* Shared foundation tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.15rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2.2vw, 2.75rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+      --label-size: 0.75rem;
+      --arabic-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.85rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1100px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .title {
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+    .section-heading {
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: var(--space-sm);
+    }
+    .prose {
+      max-width: 66ch;
+      margin: 0 0 var(--space-md);
+      color: var(--on-surface);
+    }
+    .prose-muted {
+      max-width: 66ch;
+      margin: 0 0 var(--space-md);
+      color: var(--on-surface-variant);
+    }
+    .kicker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+    }
+    .kicker-meta {
+      color: var(--secondary);
+    }
+
+    /* Arabic Text Styling */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 2;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.2em;
+      line-height: 1.5;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-primary-container);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Terracotta Ornamental Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Hero Section */
+    .hero-block {
+      padding-top: var(--space-lg);
+    }
+    .hero-lede {
+      font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      margin: var(--space-md) 0 var(--space-lg);
+    }
+
+    /* Arch Metric Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--terracotta-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+      margin-bottom: var(--space-xs);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Mastery Telemetry Strip */
+    .mastery-bar-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .mastery-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .mastery-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .stat-pill {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .stat-pill-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .stat-pill-val {
+      font-family: var(--font-headline);
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--sand-border);
+      background: var(--background);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .jump-link:hover {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--sand-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+    }
+    .btn-emerald {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--emerald-border);
+    }
+    .btn-emerald:hover {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.875rem;
+    }
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Badges */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--terracotta-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Sections & Banding */
+    .study-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .tonal-band {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+    }
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: Historical Timeline Stepper */
+    .stepper-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .step-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .step-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--terracotta-border);
+    }
+    .step-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow);
+    }
+    .step-num {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .step-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      line-height: 1.2;
+    }
+    .step-detail-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .step-verse-callout {
+      background: var(--surface-container-low);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Section 2: Structural Map & Verse Explorer */
+    .structure-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(155px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .struct-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+      cursor: pointer;
+      transition: transform var(--dur-micro) var(--ease-out), background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .struct-block:hover {
+      transform: translateY(-2px);
+      border-color: var(--terracotta-border);
+    }
+    .struct-block.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .struct-block.is-studied {
+      border-bottom: 3px solid var(--tertiary);
+    }
+    .struct-range {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .struct-name {
+      font-family: var(--font-headline);
+      font-size: 1.1875rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--on-surface);
+    }
+    .struct-rhythm {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    .verse-explorer-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .verse-explorer-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      margin-bottom: var(--space-md);
+    }
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .verse-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: baseline;
+      padding: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+    }
+    .verse-num-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-primary-container);
+      background: var(--primary-container);
+      border: 1px solid var(--terracotta-border);
+      border-radius: var(--rounded-full);
+      padding: var(--space-xs) var(--space-sm);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-english {
+      color: var(--on-surface);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Section 3: Linguistic & Rhetorical Analysis */
+    .ling-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .ling-term-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .ling-term-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .ling-term-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--terracotta-border);
+    }
+    .ling-term-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .ling-detail-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .ling-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-block: var(--space-md);
+      padding: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+    }
+    .rhyme-chart-wrap {
+      margin-top: var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .rhyme-bars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .rhyme-segment {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .rhyme-meter {
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .rhyme-meter-fill {
+      height: 100%;
+      background: var(--data-1);
+      border-radius: var(--rounded-full);
+    }
+    .rhyme-meter-fill.is-emerald { background: var(--data-2); }
+    .rhyme-meter-fill.is-brass { background: var(--data-3); }
+
+    /* Section 4: Key Passages */
+    .passage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .command-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .command-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+    }
+    .wisdom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .wisdom-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Interactive Accountability Dialogue */
+    .accountability-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+    .cause-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .cause-btn {
+      min-height: 44px;
+      padding: var(--space-md);
+      text-align: left;
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .cause-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--terracotta-border);
+    }
+    .cause-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .cause-detail {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+    }
+
+    /* Section 5: Comparative Connections */
+    .comp-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .comp-table-wrap {
+      overflow-x: auto;
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.9375rem;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr.is-highlighted {
+      background: var(--primary-container);
+    }
+
+    /* Section 6: Interactive Quiz */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+    .quiz-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      margin-bottom: var(--space-lg);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+    }
+    .quiz-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-opt:hover:not(:disabled) {
+      background: var(--primary-container);
+      border-color: var(--terracotta-border);
+    }
+    .quiz-opt.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+    .quiz-opt.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      margin-bottom: var(--space-lg);
+    }
+    .quiz-feedback.is-correct {
+      border-left: 4px solid var(--tertiary);
+    }
+    .quiz-feedback.is-wrong {
+      border-left: 4px solid var(--error);
+    }
+
+    /* Section 7: Reflection Studio */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .field-label {
+      display: block;
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-top: var(--space-sm);
+    }
+    .reflection-input {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      resize: vertical;
+      line-height: 1.55;
+      color: var(--on-surface);
+    }
+    .reflection-input:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.25em;
+    }
+
+    /* Footer */
+    .sources-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 780px) {
+      .step-detail-box,
+      .ling-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .verse-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .verse-num-badge {
+        justify-self: start;
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .tonal-band,
+      .quiz-card {
+        padding: var(--space-lg) var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Orientation -->
+    <header class="hero-block">
+      <div class="kicker">
+        <span>Makkan Period · Revelation Sequence #4</span>
+        <span class="kicker-meta">56 Verses · Juz 29</span>
+      </div>
+      <h1 class="title">Surah Al-Muddaththir: The Call to <em>Arise</em> and Warn</h1>
+      <p class="hero-lede">
+        Delivered after an intense pause following the first revelation in Cave Hira, Chapter 74 transforms a trembling, cloak-wrapped moment into a resolute public mission. Across 56 compressed, rhythmic verses, it binds inward purification, cosmic awe, individual moral agency, and the self-indictment of those who turn away.
+      </p>
+
+      <div class="ornament-rule">◆ Structural &amp; Thematic Overview ◆</div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-label">Total Span</div>
+          <div class="arch-value">56</div>
+          <div class="arch-caption">Verses in 6 movements</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Opening Charge</div>
+          <div class="arch-value">7</div>
+          <div class="arch-caption">Foundational commands (74:1–7)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Guardians of Saqar</div>
+          <div class="arch-value">19</div>
+          <div class="arch-caption">Angelic keepers (74:30–31)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Self-Indictment</div>
+          <div class="arch-value">4</div>
+          <div class="arch-caption">Root failures named (74:43–47)</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mastery Telemetry & Navigation Strip -->
+    <section class="mastery-bar-panel" aria-label="Study progress and quick navigation">
+      <div class="mastery-top-row">
+        <div class="mastery-stats">
+          <div class="stat-pill">
+            <span class="stat-pill-label">Overall Mastery</span>
+            <span class="stat-pill-val" id="mastery-percent">0%</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">Movements Studied</span>
+            <span class="stat-pill-val" id="studied-count">0 / 6</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">Quiz Score</span>
+            <span class="stat-pill-val" id="quiz-score-summary">0 / 8</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-pill-label">Reflections</span>
+            <span class="stat-pill-val" id="reflection-count-summary">0 / 4</span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-emerald btn-sm" onclick="exportStudyNotes()">Export Study Notes</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset Progress</button>
+        </div>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="mastery-progress-fill"></div>
+      </div>
+      <div id="mastery-status-msg" class="status-note" aria-live="polite"></div>
+      <nav class="jump-nav" aria-label="Guide sections">
+        <a class="jump-link" href="#historical-context">1. Historical Context</a>
+        <a class="jump-link" href="#structure-explorer">2. Structure &amp; Verses</a>
+        <a class="jump-link" href="#linguistic-analysis">3. Linguistics</a>
+        <a class="jump-link" href="#key-passages">4. Key Passages</a>
+        <a class="jump-link" href="#comparative-links">5. Comparative Links</a>
+        <a class="jump-link" href="#mastery-quiz">6. Mastery Quiz</a>
+        <a class="jump-link" href="#reflection-studio">7. Reflections</a>
+      </nav>
+    </section>
+
+    <!-- Section 1: Historical Context -->
+    <section id="historical-context" class="study-section tonal-band">
+      <div class="kicker">
+        <span>Section 01 · Historical Context of Early Revelation</span>
+        <span class="kicker-meta">From Cave Hira to Public Witness</span>
+      </div>
+      <h2 class="section-heading">Why the Cloak-Wrapped Prophet Was Summoned to <em>Stand</em></h2>
+      <p class="prose">
+        In Islamic historical and exegetical tradition, Surah Al-Muddaththir occupies the pivotal hinge between private prophethood and public messengership. After receiving the opening five verses of Surah Al-Alaq (96:1–5), revelation paused for an interval known as <em>fatrat al-wahy</em>. When the angel Jibril appeared again between heaven and earth, the Prophet returned home shaken and asked to be covered in a cloak. Into that private shelter came the command: <em>Arise and warn.</em>
+      </p>
+
+      <div class="stepper-tabs" role="tablist" aria-label="Historical revelation stages">
+        <button type="button" class="step-btn is-active" id="hist-tab-0" onclick="selectHistoryStage(0)">
+          <span class="step-num">Stage 01</span>
+          <span class="step-title">First Encounter (96:1–5)</span>
+        </button>
+        <button type="button" class="step-btn" id="hist-tab-1" onclick="selectHistoryStage(1)">
+          <span class="step-num">Stage 02</span>
+          <span class="step-title">The Pause &amp; Second Vision</span>
+        </button>
+        <button type="button" class="step-btn" id="hist-tab-2" onclick="selectHistoryStage(2)">
+          <span class="step-num">Stage 03</span>
+          <span class="step-title">The Enveloping Cloak (74:1–7)</span>
+        </button>
+        <button type="button" class="step-btn" id="hist-tab-3" onclick="selectHistoryStage(3)">
+          <span class="step-num">Stage 04</span>
+          <span class="step-title">Makkan Hostility (74:11–25)</span>
+        </button>
+      </div>
+
+      <div class="step-detail-box" id="history-detail-panel">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 2: Structure & Full Verse Explorer -->
+    <section id="structure-explorer" class="study-section">
+      <div class="kicker">
+        <span>Section 02 · Architecture &amp; Verse-by-Verse Explorer</span>
+        <span class="kicker-meta">6 Movements · All 56 Verses</span>
+      </div>
+      <h2 class="section-heading">Six Movements Moving From Personal Charge to Universal <em>Choice</em></h2>
+      <p class="prose">
+        Surah Al-Muddaththir moves outward in widening circles: first addressing the Prophet alone (vv. 1–7), then announcing the coming cosmic disruption (vv. 8–10), confronting an archetypal Makkan opponent (vv. 11–25), unveiling Saqar and its nineteen keepers (vv. 26–31), swearing by celestial transitions (vv. 32–37), and finally dramatizing a Hereafter dialogue on human accountability (vv. 38–56). Select any movement below to inspect every verse in Arabic and English and mark it studied.
+      </p>
+
+      <div class="structure-strip" id="structure-strip">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="verse-explorer-panel" id="verse-explorer-panel">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 3: Linguistic & Rhetorical Analysis -->
+    <section id="linguistic-analysis" class="study-section tonal-band">
+      <div class="kicker">
+        <span>Section 03 · Linguistic &amp; Rhetorical Craft</span>
+        <span class="kicker-meta">Morphology, Fronting &amp; Cadence</span>
+      </div>
+      <h2 class="section-heading">How Sound, Syntax, and Vivid <em>Imagery</em> Drive the Message</h2>
+      <p class="prose">
+        Rather than arguing in abstract syllogisms, Surah Al-Muddaththir persuades through acoustic shifts and syntactic emphasis. Short imperatives snap at the opening; elongated vowels mimic a wealthy man stretching out his pride; rapid staccato verbs track his scowl; and an explosive simile of donkeys fleeing a lion exposes the irrationality of turning away from truth.
+      </p>
+
+      <div class="ling-layout">
+        <div class="ling-term-list" id="ling-term-list">
+          <!-- Populated by JS -->
+        </div>
+        <div class="ling-detail-card" id="ling-detail-card">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="rhyme-chart-wrap">
+        <h3 class="subhead">Acoustic &amp; Verse-Length Cadence Across the Surah</h3>
+        <p class="prose-muted">
+          Notice how verse cadence shifts deliberately across the chapter—from compressed 2–4 word commands, to a sweeping prose clarification in verse 31, and back to sharp oaths and parables.
+        </p>
+        <div class="rhyme-bars">
+          <div class="rhyme-segment">
+            <span class="arch-label">vv. 1–7 · The Charge</span>
+            <strong class="subhead" style="margin:0;">-ir / -ur</strong>
+            <div class="rhyme-meter"><div class="rhyme-meter-fill" style="width: 24%;"></div></div>
+            <span class="verse-english">Crisp, urgent imperatives summoning immediate readiness.</span>
+          </div>
+          <div class="rhyme-segment">
+            <span class="arch-label">vv. 11–17 · Arrogance</span>
+            <strong class="subhead" style="margin:0;">-īdā / -ūdā</strong>
+            <div class="rhyme-meter"><div class="rhyme-meter-fill is-brass" style="width: 42%;"></div></div>
+            <span class="verse-english">Long vowel endings mirroring extended wealth and stubborn pride.</span>
+          </div>
+          <div class="rhyme-segment">
+            <span class="arch-label">vv. 18–30 · Verdict &amp; Saqar</span>
+            <strong class="subhead" style="margin:0;">-ar</strong>
+            <div class="rhyme-meter"><div class="rhyme-meter-fill" style="width: 30%;"></div></div>
+            <span class="verse-english">Percussive staccato tracking deliberation, scowling, and fire.</span>
+          </div>
+          <div class="rhyme-segment">
+            <span class="arch-label">v. 31 · The Clarification</span>
+            <strong class="subhead" style="margin:0;">Extended Prose</strong>
+            <div class="rhyme-meter"><div class="rhyme-meter-fill is-emerald" style="width: 100%;"></div></div>
+            <span class="verse-english">57 Arabic words unpacking five reasons for the nineteen angels.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Key Passages Deep Dive -->
+    <section id="key-passages" class="study-section">
+      <div class="kicker">
+        <span>Section 04 · Deep Dive Into Four Anchor Passages</span>
+        <span class="kicker-meta">Theology, Ethics &amp; Accountability</span>
+      </div>
+      <h2 class="section-heading">Four Passages That Define the Surah's <em>Moral</em> Architecture</h2>
+
+      <div class="passage-grid">
+        <!-- 4A: The Call to Arise & Warn -->
+        <article class="panel-card">
+          <span class="badge-terracotta">Passage 4A · vv. 1–7</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">The Call to Arise &amp; Warn</h3>
+          <p class="prose-muted">
+            Before confronting a hostile society, the messenger is given an internal and ethical discipline. Every outward task rests on inward integrity.
+          </p>
+          <ul class="command-list">
+            <li class="command-item">
+              <div><strong>Arise and warn</strong> (74:2) — active public courage</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">قُمْ فَأَنْذِرْ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Magnify your Lord</strong> (74:3) — God's greatness eclipses all fear</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">وَرَبَّكَ فَكَبِّرْ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Purify your garments</strong> (74:4) — outer cleanliness &amp; moral character</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">وَثِيَابَكَ فَطَهِّرْ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Avoid uncleanliness</strong> (74:5) — shun idols and spiritual filth</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">وَالرُّجْزَ فَاهْجُرْ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Give without seeking return</strong> (74:6) — pure altruism</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">وَلَا تَمْنُنْ تَسْتَكْثِرُ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Be patient for your Lord</strong> (74:7) — resilience over haste</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">وَلِرَبِّكَ فَاصْبِرْ</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 4B: The Description of Saqar -->
+        <article class="panel-card">
+          <span class="badge-terracotta">Passage 4B · vv. 26–29 &amp; 35</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">The Description of Saqar</h3>
+          <p class="prose-muted">
+            In response to the obstinate critic who reduces revelation to "human speech," Allah introduces <em>Saqar</em> with the awe-inducing question: <em>"And what can make you know what is Saqar?"</em> (74:27).
+          </p>
+          <ul class="command-list">
+            <li class="command-item">
+              <div><strong>Total consumption (74:28):</strong> "It lets nothing remain and leaves nothing [unburned]."</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">لَا تُبْقِي وَلَا تَذَرُ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Visible scorching (74:29):</strong> "Blackening the skins" — reversing the arrogance of a scowling face (74:22).</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">لَوَّاحَةٌ لِلْبَشَرِ</span>
+            </li>
+            <li class="command-item">
+              <div><strong>Supreme warning (74:35–36):</strong> "Indeed, the Fire is of the greatest [afflictions], as a warning to humanity."</div>
+              <span class="arabic-inline" lang="ar" dir="rtl">إِنَّهَا لَإِحْدَى الْكُبَرِ</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- 4C: The Nineteen Guardians -->
+      <article class="panel-card">
+        <div class="verse-explorer-header" style="margin-bottom: var(--space-md);">
+          <div>
+            <span class="badge-emerald">Passage 4C · vv. 30–31</span>
+            <h3 class="subhead" style="margin-top: var(--space-sm); margin-bottom: 0;">Why Nineteen Guardians? The Five Wisdoms Stated in Verse 31</h3>
+          </div>
+          <span class="arabic-inline" lang="ar" dir="rtl" style="font-size: 1.5rem;">عَلَيْهَا تِسْعَةَ عَشَرَ</span>
+        </div>
+        <p class="prose">
+          When verse 30 stated <em>"Over it are nineteen [angels],"</em> Makkan skeptics mocked the specific figure as small or arbitrary. Verse 31 responds by revealing that the angels' exact number is purposeful—a deliberate test that separates sincere seekers from cynical mockers. Notice that the verse confirms the guardians are <strong>angels</strong> (not human guards who could be overpowered) and names five distinct outcomes:
+        </p>
+        <div class="wisdom-grid">
+          <div class="wisdom-card">
+            <div class="arch-label">Wisdom 01</div>
+            <strong>A Trial for Disbelievers</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">"We have not made their number except as a trial (<em>fitnah</em>) for those who disbelieve."</p>
+          </div>
+          <div class="wisdom-card">
+            <div class="arch-label">Wisdom 02</div>
+            <strong>Conviction for People of the Book</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">"That those who were given the Scripture will be convinced (<em>yastayqin</em>)" upon recognizing harmony with prior scripture.</p>
+          </div>
+          <div class="wisdom-card">
+            <div class="arch-label">Wisdom 03</div>
+            <strong>Growth in Faith for Believers</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">"And those who have believed will increase in faith" as revelation explains itself.</p>
+          </div>
+          <div class="wisdom-card">
+            <div class="arch-label">Wisdom 04</div>
+            <strong>Removal of Doubt</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">"And those who were given the Scripture and the believers will not doubt."</p>
+          </div>
+          <div class="wisdom-card">
+            <div class="arch-label">Wisdom 05</div>
+            <strong>Exposing Cynical Hearts</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">Those with hypocrisy or disbelief ask mockingly: <em>"What does Allah intend by this as an example?"</em></p>
+          </div>
+          <div class="wisdom-card">
+            <div class="arch-label">Closing Boundary</div>
+            <strong>Unseen Sovereignty</strong>
+            <p class="verse-english" style="margin: var(--space-xs) 0 0;">"And none knows the soldiers of your Lord except Him. And mention of the Fire is not but a reminder to humanity."</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4D: Human Accountability Interactive Dialogue -->
+      <article class="accountability-box">
+        <span class="badge-terracotta">Passage 4D · vv. 37–48</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">Human Accountability: "Every Soul Is Held in Pledge for What It Earned"</h3>
+        <p class="prose">
+          Following the cosmic oaths by the moon, departing night, and brightening dawn (74:32–34), verse 37 places moral choice squarely on the human will: <em>"To whoever wills among you to proceed or stay behind."</em> Verse 38 states the law of accountability—each soul is <em>rahinah</em> (retained/held in pledge) by its own deeds, except the Companions of the Right, who ask the criminals from the gardens of Paradise: <strong>"What put you into Saqar?"</strong> (74:42). Inspect each of the four self-indictments below:
+        </p>
+
+        <div class="cause-buttons" role="tablist" aria-label="Four causes of entering Saqar">
+          <button type="button" class="cause-btn is-active" id="cause-btn-0" onclick="selectCause(0)">
+            <div class="step-num">74:43 · Cause 01</div>
+            <strong>Neglect of Prayer</strong>
+          </button>
+          <button type="button" class="cause-btn" id="cause-btn-1" onclick="selectCause(1)">
+            <div class="step-num">74:44 · Cause 02</div>
+            <strong>Neglect of the Poor</strong>
+          </button>
+          <button type="button" class="cause-btn" id="cause-btn-2" onclick="selectCause(2)">
+            <div class="step-num">74:45 · Cause 03</div>
+            <strong>Vain &amp; Mocking Discourse</strong>
+          </button>
+          <button type="button" class="cause-btn" id="cause-btn-3" onclick="selectCause(3)">
+            <div class="step-num">74:46–47 · Cause 04</div>
+            <strong>Denying Judgment Until Death</strong>
+          </button>
+        </div>
+
+        <div class="cause-detail" id="cause-detail-panel">
+          <!-- Populated by JS -->
+        </div>
+      </article>
+    </section>
+
+    <!-- Section 5: Comparative Connections -->
+    <section id="comparative-links" class="study-section tonal-band">
+      <div class="kicker">
+        <span>Section 05 · Comparative Qur'anic Connections</span>
+        <span class="kicker-meta">Reading Surah 74 Alongside Sister Chapters</span>
+      </div>
+      <h2 class="section-heading">How Surah Al-Muddaththir Bridges Neighboring <em>Revelations</em></h2>
+      <p class="prose">
+        Qur'anic scholars frequently read Surah Al-Muddaththir in conversation with its immediate twin (Surah Al-Muzzammil, Ch. 73), the opening revelation (Surah Al-Alaq, Ch. 96), the subsequent chapter (Surah Al-Qiyamah, Ch. 75), and Surah Al-Ma'un (Ch. 107). Select a sister chapter to highlight its structural and thematic symmetry with Chapter 74.
+      </p>
+
+      <div class="comp-tabs" role="tablist" aria-label="Comparative Surah selector">
+        <button type="button" class="btn btn-primary btn-sm" id="comp-btn-0" onclick="selectComparison(0)">Ch. 73 · Al-Muzzammil</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="comp-btn-1" onclick="selectComparison(1)">Ch. 96 · Al-Alaq</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="comp-btn-2" onclick="selectComparison(2)">Ch. 75 · Al-Qiyamah</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="comp-btn-3" onclick="selectComparison(3)">Ch. 107 · Al-Ma'un</button>
+      </div>
+
+      <div class="panel-card" id="comp-spotlight" style="background: var(--background); margin-bottom: var(--space-md);">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="comp-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Connected Surah</th>
+              <th>Shared Anchor / Motif</th>
+              <th>Distinct Emphasis vs. Ch. 74</th>
+              <th>Parallel in Surah 74</th>
+            </tr>
+          </thead>
+          <tbody id="comp-table-body">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 6: Interactive Mastery Quiz -->
+    <section id="mastery-quiz" class="study-section">
+      <div class="kicker">
+        <span>Section 06 · Interactive Mastery Assessment</span>
+        <span class="kicker-meta">8 Grounded Questions · Immediate Feedback</span>
+      </div>
+      <h2 class="section-heading">Verify Your Understanding of Surah <em>Al-Muddaththir</em></h2>
+      <p class="prose">
+        Test your grasp of the Surah's historical context, Arabic rhetoric, the five wisdoms of verse 31, the four self-indictments of verses 43–47, and comparative Qur'anic links. Your score saves automatically.
+      </p>
+
+      <div class="quiz-card" id="quiz-container">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- Section 7: Reflection Prompts -->
+    <section id="reflection-studio" class="study-section tonal-band">
+      <div class="kicker">
+        <span>Section 07 · Personal Reflection Studio</span>
+        <span class="kicker-meta">Applied Moral Inquiry</span>
+      </div>
+      <h2 class="section-heading">Moving From Comprehension to Personal <em>Accountability</em></h2>
+      <p class="prose">
+        Surah Al-Muddaththir closes by declaring itself a reminder for whoever wills to remember (74:54–55). Use the four guided prompts below to translate the Surah's themes into concrete self-examination. Notes persist across sessions and can be exported alongside your quiz results.
+      </p>
+
+      <div class="reflection-grid" id="reflection-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <footer class="sources-footer">
+      <strong>Sources &amp; Grounding:</strong> All Arabic verses and English translations (Sahih International rendering) are drawn directly from the provided Chapter 74 source text (<em>74..pdf</em>). Historical context (early Makkan revelation sequence, <em>fatrat al-wahy</em>, and the opposition of Al-Walid ibn al-Mughirah), linguistic morphology, and comparative links with Chapters 73, 75, 96, and 107 reflect standard classical Qur'anic exegesis and structural study.
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const HISTORY_STAGES = [
+      {
+        label: `Stage 01 · Cave Hira`,
+        title: `First Revelation: Receiving the Word (Surah Al-Alaq 96:1–5)`,
+        body: `Before Surah Al-Muddaththir was revealed, the Prophet Muhammad experienced the initial descent of revelation in Cave Hira through the command "Read in the name of your Lord who created." That moment established prophethood (nubuwwah)—the reception of divine truth—but did not yet command an open, organized public warning to Makkan society.`,
+        arabic: `قُمْ فَأَنْذِرْ`,
+        verseRef: `Transition toward 74:2`,
+        note: `Al-Alaq initiated inner reception; Al-Muddaththir launched outward mission.`
+      },
+      {
+        label: `Stage 02 · Interval & Vision`,
+        title: `The Pause (Fatrat al-Wahy) and the Overwhelming Return`,
+        body: `Following the first encounter, revelation paused for a period during which the Prophet felt deep longing and uncertainty. Then, while walking, he looked up and beheld the angel Jibril seated on a throne between heaven and earth. Overwhelmed by awe, he hurried home and asked his household to wrap him in a cloak (muddaththir).`,
+        arabic: `يَا أَيُّهَا الْمُدَّثِّرُ`,
+        verseRef: `Surah Al-Muddaththir 74:1`,
+        note: `Notice the gentle honorific: Allah addresses him in the exact state He found him—wrapped in a garment—before calling him to stand.`
+      },
+      {
+        label: `Stage 03 · Public Mandate`,
+        title: `The Seven-Fold Commission of Messengership (74:1–7)`,
+        body: `Verses 1 through 7 break the silence with seven swift directives: arise and warn, magnify the Lord alone, purify clothing (and character), shun spiritual filth/idolatry, never give charity expecting worldly return, and endure patiently for Allah's sake. Scholars note this marks the formal shift from private prophet to public warner (rasul).`,
+        arabic: `وَرَبَّكَ فَكَبِّرْ ۝ وَثِيَابَكَ فَطَهِّرْ`,
+        verseRef: `Surah Al-Muddaththir 74:3–4`,
+        note: `Outward warning (74:2) is immediately anchored by inward humility, purity, and patience (74:3–7).`
+      },
+      {
+        label: `Stage 04 · Makkan Confrontation`,
+        title: `The Case of Al-Walid ibn al-Mughirah (74:11–25)`,
+        body: `Once public warning began, Makkan elders sought a unified label to discredit the Qur'an before arriving pilgrims. Classical exegesis links verses 11–25 to Al-Walid ibn al-Mughirah—a wealthy, respected Qurayshi elder blessed with abundant property and sons present around him (74:12–13). After privately recognizing the Qur'an's unmatched beauty, he yielded to tribal pride, frowned and scowled (74:22), and pronounced it "imitated magic" and "the word of a human being" (74:24–25).`,
+        arabic: `فَقَالَ إِنْ هَـٰذَا إِلَّا سِحْرٌ يُؤْثَرُ ۝ إِنْ هَـٰذَا إِلَّا قَوْلُ الْبَشَرِ`,
+        verseRef: `Surah Al-Muddaththir 74:24–25`,
+        note: `His internal deliberation ("he thought and deliberated", 74:18) proves rejection was not ignorance—it was arrogant calculation.`
+      }
+    ];
+
+    const SURAH_MOVEMENTS = [
+      {
+        id: `mov-1`,
+        range: `74:1–7`,
+        title: `The Prophetic Commission`,
+        rhythm: `7 urgent imperatives`,
+        summary: `God awakens the cloak-wrapped Prophet with a seven-part blueprint for spiritual readiness and public warning.`,
+        verses: [
+          { num: `74:1`, ar: `يَا أَيُّهَا الْمُدَّثِّرُ`, en: `O you who covers himself [with a garment],` },
+          { num: `74:2`, ar: `قُمْ فَأَنْذِرْ`, en: `Arise and warn` },
+          { num: `74:3`, ar: `وَرَبَّكَ فَكَبِّرْ`, en: `And your Lord glorify` },
+          { num: `74:4`, ar: `وَثِيَابَكَ فَطَهِّرْ`, en: `And your clothing purify` },
+          { num: `74:5`, ar: `وَالرُّجْزَ فَاهْجُرْ`, en: `And uncleanliness avoid` },
+          { num: `74:6`, ar: `وَلَا تَمْنُنْ تَسْتَكْثِرُ`, en: `And do not confer favor to acquire more` },
+          { num: `74:7`, ar: `وَلِرَبَّكَ فَاصْبِرْ`, en: `But for your Lord be patient.` }
+        ]
+      },
+      {
+        id: `mov-2`,
+        range: `74:8–10`,
+        title: `The Trumpet & Difficult Day`,
+        rhythm: `3 stark warnings`,
+        summary: `Provides the urgent horizon behind the command to warn: a trumpet blast inaugurating a Day that offers no ease to deniers.`,
+        verses: [
+          { num: `74:8`, ar: `فَإِذَا نُقِرَ فِي النَّاقُورِ`, en: `And when the trumpet is blown,` },
+          { num: `74:9`, ar: `فَذَٰلِكَ يَوْمَئِذٍ يَوْمٌ عَسِيرٌ`, en: `That Day will be a difficult day` },
+          { num: `74:10`, ar: `عَلَى الْكَافِرِينَ غَيْرُ يَسِيرٍ`, en: `For the disbelievers - not easy.` }
+        ]
+      },
+      {
+        id: `mov-3`,
+        range: `74:11–25`,
+        title: `Portrait of Obstinate Pride`,
+        rhythm: `15 narrative verses`,
+        summary: `Contrasts God's lavish blessings upon an arrogant opponent with his calculating, scowling dismissal of revelation as mere human speech.`,
+        verses: [
+          { num: `74:11`, ar: `ذَرْنِي وَمَنْ خَلَقْتُ وَحِيدًا`, en: `Leave Me with the one I created alone` },
+          { num: `74:12`, ar: `وَجَعَلْتُ لَهُ مَالًا مَمْدُودًا`, en: `And to whom I granted extensive wealth` },
+          { num: `74:13`, ar: `وَبَنِينَ شُهُودًا`, en: `And children present [with him]` },
+          { num: `74:14`, ar: `وَمَهَّدْتُ لَهُ تَمْهِيدًا`, en: `And spread [everything] before him, easing [his life].` },
+          { num: `74:15`, ar: `ثُمَّ يَطْمَعُ أَنْ أَزِيدَ`, en: `Then he desires that I should add more.` },
+          { num: `74:16`, ar: `كَلَّا إِنَّهُ كَانَ لِآيَاتِنَا عَنِيدًا`, en: `No! Indeed, he has been toward Our verses obstinate.` },
+          { num: `74:17`, ar: `سَأُرْهِقُهُ صَعُودًا`, en: `I will cover him with arduous torment.` },
+          { num: `74:18`, ar: `إِنَّهُ فَكَّرَ وَقَدَّرَ`, en: `Indeed, he thought and deliberated.` },
+          { num: `74:19`, ar: `فَقُتِلَ كَيْفَ قَدَّرَ`, en: `So may he be destroyed [for] how he deliberated.` },
+          { num: `74:20`, ar: `ثُمَّ قُتِلَ كَيْفَ قَدَّرَ`, en: `Then may he be destroyed [for] how he deliberated.` },
+          { num: `74:21`, ar: `ثُمَّ نَظَرَ`, en: `Then he considered [again];` },
+          { num: `74:22`, ar: `ثُمَّ عَبَسَ وَبَسَرَ`, en: `Then he frowned and scowled;` },
+          { num: `74:23`, ar: `ثُمَّ أَدْبَرَ وَاسْتَكْبَرَ`, en: `Then he turned back and was arrogant` },
+          { num: `74:24`, ar: `فَقَالَ إِنْ هَـٰذَا إِلَّا سِحْرٌ يُؤْثَرُ`, en: `And said, "This is not but magic imitated [from others].` },
+          { num: `74:25`, ar: `إِنْ هَـٰذَا إِلَّا قَوْلُ الْبَشَرِ`, en: `This is not but the word of a human being."` }
+        ]
+      },
+      {
+        id: `mov-4`,
+        range: `74:26–31`,
+        title: `Saqar & The Nineteen`,
+        rhythm: `5 short + 1 extended prose`,
+        summary: `Unveils the unforgiving nature of Saqar and explains in extended detail why nineteen angelic keepers serve as a test of faith and humility.`,
+        verses: [
+          { num: `74:26`, ar: `سَأُصْلِيهِ سَقَرَ`, en: `I will drive him into Saqar.` },
+          { num: `74:27`, ar: `وَمَا أَدْرَاكَ مَا سَقَرُ`, en: `And what can make you know what is Saqar?` },
+          { num: `74:28`, ar: `لَا تُبْقِي وَلَا تَذَرُ`, en: `It lets nothing remain and leaves nothing [unburned],` },
+          { num: `74:29`, ar: `لَوَّاحَةٌ لِلْبَشَرِ`, en: `Blackening the skins.` },
+          { num: `74:30`, ar: `عَلَيْهَا تِسْعَةَ عَشَرَ`, en: `Over it are nineteen [angels].` },
+          { num: `74:31`, ar: `وَمَا جَعَلْنَا أَصْحَابَ النَّارِ إِلَّا مَلَائِكَةً وَمَا جَعَلْنَا عِدَّتَهُمْ إِلَّا فِتْنَةً لِلَّذِينَ كَفَرُوا لِيَسْتَيْقِنَ الَّذِينَ أُوتُوا الْكِتَابَ وَيَزْدَادَ الَّذِينَ آمَنُوا إِيمَانًا وَلَا يَرْتَابَ الَّذِينَ أُوتُوا الْكِتَابَ وَالْمُؤْمِنُونَ وَلِيَقُولَ الَّذِينَ فِي قُلُوبِهِمْ مَرَضٌ وَالْكَافِرُونَ مَاذَا أَرَادَ اللَّهُ بِهَـٰذَا مَثَلًا كَذَٰلِكَ يُضِلُّ اللَّهُ مَنْ يَشَاءُ وَيَهْدِي مَنْ يَشَاءُ ۚ وَمَا يَعْلَمُ جُنُودَ رَبِّكَ إِلَّا هُوَ وَمَا هِيَ إِلَّا ذِكْرَىٰ لِلْبَشَرِ`, en: `And We have not made the keepers of the Fire except angels. And We have not made their number except as a trial for those who disbelieve - that those who were given the Scripture will be convinced and those who have believed will increase in faith and those who were given the Scripture and the believers will not doubt and that those in whose hearts is hypocrisy and the disbelievers will say, "What does Allah intend by this as an example?" Thus does Allah leave astray whom He wills and guides whom He wills. And none knows the soldiers of your Lord except Him. And mention of the Fire is not but a reminder to humanity.` }
+        ]
+      },
+      {
+        id: `mov-5`,
+        range: `74:32–37`,
+        title: `Cosmic Oaths & Moral Agency`,
+        rhythm: `6 swift verses`,
+        summary: `Swears by the moon, retreating night, and brightening dawn to declare that Saqar is a monumental warning—leaving every person free to step forward or lag behind.`,
+        verses: [
+          { num: `74:32`, ar: `كَلَّا وَالْقَمَرِ`, en: `No! By the moon` },
+          { num: `74:33`, ar: `وَاللَّيْلِ إِذْ أَدْبَرَ`, en: `And [by] the night when it departs` },
+          { num: `74:34`, ar: `وَالصُّبْحِ إِذَا أَسْفَرَ`, en: `And [by] the morning when it brightens,` },
+          { num: `74:35`, ar: `إِنَّهَا لَإِحْدَى الْكُبَرِ`, en: `Indeed, the Fire is of the greatest [afflictions]` },
+          { num: `74:36`, ar: `نَذِيرًا لِلْبَشَرِ`, en: `As a warning to humanity` },
+          { num: `74:37`, ar: `لِمَنْ شَاءَ مِنْكُمْ أَنْ يَتَقَدَّمَ أَوْ يَتَأَخَّرَ`, en: `To whoever wills among you to proceed or stay behind.` }
+        ]
+      },
+      {
+        id: `mov-6`,
+        range: `74:38–56`,
+        title: `Accountability & Epilogue`,
+        rhythm: `19 dramatic verses`,
+        summary: `Establishes individual soul-accountability, dramatizes the self-confession of the guilty, satirizes irrational flight from guidance, and closes on Allah's awe and forgiveness.`,
+        verses: [
+          { num: `74:38`, ar: `كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ`, en: `Every soul, for what it has earned, will be retained` },
+          { num: `74:39`, ar: `إِلَّا أَصْحَابَ الْيَمِينِ`, en: `Except the companions of the right,` },
+          { num: `74:40`, ar: `فِي جَنَّاتٍ يَتَسَاءَلُونَ`, en: `[Who will be] in gardens, questioning each other` },
+          { num: `74:41`, ar: `عَنِ الْمُجْرِمِينَ`, en: `About the criminals,` },
+          { num: `74:42`, ar: `مَا سَلَكَكُمْ فِي سَقَرَ`, en: `[And asking them], "What put you into Saqar?"` },
+          { num: `74:43`, ar: `قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ`, en: `They will say, "We were not of those who prayed,` },
+          { num: `74:44`, ar: `وَلَمْ نَكُ نُطْعِمُ الْمِسْكِينَ`, en: `Nor did we used to feed the poor.` },
+          { num: `74:45`, ar: `وَكُنَّا نَخُوضُ مَعَ الْخَائِضِينَ`, en: `And we used to enter into vain discourse with those who engaged [in it],` },
+          { num: `74:46`, ar: `وَكُنَّا نُكَذِّبُ بِيَوْمِ الدِّينِ`, en: `And we used to deny the Day of Recompense` },
+          { num: `74:47`, ar: `حَتَّى أَتَانَا الْيَقِينُ`, en: `Until there came to us the certainty."` },
+          { num: `74:48`, ar: `فَمَا تَنْفَعُهُمْ شَفَاعَةُ الشَّافِعِينَ`, en: `So there will not benefit them the intercession of [any] intercessors.` },
+          { num: `74:49`, ar: `فَمَا لَهُمْ عَنِ التَّذْكِرَةِ مُعْرِضِينَ`, en: `Then what is [the matter] with them that they are, from the reminder, turning away` },
+          { num: `74:50`, ar: `كَأَنَّهُمْ حُمُرٌ مُسْتَنْفِرَةٌ`, en: `As if they were alarmed donkeys` },
+          { num: `74:51`, ar: `فَرَّتْ مِنْ قَسْوَرَةٍ`, en: `Fleeing from a lion?` },
+          { num: `74:52`, ar: `بَلْ يُرِيدُ كُلُّ امْرِئٍ مِنْهُمْ أَنْ يُؤْتَى صُحُفًا مُنَشَّرَةً`, en: `Rather, every person among them desires that he would be given scriptures spread about.` },
+          { num: `74:53`, ar: `كَلَّا بَلْ لَا يَخَافُونَ الْآخِرَةَ`, en: `No! But they do not fear the Hereafter.` },
+          { num: `74:54`, ar: `كَلَّا إِنَّهُ تَذْكِرَةٌ`, en: `No! Indeed, the Qur'an is a reminder` },
+          { num: `74:55`, ar: `فَمَنْ شَاءَ ذَكَرَهُ`, en: `Then whoever wills will remember it.` },
+          { num: `74:56`, ar: `وَمَا يَذْكُرُونَ إِلَّا أَنْ يَشَاءَ اللَّهُ هُوَ أَهْلُ التَّقْوَى وَأَهْلُ الْمَغْفِرَةِ`, en: `And they will not remember except that Allah wills. He is worthy of fear and adequate for [granting] forgiveness.` }
+        ]
+      }
+    ];
+
+    const LINGUISTIC_ITEMS = [
+      {
+        term: `Al-Muddaththir`,
+        arabic: `الْمُدَّثِّرُ`,
+        ref: `74:1`,
+        root: `d-th-r (د ث ر)`,
+        form: `Active participle (Form V, assimilated from al-mutadaththir)`,
+        meaning: `One who wraps himself in an outer cloak or blanket (dithar).`,
+        analysis: `The assimilation of the ta into the dal (mutadaththir -> muddaththir) creates a heavy, muffled sound—phonetically echoing being bundled inside a thick garment. Yet the very next verse breaks that muffled quiet with two crisp syllables: "Qum fa-andhir" (Arise and warn).`
+      },
+      {
+        term: `Syntactic Fronting (Taqdim)`,
+        arabic: `وَرَبَّكَ فَكَبِّرْ`,
+        ref: `74:3–7`,
+        root: `k-b-r / t-h-r / h-j-r / s-b-r`,
+        form: `Fronted direct object + emphatic fa- + imperative verb`,
+        meaning: `Object placed before verb ("Your Lord—Him magnify"; "Your garments—them purify").`,
+        analysis: `Normally Arabic places the verb before the object. Here, verses 3, 4, 5, and 7 front the object ("your Lord", "your clothing", "uncleanliness", "for your Lord") before the imperative joined by fa-. This grammatical inversion signals exclusivity and urgency: magnify Him alone, before any idol or tribal leader.`
+      },
+      {
+        term: `Sa'uda`,
+        arabic: `صَعُودًا`,
+        ref: `74:17`,
+        root: `s-'-d (ص ع د)`,
+        form: `Verbal noun / intensive noun (fa'ul pattern)`,
+        meaning: `An exhausting, steep, impossible ascent; arduous torment.`,
+        analysis: `Used immediately after the arrogant critic asks Allah to "add more" (v. 15) despite already being eased onto level ground ("mahhadtu lahu tamhida", v. 14). The wordplay is striking: he demanded ever higher status on a smoothed path, so he is promised an unrelenting uphill climb of torment.`
+      },
+      {
+        term: `Lawwahatun lil-bashar`,
+        arabic: `لَوَّاحَةٌ لِلْبَشَرِ`,
+        ref: `74:29`,
+        root: `l-w-h / b-sh-r (ل و ح / ب ش ر)`,
+        form: `Intensive feminine active participle (fa''alah)`,
+        meaning: `Repeatedly scorching or blackening the outer skin (bashar).`,
+        analysis: `Classical commentators highlight a brilliant double nuance in "bashar": it means both "human skin" (which Saqar scorches visibly) and "humanity/mortals" (for whom Saqar looms visibly in warning). Notice how v. 29 echoes v. 25 ("qawl al-bashar", word of a mortal) and v. 36 ("nadhirun lil-bashar", warning to humanity).`
+      },
+      {
+        term: `Qaswarah`,
+        arabic: `قَسْوَرَةٍ`,
+        ref: `74:51`,
+        root: `q-s-r (ق س ر)`,
+        form: `Rare intensive noun (fa'walah)`,
+        meaning: `A mighty lion (or, in a secondary classical gloss, a fierce hunter/archer).`,
+        analysis: `Why use the rare word "qaswarah" instead of the common "asad" (lion)? Derived from q-s-r (to overpower, compel), its harsh consonants—qaf, sad, waw, ra—evoke roaring force. Paired with "humurun mustanfirah" (panicked wild donkeys), the simile exposes how absurd it is for rational humans to stampede away from a moral reminder.`
+      },
+      {
+        term: `Rahinah`,
+        arabic: `رَهِينَةٌ`,
+        ref: `74:38`,
+        root: `r-h-n (ر ه ن)`,
+        form: `Feminine adjective (fa'ilah) with passive sense`,
+        meaning: `Held in pledge, mortgaged, or retained as collateral.`,
+        analysis: `Just as a debtor's collateral is held until the debt is settled, every human soul (nafs) stands bound by the record of its own choices and earnings ("bi-ma kasabat"). No tribal prestige or external intercessor can bail out an unrepentant soul (v. 48).`
+      }
+    ];
+
+    const ACCOUNTABILITY_CAUSES = [
+      {
+        verse: `74:43`,
+        title: `Spiritual Rupture: "We were not of those who prayed"`,
+        arabic: `قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ`,
+        domain: `Vertical Relationship (Humanity & God)`,
+        explanation: `Notice their phrasing: not merely "we missed a prayer," but "we were not among the people of prayer (al-musallin)." Prayer is the recurring anchor that keeps the soul mindful of Allah's greatness (74:3) and the Hereafter (74:53). Abandoning it severs the believer's daily tether to humility.`
+      },
+      {
+        verse: `74:44`,
+        title: `Social Rupture: "Nor did we used to feed the poor"`,
+        arabic: `وَلَمْ نَكُ نُطْعِمُ الْمِسْكِينَ`,
+        domain: `Horizontal Relationship (Humanity & Society)`,
+        explanation: `Immediately after prayer, the guilty confess their failure of economic compassion. In the Qur'an, worship of God is inseparable from material solidarity with the vulnerable (al-miskin). Wealth hoarded without feeding others mirrors the selfishness condemned earlier in 74:12–15.`
+      },
+      {
+        verse: `74:45`,
+        title: `Communal & Intellectual Drift: "We used to enter into vain discourse"`,
+        arabic: `وَكُنَّا نَخُوضُ مَعَ الْخَائِضِينَ`,
+        domain: `Culture, Speech & Peer Conformity`,
+        explanation: `The Arabic verb "nakhudu" means wading indiscriminately into muddy water—joining crowds in cynical gossip, ridicule of sacred truth, and trivial distraction ("with those who engaged in it"). Here, social conformity replaces moral discernment.`
+      },
+      {
+        verse: `74:46–47`,
+        title: `Metaphysical Denial: "We denied the Day of Recompense until certainty came"`,
+        arabic: `وَكُنَّا نُكَذِّبُ بِيَوْمِ الدِّينِ ۝ حَتَّى أَتَانَا الْيَقِينُ`,
+        domain: `Worldview & Moral Reckoning`,
+        explanation: `What enabled the first three failures? Denying accountability altogether ("Yawm al-Din"). They lived as though no reckoning awaited them—until "al-yaqin" (the undeniable certainty of death) arrived and shattered every illusion. At that point, verse 48 notes, no intercession can avail them.`
+      }
+    ];
+
+    const COMPARISONS = [
+      {
+        surah: `Surah Al-Muzzammil (Ch. 73)`,
+        motif: `The Cloak-Wrapped Prophet`,
+        distinction: `Ch. 73 commands standing in night prayer ("Qum il-layl") to build inner stamina through unhurried recitation; Ch. 74 commands standing in public daylight ("Qum fa-andhir") to warn society.`,
+        parallel: `74:1–7 ("O you who covers himself, arise and warn")`,
+        spotlight: `Chapters 73 and 74 form the Qur'an's twin commissioning pair. Al-Muzzammil cultivates the private night vigil that makes the public mission of Al-Muddaththir sustainable.`
+      },
+      {
+        surah: `Surah Al-Alaq (Ch. 96)`,
+        motif: `Opening Milestones of Revelation`,
+        distinction: `Ch. 96 begins with "Iqra'" (Read/Recite)—receiving the first words of revelation; Ch. 74 begins with "Qum fa-andhir" (Arise and warn)—transmitting the message to others.`,
+        parallel: `74:1–3 & 74:54 ("Indeed, it is a reminder")`,
+        spotlight: `Together, Surah 96 and Surah 74 map the two halves of prophetic vocation: first receiving divine knowledge in solitude, then bearing witness before the community.`
+      },
+      {
+        surah: `Surah Al-Qiyamah (Ch. 75)`,
+        motif: `Cosmic Oaths & Moral Choice`,
+        distinction: `Ch. 75 focuses on the resurrection of the human body, the self-reproaching soul, and the moment of death; Ch. 74 emphasizes public warning, the oath by moon/night/morning, and stepping forward or lagging behind.`,
+        parallel: `74:32–38 ("To whoever wills to proceed or stay behind")`,
+        spotlight: `Placed immediately side-by-side in the mushaf, Chapters 74 and 75 both challenge human denial of the Hereafter and confront the soul with the inevitability of reckoning.`
+      },
+      {
+        surah: `Surah Al-Ma'un (Ch. 107)`,
+        motif: `Prayer Linked to Care for the Poor`,
+        distinction: `Ch. 107 exposes the hypocrisy of one who performs outward ritual while repelling the orphan and neglecting the needy; Ch. 74 places the same dual omission on the lips of the guilty in Saqar.`,
+        parallel: `74:43–44 ("Not of those who prayed, nor feeding the poor")`,
+        spotlight: `Both chapters demonstrate a central Makkan ethical principle: devotion to God and care for the vulnerable stand or fall together.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        prompt: `In early Islamic historical tradition, what turning point does the opening of Surah Al-Muddaththir (74:1–7) represent?`,
+        options: [
+          `The transition from private prophethood (receiving revelation) to public warning and messengership`,
+          `The migration from Makkah to Madinah after the Battle of Badr`,
+          `The first revelation ever received in Cave Hira`,
+          `The final farewell address delivered in the tenth year after Hijrah`
+        ],
+        correct: 0,
+        explanation: `Surah Al-Alaq (96:1–5) initiated private prophethood in Cave Hira. After a pause (fatrat al-wahy) and a second vision of Jibril, Surah Al-Muddaththir (74:1–7) commissioned the Prophet to "Arise and warn" publicly.`
+      },
+      {
+        prompt: `Which grammatical device appears in verses 74:3–5 ("Wa rabbaka fa-kabbir", "Wa thiyabaka fa-tahhir", "Wal-rujza fahjur")?`,
+        options: [
+          `Passive past-tense narration to distance the speaker`,
+          `Fronting the direct object before the imperative verb + fa- (taqdim) for exclusivity and urgency`,
+          `Dual pluralization to address angels and jinn simultaneously`,
+          `Conditional negation implying delayed obligation`
+        ],
+        correct: 1,
+        explanation: `Placing "your Lord," "your clothing," and "uncleanliness" before the imperative verbs joined by fa- emphasizes exclusivity: magnify God alone, purify your outward/moral garment, and abandon idolatry at once.`
+      },
+      {
+        prompt: `What ethical rule does verse 74:6 ("Wa la tamnun tastakthir") establish for anyone serving a moral mission?`,
+        options: [
+          `Give charity only to close relatives and tribal allies`,
+          `Wait until you are wealthy before assisting the needy`,
+          `Do not confer a favor expecting greater return, praise, or leverage`,
+          `Keep all charitable deeds hidden even from the recipient`
+        ],
+        correct: 2,
+        explanation: `Verse 74:6 warns against conferring favors to acquire more ("tastakthir")—guarding against transactional generosity or feeling entitled to reward from people rather than Allah.`
+      },
+      {
+        prompt: `In verses 74:18–25, how is the wealthy opponent (linked in exegesis to Al-Walid ibn al-Mughirah) depicted before he rejects the Qur'an?`,
+        options: [
+          `As someone who never heard a single verse recited`,
+          `As one who carefully thought, deliberated, considered again, frowned, scowled, and arrogantly labeled it "imitated magic"`,
+          `As a scholar who debated theology respectfully without bias`,
+          `As an impoverished traveler seeking shelter`
+        ],
+        correct: 1,
+        explanation: `Verses 18–25 trace his deliberate internal calculation ("he thought and deliberated... then considered... then frowned and scowled... then turned back and was arrogant") before calling revelation human speech.`
+      },
+      {
+        prompt: `Why does verse 74:31 say Allah made the number of Saqar's angelic keepers nineteen?`,
+        options: [
+          `Because nineteen symbolizes the number of Makkan tribes`,
+          `Only as a poetic meter constraint to preserve the -ar rhyme`,
+          `As a trial for disbelievers, so People of the Scripture are convinced, believers grow in faith without doubt, and hypocrites' skepticism is exposed`,
+          `Because nineteen human guards could easily be bribed`
+        ],
+        correct: 2,
+        explanation: `Verse 31 explicitly enumerates these five wisdoms and stresses that the keepers are angels—not vulnerable mortals—closing with "And none knows the soldiers of your Lord except Him."`
+      },
+      {
+        prompt: `Which three cosmic signs precede the declaration "Indeed, the Fire is of the greatest [afflictions]" (74:32–35)?`,
+        options: [
+          `The sun, the ocean, and the mountains`,
+          `The moon, the night when it departs, and the morning when it brightens`,
+          `The wind, the raincloud, and the olive tree`,
+          `The stars, the desert, and the thunderbolt`
+        ],
+        correct: 1,
+        explanation: `Verses 74:32–34 swear by the moon, the departing night, and the brightening dawn—natural transitions from darkness to light that frame the warning in 74:35–37.`
+      },
+      {
+        prompt: `In the Hereafter dialogue (74:42–47), what four causes do the criminals themselves confess put them into Saqar?`,
+        options: [
+          `Lack of wealth, lack of lineage, forgetting poetry, and traveling abroad`,
+          `Neglecting prayer, not feeding the poor, engaging in vain discourse, and denying the Day of Recompense until death`,
+          `Building tall towers, trading during winter, eating meat, and sleeping late`,
+          `Forgetting historical dates, disputing grammar, and doubting the moon's orbit`
+        ],
+        correct: 1,
+        explanation: `Verses 74:43–47 record their fourfold self-indictment: not praying, not feeding the poor (al-miskin), joining vain/mocking chatter, and denying the Day of Recompense until "the certainty" (death) arrived.`
+      },
+      {
+        prompt: `How do Surah Al-Muzzammil (Ch. 73) and Surah Al-Muddaththir (Ch. 74) complement each other?`,
+        options: [
+          `Ch. 73 focuses on private night-prayer preparation while Ch. 74 commands public daylight warning`,
+          `Ch. 73 addresses Madinan inheritance law while Ch. 74 addresses treaty law`,
+          `Both chapters narrate the story of Prophet Yusuf in Egypt`,
+          `Ch. 73 forbids charity whereas Ch. 74 mandates it`
+        ],
+        correct: 0,
+        explanation: `Both open with the Prophet wrapped in a garment: Al-Muzzammil prepares his inner resilience through night prayer and Qur'anic reflection, while Al-Muddaththir sends him outward to warn.`
+      }
+    ];
+
+    const REFLECTION_PROMPTS = [
+      {
+        id: `ref-1`,
+        verse: `74:6`,
+        title: `Selfless Generosity Without Hidden Scorekeeping`,
+        prompt: `"And do not confer favor to acquire more." Where in your daily work, family life, or community service do you notice a subtle expectation of gratitude, praise, or reciprocity? What changes when giving is anchored solely in God?`
+      },
+      {
+        id: `ref-2`,
+        verse: `74:37`,
+        title: `Stepping Forward vs. Lagging Behind`,
+        prompt: `"To whoever wills among you to proceed or stay behind." Verse 37 treats moral stagnation as a choice. Identify one area of character, knowledge, or responsibility where you have been staying behind—and one concrete step forward this week.`
+      },
+      {
+        id: `ref-3`,
+        verse: `74:43–45`,
+        title: `Auditing Worship, Compassion, and Speech`,
+        prompt: `The self-indictment in 74:43–45 links spiritual neglect (prayer), social neglect (feeding the poor), and idle cynicism (vain discourse). Which of these three areas currently needs the most honest repair in your routine?`
+      },
+      {
+        id: `ref-4`,
+        verse: `74:54–56`,
+        title: `Holding Awe and Hope Together`,
+        prompt: `The Surah closes by naming Allah both "worthy of fear" (ahl al-taqwa) and "adequate for granting forgiveness" (ahl al-maghfirah). How does keeping reverence and mercy in balance protect you from both complacency and despair?`
+      }
+    ];
+
+    /* Persistent Application State */
+    let appState = {
+      historyStage: 0,
+      activeMovement: 0,
+      studiedMovements: [],
+      activeLinguistic: 0,
+      activeCause: 0,
+      activeComparison: 0,
+      quizIndex: 0,
+      quizAnswers: {},
+      reflections: {}
+    };
+
+    /* Helper: Save state safely via notebookAppApi */
+    async function persistState() {
+      updateMasteryUI();
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          const msg = document.getElementById('mastery-status-msg');
+          if (msg) msg.textContent = `Could not save session state: ${err.message || 'storage unavailable'}.`;
+        }
+      }
+    }
+
+    function updateMasteryUI() {
+      const studiedCount = Array.isArray(appState.studiedMovements) ? appState.studiedMovements.length : 0;
+      const quizCorrectCount = QUIZ_QUESTIONS.reduce((acc, q, idx) => {
+        return acc + (appState.quizAnswers[idx] === q.correct ? 1 : 0);
+      }, 0);
+      const reflectionDoneCount = REFLECTION_PROMPTS.reduce((acc, item) => {
+        const text = (appState.reflections[item.id] || '').trim();
+        return acc + (text.length >= 15 ? 1 : 0);
+      }, 0);
+
+      /* Mastery weights: 6 movements (36%), 8 quiz questions (40%), 4 reflections (24%) */
+      const score = Math.round(
+        (studiedCount / SURAH_MOVEMENTS.length) * 36 +
+        (quizCorrectCount / QUIZ_QUESTIONS.length) * 40 +
+        (reflectionDoneCount / REFLECTION_PROMPTS.length) * 24
+      );
+
+      const pctEl = document.getElementById('mastery-percent');
+      const studEl = document.getElementById('studied-count');
+      const quizEl = document.getElementById('quiz-score-summary');
+      const refEl = document.getElementById('reflection-count-summary');
+      const fillEl = document.getElementById('mastery-progress-fill');
+
+      if (pctEl) pctEl.textContent = `${score}%`;
+      if (studEl) studEl.textContent = `${studiedCount} / ${SURAH_MOVEMENTS.length}`;
+      if (quizEl) quizEl.textContent = `${quizCorrectCount} / ${QUIZ_QUESTIONS.length}`;
+      if (refEl) refEl.textContent = `${reflectionDoneCount} / ${REFLECTION_PROMPTS.length}`;
+      if (fillEl) fillEl.style.width = `${score}%`;
+    }
+
+    /* Section 1: Historical Context */
+    function renderHistoryStage() {
+      const idx = appState.historyStage;
+      for (let i = 0; i < HISTORY_STAGES.length; i++) {
+        const tab = document.getElementById(`hist-tab-${i}`);
+        if (tab) {
+          tab.classList.toggle('is-active', i === idx);
+          tab.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+        }
+      }
+      const panel = document.getElementById('history-detail-panel');
+      if (!panel) return;
+      const stage = HISTORY_STAGES[idx];
+      panel.innerHTML = `
+        <div>
+          <span class="badge-terracotta">${stage.label}</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">${stage.title}</h3>
+          <p class="prose" style="margin-bottom: 0;">${stage.body}</p>
+        </div>
+        <div class="step-verse-callout">
+          <div class="arch-label" style="text-align:left;">Anchor Verse · ${stage.verseRef}</div>
+          <div class="arabic-text" lang="ar" dir="rtl" style="margin-block: var(--space-xs);">${stage.arabic}</div>
+          <p class="verse-english" style="margin:0; color: var(--on-surface-variant);">${stage.note}</p>
+        </div>
+      `;
+    }
+
+    function selectHistoryStage(idx) {
+      appState.historyStage = idx;
+      renderHistoryStage();
+      persistState();
+    }
+
+    /* Section 2: Structure & Verse Explorer */
+    function renderStructureExplorer() {
+      const strip = document.getElementById('structure-strip');
+      const panel = document.getElementById('verse-explorer-panel');
+      if (!strip || !panel) return;
+
+      strip.innerHTML = SURAH_MOVEMENTS.map((mov, i) => {
+        const isActive = i === appState.activeMovement;
+        const isStudied = appState.studiedMovements.includes(mov.id);
+        return `
+          <button type="button"
+            class="struct-block ${isActive ? 'is-active' : ''} ${isStudied ? 'is-studied' : ''}"
+            onclick="selectMovement(${i})">
+            <div>
+              <div class="struct-range">${mov.range}</div>
+              <div class="struct-name">${mov.title}</div>
+            </div>
+            <div class="struct-rhythm">${isStudied ? 'Studied · ' : ''}${mov.rhythm}</div>
+          </button>
+        `;
+      }).join('');
+
+      const active = SURAH_MOVEMENTS[appState.activeMovement];
+      const studied = appState.studiedMovements.includes(active.id);
+
+      const verseRowsHtml = active.verses.map((v) => `
+        <div class="verse-row">
+          <span class="verse-num-badge">${v.num}</span>
+          <div class="verse-english">${v.en}</div>
+          <div class="arabic-text" lang="ar" dir="rtl">${v.ar}</div>
+        </div>
+      `).join('');
+
+      panel.innerHTML = `
+        <div class="verse-explorer-header">
+          <div>
+            <span class="badge-terracotta">${active.range} · ${active.rhythm}</span>
+            <h3 class="subhead" style="margin-top: var(--space-sm); margin-bottom: var(--space-xs);">${active.title}</h3>
+            <p class="prose-muted" style="margin-bottom: 0;">${active.summary}</p>
+          </div>
+          <button type="button"
+            class="btn ${studied ? 'btn-emerald' : 'btn-primary'} btn-sm"
+            onclick="toggleMovementStudied('${active.id}')">
+            ${studied ? 'Marked as Studied' : 'Mark Movement Studied'}
+          </button>
+        </div>
+        <div class="verse-list">
+          ${verseRowsHtml}
+        </div>
+      `;
+    }
+
+    function selectMovement(idx) {
+      appState.activeMovement = idx;
+      renderStructureExplorer();
+      persistState();
+    }
+
+    function toggleMovementStudied(movId) {
+      const idx = appState.studiedMovements.indexOf(movId);
+      if (idx === -1) {
+        appState.studiedMovements.push(movId);
+      } else {
+        appState.studiedMovements.splice(idx, 1);
+      }
+      renderStructureExplorer();
+      persistState();
+    }
+
+    /* Section 3: Linguistic Analysis */
+    function renderLinguistics() {
+      const listEl = document.getElementById('ling-term-list');
+      const cardEl = document.getElementById('ling-detail-card');
+      if (!listEl || !cardEl) return;
+
+      listEl.innerHTML = LINGUISTIC_ITEMS.map((item, i) => `
+        <button type="button"
+          class="ling-term-btn ${i === appState.activeLinguistic ? 'is-active' : ''}"
+          onclick="selectLinguistic(${i})">
+          <div>
+            <div class="step-num">${item.ref}</div>
+            <strong>${item.term}</strong>
+          </div>
+          <span class="arabic-inline" lang="ar" dir="rtl">${item.arabic}</span>
+        </button>
+      `).join('');
+
+      const current = LINGUISTIC_ITEMS[appState.activeLinguistic];
+      cardEl.innerHTML = `
+        <div class="verse-explorer-header" style="margin-bottom: var(--space-md);">
+          <div>
+            <span class="badge-emerald">Verse ${current.ref}</span>
+            <h3 class="subhead" style="margin-top: var(--space-sm); margin-bottom: 0;">${current.term}</h3>
+          </div>
+          <div class="arabic-text" lang="ar" dir="rtl">${current.arabic}</div>
+        </div>
+        <div class="ling-meta-grid">
+          <div>
+            <div class="arch-label" style="text-align:left;">Tri-literal Root</div>
+            <strong>${current.root}</strong>
+          </div>
+          <div>
+            <div class="arch-label" style="text-align:left;">Morphology / Syntax</div>
+            <strong>${current.form}</strong>
+          </div>
+          <div>
+            <div class="arch-label" style="text-align:left;">Core Meaning</div>
+            <strong>${current.meaning}</strong>
+          </div>
+        </div>
+        <p class="prose" style="margin-bottom: 0;">${current.analysis}</p>
+      `;
+    }
+
+    function selectLinguistic(idx) {
+      appState.activeLinguistic = idx;
+      renderLinguistics();
+      persistState();
+    }
+
+    /* Section 4D: Accountability Dialogue */
+    function renderCauseInspector() {
+      for (let i = 0; i < ACCOUNTABILITY_CAUSES.length; i++) {
+        const btn = document.getElementById(`cause-btn-${i}`);
+        if (btn) {
+          btn.classList.toggle('is-active', i === appState.activeCause);
+          btn.setAttribute('aria-selected', i === appState.activeCause ? 'true' : 'false');
+        }
+      }
+      const detail = document.getElementById('cause-detail-panel');
+      if (!detail) return;
+      const item = ACCOUNTABILITY_CAUSES[appState.activeCause];
+      detail.innerHTML = `
+        <div class="verse-explorer-header" style="margin-bottom: var(--space-md);">
+          <div>
+            <span class="badge-terracotta">${item.verse} · ${item.domain}</span>
+            <h4 class="subhead" style="margin-top: var(--space-sm); margin-bottom: 0;">${item.title}</h4>
+          </div>
+          <div class="arabic-text" lang="ar" dir="rtl">${item.arabic}</div>
+        </div>
+        <p class="prose" style="margin-bottom: 0;">${item.explanation}</p>
+      `;
+    }
+
+    function selectCause(idx) {
+      appState.activeCause = idx;
+      renderCauseInspector();
+      persistState();
+    }
+
+    /* Section 5: Comparative Connections */
+    function renderComparisons() {
+      for (let i = 0; i < COMPARISONS.length; i++) {
+        const btn = document.getElementById(`comp-btn-${i}`);
+        if (btn) {
+          btn.className = `btn btn-sm ${i === appState.activeComparison ? 'btn-primary' : 'btn-secondary'}`;
+        }
+      }
+      const spot = document.getElementById('comp-spotlight');
+      const tbody = document.getElementById('comp-table-body');
+      if (!spot || !tbody) return;
+
+      const active = COMPARISONS[appState.activeComparison];
+      spot.innerHTML = `
+        <span class="badge-emerald">${active.surah} · ${active.motif}</span>
+        <p class="prose" style="margin-top: var(--space-sm); margin-bottom: 0;">${active.spotlight}</p>
+      `;
+
+      tbody.innerHTML = COMPARISONS.map((row, idx) => `
+        <tr class="${idx === appState.activeComparison ? 'is-highlighted' : ''}">
+          <td><strong>${row.surah}</strong></td>
+          <td>${row.motif}</td>
+          <td>${row.distinction}</td>
+          <td>${row.parallel}</td>
+        </tr>
+      `).join('');
+    }
+
+    function selectComparison(idx) {
+      appState.activeComparison = idx;
+      renderComparisons();
+      persistState();
+    }
+
+    /* Section 6: Interactive Quiz */
+    function renderQuiz() {
+      const container = document.getElementById('quiz-container');
+      if (!container) return;
+
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx];
+      const userAnswer = appState.quizAnswers[idx];
+      const hasAnswered = typeof userAnswer === 'number';
+
+      const answeredTotal = Object.keys(appState.quizAnswers).length;
+      const correctTotal = QUIZ_QUESTIONS.reduce((acc, item, qIdx) => {
+        return acc + (appState.quizAnswers[qIdx] === item.correct ? 1 : 0);
+      }, 0);
+
+      const optionsHtml = q.options.map((opt, oIdx) => {
+        let cls = 'quiz-opt';
+        if (hasAnswered) {
+          if (oIdx === q.correct) cls += ' is-correct';
+          else if (oIdx === userAnswer) cls += ' is-wrong';
+        }
+        const letter = String.fromCharCode(65 + oIdx);
+        return `
+          <button type="button" class="${cls}" ${hasAnswered ? 'disabled' : ''} onclick="answerQuizQuestion(${oIdx})">
+            <span class="verse-num-badge">${letter}</span>
+            <span>${opt}</span>
+          </button>
+        `;
+      }).join('');
+
+      let feedbackHtml = '';
+      if (hasAnswered) {
+        const isCorrect = userAnswer === q.correct;
+        feedbackHtml = `
+          <div class="quiz-feedback ${isCorrect ? 'is-correct' : 'is-wrong'}" role="status">
+            <strong>${isCorrect ? 'Correct.' : 'Review this point:'}</strong>
+            <span>${q.explanation}</span>
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="quiz-header">
+          <div>
+            <span class="badge-terracotta">Question ${idx + 1} of ${QUIZ_QUESTIONS.length}</span>
+          </div>
+          <div class="stat-pill-label">Answered: ${answeredTotal}/${QUIZ_QUESTIONS.length} · Correct: ${correctTotal}</div>
+        </div>
+        <h3 class="subhead">${q.prompt}</h3>
+        <div class="quiz-options">
+          ${optionsHtml}
+        </div>
+        ${feedbackHtml}
+        <div class="btn-row" style="justify-content: space-between;">
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary btn-sm" ${idx === 0 ? 'disabled' : ''} onclick="stepQuiz(-1)">Previous</button>
+            <button type="button" class="btn btn-primary btn-sm" ${idx === QUIZ_QUESTIONS.length - 1 ? 'disabled' : ''} onclick="stepQuiz(1)">Next Question</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="retryQuiz(this)">Clear Quiz Answers</button>
+        </div>
+      `;
+    }
+
+    function answerQuizQuestion(optionIdx) {
+      appState.quizAnswers[appState.quizIndex] = optionIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next >= 0 && next < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = next;
+        renderQuiz();
+        persistState();
+      }
+    }
+
+    function retryQuiz(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to clear quiz';
+        return;
+      }
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      renderQuiz();
+      persistState();
+    }
+
+    /* Section 7: Reflection Studio */
+    function renderReflections() {
+      const grid = document.getElementById('reflection-grid');
+      if (!grid) return;
+
+      grid.innerHTML = REFLECTION_PROMPTS.map((item) => {
+        const val = appState.reflections[item.id] || '';
+        const saved = val.trim().length >= 15;
+        return `
+          <div class="reflection-card">
+            <div class="verse-explorer-header" style="margin-bottom: 0; padding-bottom: var(--space-sm);">
+              <span class="badge-terracotta">Verse ${item.verse}</span>
+              <span class="status-note" id="ref-status-${item.id}">${saved ? 'Saved to study log' : ''}</span>
+            </div>
+            <h3 class="subhead" style="margin-bottom: 0;">${item.title}</h3>
+            <p class="verse-english" style="margin: 0; color: var(--on-surface-variant);">${item.prompt}</p>
+            <label class="field-label" for="textarea-${item.id}">Your Reflection (15+ characters marks complete)</label>
+            <textarea
+              id="textarea-${item.id}"
+              class="reflection-input"
+              oninput="handleReflectionInput('${item.id}', this.value)">${val.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</textarea>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let reflectionSaveTimer = null;
+    function handleReflectionInput(id, value) {
+      appState.reflections[id] = value;
+      const statusEl = document.getElementById(`ref-status-${id}`);
+      if (statusEl) {
+        statusEl.textContent = value.trim().length >= 15 ? 'Saved to study log' : 'Keep writing…';
+      }
+      updateMasteryUI();
+      clearTimeout(reflectionSaveTimer);
+      reflectionSaveTimer = setTimeout(() => {
+        persistState();
+      }, 300);
+    }
+
+    /* Export & Reset Actions */
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-MUDDATHTHIR (CHAPTER 74) — PERSONAL STUDY SUMMARY`,
+        `==========================================================`,
+        ``,
+        `Movements Studied: ${appState.studiedMovements.length} / ${SURAH_MOVEMENTS.length}`,
+        `Quiz Score: ${QUIZ_QUESTIONS.reduce((a, q, i) => a + (appState.quizAnswers[i] === q.correct ? 1 : 0), 0)} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `PERSONAL REFLECTIONS`,
+        `--------------------`
+      ];
+
+      REFLECTION_PROMPTS.forEach((p) => {
+        const ans = (appState.reflections[p.id] || '').trim() || '(No response recorded yet)';
+        lines.push(``);
+        lines.push(`[${p.verse}] ${p.title}`);
+        lines.push(`Prompt: ${p.prompt}`);
+        lines.push(`Response: ${ans}`);
+      });
+
+      const content = lines.join('\n');
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-al-muddaththir-study-notes.txt'
+        });
+        const msg = document.getElementById('mastery-status-msg');
+        if (msg) msg.textContent = `Exported surah-al-muddaththir-study-notes.txt.`;
+      } else {
+        const msg = document.getElementById('mastery-status-msg');
+        if (msg) msg.textContent = `Export is available inside the Gemini Notebook viewer.`;
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to reset all';
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Reset Progress';
+      }
+      appState = {
+        historyStage: 0,
+        activeMovement: 0,
+        studiedMovements: [],
+        activeLinguistic: 0,
+        activeCause: 0,
+        activeComparison: 0,
+        quizIndex: 0,
+        quizAnswers: {},
+        reflections: {}
+      };
+      renderAll();
+      persistState();
+      const msg = document.getElementById('mastery-status-msg');
+      if (msg) msg.textContent = `All study progress, quiz answers, and reflections have been reset.`;
+    }
+
+    function renderAll() {
+      renderHistoryStage();
+      renderStructureExplorer();
+      renderLinguistics();
+      renderCauseInspector();
+      renderComparisons();
+      renderQuiz();
+      renderReflections();
+      updateMasteryUI();
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            appState = {
+              historyStage: typeof saved.historyStage === 'number' ? saved.historyStage : 0,
+              activeMovement: typeof saved.activeMovement === 'number' ? saved.activeMovement : 0,
+              studiedMovements: Array.isArray(saved.studiedMovements) ? saved.studiedMovements : [],
+              activeLinguistic: typeof saved.activeLinguistic === 'number' ? saved.activeLinguistic : 0,
+              activeCause: typeof saved.activeCause === 'number' ? saved.activeCause : 0,
+              activeComparison: typeof saved.activeComparison === 'number' ? saved.activeComparison : 0,
+              quizIndex: typeof saved.quizIndex === 'number' ? saved.quizIndex : 0,
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === 'object' ? saved.quizAnswers : {},
+              reflections: saved.reflections && typeof saved.reflections === 'object' ? saved.reflections : {}
+            };
+          }
+        } catch (err) {
+          const msg = document.getElementById('mastery-status-msg');
+          if (msg) msg.textContent = `Started fresh session.`;
+        }
+      }
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

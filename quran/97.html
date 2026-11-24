@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="nocturne">
+  <title>Surah Al-Qadr (Chapter 97) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* 1. Nocturne palette & surfaces */
+      --background: #0a101d;
+      --surface-container-low: #0e1626;
+      --surface-container: #111b2e;
+      --surface-container-high: #17243c;
+
+      /* Text */
+      --on-surface: #f2ece1;
+      --on-surface-variant: #9ba8bf;
+
+      /* Borders */
+      --outline: #384d73;
+      --outline-variant: #21304d;
+
+      /* Accents */
+      --primary: #dfaa5b;
+      --on-primary: #0a101d;
+      --primary-container: #2b261c;
+      --on-primary-container: #f5dcb0;
+      --secondary: #687a99;
+      --tertiary: #7cc4e8;
+      --error: #f27474;
+      --on-error: #1a0606;
+
+      /* Data series */
+      --data-1: #dfaa5b;
+      --data-2: #7cc4e8;
+      --data-3: #52d19c;
+      --data-4: #e07a5f;
+      --data-context: #4a5d80;
+
+      /* Fonts */
+      --font-headline: 'EB Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-strong: 1px solid var(--outline);
+      --panel-highlight: inset 0 1px 0 rgba(242, 236, 225, 0.05);
+      --brass-glow: radial-gradient(circle at 88% 12%, rgba(223, 170, 91, 0.08), transparent 45%);
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.06em;
+      --sky-tint: color-mix(in srgb, var(--tertiary) 12%, transparent);
+      --sky-border: color-mix(in srgb, var(--tertiary) 35%, transparent);
+      --brass-tint: color-mix(in srgb, var(--primary) 14%, transparent);
+      --brass-border: color-mix(in srgb, var(--primary) 40%, transparent);
+      --mint-tint: color-mix(in srgb, var(--positive) 13%, transparent);
+      --mint-border: color-mix(in srgb, var(--positive) 38%, transparent);
+      --error-tint: color-mix(in srgb, var(--error) 14%, transparent);
+      --error-border: color-mix(in srgb, var(--error) 40%, transparent);
+
+      /* 3. Shared tokens */
+      --positive: #52d19c;
+      --warning: #e07a5f;
+      --focus: var(--primary);
+
+      /* Narrative type scale */
+      --display-size: clamp(2.75rem, 1.5rem + 4.5vw, 4.75rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2.2vw, 2.75rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+      --arabic-display-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.35rem);
+      --arabic-verse-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero header */
+    .hero-header {
+      background-color: var(--background);
+      background-image: var(--brass-glow);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-xl);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .coord-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--display-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.06;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    .deck-brass {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .lede {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0;
+      font-size: var(--body-size);
+    }
+
+    .hero-top-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .hero-arabic-plaque {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      unicode-bidi: isolate;
+      line-height: 1.95;
+    }
+
+    .hero-arabic-verse {
+      font-size: var(--arabic-display-size);
+      color: var(--on-surface);
+      margin: 0;
+      text-align: right;
+    }
+
+    .hero-arabic-gloss {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+
+    /* Telemetry cards */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .metric-tile {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .metric-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .metric-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(2rem, 1.5rem + 1.4vw, 2.75rem);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .metric-note {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+    }
+
+    /* Section typography */
+    .section-block {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .section-header {
+      display: grid;
+      gap: var(--space-xs);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-md);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--headline-size);
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.12;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .section-sub {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .prose-muted {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Badges & Buttons */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      border: 1px solid var(--sky-border);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-brass {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border-color: var(--brass-border);
+    }
+
+    .badge-mint {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border-color: var(--mint-border);
+    }
+
+    .control-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      cursor: pointer;
+      border: var(--hairline-strong);
+      background: transparent;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      color: var(--on-primary);
+    }
+
+    .btn-toggle[aria-pressed="true"] {
+      background: var(--brass-tint);
+      color: var(--primary);
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    /* Section 1: Script & Lexical Explorer */
+    .explorer-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.95fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .verse-stack {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .verse-card.is-mastered {
+      box-shadow: var(--panel-highlight), inset 3px 0 0 var(--positive);
+    }
+
+    .verse-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-words-row {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .word-chip {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-verse-size);
+      line-height: 1.85;
+      letter-spacing: 0;
+      text-transform: none;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+
+    .word-chip:hover {
+      background: var(--surface-container-high);
+      box-shadow: inset 0 0 0 1px var(--outline);
+    }
+
+    .word-chip.is-selected {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    .word-chip.is-rhyme-highlighted {
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      box-shadow: inset 0 0 0 1px var(--tertiary);
+    }
+
+    .word-chip.is-rhyme-highlighted.is-selected {
+      background: var(--primary-container);
+      color: var(--primary);
+      box-shadow: inset 0 0 0 2px var(--primary);
+    }
+
+    .verse-translit {
+      font-family: var(--font-label);
+      font-size: 0.9rem;
+      color: var(--tertiary);
+      margin: 0;
+    }
+
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      line-height: 1.45;
+      color: var(--on-surface);
+      margin: 0;
+      border-top: var(--hairline);
+      padding-top: var(--space-sm);
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
+    /* Sticky-style adjacent inspector inside desktop grid (static flow on small screens) */
+    .inspector-panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .observation-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .inspector-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem);
+      line-height: 1.8;
+      color: var(--primary);
+      text-align: right;
+      margin: 0;
+    }
+
+    .kv-list {
+      display: grid;
+      gap: var(--space-sm);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .kv-row {
+      display: grid;
+      gap: var(--space-xs);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .kv-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Section 2: 1,000 Months Scale */
+    .scale-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .input-pair-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: end;
+    }
+
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+      flex: 1 1 180px;
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .text-input, .number-input, .textarea-input {
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    .textarea-input {
+      font-family: var(--font-body);
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .range-input {
+      width: 100%;
+      min-height: 44px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .scale-viz-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+      min-height: 300px;
+    }
+
+    .bar-track-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .bar-track-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+    }
+
+    .bar-track {
+      height: 22px;
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: var(--rounded);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .bar-fill-brass { background: var(--data-1); }
+    .bar-fill-sky { background: var(--data-2); }
+    .bar-fill-mint { background: var(--data-3); }
+
+    .callout-note {
+      background: var(--surface-container-low);
+      border-left: 3px solid var(--primary);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Section 3: Literary & Structural Symmetry */
+    .symmetry-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .arc-diagram-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .arc-node-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .arc-node {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+
+    .arc-node.is-active {
+      background: var(--surface-container-high);
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    .arc-node.is-sky-active {
+      background: var(--surface-container-high);
+      box-shadow: inset 0 0 0 1px var(--tertiary);
+    }
+
+    .rhyme-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .rhyme-table th, .rhyme-table td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--hairline);
+      text-align: left;
+    }
+
+    .rhyme-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    .rhyme-table td.num-col, .rhyme-table th.num-col {
+      text-align: right;
+      font-family: var(--font-label);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Section 4: Mastery Studio */
+    .mastery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .recall-stage {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .recall-verse-row {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .cloze-token {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline-strong);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-verse-size);
+      line-height: 1.85;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+
+    .cloze-token.is-masked {
+      background: var(--surface-container-high);
+      color: var(--primary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      border-style: dashed;
+      min-width: 88px;
+    }
+
+    .cloze-token.is-revealed {
+      background: var(--mint-tint);
+      color: var(--on-surface);
+      box-shadow: inset 0 0 0 1px var(--positive);
+    }
+
+    /* Sequence Drill */
+    .sequence-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .sequence-slot {
+      min-height: 54px;
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .sequence-slot.is-correct {
+      box-shadow: inset 0 0 0 1px var(--positive);
+      background: var(--mint-tint);
+    }
+
+    .sequence-slot.is-wrong {
+      box-shadow: inset 0 0 0 1px var(--error);
+      background: var(--error-tint);
+    }
+
+    .sequence-pool {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .sequence-choice {
+      text-align: left;
+      justify-content: flex-start;
+      font-family: var(--font-body);
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Quiz */
+    .quiz-list {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .quiz-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .quiz-option {
+      text-align: left;
+      justify-content: flex-start;
+      font-family: var(--font-body);
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .quiz-option.is-selected-correct {
+      background: var(--mint-tint);
+      color: var(--on-surface);
+      box-shadow: inset 0 0 0 1px var(--positive);
+    }
+
+    .quiz-option.is-selected-wrong {
+      background: var(--error-tint);
+      color: var(--on-surface);
+      box-shadow: inset 0 0 0 1px var(--error);
+    }
+
+    .quiz-feedback {
+      font-size: 0.95rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+    }
+
+    .quiz-feedback.is-correct {
+      border-color: var(--mint-border);
+      color: var(--positive);
+    }
+
+    .quiz-feedback.is-wrong {
+      border-color: var(--error-border);
+      color: var(--error);
+    }
+
+    .status-banner {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--positive);
+      min-height: 1.4em;
+    }
+
+    .footer-note {
+      border-top: var(--hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Container queries for adaptive cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (min-width: 480px) {
+      .adaptive-two-col {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--space-md);
+      }
+    }
+    @container (max-width: 479px) {
+      .adaptive-two-col {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-md);
+      }
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-top-grid,
+      .explorer-layout,
+      .scale-grid,
+      .symmetry-layout,
+      .sequence-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .verse-card, .panel, .inspector-panel, .quiz-card {
+        padding: var(--space-md);
+      }
+      .arc-node {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- HERO -->
+    <header class="hero-header">
+      <div class="hero-top-grid">
+        <div style="display: grid; gap: var(--space-sm);">
+          <span class="coord-label">CHAPTER 97 · SURAH AL-QADR · 5 VERSES · 30 ARABIC WORDS</span>
+          <h1 class="title">The Night of <em>Decree</em></h1>
+          <p class="deck-brass">A Study &amp; Mastery Guide to Surah Al-Qadr</p>
+          <p class="lede">
+            In five compressed verses, Surah Al-Qadr traces the arc of a single night from the sending down of the Qur’an, through an unanswerable question of awe and a measure exceeding a thousand months, to a cosmic descent that settles into unbroken peace until dawn.
+          </p>
+        </div>
+        <aside class="hero-arabic-plaque" aria-label="Opening verse of Surah Al-Qadr">
+          <span class="coord-label">VERSE 97:1 · OPENING DECLARATION</span>
+          <p class="arabic-text hero-arabic-verse" lang="ar" dir="rtl">إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ</p>
+          <p class="hero-arabic-gloss">“Indeed, We sent the Qur’an down during the Night of Decree.”</p>
+        </aside>
+      </div>
+
+      <div class="telemetry-grid" aria-label="Chapter overview figures">
+        <div class="metric-tile">
+          <span class="metric-label">Total Verses</span>
+          <span class="metric-value">5</span>
+          <span class="metric-note">97:1 through 97:5</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Arabic Words</span>
+          <span class="metric-value">30</span>
+          <span class="metric-note">5 · 5 · 6 · 9 · 5 cadence</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Time Benchmark</span>
+          <span class="metric-value">1,000 mo</span>
+          <span class="metric-note">83 years, 4 months surpassed</span>
+        </div>
+        <div class="metric-tile">
+          <span class="metric-label">Your Mastery</span>
+          <span class="metric-value" id="hero-mastery-value">0%</span>
+          <span class="metric-note" id="hero-mastery-note">0/5 verses · 0/5 checks</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: SCRIPT & WORD-BY-WORD EXPLORER -->
+    <section class="section-block reveal-section" id="section-script">
+      <div class="section-header">
+        <span class="coord-label">01 · TEXTUAL &amp; LEXICAL STUDY</span>
+        <h2 class="section-title">Every verse unfolds a distinct movement, linked by a shared <em>-r</em> cadence</h2>
+        <p class="section-sub">
+          Select any Arabic word below to inspect its transliteration, literal gloss, and grammatical role in the adjacent inspector. Use the view toggles to test your reading and mark verses mastered as you learn them.
+        </p>
+      </div>
+
+      <div class="control-bar" role="group" aria-label="Script display options">
+        <button type="button" class="btn btn-toggle" id="btn-toggle-translit" aria-pressed="true" onclick="toggleStudyLayer('translit')">Transliteration: On</button>
+        <button type="button" class="btn btn-toggle" id="btn-toggle-translation" aria-pressed="true" onclick="toggleStudyLayer('translation')">Translation: On</button>
+        <button type="button" class="btn btn-toggle" id="btn-toggle-rhyme" aria-pressed="false" onclick="toggleStudyLayer('rhyme')">Highlight -r Rhyme Endings</button>
+      </div>
+
+      <div class="explorer-layout">
+        <div class="verse-stack" id="verse-explorer-list"></div>
+
+        <aside class="inspector-panel" aria-live="polite" aria-label="Selected word inspector">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <span class="coord-label" id="inspector-coord">LEXICAL INSPECTOR · 97:1</span>
+            <span class="badge badge-brass" id="inspector-word-pos">Particle + Pronoun</span>
+          </div>
+
+          <div class="observation-well">
+            <span class="metric-label">Selected Arabic Word</span>
+            <p class="arabic-text inspector-arabic" lang="ar" dir="rtl" id="inspector-arabic">إِنَّا</p>
+            <span class="coord-label" id="inspector-translit">innā</span>
+          </div>
+
+          <ul class="kv-list">
+            <li class="kv-row">
+              <span class="metric-label">Literal Gloss</span>
+              <strong id="inspector-gloss">Indeed, We</strong>
+            </li>
+            <li class="kv-row">
+              <span class="metric-label">Grammatical Structure</span>
+              <span id="inspector-grammar">Emphatic particle (inna) joined to the first-person plural pronoun of majesty (-nā).</span>
+            </li>
+            <li class="kv-row">
+              <span class="metric-label">Contextual Insight</span>
+              <span class="prose-muted" id="inspector-insight">Opens the chapter immediately with divine agency—before naming what was sent or when it occurred.</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE 1,000 MONTHS BENCHMARK -->
+    <section class="section-block reveal-section" id="section-scale">
+      <div class="section-header">
+        <span class="coord-label">02 · TEMPORAL MAGNITUDE (97:2–97:3)</span>
+        <h2 class="section-title">A single night outweighs 83 years and 4 months of ordinary time</h2>
+        <p class="section-sub">
+          Verse 97:2 asks, “And what can make you know what is the Night of Decree?”—signaling that its worth lies beyond ordinary intuition. Verse 97:3 then anchors that worth with a concrete benchmark: “better than a thousand months.”
+        </p>
+      </div>
+
+      <div class="scale-grid">
+        <div class="panel card-wrapper" style="display: grid; gap: var(--space-lg);">
+          <div style="display: grid; gap: var(--space-xs);">
+            <span class="coord-label">INTERACTIVE LIFESPAN COMPARISON</span>
+            <h3 class="subhead">Compare 1,000 months against a human span</h3>
+          </div>
+
+          <div class="input-pair-row">
+            <div class="field-group">
+              <label class="field-label" for="slider-years">Comparison Span (Years)</label>
+              <input class="range-input" type="range" id="slider-years" min="1" max="120" step="1" value="75" oninput="syncYearsFromSlider(this.value)">
+            </div>
+            <div class="field-group" style="max-width: 140px;">
+              <label class="field-label" for="input-years">Exact Years</label>
+              <input class="number-input" type="number" id="input-years" min="1" max="120" step="1" value="75" oninput="syncYearsFromNumber(this.value)">
+            </div>
+          </div>
+
+          <div class="adaptive-two-col">
+            <div class="observation-well">
+              <span class="metric-label">1,000 Months Equivalent</span>
+              <strong style="font-family: var(--font-headline); font-size: 1.6rem; color: var(--primary);">83 yrs, 4 mos</strong>
+              <span class="metric-note">~29,531 lunar nights · 30,000 schematic days</span>
+            </div>
+            <div class="observation-well">
+              <span class="metric-label">Selected Span in Months</span>
+              <strong style="font-family: var(--font-headline); font-size: 1.6rem; color: var(--tertiary);" id="calc-selected-months">900 mos</strong>
+              <span class="metric-note" id="calc-ratio-note">1,000 months exceeds 75 yrs by 100 months</span>
+            </div>
+          </div>
+
+          <div class="callout-note">
+            <span class="coord-label">TEXTUAL PRECISION</span>
+            <p class="prose-muted">
+              Notice that 97:3 does not say “equal to” a thousand months—it states <strong>khayrun min</strong> (“better than” a thousand months). The figure is a lower bound, not a ceiling.
+            </p>
+          </div>
+        </div>
+
+        <div class="scale-viz-well" aria-live="polite">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: var(--space-sm);">
+            <h3 class="subhead">Relative Duration Scale (Months)</h3>
+            <span class="coord-label">MAX AXIS: 1,440 MONTHS (120 YRS)</span>
+          </div>
+
+          <div class="bar-track-group">
+            <div class="bar-track-meta">
+              <span style="color: var(--primary);">Night of Decree Benchmark (97:3)</span>
+              <span style="color: var(--primary);">1,000 months (83.3 yrs)</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-fill-brass" style="width: 69.44%;"></div>
+            </div>
+          </div>
+
+          <div class="bar-track-group">
+            <div class="bar-track-meta">
+              <span style="color: var(--tertiary);" id="viz-selected-label">Your Comparison Span (75 yrs)</span>
+              <span style="color: var(--tertiary);" id="viz-selected-value">900 months</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-fill-sky" id="viz-selected-bar" style="width: 62.5%;"></div>
+            </div>
+          </div>
+
+          <div class="bar-track-group">
+            <div class="bar-track-meta">
+              <span style="color: var(--positive);">One Decade Reference</span>
+              <span style="color: var(--positive);">120 months (10 yrs)</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-fill-mint" style="width: 8.33%;"></div>
+            </div>
+          </div>
+
+          <div class="bar-track-group">
+            <div class="bar-track-meta">
+              <span style="color: var(--on-surface-variant);">Single Lunar Year</span>
+              <span style="color: var(--on-surface-variant);">12 months (1 yr)</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 1.2%; background: var(--data-context);"></div>
+            </div>
+          </div>
+
+          <p class="prose-muted" style="font-size: 0.92rem; margin-top: auto;" id="viz-takeaway">
+            At 75 years (900 months), one Night of Decree still surpasses the entire selected span by 8 years and 4 months.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ARCHITECTURAL & RHETORICAL SYMMETRY -->
+    <section class="section-block reveal-section" id="section-structure">
+      <div class="section-header">
+        <span class="coord-label">03 · LITERARY ARCHITECTURE</span>
+        <h2 class="section-title">Repetition names the night three times before yielding to pronouns of presence</h2>
+        <p class="section-sub">
+          Inspect how Surah Al-Qadr shifts from third-person majesty and explicit naming in verses 1–3 to continuous vertical movement and serene closure in verses 4–5. Select a structural lens to trace its thread across all five verses.
+        </p>
+      </div>
+
+      <div class="control-bar" role="group" aria-label="Structural analysis lenses">
+        <button type="button" class="btn btn-toggle" id="lens-naming" aria-pressed="true" onclick="setStructuralLens('naming')">Naming → Pronoun Shift</button>
+        <button type="button" class="btn btn-toggle" id="lens-vertical" aria-pressed="false" onclick="setStructuralLens('vertical')">Vertical Descent Axis</button>
+        <button type="button" class="btn btn-toggle" id="lens-temporal" aria-pressed="false" onclick="setStructuralLens('temporal')">Night → Dawn Horizon</button>
+        <button type="button" class="btn btn-toggle" id="lens-rhyme" aria-pressed="false" onclick="setStructuralLens('rhyme')">Sound &amp; Rhyme Cadence</button>
+      </div>
+
+      <div class="symmetry-layout">
+        <div class="arc-diagram-well">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <span class="coord-label" id="lens-status-label">LENS ACTIVE: NAMING → PRONOUN SHIFT</span>
+            <span class="badge" id="lens-badge">Verses 1–5</span>
+          </div>
+
+          <div class="arc-node-list" id="structural-nodes"></div>
+        </div>
+
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <span class="coord-label">STRUCTURAL INTERPRETATION</span>
+          <h3 class="subhead" id="lens-title">Three explicit namings anchor the mystery before pronouns carry it</h3>
+          <p class="prose-muted" id="lens-description">
+            In verses 1, 2, and 3, the full construct phrase “Laylat al-Qadr” (Night of Decree) is repeated verbatim three times. Once its rank is established as better than a thousand months, verses 4 and 5 drop the noun phrase and shift to feminine pronouns (“fīhā” therein, “hiya” it is)—reflecting total familiarity and presence.
+          </p>
+
+          <div style="border-top: var(--hairline); padding-top: var(--space-md);">
+            <span class="metric-label">Verse Cadence &amp; Word Count Table</span>
+            <table class="rhyme-table">
+              <thead>
+                <tr>
+                  <th>Verse</th>
+                  <th>Final Word</th>
+                  <th>Ending</th>
+                  <th class="num-col">Words</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>97:1</td>
+                  <td><span class="arabic-text" lang="ar" dir="rtl">الْقَدْرِ</span> (al-Qadr)</td>
+                  <td>-dr</td>
+                  <td class="num-col">5</td>
+                </tr>
+                <tr>
+                  <td>97:2</td>
+                  <td><span class="arabic-text" lang="ar" dir="rtl">الْقَدْرِ</span> (al-Qadr)</td>
+                  <td>-dr</td>
+                  <td class="num-col">5</td>
+                </tr>
+                <tr>
+                  <td>97:3</td>
+                  <td><span class="arabic-text" lang="ar" dir="rtl">شَهْرٍ</span> (shahr)</td>
+                  <td>-hr</td>
+                  <td class="num-col">6</td>
+                </tr>
+                <tr>
+                  <td>97:4</td>
+                  <td><span class="arabic-text" lang="ar" dir="rtl">أَمْرٍ</span> (amr)</td>
+                  <td>-mr</td>
+                  <td class="num-col">9</td>
+                </tr>
+                <tr>
+                  <td>97:5</td>
+                  <td><span class="arabic-text" lang="ar" dir="rtl">الْفَجْرِ</span> (al-Fajr)</td>
+                  <td>-jr</td>
+                  <td class="num-col">5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MASTERY STUDIO -->
+    <section class="section-block reveal-section" id="section-mastery">
+      <div class="section-header">
+        <span class="coord-label">04 · ACTIVE RECALL &amp; MASTERY STUDIO</span>
+        <h2 class="section-title">Practice verbatim recall, verse sequence, and meaning checks</h2>
+        <p class="section-sub">
+          Your mastery progress, completed checks, and study reflections persist automatically across sessions. Switch recall modes to mask words, assemble the five-verse order from memory, and verify your comprehension below.
+        </p>
+      </div>
+
+      <div class="mastery-grid">
+        <!-- A. Cloze Recall Trainer -->
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+            <div style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label">A · ARABIC RECALL TRAINER</span>
+              <h3 class="subhead">Mask words and tap tiles to test memorization</h3>
+            </div>
+            <div class="control-bar">
+              <button type="button" class="btn btn-toggle" id="mode-study" aria-pressed="false" onclick="setRecallMode('study')">Show All</button>
+              <button type="button" class="btn btn-toggle" id="mode-keywords" aria-pressed="true" onclick="setRecallMode('keywords')">Mask Keywords</button>
+              <button type="button" class="btn btn-toggle" id="mode-full" aria-pressed="false" onclick="setRecallMode('full')">Full Recall</button>
+              <button type="button" class="btn" onclick="resetRecallReveals()">Re-Mask Words</button>
+            </div>
+          </div>
+
+          <div class="recall-stage" id="recall-stage"></div>
+        </div>
+
+        <!-- B. Sequence Builder -->
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+            <div style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label">B · VERSE SEQUENCE BUILDER</span>
+              <h3 class="subhead">Order the five verses from 97:1 to 97:5</h3>
+            </div>
+            <div class="control-bar">
+              <button type="button" class="btn" onclick="shuffleSequenceDrill()">Shuffle &amp; Restart</button>
+            </div>
+          </div>
+
+          <p class="prose-muted">Select each translation from the pool on the right in the exact order of Surah Al-Qadr (97:1 through 97:5).</p>
+
+          <div class="sequence-columns">
+            <div style="display: grid; gap: var(--space-sm);" id="sequence-slots"></div>
+            <div class="sequence-pool" id="sequence-pool"></div>
+          </div>
+          <div class="status-banner" id="sequence-feedback" aria-live="polite"></div>
+        </div>
+
+        <!-- C. Diagnostic Mastery Check -->
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+            <div style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label">C · DIAGNOSTIC MASTERY CHECK</span>
+              <h3 class="subhead">Verify precision across all five verses</h3>
+            </div>
+            <span class="badge badge-mint" id="quiz-score-badge">0 / 5 Correct</span>
+          </div>
+
+          <div class="quiz-list" id="quiz-container"></div>
+        </div>
+
+        <!-- D. Study Reflection & Export -->
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <span class="coord-label">D · PERSONAL STUDY LOG &amp; EXPORT</span>
+          <div class="field-group">
+            <label class="field-label" for="study-notes">Personal Reflections or Memorization Notes</label>
+            <textarea class="textarea-input" id="study-notes" placeholder="Record patterns, word roots, or verses you want to review again…" oninput="handleNotesInput(this.value)"></textarea>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+            <div class="control-bar">
+              <button type="button" class="btn btn-primary" onclick="exportStudySummary()">Export Study Summary (.txt)</button>
+              <button type="button" class="btn" id="btn-reset-progress" onclick="handleResetProgress(this)">Reset All Progress</button>
+            </div>
+            <span class="status-banner" id="persistence-status" aria-live="polite">Progress saved locally in notebook session.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>Primary Arabic text and English translation grounded in the provided Surah Al-Qadr source (Chapter 97, verses 1–5).</span>
+      <span class="coord-label">SURAH 97 · AL-QADR</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const SURAH_VERSES = [
+      {
+        id: `97:1`,
+        num: 1,
+        arabic: `إِنَّا أَنْزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ`,
+        translit: `Innā anzalnāhu fī laylati l-qadr`,
+        translation: `Indeed, We sent the Qur’an down during the Night of Decree.`,
+        rhymeWordIndex: 4,
+        themeTag: `Descent of Revelation`,
+        words: [
+          {
+            ar: `إِنَّا`,
+            tr: `innā`,
+            pos: `Particle + Pronoun`,
+            gloss: `Indeed, We`,
+            grammar: `Emphatic particle (inna) joined to the first-person plural pronoun of majesty (-nā).`,
+            insight: `Opens the chapter immediately with divine agency—before naming what was sent or when it occurred.`
+          },
+          {
+            ar: `أَنْزَلْنَاهُ`,
+            tr: `anzalnāhu`,
+            pos: `Form IV Verb + Pronouns`,
+            gloss: `We sent it down`,
+            grammar: `Past-tense Form IV verb (anzala, “to send down”) + subject (-nā) + masculine singular object (-hu, “it”).`,
+            insight: `The pronoun “it” (-hu) refers directly to the Qur’an without needing to name it explicitly, assuming immediate recognition.`
+          },
+          {
+            ar: `فِي`,
+            tr: `fī`,
+            pos: `Preposition`,
+            gloss: `during / in`,
+            grammar: `Preposition of temporal containment governing the following construct phrase in the genitive case.`,
+            insight: `Places the monumental event of revelation within a single bounded night.`
+          },
+          {
+            ar: `لَيْلَةِ`,
+            tr: `laylati`,
+            pos: `Noun (Construct)`,
+            gloss: `the Night of`,
+            grammar: `Feminine singular noun in the genitive case, serving as the first term of a possessive construct (iḍāfah).`,
+            insight: `First of three explicit occurrences of “laylah” paired with “al-qadr” in verses 1–3.`
+          },
+          {
+            ar: `الْقَدْرِ`,
+            tr: `al-qadri`,
+            pos: `Definite Noun`,
+            gloss: `Decree`,
+            grammar: `Definite noun in the genitive case completing the construct phrase; carries the sense of decree, measure, and immense worth.`,
+            insight: `Sets the chapter’s acoustic -r rhyme anchor right at the close of verse 1.`
+          }
+        ]
+      },
+      {
+        id: `97:2`,
+        num: 2,
+        arabic: `وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ`,
+        translit: `Wa-mā adrāka mā laylatu l-qadr`,
+        translation: `And what can make you know what is the Night of Decree?`,
+        rhymeWordIndex: 4,
+        themeTag: `Rhetorical Question of Awe`,
+        words: [
+          {
+            ar: `وَمَا`,
+            tr: `wa-mā`,
+            pos: `Conjunction + Interrogative`,
+            gloss: `And what`,
+            grammar: `Coordinating conjunction (wa-) prefixed to the interrogative pronoun (mā).`,
+            insight: `Signals a deliberate pause after verse 1 to heighten reverence before defining the night.`
+          },
+          {
+            ar: `أَدْرَاكَ`,
+            tr: `adrāka`,
+            pos: `Form IV Verb + Object`,
+            gloss: `can make you know`,
+            grammar: `Form IV verb (adrā, “to make aware/inform”) + second-person singular object suffix (-ka, “you”).`,
+            insight: `Classic Qur’anic idiom indicating that the reality ahead lies beyond ordinary human estimation.`
+          },
+          {
+            ar: `مَا`,
+            tr: `mā`,
+            pos: `Interrogative Pronoun`,
+            gloss: `what is`,
+            grammar: `Second interrogative pronoun introducing the embedded question about the night’s essence.`,
+            insight: `Doubles the interrogative weight alongside “wa-mā” at the start of the verse.`
+          },
+          {
+            ar: `لَيْلَةُ`,
+            tr: `laylatu`,
+            pos: `Noun (Nominative)`,
+            gloss: `the Night of`,
+            grammar: `Feminine noun in the nominative case (first term of iḍāfah).`,
+            insight: `Repeats the name directly rather than replacing it with a pronoun, magnifying its majesty.`
+          },
+          {
+            ar: `الْقَدْرِ`,
+            tr: `al-qadri`,
+            pos: `Definite Noun`,
+            gloss: `Decree`,
+            grammar: `Definite genitive noun completing the construct phrase.`,
+            insight: `Creates an exact end-word echo with verse 1 (“al-qadr” → “al-qadr”).`
+          }
+        ]
+      },
+      {
+        id: `97:3`,
+        num: 3,
+        arabic: `لَيْلَةُ الْقَدْرِ خَيْرٌ مِنْ أَلْفِ شَهْرٍ`,
+        translit: `Laylatu l-qadri khayrun min alfi shahr`,
+        translation: `The Night of Decree is better than a thousand months.`,
+        rhymeWordIndex: 5,
+        themeTag: `Measure Surpassed`,
+        words: [
+          {
+            ar: `لَيْلَةُ`,
+            tr: `laylatu`,
+            pos: `Subject Noun`,
+            gloss: `The Night of`,
+            grammar: `Nominative subject (mubtadaʾ) opening a declarative nominal sentence.`,
+            insight: `Third and final time the phrase is named explicitly—answering the question posed in 97:2.`
+          },
+          {
+            ar: `الْقَدْرِ`,
+            tr: `al-qadri`,
+            pos: `Definite Noun`,
+            gloss: `Decree`,
+            grammar: `Definite genitive noun completing the subject phrase.`,
+            insight: `Completes the three-fold naming sequence across 97:1–97:3.`
+          },
+          {
+            ar: `خَيْرٌ`,
+            tr: `khayrun`,
+            pos: `Comparative Predicate`,
+            gloss: `is better`,
+            grammar: `Indefinite nominative elative/comparative noun functioning as predicate (khabar).`,
+            insight: `Crucially states “better than,” not “equal to”—establishing superiority rather than mere equivalence.`
+          },
+          {
+            ar: `مِنْ`,
+            tr: `min`,
+            pos: `Preposition`,
+            gloss: `than`,
+            grammar: `Comparative preposition linking “khayrun” to the standard of comparison.`,
+            insight: `Bridges qualitative worth (“better”) to quantitative time (“a thousand months”).`
+          },
+          {
+            ar: `أَلْفِ`,
+            tr: `alfi`,
+            pos: `Numeral Noun`,
+            gloss: `a thousand`,
+            grammar: `Genitive noun after “min” governing the following singular counted noun.`,
+            insight: `1,000 months equals 83 years and 4 months—exceeding a typical human lifetime.`
+          },
+          {
+            ar: `شَهْرٍ`,
+            tr: `shahrin`,
+            pos: `Indefinite Noun`,
+            gloss: `months`,
+            grammar: `Singular indefinite genitive noun (the standard Arabic grammatical form after “alf”).`,
+            insight: `Shifts the -r rhyme from “al-qadr” to “shahr” while keeping the crisp consonant+r ending.`
+          }
+        ]
+      },
+      {
+        id: `97:4`,
+        num: 4,
+        arabic: `تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِمْ مِنْ كُلِّ أَمْرٍ`,
+        translit: `Tanazzalu l-malāʾikatu wa-r-rūḥu fīhā bi-idhni rabbihim min kulli amr`,
+        translation: `The angels and the Spirit descend therein by permission of their Lord for every matter.`,
+        rhymeWordIndex: 8,
+        themeTag: `Cosmic Descent`,
+        words: [
+          {
+            ar: `تَنَزَّلُ`,
+            tr: `tanazzalu`,
+            pos: `Form V Imperfect Verb`,
+            gloss: `descend`,
+            grammar: `Present/imperfect Form V verb (contracted from tatanazzalu), conveying gradual, successive, or continual descent.`,
+            insight: `Contrasts with “anzalnāhu” (past completed action) in 97:1: the Qur’an was sent down, while angels continually descend.`
+          },
+          {
+            ar: `الْمَلَائِكَةُ`,
+            tr: `al-malāʾikatu`,
+            pos: `Definite Plural Noun`,
+            gloss: `the angels`,
+            grammar: `Broken plural noun in the nominative case serving as subject of “tanazzalu.”`,
+            insight: `Introduces the celestial hosts entering the terrestrial realm during this night.`
+          },
+          {
+            ar: `وَالرُّوحُ`,
+            tr: `wa-r-rūḥu`,
+            pos: `Conjunction + Noun`,
+            gloss: `and the Spirit`,
+            grammar: `Definite nominative noun coupled to “the angels,” singled out for special distinction.`,
+            insight: `Naming “the Spirit” separately after “the angels” highlights singular honor and prominence.`
+          },
+          {
+            ar: `فِيهَا`,
+            tr: `fīhā`,
+            pos: `Preposition + Pronoun`,
+            gloss: `therein`,
+            grammar: `Preposition “fī” + feminine singular pronoun “-hā” referring back to Laylat al-Qadr.`,
+            insight: `Marks the first shift from explicit naming (“Laylat al-Qadr”) to pronoun reference.`
+          },
+          {
+            ar: `بِإِذْنِ`,
+            tr: `bi-idhni`,
+            pos: `Preposition + Noun`,
+            gloss: `by permission of`,
+            grammar: `Preposition “bi-” + noun “idhn” in construct state.`,
+            insight: `Clarifies that every descent occurs strictly under divine authorization.`
+          },
+          {
+            ar: `رَبِّهِمْ`,
+            tr: `rabbihim`,
+            pos: `Noun + Pronoun`,
+            gloss: `their Lord`,
+            grammar: `Genitive noun “rabb” + third-person plural suffix “-him” (“their”).`,
+            insight: `Uses the nurturing, sustaining title “Rabb” (Lord) in harmony with the theme of peace and care.`
+          },
+          {
+            ar: `مِنْ`,
+            tr: `min`,
+            pos: `Preposition`,
+            gloss: `for / regarding`,
+            grammar: `Preposition indicating scope or purpose.`,
+            insight: `Introduces the comprehensiveness of the night’s decrees.`
+          },
+          {
+            ar: `كُلِّ`,
+            tr: `kulli`,
+            pos: `Noun of Totality`,
+            gloss: `every`,
+            grammar: `Genitive noun in construct state meaning “all / every.”`,
+            insight: `Leaves no matter excluded from the decreed order of the night.`
+          },
+          {
+            ar: `أَمْرٍ`,
+            tr: `amrin`,
+            pos: `Indefinite Noun`,
+            gloss: `matter`,
+            grammar: `Indefinite genitive noun meaning affair, command, or matter.`,
+            insight: `Maintains the -r coda (“amr”) and forms the longest verse of the chapter (9 words).`
+          }
+        ]
+      },
+      {
+        id: `97:5`,
+        num: 5,
+        arabic: `سَلَامٌ هِيَ حَتَّى مَطْلَعِ الْفَجْرِ`,
+        translit: `Salāmun hiya ḥattā maṭlaʿi l-fajr`,
+        translation: `Peace it is until the emergence of dawn.`,
+        rhymeWordIndex: 4,
+        themeTag: `Peace Until Dawn`,
+        words: [
+          {
+            ar: `سَلَامٌ`,
+            tr: `salāmun`,
+            pos: `Fronted Predicate`,
+            gloss: `Peace`,
+            grammar: `Indefinite nominative noun placed before its subject for strong rhetorical emphasis.`,
+            insight: `Instead of saying “It is peace,” the verse places “Peace” first so stillness defines the entire sentence.`
+          },
+          {
+            ar: `هِيَ`,
+            tr: `hiya`,
+            pos: `Feminine Pronoun`,
+            gloss: `it is`,
+            grammar: `Third-person feminine singular pronoun referring to the Night of Decree.`,
+            insight: `Completes the pronoun shift begun in 97:4 (“fīhā” → “hiya”), embodying quiet intimacy.`
+          },
+          {
+            ar: `حَتَّى`,
+            tr: `ḥattā`,
+            pos: `Temporal Preposition`,
+            gloss: `until`,
+            grammar: `Preposition marking an unbroken temporal boundary up to the point that follows.`,
+            insight: `Establishes continuity: the peace does not flicker—it endures uninterrupted through the whole night.`
+          },
+          {
+            ar: `مَطْلَعِ`,
+            tr: `maṭlaʿi`,
+            pos: `Noun of Time/Place`,
+            gloss: `the emergence of`,
+            grammar: `Genitive noun of time/place from the root ṭ-l-ʿ (“to rise or appear”).`,
+            insight: `Captures the exact first breaking of light at the horizon.`
+          },
+          {
+            ar: `الْفَجْرِ`,
+            tr: `al-fajri`,
+            pos: `Definite Noun`,
+            gloss: `dawn`,
+            grammar: `Definite genitive noun completing the construct phrase.`,
+            insight: `Closes the chapter on a final -r cadence (“al-fajr”), bringing the nocturnal arc into morning light.`
+          }
+        ]
+      }
+    ];
+
+    const STRUCTURAL_LENSES = {
+      naming: {
+        label: `LENS ACTIVE: NAMING → PRONOUN SHIFT`,
+        badge: `Verses 1–5`,
+        title: `Three explicit namings anchor the mystery before pronouns carry it`,
+        description: `In verses 1, 2, and 3, the full construct phrase “Laylat al-Qadr” (Night of Decree) is repeated verbatim three times. Once its rank is established as better than a thousand months, verses 4 and 5 drop the noun phrase and shift to feminine pronouns (“fīhā” therein, “hiya” it is)—reflecting total familiarity and presence.`,
+        highlights: [
+          { verse: `97:1`, focus: `لَيْلَةِ الْقَدْرِ`, note: `Naming #1 — Context of sending down the Qur’an`, tone: `brass` },
+          { verse: `97:2`, focus: `لَيْلَةُ الْقَدْرِ`, note: `Naming #2 — Elevated by the question of awe`, tone: `brass` },
+          { verse: `97:3`, focus: `لَيْلَةُ الْقَدْرِ`, note: `Naming #3 — Measured above 1,000 months`, tone: `brass` },
+          { verse: `97:4`, focus: `فِيهَا`, note: `Pronoun Shift #1 — “Therein” (referring to the Night)`, tone: `sky` },
+          { verse: `97:5`, focus: `هِيَ`, note: `Pronoun Shift #2 — “It is” (after fronted “Peace”)`, tone: `sky` }
+        ]
+      },
+      vertical: {
+        label: `LENS ACTIVE: VERTICAL DESCENT AXIS`,
+        badge: `97:1 ↔ 97:4`,
+        title: `Two forms of descent frame the Surah’s action`,
+        description: `Verse 1 uses the completed past Form IV verb “anzalnāhu” (We sent it down) for the revelation of the Qur’an. Verse 4 uses the ongoing Form V verb “tanazzalu” (they continually descend) for the angels and the Spirit entering the night by their Lord’s permission.`,
+        highlights: [
+          { verse: `97:1`, focus: `أَنْزَلْنَاهُ`, note: `Form IV past — Decisive sending down of the Qur’an`, tone: `brass` },
+          { verse: `97:2`, focus: `أَدْرَاكَ`, note: `Rhetorical bridge — Elevating human awareness`, tone: `neutral` },
+          { verse: `97:3`, focus: `خَيْرٌ مِنْ أَلْفِ شَهْرٍ`, note: `Worth established — Superior to 1,000 months`, tone: `neutral` },
+          { verse: `97:4`, focus: `تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ`, note: `Form V imperfect — Successive descent by Lord’s permission`, tone: `sky` },
+          { verse: `97:5`, focus: `سَلَامٌ هِيَ`, note: `Arrival state — Descent resolves into peace`, tone: `neutral` }
+        ]
+      },
+      temporal: {
+        label: `LENS ACTIVE: NIGHT → DAWN HORIZON`,
+        badge: `97:1 → 97:5`,
+        title: `From the containment of night to the first light of dawn`,
+        description: `Surah Al-Qadr opens inside a specific night (“fī laylati l-qadr”), expands outward across 1,000 months in verse 3, and finally sets a clear outer boundary in verse 5: “until the emergence of dawn” (ḥattā maṭlaʿi l-fajr).`,
+        highlights: [
+          { verse: `97:1`, focus: `فِي لَيْلَةِ`, note: `Temporal container — Inside the Night`, tone: `brass` },
+          { verse: `97:2`, focus: `مَا لَيْلَةُ`, note: `Scope questioned — Essence of the Night`, tone: `neutral` },
+          { verse: `97:3`, focus: `أَلْفِ شَهْرٍ`, note: `Macro-scale — Surpassing 83+ years of months`, tone: `sky` },
+          { verse: `97:4`, focus: `فِيهَا`, note: `Active interval — Throughout the night`, tone: `neutral` },
+          { verse: `97:5`, focus: `حَتَّى مَطْلَعِ الْفَجْرِ`, note: `Terminal horizon — Unbroken until dawn breaks`, tone: `brass` }
+        ]
+      },
+      rhyme: {
+        label: `LENS ACTIVE: SOUND & RHYME CADENCE`,
+        badge: `Shared -r Coda`,
+        title: `Five consecutive verses close on a consonant + r ending`,
+        description: `Every verse in Surah Al-Qadr terminates in a short consonant cluster ending in “r” (al-Qadr, al-Qadr, shahr, amr, al-Fajr). This tight phonetic symmetry gives the 30-word chapter rhythmic unity from beginning to dawn.`,
+        highlights: [
+          { verse: `97:1`, focus: `الْقَدْرِ`, note: `Coda: -dr (5 words total)`, tone: `brass` },
+          { verse: `97:2`, focus: `الْقَدْرِ`, note: `Coda: -dr (5 words total — exact echo)`, tone: `brass` },
+          { verse: `97:3`, focus: `شَهْرٍ`, note: `Coda: -hr (6 words total)`, tone: `sky` },
+          { verse: `97:4`, focus: `أَمْرٍ`, note: `Coda: -mr (9 words total — longest verse)`, tone: `sky` },
+          { verse: `97:5`, focus: `الْفَجْرِ`, note: `Coda: -jr (5 words total — symmetrical return)`, tone: `brass` }
+        ]
+      }
+    };
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `In verse 97:1 (“Indeed, We sent the Qur’an down during the Night of Decree”), how does the Arabic phrase refer to the Qur’an?`,
+        options: [
+          `By its full title “al-Qurʾān” at the end of the verse`,
+          `Through the attached object pronoun “-hu” (“it”) in “anzalnāhu”`,
+          `As “the Spirit” descending alongside the angels`,
+          `Through the plural noun “al-amr” (“every matter”)`
+        ],
+        correctIndex: 1,
+        explanation: `In 97:1, the Arabic reads “anzalnāhu” (“We sent it down”), using the masculine singular pronoun “-hu” to refer to the Qur’an directly.`
+      },
+      {
+        id: `q2`,
+        prompt: `What rhetorical effect does verse 97:2 (“And what can make you know what is the Night of Decree?”) serve in the Surah’s progression?`,
+        options: [
+          `It signals that the night’s worth exceeds ordinary human estimation before verse 97:3 defines it`,
+          `It indicates that no description of the night follows in the remaining verses`,
+          `It shifts the speaker from plural majesty to third-person narration`,
+          `It marks the transition from dawn back to nightfall`
+        ],
+        correctIndex: 0,
+        explanation: `The interrogative idiom “wa-mā adrāka” pauses the narrative to elevate awe, preparing the reader for the extraordinary comparison in 97:3.`
+      },
+      {
+        id: `q3`,
+        prompt: `How long is “a thousand months” (97:3), and why is the wording “better than” (khayrun min) significant?`,
+        options: [
+          `Exactly 100 years, meaning the night equals one century`,
+          `83 years and 4 months, and “better than” means it surpasses—not merely equals—that span`,
+          `50 years and 10 months, serving as a ceiling on its value`,
+          `1,000 nights, equal to roughly 3 years`
+        ],
+        correctIndex: 1,
+        explanation: `1,000 months equals 83 years and 4 months. Because verse 97:3 uses “khayrun min” (“better than”), the 1,000-month mark is exceeded rather than merely matched.`
+      },
+      {
+        id: `q4`,
+        prompt: `According to verse 97:4, who descends during the Night of Decree, and under what authority?`,
+        options: [
+          `The stars and the dawn, by the cycle of the months`,
+          `The angels and the Spirit, by permission of their Lord for every matter`,
+          `The messengers alone, until the emergence of dusk`,
+          `A thousand angels, for a single decree`
+        ],
+        correctIndex: 1,
+        explanation: `Verse 97:4 states: “The angels and the Spirit descend therein by permission of their Lord for every matter.”`
+      },
+      {
+        id: `q5`,
+        prompt: `Why does verse 97:5 open with “Salāmun hiya” (“Peace it is”) rather than placing “hiya” (“it”) first?`,
+        options: [
+          `Because “salāmun” is the verb of the sentence`,
+          `Fronting “salāmun” (“Peace”) emphasizes that peace defines the entire night until dawn`,
+          `Because Arabic sentences cannot begin with pronouns`,
+          `To break the -r rhyme pattern established in verses 1–4`
+        ],
+        correctIndex: 1,
+        explanation: `Placing the predicate “salāmun” (Peace) first in “Salāmun hiya” highlights peace as the defining quality of the night all the way until the emergence of dawn (al-fajr).`
+      }
+    ];
+
+    const DEFAULT_STATE = {
+      selectedVerseId: `97:1`,
+      selectedWordIdx: 0,
+      showTranslit: true,
+      showTranslation: true,
+      highlightRhyme: false,
+      masteredVerses: [],
+      comparisonYears: 75,
+      structuralLens: `naming`,
+      recallMode: `keywords`,
+      revealedClozeKeys: [],
+      sequenceOrder: [2, 0, 4, 1, 3],
+      sequencePlaced: [],
+      quizAnswers: {},
+      notes: ``
+    };
+
+    function cloneStateDefaults() {
+      return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    }
+
+    let appState = cloneStateDefaults();
+
+    async function persistState() {
+      const statusEl = document.getElementById(`persistence-status`);
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+          if (statusEl) statusEl.textContent = `Progress saved to notebook session.`;
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = `Session active (unable to persist remotely).`;
+      }
+      updateTelemetry();
+    }
+
+    function updateTelemetry() {
+      const masteredCount = Array.isArray(appState.masteredVerses) ? appState.masteredVerses.length : 0;
+      let correctQuizCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q) {
+        if (appState.quizAnswers[q.id] === q.correctIndex) {
+          correctQuizCount += 1;
+        }
+      });
+
+      const totalUnits = SURAH_VERSES.length + QUIZ_QUESTIONS.length;
+      const pct = Math.round(((masteredCount + correctQuizCount) / totalUnits) * 100);
+
+      const valEl = document.getElementById(`hero-mastery-value`);
+      const noteEl = document.getElementById(`hero-mastery-note`);
+      const badgeEl = document.getElementById(`quiz-score-badge`);
+
+      if (valEl) valEl.textContent = `${pct}%`;
+      if (noteEl) noteEl.textContent = `${masteredCount}/5 verses · ${correctQuizCount}/5 checks`;
+      if (badgeEl) badgeEl.textContent = `${correctQuizCount} / 5 Correct`;
+    }
+
+    function renderVerseExplorer() {
+      const container = document.getElementById(`verse-explorer-list`);
+      if (!container) return;
+
+      const btnTranslit = document.getElementById(`btn-toggle-translit`);
+      const btnTranslation = document.getElementById(`btn-toggle-translation`);
+      const btnRhyme = document.getElementById(`btn-toggle-rhyme`);
+
+      if (btnTranslit) {
+        btnTranslit.setAttribute(`aria-pressed`, String(appState.showTranslit));
+        btnTranslit.textContent = appState.showTranslit ? `Transliteration: On` : `Transliteration: Off`;
+      }
+      if (btnTranslation) {
+        btnTranslation.setAttribute(`aria-pressed`, String(appState.showTranslation));
+        btnTranslation.textContent = appState.showTranslation ? `Translation: On` : `Translation: Off`;
+      }
+      if (btnRhyme) {
+        btnRhyme.setAttribute(`aria-pressed`, String(appState.highlightRhyme));
+        btnRhyme.textContent = appState.highlightRhyme ? `Rhyme Endings: Highlighted` : `Highlight -r Rhyme Endings`;
+      }
+
+      container.innerHTML = SURAH_VERSES.map(function (verse) {
+        const isMastered = appState.masteredVerses.includes(verse.id);
+        const wordsHtml = verse.words.map(function (w, idx) {
+          const isSelected = appState.selectedVerseId === verse.id && appState.selectedWordIdx === idx;
+          const isRhyme = appState.highlightRhyme && idx === verse.rhymeWordIndex;
+          const classes = [
+            `word-chip`,
+            isSelected ? `is-selected` : ``,
+            isRhyme ? `is-rhyme-highlighted` : ``
+          ].filter(Boolean).join(` `);
+          return `<button type="button" class="${classes}" lang="ar" dir="rtl" onclick="selectWord('${verse.id}', ${idx})">${w.ar}</button>`;
+        }).join(``);
+
+        return `
+          <article class="verse-card ${isMastered ? `is-mastered` : ``}">
+            <div class="verse-card-head">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm);">
+                <span class="coord-label">VERSE ${verse.id}</span>
+                <span class="badge">${verse.themeTag}</span>
+              </div>
+              <button type="button" class="btn ${isMastered ? `btn-primary` : ``}" onclick="toggleMasteredVerse('${verse.id}')">
+                ${isMastered ? `Mastered ✓` : `Mark Mastered`}
+              </button>
+            </div>
+            <div class="verse-words-row" aria-label="Arabic words of verse ${verse.id}">${wordsHtml}</div>
+            <p class="verse-translit ${appState.showTranslit ? `` : `is-hidden`}">${verse.translit}</p>
+            <p class="verse-translation ${appState.showTranslation ? `` : `is-hidden`}">${verse.translation}</p>
+          </article>
+        `;
+      }).join(``);
+
+      renderInspector();
+    }
+
+    function renderInspector() {
+      const verse = SURAH_VERSES.find(function (v) { return v.id === appState.selectedVerseId; }) || SURAH_VERSES[0];
+      const word = verse.words[appState.selectedWordIdx] || verse.words[0];
+
+      const coordEl = document.getElementById(`inspector-coord`);
+      const posEl = document.getElementById(`inspector-word-pos`);
+      const arEl = document.getElementById(`inspector-arabic`);
+      const trEl = document.getElementById(`inspector-translit`);
+      const glossEl = document.getElementById(`inspector-gloss`);
+      const grammarEl = document.getElementById(`inspector-grammar`);
+      const insightEl = document.getElementById(`inspector-insight`);
+
+      if (coordEl) coordEl.textContent = `LEXICAL INSPECTOR · ${verse.id} · WORD ${appState.selectedWordIdx + 1}/${verse.words.length}`;
+      if (posEl) posEl.textContent = word.pos;
+      if (arEl) arEl.textContent = word.ar;
+      if (trEl) trEl.textContent = word.tr;
+      if (glossEl) glossEl.textContent = word.gloss;
+      if (grammarEl) grammarEl.textContent = word.grammar;
+      if (insightEl) insightEl.textContent = word.insight;
+    }
+
+    function selectWord(verseId, wordIdx) {
+      appState.selectedVerseId = verseId;
+      appState.selectedWordIdx = wordIdx;
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function toggleStudyLayer(layer) {
+      if (layer === `translit`) appState.showTranslit = !appState.showTranslit;
+      if (layer === `translation`) appState.showTranslation = !appState.showTranslation;
+      if (layer === `rhyme`) appState.highlightRhyme = !appState.highlightRhyme;
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function toggleMasteredVerse(verseId) {
+      const idx = appState.masteredVerses.indexOf(verseId);
+      if (idx === -1) {
+        appState.masteredVerses.push(verseId);
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      renderVerseExplorer();
+      persistState();
+    }
+
+    /* Section 2: Dedicated dual-input slider/number sync */
+    function updateScaleDisplay(yearsVal) {
+      const parsed = Math.max(1, Math.min(120, Math.round(Number(yearsVal) || 75)));
+      appState.comparisonYears = parsed;
+      const selectedMonths = parsed * 12;
+      const diff = 1000 - selectedMonths;
+      const pct = Math.min(100, (selectedMonths / 1440) * 100).toFixed(2);
+
+      const monthsEl = document.getElementById(`calc-selected-months`);
+      const ratioEl = document.getElementById(`calc-ratio-note`);
+      const vizLabelEl = document.getElementById(`viz-selected-label`);
+      const vizValEl = document.getElementById(`viz-selected-value`);
+      const vizBarEl = document.getElementById(`viz-selected-bar`);
+      const takeawayEl = document.getElementById(`viz-takeaway`);
+
+      if (monthsEl) monthsEl.textContent = `${selectedMonths.toLocaleString()} mos`;
+      if (vizLabelEl) vizLabelEl.textContent = `Your Comparison Span (${parsed} yrs)`;
+      if (vizValEl) vizValEl.textContent = `${selectedMonths.toLocaleString()} months`;
+      if (vizBarEl) vizBarEl.style.width = `${pct}%`;
+
+      if (diff > 0) {
+        const diffYrs = Math.floor(diff / 12);
+        const diffMos = diff % 12;
+        const diffStr = diffYrs > 0 ? `${diffYrs} yrs, ${diffMos} mos` : `${diffMos} months`;
+        if (ratioEl) ratioEl.textContent = `1,000 months exceeds ${parsed} yrs by ${diff} months`;
+        if (takeawayEl) takeawayEl.textContent = `At ${parsed} years (${selectedMonths.toLocaleString()} months), one Night of Decree still surpasses the entire selected span by ${diffStr}.`;
+      } else if (diff === 0) {
+        if (ratioEl) ratioEl.textContent = `Selected span is 1,000 months (~83.3 yrs)`;
+        if (takeawayEl) takeawayEl.textContent = `Even at 83 years and 4 months (1,000 months), verse 97:3 states the Night is “better than”—never merely equal to—this entire span.`;
+      } else {
+        const ratio = (selectedMonths / 1000).toFixed(2);
+        if (ratioEl) ratioEl.textContent = `${parsed} yrs = ${ratio}× the 1,000-month benchmark`;
+        if (takeawayEl) takeawayEl.textContent = `At ${parsed} years (${selectedMonths.toLocaleString()} months), a single Night of Decree exceeds roughly ${Math.round((1000 / selectedMonths) * 100)}% of that entire span—and remains qualitatively “better than” 1,000 months.`;
+      }
+    }
+
+    function syncYearsFromSlider(val) {
+      const numInput = document.getElementById(`input-years`);
+      if (numInput) numInput.value = val;
+      updateScaleDisplay(val);
+      persistState();
+    }
+
+    function syncYearsFromNumber(val) {
+      const sliderInput = document.getElementById(`slider-years`);
+      if (sliderInput) sliderInput.value = val;
+      updateScaleDisplay(val);
+      persistState();
+    }
+
+    /* Section 3: Structural Lenses */
+    function setStructuralLens(lensKey) {
+      if (!STRUCTURAL_LENSES[lensKey]) return;
+      appState.structuralLens = lensKey;
+      renderStructuralLens();
+      persistState();
+    }
+
+    function renderStructuralLens() {
+      const lens = STRUCTURAL_LENSES[appState.structuralLens] || STRUCTURAL_LENSES.naming;
+      [`naming`, `vertical`, `temporal`, `rhyme`].forEach(function (k) {
+        const btn = document.getElementById(`lens-${k}`);
+        if (btn) btn.setAttribute(`aria-pressed`, String(k === appState.structuralLens));
+      });
+
+      const labelEl = document.getElementById(`lens-status-label`);
+      const badgeEl = document.getElementById(`lens-badge`);
+      const titleEl = document.getElementById(`lens-title`);
+      const descEl = document.getElementById(`lens-description`);
+      const nodesEl = document.getElementById(`structural-nodes`);
+
+      if (labelEl) labelEl.textContent = lens.label;
+      if (badgeEl) badgeEl.textContent = lens.badge;
+      if (titleEl) titleEl.textContent = lens.title;
+      if (descEl) descEl.textContent = lens.description;
+
+      if (nodesEl) {
+        nodesEl.innerHTML = lens.highlights.map(function (item) {
+          const activeCls = item.tone === `brass` ? `is-active` : (item.tone === `sky` ? `is-sky-active` : ``);
+          const badgeCls = item.tone === `brass` ? `badge-brass` : ``;
+          return `
+            <div class="arc-node ${activeCls}">
+              <span class="coord-label">${item.verse}</span>
+              <span style="font-size: 0.94rem; color: var(--on-surface-variant);">${item.note}</span>
+              <span class="badge ${badgeCls} arabic-text" lang="ar" dir="rtl" style="font-size: 1.15rem; padding: var(--space-xs) var(--space-sm);">${item.focus}</span>
+            </div>
+          `;
+        }).join(``);
+      }
+    }
+
+    /* Section 4A: Recall Cloze Trainer */
+    function isTokenMaskedByMode(verseIdx, wordIdx) {
+      if (appState.recallMode === `study`) return false;
+      if (appState.recallMode === `full`) return wordIdx > 0;
+      const keywordTargets = {
+        0: [1, 4],
+        1: [1, 4],
+        2: [2, 4, 5],
+        3: [0, 2, 5, 8],
+        4: [0, 3, 4]
+      };
+      return (keywordTargets[verseIdx] || []).includes(wordIdx);
+    }
+
+    function setRecallMode(mode) {
+      appState.recallMode = mode;
+      appState.revealedClozeKeys = [];
+      renderRecallStage();
+      persistState();
+    }
+
+    function toggleClozeWord(key) {
+      const idx = appState.revealedClozeKeys.indexOf(key);
+      if (idx === -1) {
+        appState.revealedClozeKeys.push(key);
+      } else {
+        appState.revealedClozeKeys.splice(idx, 1);
+      }
+      renderRecallStage();
+      persistState();
+    }
+
+    function resetRecallReveals() {
+      appState.revealedClozeKeys = [];
+      renderRecallStage();
+      persistState();
+    }
+
+    function renderRecallStage() {
+      const stage = document.getElementById(`recall-stage`);
+      if (!stage) return;
+
+      [`study`, `keywords`, `full`].forEach(function (m) {
+        const btn = document.getElementById(`mode-${m}`);
+        if (btn) btn.setAttribute(`aria-pressed`, String(appState.recallMode === m));
+      });
+
+      stage.innerHTML = SURAH_VERSES.map(function (verse, vIdx) {
+        const tokensHtml = verse.words.map(function (w, wIdx) {
+          const key = `${vIdx}-${wIdx}`;
+          const shouldMask = isTokenMaskedByMode(vIdx, wIdx);
+          const isRevealed = appState.revealedClozeKeys.includes(key);
+
+          if (!shouldMask) {
+            return `<span class="cloze-token" lang="ar" dir="rtl" style="cursor: default;">${w.ar}</span>`;
+          }
+          if (isRevealed) {
+            return `<button type="button" class="cloze-token is-revealed" lang="ar" dir="rtl" onclick="toggleClozeWord('${key}')" title="Click to hide again">${w.ar}</button>`;
+          }
+          return `<button type="button" class="cloze-token is-masked" onclick="toggleClozeWord('${key}')" aria-label="Reveal hidden Arabic word ${wIdx + 1} of verse ${verse.id}">[${wIdx + 1}] REVEAL</button>`;
+        }).join(``);
+
+        return `
+          <div class="recall-verse-row">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+              <span class="coord-label">${verse.id}</span>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">${verse.translation}</span>
+            </div>
+            <div class="verse-words-row">${tokensHtml}</div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    /* Section 4B: Sequence Builder */
+    function shuffleSequenceDrill() {
+      const indices = [0, 1, 2, 3, 4];
+      for (let i = indices.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = tmp;
+      }
+      if (indices.every(function (v, idx) { return v === idx; })) {
+        indices.reverse();
+      }
+      appState.sequenceOrder = indices;
+      appState.sequencePlaced = [];
+      renderSequenceDrill();
+      persistState();
+    }
+
+    function pickSequenceVerse(verseIdx) {
+      if (appState.sequencePlaced.includes(verseIdx)) return;
+      appState.sequencePlaced.push(verseIdx);
+      renderSequenceDrill();
+      persistState();
+    }
+
+    function undoSequenceSlot(slotIdx) {
+      if (slotIdx < 0 || slotIdx >= appState.sequencePlaced.length) return;
+      appState.sequencePlaced.splice(slotIdx, 1);
+      renderSequenceDrill();
+      persistState();
+    }
+
+    function renderSequenceDrill() {
+      const slotsEl = document.getElementById(`sequence-slots`);
+      const poolEl = document.getElementById(`sequence-pool`);
+      const feedbackEl = document.getElementById(`sequence-feedback`);
+      if (!slotsEl || !poolEl) return;
+
+      let allCorrect = appState.sequencePlaced.length === 5;
+      slotsEl.innerHTML = SURAH_VERSES.map(function (expectedVerse, slotIdx) {
+        const placedIdx = appState.sequencePlaced[slotIdx];
+        if (placedIdx === undefined) {
+          allCorrect = false;
+          return `
+            <div class="sequence-slot">
+              <span class="coord-label">POSITION ${slotIdx + 1} (${expectedVerse.id})</span>
+              <span style="font-size: 0.88rem; color: var(--on-surface-variant);">Awaiting selection…</span>
+            </div>
+          `;
+        }
+        const placedVerse = SURAH_VERSES[placedIdx];
+        const isCorrect = placedIdx === slotIdx;
+        if (!isCorrect) allCorrect = false;
+        return `
+          <div class="sequence-slot ${isCorrect ? `is-correct` : `is-wrong`}">
+            <div style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label">${expectedVerse.id} · ${isCorrect ? `CORRECT` : `INCORRECT POSITION`}</span>
+              <span style="font-size: 0.92rem;">${placedVerse.translation}</span>
+            </div>
+            <button type="button" class="btn" onclick="undoSequenceSlot(${slotIdx})">Remove</button>
+          </div>
+        `;
+      }).join(``);
+
+      const poolIndices = Array.isArray(appState.sequenceOrder) && appState.sequenceOrder.length === 5
+        ? appState.sequenceOrder
+        : [2, 0, 4, 1, 3];
+
+      poolEl.innerHTML = poolIndices.map(function (vIdx) {
+        const verse = SURAH_VERSES[vIdx];
+        const used = appState.sequencePlaced.includes(vIdx);
+        return `
+          <button type="button" class="btn sequence-choice" ${used ? `disabled` : ``} onclick="pickSequenceVerse(${vIdx})">
+            ${verse.translation}
+          </button>
+        `;
+      }).join(``);
+
+      if (feedbackEl) {
+        if (appState.sequencePlaced.length === 0) {
+          feedbackEl.textContent = ``;
+        } else if (allCorrect) {
+          feedbackEl.textContent = `Complete: All five verses are aligned in the exact sequence of Surah Al-Qadr (97:1 → 97:5).`;
+          feedbackEl.style.color = `var(--positive)`;
+        } else if (appState.sequencePlaced.length === 5) {
+          feedbackEl.textContent = `Some verses are out of order—remove any highlighted slot to adjust.`;
+          feedbackEl.style.color = `var(--error)`;
+        } else {
+          feedbackEl.textContent = `Placed ${appState.sequencePlaced.length} of 5 verses.`;
+          feedbackEl.style.color = `var(--tertiary)`;
+        }
+      }
+    }
+
+    /* Section 4C: Quiz */
+    function answerQuiz(qId, optionIdx) {
+      appState.quizAnswers[qId] = optionIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function (q, qNum) {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = chosen !== undefined;
+        const isRight = chosen === q.correctIndex;
+
+        const optionsHtml = q.options.map(function (opt, idx) {
+          let cls = `btn quiz-option`;
+          if (hasAnswered && idx === chosen) {
+            cls += isRight ? ` is-selected-correct` : ` is-selected-wrong`;
+          } else if (hasAnswered && idx === q.correctIndex && !isRight) {
+            cls += ` is-selected-correct`;
+          }
+          return `<button type="button" class="${cls}" onclick="answerQuiz('${q.id}', ${idx})">${opt}</button>`;
+        }).join(``);
+
+        const feedbackHtml = hasAnswered
+          ? `<div class="quiz-feedback ${isRight ? `is-correct` : `is-wrong`}"><strong>${isRight ? `Correct.` : `Review:`}</strong> ${q.explanation}</div>`
+          : ``;
+
+        return `
+          <article class="quiz-card">
+            <span class="coord-label">CHECK ${qNum + 1} OF ${QUIZ_QUESTIONS.length}</span>
+            <p class="prose" style="font-weight: 500;">${q.prompt}</p>
+            <div class="quiz-options">${optionsHtml}</div>
+            ${feedbackHtml}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    /* Section 4D: Notes, Export & Two-Step Inline Reset */
+    function handleNotesInput(val) {
+      appState.notes = val;
+      persistState();
+    }
+
+    function exportStudySummary() {
+      const masteredList = appState.masteredVerses.length > 0 ? appState.masteredVerses.join(`, `) : `None yet`;
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q) {
+        if (appState.quizAnswers[q.id] === q.correctIndex) correctCount += 1;
+      });
+
+      const lines = [
+        `SURAH AL-QADR (CHAPTER 97) — STUDY SUMMARY`,
+        `=========================================`,
+        `Mastered Verses: ${masteredList} (${appState.masteredVerses.length}/5)`,
+        `Mastery Checks Correct: ${correctCount}/5`,
+        `Selected Lifespan Comparison: ${appState.comparisonYears} years (${appState.comparisonYears * 12} months vs. 1,000 months)`,
+        ``,
+        `TEXT & TRANSLATION`,
+        `------------------`
+      ];
+
+      SURAH_VERSES.forEach(function (v) {
+        lines.push(`${v.id}: ${v.arabic}`);
+        lines.push(`    ${v.translit}`);
+        lines.push(`    ${v.translation}`);
+      });
+
+      lines.push(``, `PERSONAL STUDY NOTES`, `--------------------`);
+      lines.push(appState.notes && appState.notes.trim() ? appState.notes.trim() : `(No personal notes recorded.)`);
+
+      const summaryText = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: summaryText,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-qadr-study-summary.txt`
+        });
+      }
+      const statusEl = document.getElementById(`persistence-status`);
+      if (statusEl) statusEl.textContent = `Study summary exported (.txt).`;
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click Again to Confirm Reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset All Progress`;
+      appState = cloneStateDefaults();
+
+      const slider = document.getElementById(`slider-years`);
+      const numInput = document.getElementById(`input-years`);
+      const notesEl = document.getElementById(`study-notes`);
+      if (slider) slider.value = String(appState.comparisonYears);
+      if (numInput) numInput.value = String(appState.comparisonYears);
+      if (notesEl) notesEl.value = ``;
+
+      renderAll();
+      persistState();
+      const statusEl = document.getElementById(`persistence-status`);
+      if (statusEl) statusEl.textContent = `All study progress reset.`;
+    }
+
+    function renderAll() {
+      renderVerseExplorer();
+      updateScaleDisplay(appState.comparisonYears);
+      renderStructuralLens();
+      renderRecallStage();
+      renderSequenceDrill();
+      renderQuiz();
+      updateTelemetry();
+    }
+
+    function setupScrollReveal() {
+      const items = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function (el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      items.forEach(function (el) { observer.observe(el); });
+    }
+
+    async function initApp() {
+      setupScrollReveal();
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign(cloneStateDefaults(), saved);
+          }
+        }
+      } catch (err) {
+        appState = cloneStateDefaults();
+      }
+
+      const slider = document.getElementById(`slider-years`);
+      const numInput = document.getElementById(`input-years`);
+      const notesEl = document.getElementById(`study-notes`);
+
+      if (slider) slider.value = String(appState.comparisonYears);
+      if (numInput) numInput.value = String(appState.comparisonYears);
+      if (notesEl) notesEl.value = appState.notes || ``;
+
+      renderAll();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
