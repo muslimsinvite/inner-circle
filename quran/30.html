@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Ar-Rum (Chapter 30) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --border-featured: #c98a6b;
+      --border-emerald: #b5d6c9;
+      --border-secondary-btn: #c4b29e;
+      --border-error-soft: #e2b8b8;
+      --svg-bg-warm: #f9f3eb;
+      --svg-stroke-warm: #dfd0be;
+      --svg-ink: #261b15;
+      --svg-ink-muted: #57483f;
+      --svg-primary: #b84a24;
+      --svg-secondary: #8f6524;
+      --svg-tertiary: #1d6356;
+      --svg-tertiary-bg: #e1efe9;
+      --svg-tertiary-border: #b5d6c9;
+      --svg-tertiary-ink: #13473d;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fae8e8;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-bar: 4px 4px 0 0;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Shared semantic & focus tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Narrative type scale (Cormorant stepped up for small x-height) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.85rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.65vw, 1.55rem);
+      --body-size: clamp(1.03rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem);
+      --figure-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      --arabic-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.65rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .hero-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .prose-muted {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md) 0;
+    }
+
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 1.9;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      unicode-bidi: isolate;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.15em;
+      letter-spacing: 0;
+      text-transform: none;
+      unicode-bidi: isolate;
+      color: var(--primary);
+    }
+
+    /* Terracotta Defining Treatments */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--figure-size);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .arch-card.is-featured .arch-figure {
+      color: var(--on-primary-container);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      margin: 0;
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--border-featured);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--primary);
+      background-color: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary:hover { background-color: var(--primary-hover); }
+    .btn-primary:active { transform: translateY(1px); }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--border-secondary-btn);
+      background-color: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .btn-secondary:hover { background-color: var(--surface-container-low); }
+    .btn-secondary.is-active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-secondary.is-tertiary-active {
+      background-color: var(--tertiary);
+      border-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    /* Hero & Mastery Strip */
+    .hero-header {
+      padding-block: var(--space-md) var(--space-lg);
+    }
+    .hero-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .mastery-bar {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .mastery-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+
+    .progress-track {
+      width: 180px;
+      height: 8px;
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-high);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Section bands & layout panels */
+    .story-section {
+      padding-block: var(--space-lg);
+      border-top: var(--warm-hairline);
+    }
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .panel-card.is-highlighted {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .equal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Section 1: Structural Flow Stepper + Ring Diagram */
+    .movement-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .movement-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      width: 100%;
+      min-height: 52px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .movement-btn:hover {
+      background: var(--surface-container);
+    }
+    .movement-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+      box-shadow: var(--soft-shadow);
+    }
+    .movement-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .movement-verses {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .movement-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--on-surface);
+    }
+    .movement-status {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--tertiary);
+      flex-shrink: 0;
+    }
+
+    .ring-diagram-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    /* Section 2: Prophecy & Horizons */
+    .horizon-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.96rem;
+    }
+    .horizon-table th {
+      background: var(--surface-container);
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      border-bottom: var(--warm-hairline);
+    }
+    .horizon-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    .horizon-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Section 3: Ayat Cards Grid */
+    .ayat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .ayat-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      cursor: pointer;
+      text-align: left;
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .ayat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .ayat-card.is-selected {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+      box-shadow: var(--soft-shadow-raised);
+    }
+
+    /* Daily prayer / glorification visual & Rain Cycle */
+    .rhythm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .rhythm-tile {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-md);
+      text-align: center;
+    }
+
+    /* Section 4: Fitrah & Lifespan Interactive Controls */
+    .lifespan-track {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-block: var(--space-md);
+    }
+    .stage-btn {
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      background: var(--background);
+      color: var(--on-surface);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .stage-btn.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Section 6: Quiz & Reflective Journal */
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-sm);
+      text-align: left;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--border-error-soft);
+      color: var(--error);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .field-hint {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .study-textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      line-height: 1.55;
+      resize: vertical;
+    }
+    .study-textarea:focus {
+      border-color: var(--primary);
+    }
+    .study-select {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-xl) var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      min-height: 1.4em;
+    }
+    .status-note.is-error {
+      color: var(--error);
+    }
+
+    .verse-quote {
+      border-left: 3px solid var(--secondary);
+      padding-left: var(--space-md);
+      margin-block: var(--space-md);
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 780px) {
+      .split-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .tonal-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .lifespan-track {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+      <div class="hero-top-row">
+        <p class="kicker">Chapter 30 · 60 Verses · Comprehensive Study &amp; Mastery Guide</p>
+        <span class="badge-emerald">Grounded in Verses 30:1–60</span>
+      </div>
+
+      <h1 class="hero-title">Surah Ar-Rum: Reading the <em>Signs</em> Beneath History &amp; Creation</h1>
+
+      <p class="prose-muted">
+        Opening with an unlikely historical reversal and closing with a call to quiet endurance, Chapter 30 trains the reader to look past the apparent surface of worldly life (30:7) into an integrated moral cosmos—where historical empires, rainclouds, human affection, primordial disposition (<em>fiṭrah</em>), and economic justice all obey a single unfailing promise.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Structural Overview ◆</div>
+
+      <!-- 4 Riad Arch Cards -->
+      <div class="arch-grid">
+        <div class="arch-card is-featured">
+          <p class="arch-label">Historical Window</p>
+          <p class="arch-figure">3–9 Years</p>
+          <p class="arch-caption">Biḍʿ Sinīn · Reversal Prophecy (30:4)</p>
+        </div>
+        <div class="arch-card">
+          <p class="arch-label">Central Axis</p>
+          <p class="arch-figure">30:30</p>
+          <p class="arch-caption">Fiṭrat Allāh · Primordial Disposition</p>
+        </div>
+        <div class="arch-card">
+          <p class="arch-label">Cosmic &amp; Human</p>
+          <p class="arch-figure">6 Āyāt</p>
+          <p class="arch-caption">Signs Paired with Faculties (30:20–25)</p>
+        </div>
+        <div class="arch-card">
+          <p class="arch-label">Ring Anchor</p>
+          <p class="arch-figure">30:6 ↔ 30:60</p>
+          <p class="arch-caption">Allah’s Unfailing Promise of Truth</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- PERSISTENT MASTERY TRACKER -->
+    <section aria-label="Study mastery progress" class="mastery-bar">
+      <div class="mastery-stats">
+        <div class="stat-item">
+          <span class="stat-label">Movements Studied</span>
+          <span class="stat-value" id="stat-movements">0 / 6</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Mastery Check</span>
+          <span class="stat-value" id="stat-quiz">0 / 6</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Reflections Saved</span>
+          <span class="stat-value" id="stat-notes">0 / 4</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Overall Mastery</span>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+            <div class="progress-fill" id="mastery-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" onclick="exportStudyNotes()">Export Study Notes</button>
+        <button type="button" class="btn-secondary" id="reset-progress-btn" onclick="resetAllProgress(this)">Reset Progress</button>
+      </div>
+    </section>
+
+    <!-- SECTION 1: STRUCTURAL FLOW & RING ARCHITECTURE -->
+    <section class="story-section reveal-item" id="sec-structure">
+      <p class="kicker">01 · Structural Architecture</p>
+      <h2 class="section-heading">Six Movements Bound by <em>One Promise</em></h2>
+      <p class="prose">
+        Surah Ar-Rum unfolds in six interconnected movements that mirror one another from edge to center. The opening promise of Allah in history (30:6) echoes the closing command to patience upon Allah’s true promise (30:60); the warning to travel through the earth and observe past civilizations (30:9) returns later in the call to travel and see the end of associators (30:42); and the despair of criminals on the Day of Judgment (30:12) mirrors humanity’s fleeting despair before life-giving rain (30:49).
+      </p>
+
+      <!-- Ring Composition SVG Schematic -->
+      <div class="ring-diagram-box">
+        <p class="arch-label" style="margin-bottom: var(--space-sm);">Symmetrical Ring Connections Across Verses 1–60</p>
+        <svg viewBox="0 0 880 190" width="100%" height="auto" role="img" aria-label="Symmetrical structural map connecting the six movements of Surah Ar-Rum from 30:1 to 30:60">
+          <!-- Outer ring arc: 30:6 <-> 30:60 -->
+          <path d="M 90 130 C 90 20, 790 20, 790 130" fill="none" stroke="var(--svg-primary)" stroke-width="2" stroke-dasharray="6 4"/>
+          <!-- Middle ring arc: 30:9-19 <-> 30:42-50 -->
+          <path d="M 230 130 C 230 52, 650 52, 650 130" fill="none" stroke="var(--svg-tertiary)" stroke-width="2"/>
+          <!-- Inner ring arc: 30:20-27 <-> 30:28-41 -->
+          <path d="M 370 130 C 370 85, 510 85, 510 130" fill="none" stroke="var(--svg-secondary)" stroke-width="2"/>
+
+          <!-- Labels on arcs -->
+          <text x="440" y="24" text-anchor="middle" fill="var(--svg-primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">OUTER RING: PROMISE OF ALLAH (30:6 ↔ 30:60)</text>
+          <text x="440" y="56" text-anchor="middle" fill="var(--svg-tertiary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">MIDDLE RING: TRAVEL, RENEWAL &amp; DESPAIR/JOY (30:9–19 ↔ 30:42–50)</text>
+          <text x="440" y="92" text-anchor="middle" fill="var(--svg-secondary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">CORE AXIS: ĀYĀT, FIṬRAH &amp; MORAL ORDER (30:20–41)</text>
+
+          <!-- Baseline -->
+          <line x1="40" y1="130" x2="840" y2="130" stroke="var(--svg-stroke-warm)" stroke-width="2"/>
+
+          <!-- 6 Movement Nodes -->
+          <circle cx="90" cy="130" r="9" fill="var(--svg-primary)"/>
+          <text x="90" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">I · 30:1–10</text>
+          <text x="90" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Prophecy &amp; Ruins</text>
+
+          <circle cx="230" cy="130" r="9" fill="var(--svg-tertiary)"/>
+          <text x="230" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">II · 30:11–19</text>
+          <text x="230" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">The Hour &amp; Praise</text>
+
+          <circle cx="370" cy="130" r="9" fill="var(--svg-secondary)"/>
+          <text x="370" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">III · 30:20–27</text>
+          <text x="370" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Six Cosmic Āyāt</text>
+
+          <circle cx="510" cy="130" r="9" fill="var(--svg-secondary)"/>
+          <text x="510" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">IV · 30:28–37</text>
+          <text x="510" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Fiṭrah &amp; Swings</text>
+
+          <circle cx="650" cy="130" r="9" fill="var(--svg-tertiary)"/>
+          <text x="650" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">V · 30:38–45</text>
+          <text x="650" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Ethics &amp; Fasād</text>
+
+          <circle cx="790" cy="130" r="9" fill="var(--svg-primary)"/>
+          <text x="790" y="158" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">VI · 30:46–60</text>
+          <text x="790" y="174" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Rain, Age &amp; Patience</text>
+        </svg>
+      </div>
+
+      <!-- Interactive 6-Movement Stepper -->
+      <div class="split-grid">
+        <div class="movement-list" role="tablist" aria-label="Six movements of Surah Ar-Rum">
+          <button type="button" class="movement-btn is-active" data-movement="0" onclick="selectMovement(0)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement I · Verses 30:1–10</span>
+              <span class="movement-name">The Byzantine Prophecy &amp; Past Empires</span>
+            </span>
+            <span class="movement-status" id="mov-status-0">Explore</span>
+          </button>
+          <button type="button" class="movement-btn" data-movement="1" onclick="selectMovement(1)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement II · Verses 30:11–19</span>
+              <span class="movement-name">Resurrection, Separation &amp; Daily Praise</span>
+            </span>
+            <span class="movement-status" id="mov-status-1">Explore</span>
+          </button>
+          <button type="button" class="movement-btn" data-movement="2" onclick="selectMovement(2)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement III · Verses 30:20–27</span>
+              <span class="movement-name">The Six Āyāt of Creation &amp; Kinship</span>
+            </span>
+            <span class="movement-status" id="mov-status-2">Explore</span>
+          </button>
+          <button type="button" class="movement-btn" data-movement="3" onclick="selectMovement(3)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement IV · Verses 30:28–37</span>
+              <span class="movement-name">The Parable, Fiṭrah &amp; Human Swings</span>
+            </span>
+            <span class="movement-status" id="mov-status-3">Explore</span>
+          </button>
+          <button type="button" class="movement-btn" data-movement="4" onclick="selectMovement(4)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement V · Verses 30:38–45</span>
+              <span class="movement-name">Social Duty, Zakāh vs. Ribā &amp; Corruption</span>
+            </span>
+            <span class="movement-status" id="mov-status-4">Explore</span>
+          </button>
+          <button type="button" class="movement-btn" data-movement="5" onclick="selectMovement(5)">
+            <span class="movement-meta">
+              <span class="movement-verses">Movement VI · Verses 30:46–60</span>
+              <span class="movement-name">Winds, Rain, Aging &amp; Steadfast Patience</span>
+            </span>
+            <span class="movement-status" id="mov-status-5">Explore</span>
+          </button>
+        </div>
+
+        <article class="panel-card is-highlighted" id="movement-detail-panel" aria-live="polite">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+            <span class="badge-terracotta" id="mov-detail-badge">Verses 30:1–10</span>
+            <span class="badge-emerald" id="mov-detail-mirror">Mirrors 30:58–60</span>
+          </div>
+          <h3 class="subhead" id="mov-detail-title">The Byzantine Prophecy &amp; Past Empires</h3>
+          <p class="arabic-verse" lang="ar" dir="rtl" id="mov-detail-arabic">غُلِبَتِ الرُّومُ ۝ فِي أَدْنَى الْأَرْضِ وَهُمْ مِنْ بَعْدِ غَلَبِهِمْ سَيَغْلِبُونَ</p>
+          <p class="prose" id="mov-detail-summary"></p>
+          <div class="verse-quote">
+            <p class="arch-label" style="text-align:left; margin-bottom:var(--space-xs);">Key Structural Insight</p>
+            <p class="prose-muted" style="margin-bottom:0;" id="mov-detail-insight"></p>
+          </div>
+          <div class="btn-row" style="margin-top:var(--space-md);">
+            <button type="button" class="btn-primary" id="mov-mark-btn" onclick="toggleMovementComplete()">Mark Movement Studied</button>
+            <button type="button" class="btn-secondary" onclick="stepMovement(1)">Next Movement →</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE HISTORICAL PROPHECY & TWO HORIZONS OF KNOWLEDGE -->
+    <section class="story-section tonal-band reveal-item" id="sec-prophecy">
+      <p class="kicker">02 · Historical Prophecy (30:1–10)</p>
+      <h2 class="section-heading">Defeat in the Nearest Land, Victory in <em>Three to Nine Years</em></h2>
+      <p class="prose">
+        After the mysterious letters <span class="arabic-inline" lang="ar" dir="rtl">الم</span> (<em>Alif, Lam, Meem</em>), the Surah opens with a concrete geopolitical statement in real time: the Byzantines (<em>Ar-Rūm</em>) have been defeated in the nearest land (<span class="arabic-inline" lang="ar" dir="rtl">فِي أَدْنَى الْأَرْضِ</span>), yet after their defeat they will overcome within <em>biḍʿ sinīn</em>—three to nine years (30:2–4).
+      </p>
+
+      <div class="equal-grid" style="margin-bottom:var(--space-lg);">
+        <div class="panel-card">
+          <p class="kicker">Why the Believers Rejoice (30:4–5)</p>
+          <p class="arabic-verse" lang="ar" dir="rtl">لِلَّهِ الْأَمْرُ مِنْ قَبْلُ وَمِنْ بَعْدُ ۚ وَيَوْمَئِذٍ يَفْرَحُ الْمُؤْمِنُونَ ۝ بِنَصْرِ اللَّهِ</p>
+          <p class="prose-muted" style="margin-bottom:0;">
+            The prophecy explicitly strips military outcomes of autonomous fatalism: <em>“To Allah belongs the command before and after.”</em> Both the defeat and the subsequent reversal fall inside divine governance. The believers rejoice specifically <em>“in the victory of Allah”</em>—the Mighty, the Merciful—recognizing that historical reversal is proof that Allah never fails in His promise (30:6).
+          </p>
+        </div>
+
+        <div class="panel-card">
+          <p class="kicker">The Diagnostic Critique (30:7–9)</p>
+          <p class="arabic-verse" lang="ar" dir="rtl">يَعْلَمُونَ ظَاهِرًا مِنَ الْحَيَاةِ الدُّنْيَا وَهُمْ عَنِ الْآخِرَةِ هُمْ غَافِلُونَ</p>
+          <p class="prose-muted" style="margin-bottom:0;">
+            Why do most people fail to grasp this promise? Because they know only <em>“what is apparent of the worldly life”</em> (<em>ẓāhiran min al-ḥayāti d-dunyā</em>), while remaining heedless of the Hereafter (30:7). They neither contemplate within themselves that creation has a specified term (30:8), nor walk through the earth to observe civilizations far stronger than them—who plowed and built up the earth even more, yet perished through their own self-wronging and mockery of divine signs (30:9–10).
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Horizon Contrast -->
+      <div class="panel-card">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+          <div>
+            <p class="kicker" style="margin-bottom:var(--space-xs);">Interactive Lens · 30:2–10</p>
+            <h3 class="subhead" style="margin-bottom:0;">Apparent Surface vs. Divine Horizon</h3>
+          </div>
+          <div class="btn-row" role="group" aria-label="Switch reading horizon">
+            <button type="button" class="btn-secondary is-active" id="horizon-btn-both" onclick="setHorizonMode('both')">Side-by-Side</button>
+            <button type="button" class="btn-secondary" id="horizon-btn-surface" onclick="setHorizonMode('surface')">Apparent Surface Only</button>
+            <button type="button" class="btn-secondary" id="horizon-btn-truth" onclick="setHorizonMode('truth')">Qur’anic Horizon Only</button>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="horizon-table" id="horizon-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th class="col-surface">Apparent Worldly View (30:7)</th>
+                <th class="col-truth">Underlying Reality Revealed (30:4–11)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Byzantine Defeat</strong><br><span class="stat-label">30:2–4</span></td>
+                <td class="col-surface">Final collapse visible on the immediate battlefield in the nearest land.</td>
+                <td class="col-truth">Temporary phase; they will overcome within 3–9 years because command belongs to Allah before and after.</td>
+              </tr>
+              <tr>
+                <td><strong>Material Achievement</strong><br><span class="stat-label">30:9</span></td>
+                <td class="col-surface">Greater strength, deeper plowing of the land, and monumental construction equal permanence.</td>
+                <td class="col-truth">Past peoples built even more, yet their end turned on rejecting clear messengers and wronging themselves.</td>
+              </tr>
+              <tr>
+                <td><strong>Nature of the Cosmos</strong><br><span class="stat-label">30:8</span></td>
+                <td class="col-surface">Immediate utility and sensory appearance treated as self-existing.</td>
+                <td class="col-truth">Heavens, earth, and all between were created solely <em>in truth and for a specified term</em> (<em>ajal musammā</em>).</td>
+              </tr>
+              <tr>
+                <td><strong>Human Trajectory</strong><br><span class="stat-label">30:10–11</span></td>
+                <td class="col-surface">Mockery of unseen warnings feels consequence-free in the moment.</td>
+                <td class="col-truth">Allah begins creation, repeats it, and to Him humanity returns—separated on the Day of the Hour.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COSMIC & HUMAN SIGNS (AYAT) -->
+    <section class="story-section reveal-item" id="sec-ayat">
+      <p class="kicker">03 · Cosmic &amp; Human Signs (30:17–27 &amp; 30:46–50)</p>
+      <h2 class="section-heading">Six <em>Āyāt</em> That Awaken Thought, Knowledge, Listening &amp; Reason</h2>
+      <p class="prose">
+        Before listing the signs, the Surah anchors human consciousness in the four daily turning points of time—evening, morning, night/late afternoon, and noon (30:17–18)—followed by the foundational law of renewal: <em>“He brings the living out of the dead and brings the dead out of the living and brings to life the earth after its lifelessness”</em> (30:19). From 30:20 to 30:25, six consecutive signs unfold, each pairing an observable wonder with a specific human faculty.
+      </p>
+
+      <!-- Filter buttons for the 6 Ayat -->
+      <div class="btn-row" style="margin-bottom:var(--space-md);" role="group" aria-label="Filter Ayat by domain">
+        <button type="button" class="btn-secondary is-active" data-ayat-filter="all" onclick="filterAyat('all', this)">All Six Āyāt (30:20–25)</button>
+        <button type="button" class="btn-secondary" data-ayat-filter="human" onclick="filterAyat('human', this)">Human &amp; Relational</button>
+        <button type="button" class="btn-secondary" data-ayat-filter="cosmic" onclick="filterAyat('cosmic', this)">Cosmic &amp; Atmospheric</button>
+      </div>
+
+      <div class="ayat-grid" id="ayat-grid"></div>
+
+      <!-- Selected Sign Deep Dive -->
+      <div class="panel-card is-highlighted" id="ayat-inspector" style="margin-top:var(--space-lg);" aria-live="polite">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+          <span class="badge-terracotta" id="ayat-insp-verse">Verse 30:21</span>
+          <span class="badge-emerald" id="ayat-insp-faculty">Addressed to: People who give thought</span>
+        </div>
+        <p class="arabic-verse" lang="ar" dir="rtl" id="ayat-insp-arabic"></p>
+        <p class="prose" id="ayat-insp-translation" style="font-weight:500;"></p>
+        <p class="prose-muted" id="ayat-insp-reflection" style="margin-bottom:0;"></p>
+      </div>
+
+      <!-- Daily Rhythm + Meteorological Resurrection Bridge -->
+      <div class="equal-grid" style="margin-top:var(--space-lg);">
+        <div class="panel-card">
+          <p class="kicker">30:17–18 · Sacred Cadence of the Day</p>
+          <h3 class="subhead">Glorification Across the Four Pivots of Light</h3>
+          <p class="prose-muted">
+            Praise and exaltation of Allah frame the entire solar cycle—uniting human worship with the obedience of everything in the heavens and the earth (30:26).
+          </p>
+          <div class="rhythm-grid">
+            <div class="rhythm-tile">
+              <p class="arch-label">30:17 · Evening</p>
+              <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.15rem; margin-bottom:var(--space-xs);">حِينَ تُمْسُونَ</p>
+              <p class="arch-caption">When you reach evening</p>
+            </div>
+            <div class="rhythm-tile">
+              <p class="arch-label">30:17 · Morning</p>
+              <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.15rem; margin-bottom:var(--space-xs);">حِينَ تُصْبِحُونَ</p>
+              <p class="arch-caption">When you reach morning</p>
+            </div>
+            <div class="rhythm-tile">
+              <p class="arch-label">30:18 · Night / Late Day</p>
+              <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.15rem; margin-bottom:var(--space-xs);">وَعَشِيًّا</p>
+              <p class="arch-caption">At night / declining day</p>
+            </div>
+            <div class="rhythm-tile">
+              <p class="arch-label">30:18 · Noon</p>
+              <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.15rem; margin-bottom:var(--space-xs);">وَحِينَ تُظْهِرُونَ</p>
+              <p class="arch-caption">When you are at noon</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <p class="kicker">30:46–50 · The Rain &amp; Resurrection Argument</p>
+          <h3 class="subhead">How Winds Prefigure Raising the Dead</h3>
+          <p class="prose-muted">
+            In verses 30:48–50, the Surah traces a four-stage atmospheric sequence so the reader can witness resurrection in real time before their eyes:
+          </p>
+          <svg viewBox="0 0 460 155" width="100%" height="auto" role="img" aria-label="Four-stage rain cycle in verses 30:48 to 30:50: Winds, Clouds Spread and Fragmented, Rain Emerges, Dead Earth Revived">
+            <rect x="6" y="14" width="98" height="78" rx="8" fill="var(--svg-bg-warm)" stroke="var(--svg-stroke-warm)"/>
+            <text x="55" y="38" text-anchor="middle" fill="var(--svg-primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700">STAGE 1</text>
+            <text x="55" y="57" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">Winds Sent</text>
+            <text x="55" y="75" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Good tidings</text>
+
+            <path d="M 106 53 L 120 53" stroke="var(--svg-secondary)" stroke-width="2" marker-end="none"/>
+
+            <rect x="122" y="14" width="102" height="78" rx="8" fill="var(--svg-bg-warm)" stroke="var(--svg-stroke-warm)"/>
+            <text x="173" y="38" text-anchor="middle" fill="var(--svg-primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700">STAGE 2</text>
+            <text x="173" y="57" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">Clouds Stirred</text>
+            <text x="173" y="75" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Spread &amp; kisaf</text>
+
+            <path d="M 226 53 L 240 53" stroke="var(--svg-secondary)" stroke-width="2"/>
+
+            <rect x="242" y="14" width="98" height="78" rx="8" fill="var(--svg-bg-warm)" stroke="var(--svg-stroke-warm)"/>
+            <text x="291" y="38" text-anchor="middle" fill="var(--svg-tertiary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700">STAGE 3</text>
+            <text x="291" y="57" text-anchor="middle" fill="var(--svg-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">Rain Falls</text>
+            <text x="291" y="75" text-anchor="middle" fill="var(--svg-ink-muted)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Joy after despair</text>
+
+            <path d="M 342 53 L 356 53" stroke="var(--svg-secondary)" stroke-width="2"/>
+
+            <rect x="358" y="14" width="96" height="78" rx="8" fill="var(--svg-tertiary-bg)" stroke="var(--svg-tertiary-border)"/>
+            <text x="406" y="38" text-anchor="middle" fill="var(--svg-tertiary-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700">STAGE 4</text>
+            <text x="406" y="57" text-anchor="middle" fill="var(--svg-tertiary-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="700">Earth Lives</text>
+            <text x="406" y="75" text-anchor="middle" fill="var(--svg-tertiary-ink)" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Proof of 30:50</text>
+
+            <text x="230" y="122" text-anchor="middle" fill="var(--svg-ink)" font-family="Cormorant Garamond, serif" font-size="15" font-style="italic">“Indeed, that [same One] will give life to the dead, and He is over all things competent.” (30:50)</text>
+          </svg>
+          <p class="prose-muted" style="margin-bottom:0; font-size:0.94rem;">
+            Notice also 30:27: Allah begins creation, then repeats it, <em>“and that is [even] easier for Him”</em>—since every human intellect grasps that repeating a creation already brought forth is even more evident than its first inception.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FITRAH & THE HUMAN CONDITION -->
+    <section class="story-section reveal-item" id="sec-fitrah">
+      <p class="kicker">04 · Primordial Disposition &amp; Human Psychology (30:28–37 &amp; 30:54)</p>
+      <h2 class="section-heading"><em>Fiṭrah</em>, Inner Clarity &amp; the Pendulum of the Unanchored Soul</h2>
+
+      <div class="split-grid" style="margin-bottom:var(--space-lg);">
+        <div class="panel-card is-highlighted">
+          <span class="badge-terracotta" style="margin-bottom:var(--space-sm);">Central Verse · 30:30</span>
+          <p class="arabic-verse" lang="ar" dir="rtl">فَأَقِمْ وَجْهَكَ لِلدِّينِ حَنِيفًا ۚ فِطْرَتَ اللَّهِ الَّتِي فَطَرَ النَّاسَ عَلَيْهَا ۚ لَا تَبْدِيلَ لِخَلْقِ اللَّهِ ۚ ذَٰلِكَ الدِّينُ الْقَيِّمُ</p>
+          <p class="prose" style="font-weight:500;">
+            “So direct your face toward the religion, inclining to truth. [Adhere to] the <em>fitrah</em> of Allah upon which He has created [all] people. No change should there be in the creation of Allah. That is the correct religion, but most of the people do not know.”
+          </p>
+          <p class="prose-muted" style="margin-bottom:0;">
+            Before commanding worship or law, the Surah anchors faith in the original design of the human being. True religion (<em>ad-dīn al-qayyim</em>) is not foreign to human nature; it is alignment with the upright disposition (<em>ḥanīfan</em>) woven into every person, protected by repentance (<em>munībīn ilayh</em>), prayer, and refusal to splinter into partisan sects rejoicing only in their own factions (30:31–32).
+          </p>
+        </div>
+
+        <div class="panel-card">
+          <p class="kicker">Interactive Contrast · 30:33–36 &amp; 30:48–51</p>
+          <h3 class="subhead">How the Human Heart Reacts to Hardship vs. Relief</h3>
+          <p class="prose-muted">
+            Surah Ar-Rum maps an exact psychological cycle: without rooted faith, human emotion swings wildly between immediate panic and forgetful pride. Toggle the condition below to inspect the verses’ portrait.
+          </p>
+          <div class="btn-row" style="margin-bottom:var(--space-md);" role="group" aria-label="Select human condition scenario">
+            <button type="button" class="btn-secondary is-active" id="cond-btn-adversity" onclick="selectCondition('adversity')">When Adversity / Drought Strikes</button>
+            <button type="button" class="btn-secondary" id="cond-btn-mercy" onclick="selectCondition('mercy')">When Mercy / Rain Arrives</button>
+            <button type="button" class="btn-secondary" id="cond-btn-anchored" onclick="selectCondition('anchored')">The Anchored Believer</button>
+          </div>
+          <div class="verse-quote" id="condition-output" aria-live="polite" style="margin-bottom:0;"></div>
+        </div>
+      </div>
+
+      <!-- Three-Stage Lifespan Arc (30:54) -->
+      <div class="panel-card">
+        <p class="kicker">30:54 · The Biological Proof Within Ourselves</p>
+        <h3 class="subhead">From Weakness, to Strength, to Weakness and White Hair</h3>
+        <p class="prose-muted">
+          <em>“Allah is the one who created you from weakness, then made after weakness strength, then made after strength weakness and white hair. He creates what He wills, and He is the Knowing, the Competent.”</em> (30:54)
+        </p>
+        <div class="lifespan-track" role="group" aria-label="Three stages of human life in verse 30:54">
+          <button type="button" class="stage-btn is-active" data-stage="0" onclick="selectLifespanStage(0)">1. Created from Weakness (Ḍaʿf)</button>
+          <button type="button" class="stage-btn" data-stage="1" onclick="selectLifespanStage(1)">2. Strength After Weakness (Quwwah)</button>
+          <button type="button" class="stage-btn" data-stage="2" onclick="selectLifespanStage(2)">3. Weakness &amp; White Hair (Shaybah)</button>
+        </div>
+        <div id="lifespan-detail" class="prose" style="margin-bottom:0; background:var(--background); padding:var(--space-md); border-radius:var(--rounded); border:var(--warm-hairline);" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: SOCIAL ETHICS, ECONOMIC PURITY & ECOLOGICAL ACCOUNTABILITY -->
+    <section class="story-section tonal-band reveal-item" id="sec-social">
+      <p class="kicker">05 · Social &amp; Ecological Order (30:38–45)</p>
+      <h2 class="section-heading"><em>Zakāh</em> Over <em>Ribā</em>, and the Consequence of Human Hands</h2>
+      <p class="prose">
+        If Allah is the sole creator and provider who expands or restricts sustenance (30:37, 30:40), then wealth is a trust rather than an idol. Verses 30:38–41 translate theology directly into kinship duty, financial ethics, and stewardship of land and sea.
+      </p>
+
+      <div class="equal-grid">
+        <div class="panel-card">
+          <span class="badge-emerald" style="margin-bottom:var(--space-sm);">30:38 · Kinship &amp; Solidarity</span>
+          <h3 class="subhead">Rights of the Vulnerable</h3>
+          <p class="prose-muted">
+            <em>“So give the relative his right, as well as the needy and the traveler. That is best for those who desire the countenance of Allah, and it is they who will be the successful.”</em>
+          </p>
+          <p class="prose-muted" style="margin-bottom:0; font-size:0.95rem;">
+            Notice the framing: aid is called a <strong>right</strong> (<em>ḥaqqahu</em>) belonging to the relative, the impoverished (<em>al-miskīn</em>), and the wayfarer (<em>ibn as-sabīl</em>)—purifying giving from condescension by directing intention toward Allah’s countenance.
+          </p>
+        </div>
+
+        <div class="panel-card">
+          <span class="badge-terracotta" style="margin-bottom:var(--space-sm);">30:39 · Economic Inversion</span>
+          <h3 class="subhead">Why Ribā Shrinks &amp; Zakāh Multiplies</h3>
+          <p class="prose-muted">
+            <em>“And whatever you give for interest to increase within the wealth of people will not increase with Allah. But what you give in zakah, desiring the countenance of Allah—those are the multipliers.”</em>
+          </p>
+          <p class="prose-muted" style="margin-bottom:0; font-size:0.95rem;">
+            What appears to grow on an earthly ledger (<em>ribā</em>) carries zero real growth with Allah, echoing 30:7’s critique of surface appearance; what appears to leave one’s hand in <em>zakāh</em> is what truly multiplies.
+          </p>
+        </div>
+
+        <div class="panel-card">
+          <span class="badge-emerald" style="margin-bottom:var(--space-sm);">30:41 · Moral Ecology</span>
+          <h3 class="subhead">Corruption in Land and Sea</h3>
+          <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.2rem;">ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ</p>
+          <p class="prose-muted" style="margin-bottom:0; font-size:0.95rem;">
+            <em>Fasād</em> (corruption and disorder) appears across land and sea because of what human hands have earned—yet even tasting partial consequence serves a redemptive purpose: <em>“that perhaps they will return [to righteousness].”</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE MASTERY CHECK & REFLECTIVE STUDY JOURNAL -->
+    <section class="story-section reveal-item" id="sec-mastery">
+      <p class="kicker">06 · Mastery Check &amp; Reflective Study</p>
+      <h2 class="section-heading">Verify Comprehension &amp; Record <em>Your Reflections</em></h2>
+      <p class="prose">
+        Test your grasp of Surah Ar-Rum’s themes and structural links below, and record your responses to the four reflective study prompts. All progress and written reflections are preserved automatically across sessions.
+      </p>
+
+      <div class="split-grid">
+        <!-- Interactive Mastery Quiz -->
+        <div class="panel-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <span class="badge-terracotta" id="quiz-progress-badge">Question 1 of 6</span>
+            <span class="stat-label" id="quiz-score-label">Score: 0 / 6</span>
+          </div>
+          <h3 class="subhead" id="quiz-question-text"></h3>
+          <div id="quiz-options-container"></div>
+          <div id="quiz-feedback" class="prose-muted" style="margin-top:var(--space-sm); font-size:0.95rem; min-height:2.5em;" aria-live="polite"></div>
+          <div class="btn-row" style="margin-top:var(--space-md);">
+            <button type="button" class="btn-secondary" id="quiz-prev-btn" onclick="stepQuiz(-1)">← Previous</button>
+            <button type="button" class="btn-primary" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question →</button>
+          </div>
+        </div>
+
+        <!-- Reflective Study Journal -->
+        <div class="panel-card">
+          <div class="field-group">
+            <label for="reflection-prompt-select" class="field-label">Select Reflective Study Prompt</label>
+            <select id="reflection-prompt-select" class="study-select" onchange="selectReflectionPrompt(this.value)">
+              <option value="0">1. Surface vs. Reality (30:7 &amp; 30:4–6)</option>
+              <option value="1">2. Reading the Six Āyāt (30:20–25)</option>
+              <option value="2">3. Preserving Fiṭrah Without Sectarianism (30:30–32)</option>
+              <option value="3">4. Wealth, Fasād &amp; Patience (30:39, 30:41, 30:60)</option>
+            </select>
+          </div>
+
+          <p class="field-hint" id="reflection-prompt-question"></p>
+
+          <div class="field-group">
+            <label for="reflection-textarea" class="field-label">Your Study Reflection</label>
+            <textarea id="reflection-textarea" class="study-textarea" placeholder="Write your reflection grounded in the verses above…" oninput="handleReflectionInput(this.value)"></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+            <span class="status-note" id="journal-status-note" aria-live="polite">Ready to record notes.</span>
+            <button type="button" class="btn-primary" onclick="saveCurrentReflection()">Save Reflection</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING VERSE & SOURCE ATTRIBUTION -->
+    <footer class="source-footer">
+      <div class="panel-card" style="margin-bottom:var(--space-lg); text-align:center;">
+        <p class="kicker" style="margin-bottom:var(--space-xs);">30:60 · The Closing Counsel</p>
+        <p class="arabic-verse" lang="ar" dir="rtl" style="text-align:center;">فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ ۖ وَلَا يَسْتَخِفَّنَّكَ الَّذِينَ لَا يُوقِنُونَ</p>
+        <p class="prose" style="margin:0 auto; font-style:italic; font-family:var(--font-headline); font-size:1.35rem;">
+          “So be patient. Indeed, the promise of Allah is truth. And let them not disquiet you who are not certain [in faith].”
+        </p>
+      </div>
+      <p style="margin:0;">
+        Source grounding: All Arabic verse excerpts, English translations, thematic structures, and study questions in this guide are drawn directly from Surah Ar-Rum (Chapter 30, Verses 1–60) in the provided source text.
+      </p>
+    </footer>
+
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    /* =====================================================================
+       DATA: Strictly grounded in Surah Ar-Rum (Chapter 30, Verses 1–60)
+       ===================================================================== */
+    const MOVEMENTS = [
+      {
+        verses: `Verses 30:1–10`,
+        mirror: `Mirrors 30:58–60`,
+        title: `The Byzantine Prophecy & Past Empires`,
+        arabic: `غُلِبَتِ الرُّومُ ۝ فِي أَدْنَى الْأَرْضِ وَهُمْ مِنْ بَعْدِ غَلَبِهِمْ سَيَغْلِبُونَ`,
+        summary: `Opens with the prophecy that the defeated Byzantines will overcome within three to nine years, anchoring all historical reversals in Allah’s unfailing promise (30:1–6). It then critiques humanity’s focus on apparent worldly life (30:7) and urges reflection on the cosmos’s specified term and past powerful nations whose denial led to ruin (30:8–10).`,
+        insight: `The phrase “Allah does not fail in His promise” (30:6) forms the opening bracket of the entire Surah, directly answered by the closing command in 30:60: “So be patient. Indeed, the promise of Allah is truth.”`
+      },
+      {
+        verses: `Verses 30:11–19`,
+        mirror: `Mirrors 30:46–57`,
+        title: `Resurrection, Separation & Daily Praise`,
+        arabic: `اللَّهُ يَبْدَأُ الْخَلْقَ ثُمَّ يُعِيدُهُ ثُمَّ إِلَيْهِ تُرْجَعُونَ`,
+        summary: `Establishes that Allah originates and repeats creation (30:11). On the Day the Hour arrives, wrongdoers fall into despair (yublisu), abandoned by their alleged partners, and humanity separates into delighted dwellers of Paradise and those brought into punishment (30:12–16). It closes by calling believers to exalt Allah at evening, morning, night, and noon—pointing to life emerging from death (30:17–19).`,
+        insight: `Every day’s transitions of light (30:17–18) and biological cycles of life out of death (30:19) rehearse the certainty of final return.`
+      },
+      {
+        verses: `Verses 30:20–27`,
+        mirror: `Heart of the Āyāt Sequence`,
+        title: `The Six Āyāt of Creation & Kinship`,
+        arabic: `وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا`,
+        summary: `Presents six consecutive “And of His signs” verses spanning human origin from dust (30:20), marital tranquillity, affection, and mercy (30:21), diversity of languages and colors (30:22), sleep and livelihood (30:23), lightning and revivifying rain (30:24), and the heavens and earth standing by His command until a single call raises humanity (30:25).`,
+        insight: `Each sign addresses a distinct mode of human awareness—thought, knowledge, listening, and reason—culminating in 30:27: repeating creation is even easier for Allah.`
+      },
+      {
+        verses: `Verses 30:28–37`,
+        mirror: `Central Axis: 30:30`,
+        title: `The Parable, Fiṭrah & Human Swings`,
+        arabic: `فَأَقِمْ وَجْهَكَ لِلدِّينِ حَنِيفًا ۚ فِطْرَتَ اللَّهِ الَّتِي فَطَرَ النَّاسَ عَلَيْهَا`,
+        summary: `Challenges polytheism with a relatable parable of shared wealth and authority (30:28), then states the Surah’s centerpiece: direct your face to the upright religion—the primordial fiṭrah upon which Allah created all people—free of sectarian division (30:30–32). It diagnoses how people turn to Allah in harm yet associate partners or despair as circumstances shift (30:33–37).`,
+        insight: `Fiṭrah (30:30) sits near the exact structural midpoint of the 60-verse Surah, linking cosmic order above with social responsibility below.`
+      },
+      {
+        verses: `Verses 30:38–45`,
+        mirror: `Social & Moral Application`,
+        title: `Social Duty, Zakāh vs. Ribā & Corruption`,
+        arabic: `ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ`,
+        summary: `Translates faith into action: honoring the rights of relatives, the needy, and travelers (30:38); contrasting interest (ribā), which does not increase with Allah, against zakāh, which multiplies (30:39); and explaining that corruption on land and sea stems from human deeds so people may taste consequences and return (30:41–45).`,
+        insight: `Just as 30:7 exposes the illusion of surface appearances, 30:39 reveals that ribā’s apparent growth is illusory while sincere charity multiplies.`
+      },
+      {
+        verses: `Verses 30:46–60`,
+        mirror: `Mirrors 30:1–19`,
+        title: `Winds, Rain, Aging & Steadfast Patience`,
+        arabic: `فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ ۖ وَلَا يَسْتَخِفَّنَّكَ الَّذِينَ لَا يُوقِنُونَ`,
+        summary: `Traces winds bringing mercy and rain to a despairing earth as tangible proof of resurrection (30:46–50), warns against spiritual deafness when crops wither (30:51–53), charts the three-stage human arc of weakness, strength, and white-haired weakness (30:54), contrasts perceptions of time on Resurrection Day (30:55–57), and closes with patience in Allah’s true promise (30:58–60).`,
+        insight: `On the Day of Resurrection, wrongdoers swear they remained only an hour (30:55), while people of knowledge and faith affirm the full decreed span.`
+      }
+    ];
+
+    const AYAT_ITEMS = [
+      {
+        verse: `30:20`,
+        category: `human`,
+        title: `Origin from Dust & Dispersal`,
+        faculty: `Universal Human Origin`,
+        arabic: `وَمِنْ آيَاتِهِ أَنْ خَلَقَكُمْ مِنْ تُرَابٍ ثُمَّ إِذَا أَنْتُمْ بَشَرٌ تَنْتَشِرُونَ`,
+        translation: `And of His signs is that He created you from dust; then, suddenly you were human beings dispersing [throughout the earth].`,
+        reflection: `Grounds human humility and shared dignity: all dispersing nations originate from humble dust (` + '`turāb`' + `).`
+      },
+      {
+        verse: `30:21`,
+        category: `human`,
+        title: `Mates, Tranquillity, Affection & Mercy`,
+        faculty: `People who give thought (yatafakkarūn)`,
+        arabic: `وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً`,
+        translation: `And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought.`,
+        reflection: `Inner emotional peace (` + '`sakan`' + `), love (` + '`mawaddah`' + `), and compassion (` + '`raḥmah`' + `) are presented as deliberate divine signs inviting deep contemplation.`
+      },
+      {
+        verse: `30:22`,
+        category: `human`,
+        title: `Heavens, Earth, Languages & Colors`,
+        faculty: `Those of knowledge (lil-ʿālimīn)`,
+        arabic: `وَمِنْ آيَاتِهِ خَلْقُ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافُ أَلْسِنَتِكُمْ وَأَلْوَانِكُمْ`,
+        translation: `And of His signs is the creation of the heavens and the earth and the diversity of your languages and your colors. Indeed in that are signs for those of knowledge.`,
+        reflection: `Pairs cosmic architecture with human linguistic and racial diversity—both are intentional signs worthy of scholarly study (` + '`al-ʿālimīn`' + `).`
+      },
+      {
+        verse: `30:23`,
+        category: `human`,
+        title: `Sleep & Seeking of Bounty`,
+        faculty: `People who listen (yasmaʿūn)`,
+        arabic: `وَمِنْ آيَاتِهِ مَنَامُكُمْ بِاللَّيْلِ وَالنَّهَارِ وَابْتِغَاؤُكُمْ مِنْ فَضْلِهِ`,
+        translation: `And of His signs is your sleep by night and day and your seeking of His bounty. Indeed in that are signs for a people who listen.`,
+        reflection: `Daily surrender into unconscious sleep and awakening to seek provision mirrors death and resurrection every twenty-four hours.`
+      },
+      {
+        verse: `30:24`,
+        category: `cosmic`,
+        title: `Lightning & Lifegiving Rain`,
+        faculty: `People who use reason (yaʿqilūn)`,
+        arabic: `وَمِنْ آيَاتِهِ يُرِيكُمُ الْبَرْقَ خَوْفًا وَطَمَعًا وَيُنَزِّلُ مِنَ السَّمَاءِ مَاءً فَيُحْيِي بِهِ الْأَرْضَ بَعْدَ مَوْتِهَا`,
+        translation: `And of His signs is [that] He shows you the lightning [causing] fear and aspiration, and He sends down rain from the sky by which He brings to life the earth after its lifelessness. Indeed in that are signs for a people who use reason.`,
+        reflection: `Lightning holds fear and hope in tension; rain reviving dead soil offers rational proof (` + '`yaʿqilūn`' + `) that dead creation can live again.`
+      },
+      {
+        verse: `30:25`,
+        category: `cosmic`,
+        title: `Heavens & Earth Standing by Command`,
+        faculty: `Immediate Response at His Call`,
+        arabic: `وَمِنْ آيَاتِهِ أَنْ تَقُومَ السَّمَاءُ وَالْأَرْضُ بِأَمْرِهِ ۚ ثُمَّ إِذَا دَعَاكُمْ دَعْوَةً مِنَ الْأَرْضِ إِذَا أَنْتُمْ تَخْرُجُونَ`,
+        translation: `And of His signs is that the heaven and earth remain by His command. Then when He calls you with a [single] call from the earth, immediately you will come forth.`,
+        reflection: `The same effortless command (` + '`amr`' + `) that sustains sky and earth in place will summon humanity forth from the earth in an instant.`
+      }
+    ];
+
+    const CONDITION_SCENARIOS = {
+      adversity: {
+        label: `Adversity & Drought (30:33, 30:36, 30:49)`,
+        arabic: `وَإِذَا مَسَّ النَّاسَ ضُرٌّ دَعَوْا رَبَّهُمْ مُنِيبِينَ إِلَيْهِ`,
+        text: `When harm touches people, they strip away false dependencies and call upon their Lord in sincere repentance (30:33). Yet when affliction strikes for what their own hands earned—or before rain falls—the unanchored heart collapses immediately into despair (yaqnaṭūn / mublisīn, 30:36, 30:49).`
+      },
+      mercy: {
+        label: `Relief & Prosperity (30:33–34, 30:36, 30:51)`,
+        arabic: `ثُمَّ إِذَا أَذَاقَهُمْ مِنْهُ رَحْمَةً إِذَا فَرِيقٌ مِنْهُمْ بِرَبِّهِمْ يُشْرِكُونَ`,
+        text: `Once Allah lets them taste mercy, they rejoice in it (30:36), yet a faction immediately reverts to associating partners with their Lord and denying what they were granted (30:33–34). And if a harsh wind turns their crops yellow afterward, they lapse right back into disbelief (30:51).`
+      },
+      anchored: {
+        label: `The Anchored Believer (30:30–31, 30:46, 30:60)`,
+        arabic: `مُنِيبِينَ إِلَيْهِ وَاتَّقُوهُ وَأَقِيمُوا الصَّلَاةَ وَلَا تَكُونُوا مِنَ الْمُشْرِكِينَ`,
+        text: `Rooted in fiṭrah (30:30), the believer remains steadily repentant in both ease and hardship—establishing prayer, giving thanks for the winds of mercy (30:46), giving kin and the needy their right (30:38), and remaining patient upon Allah’s true promise without being shaken by those lacking certainty (30:60).`
+      }
+    };
+
+    const LIFESPAN_STAGES = [
+      {
+        title: `Stage 1 · Created from Weakness (30:54)`,
+        body: `Human life begins in complete dependency—crafted from dust (30:20) and brought into infancy in weakness (` + '`ḍaʿf`' + `). Neither strength nor speech is self-authored.`
+      },
+      {
+        title: `Stage 2 · Strength After Weakness (30:54)`,
+        body: `Allah transforms infancy’s vulnerability into vigor and capability (` + '`quwwah`' + `). The temptation here is to know only the apparent surface of worldly life (30:7) and mistake temporary strength for permanence.`
+      },
+      {
+        title: `Stage 3 · Weakness & White Hair (30:54)`,
+        body: `Strength inevitably recedes back into frailty and gray hair (` + '`ḍaʿfan wa shaybah`' + `), closing the biological arc within one lifetime as a living witness to the Creator who knows and is competent over all things.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        question: `In verses 30:2–6, why are the believers told they will rejoice on the day the Byzantines overcome?`,
+        options: [
+          `Because military alliances always favor larger empires`,
+          `In the victory of Allah, demonstrating that command belongs to Him before and after and He never fails His promise`,
+          `Because the defeated side had already stopped agricultural cultivation`,
+          `To show that worldly kingdoms never experience decline`
+        ],
+        correct: 1,
+        explanation: `Verses 30:4–6 state: “To Allah belongs the command before and after. And that day the believers will rejoice / In the victory of Allah... [It is] the promise of Allah. Allah does not fail in His promise.”`
+      },
+      {
+        question: `According to 30:7, what characterizes most people’s limitation in knowledge?`,
+        options: [
+          `They refuse to travel or plow the earth`,
+          `They know only what is apparent of the worldly life while being unaware of the Hereafter`,
+          `They cannot perceive the difference between night and day`,
+          `They reject the diversity of languages and colors`
+        ],
+        correct: 1,
+        explanation: `Verse 30:7 diagnoses this exact condition: “They know what is apparent of the worldly life, but they, of the Hereafter, are unaware.”`
+      },
+      {
+        question: `Which pairing accurately matches a sign in 30:21–24 with the audience it explicitly addresses?`,
+        options: [
+          `Mates, affection, and mercy (30:21) → “a people who give thought”`,
+          `Diversity of languages and colors (30:22) → “a people who listen”`,
+          `Sleep by night and day (30:23) → “those of knowledge”`,
+          `Lightning and rain (30:24) → “a people who give thought”`
+        ],
+        correct: 0,
+        explanation: `30:21 pairs mates, tranquillity, affection, and mercy with “a people who give thought”; 30:22 addresses “those of knowledge”; 30:23 addresses “a people who listen”; and 30:24 addresses “a people who use reason.”`
+      },
+      {
+        question: `In 30:30–32, what is paired directly with adhering to the fiṭrah of Allah?`,
+        options: [
+          `Expanding interest-based wealth within communities`,
+          `Directing one’s face upright to the religion, turning in repentance, establishing prayer, and avoiding sectarian division`,
+          `Following ancestral desires regardless of clear evidences`,
+          `Focusing exclusively on worldly building and cultivation`
+        ],
+        correct: 1,
+        explanation: `Verses 30:30–32 command directing one’s face inclining to truth upon the fiṭrah of Allah, turning in repentance, fearing Him, establishing prayer, and not dividing religion into sects rejoicing in their own factions.`
+      },
+      {
+        question: `How does verse 30:39 contrast ribā (interest) and zakāh?`,
+        options: [
+          `Both multiply equally if given publicly`,
+          `Ribā increases within people’s wealth but does not increase with Allah, whereas zakāh desiring Allah’s countenance multiplies`,
+          `Ribā is permitted for travelers while zakāh is reserved for relatives`,
+          `Neither affects a person’s standing with Allah`
+        ],
+        correct: 1,
+        explanation: `Verse 30:39 states that whatever is given for interest to increase within people’s wealth will not increase with Allah, whereas those who give zakāh desiring Allah’s countenance are “the multipliers.”`
+      },
+      {
+        question: `According to 30:41, why does Allah let humanity taste part of the consequence of corruption (fasād) in land and sea?`,
+        options: [
+          `Because nature operates outside divine command`,
+          `So that perhaps they will return to righteousness`,
+          `To prove that past messengers failed to deliver clear evidences`,
+          `Because human strength never declines into weakness`
+        ],
+        correct: 1,
+        explanation: `Verse 30:41 explains: “Corruption has appeared throughout the land and sea by [reason of] what the hands of people have earned so He may let them taste part of [the consequence of] what they have done that perhaps they will return [to righteousness].”`
+      }
+    ];
+
+    const REFLECTION_PROMPTS = [
+      `Where in daily life is it easiest to judge purely by “what is apparent of the worldly life” (30:7), and how does remembering that command belongs to Allah “before and after” (30:4) reshape patience?`,
+      `Among the six signs in 30:20–25—origin from dust, marital tranquillity, linguistic/color diversity, sleep, lightning/rain, and the standing heavens—which sign speaks most vividly to your current faculty of thought, listening, or reason?`,
+      `Verse 30:30 calls humanity to its primordial fiṭrah while 30:32 warns against dividing into self-congratulatory factions. What practices protect inner sincerity and unity without hardening into sectarianism?`,
+      `Reflect on the link between 30:39 (zakāh vs. ribā), 30:41 (corruption from what human hands earn), and 30:60 (patience in Allah’s true promise). What one concrete change aligns your daily stewardship with Surah Ar-Rum?`
+    ];
+
+    /* =====================================================================
+       APPLICATION STATE (persisted via window.notebookAppApi)
+       ===================================================================== */
+    let appState = {
+      activeMovement: 0,
+      completedMovements: [],
+      selectedAyatVerse: `30:21`,
+      ayatFilter: `all`,
+      horizonMode: `both`,
+      conditionMode: `adversity`,
+      lifespanStage: 0,
+      currentQuizIdx: 0,
+      quizAnswers: {},
+      activePromptIdx: 0,
+      reflections: { "0": ``, "1": ``, "2": ``, "3": `` }
+    };
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        const note = document.getElementById(`journal-status-note`);
+        if (note) {
+          note.textContent = `Could not sync state with host; edits remain active in this session.`;
+          note.classList.add(`is-error`);
+        }
+      }
+    }
+
+    function updateMasteryMetrics() {
+      const movCount = Array.isArray(appState.completedMovements) ? appState.completedMovements.length : 0;
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach(function (q, idx) {
+        if (appState.quizAnswers[String(idx)] === q.correct) {
+          quizCorrect += 1;
+        }
+      });
+
+      let notesCount = 0;
+      for (let i = 0; i < REFLECTION_PROMPTS.length; i += 1) {
+        const text = (appState.reflections[String(i)] || ``).trim();
+        if (text.length > 0) notesCount += 1;
+      }
+
+      const movEl = document.getElementById(`stat-movements`);
+      const quizEl = document.getElementById(`stat-quiz`);
+      const notesEl = document.getElementById(`stat-notes`);
+      const barEl = document.getElementById(`mastery-progressbar`);
+      const fillEl = document.getElementById(`mastery-progress-fill`);
+
+      if (movEl) movEl.textContent = `${movCount} / 6`;
+      if (quizEl) quizEl.textContent = `${quizCorrect} / 6`;
+      if (notesEl) notesEl.textContent = `${notesCount} / 4`;
+
+      const totalPoints = movCount + quizCorrect + notesCount;
+      const maxPoints = 6 + 6 + 4;
+      const pct = Math.round((totalPoints / maxPoints) * 100);
+      if (barEl) barEl.setAttribute(`aria-valuenow`, String(pct));
+      if (fillEl) fillEl.style.width = `${pct}%`;
+    }
+
+    /* =====================================================================
+       SECTION 1: MOVEMENTS STEPPER
+       ===================================================================== */
+    function renderMovementPanel() {
+      const idx = appState.activeMovement;
+      const data = MOVEMENTS[idx] || MOVEMENTS[0];
+      const isDone = appState.completedMovements.includes(idx);
+
+      const buttons = document.querySelectorAll(`.movement-btn`);
+      buttons.forEach(function (btn, bIdx) {
+        btn.classList.toggle(`is-active`, bIdx === idx);
+        const statusEl = document.getElementById(`mov-status-${bIdx}`);
+        if (statusEl) {
+          statusEl.textContent = appState.completedMovements.includes(bIdx) ? `Studied ✓` : `Explore`;
+        }
+      });
+
+      const badgeEl = document.getElementById(`mov-detail-badge`);
+      const mirrorEl = document.getElementById(`mov-detail-mirror`);
+      const titleEl = document.getElementById(`mov-detail-title`);
+      const arabicEl = document.getElementById(`mov-detail-arabic`);
+      const summaryEl = document.getElementById(`mov-detail-summary`);
+      const insightEl = document.getElementById(`mov-detail-insight`);
+      const markBtn = document.getElementById(`mov-mark-btn`);
+
+      if (badgeEl) badgeEl.textContent = data.verses;
+      if (mirrorEl) mirrorEl.textContent = data.mirror;
+      if (titleEl) titleEl.textContent = data.title;
+      if (arabicEl) arabicEl.textContent = data.arabic;
+      if (summaryEl) summaryEl.textContent = data.summary;
+      if (insightEl) insightEl.textContent = data.insight;
+      if (markBtn) {
+        markBtn.textContent = isDone ? `Studied ✓ (Click to Unmark)` : `Mark Movement Studied`;
+      }
+    }
+
+    function selectMovement(idx) {
+      appState.activeMovement = idx;
+      renderMovementPanel();
+      persistState();
+    }
+
+    function stepMovement(delta) {
+      const next = (appState.activeMovement + delta + MOVEMENTS.length) % MOVEMENTS.length;
+      selectMovement(next);
+    }
+
+    function toggleMovementComplete() {
+      const idx = appState.activeMovement;
+      const pos = appState.completedMovements.indexOf(idx);
+      if (pos === -1) {
+        appState.completedMovements.push(idx);
+      } else {
+        appState.completedMovements.splice(pos, 1);
+      }
+      renderMovementPanel();
+      updateMasteryMetrics();
+      persistState();
+    }
+
+    /* =====================================================================
+       SECTION 2: HORIZON TABLE TOGGLE
+       ===================================================================== */
+    function setHorizonMode(mode) {
+      appState.horizonMode = mode;
+      const btnBoth = document.getElementById(`horizon-btn-both`);
+      const btnSurf = document.getElementById(`horizon-btn-surface`);
+      const btnTruth = document.getElementById(`horizon-btn-truth`);
+
+      if (btnBoth) btnBoth.classList.toggle(`is-active`, mode === `both`);
+      if (btnSurf) btnSurf.classList.toggle(`is-active`, mode === `surface`);
+      if (btnTruth) btnTruth.classList.toggle(`is-active`, mode === `truth`);
+
+      const surfCols = document.querySelectorAll(`.col-surface`);
+      const truthCols = document.querySelectorAll(`.col-truth`);
+
+      surfCols.forEach(function (el) {
+        el.style.display = mode === `truth` ? `none` : ``;
+      });
+      truthCols.forEach(function (el) {
+        el.style.display = mode === `surface` ? `none` : ``;
+      });
+      persistState();
+    }
+
+    /* =====================================================================
+       SECTION 3: AYAT EXPLORER
+       ===================================================================== */
+    function renderAyatGrid() {
+      const grid = document.getElementById(`ayat-grid`);
+      if (!grid) return;
+
+      const filtered = AYAT_ITEMS.filter(function (item) {
+        return appState.ayatFilter === `all` || item.category === appState.ayatFilter;
+      });
+
+      grid.innerHTML = filtered.map(function (item) {
+        const selectedClass = item.verse === appState.selectedAyatVerse ? ` is-selected` : ``;
+        return `
+          <button type="button" class="ayat-card${selectedClass}" onclick="selectAyat('${item.verse}')">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-xs);">
+                <span class="movement-verses">${item.verse}</span>
+                <span class="stat-label">${item.category === 'human' ? 'Human' : 'Cosmic'}</span>
+              </div>
+              <h3 class="subhead" style="font-size:1.25rem; margin-bottom:var(--space-xs);">${item.title}</h3>
+            </div>
+            <p class="stat-label" style="color:var(--tertiary); margin:0;">${item.faculty}</p>
+          </button>
+        `;
+      }).join(``);
+
+      renderAyatInspector();
+    }
+
+    function renderAyatInspector() {
+      const item = AYAT_ITEMS.find(function (a) {
+        return a.verse === appState.selectedAyatVerse;
+      }) || AYAT_ITEMS[0];
+
+      const vEl = document.getElementById(`ayat-insp-verse`);
+      const fEl = document.getElementById(`ayat-insp-faculty`);
+      const aEl = document.getElementById(`ayat-insp-arabic`);
+      const tEl = document.getElementById(`ayat-insp-translation`);
+      const rEl = document.getElementById(`ayat-insp-reflection`);
+
+      if (vEl) vEl.textContent = `Verse ${item.verse}`;
+      if (fEl) fEl.textContent = `Addressed to: ${item.faculty}`;
+      if (aEl) aEl.textContent = item.arabic;
+      if (tEl) tEl.textContent = `“${item.translation}”`;
+      if (rEl) rEl.textContent = item.reflection;
+    }
+
+    function filterAyat(filterKey, btnEl) {
+      appState.ayatFilter = filterKey;
+      const filterBtns = document.querySelectorAll(`[data-ayat-filter]`);
+      filterBtns.forEach(function (b) {
+        b.classList.toggle(`is-active`, b.dataset.ayatFilter === filterKey);
+      });
+      const firstMatch = AYAT_ITEMS.find(function (a) {
+        return filterKey === `all` || a.category === filterKey;
+      });
+      if (firstMatch && !AYAT_ITEMS.some(function (a) { return a.verse === appState.selectedAyatVerse && (filterKey === `all` || a.category === filterKey); })) {
+        appState.selectedAyatVerse = firstMatch.verse;
+      }
+      renderAyatGrid();
+      persistState();
+    }
+
+    function selectAyat(verse) {
+      appState.selectedAyatVerse = verse;
+      renderAyatGrid();
+      persistState();
+    }
+
+    /* =====================================================================
+       SECTION 4: HUMAN CONDITION & LIFESPAN
+       ===================================================================== */
+    function selectCondition(mode) {
+      appState.conditionMode = mode;
+      const data = CONDITION_SCENARIOS[mode] || CONDITION_SCENARIOS.adversity;
+
+      const bAdv = document.getElementById(`cond-btn-adversity`);
+      const bMer = document.getElementById(`cond-btn-mercy`);
+      const bAnc = document.getElementById(`cond-btn-anchored`);
+      if (bAdv) bAdv.classList.toggle(`is-active`, mode === `adversity`);
+      if (bMer) bMer.classList.toggle(`is-active`, mode === `mercy`);
+      if (bAnc) bAnc.classList.toggle(`is-tertiary-active`, mode === `anchored`);
+
+      const out = document.getElementById(`condition-output`);
+      if (out) {
+        out.innerHTML = `
+          <p class="arch-label" style="text-align:left; margin-bottom:var(--space-xs);">${data.label}</p>
+          <p class="arabic-verse" lang="ar" dir="rtl" style="font-size:1.25rem; margin-bottom:var(--space-xs);">${data.arabic}</p>
+          <p class="prose-muted" style="margin-bottom:0;">${data.text}</p>
+        `;
+      }
+      persistState();
+    }
+
+    function selectLifespanStage(stageIdx) {
+      appState.lifespanStage = stageIdx;
+      const data = LIFESPAN_STAGES[stageIdx] || LIFESPAN_STAGES[0];
+      const btns = document.querySelectorAll(`.stage-btn`);
+      btns.forEach(function (b, idx) {
+        b.classList.toggle(`is-active`, idx === stageIdx);
+      });
+      const detail = document.getElementById(`lifespan-detail`);
+      if (detail) {
+        detail.innerHTML = `<strong>${data.title}:</strong> ${data.body}`;
+      }
+      persistState();
+    }
+
+    /* =====================================================================
+       SECTION 6: MASTERY QUIZ & REFLECTIVE JOURNAL
+       ===================================================================== */
+    function renderQuiz() {
+      const idx = appState.currentQuizIdx;
+      const q = QUIZ_QUESTIONS[idx] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[String(idx)];
+      const hasAnswered = typeof chosen === `number`;
+
+      const badge = document.getElementById(`quiz-progress-badge`);
+      const scoreEl = document.getElementById(`quiz-score-label`);
+      const qText = document.getElementById(`quiz-question-text`);
+      const optsContainer = document.getElementById(`quiz-options-container`);
+      const feedbackEl = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      let score = 0;
+      QUIZ_QUESTIONS.forEach(function (item, qIdx) {
+        if (appState.quizAnswers[String(qIdx)] === item.correct) score += 1;
+      });
+
+      if (badge) badge.textContent = `Question ${idx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (scoreEl) scoreEl.textContent = `Score: ${score} / ${QUIZ_QUESTIONS.length}`;
+      if (qText) qText.textContent = q.question;
+
+      if (optsContainer) {
+        optsContainer.innerHTML = q.options.map(function (opt, oIdx) {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (oIdx === q.correct) cls += ` is-correct`;
+            else if (oIdx === chosen) cls += ` is-wrong`;
+          }
+          const disabledAttr = hasAnswered ? ` disabled` : ``;
+          return `<button type="button" class="${cls}"${disabledAttr} onclick="answerQuiz(${oIdx})">${String.fromCharCode(65 + oIdx)}. ${opt}</button>`;
+        }).join(``);
+      }
+
+      if (feedbackEl) {
+        if (!hasAnswered) {
+          feedbackEl.textContent = `Select an option to check your grounding in the text.`;
+        } else if (chosen === q.correct) {
+          feedbackEl.innerHTML = `<strong style="color:var(--tertiary);">Correct.</strong> ${q.explanation}`;
+        } else {
+          feedbackEl.innerHTML = `<strong style="color:var(--error);">Review the verse:</strong> ${q.explanation}`;
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+    }
+
+    function answerQuiz(optionIdx) {
+      appState.quizAnswers[String(appState.currentQuizIdx)] = optionIdx;
+      renderQuiz();
+      updateMasteryMetrics();
+      persistState();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.currentQuizIdx + delta;
+      if (next < 0 || next >= QUIZ_QUESTIONS.length) return;
+      appState.currentQuizIdx = next;
+      renderQuiz();
+      persistState();
+    }
+
+    function renderReflectionSection() {
+      const pIdx = String(appState.activePromptIdx);
+      const selectEl = document.getElementById(`reflection-prompt-select`);
+      const questionEl = document.getElementById(`reflection-prompt-question`);
+      const textareaEl = document.getElementById(`reflection-textarea`);
+
+      if (selectEl) selectEl.value = pIdx;
+      if (questionEl) questionEl.textContent = REFLECTION_PROMPTS[Number(pIdx)] || REFLECTION_PROMPTS[0];
+      if (textareaEl) textareaEl.value = appState.reflections[pIdx] || ``;
+    }
+
+    function selectReflectionPrompt(val) {
+      appState.activePromptIdx = Number(val) || 0;
+      renderReflectionSection();
+      const note = document.getElementById(`journal-status-note`);
+      if (note) {
+        note.classList.remove(`is-error`);
+        note.textContent = `Switched to prompt ${appState.activePromptIdx + 1}.`;
+      }
+      persistState();
+    }
+
+    function handleReflectionInput(val) {
+      const pIdx = String(appState.activePromptIdx);
+      appState.reflections[pIdx] = val;
+      updateMasteryMetrics();
+    }
+
+    function saveCurrentReflection() {
+      const pIdx = String(appState.activePromptIdx);
+      const textareaEl = document.getElementById(`reflection-textarea`);
+      const note = document.getElementById(`journal-status-note`);
+      if (textareaEl) {
+        appState.reflections[pIdx] = textareaEl.value;
+      }
+      updateMasteryMetrics();
+      persistState();
+      if (note) {
+        note.classList.remove(`is-error`);
+        note.textContent = `Reflection saved (${(appState.reflections[pIdx] || ``).trim().length} characters).`;
+      }
+    }
+
+    /* =====================================================================
+       EXPORT & INLINE TWO-STEP RESET (No confirm() / alert())
+       ===================================================================== */
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AR-RUM (CHAPTER 30) — PERSONAL STUDY NOTES`,
+        `================================================`,
+        `Movements Studied: ${appState.completedMovements.length} / 6`,
+        ``
+      ];
+      REFLECTION_PROMPTS.forEach(function (prompt, idx) {
+        const answer = (appState.reflections[String(idx)] || ``).trim();
+        lines.push(`Prompt ${idx + 1}: ${prompt}`);
+        lines.push(answer.length > 0 ? answer : `[No reflection recorded yet]`);
+        lines.push(``);
+      });
+
+      const content = lines.join(`\n`);
+      const note = document.getElementById(`journal-status-note`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-ar-rum-study-notes.txt`
+        });
+        if (note) {
+          note.classList.remove(`is-error`);
+          note.textContent = `Exported surah-ar-rum-study-notes.txt.`;
+        }
+      } else if (note) {
+        note.classList.remove(`is-error`);
+        note.textContent = `Export is available inside the Notebook workspace.`;
+      }
+    }
+
+    function resetAllProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(function () {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Progress`;
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+
+      appState = {
+        activeMovement: 0,
+        completedMovements: [],
+        selectedAyatVerse: `30:21`,
+        ayatFilter: `all`,
+        horizonMode: `both`,
+        conditionMode: `adversity`,
+        lifespanStage: 0,
+        currentQuizIdx: 0,
+        quizAnswers: {},
+        activePromptIdx: 0,
+        reflections: { "0": ``, "1": ``, "2": ``, "3": `` }
+      };
+
+      renderAll();
+      persistState();
+
+      const note = document.getElementById(`journal-status-note`);
+      if (note) {
+        note.classList.remove(`is-error`);
+        note.textContent = `All study progress and reflections have been reset.`;
+      }
+    }
+
+    function renderAll() {
+      renderMovementPanel();
+      setHorizonMode(appState.horizonMode || `both`);
+      renderAyatGrid();
+      selectCondition(appState.conditionMode || `adversity`);
+      selectLifespanStage(appState.lifespanStage || 0);
+      renderQuiz();
+      renderReflectionSection();
+      updateMasteryMetrics();
+    }
+
+    function initScrollReveals() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function (el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      items.forEach(function (el) { observer.observe(el); });
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign({}, appState, saved);
+            if (!Array.isArray(appState.completedMovements)) appState.completedMovements = [];
+            if (!appState.quizAnswers || typeof appState.quizAnswers !== `object`) appState.quizAnswers = {};
+            if (!appState.reflections || typeof appState.reflections !== `object`) {
+              appState.reflections = { "0": ``, "1": ``, "2": ``, "3": `` };
+            }
+          }
+        }
+      } catch (err) {
+        /* Proceed with clean default state */
+      }
+
+      renderAll();
+      initScrollReveals();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

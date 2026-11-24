@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Furqan (Chapter 25) — Interactive Study Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --border-featured: #c98a6b;
+      --border-emerald: #b5d6c9;
+      --border-secondary-btn: #c4b29e;
+      --border-error-soft: #e6b8b8;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fbecec;
+      --on-error-container: #7d1d1d;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', Georgia, serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+      --focus-ring: 0 0 0 3px rgb(184 74 36 / 0.25);
+
+      /* Shared semantic & focus tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Narrative type scale (Cormorant stepped up slightly for readability) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.75rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    header { position: static !important; }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+      box-shadow: var(--focus-ring);
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero & Typography */
+    .hero-header {
+      padding-top: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--border-emerald);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--border-featured);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .title i, .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      font-size: clamp(1.1rem, 1.02rem + 0.35vw, 1.25rem);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Quick Jump Navigation Strip (Scroll Anchors) */
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+      transform: translateY(-1px);
+    }
+
+    /* Riad Arch Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: box-shadow var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .arch-caption {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Brass Diamond Divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-block: var(--space-sm);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Sections */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      scroll-margin-top: var(--space-lg);
+    }
+
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    .section-head {
+      display: grid;
+      gap: var(--space-sm);
+      max-width: 72ch;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .prose {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+    .prose strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Arabic Quranic Typography */
+    .arabic-block {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-right: 4px solid var(--secondary);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.35rem, 1.2rem + 0.65vw, 1.75rem);
+      line-height: 2.05;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .verse-translation {
+      font-size: var(--body-size);
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    /* Interactive Split Layouts (Spatial Contiguity) */
+    .split-explorer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .selector-stack {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .selector-item {
+      width: 100%;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      min-height: 44px;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .selector-item:hover {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .selector-item.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .selector-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .selector-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+    }
+
+    .detail-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    /* Structural Map SVG Bar */
+    .structure-chart-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .arc-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .arc-segment {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .arc-segment:hover {
+      opacity: 0.88;
+    }
+
+    /* Data Table (Symmetry & Echoes) */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    thead {
+      background: var(--surface-container-high);
+    }
+    th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.96rem;
+      color: var(--on-surface);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .td-arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.2rem;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Cosmic Signs Tile Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .sign-tile {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+    }
+    .sign-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+      border-color: var(--border-featured);
+    }
+    .sign-tile.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+
+    /* 'Ibad ar-Rahman Portrait Section */
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--border-secondary-btn);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .filter-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .filter-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .progress-track {
+      height: 8px;
+      width: 100%;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+      width: 0%;
+    }
+
+    .trait-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .trait-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+      box-shadow: var(--soft-shadow);
+      transition: border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .trait-card.is-reflected {
+      border-color: var(--tertiary);
+      background: var(--background);
+    }
+
+    .trait-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .trait-num {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--border-secondary-btn);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-secondary.is-done {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--border-emerald);
+    }
+
+    /* Reflection Journal */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .reflection-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+
+    .reflection-textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      resize: vertical;
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .reflection-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--focus-ring);
+    }
+
+    .save-status {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.2em;
+    }
+
+    /* Review Quiz */
+    .quiz-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      color: var(--on-surface);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      line-height: 1.5;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--primary-container);
+      border-color: var(--border-featured);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-error-container);
+    }
+
+    .quiz-feedback {
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      font-size: 0.96rem;
+      line-height: 1.55;
+      display: none;
+    }
+    .quiz-feedback.is-visible {
+      display: block;
+    }
+    .quiz-feedback.is-positive {
+      background: var(--tertiary-container);
+      border: 1px solid var(--border-emerald);
+      color: var(--on-tertiary-container);
+    }
+    .quiz-feedback.is-negative {
+      background: var(--error-container);
+      border: 1px solid var(--border-error-soft);
+      color: var(--on-error-container);
+    }
+
+    .inline-notice {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .footer-note {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Entrance reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .arch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .split-explorer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .arch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .tonal-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .reflection-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero Header -->
+    <header class="hero-header">
+      <div class="kicker-row">
+        <p class="kicker">Chapter 25 · Surah Al-Furqan · 77 Verses</p>
+        <span class="badge-emerald" id="global-progress-badge">0 / 12 Traits · 0 / 8 Quiz</span>
+      </div>
+
+      <h1 class="title">Surah Al-Furqan: The <em>Criterion</em> Between Truth and Illusion</h1>
+
+      <p class="lede">
+        Opened by a cosmic declaration of sovereignty and closed by an intimate portrait of human virtue, Chapter 25 equips a beleaguered Prophet and every reflective reader to distinguish enduring truth (<em>Al-Furqan</em>) from the noise of ridicule, spectacle, and self-deception.
+      </p>
+
+      <nav class="chapter-nav" aria-label="Study Guide Sections">
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-structure')">1. Thematic Structure</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-objections')">2. Skeptics’ Objections</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-signs')">3. Cosmic &amp; Natural Signs</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-ibad')">4. Portrait of ‘Ibad ar-Rahman</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-reflection')">5. Reflection Journal</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-quiz')">6. Review Questions</button>
+      </nav>
+
+      <!-- Riad Arch Key Figures -->
+      <div class="arch-grid" aria-label="Surah Key Figures">
+        <div class="arch-card">
+          <span class="arch-label">Total Length</span>
+          <span class="arch-figure">77</span>
+          <span class="arch-caption">Verses in Sequence</span>
+        </div>
+        <div class="arch-card is-featured">
+          <span class="arch-label">Structural Anchors</span>
+          <span class="arch-figure">3</span>
+          <span class="arch-caption">“Tabaraka” Milestones</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Narrative Arc</span>
+          <span class="arch-figure">6</span>
+          <span class="arch-caption">Thematic Movements</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Moral Climax</span>
+          <span class="arch-figure">12</span>
+          <span class="arch-caption">Traits of ‘Ibad ar-Rahman</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="ornament-rule" aria-hidden="true">◆ Thematic &amp; Structural Architecture ◆</div>
+
+    <!-- Section 1: Structural Analysis & Thematic Breakdown -->
+    <section id="sec-structure" class="study-section reveal-section">
+      <div class="section-head">
+        <p class="kicker">Section I · Structural Analysis</p>
+        <h2 class="section-title">Six Movements Ascend From <em>Polemic</em> to Character</h2>
+        <p class="prose">
+          Surah Al-Furqan unfolds across six distinct thematic movements punctuated by three declarations of <strong>“Blessed is He” (<em>Tabaraka</em>)</strong> at verses 1, 10, and 61. Notice the deliberate psychological trajectory: it begins by affirming divine sovereignty against skeptics’ accusations, widens into the cosmic panorama of creation, and lands in the quiet dignity of <em>‘Ibad ar-Rahman</em>—the Servants of the Most Merciful.
+        </p>
+      </div>
+
+      <!-- Interactive Structural Proportional Arc -->
+      <div class="structure-chart-wrap">
+        <div class="toolbar-row">
+          <span class="verse-ref">Interactive Verse Map (vv. 1–77) — Select any movement to inspect</span>
+          <span class="badge-brass" id="movement-anchor-tag">Anchor: Tabaraka #1 (v. 1)</span>
+        </div>
+
+        <svg class="arc-svg" viewBox="0 0 880 120" role="img" aria-label="Proportional breakdown of Surah Al-Furqan's six thematic movements across 77 verses">
+          <!-- Proportional segments for 77 verses -->
+          <!-- M1: vv. 1-10 (10/77 = 114px) -->
+          <rect class="arc-segment" x="8" y="34" width="110" height="44" rx="6" fill="var(--data-1)" onclick="selectMovement(0)"></rect>
+          <text x="63" y="61" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 1–10</text>
+
+          <!-- M2: vv. 11-20 (10/77 = 110px) -->
+          <rect class="arc-segment" x="124" y="34" width="110" height="44" rx="6" fill="var(--data-4)" onclick="selectMovement(1)"></rect>
+          <text x="179" y="61" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 11–20</text>
+
+          <!-- M3: vv. 21-34 (14/77 = 156px) -->
+          <rect class="arc-segment" x="240" y="34" width="154" height="44" rx="6" fill="var(--data-3)" onclick="selectMovement(2)"></rect>
+          <text x="317" y="61" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 21–34</text>
+
+          <!-- M4: vv. 35-44 (10/77 = 110px) -->
+          <rect class="arc-segment" x="400" y="34" width="110" height="44" rx="6" fill="var(--data-context)" onclick="selectMovement(3)"></rect>
+          <text x="455" y="61" text-anchor="middle" fill="var(--on-surface)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 35–44</text>
+
+          <!-- M5: vv. 45-62 (18/77 = 200px) -->
+          <rect class="arc-segment" x="516" y="34" width="196" height="44" rx="6" fill="var(--data-2)" onclick="selectMovement(4)"></rect>
+          <text x="614" y="61" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 45–62</text>
+
+          <!-- M6: vv. 63-77 (15/77 = 154px) -->
+          <rect class="arc-segment" x="718" y="34" width="154" height="44" rx="6" fill="var(--primary)" onclick="selectMovement(5)"></rect>
+          <text x="795" y="61" text-anchor="middle" fill="var(--on-primary)" font-size="13" font-weight="700" font-family="var(--font-label)" style="pointer-events:none;">vv. 63–77</text>
+
+          <!-- Tabaraka markers -->
+          <circle cx="16" cy="20" r="6" fill="var(--secondary)"></circle>
+          <text x="28" y="24" fill="var(--secondary)" font-size="11" font-weight="700" font-family="var(--font-label)">TABARAKA v.1</text>
+
+          <circle cx="132" cy="20" r="6" fill="var(--secondary)"></circle>
+          <text x="144" y="24" fill="var(--secondary)" font-size="11" font-weight="700" font-family="var(--font-label)">TABARAKA v.10</text>
+
+          <circle cx="695" cy="20" r="6" fill="var(--secondary)"></circle>
+          <text x="683" y="24" text-anchor="end" fill="var(--secondary)" font-size="11" font-weight="700" font-family="var(--font-label)">TABARAKA v.61</text>
+
+          <!-- Bottom axis labels -->
+          <text x="8" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">1. The Criterion</text>
+          <text x="124" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">2. Destinies</text>
+          <text x="240" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">3. Judgment &amp; Tartil</text>
+          <text x="400" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">4. Past Nations</text>
+          <text x="516" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">5. Cosmic Signs of Ar-Rahman</text>
+          <text x="718" y="102" fill="var(--on-surface-variant)" font-size="11" font-weight="600" font-family="var(--font-label)">6. ‘Ibad ar-Rahman</text>
+        </svg>
+
+        <div class="split-explorer">
+          <div class="selector-stack" id="movement-list"></div>
+          <div class="detail-panel" id="movement-detail" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Structural Echoes Table -->
+      <div class="section-head">
+        <h3 class="subhead">Verbal Mirrors &amp; Structural Echoes Across the Surah</h3>
+        <p class="prose">
+          Rather than treating theology, cosmology, and ethics as separate topics, Surah Al-Furqan braids them together using recurring Arabic phrases that invert or complete one another across the chapter.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Motif / Arabic Term</th>
+              <th>Early Appearance</th>
+              <th>Later Resolution</th>
+              <th>Thematic Insight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="td-arabic">عَبْدِهِ ↔ عِبَادُ الرَّحْمَنِ</span><br><strong>Servitude</strong></td>
+              <td><strong>25:1</strong> — Revealed upon <em>His Servant</em> (‘abdihi) as a warner to the worlds.</td>
+              <td><strong>25:63–76</strong> — Portrait of the <em>Servants of the Most Merciful</em> (‘Ibad ar-Rahman).</td>
+              <td>Prophetic servitude at the opening becomes the communal model of discipleship at the close.</td>
+            </tr>
+            <tr>
+              <td><span class="td-arabic">حِجْرًا مَحْجُورًا</span><br><strong>Prohibiting Barrier</strong></td>
+              <td><strong>25:22</strong> — Angels tell criminals: <em>“Prevented and inaccessible.”</em></td>
+              <td><strong>25:53</strong> — An unseen barrier placed between the fresh and salty seas.</td>
+              <td>The same phrase describes both spiritual exclusion on Judgment Day and merciful natural boundaries on Earth.</td>
+            </tr>
+            <tr>
+              <td><span class="td-arabic">الرَّحْمَنُ</span><br><strong>The Most Merciful</strong></td>
+              <td><strong>25:60</strong> — Skeptics scoff: <em>“And what is the Most Merciful?”</em></td>
+              <td><strong>25:63</strong> — Immediate answer: <em>“And the servants of the Most Merciful are…”</em></td>
+              <td>God’s mercy is answered first through cosmic provision (vv. 61–62) and then through human character.</td>
+            </tr>
+            <tr>
+              <td><span class="td-arabic">مُسْتَقَرًّا وَمُقَامًا</span><br><strong>Settlement &amp; Residence</strong></td>
+              <td><strong>25:66</strong> — Hell described as an <em>evil settlement and residence</em>.</td>
+              <td><strong>25:76</strong> — The Chamber of Paradise praised as a <em>good settlement and residence</em>.</td>
+              <td>A verbatim contrast frames the final choice between heedlessness and patient devotion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 2: Core Concept — Al-Furqan & Skeptics' Objections -->
+    <section id="sec-objections" class="study-section tonal-band reveal-section">
+      <div class="section-head">
+        <p class="kicker">Section II · Core Concepts &amp; Polemic</p>
+        <h2 class="section-title">What <em>Al-Furqan</em> Distinguishes When Skeptics Demand Spectacle</h2>
+        <p class="prose">
+          The word <strong>Al-Furqan</strong> (from the root <em>f-r-q</em>, to separate or part decisively) names the Quran as the ultimate moral and intellectual Criterion—discerning Creator from created idols (25:2–3), sincerity from slander (25:4–6), and prophetic patience from the worship of personal whim (<em>hawa</em>, 25:43). Explore each objection raised by Meccan skeptics and how the Surah dismantles it.
+        </p>
+      </div>
+
+      <div class="split-explorer">
+        <div class="selector-stack" id="objection-list"></div>
+        <div class="detail-panel" id="objection-detail" aria-live="polite"></div>
+      </div>
+
+      <!-- Focused Insight on Regret & Hawa -->
+      <div class="arabic-block">
+        <span class="verse-ref">Psychological Root of Rejection · Verses 25:30 &amp; 25:43</span>
+        <p class="arabic-verse" lang="ar" dir="rtl">وَقَالَ الرَّسُولُ يَا رَبِّ إِنَّ قَوْمِي اتَّخَذُوا هَذَا الْقُرْآنَ مَهْجُورًا ﴿٣٠﴾ أَرَأَيْتَ مَنِ اتَّخَذَ إِلَهَهُ هَوَاهُ أَفَأَنْتَ تَكُونُ عَلَيْهِ وَكِيلًا ﴿٤٣﴾</p>
+        <p class="verse-translation">
+          “And the Messenger has said, ‘O my Lord, indeed my people have taken this Qur’an as [a thing] abandoned.’ … Have you seen the one who takes as his god his own desire? Then would you be responsible for him?” (25:30, 25:43)
+        </p>
+        <p class="prose">
+          In Surah Al-Furqan, disbelief is rarely a lack of evidence; it is diagnosed as either <strong>social conformity</strong>—following a corrupt friend who leads one away from remembrance (25:27–29)—or <strong>taking one’s own desire (<em>hawa</em>) as an idol</strong> (25:43), refusing to hear or reason despite seeing ruined towns right along their trade routes (25:40, 25:44).
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Cosmic & Natural Signs -->
+    <section id="sec-signs" class="study-section reveal-section">
+      <div class="section-head">
+        <p class="kicker">Section III · Cosmic &amp; Natural Signs (vv. 45–62)</p>
+        <h2 class="section-title">From <em>Ruined Cities</em> to the Living Rhythm of Shadow, Sea, and Sky</h2>
+        <p class="prose">
+          Immediately after warning against blind desire (25:43–44), the Surah invites the observer to look at six familiar natural phenomena. Each sign demonstrates both <strong>deliberate proportion (<em>taqdir</em>)</strong> and <strong>continuous mercy (<em>rahmah</em>)</strong>—turning daily life into an ongoing reminder for those willing to reflect or give thanks (25:62).
+        </p>
+      </div>
+
+      <div class="card-grid" id="signs-grid"></div>
+
+      <div class="detail-panel" id="sign-detail" aria-live="polite"></div>
+    </section>
+
+    <div class="ornament-rule" aria-hidden="true">◆ The Portrait of ‘Ibad ar-Rahman ◆</div>
+
+    <!-- Section 4: The Portrait of 'Ibad ar-Rahman -->
+    <section id="sec-ibad" class="study-section tonal-band reveal-section">
+      <div class="section-head">
+        <p class="kicker">Section IV · Moral Climax (vv. 63–77)</p>
+        <h2 class="section-title">The <em>Servants of the Most Merciful</em> Walk Softly and Aim High</h2>
+        <p class="prose">
+          Asked by skeptics in verse 60, <em>“And what is Ar-Rahman?”</em>, the Surah responds in verse 63 by sketching a luminous portrait of human beings shaped by His mercy. Notice the balance: inner nocturnal devotion fuels public composure, ethical restraint pairs with radical hope in repentance (25:70), and personal righteousness expands into prayer for future generations (25:74).
+        </p>
+      </div>
+
+      <div class="toolbar-row">
+        <div class="filter-group" role="group" aria-label="Filter traits by theme">
+          <button type="button" class="filter-btn is-active" data-filter="all" onclick="filterTraits('all')">All 12 Traits</button>
+          <button type="button" class="filter-btn" data-filter="grace" onclick="filterTraits('grace')">Social Grace &amp; Speech</button>
+          <button type="button" class="filter-btn" data-filter="devotion" onclick="filterTraits('devotion')">Worship &amp; Humility</button>
+          <button type="button" class="filter-btn" data-filter="ethics" onclick="filterTraits('ethics')">Ethics &amp; Repentance</button>
+          <button type="button" class="filter-btn" data-filter="legacy" onclick="filterTraits('legacy')">Family &amp; Legacy</button>
+        </div>
+        <span class="badge-emerald" id="trait-progress-label">0 of 12 Reflected</span>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="trait-progress-fill"></div>
+      </div>
+
+      <div class="trait-grid" id="traits-grid"></div>
+
+      <!-- Closing Verses Highlight: 25:70 & 25:77 -->
+      <div class="arabic-block">
+        <span class="verse-ref">Transformative Mercy &amp; The Closing Frame · Verses 25:70 &amp; 25:77</span>
+        <p class="arabic-verse" lang="ar" dir="rtl">إِلَّا مَنْ تَابَ وَآمَنَ وَعَمِلَ عَمَلًا صَالِحًا فَأُولَئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ وَكَانَ اللَّهُ غَفُورًا رَحِيمًا ﴿٧٠﴾ قُلْ مَا يَعْبَأُ بِكُمْ رَبِّي لَوْلَا دُعَاؤُكُمْ ۖ فَقَدْ كَذَّبْتُمْ فَسَوْفَ يَكُونُ لِزَامًا ﴿٧٧﴾</p>
+        <p class="verse-translation">
+          “Except for those who repent, believe and do righteous work. For them Allah will replace their evil deeds with good. And ever is Allah Forgiving and Merciful.” (25:70) — “Say, ‘What would my Lord care for you if not for your supplication?’ For you [disbelievers] have denied, so your denial is going to be adherent.” (25:77)
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: Guided Reflection Prompts -->
+    <section id="sec-reflection" class="study-section reveal-section">
+      <div class="section-head">
+        <p class="kicker">Section V · Personal Study Journal</p>
+        <h2 class="section-title">Bring the Text Into <em>Contemplation</em> and Daily Practice</h2>
+        <p class="prose">
+          Use these four prompts to connect the verses of Surah Al-Furqan to your own life and habits. Your notes save automatically to your notebook state and can be exported as a plain-text study sheet at any time.
+        </p>
+      </div>
+
+      <div class="reflection-grid" id="reflection-grid"></div>
+
+      <div class="toolbar-row">
+        <div class="filter-group">
+          <button type="button" class="btn-primary" onclick="exportStudyNotes()">Export Study Notes (.txt)</button>
+          <button type="button" class="btn-secondary" id="reset-all-btn" onclick="handleResetAll(this)">Reset All Progress</button>
+        </div>
+        <span class="inline-notice" id="export-status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <!-- Section 6: Mastery Review Questions -->
+    <section id="sec-quiz" class="study-section tonal-band reveal-section">
+      <div class="toolbar-row">
+        <div class="section-head">
+          <p class="kicker">Section VI · Review Questions</p>
+          <h2 class="section-title">Check Your Mastery of <em>Surah Al-Furqan</em></h2>
+        </div>
+        <div class="filter-group">
+          <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 8</span>
+          <button type="button" class="btn-secondary" onclick="resetQuizOnly()">Retake Quiz</button>
+        </div>
+      </div>
+
+      <div class="quiz-stack" id="quiz-container"></div>
+    </section>
+
+    <footer class="footer-note">
+      <span><strong>Source Basis:</strong> Chapter 25 (<em>Surah Al-Furqan</em>), Verses 25:1–77, Arabic text and English translation from the provided source text.</span>
+      <span>Study progress, trait reflections, and quiz answers persist automatically across sessions.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const MOVEMENTS = [
+      {
+        id: `m1`,
+        range: `vv. 1–10`,
+        title: `The Criterion & Initial Objections`,
+        anchor: `Anchor: Tabaraka #1 (v. 1) & #2 (v. 10)`,
+        arabic: `تَبَارَكَ الَّذِي نَزَّلَ الْفُرْقَانَ عَلَىٰ عَبْدِهِ لِيَكُونَ لِلْعَالَمِينَ نَذِيرًا`,
+        translation: `Blessed is He who sent down the Criterion upon His Servant that he may be to the worlds a warner. (25:1)`,
+        summary: `Opens by proclaiming Allah’s absolute sovereignty—without partner or child—contrasted against helpless idols that neither create nor control life or death (25:2–3). It then catalogs the first wave of Meccan accusations: calling the Quran fabricated legends dictated morning and evening, and mocking a messenger who eats food and walks in the markets without an accompanying angel, treasure, or garden (25:4–8). Verse 10 answers with the second Tabaraka: Allah could effortlessly grant far greater gardens and palaces if He willed.`,
+        keyTerms: `Al-Furqan (The Criterion), ‘Abdihi (His Servant), Taqdir (Precise Determination)`
+      },
+      {
+        id: `m2`,
+        range: `vv. 11–20`,
+        title: `The Hour, Two Destinies & Human Messengers`,
+        anchor: `Core Pivot: Rejection of the Hour (v. 11)`,
+        arabic: `وَمَا أَرْسَلْنَا قَبْلَكَ مِنَ الْمُرْسَلِينَ إِلَّا إِنَّهُمْ لَيَأْكُلُونَ الطَّعَامَ وَيَمْشُونَ فِي الْأَسْوَاقِ`,
+        translation: `And We did not send before you, [O Muhammad], any of the messengers except that they ate food and walked in the markets. And We have made some of you [people] as trial for others — will you have patience? (25:20)`,
+        summary: `Exposes the real root of the skeptics’ mockery: denial of the Hour (25:11). Vividly contrasts the roaring confinement of Hellfire (25:12–14) with the Garden of Eternity where the righteous receive whatever they wish (25:15–16). On Judgment Day, even false objects of worship disown those who worshipped them (25:17–19). Verse 20 resolves the earlier objection about an eating, market-walking prophet: shared human vulnerability is intentionally designed as a mutual test of patience.`,
+        keyTerms: `Jannat al-Khuld (Garden of Eternity), Fitnah (Trial / Test), Sabr (Patience)`
+      },
+      {
+        id: `m3`,
+        range: `vv. 21–34`,
+        title: `Day of Account, Regret & Gradual Revelation`,
+        anchor: `Key Concept: Tartil (v. 32) & Abandoned Quran (v. 30)`,
+        arabic: `وَقَالَ الَّذِينَ كَفَرُوا لَوْلَا نُزِّلَ عَلَيْهِ الْقُرْآنُ جُمْلَةً وَاحِدَةً كَذلِكَ لِنُثَبِّتَ بِهِ فُؤَادَكَ وَرَتَّلْنَاهُ تَرْتِيلًا`,
+        translation: `And those who disbelieve say, “Why was the Qur’an not revealed to him all at once?” Thus [it is] that We may strengthen thereby your heart. And We have spaced it distinctly. (25:32)`,
+        summary: `Addresses the arrogant demand to see angels or God directly (25:21) by depicting the Day the sky splits with clouds and true sovereignty belongs solely to Ar-Rahman (25:25–26). Presents the haunting portrait of the wrongdoer biting his hands over toxic friendship (25:27–29) and the Messenger’s lament that his people abandoned the Quran (25:30). Finally explains why revelation descended gradually in distinct stages: to steady the Prophet’s heart and answer every objection with truth and the clearest exposition (25:32–33).`,
+        keyTerms: `Hijran Mahjura (Prevented), Mahjura (Abandoned), Tartil (Distinctly Spaced), Ahsan Tafsir (Best Explanation)`
+      },
+      {
+        id: `m4`,
+        range: `vv. 35–44`,
+        title: `Historical Precedents & Worship of Desire`,
+        anchor: `Warning: Idolizing Hawa (v. 43)`,
+        arabic: `أَرَأَيْتَ مَنِ اتَّخَذَ إِلَهَهُ هَوَاهُ أَفَأَنْتَ تَكُونُ عَلَيْهِ وَكِيلًا`,
+        translation: `Have you seen the one who takes as his god his own desire? Then would you be responsible for him? (25:43)`,
+        summary: `Recalls earlier messengers who faced denial and the fate of rejecting nations: Moses and Aaron against Pharaoh, the people of Noah drowned as a sign, ‘Aad, Thamud, the Companions of the Well (Ashab ar-Rass), and the ruined town rained upon with evil that Meccan travelers passed by (25:35–40). Turns back to contemporary ridicule of the Prophet (25:41–42) and diagnoses its root: elevating personal desire (hawa) into a deity and refusing to listen or reason (25:43–44).`,
+        keyTerms: `Ashab ar-Rass (Companions of the Well), Hawa (Personal Desire / Whim)`
+      },
+      {
+        id: `m5`,
+        range: `vv. 45–62`,
+        title: `Cosmic & Natural Signs of Ar-Rahman`,
+        anchor: `Anchor: Tabaraka #3 (v. 61) & Ar-Rahman (vv. 59–60)`,
+        arabic: `وَهُوَ الَّذِي مَرَجَ الْبَحْرَيْنِ هُذَا عَذْبٌ فُرَاتٌ وَهُذَا مِلْحٌ أُجَاجٌ وَجَعَلَ بَيْنَهُمَا بَرْزَخًا وَحِجْرًا مَحْجُورًا`,
+        translation: `And it is He who has released [simultaneously] the two seas, one fresh and sweet and one salty and bitter, and He placed between them a barrier and prohibiting partition. (25:53)`,
+        summary: `Shifts from warning to wonder: lengthening shadows guided by the sun, night as clothing, sleep as rest, day as resurrection, winds heralding pure rain that revives dead soil, the barrier between sweet and salty seas, and human kinship formed from water (25:45–54). Amid these signs, the Prophet is urged to strive mightily using the Quran (25:52), ask no fee (25:57), and rely on the Ever-Living (25:58). When disbelievers ask “What is Ar-Rahman?” (25:60), the third Tabaraka points to constellations, the solar lamp, the luminous moon, and the cycle of night and day (25:61–62).`,
+        keyTerms: `Barzakh (Barrier), Jihad Kabir (Great Striving with the Quran), Al-Hayy (The Ever-Living), Siraj (Lamp)`
+      },
+      {
+        id: `m6`,
+        range: `vv. 63–77`,
+        title: `The Portrait of ‘Ibad ar-Rahman`,
+        anchor: `Climax: 12 Traits (vv. 63–76) & Du‘a (v. 77)`,
+        arabic: `وَعِبَادُ الرَّحْمَنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا`,
+        translation: `And the servants of the Most Merciful are those who walk upon the earth easily, and when the ignorant address them [harshly], they say [words of] peace. (25:63)`,
+        summary: `Completes the Surah by depicting the human embodiment of Ar-Rahman’s mercy: humble gait, peaceful restraint toward provocation, tearful night prayers, dread of Hell, balanced generosity, strict avoidance of shirk, murder, and adultery—paired with the promise that sincere repentance transforms evil deeds into good (25:70). They shun perjury and idle talk, engage attentively with revelation, and pray to become models for the righteous, earning the lofty Chamber (Al-Ghurfah). Verse 77 closes the entire chapter by reminding humanity that their worth before God rests upon their supplication (du‘a).`,
+        keyTerms: `Hawnan (With Humility / Ease), Qawama (Just Moderation), Al-Ghurfah (The Lofty Chamber), Du‘a (Supplication)`
+      }
+    ];
+
+    const OBJECTIONS = [
+      {
+        id: `obj1`,
+        label: `Objection I · vv. 4–5`,
+        claim: `“It is merely a lie he invented with others, or ancient legends dictated to him.”`,
+        arabic: `قُلْ أَنْزَلَهُ الَّذِي يَعْلَمُ السِّرَّ فِي السَّمَاوَاتِ وَالْأَرْضِ ۚ إِنَّهُ كَانَ غَفُورًا رَحِيمًا`,
+        translation: `Say, [O Muhammad], “It has been revealed by He who knows [every] secret within the heavens and the earth. Indeed, He is ever Forgiving and Merciful.” (25:6)`,
+        response: `The Surah exposes the self-contradiction of calling the Quran both an invented falsehood and copied ancient lore. It counters by pointing to the depth of knowledge inside the revelation—which only the Knower of every hidden secret in heaven and earth could send down—while immediately holding open the door of divine forgiveness and mercy even to its slanderers.`
+      },
+      {
+        id: `obj2`,
+        label: `Objection II · vv. 7–8`,
+        claim: `“Why does this messenger eat food and walk in markets? Where is his angel, treasure, or garden?”`,
+        arabic: `وَمَا أَرْسَلْنَا قَبْلَكَ مِنَ الْمُرْسَلِينَ إِلَّا إِنَّهُمْ لَيَأْكُلُونَ الطَّعَامَ وَيَمْشُونَ فِي الْأَسْوَاقِ`,
+        translation: `And We did not send before you, [O Muhammad], any of the messengers except that they ate food and walked in the markets. And We have made some of you [people] as trial for others — will you have patience? (25:20)`,
+        response: `Skeptics assumed a divine envoy must look superhuman or wealthy. The Surah affirms two foundational principles: first, Allah could effortlessly bestow gardens and palaces better than they imagine (25:10); second, every prior messenger was fully human—eating food and walking markets—precisely so a prophet can model real human life, and so people are tested through one another’s patience.`
+      },
+      {
+        id: `obj3`,
+        label: `Objection III · v. 21`,
+        claim: `“Why are angels not sent down to us directly, or why do we not see our Lord?”`,
+        arabic: `يَوْمَ يَرَوْنَ الْمَلَائِكَةَ لَا بُشْرَى يَوْمَئِذٍ لِلْمُجْرِمِينَ وَيَقُولُونَ حِجْرًا مَحْجُورًا`,
+        translation: `The day they see the angels — no good tidings will there be that day for the criminals, and [the angels] will say, “Prevented and inaccessible.” (25:22)`,
+        response: `The demand to see angels or God stems not from sincere inquiry but from great internal arrogance (25:21) and forgetting the meeting with God. Seeing angels in this life is not a shortcut to faith; when the rebellious finally see the angels—at death and on the Day the heavens split with clouds—it will carry no glad tidings, and all their worldly deeds will scatter like dispersed dust (25:22–23).`
+      },
+      {
+        id: `obj4`,
+        label: `Objection IV · v. 32`,
+        claim: `“Why was the Quran not revealed to him all at once as a single book?”`,
+        arabic: `كَذلِكَ لِنُثَبِّتَ بِهِ فُؤَادَكَ وَرَتَّلْنَاهُ تَرْتِيلًا`,
+        translation: `Thus [it is] that We may strengthen thereby your heart. And We have spaced it distinctly. (25:32)`,
+        response: `Revelation was not dropped as an inert volume because it was guiding a living struggle. Spacing it distinctly over time (tartil) steadied the Prophet’s heart (fu’ad) amid hostility, met unfolding moral situations with timely wisdom, and answered every new sophistry with truth and the finest explanation (25:33).`
+      },
+      {
+        id: `obj5`,
+        label: `Objection V · v. 60`,
+        claim: `“And what is ‘Ar-Rahman’ (the Most Merciful)? Should we prostrate just because you command us?”`,
+        arabic: `تَبَارَكَ الَّذِي جَعَلَ فِي السَّمَاءِ بُرُوجًا وَجَعَلَ فِيهَا سِرَاجًا وَقَمَرًا مُنِيرًا`,
+        translation: `Blessed is He who has placed in the sky great stars and placed therein a [burning] lamp and luminous moon. (25:61)`,
+        response: `Rejecting the divine name Ar-Rahman reveals deep alienation from mercy itself (25:60). The Surah answers in two movements: first pointing to cosmic generosity—constellations, sun, moon, and alternating night and day for gratitude (25:61–62)—and immediately presenting ‘Ibad ar-Rahman (25:63–76), living proof of what the Most Merciful looks like when reflected in human character.`
+      }
+    ];
+
+    const SIGNS = [
+      {
+        id: `sign1`,
+        verses: `25:45–46`,
+        title: `Extending the Shadow`,
+        tag: `Proportion & Measure`,
+        arabic: `أَلَمْ تَرَ إِلَىٰ رَبِّكَ كَيْفَ مَدَّ الظَّلَّ وَلَوْ شَاءَ لَجَعَلَهُ سَاكِنَا ثُمَّ جَعَلْنَا الشَّمْسَ عَلَيْهِ دَلِيلًا`,
+        translation: `Have you not considered your Lord — how He extends the shadow, and if He willed, He could have made it stationary? Then We made the sun for it an indication. Then We hold it in hand for a brief grasp. (25:45–46)`,
+        insight: `A shadow feels utterly ordinary, yet its slow stretching and contraction mark time, protect life from unceasing glare, and reveal celestial geometry. Had shadows remained frozen, ecosystems and human rest would collapse; instead, the sun acts as a calibrated indicator (dalil) of measured motion.`
+      },
+      {
+        id: `sign2`,
+        verses: `25:47`,
+        title: `Night as Garment, Day as Rising`,
+        tag: `Rhythm of Rest`,
+        arabic: `وَهُوَ الَّذِي جَعَلَ لَكُمُ اللَّيْلَ لِبَاسًا وَالنَّوْمَ سُبَاتًا وَجَعَلَ النَّهَارَ نُشُورًا`,
+        translation: `And it is He who has made the night for you as clothing and sleep [a means for] rest and has made the day a resurrection. (25:47)`,
+        insight: `Night wraps the world gently like clothing (libas), shielding bodies and minds in restorative quiet (subat). Each morning’s waking is called nushur—a daily miniature resurrection—quietly training human intuition to recognize the final Resurrection that skeptics denied.`
+      },
+      {
+        id: `sign3`,
+        verses: `25:48–50`,
+        title: `Winds & Pure Reviving Water`,
+        tag: `Mercy & Renewal`,
+        arabic: `وَهُوَ الَّذِي أَرْسَلَ الرِّيَاحَ بُشْرًا بَيْنَ يَدَيْ رَحْمَتِهِ وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً طَهُورًا`,
+        translation: `And it is He who sends the winds as good tidings before His mercy, and We send down from the sky pure water that We may bring to life thereby a dead land and give it as drink to those We created of numerous livestock and men. (25:48–49)`,
+        insight: `Winds arrive as heralds of mercy before rain falls from the sky as purifying water (ma’an tahura), reviving barren earth for animals and people alike. Verse 50 notes that Allah circulates rainfall among regions as a continuous reminder—yet most people still respond with ingratitude.`
+      },
+      {
+        id: `sign4`,
+        verses: `25:53`,
+        title: `The Two Seas & Barzakh`,
+        tag: `Balance & Restraint`,
+        arabic: `وَهُوَ الَّذِي مَرَجَ الْبَحْرَيْنِ هُذَا عَذْبٌ فُرَاتٌ وَهُذَا مِلْحٌ أُجَاجٌ وَجَعَلَ بَيْنَهُمَا بَرْزَخًا وَحِجْرًا مَحْجُورًا`,
+        translation: `And it is He who has released [simultaneously] the two seas, one fresh and sweet and one salty and bitter, and He placed between them a barrier and prohibiting partition. (25:53)`,
+        insight: `Freshwater rivers and salty oceans meet side by side without erasing each other’s distinct properties, separated by an unseen barzakh (partition). Just as Al-Furqan separates truth from falsehood, physical law preserves life-giving freshwater beside vast saline seas.`
+      },
+      {
+        id: `sign5`,
+        verses: `25:54`,
+        title: `Humanity Created From Water`,
+        tag: `Origins & Kinship`,
+        arabic: `وَهُوَ الَّذِي خَلَقَ مِنَ الْمَاءِ بَشَرًا فَجَعَلَهُ نَسَبًا وَصِهْرًا وَكَانَ رَبُّكَ قَدِيرًا`,
+        translation: `And it is He who has created from water a human being and made him [a relative by] lineage and marriage. And ever is your Lord competent [concerning creation]. (25:54)`,
+        insight: `From humble fluid emerges a conscious human being capable of building two interlocking webs of belonging: blood lineage (nasab) and chosen family bonds through marriage (sihr). Biological origin and social civilization both testify to purposeful divine capability.`
+      },
+      {
+        id: `sign6`,
+        verses: `25:61–62`,
+        title: `Constellations, Sun & Luminous Moon`,
+        tag: `Tabaraka #3 · Gratitude`,
+        arabic: `تَبَارَكَ الَّذِي جَعَلَ فِي السَّمَاءِ بُرُوجًا وَجَعَلَ فِيهَا سِرَاجًا وَقَمَرًا مُنِيرًا`,
+        translation: `Blessed is He who has placed in the sky great stars and placed therein a [burning] lamp and luminous moon. And it is He who has made the night and the day in succession for whoever desires to remember or desires gratitude. (25:61–62)`,
+        insight: `Closing the cosmic section under the third Tabaraka, the Surah distinguishes the sun as a self-burning lamp (siraj) and the moon as reflective luminous light (qamar munir). Time’s alternation offers two open doors to anyone seeking meaning: remembrance (tadhakkur) or gratitude (shukur).`
+      }
+    ];
+
+    const TRAITS = [
+      {
+        id: `t1`,
+        num: `01`,
+        verse: `25:63a`,
+        category: `grace`,
+        title: `Humility in Every Step`,
+        arabic: `الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا`,
+        translation: `Those who walk upon the earth easily [with humility and composure].`,
+        commentary: `Their very posture reflects inner peace—neither arrogant strutting nor performative weakness, carrying themselves with quiet dignity.`
+      },
+      {
+        id: `t2`,
+        num: `02`,
+        verse: `25:63b`,
+        category: `grace`,
+        title: `Peaceful Restraint Under Provocation`,
+        arabic: `وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا`,
+        translation: `And when the ignorant address them [harshly], they say [words of] peace.`,
+        commentary: `Instead of escalating hostility or matching insult for insult, they answer foolishness with composed words free of harm or sin.`
+      },
+      {
+        id: `t3`,
+        num: `03`,
+        verse: `25:64`,
+        category: `devotion`,
+        title: `Hidden Vigil of Night Prayer`,
+        arabic: `وَالَّذِينَ يَبِيتُونَ لِرَبِّهِمْ سُجَّدًا وَقِيَامًا`,
+        translation: `And those who spend [part of] the night to their Lord prostrating and standing [in prayer].`,
+        commentary: `Their daytime composure is anchored in private nocturnal worship when no human applause is watching.`
+      },
+      {
+        id: `t4`,
+        num: `04`,
+        verse: `25:65–66`,
+        category: `devotion`,
+        title: `Reverent Dread of Spiritual Ruin`,
+        arabic: `رَبَّنَا اصْرِفْ عَنَّا عَذَابَ جَهَنَّمَ إِنَّ عَذَابَهَا كَانَ غَرَامًا`,
+        translation: `“Our Lord, avert from us the punishment of Hell. Indeed, its punishment is ever adhering; indeed, it is evil as a settlement and residence.”`,
+        commentary: `Far from feeling entitled by their prayers, they beg God to spare them from an inescapable, ruinous destination.`
+      },
+      {
+        id: `t5`,
+        num: `05`,
+        verse: `25:67`,
+        category: `ethics`,
+        title: `Balanced Stewardship of Wealth`,
+        arabic: `وَالَّذِينَ إِذَا أَنْفَقُوا لَمْ يُسْرِفُوا وَلَمْ يَقْتُرُوا وَكَانَ بَيْنَ ذَلِكَ قَوَامًا`,
+        translation: `And [they are] those who, when they spend, do so not excessively or sparingly but are ever, between that, [justly] moderate.`,
+        commentary: `Generosity without wasteful display, and prudence without stinginess—maintaining a steady equilibrium (qawam).`
+      },
+      {
+        id: `t6`,
+        num: `06`,
+        verse: `25:68–69`,
+        category: `ethics`,
+        title: `Uncompromising Moral Sanctity`,
+        arabic: `لَا يَدْعُونَ مَعَ اللَّهِ إِلَهًا آخَرَ وَلَا يَقْتُلُونَ النَّفْسَ... وَلَا يَزْنُونَ`,
+        translation: `They do not invoke with Allah another deity, nor kill the soul which Allah has forbidden except by right, nor commit unlawful sexual intercourse.`,
+        commentary: `Protects the three foundations of human integrity: pure devotion to God, sanctity of human life, and fidelity in relationships.`
+      },
+      {
+        id: `t7`,
+        num: `07`,
+        verse: `25:70–71`,
+        category: `ethics`,
+        title: `Redemptive Repentance`,
+        arabic: `فَأُولَئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ`,
+        translation: `Except for those who repent, believe and do righteous work. For them Allah will replace their evil deeds with good.`,
+        commentary: `Even after grave sin, sincere turning back (tawbah) joined with righteous action transforms past failures into sources of mercy.`
+      },
+      {
+        id: `t8`,
+        num: `08`,
+        verse: `25:72a`,
+        category: `grace`,
+        title: `Refusal to Witness Falsehood`,
+        arabic: `وَالَّذِينَ لَا يَشْهَدُونَ الزُّورَ`,
+        translation: `And [they are] those who do not testify to falsehood.`,
+        commentary: `They neither give false testimony nor lend their presence and approval to deceitful or corrupt gatherings.`
+      },
+      {
+        id: `t9`,
+        num: `09`,
+        verse: `25:72b`,
+        category: `grace`,
+        title: `Dignified Detachment From Idle Speech`,
+        arabic: `وَإِذَا مَرُّوا بِاللَّغْوِ مَرُّوا كِرَامًا`,
+        translation: `And when they pass near ill speech, they pass by with dignity.`,
+        commentary: `When encountering vain, abusive, or trivial chatter, they step past cleanly without lingering or joining in.`
+      },
+      {
+        id: `t10`,
+        num: `10`,
+        verse: `25:73`,
+        category: `devotion`,
+        title: `Wakeful Listening to Revelation`,
+        arabic: `لَمْ يَخِرُّوا عَلَيْهَا صُمًّا وَعُمْيَانًا`,
+        translation: `When reminded of the verses of their Lord, they do not fall upon them deaf and blind.`,
+        commentary: `Unlike heedless ritualists, they engage scripture with open ears, discerning minds, and responsive hearts.`
+      },
+      {
+        id: `t11`,
+        num: `11`,
+        verse: `25:74`,
+        category: `legacy`,
+        title: `Prayer for Righteous Families & Leadership`,
+        arabic: `رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا`,
+        translation: `“Our Lord, grant us from among our wives and offspring comfort to our eyes and make us an example for the righteous.”`,
+        commentary: `Their highest aspiration encompasses home and community: seeking deep spiritual joy in family life and praying to lead others in goodness.`
+      },
+      {
+        id: `t12`,
+        num: `12`,
+        verse: `25:75–76`,
+        category: `legacy`,
+        title: `Patient Endurance Crowned With Peace`,
+        arabic: `أُولئِكَ يُجْزَوْنَ الْغُرْفَةَ بِمَا صَبَرُوا وَيُلَقَّوْنَ فِيهَا تَحِيَّةً وَسَلَامًا`,
+        translation: `Those will be awarded the Chamber for what they patiently endured, and they will be received therein with greetings and [words of] peace.`,
+        commentary: `Those who offered peace (salam) on earth in verse 63 are greeted eternally with peace (salam) in the exalted Chamber (Al-Ghurfah).`
+      }
+    ];
+
+    const REFLECTIONS = [
+      {
+        id: `ref1`,
+        verse: `25:30 · The Abandoned Quran`,
+        prompt: `What distinguishes passively owning or reciting scripture from actively letting it challenge and steady our heart (25:30, 25:32)? Where might revelation be treated as "abandoned" in daily priorities?`
+      },
+      {
+        id: `ref2`,
+        verse: `25:43 · Taking Desire as an Idol`,
+        prompt: `Verse 43 warns against taking personal desire (hawa) as a god. In your own decisions, how do you distinguish genuine moral conviction from rationalizing what feels convenient?`
+      },
+      {
+        id: `ref3`,
+        verse: `25:63 & 25:72 · Speech & Composure`,
+        prompt: `‘Ibad ar-Rahman answer harshness with peace (salaman) and pass by ill speech with dignity (kiraman). Think of a recent stressful conversation—what would a "dignified exit" or peaceful response have looked like?`
+      },
+      {
+        id: `ref4`,
+        verse: `25:67 & 25:74 · Stewardship & Family Legacy`,
+        prompt: `How do balanced spending (25:67) and praying to be an inspiring example for the righteous within one’s household (25:74) reinforce each other over time?`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        verse: `25:1`,
+        question: `What does the title “Al-Furqan” signify at the opening of Chapter 25?`,
+        options: [
+          `A collection of pre-Islamic ancestral legends`,
+          `The Criterion that decisively distinguishes truth from falsehood`,
+          `A literal fortress built to protect ancient prophets`,
+          `A reward granted solely after entering Paradise`
+        ],
+        correct: 1,
+        explanation: `In 25:1, “Al-Furqan” refers to the Criterion sent down upon Allah’s servant so he may be a warner to the worlds—separating truth from falsehood and rightful worship from idolatry.`
+      },
+      {
+        id: `q2`,
+        verse: `25:1, 25:10, 25:61`,
+        question: `Which recurring Arabic opening word serves as the three structural milestones of Surah Al-Furqan?`,
+        options: [
+          `Subhana (“Exalted is He”)`,
+          `Tabaraka (“Blessed is He”)`,
+          `Qad Aflaha (“Certainly succeeded”)`,
+          `Al-Hamdu (“All praise is due”)`
+        ],
+        correct: 1,
+        explanation: `“Tabaraka” (“Blessed is He”) marks three structural anchors: sending down the Criterion (25:1), the power to grant better gardens and palaces (25:10), and placing constellations, sun, and moon in the sky (25:61).`
+      },
+      {
+        id: `q3`,
+        verse: `25:7, 25:20`,
+        question: `How does verse 20 answer the skeptics’ mockery that the Messenger eats food and walks in the markets?`,
+        options: [
+          `By promising that an angel will soon replace him`,
+          `By stating that all previous messengers also ate food and walked in markets, serving as a mutual trial of patience`,
+          `By explaining that prophets only visited markets at night`,
+          `By commanding believers to avoid marketplaces completely`
+        ],
+        correct: 1,
+        explanation: `Verse 20 affirms that every earlier messenger shared ordinary human life—eating food and walking in markets—and that making people a test (fitnah) for one another calls for patience.`
+      },
+      {
+        id: `q4`,
+        verse: `25:32`,
+        question: `Why was the Quran revealed in spaced, gradual stages (tartil) rather than all at once?`,
+        options: [
+          `Because scribes lacked enough parchment to record it together`,
+          `To strengthen and steady the Prophet’s heart and respond with truth and the clearest explanation`,
+          `Because earlier nations requested a ten-year schedule`,
+          `To conceal its teachings until after the migration`
+        ],
+        correct: 1,
+        explanation: `Verse 32 explicitly states: “Thus [it is] that We may strengthen thereby your heart (fu’adaka). And We have spaced it distinctly,” followed by verse 33 on answering arguments with the best explanation.`
+      },
+      {
+        id: `q5`,
+        verse: `25:43`,
+        question: `In verse 43, what internal obstacle does the Quran identify as taking the place of God for the stubborn denier?`,
+        options: [
+          `Material poverty`,
+          `Excessive sleep`,
+          `One’s own desire (hawa)`,
+          `Fear of travel`
+        ],
+        correct: 2,
+        explanation: `Verse 43 asks rhetorically: “Have you seen the one who takes as his god his own desire (hawa)?”—highlighting willful self-centeredness as the barrier to reason.`
+      },
+      {
+        id: `q6`,
+        verse: `25:53`,
+        question: `What natural sign is described in verse 53 using the word “barzakh” (barrier / prohibiting partition)?`,
+        options: [
+          `A mountain range blocking desert winds`,
+          `Two seas—one fresh and sweet, one salty and bitter—kept distinct despite meeting`,
+          `The orbit separating the sun from the stars`,
+          `The boundary between day and sleep`
+        ],
+        correct: 1,
+        explanation: `Verse 53 describes releasing the two bodies of water—fresh sweet water and salty bitter water—with a barzakh and prohibiting partition (hijran mahjura) between them.`
+      },
+      {
+        id: `q7`,
+        verse: `25:70`,
+        question: `What extraordinary promise does verse 70 offer to one who repents, believes, and does righteous deeds after grave sin?`,
+        options: [
+          `Their past sins are simply ignored if they isolate themselves`,
+          `Allah replaces their evil deeds with good deeds`,
+          `They are excused from charitable spending for life`,
+          `They receive immediate worldly palaces`
+        ],
+        correct: 1,
+        explanation: `Verse 70 promises: “For them Allah will replace their evil deeds with good (yubaddilu Allahu sayyi’atihim hasanat). And ever is Allah Forgiving and Merciful.”`
+      },
+      {
+        id: `q8`,
+        verse: `25:77`,
+        question: `According to the closing verse (25:77), what gives human beings their worth and attention before their Lord?`,
+        options: [
+          `Architectural monuments and wealth`,
+          `Outward lineage alone`,
+          `Their supplication and calling upon Him (du‘a)`,
+          `Never making any mistake`
+        ],
+        correct: 2,
+        explanation: `Verse 77 closes Surah Al-Furqan with the searching statement: “Say, ‘What would my Lord care for you if not for your supplication (du‘a)?’”`
+      }
+    ];
+
+    /* Persistent application state */
+    let appState = {
+      activeMovement: 0,
+      activeObjection: 0,
+      activeSign: 0,
+      activeFilter: `all`,
+      reflectedTraits: [],
+      reflections: {},
+      quizAnswers: {}
+    };
+
+    let saveTimer = null;
+
+    function jumpToSection(sectionId) {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function renderMovements() {
+      const listEl = document.getElementById(`movement-list`);
+      const detailEl = document.getElementById(`movement-detail`);
+      const anchorTagEl = document.getElementById(`movement-anchor-tag`);
+      if (!listEl || !detailEl) return;
+
+      listEl.innerHTML = MOVEMENTS.map((m, idx) => {
+        const activeClass = idx === appState.activeMovement ? `is-active` : ``;
+        return `
+          <button type="button" class="selector-item ${activeClass}" onclick="selectMovement(${idx})">
+            <span class="selector-meta">
+              <span>Movement 0${idx + 1}</span>
+              <span>${m.range}</span>
+            </span>
+            <span class="selector-title">${m.title}</span>
+          </button>
+        `;
+      }).join(``);
+
+      const active = MOVEMENTS[appState.activeMovement] || MOVEMENTS[0];
+      if (anchorTagEl) anchorTagEl.textContent = active.anchor;
+
+      detailEl.innerHTML = `
+        <div class="toolbar-row">
+          <span class="verse-ref">${active.range} · Movement Detail</span>
+          <span class="badge-emerald">${active.anchor}</span>
+        </div>
+        <h3 class="subhead">${active.title}</h3>
+        <div class="arabic-block">
+          <p class="arabic-verse" lang="ar" dir="rtl">${active.arabic}</p>
+          <p class="verse-translation">${active.translation}</p>
+        </div>
+        <p class="prose">${active.summary}</p>
+        <p class="inline-notice"><strong>Key Terms:</strong> ${active.keyTerms}</p>
+      `;
+    }
+
+    function selectMovement(index) {
+      if (index < 0 || index >= MOVEMENTS.length) return;
+      appState.activeMovement = index;
+      renderMovements();
+      persistState();
+    }
+
+    function renderObjections() {
+      const listEl = document.getElementById(`objection-list`);
+      const detailEl = document.getElementById(`objection-detail`);
+      if (!listEl || !detailEl) return;
+
+      listEl.innerHTML = OBJECTIONS.map((obj, idx) => {
+        const activeClass = idx === appState.activeObjection ? `is-active` : ``;
+        return `
+          <button type="button" class="selector-item ${activeClass}" onclick="selectObjection(${idx})">
+            <span class="selector-meta"><span>${obj.label}</span></span>
+            <span class="selector-title">${obj.claim}</span>
+          </button>
+        `;
+      }).join(``);
+
+      const active = OBJECTIONS[appState.activeObjection] || OBJECTIONS[0];
+      detailEl.innerHTML = `
+        <span class="verse-ref">${active.label} · Quranic Response</span>
+        <h3 class="subhead">${active.claim}</h3>
+        <div class="arabic-block">
+          <p class="arabic-verse" lang="ar" dir="rtl">${active.arabic}</p>
+          <p class="verse-translation">${active.translation}</p>
+        </div>
+        <p class="prose">${active.response}</p>
+      `;
+    }
+
+    function selectObjection(index) {
+      if (index < 0 || index >= OBJECTIONS.length) return;
+      appState.activeObjection = index;
+      renderObjections();
+      persistState();
+    }
+
+    function renderSigns() {
+      const gridEl = document.getElementById(`signs-grid`);
+      const detailEl = document.getElementById(`sign-detail`);
+      if (!gridEl || !detailEl) return;
+
+      gridEl.innerHTML = SIGNS.map((sign, idx) => {
+        const activeClass = idx === appState.activeSign ? `is-active` : ``;
+        return `
+          <button type="button" class="sign-tile ${activeClass}" onclick="selectSign(${idx})">
+            <span class="verse-ref">${sign.verses}</span>
+            <span class="selector-title">${sign.title}</span>
+            <span class="arch-caption">${sign.tag}</span>
+          </button>
+        `;
+      }).join(``);
+
+      const active = SIGNS[appState.activeSign] || SIGNS[0];
+      detailEl.innerHTML = `
+        <div class="toolbar-row">
+          <span class="verse-ref">Sign Focus · Verses ${active.verses}</span>
+          <span class="badge-emerald">${active.tag}</span>
+        </div>
+        <h3 class="subhead">${active.title}</h3>
+        <div class="arabic-block">
+          <p class="arabic-verse" lang="ar" dir="rtl">${active.arabic}</p>
+          <p class="verse-translation">${active.translation}</p>
+        </div>
+        <p class="prose">${active.insight}</p>
+      `;
+    }
+
+    function selectSign(index) {
+      if (index < 0 || index >= SIGNS.length) return;
+      appState.activeSign = index;
+      renderSigns();
+      persistState();
+    }
+
+    function renderTraits() {
+      const gridEl = document.getElementById(`traits-grid`);
+      if (!gridEl) return;
+
+      const filtered = appState.activeFilter === `all`
+        ? TRAITS
+        : TRAITS.filter((t) => t.category === appState.activeFilter);
+
+      gridEl.innerHTML = filtered.map((trait) => {
+        const isDone = appState.reflectedTraits.includes(trait.id);
+        return `
+          <article class="trait-card ${isDone ? `is-reflected` : ``}">
+            <div class="trait-top">
+              <span class="trait-num">${trait.num}</span>
+              <span class="verse-ref">${trait.verse}</span>
+            </div>
+            <h3 class="subhead">${trait.title}</h3>
+            <p class="arabic-verse" lang="ar" dir="rtl">${trait.arabic}</p>
+            <p class="verse-translation">${trait.translation}</p>
+            <p class="prose">${trait.commentary}</p>
+            <div>
+              <button type="button" class="btn-secondary ${isDone ? `is-done` : ``}" onclick="toggleTrait('${trait.id}')">
+                ${isDone ? `Reflected ✓` : `Mark as Reflected`}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join(``);
+
+      document.querySelectorAll(`.filter-btn`).forEach((btn) => {
+        const match = btn.getAttribute(`data-filter`) === appState.activeFilter;
+        btn.classList.toggle(`is-active`, match);
+      });
+
+      updateProgressBadges();
+    }
+
+    function filterTraits(category) {
+      appState.activeFilter = category;
+      renderTraits();
+      persistState();
+    }
+
+    function toggleTrait(traitId) {
+      const idx = appState.reflectedTraits.indexOf(traitId);
+      if (idx === -1) {
+        appState.reflectedTraits.push(traitId);
+      } else {
+        appState.reflectedTraits.splice(idx, 1);
+      }
+      renderTraits();
+      persistState();
+    }
+
+    function renderReflections() {
+      const gridEl = document.getElementById(`reflection-grid`);
+      if (!gridEl) return;
+
+      gridEl.innerHTML = REFLECTIONS.map((item) => {
+        const savedVal = appState.reflections[item.id] || ``;
+        return `
+          <div class="reflection-card">
+            <span class="verse-ref">${item.verse}</span>
+            <label class="field-label" for="input-${item.id}">${item.prompt}</label>
+            <textarea
+              id="input-${item.id}"
+              class="reflection-textarea"
+              placeholder="Write your personal reflection here…"
+              oninput="handleReflectionInput('${item.id}', this.value)"
+            >${escapeHtml(savedVal)}</textarea>
+            <span class="save-status" id="status-${item.id}">${savedVal.trim() ? `Saved to notebook` : ``}</span>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function handleReflectionInput(promptId, val) {
+      appState.reflections[promptId] = val;
+      const statusEl = document.getElementById(`status-${promptId}`);
+      if (statusEl) statusEl.textContent = `Saving…`;
+
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async () => {
+        await persistState();
+        const st = document.getElementById(`status-${promptId}`);
+        if (st) st.textContent = val.trim() ? `Saved to notebook` : `Cleared`;
+      }, 300);
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map((q, qIdx) => {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+        const isCorrect = hasAnswered && chosen === q.correct;
+
+        const optionsHtml = q.options.map((opt, oIdx) => {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (oIdx === q.correct) cls += ` is-correct`;
+            else if (oIdx === chosen) cls += ` is-wrong`;
+          }
+          return `
+            <button
+              type="button"
+              class="${cls}"
+              ${hasAnswered ? `disabled` : ``}
+              onclick="answerQuiz('${q.id}', ${oIdx})"
+            >
+              <span><strong>${String.fromCharCode(65 + oIdx)}.</strong></span>
+              <span>${opt}</span>
+            </button>
+          `;
+        }).join(``);
+
+        return `
+          <article class="quiz-card">
+            <div class="toolbar-row">
+              <span class="verse-ref">Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+              <span class="badge-brass">Ref: ${q.verse}</span>
+            </div>
+            <h3 class="subhead">${q.question}</h3>
+            <div class="quiz-options">${optionsHtml}</div>
+            <div class="quiz-feedback ${hasAnswered ? `is-visible ${isCorrect ? `is-positive` : `is-negative`}` : ``}">
+              <strong>${isCorrect ? `Correct.` : `Review (${q.verse}):`}</strong> ${q.explanation}
+            </div>
+          </article>
+        `;
+      }).join(``);
+
+      updateProgressBadges();
+    }
+
+    function answerQuiz(questionId, optionIndex) {
+      appState.quizAnswers[questionId] = optionIndex;
+      renderQuiz();
+      persistState();
+    }
+
+    function resetQuizOnly() {
+      appState.quizAnswers = {};
+      renderQuiz();
+      persistState();
+    }
+
+    function updateProgressBadges() {
+      const traitCount = appState.reflectedTraits.length;
+      const traitLabel = document.getElementById(`trait-progress-label`);
+      const traitFill = document.getElementById(`trait-progress-fill`);
+      if (traitLabel) traitLabel.textContent = `${traitCount} of ${TRAITS.length} Reflected`;
+      if (traitFill) traitFill.style.width = `${Math.round((traitCount / TRAITS.length) * 100)}%`;
+
+      let score = 0;
+      QUIZ_QUESTIONS.forEach((q) => {
+        if (appState.quizAnswers[q.id] === q.correct) score += 1;
+      });
+      const quizBadge = document.getElementById(`quiz-score-badge`);
+      if (quizBadge) quizBadge.textContent = `Score: ${score} / ${QUIZ_QUESTIONS.length}`;
+
+      const globalBadge = document.getElementById(`global-progress-badge`);
+      if (globalBadge) globalBadge.textContent = `${traitCount} / ${TRAITS.length} Traits · ${score} / ${QUIZ_QUESTIONS.length} Quiz`;
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-FURQAN (CHAPTER 25) — PERSONAL STUDY NOTES`,
+        `====================================================`,
+        ``
+      ];
+
+      lines.push(`1. 'IBAD AR-RAHMAN TRAITS REFLECTED (${appState.reflectedTraits.length}/${TRAITS.length})`);
+      TRAITS.forEach((t) => {
+        const mark = appState.reflectedTraits.includes(t.id) ? `[x]` : `[ ]`;
+        lines.push(`${mark} ${t.num}. ${t.title} (${t.verse})`);
+      });
+      lines.push(``);
+
+      lines.push(`2. PERSONAL REFLECTIONS`);
+      REFLECTIONS.forEach((r) => {
+        const text = (appState.reflections[r.id] || ``).trim() || `(No entry yet)`;
+        lines.push(`--- ${r.verse} ---`);
+        lines.push(`Prompt: ${r.prompt}`);
+        lines.push(`Response: ${text}`);
+        lines.push(``);
+      });
+
+      let score = 0;
+      QUIZ_QUESTIONS.forEach((q) => {
+        if (appState.quizAnswers[q.id] === q.correct) score += 1;
+      });
+      lines.push(`3. REVIEW QUIZ SCORE: ${score} / ${QUIZ_QUESTIONS.length}`);
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-furqan-study-notes.txt`
+        });
+      }
+      const statusEl = document.getElementById(`export-status`);
+      if (statusEl) statusEl.textContent = `Study notes exported as surah-al-furqan-study-notes.txt`;
+    }
+
+    function handleResetAll(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset All Progress`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset All Progress`;
+      appState = {
+        activeMovement: 0,
+        activeObjection: 0,
+        activeSign: 0,
+        activeFilter: `all`,
+        reflectedTraits: [],
+        reflections: {},
+        quizAnswers: {}
+      };
+      renderAll();
+      persistState();
+      const statusEl = document.getElementById(`export-status`);
+      if (statusEl) statusEl.textContent = `All study progress and reflections reset.`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        console.warn(`State persistence skipped:`, err);
+      }
+    }
+
+    function renderAll() {
+      renderMovements();
+      renderObjections();
+      renderSigns();
+      renderTraits();
+      renderReflections();
+      renderQuiz();
+    }
+
+    function setupRevealObserver() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        sections.forEach((s) => s.classList.add(`is-visible`));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach((s) => observer.observe(s));
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = {
+              activeMovement: typeof saved.activeMovement === `number` ? saved.activeMovement : 0,
+              activeObjection: typeof saved.activeObjection === `number` ? saved.activeObjection : 0,
+              activeSign: typeof saved.activeSign === `number` ? saved.activeSign : 0,
+              activeFilter: typeof saved.activeFilter === `string` ? saved.activeFilter : `all`,
+              reflectedTraits: Array.isArray(saved.reflectedTraits) ? saved.reflectedTraits : [],
+              reflections: saved.reflections && typeof saved.reflections === `object` ? saved.reflections : {},
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === `object` ? saved.quizAnswers : {}
+            };
+          }
+        }
+      } catch (err) {
+        console.warn(`Could not restore saved state:`, err);
+      }
+
+      renderAll();
+      setupRevealObserver();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

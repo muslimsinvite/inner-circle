@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="haven">
+<title>Surah Ar-Ra'd (Chapter 13) — Interactive Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+
+  /* 1. Haven palette and surface ramp */
+  --background: #f5f6f5;
+  --surface-container-low: #ffffff;
+  --surface-container: #e3ebe2;
+  --surface-container-high: #dbe2dd;
+
+  /* Ink */
+  --on-surface: #23272a;
+  --on-surface-variant: #5c6468;
+
+  /* Rules */
+  --outline: #c9d0cc;
+  --outline-variant: #dde2df;
+
+  /* Accents */
+  --primary: #3c5a6e;
+  --on-primary: #ffffff;
+  --primary-container: #e2e9ee;
+  --on-primary-container: #2a4152;
+  --secondary: #4f6b53;
+  --tertiary: #5f7c63;
+  --error: #a63d32;
+  --on-error: #ffffff;
+
+  /* Data series */
+  --data-1: #3c5a6e;
+  --data-2: #5f7c63;
+  --data-3: #a8694a;
+  --data-4: #8a7a68;
+  --data-context: #c3cac6;
+
+  /* Fonts */
+  --font-headline: 'Outfit', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --font-label: 'Outfit', sans-serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+
+  /* Shape */
+  --rounded: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-full: 9999px;
+
+  /* Style effects */
+  --hairline: 1px solid var(--outline-variant);
+  --hairline-control: 1px solid var(--outline);
+  --hairline-primary: 1px solid var(--primary);
+  --elevation: none;
+
+  /* 3. Shared tokens */
+  --positive: #4f6b53;
+  --positive-container: #e3ebe2;
+  --warning: #a8694a;
+  --warning-container: #f3eae4;
+  --error-container: #f5e6e4;
+  --focus: #3c5a6e;
+
+  /* Narrative type scale */
+  --display-size: clamp(2.35rem, 1.4rem + 3.6vw, 4rem);
+  --headline-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.35rem);
+  --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4375rem);
+  --body-size: clamp(1.03125rem, 0.98rem + 0.22vw, 1.125rem);
+  --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+  --arabic-display-size: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+  --arabic-list-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+/* Base reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+header { position: static !important; }
+button, input, select, textarea { font-family: inherit; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Page layout */
+.page-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+}
+.page-shell * { min-width: 0; }
+
+/* Typography */
+.headline, h1, h2, h3 {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  margin: 0;
+}
+.headline-display {
+  font-size: var(--display-size);
+  line-height: 1.07;
+  max-width: 19ch;
+}
+.headline-section {
+  font-size: var(--headline-size);
+  line-height: 1.12;
+  max-width: 28ch;
+}
+.headline-sub {
+  font-size: var(--subhead-size);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.headline strong, h1 strong, h2 strong { font-weight: 600; }
+
+.label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  color: var(--on-surface-variant);
+}
+
+.caption-sage {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--secondary);
+  margin: var(--space-xs) 0 0;
+}
+
+.prose {
+  max-width: 65ch;
+  color: var(--on-surface);
+  margin: 0;
+}
+.prose-muted {
+  max-width: 65ch;
+  color: var(--on-surface-variant);
+  margin: 0;
+}
+
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 2.05;
+  color: var(--on-surface);
+  font-weight: 500;
+}
+
+/* Haven Hairline Panel */
+.panel {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--elevation);
+  padding: var(--space-lg);
+}
+.panel-compact {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--elevation);
+  padding: var(--space-md) var(--space-lg);
+}
+.panel-sage {
+  background: var(--surface-container);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--elevation);
+  padding: var(--space-lg);
+}
+
+/* Section rhythm */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.section + .section {
+  border-top: var(--hairline);
+  padding-top: var(--space-2xl);
+  margin-top: var(--space-2xl);
+}
+
+/* Top nav strip */
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+  border-bottom: var(--hairline);
+  margin-bottom: var(--space-xl);
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+.nav-link {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  padding: var(--space-xs) 0;
+  border-bottom: 2px solid transparent;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.nav-link:hover, .nav-link.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Hero */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.hero-arabic-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.hero-arabic-title {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.6rem);
+  line-height: 1.5;
+  color: var(--primary);
+  direction: rtl;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* KPI Strip (asymmetric grid) */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr 1.15fr;
+  gap: var(--space-md);
+}
+.kpi-card {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+.kpi-value {
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--on-surface);
+  line-height: 1.15;
+}
+
+/* Buttons & Tags */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: var(--hairline-control);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.btn:hover:not(:disabled) {
+  background: var(--surface-container-high);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--on-primary-container);
+  border-color: var(--on-primary-container);
+}
+.btn-sm {
+  min-height: 44px;
+  padding: 0 0.875rem;
+  font-size: 0.875rem;
+}
+.btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.25rem 0.6875rem;
+  border-radius: var(--rounded-full);
+  background: var(--surface-container);
+  color: var(--secondary);
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  border: none;
+}
+.tag-slate {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+/* Progress track */
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--outline-variant);
+  border-radius: var(--rounded-full);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--rounded-full);
+  transition: width var(--dur-short) var(--ease-out);
+}
+
+/* Pathways Grid */
+.pathway-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+.pathway-card {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: border-color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+}
+.pathway-card.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-container);
+}
+.pathway-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+.milestone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.milestone-btn {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: left;
+  background: transparent;
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.milestone-btn:hover {
+  background: var(--surface-container-high);
+}
+.milestone-btn.is-done {
+  background: var(--surface-container);
+  color: var(--secondary);
+}
+.milestone-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: var(--hairline-control);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--surface-container-low);
+  color: var(--on-primary);
+}
+.milestone-btn.is-done .milestone-check {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Structural Rhythm Map (43 verses) */
+.rhythm-map {
+  display: grid;
+  grid-template-columns: repeat(43, minmax(0, 1fr));
+  gap: 3px;
+  align-items: end;
+  padding: var(--space-md) 0;
+}
+.rhythm-cell {
+  height: 38px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background: var(--data-context);
+  position: relative;
+  transition: transform var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out);
+}
+.rhythm-cell[data-pathway="1"] { background: var(--data-1); opacity: 0.78; }
+.rhythm-cell[data-pathway="2"] { background: var(--data-2); opacity: 0.82; }
+.rhythm-cell[data-pathway="3"] { background: var(--data-3); opacity: 0.82; }
+.rhythm-cell[data-pathway="4"] { background: var(--data-4); opacity: 0.82; }
+.rhythm-cell.is-pivot { height: 54px; opacity: 1; }
+.rhythm-cell.is-mastered { box-shadow: inset 0 -4px 0 var(--on-surface); }
+.rhythm-cell.is-current { outline: 2px solid var(--on-surface); outline-offset: 1px; opacity: 1; }
+.rhythm-cell:hover { transform: translateY(-2px); opacity: 1; }
+
+.rhythm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Theological Concepts Grid */
+.concept-switcher {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+.concept-tab {
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.concept-tab:hover {
+  background: var(--surface-container-high);
+}
+.concept-tab.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.concept-tab.is-active .label {
+  color: var(--primary-container);
+}
+
+.concept-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.concept-visual-box {
+  background: var(--background);
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.sub-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.sub-pill {
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline-control);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.sub-pill:hover { background: var(--surface-container-high); }
+.sub-pill.is-active {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  border-color: var(--primary);
+}
+
+/* Traits checklist inside concept 3 */
+.traits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+.trait-item {
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-container-low);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Verse Explorer */
+.explorer-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) auto;
+  gap: var(--space-md);
+  align-items: end;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.field-label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+.input-control, .select-control, .textarea-control {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline-control);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+}
+.select-control {
+  padding-right: 2.25rem;
+}
+.textarea-control {
+  min-height: 84px;
+  padding: var(--space-sm) var(--space-md);
+  resize: vertical;
+  line-height: 1.5;
+}
+.input-control:focus, .select-control:focus, .textarea-control:focus {
+  border-color: var(--primary);
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.explorer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.verse-spotlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.verse-spotlight-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--hairline);
+}
+.verse-arabic-hero {
+  font-size: var(--arabic-display-size);
+  line-height: 2.15;
+  padding: var(--space-md) 0;
+}
+.verse-translation-hero {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--on-surface);
+  margin: 0;
+}
+.verse-reflection-box {
+  background: var(--background);
+  border-left: 3px solid var(--secondary);
+  padding: var(--space-md);
+  border-radius: 0 var(--rounded) var(--rounded) 0;
+}
+.verse-index-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.verse-number-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.verse-num-btn {
+  min-height: 44px;
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  position: relative;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.verse-num-btn:hover { background: var(--surface-container-high); }
+.verse-num-btn.is-mastered {
+  background: var(--surface-container);
+  color: var(--secondary);
+}
+.verse-num-btn.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.verse-num-btn.is-dimmed {
+  opacity: 0.35;
+}
+.verse-num-btn.is-bookmarked::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--rounded-full);
+  background: var(--data-3);
+}
+
+/* Expandable full verse list */
+.verse-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.verse-list-row {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.verse-list-row.is-active-row {
+  border-color: var(--primary);
+}
+
+/* Quiz */
+.quiz-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.quiz-option {
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline-control);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  text-align: left;
+  font-size: 0.96875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.quiz-option:hover:not(:disabled) { background: var(--surface-container-high); }
+.quiz-option.is-correct {
+  background: var(--positive-container);
+  border-color: var(--positive);
+  color: var(--on-surface);
+}
+.quiz-option.is-wrong {
+  background: var(--error-container);
+  border-color: var(--error);
+  color: var(--on-surface);
+}
+.quiz-feedback {
+  padding: var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--background);
+}
+.quiz-feedback.is-correct {
+  background: var(--positive-container);
+  border-color: var(--secondary);
+}
+.quiz-feedback.is-wrong {
+  background: var(--error-container);
+  border-color: var(--error);
+}
+.quiz-dot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-xs);
+}
+.quiz-dot {
+  min-height: 44px;
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--surface-container-low);
+  color: var(--on-surface-variant);
+  font-family: var(--font-label);
+  font-weight: 500;
+  cursor: pointer;
+}
+.quiz-dot.is-current { border-color: var(--primary); color: var(--primary); font-weight: 600; }
+.quiz-dot.is-right { background: var(--positive-container); color: var(--secondary); border-color: var(--secondary); }
+.quiz-dot.is-missed { background: var(--error-container); color: var(--error); border-color: var(--error); }
+
+/* Status Banner */
+.inline-notice {
+  font-size: 0.875rem;
+  color: var(--secondary);
+  min-height: 1.25rem;
+}
+
+/* Footer */
+.page-footer {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-md);
+  color: var(--on-surface-variant);
+  font-size: 0.9375rem;
+}
+
+/* Responsive rules */
+@media (max-width: 900px) {
+  .hero-grid,
+  .concept-stage,
+  .explorer-layout,
+  .quiz-shell {
+    grid-template-columns: 1fr;
+  }
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .concept-switcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explorer-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: var(--space-md) var(--space-md) var(--space-2xl);
+  }
+  .pathway-grid,
+  .kpi-grid,
+  .concept-switcher,
+  .traits-grid {
+    grid-template-columns: 1fr;
+  }
+  .rhythm-map {
+    grid-template-columns: repeat(11, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .rhythm-cell { height: 28px; }
+  .rhythm-cell.is-pivot { height: 36px; }
+  .verse-number-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <header class="top-nav">
+    <div>
+      <span class="label">Qur'an · Chapter 13 · 43 verses</span>
+    </div>
+    <nav class="nav-links" aria-label="Study sections">
+      <a class="nav-link" href="#pathways">Study pathways</a>
+      <a class="nav-link" href="#architecture">Thematic map</a>
+      <a class="nav-link" href="#concepts">Core concepts</a>
+      <a class="nav-link" href="#explorer">Verse explorer</a>
+      <a class="nav-link" href="#mastery">Mastery check</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Opening Hook & Summary -->
+    <section class="section" id="overview">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 class="headline headline-display">Surah Ar-Ra'd: Signs in the <strong>thunder</strong>, stillness in the <strong>heart</strong></h1>
+          <p class="prose">
+            People demanded a dramatic sign to prove revelation. Chapter 13 answers by turning their gaze toward the world already before them — skies raised without visible pillars, neighboring soils watered by one rain yet bearing distinct fruit, lightning stirring fear and hope, thunder declaring praise, and hearts finding rest in remembrance.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#explorer">
+              <i data-lucide="book-open" class="btn-icon" aria-hidden="true"></i>
+              <span>Start verse-by-verse study</span>
+            </a>
+            <a class="btn" href="#concepts">
+              <i data-lucide="compass" class="btn-icon" aria-hidden="true"></i>
+              <span>Explore four theological anchors</span>
+            </a>
+          </div>
+        </div>
+        <aside class="panel hero-arabic-banner" aria-label="Opening verse preview">
+          <span class="label">Pivot verse · 13:28</span>
+          <p class="hero-arabic-title" lang="ar" dir="rtl">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</p>
+          <p class="prose-muted">“Unquestionably, by the remembrance of Allah hearts are assured.”</p>
+          <p class="caption-sage">43 verses · Revealed around four movements from cosmic order to human conscience</p>
+        </aside>
+      </div>
+
+      <!-- KPI & Progress Strip -->
+      <div class="kpi-grid" aria-label="Study progress">
+        <div class="kpi-card">
+          <span class="label">Verses studied</span>
+          <div class="kpi-value" id="kpi-verses">0 / 43</div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="kpi-verses-bar" style="width: 0%"></div>
+          </div>
+          <p class="caption-sage" id="kpi-verses-note">Begin with verse 13:1 or pick a pathway</p>
+        </div>
+        <div class="kpi-card">
+          <span class="label">Pathway milestones</span>
+          <div class="kpi-value" id="kpi-milestones">0 / 12</div>
+          <p class="caption-sage" id="kpi-milestones-note">4 self-paced pathways</p>
+        </div>
+        <div class="kpi-card">
+          <span class="label">Mastery check</span>
+          <div class="kpi-value" id="kpi-quiz">0 / 10</div>
+          <p class="caption-sage" id="kpi-quiz-note">Not attempted yet</p>
+        </div>
+        <div class="kpi-card">
+          <span class="label">Study record</span>
+          <div class="btn-row">
+            <button type="button" class="btn btn-sm" onclick="exportStudyRecord()">
+              <i data-lucide="download" class="btn-icon" aria-hidden="true"></i>
+              <span>Export notes</span>
+            </button>
+            <button type="button" class="btn btn-sm" id="btn-reset-progress" onclick="handleResetProgress(this)">
+              <i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i>
+              <span>Reset</span>
+            </button>
+          </div>
+          <p class="caption-sage" id="save-status-note">Progress saves automatically</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Self-Paced Study Pathways -->
+    <section class="section" id="pathways">
+      <div>
+        <span class="label">Self-paced curriculum</span>
+        <h2 class="headline headline-section">Follow four <strong>study pathways</strong> through the chapter</h2>
+        <p class="prose-muted">Select a pathway to filter the verse explorer, or check off milestones as you master each movement of Surah Ar-Ra'd.</p>
+      </div>
+      <div class="pathway-grid" id="pathway-grid"></div>
+    </section>
+
+    <!-- Section 2: Thematic Map of all 43 verses -->
+    <section class="section" id="architecture">
+      <div>
+        <span class="label">Structural rhythm · 13:1–43</span>
+        <h2 class="headline headline-section">How the chapter moves from <strong>cosmic signs</strong> to <strong>inner assurance</strong></h2>
+        <p class="prose-muted">Each bar below represents one verse from 13:1 to 13:43. Taller bars mark key theological pivots; click any bar to inspect that verse in the explorer.</p>
+      </div>
+      <div class="panel">
+        <div class="rhythm-legend">
+          <span class="legend-item"><span class="legend-swatch" style="background: var(--data-1)"></span>vv. 1–11 · Signs & Knowledge</span>
+          <span class="legend-item"><span class="legend-swatch" style="background: var(--data-2)"></span>vv. 12–18 · Thunder & The Foam Parable</span>
+          <span class="legend-item"><span class="legend-swatch" style="background: var(--data-3)"></span>vv. 19–31 · People of Understanding</span>
+          <span class="legend-item"><span class="legend-swatch" style="background: var(--data-4)"></span>vv. 32–43 · Steadfastness & Witness</span>
+        </div>
+        <div class="rhythm-map" id="rhythm-map" role="group" aria-label="43 verses structural rhythm"></div>
+        <p class="caption-sage" id="rhythm-hover-readout">Select any bar (1–43) to open that verse, or hover to preview its central idea.</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Key Theological Concepts -->
+    <section class="section" id="concepts">
+      <div>
+        <span class="label">Core theological concepts</span>
+        <h2 class="headline headline-section">Four anchors of <strong>meaning</strong> in Surah Ar-Ra'd</h2>
+        <p class="prose-muted">Explore how the surah connects observable nature, angelic praise, human psychology, and the permanence of truth.</p>
+      </div>
+
+      <div class="concept-switcher" role="tablist" aria-label="Theological concepts">
+        <button type="button" class="concept-tab is-active" id="ctab-0" onclick="selectConcept(0)">
+          <span class="label">01 · vv. 2–4, 8–10, 15</span>
+          <span>Divine power in nature</span>
+        </button>
+        <button type="button" class="concept-tab" id="ctab-1" onclick="selectConcept(1)">
+          <span class="label">02 · vv. 12–13</span>
+          <span>Praise of thunder & angels</span>
+        </button>
+        <button type="button" class="concept-tab" id="ctab-2" onclick="selectConcept(2)">
+          <span class="label">03 · vv. 11, 20–24, 28</span>
+          <span>Hearts at rest in remembrance</span>
+        </button>
+        <button type="button" class="concept-tab" id="ctab-3" onclick="selectConcept(3)">
+          <span class="label">04 · vv. 14, 17, 26</span>
+          <span>Truth vs. vanishing falsehood</span>
+        </button>
+      </div>
+
+      <div class="panel" id="concept-panel"></div>
+    </section>
+
+    <!-- Section 4: Verse-by-Verse Explorer -->
+    <section class="section" id="explorer">
+      <div>
+        <span class="label">Complete text & reflection</span>
+        <h2 class="headline headline-section">Explore all 43 verses <strong>verse by verse</strong></h2>
+        <p class="prose-muted">Read the Arabic text alongside the English translation and grounded reflection. Mark verses as studied, bookmark passages, or write personal study notes.</p>
+      </div>
+
+      <div class="panel-compact">
+        <div class="explorer-controls">
+          <div class="field-group">
+            <label class="field-label" for="filter-pathway">Filter by pathway or status</label>
+            <select id="filter-pathway" class="select-control" onchange="applyVerseFilter()">
+              <option value="all">All 43 verses (13:1–43)</option>
+              <option value="p1">Pathway 1 · Cosmic Signs (13:1–11)</option>
+              <option value="p2">Pathway 2 · Thunder & Foam (13:12–18)</option>
+              <option value="p3">Pathway 3 · Hearts at Rest (13:19–31)</option>
+              <option value="p4">Pathway 4 · Steadfastness (13:32–43)</option>
+              <option value="bookmarked">Bookmarked verses</option>
+              <option value="unstudied">Remaining to study</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="search-verses">Search Arabic, English, or theme</label>
+            <input type="search" id="search-verses" class="input-control" placeholder="e.g., thunder, foam, remembrance, pillars…" oninput="applyVerseFilter()">
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn" id="btn-toggle-all-list" onclick="toggleAllList()">
+              <i data-lucide="list" class="btn-icon" aria-hidden="true"></i>
+              <span id="toggle-all-label">Show full list</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="explorer-layout">
+        <!-- Focused Verse Reader -->
+        <article class="panel verse-spotlight" id="verse-spotlight" aria-live="polite">
+          <div class="verse-spotlight-header">
+            <div class="btn-row">
+              <span class="tag tag-slate" id="spot-ref">Surah 13:1</span>
+              <span class="tag" id="spot-pathway-tag">Pathway 1 · Cosmic Signs</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="btn btn-sm" id="btn-bookmark" onclick="toggleCurrentBookmark()">
+                <i data-lucide="bookmark" class="btn-icon" aria-hidden="true"></i>
+                <span id="bookmark-label">Bookmark</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-primary" id="btn-master-verse" onclick="toggleCurrentMastered()">
+                <i data-lucide="check" class="btn-icon" aria-hidden="true"></i>
+                <span id="master-label">Mark studied</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="arabic-text verse-arabic-hero" id="spot-arabic" lang="ar" dir="rtl"></p>
+          <p class="verse-translation-hero" id="spot-english"></p>
+
+          <div class="verse-reflection-box">
+            <span class="label">Contextual reflection</span>
+            <p class="prose" id="spot-reflection" style="margin-top: var(--space-xs);"></p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="spot-user-note">Personal study note for <span id="spot-note-ref">13:1</span></label>
+            <textarea id="spot-user-note" class="textarea-control" placeholder="Record an insight, cross-reference, or reflection for this verse…" oninput="saveCurrentNote(this.value)"></textarea>
+          </div>
+
+          <div class="btn-row" style="justify-content: space-between; padding-top: var(--space-sm); border-top: var(--hairline);">
+            <button type="button" class="btn" id="btn-prev-verse" onclick="stepVerse(-1)">
+              <i data-lucide="chevron-left" class="btn-icon" aria-hidden="true"></i>
+              <span>Previous verse</span>
+            </button>
+            <span class="label" id="spot-position">Verse 1 of 43</span>
+            <button type="button" class="btn" id="btn-next-verse" onclick="stepVerse(1)">
+              <span>Next verse</span>
+              <i data-lucide="chevron-right" class="btn-icon" aria-hidden="true"></i>
+            </button>
+          </div>
+        </article>
+
+        <!-- Verse Number Grid Navigator -->
+        <aside class="panel verse-index-panel" aria-label="Verse navigator">
+          <div>
+            <span class="label">Jump to verse (1–43)</span>
+            <p class="caption-sage" id="filter-count-note">Showing all 43 verses</p>
+          </div>
+          <div class="verse-number-grid" id="verse-number-grid"></div>
+          <div class="rhythm-legend">
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--primary)"></span>Active</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--surface-container); border: var(--hairline)"></span>Studied</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--data-3); border-radius: 50%"></span>Bookmarked dot</span>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Optional Expanded List of Filtered Verses -->
+      <div class="verse-list-container" id="expanded-verse-list" hidden></div>
+    </section>
+
+    <!-- Section 5: Interactive Mastery Check -->
+    <section class="section" id="mastery">
+      <div>
+        <span class="label">Mastery assessment</span>
+        <h2 class="headline headline-section">Test your grasp of <strong>Surah Ar-Ra'd</strong></h2>
+        <p class="prose-muted">Ten grounded questions covering the chapter's parables, theological arguments, and key verses. Immediate feedback cites the exact verse.</p>
+      </div>
+
+      <div class="quiz-shell">
+        <div class="panel" id="quiz-card" style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <span class="label" id="quiz-progress-label">Question 1 of 10</span>
+            <span class="tag" id="quiz-verse-hint">Focus · 13:1–11</span>
+          </div>
+          <h3 class="headline headline-sub" id="quiz-question-text"></h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback" hidden></div>
+          <div class="btn-row" style="justify-content: space-between;">
+            <button type="button" class="btn" id="btn-quiz-prev" onclick="stepQuiz(-1)">
+              <i data-lucide="chevron-left" class="btn-icon" aria-hidden="true"></i>
+              <span>Previous</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-quiz-next" onclick="stepQuiz(1)">
+              <span>Next question</span>
+              <i data-lucide="chevron-right" class="btn-icon" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <aside class="panel" style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <span class="label">Question navigator</span>
+          <div class="quiz-dot-grid" id="quiz-dot-grid"></div>
+          <div style="padding-top: var(--space-sm); border-top: var(--hairline);">
+            <div class="kpi-value" id="quiz-side-score">0 / 10 correct</div>
+            <p class="caption-sage" id="quiz-side-summary">Answer all 10 checks to complete the chapter review.</p>
+          </div>
+          <button type="button" class="btn btn-sm" id="btn-quiz-retake" onclick="handleResetQuiz(this)">
+            <i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i>
+            <span>Retake mastery check</span>
+          </button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <span>Surah Ar-Ra'd (Chapter 13, vv. 1–43) — Interactive study companion</span>
+    <span>Source: Arabic script and English translation from the provided Surah Ar-Ra'd source text.</span>
+  </footer>
+</div>
+
+<api-shim></api-shim>
+<script>
+const PATHWAYS = [
+  {
+    id: 1,
+    code: `p1`,
+    range: `13:1–11`,
+    start: 1,
+    end: 11,
+    title: `Cosmic Signs & Divine Knowledge`,
+    summary: `Moves from the truthfulness of revelation to observable signs in the heavens, earth, and diverse crops, culminating in Allah's knowledge of every womb and hidden thought.`,
+    milestones: [
+      { id: `m1a`, label: `Observe the sky & earth signs (vv. 2–4)` },
+      { id: `m1b`, label: `Reflect on Allah's knowledge of hidden & open (vv. 8–10)` },
+      { id: `m1c`, label: `Examine the principle of inner change (v. 11)` }
+    ]
+  },
+  {
+    id: 2,
+    code: `p2`,
+    range: `13:12–18`,
+    start: 12,
+    end: 18,
+    title: `The Thunder, Shadows & The Foam Parable`,
+    summary: `Explores the awe of lightning and thunder's glorification, the universal prostration of shadows, and the decisive parable comparing enduring truth to water and falsehood to vanishing foam.`,
+    milestones: [
+      { id: `m2a`, label: `Compare fear & hope in lightning and thunder (vv. 12–13)` },
+      { id: `m2b`, label: `Unpack the water & smelted-ore parable (v. 17)` },
+      { id: `m2c`, label: `Contrast true supplication with illusion (vv. 14–16)` }
+    ]
+  },
+  {
+    id: 3,
+    code: `p3`,
+    range: `13:19–31`,
+    start: 19,
+    end: 31,
+    title: `People of Understanding & Hearts at Rest`,
+    summary: `Profiles the eight moral and spiritual qualities of Ulul-Albab, contrasts covenant-keepers with covenant-breakers, and anchors the heart's serenity in the remembrance of Allah (v. 28).`,
+    milestones: [
+      { id: `m3a`, label: `Identify the eight traits of Ulul-Albab (vv. 20–22)` },
+      { id: `m3b`, label: `Internalize the pivot on tranquil hearts (v. 28)` },
+      { id: `m3c`, label: `Contrast worldly enjoyment with the final home (vv. 23–26)` }
+    ]
+  },
+  {
+    id: 4,
+    code: `p4`,
+    range: `13:32–43`,
+    start: 32,
+    end: 43,
+    title: `Steadfastness, Decrees & The Final Witness`,
+    summary: `Reassures the Messenger through historical precedent, describes Paradise's enduring shade and fruit, defines Allah's supreme decree in Umm al-Kitab, and closes with divine witness.`,
+    milestones: [
+      { id: `m4a`, label: `Study the portrait of Paradise & prior messengers (vv. 32–38)` },
+      { id: `m4b`, label: `Understand elimination, confirmation & Umm al-Kitab (v. 39)` },
+      { id: `m4c`, label: `Grasp the Messenger's duty of clear delivery (vv. 40–43)` }
+    ]
+  }
+];
+
+const VERSES = [
+  {
+    num: 1,
+    pathway: 1,
+    pivot: false,
+    arabic: `المر تِلْكَ آيَاتُ الْكِتَابِ وَالَّذِي أُنْزِلَ إِلَيْكَ مِنْ رَبِّكَ الْحَقُّ وَلَكِنَّ أَكْثَرَ النَّاسِ لَا يُؤْمِنُونَ`,
+    english: `Alif, Lam, Meem, Ra. These are the verses of the Book; and what has been revealed to you from your Lord is the truth, but most of the people do not believe.`,
+    reflection: `Opens by affirming that revelation itself is grounded in objective truth (al-Haqq), setting up the surah's central question: why do most people fail to recognize truth even when surrounded by evidence?`
+  },
+  {
+    num: 2,
+    pathway: 1,
+    pivot: false,
+    arabic: `اللَّهُ الَّذِي رَفَعَ السَّمَاوَاتِ بِغَيْرِ عَمَدٍ تَرَوْنَهَا ۖ ثُمَّ اسْتَوَى عَلَى الْعَرْشِ وَسَخَّرَ الشَّمْسَ وَالْقَمَرَ كُلٌّ يَجْرِي لِأَجَلٍ مُسَمًّى يُدَبِّرُ الْأَمْرَ يُفَصِّلُ الْآيَاتِ لَعَلَّكُمْ بِلِقَاءِ رَبِّكُمْ تُوقِنُونَ`,
+    english: `It is Allah who erected the heavens without pillars that you [can] see; then He established Himself above the Throne and made subject the sun and the moon, each running [its course] for a specified term. He arranges [each] matter; He details the signs that you may, of the meeting with your Lord, be certain.`,
+    reflection: `Links celestial order directly to human certainty about meeting God. Just as the sun and moon run for a fixed term, human existence moves toward an appointed meeting.`
+  },
+  {
+    num: 3,
+    pathway: 1,
+    pivot: false,
+    arabic: `وَهُوَ الَّذِي مَدَّ الْأَرْضِ وَجَعَلَ فِيهَا رَوَاسِيَ وَأَنْهَارًا وَمِنْ كُلِّ الثَّمَرَاتِ جَعَلَ فِيهَا زَوْجَيْنِ اثْنَيْنِ يُغْشِي اللَّيْلَ النَّهَارَ إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ`,
+    english: `And it is He who spread the earth and placed therein firmly set mountains and rivers; and from all of the fruits He made therein two mates; He causes the night to cover the day. Indeed in that are signs for a people who give thought.`,
+    reflection: `Shifts gaze from the sky to the earth's stability (mountains, rivers), biological pairing in fruits, and the rhythm of day and night — inviting reflective thought (yatafakkarun).`
+  },
+  {
+    num: 4,
+    pathway: 1,
+    pivot: true,
+    arabic: `وَفِي الْأَرْضِ قِطَعٌ مُتَجَاوِرَاتٌ وَجَنَّاتٌ مِنْ أَعْنَابٍ وَزَرْعٌ وَنَخِيلٌ صِنْوَانٌ وَغَيْرُ صِنْوَانٍ يُسْقَىٰ بِمَاءٍ وَاحِدٍ وَنُفَضّلُ بَعْضَهَا عَلَىٰ بَعْضٍ فِي الْأُكُلُ إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَعْقِلُونَ`,
+    english: `And within the land are neighboring plots and gardens of grapevines and crops and palm trees, [growing] several from a root or otherwise, watered with one water; but We make some of them exceed others in [quality of] fruit. Indeed in that are signs for a people who reason.`,
+    reflection: `A striking empirical observation: identical neighboring plots receiving the exact same water produce radically different flavors and qualities of fruit. This mirrors how different human hearts receive one revelation and yield different outcomes.`
+  },
+  {
+    num: 5,
+    pathway: 1,
+    pivot: false,
+    arabic: `وَإِنْ تَعْجَبْ فَعَجَبٌ قَوْلُهُمْ أَإِذَا كُنَّا تُرَابًا أَإِنَّا لَفِي خَلْقٍ جَدِيدٍ أُولَئِكَ الَّذِينَ كَفَرُوا بِرَبِّهِمْ ۖ وَأُولَئِكَ الْأَغْلَالُ فِي أَعْنَاقِهِمْ ۖ وَأُولَئِكَ أَصْحَابُ النَّارِ هُمْ فِيهَا خَالِدُونَ`,
+    english: `And if you are astonished, [O Muhammad] - then astonishing is their saying, "When we are dust, will we indeed be [brought] into a new creation?" Those are the ones who have disbelieved in their Lord, and those will have shackles upon their necks, and those are the companions of the Fire; they will abide therein eternally.`,
+    reflection: `After showing how dead earth yields diverse life from one rain, the verse highlights the irony of those who find resurrection from dust unbelievable.`
+  },
+  {
+    num: 6,
+    pathway: 1,
+    pivot: false,
+    arabic: `وَيَسْتَعْجِلُونَكَ بِالسَّيِّئَةِ قَبْلَ الْحَسَنَةِ وَقَدْ خَلَتْ مِنْ قَبْلِهِمُ الْمَثْلَاتُ وَإِنَّ رَبَّكَ لَذُو مَغْفِرَةٍ لِلنَّاسِ عَلَىٰ ظُلْمِهِمْ وَإِنَّ رَبَّكَ لَشَدِيدُ الْعِقَابِ`,
+    english: `They impatiently urge you to bring about evil before good, while there has already occurred before them similar punishments [to what they demand]. And indeed, your Lord is full of forgiveness for the people despite their wrongdoing, and indeed, your Lord is severe in penalty.`,
+    reflection: `Pairs divine mercy and justice: the delay in punishment is not weakness, but spaciousness for forgiveness before accountability arrives.`
+  },
+  {
+    num: 7,
+    pathway: 1,
+    pivot: false,
+    arabic: `وَيَقُولُ الَّذِينَ كَفَرُوا لَوْلَا أُنْزِلَ عَلَيْهِ آيَةٌ مِنْ رَبِّهِ إِنَّمَا أَنْتَ مُنْذِرٌ وَلِكُلِّ قَوْمٍ هَادٍ`,
+    english: `And those who disbelieved say, "Why has a sign not been sent down to him from his Lord?" You are only a warner, and for every people is a guide.`,
+    reflection: `Establishes the prophetic boundary: messengers deliver guidance and warning; producing theatrical miracles on demand is not the measure of truth.`
+  },
+  {
+    num: 8,
+    pathway: 1,
+    pivot: false,
+    arabic: `اللَّهُ يَعْلَمُ مَا تَحْمِلُ كُلُّ أُنْثَى وَمَا تَغِيضُ الْأَرْحَامُ وَمَا تَزْدَادُ وَكُلُّ شَيْءٍ عِنْدَهُ بِمِقْدَارٍ`,
+    english: `Allah knows what every female carries and what the wombs lose [prematurely] or exceed. And everything with Him is by due measure.`,
+    reflection: `Turns from vast skies to the most intimate, concealed beginnings of life. Nothing occurs randomly; every span and development holds exact measure.`
+  },
+  {
+    num: 9,
+    pathway: 1,
+    pivot: false,
+    arabic: `عَالِمُ الْغَيْبِ وَالشَّهَادَةِ الْكَبِيرُ الْمُتَعَالِ`,
+    english: `[He is] Knower of the unseen and the witnessed, the Grand, the Exalted.`,
+    reflection: `A concise declaration of divine transcendence and omniscience — spanning what human senses cannot reach and what lies in plain sight.`
+  },
+  {
+    num: 10,
+    pathway: 1,
+    pivot: false,
+    arabic: `سَوَاءٌ مِنْكُمْ مَنْ أَسَرَّ الْقَوْلَ وَمَنْ جَهَرَ بِهِ وَمَنْ هُوَ مُسْتَخْفِ بِاللَّيْلِ وَسَارِبٌ بِالنَّهَارِ`,
+    english: `It is the same [to Him] concerning you whether one conceals [his] speech or one publicizes it and whether one is hidden by night or conspicuous [among others] by day.`,
+    reflection: `Dissolves the illusion of privacy or secrecy before God: whispered intention and shouted speech, nocturnal concealment and noon daylight, stand on equal footing.`
+  },
+  {
+    num: 11,
+    pathway: 1,
+    pivot: true,
+    arabic: `لَهُ مُعَقِّبَاتٌ مِنْ بَيْنِ يَدَيْهِ وَمِنْ خَلْفِهِ يَحْفَظُونَهُ مِنْ أَمْرِ اللَّهِ إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ وَإِذَا أَرَادَ اللَّهُ بِقَوْمٍ سُوءًا فَلَا مَرَدَّ لَهُ ۚ وَمَا لَهُمْ مِنْ دُونِهِ مِنْ وَالِ`,
+    english: `For each one are successive [angels] before and behind him who protect him by the decree of Allah. Indeed, Allah will not change the condition of a people until they change what is in themselves. And when Allah intends for a people ill, there is no repelling it. And there is not for them besides Him any patron.`,
+    reflection: `One of the Qur'an's foundational sociological and spiritual laws: collective transformation begins inwardly with moral and conscious self-change.`
+  },
+  {
+    num: 12,
+    pathway: 2,
+    pivot: false,
+    arabic: `هُوَ الَّذِي يُرِيكُمُ الْبَرْقَ خَوْفًا وَطَمَعًا وَيُنْشِئُ السَّحَابَ الثِّقَالَ`,
+    english: `It is He who shows you lightening, [causing] fear and aspiration, and generates the heavy clouds.`,
+    reflection: `Lightning holds a dual psychological register: fear of the strike and hope for life-giving rain. Heavy clouds symbolize immense potential held aloft by divine order.`
+  },
+  {
+    num: 13,
+    pathway: 2,
+    pivot: true,
+    arabic: `وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ وَيُرْسِلُ الصَّوَاعِقَ فَيُصِيبُ بِهَا مَنْ يَشَاءُ وَهُمْ يُجَادِلُونَ فِي اللَّهِ وَهُوَ شَدِيدُ الْمِحَالِ`,
+    english: `And the thunder exalts [Allah] with praise of Him and the angels [as well] from fear of Him - and He sends thunderbolts and strikes therewith whom He wills while they dispute about Allah; and He is severe in assault.`,
+    reflection: `Gives the chapter its name (Ar-Ra'd). Even the thunder — which humans experience as terrifying power — is engaged in praise (tasbih), standing in stark contrast to skeptical human argument.`
+  },
+  {
+    num: 14,
+    pathway: 2,
+    pivot: false,
+    arabic: `لَهُ دَعْوَةُ الْحَقِّ وَالَّذِينَ يَدْعُونَ مِنْ دُونِهِ لَا يَسْتَجِيبُونَ لَهُمْ بِشَيْءٍ إِلَّا كَبَاسِطِ كَفَّيْهِ إِلَى الْمَاءِ لِيَبْلُغَ فَاهُ وَمَا هُوَ بِبَالِغِهِ وَمَا دُعَاءُ الْكَافِرِينَ إِلَّا فِي ضَلَالٍ`,
+    english: `To Him [alone] is the supplication of truth. And those they call upon besides Him do not respond to them with a thing, except as one who stretches his hands toward water [from afar, calling it] to reach his mouth, but it will not reach it [thus]. And the supplication of the disbelievers is not but in error [i.e. futility].`,
+    reflection: `A vivid image of spiritual futility: beckoning distant water with open palms hoping it will leap into one's mouth. True prayer connects only to the Living Source.`
+  },
+  {
+    num: 15,
+    pathway: 2,
+    pivot: false,
+    arabic: `وَلِلَّهِ يَسْجُدُ مَنْ فِي السَّمَاوَاتِ وَالْأَرْضِ طَوْعًا وَكَرْهًا وَظِلَالُهُمْ بِالْغُدُوِّ وَالْآصَالِ`,
+    english: `And to Allah prostrates whoever is within the heavens and the earth, willingly or by compulsion, and their shadows [as well] in the mornings and the afternoons.`,
+    reflection: `Even the shadows cast at dawn and dusk stretch low across the ground in silent submission, mirroring universal compliance to physical and spiritual laws.`
+  },
+  {
+    num: 16,
+    pathway: 2,
+    pivot: false,
+    arabic: `قُلْ مَنْ رَبُّ السَّمَاوَاتِ وَالْأَرْضِ قُلِ اللَّهُ ۚ قُلْ أَفَاتَّخَذْتُمْ مِنْ دُونِهِ أَوْلِيَاءَ لَا يَمْلِكُونَ لِأَنْفُسِهِمْ نَفْعًا وَلَا ضَرًّا قُلْ هَلْ يَسْتَوِي الْأَعْمَىٰ وَالْبَصِيرُ أَمْ هَلْ تَسْتَوِي الظُّلُمَاتُ وَالنُّورُ أَمْ جَعَلُوا لِلَّهِ شُرَكَاءَ خَلَقُوا كَخَلْقِهِ فَتَشَابَهَ الْخَلْقُ عَلَيْهِمْ ۚ قُلِ اللَّهُ خَالِقُ كُلِّ شَيْءٍ وَهُوَ الْوَاحِدُ الْقَهَّارُ`,
+    english: `Say, "Who is Lord of the heavens and earth?" Say, "Allah." Say, "Have you then taken besides Him allies not possessing [even] for themselves any benefit or any harm?" Say, "Is the blind equivalent to the seeing? Or is darkness equivalent to light? Or have they attributed to Allah partners who created like His creation so that the creation [of each] seemed similar to them?" Say, "Allah is the Creator of all things, and He is the One, the Prevailing."`,
+    reflection: `Series of sharp Socratic questions dismantling idolatry: if nothing else created a single cosmos comparable to His, why equate darkness with light or helplessness with sovereignty?`
+  },
+  {
+    num: 17,
+    pathway: 2,
+    pivot: true,
+    arabic: `أَنْزَلَ مِنَ السَّمَاءِ مَاءً فَسَالَتْ أَوْدِيَةٌ بِقَدَرِهَا فَاحْتَمَلَ السَّيْلُ زَبَدًا رَابِيًا وَمِمَّا يُوقِدُونَ عَلَيْهِ فِي النَّارِ ابْتِغَاءَ حِلْيَةٍ أَوْ مَتَاعٍ زَبَدٌ مِثْلُهُ كَذَّلِكَ يَضْرِبُ اللَّهُ الْحَقَّ وَالْبَاطِلُ ۚ فَأَمَّا الزَّبَدُ فَيَذْهَبُ جُفَاءٌ وَأَمَّا مَا يَنْفَعُ النَّاسَ فَيَمْكُثُ فِي الْأَرْضِ كَذَلِكَ يَضْرِبُ اللَّهُ الْأَمْثَالَ`,
+    english: `He sends down from the sky, rain, and valleys flow according to their capacity, and the torrent carries a rising foam. And from that [ore] which they heat in the fire, desiring adornments and utensils, is a foam like it. Thus Allah presents [the example of] truth and falsehood. As for the foam, it vanishes, [being] cast off; but as for that which benefits the people, it remains on the earth. Thus does Allah present examples.`,
+    reflection: `The surah's master parable. Falsehood is loud, frothy, and puffed up like flood-foam or furnace slag, yet vanishes rapidly; truth sinks in quietly like pure water and refined metal, remaining to nourish people.`
+  },
+  {
+    num: 18,
+    pathway: 2,
+    pivot: false,
+    arabic: `لِلَّذِينَ اسْتَجَابُوا لِرَبِّهِمُ الْحُسْنَىٰ ۚ وَالَّذِينَ لَمْ يَسْتَجِيبُوا لَهُ لَوْ أَنَّ لَهُمْ مَا فِي الْأَرْضِ جَمِيعًا وَمِثْلَهُ مَعَهُ لَافْتَدَوْا بِهِ ۚ أُولَئِكَ لَهُمْ سُوءُ الْحِسَابِ وَمَأْوَاهُمْ جَهَنَّمُ وَبِئْسَ الْمِهَادُ`,
+    english: `For those who have responded to their Lord is the best [reward], but those who did not respond to Him - if they had all that is in the earth entirely and the like of it with it, they would [attempt to] ransom themselves thereby. Those will have the worst account, and their refuge is Hell, and wretched is the resting place.`,
+    reflection: `Contrasts the ultimate currency of response to God against material accumulation: even double the wealth of the earth cannot ransom a soul that refused to respond.`
+  },
+  {
+    num: 19,
+    pathway: 3,
+    pivot: false,
+    arabic: `أَفَمَنْ يَعْلَمُ أَنَّمَا أُنْزِلَ إِلَيْكَ مِنْ رَبِّكَ الْحَقُّ كَمَنْ هُوَ أَعْمَىٰ ۚ إِنَّمَا يَتَذَكَّرُ أُولُو الْأَلْبَابِ`,
+    english: `Then is he who knows that what has been revealed to you from your Lord is the truth like one who is blind? They will only be reminded who are people of understanding`,
+    reflection: `Introduces the people of deep insight (Ulul-Albab) — those whose intellects are coupled with moral receptivity.`
+  },
+  {
+    num: 20,
+    pathway: 3,
+    pivot: false,
+    arabic: `الَّذِينَ يُوفُونَ بِعَهْدِ اللَّهِ وَلَا يَنْقُضُونَ الْمِيثَاقَ`,
+    english: `Those who fulfill the covenant of Allah and do not break the contract,`,
+    reflection: `First mark of understanding: integrity and fidelity to one's covenant with Allah and binding commitments with people.`
+  },
+  {
+    num: 21,
+    pathway: 3,
+    pivot: false,
+    arabic: `وَالَّذِينَ يَصِلُونَ مَا أَمَرَ اللَّهُ بِهِ أَنْ يُوصَلَ وَيَخْشَوْنَ رَبَّهُمْ وَيَخَافُونَ سُوءَ الْحِسَابِ`,
+    english: `And those who join that which Allah has ordered to be joined and fear their Lord and are afraid of the evil of [their] account,`,
+    reflection: `Spiritual insight manifests relationally: preserving kinship, community bonds, and moral accountability before God.`
+  },
+  {
+    num: 22,
+    pathway: 3,
+    pivot: false,
+    arabic: `وَالَّذِينَ صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا الصَّلَاةَ وَأَنْفَقُوا مِمَّا رَزَقْنَاهُمْ سِرًّا وَعَلَانِيَةً وَيَدْرَءُونَ بِالْحَسَنَةِ السَّيِّئَةَ أُولَئِكَ لَهُمْ عُقْبَى الدَّارِ`,
+    english: `And those who are patient, seeking the countenance of their Lord, and establish prayer and spend from what We have provided for them secretly and publicly and prevent evil with good - those will have the good consequence of [this] home`,
+    reflection: `Completes the portrait of Ulul-Albab: sincere perseverance, prayer, quiet and open generosity, and actively answering hostility or wrongdoing with goodness.`
+  },
+  {
+    num: 23,
+    pathway: 3,
+    pivot: false,
+    arabic: `جَنَّاتُ عَدْنٍ يَدْخُلُونَهَا وَمَنْ صَلَحَ مِنْ آبَائِهِمْ وَأَزْوَاجِهِمْ وَذُرِّيَّاتِهِمْ وَالْمَلَائِكَةُ يَدْخُلُونَ عَلَيْهِمْ مِنْ كُلِّ بَابٍ`,
+    english: `Gardens of perpetual residence; they will enter them with whoever were righteous among their fathers, their spouses and their descendants. And the angels will enter upon them from every gate, [saying],`,
+    reflection: `Because they joined righteous bonds in this world (v. 21), they are reunited across generations with righteous parents, spouses, and children in eternal gardens.`
+  },
+  {
+    num: 24,
+    pathway: 3,
+    pivot: false,
+    arabic: `سَلَامٌ عَلَيْكُمْ بِمَا صَبَرْتُمْ فَنِعْمَ عُقْبَى الدَّارِ`,
+    english: `"Peace be upon you for what you patiently endured. And excellent is the final home."`,
+    reflection: `The angels single out patience (sabr) as the key that unlocked eternal peace — affirming every quiet endurance carried for God's sake.`
+  },
+  {
+    num: 25,
+    pathway: 3,
+    pivot: false,
+    arabic: `وَالَّذِينَ يَنْقُضُونَ عَهْدَ اللَّهِ مِنْ بَعْدِ مِيثَاقِهِ وَيَقْطَعُونَ مَا أَمَرَ اللَّهُ بِهِ أَنْ يُوصَلَ وَيُفْسِدُونَ فِي الْأَرْضِ أُولَئِكَ لَهُمُ اللَّعْنَةُ وَلَهُمْ سُوءُ الدَّارِ`,
+    english: `But those who break the covenant of Allah after contracting it and sever that which Allah has ordered to be joined and spread corruption on earth - for them is the curse, and they will have the worst home.`,
+    reflection: `Mirrors verses 20–21 in exact inversion: breaking covenants and severing human/spiritual bonds leads inevitably to corruption on earth.`
+  },
+  {
+    num: 26,
+    pathway: 3,
+    pivot: false,
+    arabic: `اللَّهُ يَبْسُطُ الرِّزْقَ لِمَنْ يَشَاءُ وَيَقْدِرُ وَفَرِحُوا بِالْحَيَاةِ الدُّنْيَا وَمَا الْحَيَاةُ الدُّنْيَا فِي الْآخِرَةِ إِلَّا مَتَاعٌ`,
+    english: `Allah extends provision for whom He wills and restricts [it]. And they rejoice in the worldly life, while the worldly life is not, compared to the Hereafter, except [brief] enjoyment.`,
+    reflection: `Calibrates material abundance and scarcity: neither is an ultimate measure of worth, for worldly life is brief provision next to the Hereafter.`
+  },
+  {
+    num: 27,
+    pathway: 3,
+    pivot: false,
+    arabic: `وَيَقُولُ الَّذِينَ كَفَرُوا لَوْلَا أُنْزِلَ عَلَيْهِ آيَةٌ مِنْ رَبِّهِ قُلْ إِنَّ اللَّهَ يُضِلُّ مَنْ يَشَاءُ وَيَهْدِي إِلَيْهِ مَنْ أَنَابَ`,
+    english: `And those who disbelieved say, "Why has a sign not been sent down to him from his Lord?" Say, [O Muhammad], "Indeed, Allah leaves astray whom He wills and guides to Himself whoever turns back [to Him] -`,
+    reflection: `Clarifies the prerequisite for guidance: not witnessing an external spectacle, but turning back inwardly in humility (man anab).`
+  },
+  {
+    num: 28,
+    pathway: 3,
+    pivot: true,
+    arabic: `الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ`,
+    english: `Those who have believed and whose hearts are assured by the remembrance of Allah. Unquestionably, by the remembrance of Allah hearts are assured."`,
+    reflection: `The spiritual center of Surah Ar-Ra'd. In a chapter filled with thunder, lightning, and shifting torrents, true stillness (itmi'nan) resides inside the heart anchored in dhikr.`
+  },
+  {
+    num: 29,
+    pathway: 3,
+    pivot: false,
+    arabic: `الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ طُوبَى لَهُمْ وَحُسْنُ مَآبٍ`,
+    english: `Those who have believed and done righteous deeds a good state is theirs and a good return.`,
+    reflection: `Connects inner faith and outer righteous action to Tuba — deep blessedness, joy, and a welcoming final destination.`
+  },
+  {
+    num: 30,
+    pathway: 3,
+    pivot: false,
+    arabic: `كَذلِكَ أَرْسَلْنَاكَ فِي أُمَّةٍ قَدْ خَلَتْ مِنْ قَبْلِهَا أُمَمٌ لِتَتْلُوَ عَلَيْهِمُ الَّذِي أَوْحَيْنَا إِلَيْكَ وَهُمْ يَكْفُرُونَ بِالرَّحْمَنِ قُلْ هُوَ رَبِّي لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ مَتَابِ`,
+    english: `Thus have We sent you to a community before which [other] communities have passed on so you might recite to them that which We revealed to you, while they disbelieve in the Most Merciful. Say, "He is my Lord; there is no deity except Him. Upon Him I rely, and to Him is my return."`,
+    reflection: `Models steadfast reliance (tawakkul) in the face of rejection, naming Allah explicitly as Ar-Rahman (the Most Merciful) even when listeners deny Him.`
+  },
+  {
+    num: 31,
+    pathway: 3,
+    pivot: false,
+    arabic: `وَلَوْ أَنَّ قُرْآنًا سُيِّرَتْ بِهِ الْجِبَالُ أَوْ قُطِّعَتْ بِهِ الْأَرْضُ أَوْ كُلِّمَ بِهِ الْمَوْتَى بَلْ لِلَّهِ الْأَمْرُ جَمِيعًا أَفَلَمْ يَيْأَسِ الَّذِينَ آمَنُوا أَنْ لَوْ يَشَاءُ اللَّهُ لَهَدَى النَّاسَ جَمِيعًا وَلَا يَزَالُ الَّذِينَ كَفَرُوا تُصِيبُهُمْ بِمَا صَنَعُوا قَارِعَةٌ أَوْ تَحُلُّ قَرِيبًا مِنْ دَارِهِمْ حَتَّىٰ يَأْتِيَ وَعْدُ اللَّهِ ۚ إِنَّ اللَّهَ لَا يُخْلِفُ الْمِيعَادَ`,
+    english: `And if there was any qur'an by which the mountains would be removed or the earth would be broken apart or the dead would be made to speak, [it would be this Qur'an], but to Allah belongs the affair entirely. Then have those who believed not accepted that had Allah willed, He would have guided the people, all of them? And those who disbelieve do not cease to be struck, for what they have done, by calamity - or it will descend near their home - until there comes the promise of Allah. Indeed, Allah does not fail in [His] promise.`,
+    reflection: `Directly answers those demanding cinematic miracles: if any scripture held such power, it is this Qur'an — yet faith rests on free moral recognition rather than coercion.`
+  },
+  {
+    num: 32,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَلَقَدِ اسْتُهْزِئَ بِرُسُلٍ مِنْ قَبْلِكَ فَأَمْلَيْتُ لِلَّذِينَ كَفَرُوا ثُمَّ أَخَذْتُهُمْ ۖ فَكَيْفَ كَانَ عِقَابِ`,
+    english: `And already were [other] messengers ridiculed before you, and I extended the time of those who disbelieved; then I seized them, and how [terrible] was My penalty.`,
+    reflection: `Consoles the Prophet by placing present mockery within the long pattern of history: respite is temporary and never escapes accountability.`
+  },
+  {
+    num: 33,
+    pathway: 4,
+    pivot: false,
+    arabic: `أَفَمَنْ هُوَ قَائِمٌ عَلَىٰ كُلِّ نَفْسٍ بِمَا كَسَبَتْ ۖ وَجَعَلُوا لِلَّهِ شُرَكَاءَ قُلْ سَمُّوهُمْ أَمْ تُنَبِّئُونَهُ بِمَا لَا يَعْلَمُ فِي الْأَرْضِ أَمْ بِظَاهِرٍ مِنَ الْقَوْلُ بَلْ زُيِّنَ لِلَّذِينَ كَفَرُوا مَكْرُهُمْ وَصُدُّوا عَنِ السَّبِيلِ وَمَنْ يُضْلِلِ اللَّهُ فَمَا لَهُ مِنْ هَادٍ`,
+    english: `Then is He who is a maintainer of every soul, [knowing] what it has earned, [like any other]? But to Allah they have attributed partners. Say, "Name them. Or do you inform Him of that which He knows not upon the earth or of what is apparent of speech?" Rather, their [own] plan has been made attractive to those who disbelieve, and they have been averted from the way. And whomever Allah leaves astray - there will be for him no guide.`,
+    reflection: `Challenges the empty labels given to false deities: "Name them." Self-deception happens when people fall in love with their own schemes.`
+  },
+  {
+    num: 34,
+    pathway: 4,
+    pivot: false,
+    arabic: `لَهُمْ عَذَابٌ فِي الْحَيَاةِ الدُّنْيَا وَلَعَذَابُ الْآخِرَةِ أَشَقُّ وَمَا لَهُمْ مِنَ اللَّهِ مِنْ وَاقِ`,
+    english: `For them will be punishment in the life of [this] world, and the punishment of the Hereafter is more severe. And they will not have from Allah any protector.`,
+    reflection: `Contrasts worldly consequences with the weight of ultimate accountability, where no external shield can intervene.`
+  },
+  {
+    num: 35,
+    pathway: 4,
+    pivot: false,
+    arabic: `مَثَلُ الْجَنَّةِ الَّتِي وُعِدَ الْمُتَّقُونَ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ أُكُلُهَا دَائِمٌ وَظِلُّهَا تِلْكَ عُقْبَى الَّذِينَ اتَّقَوْا وَعُقْبَى الْكَافِرِينَ النَّارُ`,
+    english: `The example of Paradise, which the righteous have been promised, is [that] beneath it rivers flow. Its fruit is lasting, and its shade. That is the consequence for the righteous, and the consequence for the disbelievers is the Fire.`,
+    reflection: `In contrast to worldly crops that season and fade (v. 4) and shadows that shift from morning to evening (v. 15), Paradise offers unfailing fruit and perpetual shade.`
+  },
+  {
+    num: 36,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَالَّذِينَ آتَيْنَاهُمُ الْكِتَابَ يَفْرَحُونَ بِمَا أُنْزِلَ إِلَيْكَ ۖ وَمِنَ الْأَحْزَابِ مَنْ يُنْكِرُ بَعْضَهُ ۚ قُلْ إِنَّمَا أُمِرْتُ أَنْ أَعْبُدَ اللَّهَ وَلَا أُشْرِكَ بِهِ إِلَيْهِ أَدْعُو وَإِلَيْهِ مَآبِ`,
+    english: `And [the believers among] those to whom We have given the [previous] Scripture rejoice at what has been revealed to you, [O Muhammad], but among the [opposing] factions are those who deny part of it. Say, "I have only been commanded to worship Allah and not associate [anything] with Him. To Him I invite, and to Him is my return."`,
+    reflection: `Notes two responses among earlier scriptural communities: sincere believers rejoice at recognizing the same divine truth, while partisan factions reject parts that clash with their interests.`
+  },
+  {
+    num: 37,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَكَذَّلِكَ أَنْزَلْنَاهُ حُكْمًا عَرَبِيًّا وَلَئِنِ اتَّبَعْتَ أَهْوَاءَهُمْ بَعْدَمَا جَاءَكَ مِنَ الْعِلْمِ مَا لَكَ مِنَ اللَّهِ مِنْ وَلِيٍّ وَلَا وَاقٍ`,
+    english: `And thus We have revealed it as an Arabic legislation. And if you should follow their inclinations after what has come to you of knowledge, you would not have against Allah any ally or any protector.`,
+    reflection: `Affirms the clarity of revelation as a clear Arabic judgment/legislation (hukman 'arabiyyan) that must never be bent to accommodate partisan whims.`
+  },
+  {
+    num: 38,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَلَقَدْ أَرْسَلْنَا رُسُلًا مِنْ قَبْلِكَ وَجَعَلْنَا لَهُمْ أَزْوَاجًا وَذُرِّيَّةً ۚ وَمَا كَانَ لِرَسُولٍ أَنْ يَأْتِيَ بِآيَةٍ إِلَّا بِإِذْنِ اللَّهِ لِكُلِّ أَجَلٍ كِتَابٌ`,
+    english: `And We have already sent messengers before you and assigned to them wives and descendants. And it was not for a messenger to come with a sign except by permission of Allah. For every term is a decree.`,
+    reflection: `Answers objections to the Prophet's ordinary human family life: earlier messengers also lived with spouses and children, and signs unfold strictly according to Allah's scheduled decree.`
+  },
+  {
+    num: 39,
+    pathway: 4,
+    pivot: true,
+    arabic: `يَمْحُو اللَّهُ مَا يَشَاءُ وَيُثْبِتُ ۖ وَعِنْدَهُ أُمُّ الْكِتَابِ`,
+    english: `Allah eliminates what He wills or confirms, and with Him is the Mother of the Book.`,
+    reflection: `Reveals divine sovereignty over changing decrees and historical seasons, while the master record — Umm al-Kitab (the Mother of the Book) — rests unchanged with Allah.`
+  },
+  {
+    num: 40,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَإِنْ مَا نُرِيَنَّكَ بَعْضَ الَّذِي نَعِدُهُمْ أَوْ نَتَوَفَّيَنَّكَ فَإِنَّمَا عَلَيْكَ الْبَلَاغُ وَعَلَيْنَا الْحِسَابُ`,
+    english: `And whether We show you part of what We promise them or take you in death, upon you is only the [duty of] notification, and upon Us is the account.`,
+    reflection: `Frees the messenger — and every faithful caller — from anxiety over outcomes: our task is clear, faithful delivery (al-balagh); judgment belongs solely to Allah.`
+  },
+  {
+    num: 41,
+    pathway: 4,
+    pivot: false,
+    arabic: `أَوَلَمْ يَرَوْا أَنَّا نَأْتِي الْأَرْضَ نَنْقُصُهَا مِنْ أَطْرَافِهَا وَاللَّهُ يَحْكُمُ لَا مُعَقِّبَ لِحُكْمِهِ ۚ وَهُوَ سَرِيعُ الْحِسَابِ`,
+    english: `Have they not seen that We set upon the land, reducing it from its borders? And Allah decides; there is no adjuster of His decision. And He is swift in account.`,
+    reflection: `Points to history unfolding before their eyes — the gradual shrinking of opposing domains as truth advances — underscoring that no power can revise Allah's verdict.`
+  },
+  {
+    num: 42,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَقَدْ مَكَرَ الَّذِينَ مِنْ قَبْلِهِمْ فَلِلَّهِ الْمَكْرُ جَمِيعًا يَعْلَمُ مَا تَكْسِبُ كُلُّ نَفْسٍ وَسَيَعْلَمُ الْكُفَّارُ لِمَنْ عُقْبَى الدَّارِ`,
+    english: `And those before them had plotted, but to Allah belongs the plan entirely. He knows what every soul earns, and the disbelievers will know for whom is the final home.`,
+    reflection: `Returns to the motif of "the final home" ('uqba al-dar, seen in vv. 22, 24, 35), reminding listeners that human scheming is encompassed by divine planning.`
+  },
+  {
+    num: 43,
+    pathway: 4,
+    pivot: false,
+    arabic: `وَيَقُولُ الَّذِينَ كَفَرُوا لَسْتَ مُرْسَلًا قُلْ كَفَى بِاللَّهِ شَهِيدًا بَيْنِي وَبَيْنَكُمْ وَمَنْ عِنْدَهُ عِلْمُ الْكِتَابِ`,
+    english: `And those who have disbelieved say, "You are not a messenger." Say, [O Muhammad], "Sufficient is Allah as Witness between me and you, and [the witness of] whoever has knowledge of the Scripture."`,
+    reflection: `A serene closing chord: when detractors deny the messenger, he rests on the ultimate testimony of Allah and of those grounded in scriptural knowledge.`
+  }
+];
+
+const CONCEPTS = [
+  {
+    id: `nature`,
+    title: `Divine power in observable nature`,
+    verses: `13:2–4, 8–10, 15`,
+    thesis: `Rather than performing theatrical stunts on demand, Surah Ar-Ra'd points to everyday physical miracles as structured signs for people who think (v. 3) and reason (v. 4).`,
+    subItems: [
+      {
+        label: `Heavens & orbits (13:2)`,
+        arabic: `رَفَعَ السَّمَاوَاتِ بِغَيْرِ عَمَدٍ تَرَوْنَهَا`,
+        quote: `“It is Allah who erected the heavens without pillars that you [can] see… and made subject the sun and the moon, each running [its course] for a specified term.”`,
+        takeaway: `Celestial stability and timed orbits invite certainty about our appointed meeting with God.`
+      },
+      {
+        label: `One water, diverse fruit (13:4)`,
+        arabic: `يُسْقَىٰ بِمَاءٍ وَاحِدٍ وَنُفَضّلُ بَعْضَهَا عَلَىٰ بَعْضٍ فِي الْأُكُلُ`,
+        quote: `“…neighboring plots and gardens of grapevines and crops and palm trees… watered with one water; but We make some of them exceed others in [quality of] fruit.”`,
+        takeaway: `Uniform rain meeting varied soil produces different fruit — a mirror of one revelation meeting diverse human hearts.`
+      },
+      {
+        label: `Measure in the womb (13:8)`,
+        arabic: `وَكُلُّ شَيْءٍ عِنْدَهُ بِمِقْدَارٍ`,
+        quote: `“Allah knows what every female carries and what the wombs lose [prematurely] or exceed. And everything with Him is by due measure.”`,
+        takeaway: `Divine governance extends from galactic scale down to unseen cellular development.`
+      },
+      {
+        label: `Prostrating shadows (13:15)`,
+        arabic: `وَظِلَالُهُمْ بِالْغُدُوِّ وَالْآصَالِ`,
+        quote: `“And to Allah prostrates whoever is within the heavens and the earth, willingly or by compulsion, and their shadows [as well] in the mornings and the afternoons.”`,
+        takeaway: `Physical creation bows continuously in morning and evening cycles, leaving only human choice to align willingly.`
+      }
+    ]
+  },
+  {
+    id: `thunder`,
+    title: `The praise of thunder & angels`,
+    verses: `13:12–13`,
+    thesis: `The surah takes its name from Ar-Ra'd (The Thunder). What people hear as intimidating atmospheric force is revealed as an act of conscious glorification (tasbih).`,
+    subItems: [
+      {
+        label: `Fear & aspiration in lightning (13:12)`,
+        arabic: `يُرِيكُمُ الْبَرْقَ خَوْفًا وَطَمَعًا`,
+        quote: `“It is He who shows you lightning, [causing] fear and aspiration, and generates the heavy clouds.”`,
+        takeaway: `Lightning awakens balanced awe: fear of danger (khawf) paired with hope for rain (tama') — the twin wings of a healthy spiritual state.`
+      },
+      {
+        label: `Thunder's praise vs. human dispute (13:13)`,
+        arabic: `وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ`,
+        quote: `“And the thunder exalts [Allah] with praise of Him and the angels [as well] from fear of Him - and He sends thunderbolts… while they dispute about Allah.”`,
+        takeaway: `While thunder and angels exalt their Creator in reverence, arrogant disputers argue against Him under the very sky He commands.`
+      }
+    ]
+  },
+  {
+    id: `hearts`,
+    title: `Hearts finding rest in remembrance`,
+    verses: `13:11, 20–24, 28`,
+    thesis: `Inner renewal begins with personal transformation (v. 11), matures into eight disciplined virtues of Ulul-Albab (vv. 20–22), and reaches tranquility through the remembrance of Allah (v. 28).`,
+    traits: [
+      { ref: `13:20`, title: `Fulfill Allah's covenant`, detail: `Honoring pledges without betrayal` },
+      { ref: `13:21`, title: `Join ordered bonds`, detail: `Nurturing kinship and unity` },
+      { ref: `13:21`, title: `Fear their Lord`, detail: `Dreading an evil reckoning` },
+      { ref: `13:22`, title: `Endure with patience`, detail: `Seeking only Allah's countenance` },
+      { ref: `13:22`, title: `Establish prayer`, detail: `Steady daily anchor of worship` },
+      { ref: `13:22`, title: `Spend secretly & publicly`, detail: `Generosity free of ostentation` },
+      { ref: `13:22`, title: `Repel evil with good`, detail: `Breaking cycles of harm` },
+      { ref: `13:28`, title: `Rest in remembrance`, detail: `Unshakeable stillness of heart` }
+    ]
+  },
+  {
+    id: `truth`,
+    title: `Enduring truth vs. vanishing falsehood`,
+    verses: `13:14, 17, 26`,
+    thesis: `Verse 17 delivers two timeless physical analogies — floodwaters carrying foam and smelted ore shedding slag — to explain why falsehood looks loud and large yet leaves nothing behind.`,
+    subItems: [
+      {
+        label: `The valley rain parable (13:17)`,
+        arabic: `فَأَمَّا الزَّبَدُ فَيَذْهَبُ جُفَاءٌ وَأَمَّا مَا يَنْفَعُ النَّاسَ فَيَمْكُثُ فِي الْأَرْضِ`,
+        quote: `“As for the foam, it vanishes, [being] cast off; but as for that which benefits the people, it remains on the earth.”`,
+        takeaway: `Truth resembles deep rainwater absorbed into valleys according to their capacity — quiet, sustaining, and enduring.`
+      },
+      {
+        label: `The smelted ore parable (13:17)`,
+        arabic: `وَمِمَّا يُوقِدُونَ عَلَيْهِ فِي النَّارِ ابْتِغَاءَ حِلْيَةٍ أَوْ مَتَاعٍ زَبَدٌ مِثْلُهُ`,
+        quote: `“And from that [ore] which they heat in the fire, desiring adornments and utensils, is a foam like it.”`,
+        takeaway: `Trials function like a furnace: they bring impurities (slag/foam) to the surface to be skimmed off so usable metal remains.`
+      },
+      {
+        label: `Stretching hands toward distant water (13:14)`,
+        arabic: `إِلَّا كَبَاسِطِ كَفَّيْهِ إِلَى الْمَاءِ لِيَبْلُغَ فَاهُ وَمَا هُوَ بِبَالِغِهِ`,
+        quote: `“…except as one who stretches his hands toward water [from afar, calling it] to reach his mouth, but it will not reach it [thus].”`,
+        takeaway: `Calling upon false supports leaves a thirsty traveler gesturing at water that never quenches their thirst.`
+      }
+    ]
+  }
+];
+
+const QUIZ = [
+  {
+    q: `In 13:4, neighboring plots of grapevines, crops, and palm trees are watered by a single water source yet produce different qualities of fruit. What quality is required of people to read this sign?`,
+    verse: `13:4`,
+    options: [
+      `People who reason (ya'qilun)`,
+      `People who seek material wealth`,
+      `People who demand physical miracles`,
+      `People who remain silent`
+    ],
+    answer: 0,
+    explanation: `Verse 13:4 concludes: "Indeed in that are signs for a people who reason," directly following 13:3's call to "a people who give thought."`
+  },
+  {
+    q: `According to 13:11, what must happen before Allah changes the outward condition of a people?`,
+    verse: `13:11`,
+    options: [
+      `They must change what is in themselves`,
+      `They must construct stronger cities`,
+      `They must wait for a heavenly sign`,
+      `They must outnumber their rivals`
+    ],
+    answer: 0,
+    explanation: `Verse 13:11 declares: "Indeed, Allah will not change the condition of a people until they change what is in themselves."`
+  },
+  {
+    q: `In 13:12, what twin emotions does lightning evoke when Allah shows it to people?`,
+    verse: `13:12`,
+    options: [
+      `Pride and certainty`,
+      `Fear and aspiration (hope)`,
+      `Anger and regret`,
+      `Sorrow and relief`
+    ],
+    answer: 1,
+    explanation: `Verse 13:12 states: "It is He who shows you lightning, [causing] fear and aspiration, and generates the heavy clouds."`
+  },
+  {
+    q: `What are the thunder (ar-ra'd) and the angels doing in 13:13 while disbelievers dispute about Allah?`,
+    verse: `13:13`,
+    options: [
+      `Withholding rain from the earth`,
+      `Exalting Allah with His praise (and out of fear of Him)`,
+      `Debating the disbelievers directly`,
+      `Searching for hidden speech`
+    ],
+    answer: 1,
+    explanation: `Verse 13:13 affirms: "And the thunder exalts [Allah] with praise of Him and the angels [as well] from fear of Him."`
+  },
+  {
+    q: `In 13:14, calling upon false deities besides Allah is compared to someone who:`,
+    verse: `13:14`,
+    options: [
+      `Builds a home upon shifting sand`,
+      `Stretches out his hands toward distant water hoping it reaches his mouth`,
+      `Walks through darkness carrying an unlit lamp`,
+      `Plants seeds in rocky soil without rain`
+    ],
+    answer: 1,
+    explanation: `Verse 13:14 compares praying to false allies to "one who stretches his hands toward water [from afar, calling it] to reach his mouth, but it will not reach it."`
+  },
+  {
+    q: `In the twin parables of 13:17 (torrential rainwater and heated ore), what does the rising foam (zabad) represent?`,
+    verse: `13:17`,
+    options: [
+      `Pure revelation`,
+      `Falsehood, which vanishes cast off`,
+      `Hidden angelic protection`,
+      `Generous charity spent in secret`
+    ],
+    answer: 1,
+    explanation: `Verse 13:17 explains: "Thus Allah presents [the example of] truth and falsehood. As for the foam, it vanishes, [being] cast off; but as for that which benefits the people, it remains on the earth."`
+  },
+  {
+    q: `Which response to wrongdoing is explicitly named among the traits of the people of understanding (Ulul-Albab) in 13:22?`,
+    verse: `13:22`,
+    options: [
+      `Ignoring all social ties`,
+      `Preventing (repelling) evil with good`,
+      `Demanding immediate retribution`,
+      `Withdrawing completely from public life`
+    ],
+    answer: 1,
+    explanation: `Verse 13:22 describes those who "prevent evil with good" alongside patience, prayer, and spending secretly and publicly.`
+  },
+  {
+    q: `When angels enter upon the righteous in the Gardens of perpetual residence (13:24), what reason do they cite in their greeting of peace?`,
+    verse: `13:24`,
+    options: [
+      `"For the abundance of wealth you gathered"`,
+      `"For what you patiently endured"`,
+      `"For the verses you debated"`,
+      `"For the towers you erected"`
+    ],
+    answer: 1,
+    explanation: `Verse 13:24 records the angelic greeting: "Peace be upon you for what you patiently endured. And excellent is the final home."`
+  },
+  {
+    q: `What brings true assurance and rest to believers' hearts according to 13:28?`,
+    verse: `13:28`,
+    options: [
+      `Witnessing mountains move`,
+      `The remembrance of Allah (dhikrullah)`,
+      `Unlimited worldly provision`,
+      `Winning public arguments`
+    ],
+    answer: 1,
+    explanation: `Verse 13:28 states: "Unquestionably, by the remembrance of Allah hearts are assured."`
+  },
+  {
+    q: `In 13:39, Allah eliminates what He wills or confirms, and what master record rests with Him?`,
+    verse: `13:39`,
+    options: [
+      `The Mother of the Book (Umm al-Kitab)`,
+      `The Scrolls of the Valleys`,
+      `The Pillar of the Heavens`,
+      `The Covenant of the Clouds`
+    ],
+    answer: 0,
+    explanation: `Verse 13:39 concludes: "Allah eliminates what He wills or confirms, and with Him is the Mother of the Book."`
+  }
+];
+
+/* Application state (persisted via notebookAppApi) */
+let appState = {
+  currentVerse: 1,
+  activePathwayFilter: `all`,
+  searchQuery: ``,
+  showAllList: false,
+  activeConceptIdx: 0,
+  activeSubIdx: 0,
+  masteredVerses: [],
+  bookmarkedVerses: [],
+  completedMilestones: [],
+  verseNotes: {},
+  quizIdx: 0,
+  quizAnswers: {}
+};
+
+let saveTimer = null;
+
+function persistState() {
+  if (saveTimer) clearTimeout(saveTimer);
+  const statusEl = document.getElementById(`save-status-note`);
+  if (statusEl) statusEl.textContent = `Saving…`;
+  saveTimer = setTimeout(async () => {
+    try {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        await window.notebookAppApi.setAppState(appState);
+      }
+      if (statusEl) statusEl.textContent = `Saved to study record`;
+    } catch (err) {
+      if (statusEl) statusEl.textContent = `Local session active`;
+    }
+  }, 150);
+}
+
+/* KPI & Summary Updates */
+function updateKPIs() {
+  const masteredCount = appState.masteredVerses.length;
+  const milestoneCount = appState.completedMilestones.length;
+  const answeredKeys = Object.keys(appState.quizAnswers);
+  let correctCount = 0;
+  answeredKeys.forEach((k) => {
+    const idx = Number(k);
+    if (QUIZ[idx] && appState.quizAnswers[k] === QUIZ[idx].answer) {
+      correctCount++;
+    }
+  });
+
+  const kpiVerses = document.getElementById(`kpi-verses`);
+  const kpiBar = document.getElementById(`kpi-verses-bar`);
+  const kpiVersesNote = document.getElementById(`kpi-verses-note`);
+  if (kpiVerses) kpiVerses.textContent = `${masteredCount} / 43`;
+  if (kpiBar) kpiBar.style.width = `${Math.round((masteredCount / 43) * 100)}%`;
+  if (kpiVersesNote) {
+    kpiVersesNote.textContent = masteredCount === 0
+      ? `Begin with verse 13:1 or pick a pathway`
+      : masteredCount === 43
+        ? `All 43 verses studied`
+        : `${Math.round((masteredCount / 43) * 100)}% of Surah Ar-Ra'd studied`;
+  }
+
+  const kpiMilestones = document.getElementById(`kpi-milestones`);
+  const kpiMilestonesNote = document.getElementById(`kpi-milestones-note`);
+  if (kpiMilestones) kpiMilestones.textContent = `${milestoneCount} / 12`;
+  if (kpiMilestonesNote) {
+    kpiMilestonesNote.textContent = milestoneCount === 12
+      ? `All 4 study pathways complete`
+      : `4 self-paced pathways`;
+  }
+
+  const kpiQuiz = document.getElementById(`kpi-quiz`);
+  const kpiQuizNote = document.getElementById(`kpi-quiz-note`);
+  if (kpiQuiz) kpiQuiz.textContent = `${correctCount} / ${QUIZ.length}`;
+  if (kpiQuizNote) {
+    kpiQuizNote.textContent = answeredKeys.length === 0
+      ? `Not attempted yet`
+      : `${answeredKeys.length} of ${QUIZ.length} answered`;
+  }
+}
+
+/* Pathways Renderer */
+function renderPathways() {
+  const grid = document.getElementById(`pathway-grid`);
+  if (!grid) return;
+
+  grid.innerHTML = PATHWAYS.map((p) => {
+    const doneInPathway = p.milestones.filter((m) => appState.completedMilestones.includes(m.id)).length;
+    const isSelected = appState.activePathwayFilter === p.code;
+    const milestonesHtml = p.milestones.map((m) => {
+      const done = appState.completedMilestones.includes(m.id);
+      return `
+        <li>
+          <button type="button" class="milestone-btn ${done ? `is-done` : ``}" onclick="toggleMilestone('${m.id}')">
+            <span class="milestone-check" aria-hidden="true">${done ? `✓` : ``}</span>
+            <span>${m.label}</span>
+          </button>
+        </li>
+      `;
+    }).join(``);
+
+    return `
+      <article class="pathway-card ${isSelected ? `is-selected` : ``}">
+        <div class="pathway-header">
+          <div>
+            <span class="label">Pathway ${p.id} · Verses ${p.range}</span>
+            <h3 class="headline headline-sub" style="margin-top: 2px;">${p.title}</h3>
+          </div>
+          <span class="tag">${doneInPathway} / ${p.milestones.length}</span>
+        </div>
+        <p class="prose-muted">${p.summary}</p>
+        <ul class="milestone-list">${milestonesHtml}</ul>
+        <div class="btn-row" style="margin-top: auto; padding-top: var(--space-xs);">
+          <button type="button" class="btn btn-sm ${isSelected ? `btn-primary` : ``}" onclick="activatePathway('${p.code}', ${p.start})">
+            <span>${isSelected ? `Active in explorer` : `Focus verses ${p.range}`}</span>
+          </button>
+        </div>
+      </article>
+    `;
+  }).join(``);
+}
+
+function toggleMilestone(id) {
+  const idx = appState.completedMilestones.indexOf(id);
+  if (idx >= 0) {
+    appState.completedMilestones.splice(idx, 1);
+  } else {
+    appState.completedMilestones.push(id);
+  }
+  renderPathways();
+  updateKPIs();
+  persistState();
+}
+
+function activatePathway(code, startVerse) {
+  appState.activePathwayFilter = code;
+  appState.currentVerse = startVerse;
+  const select = document.getElementById(`filter-pathway`);
+  if (select) select.value = code;
+  renderPathways();
+  renderRhythmMap();
+  renderExplorer();
+  persistState();
+  const explorer = document.getElementById(`explorer`);
+  if (explorer) explorer.scrollIntoView({ behavior: `smooth`, block: `start` });
+}
+
+/* Structural Rhythm Map */
+function renderRhythmMap() {
+  const mapEl = document.getElementById(`rhythm-map`);
+  if (!mapEl) return;
+
+  mapEl.innerHTML = VERSES.map((v) => {
+    const isMastered = appState.masteredVerses.includes(v.num);
+    const isCurrent = appState.currentVerse === v.num;
+    const classes = [
+      `rhythm-cell`,
+      v.pivot ? `is-pivot` : ``,
+      isMastered ? `is-mastered` : ``,
+      isCurrent ? `is-current` : ``
+    ].filter(Boolean).join(` `);
+    return `<button type="button" class="${classes}" data-pathway="${v.pathway}" aria-label="Verse 13:${v.num}" title="13:${v.num}" onmouseenter="previewRhythm(${v.num})" onclick="jumpToVerse(${v.num})"></button>`;
+  }).join(``);
+}
+
+function previewRhythm(num) {
+  const v = VERSES.find((item) => item.num === num);
+  const readout = document.getElementById(`rhythm-hover-readout`);
+  if (!v || !readout) return;
+  const snippet = v.english.length > 105 ? `${v.english.slice(0, 105)}…` : v.english;
+  readout.textContent = `13:${v.num}${v.pivot ? ` (Pivot)` : ``} — ${snippet}`;
+}
+
+function jumpToVerse(num) {
+  appState.currentVerse = num;
+  if (appState.activePathwayFilter !== `all`) {
+    appState.activePathwayFilter = `all`;
+    const select = document.getElementById(`filter-pathway`);
+    if (select) select.value = `all`;
+    renderPathways();
+  }
+  renderRhythmMap();
+  renderExplorer();
+  persistState();
+  const spot = document.getElementById(`verse-spotlight`);
+  if (spot) spot.scrollIntoView({ behavior: `smooth`, block: `nearest` });
+}
+
+/* Core Theological Concepts */
+function selectConcept(idx) {
+  appState.activeConceptIdx = idx;
+  appState.activeSubIdx = 0;
+  for (let i = 0; i < CONCEPTS.length; i++) {
+    const tab = document.getElementById(`ctab-${i}`);
+    if (tab) tab.classList.toggle(`is-active`, i === idx);
+  }
+  renderConceptPanel();
+  persistState();
+}
+
+function selectConceptSub(subIdx) {
+  appState.activeSubIdx = subIdx;
+  renderConceptPanel();
+  persistState();
+}
+
+function buildConceptSvg(conceptId, subIdx) {
+  if (conceptId === `nature`) {
+    return `
+      <svg viewBox="0 0 360 150" width="100%" aria-hidden="true" style="display: block; max-height: 150px;">
+        <rect x="8" y="18" width="344" height="1" fill="var(--outline-variant)"></rect>
+        <circle cx="180" cy="46" r="16" fill="none" stroke="var(--data-1)" stroke-width="2"></circle>
+        <path d="M24 128 Q100 84 180 128 T336 128" fill="none" stroke="var(--data-2)" stroke-width="2"></path>
+        <line x1="90" y1="68" x2="90" y2="112" stroke="var(--data-1)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+        <line x1="180" y1="68" x2="180" y2="112" stroke="var(--data-1)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+        <line x1="270" y1="68" x2="270" y2="112" stroke="var(--data-1)" stroke-width="1.5" stroke-dasharray="3 3"></line>
+        <circle cx="90" cy="116" r="6" fill="var(--data-2)"></circle>
+        <rect x="174" y="110" width="12" height="12" rx="2" fill="var(--data-3)"></rect>
+        <polygon points="270,108 278,122 262,122" fill="var(--data-1)"></polygon>
+        <text x="180" y="144" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">One rain descending · Distinct yield from neighboring plots (13:4)</text>
+      </svg>
+    `;
+  }
+  if (conceptId === `thunder`) {
+    return `
+      <svg viewBox="0 0 360 150" width="100%" aria-hidden="true" style="display: block; max-height: 150px;">
+        <path d="M95 58 C95 40 112 28 132 32 C142 18 168 16 184 28 C202 18 228 24 236 42 C254 44 264 58 258 74 L98 74 C86 72 86 60 95 58 Z" fill="var(--primary-container)" stroke="var(--data-1)" stroke-width="2"></path>
+        <polyline points="184,74 170,102 188,102 172,130" fill="none" stroke="var(--data-3)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+        <path d="M122 86 Q128 98 122 110" fill="none" stroke="var(--data-2)" stroke-width="1.5"></path>
+        <path d="M236 86 Q230 98 236 110" fill="none" stroke="var(--data-2)" stroke-width="1.5"></path>
+        <text x="86" y="102" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">Fear (khawf)</text>
+        <text x="242" y="102" font-family="Outfit, sans-serif" font-size="11" fill="var(--secondary)">Hope (tama')</text>
+        <text x="180" y="146" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">Thunder & angels exalt Allah in praise (13:12–13)</text>
+      </svg>
+    `;
+  }
+  if (conceptId === `hearts`) {
+    return `
+      <svg viewBox="0 0 360 140" width="100%" aria-hidden="true" style="display: block; max-height: 140px;">
+        <path d="M24 44 Q64 16 104 44 T184 44 T264 44 T336 44" fill="none" stroke="var(--data-context)" stroke-width="2"></path>
+        <line x1="24" y1="92" x2="336" y2="92" stroke="var(--data-2)" stroke-width="2.5"></line>
+        <circle cx="180" cy="92" r="5" fill="var(--data-2)"></circle>
+        <text x="24" y="24" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">Turbulence & restlessness</text>
+        <text x="24" y="114" font-family="Outfit, sans-serif" font-size="11" fill="var(--secondary)">Itmi'nan: steady assurance through remembrance (13:28)</text>
+      </svg>
+    `;
+  }
+  const showBenefit = subIdx !== 2;
+  return `
+    <svg viewBox="0 0 360 150" width="100%" aria-hidden="true" style="display: block; max-height: 150px;">
+      <rect x="28" y="34" width="136" height="64" rx="6" fill="var(--surface-container-low)" stroke="var(--outline-variant)"></rect>
+      <circle cx="62" cy="58" r="10" fill="none" stroke="var(--data-context)" stroke-width="2" stroke-dasharray="3 3"></circle>
+      <circle cx="90" cy="54" r="14" fill="none" stroke="var(--data-context)" stroke-width="2" stroke-dasharray="3 3"></circle>
+      <circle cx="122" cy="60" r="9" fill="none" stroke="var(--data-context)" stroke-width="2" stroke-dasharray="3 3"></circle>
+      <text x="96" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">Foam (zabad) — vanishes</text>
+
+      <rect x="196" y="34" width="136" height="64" rx="6" fill="${showBenefit ? `var(--surface-container)` : `var(--primary-container)`}" stroke="var(--secondary)"></rect>
+      <path d="M214 74 Q238 66 264 74 T314 74" fill="none" stroke="var(--data-2)" stroke-width="2.5"></path>
+      <path d="M214 60 Q238 52 264 60 T314 60" fill="none" stroke="var(--data-1)" stroke-width="2"></path>
+      <text x="264" y="88" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--secondary)">What benefits — remains</text>
+      <text x="180" y="132" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">Truth endures on earth; falsehood is cast off (13:17)</text>
+    </svg>
+  `;
+}
+
+function renderConceptPanel() {
+  const panel = document.getElementById(`concept-panel`);
+  if (!panel) return;
+  const concept = CONCEPTS[appState.activeConceptIdx] || CONCEPTS[0];
+
+  if (concept.id === `hearts`) {
+    const traitsHtml = concept.traits.map((t) => `
+      <div class="trait-item">
+        <span class="label">${t.ref}</span>
+        <strong style="font-weight: 600; font-size: 0.96875rem;">${t.title}</strong>
+        <span class="prose-muted" style="font-size: 0.875rem;">${t.detail}</span>
+      </div>
+    `).join(``);
+
+    panel.innerHTML = `
+      <div class="concept-stage">
+        <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <div>
+            <span class="label">Verses ${concept.verses}</span>
+            <h3 class="headline headline-sub" style="margin-top: 2px;">${concept.title}</h3>
+          </div>
+          <p class="prose">${concept.thesis}</p>
+          <div class="concept-visual-box">
+            ${buildConceptSvg(`hearts`, 0)}
+            <p class="arabic-text" lang="ar" dir="rtl" style="font-size: 1.45rem;">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ</p>
+            <p class="prose-muted" style="font-size: 0.9375rem;">“Indeed, Allah will not change the condition of a people until they change what is in themselves.” (13:11)</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <span class="label">Eight qualities of Ulul-Albab & tranquil hearts</span>
+          <div class="traits-grid">${traitsHtml}</div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-sm" onclick="jumpToVerse(28)">Inspect 13:28 in explorer</button>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const subItems = concept.subItems || [];
+  const subIdx = Math.min(appState.activeSubIdx, subItems.length - 1);
+  const activeSub = subItems[subIdx];
+
+  const pillsHtml = subItems.map((item, idx) => `
+    <button type="button" class="sub-pill ${idx === subIdx ? `is-active` : ``}" onclick="selectConceptSub(${idx})">${item.label}</button>
+  `).join(``);
+
+  panel.innerHTML = `
+    <div class="concept-stage">
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <div>
+          <span class="label">Verses ${concept.verses}</span>
+          <h3 class="headline headline-sub" style="margin-top: 2px;">${concept.title}</h3>
+        </div>
+        <p class="prose">${concept.thesis}</p>
+        <div class="sub-pill-row">${pillsHtml}</div>
+        <div class="concept-visual-box">
+          ${buildConceptSvg(concept.id, subIdx)}
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <span class="label">${activeSub.label}</span>
+        <p class="arabic-text" lang="ar" dir="rtl" style="font-size: 1.6rem;">${activeSub.arabic}</p>
+        <p class="prose">${activeSub.quote}</p>
+        <div class="verse-reflection-box">
+          <span class="label">Key theological takeaway</span>
+          <p class="prose" style="margin-top: var(--space-xs);">${activeSub.takeaway}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* Verse Explorer */
+function getFilteredVerses() {
+  const filter = appState.activePathwayFilter;
+  const query = appState.searchQuery.trim().toLowerCase();
+
+  return VERSES.filter((v) => {
+    if (filter === `p1` && v.pathway !== 1) return false;
+    if (filter === `p2` && v.pathway !== 2) return false;
+    if (filter === `p3` && v.pathway !== 3) return false;
+    if (filter === `p4` && v.pathway !== 4) return false;
+    if (filter === `bookmarked` && !appState.bookmarkedVerses.includes(v.num)) return false;
+    if (filter === `unstudied` && appState.masteredVerses.includes(v.num)) return false;
+
+    if (query) {
+      const hay = `${v.num} 13:${v.num} ${v.arabic} ${v.english} ${v.reflection}`.toLowerCase();
+      if (!hay.includes(query)) return false;
+    }
+    return true;
+  });
+}
+
+function applyVerseFilter() {
+  const select = document.getElementById(`filter-pathway`);
+  const search = document.getElementById(`search-verses`);
+  if (select) appState.activePathwayFilter = select.value;
+  if (search) appState.searchQuery = search.value;
+
+  const filtered = getFilteredVerses();
+  if (filtered.length > 0 && !filtered.some((v) => v.num === appState.currentVerse)) {
+    appState.currentVerse = filtered[0].num;
+  }
+  renderPathways();
+  renderRhythmMap();
+  renderExplorer();
+  persistState();
+}
+
+function toggleAllList() {
+  appState.showAllList = !appState.showAllList;
+  renderExplorer();
+  persistState();
+}
+
+function renderExplorer() {
+  const filtered = getFilteredVerses();
+  const filteredNums = new Set(filtered.map((v) => v.num));
+  const current = VERSES.find((v) => v.num === appState.currentVerse) || VERSES[0];
+  const pathwayObj = PATHWAYS.find((p) => p.id === current.pathway) || PATHWAYS[0];
+  const isMastered = appState.masteredVerses.includes(current.num);
+  const isBookmarked = appState.bookmarkedVerses.includes(current.num);
+
+  const spotRef = document.getElementById(`spot-ref`);
+  const spotTag = document.getElementById(`spot-pathway-tag`);
+  const spotArabic = document.getElementById(`spot-arabic`);
+  const spotEnglish = document.getElementById(`spot-english`);
+  const spotReflection = document.getElementById(`spot-reflection`);
+  const spotNoteRef = document.getElementById(`spot-note-ref`);
+  const spotNote = document.getElementById(`spot-user-note`);
+  const spotPos = document.getElementById(`spot-position`);
+  const btnPrev = document.getElementById(`btn-prev-verse`);
+  const btnNext = document.getElementById(`btn-next-verse`);
+  const masterLabel = document.getElementById(`master-label`);
+  const btnMaster = document.getElementById(`btn-master-verse`);
+  const bookmarkLabel = document.getElementById(`bookmark-label`);
+  const btnBookmark = document.getElementById(`btn-bookmark`);
+
+  if (spotRef) spotRef.textContent = `Surah 13:${current.num}`;
+  if (spotTag) spotTag.textContent = `Pathway ${pathwayObj.id} · ${pathwayObj.title}`;
+  if (spotArabic) spotArabic.textContent = current.arabic;
+  if (spotEnglish) spotEnglish.textContent = current.english;
+  if (spotReflection) spotReflection.textContent = current.reflection;
+  if (spotNoteRef) spotNoteRef.textContent = `13:${current.num}`;
+  if (spotNote) spotNote.value = appState.verseNotes[String(current.num)] || ``;
+  if (spotPos) spotPos.textContent = `Verse ${current.num} of 43`;
+
+  if (btnPrev) btnPrev.disabled = current.num <= 1;
+  if (btnNext) btnNext.disabled = current.num >= 43;
+
+  if (masterLabel) masterLabel.textContent = isMastered ? `Studied ✓` : `Mark studied`;
+  if (btnMaster) btnMaster.classList.toggle(`btn-primary`, !isMastered);
+  if (bookmarkLabel) bookmarkLabel.textContent = isBookmarked ? `Bookmarked` : `Bookmark`;
+  if (btnBookmark) btnBookmark.classList.toggle(`tag-slate`, isBookmarked);
+
+  const countNote = document.getElementById(`filter-count-note`);
+  if (countNote) {
+    countNote.textContent = filtered.length === 43
+      ? `Showing all 43 verses`
+      : filtered.length === 0
+        ? `No verses match this filter — try clearing search`
+        : `${filtered.length} matching verse${filtered.length === 1 ? `` : `s`} highlighted`;
+  }
+
+  const numGrid = document.getElementById(`verse-number-grid`);
+  if (numGrid) {
+    numGrid.innerHTML = VERSES.map((v) => {
+      const classes = [
+        `verse-num-btn`,
+        appState.masteredVerses.includes(v.num) ? `is-mastered` : ``,
+        appState.bookmarkedVerses.includes(v.num) ? `is-bookmarked` : ``,
+        v.num === current.num ? `is-active` : ``,
+        !filteredNums.has(v.num) ? `is-dimmed` : ``
+      ].filter(Boolean).join(` `);
+      return `<button type="button" class="${classes}" onclick="selectVerse(${v.num})" aria-label="Select verse 13:${v.num}">${v.num}</button>`;
+    }).join(``);
+  }
+
+  const toggleAllLabel = document.getElementById(`toggle-all-label`);
+  if (toggleAllLabel) {
+    toggleAllLabel.textContent = appState.showAllList ? `Hide full list` : `Show full list (${filtered.length})`;
+  }
+
+  const listEl = document.getElementById(`expanded-verse-list`);
+  if (listEl) {
+    listEl.hidden = !appState.showAllList;
+    if (appState.showAllList) {
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="panel"><p class="prose-muted">No verses match your current filter. Reset the filter to view all 43 verses.</p></div>`;
+      } else {
+        listEl.innerHTML = filtered.map((v) => `
+          <div class="verse-list-row ${v.num === current.num ? `is-active-row` : ``}">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+              <span class="label">13:${v.num} · Pathway ${v.pathway}</span>
+              <button type="button" class="btn btn-sm" onclick="selectVerse(${v.num})">Open in reader</button>
+            </div>
+            <p class="arabic-text" lang="ar" dir="rtl" style="font-size: var(--arabic-list-size);">${v.arabic}</p>
+            <p class="prose" style="max-width: none;">${v.english}</p>
+          </div>
+        `).join(``);
+      }
+    }
+  }
+}
+
+function selectVerse(num) {
+  appState.currentVerse = num;
+  renderRhythmMap();
+  renderExplorer();
+  persistState();
+}
+
+function stepVerse(delta) {
+  const next = Math.max(1, Math.min(43, appState.currentVerse + delta));
+  selectVerse(next);
+}
+
+function toggleCurrentMastered() {
+  const num = appState.currentVerse;
+  const idx = appState.masteredVerses.indexOf(num);
+  if (idx >= 0) {
+    appState.masteredVerses.splice(idx, 1);
+  } else {
+    appState.masteredVerses.push(num);
+  }
+  renderRhythmMap();
+  renderExplorer();
+  updateKPIs();
+  persistState();
+}
+
+function toggleCurrentBookmark() {
+  const num = appState.currentVerse;
+  const idx = appState.bookmarkedVerses.indexOf(num);
+  if (idx >= 0) {
+    appState.bookmarkedVerses.splice(idx, 1);
+  } else {
+    appState.bookmarkedVerses.push(num);
+  }
+  renderExplorer();
+  persistState();
+}
+
+function saveCurrentNote(text) {
+  const key = String(appState.currentVerse);
+  if (text.trim() === ``) {
+    delete appState.verseNotes[key];
+  } else {
+    appState.verseNotes[key] = text;
+  }
+  persistState();
+}
+
+/* Quiz */
+function renderQuiz() {
+  const qIdx = appState.quizIdx;
+  const q = QUIZ[qIdx];
+  if (!q) return;
+
+  const progressLabel = document.getElementById(`quiz-progress-label`);
+  const verseHint = document.getElementById(`quiz-verse-hint`);
+  const qText = document.getElementById(`quiz-question-text`);
+  const optionsEl = document.getElementById(`quiz-options`);
+  const feedbackEl = document.getElementById(`quiz-feedback`);
+  const btnPrev = document.getElementById(`btn-quiz-prev`);
+  const btnNext = document.getElementById(`btn-quiz-next`);
+
+  const chosen = appState.quizAnswers[String(qIdx)];
+  const hasAnswered = chosen !== undefined;
+
+  if (progressLabel) progressLabel.textContent = `Question ${qIdx + 1} of ${QUIZ.length}`;
+  if (verseHint) verseHint.textContent = `Focus · ${q.verse}`;
+  if (qText) qText.textContent = q.q;
+  if (btnPrev) btnPrev.disabled = qIdx <= 0;
+  if (btnNext) btnNext.disabled = qIdx >= QUIZ.length - 1;
+
+  if (optionsEl) {
+    optionsEl.innerHTML = q.options.map((opt, idx) => {
+      let cls = `quiz-option`;
+      let mark = ``;
+      if (hasAnswered) {
+        if (idx === q.answer) {
+          cls += ` is-correct`;
+          mark = `✓`;
+        } else if (idx === chosen) {
+          cls += ` is-wrong`;
+          mark = `✕`;
+        }
+      }
+      return `
+        <button type="button" class="${cls}" onclick="answerQuiz(${idx})">
+          <span>${opt}</span>
+          <span aria-hidden="true">${mark}</span>
+        </button>
+      `;
+    }).join(``);
+  }
+
+  if (feedbackEl) {
+    if (!hasAnswered) {
+      feedbackEl.hidden = true;
+      feedbackEl.className = `quiz-feedback`;
+    } else {
+      const right = chosen === q.answer;
+      feedbackEl.hidden = false;
+      feedbackEl.className = `quiz-feedback ${right ? `is-correct` : `is-wrong`}`;
+      feedbackEl.innerHTML = `
+        <strong>${right ? `Correct` : `Not quite`} (${q.verse})</strong> — ${q.explanation}
+      `;
+    }
+  }
+
+  const dotGrid = document.getElementById(`quiz-dot-grid`);
+  if (dotGrid) {
+    dotGrid.innerHTML = QUIZ.map((item, idx) => {
+      const ans = appState.quizAnswers[String(idx)];
+      const cls = [
+        `quiz-dot`,
+        idx === qIdx ? `is-current` : ``,
+        ans !== undefined ? (ans === item.answer ? `is-right` : `is-missed`) : ``
+      ].filter(Boolean).join(` `);
+      return `<button type="button" class="${cls}" onclick="jumpQuiz(${idx})">${idx + 1}</button>`;
+    }).join(``);
+  }
+
+  const answeredKeys = Object.keys(appState.quizAnswers);
+  let correctCount = 0;
+  answeredKeys.forEach((k) => {
+    const idx = Number(k);
+    if (QUIZ[idx] && appState.quizAnswers[k] === QUIZ[idx].answer) correctCount++;
+  });
+
+  const sideScore = document.getElementById(`quiz-side-score`);
+  const sideSummary = document.getElementById(`quiz-side-summary`);
+  if (sideScore) sideScore.textContent = `${correctCount} / ${QUIZ.length} correct`;
+  if (sideSummary) {
+    sideSummary.textContent = answeredKeys.length === QUIZ.length
+      ? `Completed all 10 checks with ${Math.round((correctCount / QUIZ.length) * 100)}% mastery.`
+      : `${QUIZ.length - answeredKeys.length} question${QUIZ.length - answeredKeys.length === 1 ? `` : `s`} remaining.`;
+  }
+}
+
+function answerQuiz(optIdx) {
+  appState.quizAnswers[String(appState.quizIdx)] = optIdx;
+  renderQuiz();
+  updateKPIs();
+  persistState();
+}
+
+function stepQuiz(delta) {
+  appState.quizIdx = Math.max(0, Math.min(QUIZ.length - 1, appState.quizIdx + delta));
+  renderQuiz();
+  persistState();
+}
+
+function jumpQuiz(idx) {
+  appState.quizIdx = idx;
+  renderQuiz();
+  persistState();
+}
+
+/* Inline two-step resets & Export */
+function handleResetProgress(btn) {
+  if (!btn) return;
+  if (btn.dataset.armed !== `true`) {
+    btn.dataset.armed = `true`;
+    btn.textContent = `Confirm reset?`;
+    setTimeout(() => {
+      if (btn.dataset.armed === `true`) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i><span>Reset</span>`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }, 4000);
+    return;
+  }
+  btn.dataset.armed = `false`;
+  btn.innerHTML = `<i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i><span>Reset</span>`;
+  if (window.lucide) window.lucide.createIcons();
+
+  appState = {
+    currentVerse: 1,
+    activePathwayFilter: `all`,
+    searchQuery: ``,
+    showAllList: false,
+    activeConceptIdx: 0,
+    activeSubIdx: 0,
+    masteredVerses: [],
+    bookmarkedVerses: [],
+    completedMilestones: [],
+    verseNotes: {},
+    quizIdx: 0,
+    quizAnswers: {}
+  };
+  const select = document.getElementById(`filter-pathway`);
+  const search = document.getElementById(`search-verses`);
+  if (select) select.value = `all`;
+  if (search) search.value = ``;
+  renderAll();
+  persistState();
+}
+
+function handleResetQuiz(btn) {
+  if (!btn) return;
+  if (btn.dataset.armed !== `true`) {
+    btn.dataset.armed = `true`;
+    btn.textContent = `Click again to reset quiz`;
+    setTimeout(() => {
+      if (btn.dataset.armed === `true`) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i><span>Retake mastery check</span>`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }, 4000);
+    return;
+  }
+  btn.dataset.armed = `false`;
+  btn.innerHTML = `<i data-lucide="rotate-ccw" class="btn-icon" aria-hidden="true"></i><span>Retake mastery check</span>`;
+  if (window.lucide) window.lucide.createIcons();
+
+  appState.quizIdx = 0;
+  appState.quizAnswers = {};
+  renderQuiz();
+  updateKPIs();
+  persistState();
+}
+
+function exportStudyRecord() {
+  const lines = [
+    `Surah Ar-Ra'd (Chapter 13) — Study Record`,
+    `Studied verses (${appState.masteredVerses.length}/43): ${appState.masteredVerses.sort((a, b) => a - b).map((n) => `13:${n}`).join(`, `) || `None yet`}`,
+    `Bookmarked verses: ${appState.bookmarkedVerses.sort((a, b) => a - b).map((n) => `13:${n}`).join(`, `) || `None`}`,
+    `Completed milestones: ${appState.completedMilestones.length}/12`,
+    ``,
+    `Personal Verse Notes:`
+  ];
+
+  const noteKeys = Object.keys(appState.verseNotes).sort((a, b) => Number(a) - Number(b));
+  if (noteKeys.length === 0) {
+    lines.push(`No personal notes recorded yet.`);
+  } else {
+    noteKeys.forEach((k) => {
+      lines.push(`13:${k} — ${appState.verseNotes[k]}`);
+    });
+  }
+
+  const content = lines.join(`\n`);
+  if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+    window.notebookAppApi.triggerFileDownload({
+      content,
+      contentType: `text/plain`,
+      encoding: `UTF-8`,
+      filename: `surah-ar-rad-study-notes.txt`
+    });
+  }
+}
+
+function renderAll() {
+  renderPathways();
+  renderRhythmMap();
+  selectConcept(appState.activeConceptIdx);
+  renderExplorer();
+  renderQuiz();
+  updateKPIs();
+  if (window.lucide) window.lucide.createIcons();
+}
+
+async function initApp() {
+  try {
+    if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+      const saved = await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === `object`) {
+        appState = Object.assign({}, appState, saved);
+        if (!Array.isArray(appState.masteredVerses)) appState.masteredVerses = [];
+        if (!Array.isArray(appState.bookmarkedVerses)) appState.bookmarkedVerses = [];
+        if (!Array.isArray(appState.completedMilestones)) appState.completedMilestones = [];
+        if (!appState.verseNotes || typeof appState.verseNotes !== `object`) appState.verseNotes = {};
+        if (!appState.quizAnswers || typeof appState.quizAnswers !== `object`) appState.quizAnswers = {};
+      }
+    }
+  } catch (err) {
+    /* Fallback to fresh default state */
+  }
+
+  const select = document.getElementById(`filter-pathway`);
+  const search = document.getElementById(`search-verses`);
+  if (select) select.value = appState.activePathwayFilter || `all`;
+  if (search) search.value = appState.searchQuery || ``;
+
+  renderAll();
+
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener(`DOMContentLoaded`, initApp);
+</script>
+</body>
+</html>

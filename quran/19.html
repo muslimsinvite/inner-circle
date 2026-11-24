@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="haven">
+<title>Surah Maryam (Chapter 19) — Interactive Study & Mastery Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+
+  /* Haven palette */
+  --background: #f5f6f5;
+  --surface-container-low: #ffffff;
+  --surface-container: #e3ebe2;
+  --surface-container-high: #dbe2dd;
+
+  --on-surface: #23272a;
+  --on-surface-variant: #5c6468;
+
+  --outline: #c9d0cc;
+  --outline-variant: #dde2df;
+
+  --primary: #3c5a6e;
+  --on-primary: #ffffff;
+  --primary-container: #e2e9ee;
+  --on-primary-container: #2a4152;
+  --secondary: #4f6b53;
+  --tertiary: #5f7c63;
+  --error: #a63d32;
+  --on-error: #ffffff;
+
+  --data-1: #3c5a6e;
+  --data-2: #5f7c63;
+  --data-3: #a8694a;
+  --data-4: #8a7a68;
+  --data-context: #c3cac6;
+
+  --font-headline: 'Outfit', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --font-label: 'Outfit', sans-serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+
+  --rounded: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-full: 9999px;
+
+  --hairline: 1px solid var(--outline-variant);
+  --hairline-control: 1px solid var(--outline);
+  --elevation: none;
+
+  /* Semantic & focus */
+  --positive: #3d6b47;
+  --positive-container: #e3ebe2;
+  --warning: #8f6321;
+  --warning-container: #f4ece0;
+  --error-container: #f6e6e4;
+  --focus: var(--primary);
+
+  /* Narrative type scale */
+  --display-size: clamp(2.25rem, 1.35rem + 3.2vw, 3.75rem);
+  --headline-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  --subhead-size: clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem);
+  --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --label-size: 0.8125rem;
+
+  /* Spacing scale (4pt base) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+/* Base reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+header { position: static !important; }
+
+.page-grid {
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+  max-width: 1160px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.page-grid * { min-width: 0; }
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Typography */
+.headline-display {
+  font-family: var(--font-headline);
+  font-weight: 300;
+  font-size: var(--display-size);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+  margin: 0;
+}
+.headline-display strong { font-weight: 600; }
+
+.headline-section {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-size: var(--headline-size);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  margin: 0;
+}
+.headline-section strong { font-weight: 600; }
+
+.subhead {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--subhead-size);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+  margin: 0;
+}
+
+.label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  color: var(--on-surface-variant);
+}
+
+.caption-sage {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.prose {
+  max-width: 65ch;
+  color: var(--on-surface);
+  margin: 0;
+}
+.prose-muted {
+  max-width: 65ch;
+  color: var(--on-surface-variant);
+  margin: 0;
+}
+
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 2.05;
+  color: var(--on-surface);
+  font-weight: 400;
+}
+
+/* Haven Hairline Panels & Section Rhythm */
+.panel {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--elevation);
+  padding: var(--space-lg);
+}
+
+.section {
+  display: grid;
+  gap: var(--space-lg);
+}
+.section + .section {
+  border-top: var(--hairline);
+  padding-top: var(--space-2xl);
+  margin-top: var(--space-xl);
+}
+
+.section-intro {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Opening Header & Asymmetric Grid */
+.hero-header {
+  display: grid;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-md);
+}
+
+.hero-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.hero-opening-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem);
+  line-height: 1.5;
+  color: var(--primary);
+  direction: rtl;
+  text-align: left;
+  margin-bottom: var(--space-xs);
+}
+
+.nav-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  border-bottom: var(--hairline);
+  padding-bottom: var(--space-sm);
+}
+.nav-jump a {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  padding: var(--space-xs) 0;
+  border-bottom: 2px solid transparent;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.nav-jump a:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Key Figure Row (Asymmetric proportions) */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: var(--space-md);
+}
+.metric-tile {
+  display: grid;
+  gap: var(--space-xs);
+  align-content: start;
+}
+.metric-value {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mastery Progress Strip */
+.mastery-bar-panel {
+  display: grid;
+  gap: var(--space-md);
+}
+.mastery-top-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+}
+.mastery-stats-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  align-items: center;
+}
+.mastery-stat-item {
+  display: grid;
+  gap: 2px;
+}
+.mastery-stat-num {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--background);
+  border: var(--hairline);
+  border-radius: var(--rounded-full);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--primary);
+  border-radius: var(--rounded-full);
+  transition: width var(--dur-long) var(--ease-out);
+}
+
+/* Buttons & Tags */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+.btn-primary:hover {
+  background-color: var(--on-primary-container);
+}
+.btn-secondary {
+  background-color: transparent;
+  color: var(--on-surface);
+  border-color: var(--outline);
+}
+.btn-secondary:hover {
+  background-color: var(--surface-container-high);
+}
+.btn-quiet {
+  background-color: transparent;
+  color: var(--on-surface-variant);
+  border-color: transparent;
+  padding: 0 var(--space-sm);
+}
+.btn-quiet:hover {
+  background-color: var(--surface-container-high);
+  color: var(--on-surface);
+}
+.btn[aria-pressed="true"],
+.btn.is-active {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  border-color: var(--primary);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--rounded-full);
+  background-color: var(--surface-container);
+  color: var(--secondary);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.tag-slate {
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+}
+.tag-warm {
+  background-color: var(--warning-container);
+  color: var(--warning);
+}
+
+/* Section 1: Architectural Ribbon & 98-Verse Matrix */
+.architecture-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.lens-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.movements-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.movement-band {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  background-color: var(--surface-container-low);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.movement-band:hover {
+  background-color: var(--background);
+}
+.movement-band.is-selected {
+  background-color: var(--primary-container);
+  border-color: var(--primary);
+}
+.movement-band-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+.movement-title {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--on-surface);
+}
+.movement-range {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.verse-dots-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: var(--space-xs);
+}
+.verse-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background-color: var(--outline-variant);
+  transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.verse-cell.is-studied {
+  background-color: var(--secondary);
+}
+.verse-cell.is-match {
+  background-color: var(--primary);
+}
+.verse-cell.is-rhyme-shift {
+  background-color: var(--data-3);
+}
+.verse-cell.is-dim {
+  opacity: 0.25;
+}
+
+.arch-detail-panel {
+  display: grid;
+  gap: var(--space-md);
+  position: sticky;
+  top: var(--space-lg);
+}
+
+.legend-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: var(--hairline);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+}
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Frequency Comparison Chart */
+.chart-container {
+  position: relative;
+  min-height: 220px;
+  width: 100%;
+}
+
+/* Section 2: Echoes / Parallels Explorer */
+.parallels-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.45fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.parallels-nav {
+  display: grid;
+  gap: var(--space-xs);
+}
+.parallel-btn {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  min-height: 52px;
+  background-color: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.parallel-btn:hover {
+  background-color: var(--surface-container-high);
+}
+.parallel-btn.is-active {
+  background-color: var(--primary-container);
+  border-color: var(--primary);
+}
+.parallel-btn-title {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--on-surface);
+}
+.parallel-btn-refs {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.parallel-compare {
+  display: grid;
+  gap: var(--space-md);
+}
+.parallel-pair-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-md);
+}
+.parallel-verse-box {
+  background-color: var(--background);
+  border: var(--hairline);
+  border-radius: var(--rounded);
+  padding: var(--space-md);
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+}
+
+/* Section 3: Complete 98-Verse Reader */
+.reader-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  gap: var(--space-md);
+  align-items: end;
+}
+.field-group {
+  display: grid;
+  gap: var(--space-xs);
+}
+.field-label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+.input-control, .select-control {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--surface-container-low);
+  border: var(--hairline-control);
+  border-radius: var(--rounded);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+}
+.select-control {
+  padding-right: 2.25rem;
+}
+.input-control:focus, .select-control:focus {
+  border-color: var(--primary);
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.reader-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.verses-stream {
+  display: grid;
+  border-top: var(--hairline);
+}
+.verse-row {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--hairline);
+}
+.verse-row.is-studied-row {
+  background-color: var(--surface-container-low);
+  padding-inline: var(--space-md);
+  border-radius: var(--rounded);
+  margin-block: 2px;
+  border: var(--hairline);
+}
+.verse-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.verse-meta-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.verse-num-badge {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+.verse-arabic-lg {
+  font-size: clamp(1.375rem, 1.2rem + 0.65vw, 1.75rem);
+  line-height: 2.1;
+}
+.verse-english {
+  max-width: 68ch;
+  color: var(--on-surface);
+  margin: 0;
+}
+.verse-english.is-blurred {
+  filter: blur(5px);
+  user-select: none;
+  cursor: pointer;
+}
+.verse-english.is-blurred:hover,
+.verse-english.is-revealed {
+  filter: none;
+  user-select: text;
+}
+.verse-note-insight {
+  font-size: 0.9375rem;
+  color: var(--secondary);
+  margin: 0;
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--outline-variant);
+  max-width: 66ch;
+}
+.highlight-rahman {
+  background-color: var(--surface-container);
+  color: var(--secondary);
+  padding: 0 0.25rem;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.personal-note-drawer {
+  display: grid;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--background);
+  border: var(--hairline);
+  border-radius: var(--rounded);
+}
+.personal-note-input {
+  width: 100%;
+  min-height: 68px;
+  padding: var(--space-sm);
+  border: var(--hairline-control);
+  border-radius: var(--rounded);
+  background-color: var(--surface-container-low);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+  resize: vertical;
+}
+
+/* Section 4: Vocabulary Flashcards */
+.flashcard-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.flashcard-stage {
+  display: grid;
+  gap: var(--space-md);
+}
+.flashcard-card {
+  min-height: 260px;
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-md);
+  cursor: pointer;
+  background-color: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-xl) var(--space-lg);
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.flashcard-card:hover {
+  border-color: var(--primary);
+}
+.flashcard-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(2rem, 1.6rem + 1.2vw, 2.75rem);
+  line-height: 1.7;
+  color: var(--on-surface);
+  direction: rtl;
+  text-align: center;
+}
+.flashcard-translit {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--primary);
+  text-align: center;
+}
+.flashcard-meaning {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--on-surface);
+  text-align: center;
+}
+.flashcard-context {
+  color: var(--on-surface-variant);
+  font-size: 0.9375rem;
+  text-align: center;
+  max-width: 52ch;
+  margin: 0 auto;
+}
+.vocab-index-list {
+  display: grid;
+  gap: 4px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.vocab-index-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  min-height: 44px;
+  border-radius: var(--rounded);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+.vocab-index-item:hover {
+  background-color: var(--background);
+}
+.vocab-index-item.is-current {
+  background-color: var(--primary-container);
+  border-color: var(--primary);
+}
+
+/* Section 5: Mastery Quiz */
+.quiz-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.quiz-options {
+  display: grid;
+  gap: var(--space-sm);
+}
+.quiz-option-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  min-height: 52px;
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  background-color: var(--surface-container-low);
+  border: var(--hairline-control);
+  border-radius: var(--rounded);
+  color: var(--on-surface);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.quiz-option-btn:hover:not(:disabled) {
+  background-color: var(--background);
+  border-color: var(--primary);
+}
+.quiz-option-btn.is-correct {
+  background-color: var(--positive-container);
+  border-color: var(--positive);
+  color: var(--on-surface);
+}
+.quiz-option-btn.is-wrong {
+  background-color: var(--error-container);
+  border-color: var(--error);
+  color: var(--on-surface);
+}
+.quiz-feedback {
+  padding: var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background-color: var(--background);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.quiz-tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-xs);
+}
+.quiz-pip {
+  min-height: 44px;
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background-color: var(--background);
+  color: var(--on-surface-variant);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--label-size);
+  cursor: pointer;
+}
+.quiz-pip.is-current {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.quiz-pip.is-right {
+  background-color: var(--positive-container);
+  border-color: var(--positive);
+  color: var(--positive);
+}
+.quiz-pip.is-missed {
+  background-color: var(--error-container);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+/* Subtle section reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inline status message */
+.inline-toast {
+  font-size: 0.875rem;
+  color: var(--secondary);
+  min-height: 1.25rem;
+}
+
+/* Footer */
+.page-footer {
+  border-top: var(--hairline);
+  padding-top: var(--space-xl);
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Responsive rules */
+@media (max-width: 880px) {
+  .hero-top,
+  .architecture-layout,
+  .parallels-layout,
+  .flashcard-shell,
+  .quiz-shell {
+    grid-template-columns: 1fr;
+  }
+  .arch-detail-panel {
+    position: static;
+  }
+  .parallel-pair-grid {
+    grid-template-columns: 1fr;
+  }
+  .reader-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+    padding: var(--space-md);
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    padding: var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-grid">
+
+  <!-- Opening Header -->
+  <header class="hero-header">
+    <nav class="nav-jump" aria-label="Chapter sections">
+      <a href="#architecture">Architecture &amp; Themes</a>
+      <a href="#parallels">Prophetic Parallels</a>
+      <a href="#reader">Complete 98-Verse Reader</a>
+      <a href="#vocabulary">Key Arabic Terms</a>
+      <a href="#mastery-quiz">Comprehension Check</a>
+    </nav>
+
+    <div class="hero-top">
+      <div class="section-intro">
+        <div class="hero-opening-arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ · كهيعص</div>
+        <h1 class="headline-display">Surah Maryam: <strong>Mercy across generations</strong></h1>
+        <p class="caption-sage">Chapter 19 · Verses 1–98 · From private supplication in old age to the cosmic defense of divine unity</p>
+        <p class="prose">
+          Surah Maryam opens with five solitary Arabic letters (<em>Kaf, Ha, Ya, 'Ayn, Sad</em>) and immediately introduces its governing theme: the tender mercy (<em>raḥmah</em>) of God toward His servants. Across 98 verses, the chapter moves through the intimate prayers of Zechariah, the miraculous birth and cradle speech of Jesus, Abraham's gentle yet resolute break from idolatry, and a lineage of prophets—before pivoting to human accountability, the certainty of resurrection, and the promise that the Most Merciful appoints enduring affection (<em>wuddā</em>) for those who believe and do good.
+        </p>
+      </div>
+
+      <div class="panel mastery-bar-panel" aria-live="polite">
+        <div class="mastery-top-row">
+          <div>
+            <span class="label">Your study progress</span>
+            <h2 class="subhead" id="mastery-headline">Begin exploring Chapter 19</h2>
+          </div>
+          <span class="tag" id="mastery-pct-badge">0% mastered</span>
+        </div>
+
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-progress-fill"></div>
+        </div>
+
+        <div class="mastery-stats-inline">
+          <div class="mastery-stat-item">
+            <span class="label">Verses studied</span>
+            <span class="mastery-stat-num" id="stat-verses">0 / 98</span>
+          </div>
+          <div class="mastery-stat-item">
+            <span class="label">Terms mastered</span>
+            <span class="mastery-stat-num" id="stat-vocab">0 / 14</span>
+          </div>
+          <div class="mastery-stat-item">
+            <span class="label">Quiz score</span>
+            <span class="mastery-stat-num" id="stat-quiz">0 / 8</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="exportStudyNotes()">Export study notes</button>
+          <button type="button" class="btn btn-quiet" id="reset-progress-btn" onclick="handleResetProgress(this)">Reset progress</button>
+        </div>
+        <div class="inline-toast" id="mastery-status-msg"></div>
+      </div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="panel metric-tile">
+        <span class="label">Structure of the chapter</span>
+        <span class="metric-value">98 verses</span>
+        <p class="caption-sage">Six distinct movements: four prophetic narratives (1–58) followed by two discourses on accountability and unity (59–98).</p>
+      </div>
+      <div class="panel metric-tile">
+        <span class="label">Governing divine name</span>
+        <span class="metric-value">16 mentions</span>
+        <p class="caption-sage"><em>ar-Raḥmān</em> ("The Most Merciful") anchors the chapter—from Mary's refuge (19:18) to the promise of affection (19:96).</p>
+      </div>
+      <div class="panel metric-tile">
+        <span class="label">Prophetic lineage</span>
+        <span class="metric-value">10 named figures</span>
+        <p class="caption-sage">Zechariah, John, Jesus, Abraham, Isaac, Jacob, Moses, Aaron, Ishmael, and Idrees—linked with Adam, Noah, and Israel (19:58).</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1: Architecture & Rhyme Shift -->
+  <section id="architecture" class="section reveal">
+    <div class="section-intro">
+      <span class="label">Section 1 · Structural anatomy</span>
+      <h2 class="headline-section">Two halves, six movements, and a <strong>decisive phonetic shift at verse 75</strong></h2>
+      <p class="prose-muted">
+        Explore how every verse fits into the whole chapter. Select any movement or toggle a thematic lens below to see where <em>ar-Raḥmān</em> concentrates, where cross-story echoes appear, and how the Arabic end-rhyme transforms from the lyrical <em>-iyyā</em> cadence of prophetic intimacy (19:2–74) to the emphatic <em>-ddā / -dā</em> cadence of reckoning (19:75–98).
+      </p>
+    </div>
+
+    <div class="lens-controls" role="group" aria-label="Architectural map lens">
+      <button type="button" class="btn btn-secondary is-active" id="lens-all" onclick="setArchLens('all')">All 98 verses</button>
+      <button type="button" class="btn btn-secondary" id="lens-rahman" onclick="setArchLens('rahman')">Mentions of ar-Raḥmān (16 verses)</button>
+      <button type="button" class="btn btn-secondary" id="lens-echoes" onclick="setArchLens('echoes')">Verbal echoes &amp; parallels</button>
+      <button type="button" class="btn btn-secondary" id="lens-rhyme" onclick="setArchLens('rhyme')">Rhyme shift (-iyyā vs. -ddā)</button>
+    </div>
+
+    <div class="architecture-layout">
+      <div class="panel">
+        <div class="movements-list" id="arch-movements-list"></div>
+        <div class="legend-strip" aria-label="Map legend">
+          <span class="legend-item"><span class="legend-swatch" style="background-color: var(--outline-variant);"></span> Unstudied verse</span>
+          <span class="legend-item"><span class="legend-swatch" style="background-color: var(--secondary);"></span> Studied by you</span>
+          <span class="legend-item"><span class="legend-swatch" style="background-color: var(--primary);"></span> Active lens match</span>
+          <span class="legend-item"><span class="legend-swatch" style="background-color: var(--data-3);"></span> -ddā / -dā reckoning cadence (75–98)</span>
+        </div>
+      </div>
+
+      <div class="panel arch-detail-panel" id="arch-detail-panel">
+        <div class="section-intro">
+          <span class="label" id="arch-detail-label">Movement 1 · Verses 19:1–19:15</span>
+          <h3 class="subhead" id="arch-detail-title">Zechariah's private prayer &amp; the gift of John</h3>
+        </div>
+        <div class="btn-row" id="arch-detail-tags"></div>
+        <p class="prose" id="arch-detail-summary"></p>
+        <div class="chart-container" aria-label="Distribution of ar-Raḥmān across movements">
+          <svg id="rahman-distribution-svg" viewBox="0 0 420 185" width="100%" height="185" role="img" aria-label="Bar chart showing mentions of ar-Raḥmān in each movement"></svg>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="arch-jump-btn" onclick="jumpToSelectedMovement()">Open in verse reader</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Prophetic Parallels & Mirror Echoes -->
+  <section id="parallels" class="section reveal">
+    <div class="section-intro">
+      <span class="label">Section 2 · Narrative symmetry</span>
+      <h2 class="headline-section">Seven verbal echoes bind <strong>distant prophets and doubters together</strong></h2>
+      <p class="prose-muted">
+        Surah Maryam repeatedly uses identical Arabic phrasing across separate scenes—linking Zechariah and Abraham in prayer, John and Jesus in birth and blessing, and Zechariah's awe with the disbeliever's skepticism about resurrection. Select any parallel to compare the verses side by side.
+      </p>
+    </div>
+
+    <div class="parallels-layout">
+      <div class="parallels-nav" id="parallels-nav" role="tablist" aria-label="Prophetic parallels"></div>
+
+      <div class="panel parallel-compare" id="parallel-compare-panel" role="tabpanel">
+        <div class="verse-header">
+          <span class="tag tag-slate" id="parallel-theme-tag">Creation ex nihilo</span>
+          <span class="label" id="parallel-refs-label">19:9 ↔ 19:67</span>
+        </div>
+        <h3 class="subhead" id="parallel-heading">Created before, while you were nothing</h3>
+        <div class="parallel-pair-grid">
+          <div class="parallel-verse-box">
+            <span class="label" id="parallel-left-ref">19:9 · Response to Zechariah</span>
+            <p class="arabic-text" id="parallel-left-ar" lang="ar" dir="rtl"></p>
+            <p class="prose" id="parallel-left-en"></p>
+          </div>
+          <div class="parallel-verse-box">
+            <span class="label" id="parallel-right-ref">19:67 · Response to the doubter</span>
+            <p class="arabic-text" id="parallel-right-ar" lang="ar" dir="rtl"></p>
+            <p class="prose" id="parallel-right-en"></p>
+          </div>
+        </div>
+        <p class="verse-note-insight" id="parallel-insight"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Complete 98-Verse Interactive Reader -->
+  <section id="reader" class="section reveal">
+    <div class="section-intro">
+      <span class="label">Section 3 · Primary text &amp; notes</span>
+      <h2 class="headline-section">Read, annotate, and master <strong>all 98 verses</strong></h2>
+      <p class="prose-muted">
+        Every verse of Surah Maryam appears below with its Arabic text, English translation from the source, and structural commentary. Use recall mode to hide translations while testing yourself, mark verses as studied, or save personal reflections.
+      </p>
+    </div>
+
+    <div class="panel" style="display: grid; gap: var(--space-md);">
+      <div class="reader-controls">
+        <div class="field-group">
+          <label for="reader-movement-select" class="field-label">Filter by movement</label>
+          <select id="reader-movement-select" class="select-control" onchange="onReaderFilterChange()">
+            <option value="1">1. Zechariah &amp; John (19:1–15)</option>
+            <option value="2">2. Mary, Jesus &amp; Truth (19:16–40)</option>
+            <option value="3">3. Abraham &amp; His Father (19:41–50)</option>
+            <option value="4">4. Moses to Idrees (19:51–58)</option>
+            <option value="5">5. Successors, Paradise &amp; Proof (19:59–74)</option>
+            <option value="6">6. Reckoning, Unity &amp; Affection (19:75–98)</option>
+            <option value="all">All 98 verses (19:1–98)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="reader-search-input" class="field-label">Search English or Arabic</label>
+          <input type="search" id="reader-search-input" class="input-control" oninput="onReaderFilterChange()" placeholder="e.g., Merciful, peace, palm, prayer">
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="markVisibleMovementStudied()">Mark view studied</button>
+        </div>
+      </div>
+
+      <div class="reader-toggles">
+        <button type="button" class="btn btn-secondary is-active" id="toggle-arabic-btn" aria-pressed="true" onclick="toggleReaderOption('showArabic')">Arabic text: On</button>
+        <button type="button" class="btn btn-secondary is-active" id="toggle-rahman-btn" aria-pressed="true" onclick="toggleReaderOption('highlightRahman')">Highlight Most Merciful: On</button>
+        <button type="button" class="btn btn-secondary" id="toggle-recall-btn" aria-pressed="false" onclick="toggleReaderOption('recallMode')">Recall mode (hide English): Off</button>
+        <span class="label" id="reader-count-label" style="margin-left: auto;">Showing 15 verses</span>
+      </div>
+
+      <div class="verses-stream" id="verses-stream"></div>
+    </div>
+  </section>
+
+  <!-- Section 4: Key Arabic Concepts & Vocabulary -->
+  <section id="vocabulary" class="section reveal">
+    <div class="section-intro">
+      <span class="label">Section 4 · Active recall</span>
+      <h2 class="headline-section">Master <strong>fourteen signature terms</strong> in Surah Maryam</h2>
+      <p class="prose-muted">
+        Many of Surah Maryam's most memorable lessons hinge on single Arabic words—especially its distinct end-words. Flip each card to reveal its meaning and verse context, then mark whether it is mastered or still needs review.
+      </p>
+    </div>
+
+    <div class="flashcard-shell">
+      <div class="flashcard-stage">
+        <div class="btn-row" role="group" aria-label="Filter vocabulary deck">
+          <button type="button" class="btn btn-secondary is-active" id="vocab-filter-all" onclick="setVocabFilter('all')">All (14)</button>
+          <button type="button" class="btn btn-secondary" id="vocab-filter-review" onclick="setVocabFilter('review')">Needs review</button>
+          <button type="button" class="btn btn-secondary" id="vocab-filter-mastered" onclick="setVocabFilter('mastered')">Mastered</button>
+        </div>
+
+        <div class="flashcard-card" id="flashcard-card" tabindex="0" role="button" aria-label="Flip flashcard" onclick="flipFlashcard()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();flipFlashcard();}">
+          <div class="verse-header">
+            <span class="label" id="fc-counter">Card 1 of 14</span>
+            <span class="tag" id="fc-verse-ref">19:3</span>
+          </div>
+
+          <div id="fc-face-front" style="display: grid; gap: var(--space-xs); padding: var(--space-md) 0;">
+            <div class="flashcard-arabic" id="fc-arabic" lang="ar" dir="rtl"></div>
+            <div class="flashcard-translit" id="fc-translit"></div>
+            <p class="label" style="text-align: center; margin-top: var(--space-sm);">Click or press Space to reveal meaning</p>
+          </div>
+
+          <div id="fc-face-back" style="display: none; gap: var(--space-sm); padding: var(--space-md) 0;">
+            <div class="flashcard-meaning" id="fc-meaning"></div>
+            <p class="flashcard-context" id="fc-context"></p>
+          </div>
+
+          <div class="verse-header">
+            <span class="label" id="fc-status-label">Status: Unreviewed</span>
+            <span class="label">Click card to flip</span>
+          </div>
+        </div>
+
+        <div class="btn-row" style="justify-content: space-between;">
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" onclick="prevFlashcard()">Previous</button>
+            <button type="button" class="btn btn-secondary" onclick="nextFlashcard()">Next</button>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" onclick="markCurrentVocab(false)">Needs review</button>
+            <button type="button" class="btn btn-primary" onclick="markCurrentVocab(true)">Mark mastered</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-sm);">
+        <span class="label">Deck index</span>
+        <div class="vocab-index-list" id="vocab-index-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Mastery Check -->
+  <section id="mastery-quiz" class="section reveal">
+    <div class="section-intro">
+      <span class="label">Section 5 · Comprehension check</span>
+      <h2 class="headline-section">Test your grasp of <strong>events, echoes, and themes</strong></h2>
+      <p class="prose-muted">
+        Eight targeted questions drawn directly from verses 19:1–98. Every answer gives immediate explanation and verse citation so gaps become clarity.
+      </p>
+    </div>
+
+    <div class="quiz-shell">
+      <div class="panel" style="display: grid; gap: var(--space-md);" id="quiz-main-panel">
+        <div class="verse-header">
+          <span class="label" id="quiz-q-label">Question 1 of 8</span>
+          <span class="tag tag-slate" id="quiz-q-topic">Prophetic narrative</span>
+        </div>
+        <h3 class="subhead" id="quiz-q-text"></h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+          <strong id="quiz-feedback-verdict"></strong>
+          <p class="prose" id="quiz-feedback-explain"></p>
+        </div>
+        <div class="btn-row" style="justify-content: space-between;">
+          <button type="button" class="btn btn-secondary" id="quiz-prev-btn" onclick="prevQuizQuestion()">Previous</button>
+          <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="nextQuizQuestion()">Next question</button>
+        </div>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-md);">
+        <div>
+          <span class="label">Question navigator</span>
+          <p class="caption-sage" id="quiz-summary-caption">0 of 8 answered correctly</p>
+        </div>
+        <div class="quiz-tracker-grid" id="quiz-tracker-grid"></div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="resetQuiz()">Restart quiz</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <span class="label">Source &amp; methodology</span>
+    <p class="prose-muted">
+      All Arabic verse text, English translations, structural counts, and thematic cross-references are grounded directly in the provided text of Chapter 19 (Surah Maryam), Verses 1–98. Your verse progress, personal notes, vocabulary mastery, and quiz results persist automatically within this notebook session.
+    </p>
+  </footer>
+
+</div>
+
+<api-shim></api-shim>
+<script>
+const MOVEMENTS = [
+  {
+    id: 1,
+    range: `19:1–15`,
+    start: 1,
+    end: 15,
+    title: `Zechariah & John`,
+    subtitle: `Private supplication, miraculous birth, and three-fold peace`,
+    rahmanCount: 0,
+    summary: `Opens with the detached letters Kaf, Ha, Ya, 'Ayn, Sad (19:1) and recounts Zechariah's quiet prayer in extreme old age. Granted a son uniquely named John (Yahya), Zechariah receives a three-night sign of silence while physically sound (19:10). John is endowed with judgement as a boy, affection, purity, dutifulness to parents, and peace on birth, death, and resurrection (19:12–15).`
+  },
+  {
+    id: 2,
+    range: `19:16–40`,
+    start: 16,
+    end: 40,
+    title: `Mary, Jesus & the Word of Truth`,
+    subtitle: `Seclusion, miraculous birth under the palm, cradle testimony, and divine unity`,
+    rahmanCount: 2,
+    summary: `Mary withdraws eastward behind a screen, seeks refuge in ar-Raḥmān (19:18), and receives news of a pure boy. In childbirth pangs beside a palm tree, God comforts her with a stream and fresh dates and instructs a fast of silence (19:24–26). When her people accuse her, the infant Jesus speaks from the cradle as Allah's servant and prophet (19:30–33), followed by the affirmation that God says "Be," and it is (19:35).`
+  },
+  {
+    id: 3,
+    range: `19:41–50`,
+    start: 41,
+    end: 50,
+    title: `Abraham & His Father`,
+    subtitle: `Gentle reason, painful separation, and the blessing of Isaac and Jacob`,
+    rahmanCount: 2,
+    summary: `Four times Abraham pleads with "O my father" (Yā abati, 19:42–45), contrasting lifeless idols and Satan's disobedience to ar-Raḥmān against God's knowledge. Threatened with stoning, Abraham responds with "Peace will be upon you" (19:47), separates peacefully, and—echoing Zechariah—hopes never to be unhappy in prayer (19:48). In return, God grants him Isaac, Jacob, and lasting honor.`
+  },
+  {
+    id: 4,
+    range: `19:51–58`,
+    start: 51,
+    end: 58,
+    title: `Prophetic Lineage: Moses to Idrees`,
+    subtitle: `Chosen messengers who wept and prostrated at the verses of ar-Raḥmān`,
+    rahmanCount: 1,
+    summary: `Brief, luminous portraits of Moses (called near Mount Tur, granted Aaron), Ishmael (true to his promise, enjoining prayer and zakah), and Idrees (raised to a high station). Verse 58 unites them with the descendants of Adam, Noah, Abraham, and Israel—remembering how they fell in prostration and weeping whenever the verses of ar-Raḥmān were recited.`
+  },
+  {
+    id: 5,
+    range: `19:59–74`,
+    start: 59,
+    end: 74,
+    title: `Successors, Paradise & Creation Proof`,
+    subtitle: `Neglected prayer vs. Gardens of Perpetual Residence and the challenge of resurrection`,
+    rahmanCount: 2,
+    summary: `Turns from faithful prophets to later generations who neglected prayer and pursued desires, yet holds the door open for repentance (19:59–60). Depicts Gardens of Eden promised by ar-Raḥmān with greetings of peace and morning-and-afternoon provision (19:62), Gabriel's statement on divine remembrance, the challenge "Do you know of any similarity to Him?" (19:65), and the proof of resurrection from initial creation (19:67).`
+  },
+  {
+    id: 6,
+    range: `19:75–98`,
+    start: 75,
+    end: 98,
+    title: `Reckoning, Unity & Affection`,
+    subtitle: `Enduring deeds, individual accountability, cosmic rejection of attributing a son, and wuddā`,
+    rahmanCount: 9,
+    summary: `Marked by a forceful shift in Arabic rhyme (-ddā / -dā), this final movement dismantles boasts of wealth and false allies (19:77–82), contrasts the righteous gathered as an honored delegation (wafdā) against criminals driven in thirst (wirdā, 19:85–86), and expresses cosmic horror at attributing a son to ar-Raḥmān (19:88–95). It closes with the promise of divine affection (wuddā, 19:96) and the ease of the Arabic Qur'an.`
+  }
+];
+
+const VERSES = [
+  { v: 1, m: 1, ar: `كهيعص`, en: `Kaf, Ha, Ya, 'Ayn, Sad.`, tags: [`Opening`], note: `Five detached Arabic letters (al-ḥurūf al-muqaṭṭa'āt) opening the chapter.` },
+  { v: 2, m: 1, ar: `ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُ زَكَرِيَّا`, en: `[This is] a mention of the mercy of your Lord to His servant Zechariah`, tags: [`Mercy`], note: `Establishes mercy (raḥmah) as the first narrated theme of the surah.` },
+  { v: 3, m: 1, ar: `إِذْ نَادَىٰ رَبَّهُ نِدَاءً خَفِيًّا`, en: `When he called to his Lord a private supplication.`, tags: [`Supplication`], note: `Nidā'an khafiyyā: a quiet, intimate call heard only by God.` },
+  { v: 4, m: 1, ar: `قَالَ رَبِّ إِنِّي وَهَنَ الْعَظْمُ مِنِّي وَاشْتَعَلَ الرَّأْسُ شَيْبًا وَلَمْ أَكُنْ بِدُعَائِكَ رَبِّ شَقِيًّا`, en: `He said, "My Lord, indeed my bones have weakened, and my head has filled with white, and never have I been in my supplication to You, my Lord, unhappy.`, tags: [`Echo`, `Supplication`], note: `Parallels Abraham in 19:48: both express unbroken trust in never being shaqiyyā (unhappy) in supplication.` },
+  { v: 5, m: 1, ar: `وَإِنِّي خِفْتُ الْمَوَالِيَ مِنْ وَرَائِي وَكَانَتِ امْرَأَتِي عَاقِرًا فَهَبْ لِي مِنْ لَدُنْكَ وَلِيًّا`, en: `And indeed, I fear the successors after me, and my wife has been barren, so give me from Yourself an heir`, tags: [] },
+  { v: 6, m: 1, ar: `يَرِثُنِي وَيَرِثُ مِنْ آلِ يَعْقُوبَ ۖ وَاجْعَلْهُ رَبِّ رَضِيًّا`, en: `Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You]."`, tags: [] },
+  { v: 7, m: 1, ar: `يَا زَكَرِيَّا إِنَّا نُبَشِّرُكَ بِغُلَامٍ اسْمُهُ يَحْيَى لَمْ نَجْعَلْ لَهُ مِنْ قَبْلُ سَمِيًّا`, en: `[He was told], "O Zechariah, indeed We give you good tidings of a boy whose name will be John. We have not assigned to any before [this] name."`, tags: [`Echo`], note: `Samiyyā (namesake/equal) echoes 19:65, where the same word asks if anyone is comparable to God.` },
+  { v: 8, m: 1, ar: `قَالَ رَبِّ أَنَّىٰ يَكُونُ لِي غُلَامٌ وَكَانَتِ امْرَأَتِي عَاقِرًا وَقَدْ بَلَغْتُ مِنَ الْكِبَرِ عِتِيًّا`, en: `He said, "My Lord, how will I have a boy when my wife has been barren and I have reached extreme old age?"`, tags: [] },
+  { v: 9, m: 1, ar: `قَالَ كَذَلِكَ قَالَ رَبُّكَ هُوَ عَلَيَّ هَيِّنٌ وَقَدْ خَلَقْتُكَ مِنْ قَبْلُ وَلَمْ تَكُ شَيْئًا`, en: `[An angel] said, "Thus [it will be]; your Lord says, 'It is easy for Me, for I created you before, while you were nothing.'"`, tags: [`Echo`], note: `Creation while "you were nothing" reappears verbatim as the proof of resurrection in 19:67.` },
+  { v: 10, m: 1, ar: `قَالَ رَبِّ اجْعَلْ لِي آيَةً ۚ قَالَ آيَتُكَ أَلَّا تُكَلِّمَ النَّاسَ ثَلَاثَ لَيَالٍ سَوِيًّا`, en: `[Zechariah] said, "My Lord, make for me a sign." He said, "Your sign is that you will not speak to the people for three nights, [being] sound."`, tags: [] },
+  { v: 11, m: 1, ar: `فَخَرَجَ عَلَى قَوْمِهِ مِنَ الْمِحْرَابِ فَأَوْحَىٰ إِلَيْهِمْ أَنْ سَبِّحُوا بُكْرَةً وَعَشِيًّا`, en: `So he came out to his people from the prayer chamber and signaled to them to exalt [Allah] in the morning and afternoon.`, tags: [`Echo`], note: `"Morning and afternoon" (bukratan wa 'ashiyyā) returns in 19:62 for the provision of Paradise.` },
+  { v: 12, m: 1, ar: `يَا يَحْيَى خُذِ الْكِتَابَ بِقُوَّةٍ وَآتَيْنَاهُ الْحُكْمَ صَبِيًّا`, en: `[Allah] said, "O John, take the Scripture with determination." And We gave him judgement [while yet] a boy`, tags: [] },
+  { v: 13, m: 1, ar: `وَحَنَانًا مِنْ لَدُنَّا وَزَكَاةً وَكَانَ تَقِيًّا`, en: `And affection from Us and purity, and he was fearing of Allah`, tags: [] },
+  { v: 14, m: 1, ar: `وَبَرًّا بِوَالِدَيْهِ وَلَمْ يَكُنْ جَبَّارًا عَصِيًّا`, en: `And dutiful to his parents, and he was not a disobedient tyrant.`, tags: [`Echo`], note: `Directly mirrored by Jesus' self-description in 19:32.` },
+  { v: 15, m: 1, ar: `وَسَلَامٌ عَلَيْهِ يَوْمَ وُلِدَ وَيَوْمَ يَمُوتُ وَيَوْمَ يُبْعَثُ حَيًّا`, en: `And peace be upon him the day he was born and the day he dies and the day he is raised alive.`, tags: [`Echo`], note: `Peace over the three pivotal days of existence—echoed in the first person by Jesus in 19:33.` },
+
+  { v: 16, m: 2, ar: `وَاذْكُرْ فِي الْكِتَابِ مَرْيَمَ إِذِ انْتَبَذَتْ مِنْ أَهْلِهَا مَكَانًا شَرْقِيًّا`, en: `And mention, [O Muhammad], in the Book [the story of] Mary, when she withdrew from her family to a place toward the east.`, tags: [] },
+  { v: 17, m: 2, ar: `فَاتَّخَذَتْ مِنْ دُونِهِمْ حِجَابًا فَأَرْسَلْنَا إِلَيْهَا رُوحَنَا فَتَمَثَّلَ لَهَا بَشَرًا سَوِيًّا`, en: `And she took, in seclusion from them, a screen. Then We sent to her Our Angel, and he represented himself to her as a well-proportioned man.`, tags: [] },
+  { v: 18, m: 2, ar: `قَالَتْ إِنِّي أَعُوذُ بِالرَّحْمَنِ مِنْكَ إِنْ كُنْتَ تَقِيًّا`, en: `She said, "Indeed, I seek refuge in the Most Merciful from you, [so leave me], if you should be fearing of Allah."`, tags: [`ar-Raḥmān`], note: `First occurrence of ar-Raḥmān ("the Most Merciful") in the chapter.` },
+  { v: 19, m: 2, ar: `قَالَ إِنَّمَا أَنَا رَسُولُ رَبِّكِ لِأَهَبَ لَكِ غُلَامًا زَكِيًّا`, en: `He said, "I am only the messenger of your Lord to give you [news of] a pure boy."`, tags: [] },
+  { v: 20, m: 2, ar: `قَالَتْ أَنَّىٰ يَكُونُ لِي غُلَامٌ وَلَمْ يَمْسَسْنِي بَشَرٌ وَلَمْ أَكُ بَغِيًّا`, en: `She said, "How can I have a boy while no man has touched me and I have not been unchaste?"`, tags: [] },
+  { v: 21, m: 2, ar: `قَالَ كَذَلِكِ قَالَ رَبُّكِ هُوَ عَلَيَّ هَيِّنٌ وَلِنَجْعَلَهُ آيَةً لِلنَّاسِ وَرَحْمَةً مِنَّا وَكَانَ أَمْرًا مَقْضِيًّا`, en: `He said, "Thus [it will be]; your Lord says, 'It is easy for Me, and We will make him a sign to the people and a mercy from Us. And it is a matter [already] decreed.'"`, tags: [`Mercy`], note: `Repeats the exact reassurance given to Zechariah in 19:9: "It is easy for Me."` },
+  { v: 22, m: 2, ar: `فَحَمَلَتْهُ فَانْتَبَذَتْ بِهِ مَكَانًا قَصِيًّا`, en: `So she conceived him, and she withdrew with him to a remote place.`, tags: [] },
+  { v: 23, m: 2, ar: `فَأَجَاءَهَا الْمَخَاضُ إِلَى جِذْعِ النَّخْلَةِ قَالَتْ يَا لَيْتَنِي مِتُّ قَبْلَ هُذَا وَكُنْتُ نَسْيًا مَنْسِيًّا`, en: `And the pains of childbirth drove her to the trunk of a palm tree. She said, "Oh, I wish I had died before this and was in oblivion, forgotten."`, tags: [] },
+  { v: 24, m: 2, ar: `فَنَادَاهَا مِنْ تَحْتِهَا أَلَّا تَحْزَنِي قَدْ جَعَلَ رَبُّكِ تَحْتَكِ سَرِيًّا`, en: `But he called her from below her, "Do not grieve; your Lord has provided beneath you a stream.`, tags: [] },
+  { v: 25, m: 2, ar: `وَهُزِّي إِلَيْكِ بِجِذْعِ النَّخْلَةِ تُسَاقِطْ عَلَيْكِ رُطَبًا جَنِيًّا`, en: `And shake toward you the trunk of the palm tree; it will drop upon you ripe, fresh dates.`, tags: [], note: `Even in miraculous provision, Mary is invited to exert gentle human effort—shaking the palm trunk.` },
+  { v: 26, m: 2, ar: `فَكُلِي وَاشْرَبِي وَقَرِّي عَيْنًا ۖ فَإِمَّا تَرَيِنَّ مِنَ الْبَشَرِ أَحَدًا فَقُولِي إِنِّي نَذَرْتُ لِلرَّحْمَنِ صَوْمًا فَلَنْ أُكَلِّمَ الْيَوْمَ إِنْسِيًّا`, en: `So eat and drink and be contented. And if you see from among humanity anyone, say, 'Indeed, I have vowed to the Most Merciful abstention, so I will not speak today to [any] man.'"`, tags: [`ar-Raḥmān`], note: `A fast (ṣawm) of speech, echoing Zechariah's silent sign in 19:10.` },
+  { v: 27, m: 2, ar: `فَأَتَتْ بِهِ قَوْمَهَا تَحْمِلُهُ ۖ قَالُوا يَا مَرْيَمُ لَقَدْ جِئْتِ شَيْئًا فَرِيًّا`, en: `Then she brought him to her people, carrying him. They said, "O Mary, you have certainly done a thing unprecedented.`, tags: [] },
+  { v: 28, m: 2, ar: `يَا أُخْتَ هَارُونَ مَا كَانَ أَبُوكِ امْرَأَ سَوْءٍ وَمَا كَانَتْ أُمُّكِ بَغِيًّا`, en: `O sister of Aaron, your father was not a man of evil, nor was your mother unchaste."`, tags: [] },
+  { v: 29, m: 2, ar: `فَأَشَارَتْ إِلَيْهِ ۖ قَالُوا كَيْفَ نُكَلِّمُ مَنْ كَانَ فِي الْمَهْدِ صَبِيًّا`, en: `So she pointed to him. They said, "How can we speak to one who is in the cradle a child?"`, tags: [] },
+  { v: 30, m: 2, ar: `قَالَ إِنِّي عَبْدُ اللَّهِ آتَانِيَ الْكِتَابَ وَجَعَلَنِي نَبِيًّا`, en: `[Jesus] said, "Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet.`, tags: [], note: `Jesus' very first words in the cradle identify him as "the servant of Allah" ('abdullāh).` },
+  { v: 31, m: 2, ar: `وَجَعَلَنِي مُبَارَكًا أَيْنَ مَا كُنْتُ وَأَوْصَانِي بِالصَّلَاةِ وَالزَّكَاةِ مَا دُمْتُ حَيًّا`, en: `And He has made me blessed wherever I am and has enjoined upon me prayer and zakah as long as I remain alive`, tags: [`Echo`], note: `Pairs prayer and zakah, echoed later in Ishmael's description (19:55).` },
+  { v: 32, m: 2, ar: `وَبَرًّا بِوَالِدَتِي وَلَمْ يَجْعَلْنِي جَبَّارًا شَقِيًّا`, en: `And [made me] dutiful to my mother, and He has not made me a wretched tyrant.`, tags: [`Echo`], note: `Mirrors 19:14 regarding John ("not a tyrant").` },
+  { v: 33, m: 2, ar: `وَالسَّلَامُ عَلَيَّ يَوْمَ وُلِدْتُ وَيَوْمَ أَمُوتُ وَيَوْمَ أُبْعَثُ حَيًّا`, en: `And peace is on me the day I was born and the day I will die and the day I am raised alive."`, tags: [`Echo`], note: `First-person echo of the blessing spoken over John in 19:15.` },
+  { v: 34, m: 2, ar: `ذَلِكَ عِيسَى ابْنُ مَرْيَمَ قَوْلَ الْحَقِّ الَّذِي فِيهِ يَمْتَرُونَ`, en: `That is Jesus, the son of Mary - the word of truth about which they are in dispute.`, tags: [] },
+  { v: 35, m: 2, ar: `مَا كَانَ لِلَّهِ أَنْ يَتَّخِذَ مِنْ وَلَدٍ سُبْحَانَهُ ۚ إِذَا قَضَىٰ أَمْرًا فَإِنَّمَا يَقُولُ لَهُ كُنْ فَيَكُونُ`, en: `It is not [befitting] for Allah to take a son; exalted is He! When He decrees an affair, He only says to it, "Be," and it is.`, tags: [`Theology`], note: `Introduces the chapter's rejection of attributing a son to God, expanded cosmically in 19:88–95.` },
+  { v: 36, m: 2, ar: `وَإِنَّ اللَّهَ رَبِّي وَرَبُّكُمْ فَاعْبُدُوهُ هَذَا صِرَاطٌ مُسْتَقِيمٌ`, en: `[Jesus said], "And indeed, Allah is my Lord and your Lord, so worship Him. That is a straight path."`, tags: [] },
+  { v: 37, m: 2, ar: `فَاخْتَلَفَ الْأَحْزَابُ مِنْ بَيْنِهِمْ فَوَيْلٌ لِلَّذِينَ كَفَرُوا مِنْ مَشْهَدِ يَوْمٍ عَظِيمٍ`, en: `Then the factions differed [concerning Jesus] from among them, so woe to those who disbelieved from the scene of a tremendous Day.`, tags: [] },
+  { v: 38, m: 2, ar: `أَسْمِعْ بِهِمْ وَأَبْصِرْ يَوْمَ يَأْتُونَنَا ۖ لَكِنِ الظَّالِمُونَ الْيَوْمَ فِي ضَلَالٍ مُبِينٍ`, en: `How [clearly] they will hear and see the Day they come to Us, but the wrongdoers today are in clear error.`, tags: [] },
+  { v: 39, m: 2, ar: `وَأَنْذِرْهُمْ يَوْمَ الْحَسْرَةِ إِذْ قُضِيَ الْأَمْرُ وَهُمْ فِي غَفْلَةٍ وَهُمْ لَا يُؤْمِنُونَ`, en: `And warn them, [O Muhammad], of the Day of Regret, when the matter will be concluded; and [yet], they are in [a state of] heedlessness, and they do not believe.`, tags: [] },
+  { v: 40, m: 2, ar: `إِنَّا نَحْنُ نَرِثُ الْأَرْضَ وَمَنْ عَلَيْهَا وَإِلَيْنَا يُرْجَعُونَ`, en: `Indeed, it is We who will inherit the earth and whoever is on it, and to Us they will be returned.`, tags: [] },
+
+  { v: 41, m: 3, ar: `وَاذْكُرْ فِي الْكِتَابِ إِبْرَاهِيمَ إِنَّهُ كَانَ صِدِّيقًا نَبِيًّا`, en: `And mention in the Book [the story of] Abraham. Indeed, he was a man of truth and a prophet.`, tags: [] },
+  { v: 42, m: 3, ar: `إِذْ قَالَ لِأَبِيهِ يَا أَبَتِ لِمَ تَعْبُدُ مَا لَا يَسْمَعُ وَلَا يُبْصِرُ وَلَا يُغْنِي عَنْكَ شَيْئًا`, en: `[Mention] when he said to his father, "O my father, why do you worship that which does not hear and does not see and will not benefit you at all?`, tags: [], note: `First of four consecutive appeals beginning "O my father" (Yā abati, 19:42–45).` },
+  { v: 43, m: 3, ar: `يَا أَبَتِ إِنِّي قَدْ جَاءَنِي مِنَ الْعِلْمِ مَا لَمْ يَأْتِكَ فَاتَّبِعْنِي أَهْدِكَ صِرَاطًا سَوِيًّا`, en: `O my father, indeed there has come to me of knowledge that which has not come to you, so follow me; I will guide you to an even path.`, tags: [] },
+  { v: 44, m: 3, ar: `يَا أَبَتِ لَا تَعْبُدِ الشَّيْطَانَ إِنَّ الشَّيْطَانَ كَانَ لِلرَّحْمَنِ عَصِيًّا`, en: `O my father, do not worship Satan. Indeed Satan has ever been, to the Most Merciful, disobedient.`, tags: [`ar-Raḥmān`] },
+  { v: 45, m: 3, ar: `يَا أَبَتِ إِنِّي أَخَافُ أَنْ يَمَسَّكَ عَذَابٌ مِنَ الرَّحْمَنِ فَتَكُونَ لِلشَّيْطَانِ وَلِيًّا`, en: `O my father, indeed I fear that there will touch you a punishment from the Most Merciful so you would be to Satan a companion [in Hellfire]."`, tags: [`ar-Raḥmān`] },
+  { v: 46, m: 3, ar: `قَالَ أَرَاغِبٌ أَنْتَ عَنْ آلِهَتِي يَا إِبْرَاهِيمُ لَئِنْ لَمْ تَنْتَهِ لَأَرْجُمَنَّكَ ۖ وَاهْجُرْنِي مَلِيًّا`, en: `[His father] said, "Have you no desire for my gods, O Abraham? If you do not desist, I will surely stone you, so avoid me a prolonged time."`, tags: [] },
+  { v: 47, m: 3, ar: `قَالَ سَلَامٌ عَلَيْكَ ۖ سَأَسْتَغْفِرُ لَكَ رَبِّي إِنَّهُ كَانَ بِي حَفِيًّا`, en: `[Abraham] said, "Peace will be upon you. I will ask forgiveness for you of my Lord. Indeed, He is ever gracious to me.`, tags: [] },
+  { v: 48, m: 3, ar: `وَأَعْتَزِلُكُمْ وَمَا تَدْعُونَ مِنْ دُونِ اللَّهِ وَأَدْعُو رَبِّي عَسَى أَلَّا أَكُونَ بِدُعَاءِ رَبِّي شَقِيًّا`, en: `And I will leave you and those you invoke other than Allah and will invoke my Lord. I expect that I will not be in invocation to my Lord unhappy."`, tags: [`Echo`, `Supplication`], note: `Echoes Zechariah's exact phrase from 19:4: never unhappy (shaqiyyā) in invoking the Lord.` },
+  { v: 49, m: 3, ar: `فَلَمَّا اعْتَزَلَهُمْ وَمَا يَعْبُدُونَ مِنْ دُونِ اللَّهِ وَهَبْنَا لَهُ إِسْحَاقَ وَيَعْقُوبَ وَكُلًّا جَعَلْنَا نَبِيًّا`, en: `So when he had left them and those they worshipped other than Allah, We gave him Isaac and Jacob, and each [of them] We made a prophet.`, tags: [] },
+  { v: 50, m: 3, ar: `وَوَهَبْنَا لَهُمْ مِنْ رَحْمَتِنَا وَجَعَلْنَا لَهُمْ لِسَانَ صِدْقٍ عَلِيًّا`, en: `And We gave them of Our mercy, and we made for them a reputation of high honor.`, tags: [`Mercy`] },
+
+  { v: 51, m: 4, ar: `وَاذْكُرْ فِي الْكِتَابِ مُوسَىٰ ۚ إِنَّهُ كَانَ مُخْلَصًا وَكَانَ رَسُولًا نَبِيًّا`, en: `And mention in the Book, Moses. Indeed, he was chosen, and he was a messenger and a prophet.`, tags: [] },
+  { v: 52, m: 4, ar: `وَنَادَيْنَاهُ مِنْ جَانِبِ الطُّورِ الْأَيْمَنِ وَقَرَّبْنَاهُ نَجِيًّا`, en: `And We called him from the side of the mount at [his] right and brought him near, confiding [to him].`, tags: [] },
+  { v: 53, m: 4, ar: `وَوَهَبْنَا لَهُ مِنْ رَحْمَتِنَا أَخَاهُ هَارُونَ نَبِيًّا`, en: `And We gave him out of Our mercy his brother Aaron as a prophet.`, tags: [`Mercy`] },
+  { v: 54, m: 4, ar: `وَاذْكُرْ فِي الْكِتَابِ إِسْمَاعِيلَ إِنَّهُ كَانَ صَادِقَ الْوَعْدِ وَكَانَ رَسُولًا نَبِيًّا`, en: `And mention in the Book, Ishmael. Indeed, he was true to his promise, and he was a messenger and a prophet.`, tags: [] },
+  { v: 55, m: 4, ar: `وَكَانَ يَأْمُرُ أَهْلَهُ بِالصَّلَاةِ وَالزَّكَاةِ وَكَانَ عِنْدَ رَبِّهِ مَرْضِيًّا`, en: `And he used to enjoin on his people prayer and zakah and was to his Lord pleasing.`, tags: [`Echo`], note: `Combines prayer and zakah like Jesus in 19:31, and leads into the warning about neglecting prayer in 19:59.` },
+  { v: 56, m: 4, ar: `وَاذْكُرْ فِي الْكِتَابِ إِدْرِيسَ إِنَّهُ كَانَ صِدِّيقًا نَبِيًّا`, en: `And mention in the Book, Idrees. Indeed, he was a man of truth and a prophet.`, tags: [] },
+  { v: 57, m: 4, ar: `وَرَفَعْنَاهُ مَكَانًا عَلِيًّا`, en: `And We raised him to a high station.`, tags: [] },
+  { v: 58, m: 4, ar: `أُولَئِكَ الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِمْ مِنَ النَّبِيِّينَ مِنْ ذُرِّيَّةِ آدَمَ وَمِمَّنْ حَمَلْنَا مَعَ نُوحٍ وَمِنْ ذُرِّيَّةِ إِبْرَاهِيمَ وَإِسْرَائِيلَ وَمِمَّنْ هَدَيْنَا وَاجْتَبَيْنَا إِذَا تُتْلَى عَلَيْهِمْ آيَاتُ الرَّحْمَنِ خَرُّوا سُجَّدًا وَبُكِيًّا`, en: `Those were the ones upon whom Allah bestowed favor from among the prophets of the descendants of Adam and of those We carried [in the ship] with Noah, and of the descendants of Abraham and Israel, and of those whom We guided and chose. When the verses of the Most Merciful were recited to them, they fell in prostration and weeping.`, tags: [`ar-Raḥmān`], note: `Culmination of the prophetic gallery, uniting all prior lineages in humble prostration.` },
+
+  { v: 59, m: 5, ar: `فَخَلَفَ مِنْ بَعْدِهِمْ خَلْفٌ أَضَاعُوا الصَّلَاةَ وَاتَّبَعُوا الشَّهَوَاتِ ۖ فَسَوْفَ يَلْقَوْنَ غَيًّا`, en: `But there came after them successors who neglected prayer and pursued desires; so they are going to meet evil`, tags: [`Echo`], note: `Sharp contrast to the prayer-keeping prophets in 19:31 and 19:55.` },
+  { v: 60, m: 5, ar: `إِلَّا مَنْ تَابَ وَآمَنَ وَعَمِلَ صَالِحًا فَأُولَئِكَ يَدْخُلُونَ الْجَنَّةَ وَلَا يُظْلَمُونَ شَيْئًا`, en: `Except those who repent, believe and do righteousness; for those will enter Paradise and will not be wronged at all.`, tags: [] },
+  { v: 61, m: 5, ar: `جَنَّاتِ عَدْنٍ الَّتِي وَعَدَ الرَّحْمَنُ عِبَادَهُ بِالْغَيْبِ ۚ إِنَّهُ كَانَ وَعْدُهُ مَأْتِيًّا`, en: `[Therein are] gardens of perpetual residence which the Most Merciful has promised His servants in the unseen. Indeed, His promise has ever been coming.`, tags: [`ar-Raḥmān`] },
+  { v: 62, m: 5, ar: `لَا يَسْمَعُونَ فِيهَا لَغْوًا إِلَّا سَلَامًا وَلَهُمْ رِزْقُهُمْ فِيهَا بُكْرَةً وَعَشِيًّا`, en: `They will not hear therein any ill speech - only [greetings of] peace - and they will have their provision therein, morning and afternoon.`, tags: [`Echo`], note: `Echoes "morning and afternoon" (bukratan wa 'ashiyyā) from Zechariah's exhortation in 19:11.` },
+  { v: 63, m: 5, ar: `تِلْكَ الْجَنَّةُ الَّتِي نُورِثُ مِنْ عِبَادِنَا مَنْ كَانَ تَقِيًّا`, en: `That is Paradise, which We give as inheritance to those of Our servants who were fearing of Allah.`, tags: [] },
+  { v: 64, m: 5, ar: `وَمَا نَتَنَزَّلُ إِلَّا بِأَمْرِ رَبِّكَ ۖ لَهُ مَا بَيْنَ أَيْدِينَا وَمَا خَلْفَنَا وَمَا بَيْنَ ذَلِكَ وَمَا كَانَ رَبُّكَ نَسِيًّا`, en: `[Gabriel said], "And we [angels] descend not except by the order of your Lord. To Him belongs that before us and that behind us and what is in between. And never is your Lord forgetful -`, tags: [] },
+  { v: 65, m: 5, ar: `رَبُّ السَّمَاوَاتِ وَالْأَرْضِ وَمَا بَيْنَهُمَا فَاعْبُدْهُ وَاصْطَبِرْ لِعِبَادَتِهِ هَلْ تَعْلَمُ لَهُ سَمِيًّا`, en: `Lord of the heavens and the earth and whatever is between them - so worship Him and have patience for His worship. Do you know of any similarity to Him?"`, tags: [`Echo`, `Theology`], note: `Uses samiyyā ("similarity"), matching 19:7 where John had no prior namesake.` },
+  { v: 66, m: 5, ar: `وَيَقُولُ الْإِنْسَانُ أَإِذَا مَا مِتُّ لَسَوْفَ أُخْرَجُ حَيًّا`, en: `And the disbeliever says, "When I have died, am I going to be brought forth alive?"`, tags: [] },
+  { v: 67, m: 5, ar: `أَوَلَا يَذْكُرُ الْإِنْسَانُ أَنَّا خَلَقْنَاهُ مِنْ قَبْلُ وَلَمْ يَكُ شَيْئًا`, en: `Does man not remember that We created him before, while he was nothing?`, tags: [`Echo`], note: `Directly parallels the angel's answer to Zechariah in 19:9.` },
+  { v: 68, m: 5, ar: `فَوَرَبِّكَ لَنَحْشُرَنَّهُمْ وَالشَّيَاطِينَ ثُمَّ لَنُحْضِرَنَّهُمْ حَوْلَ جَهَنَّمَ جِثِيًّا`, en: `So by your Lord, We will surely gather them and the devils; then We will bring them to be present around Hell upon their knees.`, tags: [] },
+  { v: 69, m: 5, ar: `ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ عَلَى الرَّحْمَنِ عِتِيًّا`, en: `Then We will surely extract from every sect those of them who were worst against the Most Merciful in insolence.`, tags: [`ar-Raḥmān`] },
+  { v: 70, m: 5, ar: `ثُمَّ لَنَحْنُ أَعْلَمُ بِالَّذِينَ هُمْ أَوْلَىٰ بِهَا صِلِيًّا`, en: `Then, surely it is We who are most knowing of those most worthy of burning therein.`, tags: [] },
+  { v: 71, m: 5, ar: `وَإِنْ مِنْكُمْ إِلَّا وَارِدُهَا ۚ كَانَ عَلَىٰ رَبِّكَ حَتْمًا مَقْضِيًّا`, en: `And there is none of you except he will come to it. This is upon your Lord an inevitability decreed.`, tags: [] },
+  { v: 72, m: 5, ar: `ثُمَّ نُنَجِّي الَّذِينَ اتَّقَوْا وَنَذَرُ الظَّالِمِينَ فِيهَا جِثِيًّا`, en: `Then We will save those who feared Allah and leave the wrongdoers within it, on their knees.`, tags: [] },
+  { v: 73, m: 5, ar: `وَإِذَا تُتْلَىٰ عَلَيْهِمْ آيَاتُنَا بَيِّنَاتٍ قَالَ الَّذِينَ كَفَرُوا لِلَّذِينَ آمَنُوا أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا وَأَحْسَنُ نَدِيًّا`, en: `And when Our verses are recited to them as clear evidences, those who disbelieve say to those who believe, "Which of [our] two parties is best in position and best in association?"`, tags: [] },
+  { v: 74, m: 5, ar: `وَكَمْ أَهْلَكْنَا قَبْلَهُمْ مِنْ قَرْنٍ هُمْ أَحْسَنُ أَثَاثًا وَرِئْيًا`, en: `And how many a generation have We destroyed before them who were better in possessions and [outward] appearance?`, tags: [`Rhyme`], note: `Final verse of the lyrical -iyyā rhyme cadence before the shift at 19:75.` },
+
+  { v: 75, m: 6, ar: `قُلْ مَنْ كَانَ فِي الضَّلَالَةِ فَلْيَمْدُدْ لَهُ الرَّحْمَنُ مَدًّا حَتَّى إِذَا رَأَوْا مَا يُوعَدُونَ إِمَّا الْعَذَابَ وَإِمَّا السَّاعَةَ فَسَيَعْلَمُونَ مَنْ هُوَ شَرٌّ مَكَانًا وَأَضْعَفُ جُنْدًا`, en: `Say, "Whoever is in error - let the Most Merciful extend for him an extension [in wealth and time] until, when they see that which they were promised - either punishment [in this world] or the Hour [of resurrection] - they will come to know who is worst in position and weaker in soldiers."`, tags: [`ar-Raḥmān`, `Rhyme`], note: `Phonetic turning point: the Arabic rhyme shifts here to the forceful -ddā / -dā cadence.` },
+  { v: 76, m: 6, ar: `وَيَزِيدُ اللَّهُ الَّذِينَ اهْتَدَوْا هُدًى وَالْبَاقِيَاتُ الصَّالِحَاتُ خَيْرٌ عِنْدَ رَبِّكَ ثَوَابًا وَخَيْرٌ مَرَدًّا`, en: `And Allah increases those who were guided, in guidance, and the enduring good deeds are better to your Lord for reward and better for recourse.`, tags: [`Rhyme`] },
+  { v: 77, m: 6, ar: `أَفَرَأَيْتَ الَّذِي كَفَرَ بِآيَاتِنَا وَقَالَ لَأُوتَيَنَّ مَالًا وَوَلَدًا`, en: `Then, have you seen he who disbelieved in Our verses and said, "I will surely be given wealth and children [in the next life]?"`, tags: [`Rhyme`] },
+  { v: 78, m: 6, ar: `أَطَّلَعَ الْغَيْبَ أَمِ اتَّخَذَ عِنْدَ الرَّحْمَنِ عَهْدًا`, en: `Has he looked into the unseen, or has he taken from the Most Merciful a promise?`, tags: [`ar-Raḥmān`, `Rhyme`] },
+  { v: 79, m: 6, ar: `كَلَّا سَنَكْتُبُ مَا يَقُولُ وَنَمُدُّ لَهُ مِنَ الْعَذَابِ مَدًّا`, en: `No! We will record what he says and extend for him from the punishment extensively.`, tags: [`Rhyme`] },
+  { v: 80, m: 6, ar: `وَنَرِثُهُ مَا يَقُولُ وَيَأْتِينَا فَرْدًا`, en: `And We will inherit him [in] what he mentions, and he will come to Us alone.`, tags: [`Rhyme`], note: `Fardā ("alone"): wealth and lineage remain behind; each stands individually before God (echoed in 19:95).` },
+  { v: 81, m: 6, ar: `وَاتَّخَذُوا مِنْ دُونِ اللَّهِ آلِهَةً لِيَكُونُوا لَهُمْ عِزًّا`, en: `And they have taken besides Allah [false] deities that they would be for them [a source of] honor.`, tags: [`Rhyme`] },
+  { v: 82, m: 6, ar: `كَلَّا سَيَكْفُرُونَ بِعِبَادَتِهِمْ وَيَكُونُونَ عَلَيْهِمْ ضِدًّا`, en: `No! Those "gods" will deny their worship of them and will be against them opponents [on the Day of Judgement].`, tags: [`Rhyme`] },
+  { v: 83, m: 6, ar: `أَلَمْ تَرَ أَنَّا أَرْسَلْنَا الشَّيَاطِينَ عَلَى الْكَافِرِينَ تَؤُزُّهُمْ أَزًّا`, en: `Do you not see that We have sent the devils upon the disbelievers, inciting them to [evil] with [constant] incitement?`, tags: [`Rhyme`] },
+  { v: 84, m: 6, ar: `فَلَا تَعْجَلْ عَلَيْهِمْ ۖ إِنَّمَا نَعُدُّ لَهُمْ عَدًّا`, en: `So be not impatient over them. We only count out to them a [limited] number.`, tags: [`Rhyme`] },
+  { v: 85, m: 6, ar: `يَوْمَ نَحْشُرُ الْمُتَّقِينَ إِلَى الرَّحْمَنِ وَفْدًا`, en: `On the Day We will gather the righteous to the Most Merciful as a delegation`, tags: [`ar-Raḥmān`, `Rhyme`], note: `Contrasts wafdā (an honored delegation) with wirdā (driven in thirst) in the very next verse.` },
+  { v: 86, m: 6, ar: `وَنَسُوقُ الْمُجْرِمِينَ إِلَىٰ جَهَنَّمَ وِرْدًا`, en: `And will drive the criminals to Hell in thirst`, tags: [`Rhyme`] },
+  { v: 87, m: 6, ar: `لَا يَمْلِكُونَ الشَّفَاعَةَ إِلَّا مَنِ اتَّخَذَ عِنْدَ الرَّحْمَنِ عَهْدًا`, en: `None will have [power of] intercession except he who had taken from the Most Merciful a covenant.`, tags: [`ar-Raḥmān`, `Rhyme`] },
+  { v: 88, m: 6, ar: `وَقَالُوا اتَّخَذَ الرَّحْمَنُ وَلَدًا`, en: `And they say, "The Most Merciful has taken [for Himself] a son."`, tags: [`ar-Raḥmān`, `Theology`, `Rhyme`] },
+  { v: 89, m: 6, ar: `لَقَدْ جِئْتُمْ شَيْئًا إِدًّا`, en: `You have done an atrocious thing.`, tags: [`Rhyme`] },
+  { v: 90, m: 6, ar: `تَكَادُ السَّمَاوَاتُ يَتَفَطَّرْنَ مِنْهُ وَتَنْشَقُّ الْأَرْضُ وَتَخِرُّ الْجِبَالُ هَدًّا`, en: `The heavens almost rupture therefrom and the earth splits open and the mountains collapse in devastation`, tags: [`Rhyme`] },
+  { v: 91, m: 6, ar: `أَنْ دَعَوْا لِلرَّحْمَنِ وَلَدًا`, en: `That they attribute to the Most Merciful a son.`, tags: [`ar-Raḥmān`, `Theology`, `Rhyme`] },
+  { v: 92, m: 6, ar: `وَمَا يَنْبَغِي لِلرَّحْمَنِ أَنْ يَتَّخِذَ وَلَدًا`, en: `And it is not appropriate for the Most Merciful that He should take a son.`, tags: [`ar-Raḥmān`, `Theology`, `Rhyme`] },
+  { v: 93, m: 6, ar: `إِنْ كُلُّ مَنْ فِي السَّمَاوَاتِ وَالْأَرْضِ إِلَّا آتِي الرَّحْمَنِ عَبْدًا`, en: `There is no one in the heavens and earth but that he comes to the Most Merciful as a servant.`, tags: [`ar-Raḥmān`, `Theology`, `Rhyme`] },
+  { v: 94, m: 6, ar: `لَقَدْ أَحْصَاهُمْ وَعَدَّهُمْ عَدًّا`, en: `He has enumerated them and counted them a [full] counting.`, tags: [`Rhyme`] },
+  { v: 95, m: 6, ar: `وَكُلُّهُمْ آتِيهِ يَوْمَ الْقِيَامَةِ فَرْدًا`, en: `And all of them are coming to Him on the Day of Resurrection alone.`, tags: [`Rhyme`] },
+  { v: 96, m: 6, ar: `إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَيَجْعَلُ لَهُمُ الرَّحْمَنُ وُدًّا`, en: `Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection.`, tags: [`ar-Raḥmān`, `Rhyme`], note: `Final mention of ar-Raḥmān: promising wuddā—enduring love and affection.` },
+  { v: 97, m: 6, ar: `فَإِنَّمَا يَسَّرْنَاهُ بِلِسَانِكَ لِتُبَشِّرَ بِهِ الْمُتَّقِينَ وَتُنْذِرَ بِهِ قَوْمًا لُدًّا`, en: `So, [O Muhammad], We have only made Qur'an easy in the Arabic language that you may give good tidings thereby to the righteous and warn thereby a hostile people.`, tags: [`Rhyme`] },
+  { v: 98, m: 6, ar: `وَكَمْ أَهْلَكْنَا قَبْلَهُمْ مِنْ قَرْنٍ هَلْ تُحِسُّ مِنْهُمْ مِنْ أَحَدٍ أَوْ تَسْمَعُ لَهُمْ رِكْزًا`, en: `And how many have We destroyed before them of generations? Do you perceive of them anyone or hear from them a sound?`, tags: [`Rhyme`], note: `Closes the chapter in sober silence—rikzā, the faintest sound.` }
+];
+
+const PARALLELS = [
+  {
+    id: `creation-nothing`,
+    theme: `Creation from nothing`,
+    title: `Created before, while you were nothing`,
+    refs: `19:9 ↔ 19:67`,
+    leftRef: `19:9 · Angel's answer to Zechariah`,
+    rightRef: `19:67 · Answer to the resurrection doubter`,
+    leftV: 9,
+    rightV: 67,
+    insight: `Both passages use the same reasoning: the God who brought a human being into existence out of nothing easily grants a child in barren old age (19:9) and easily restores life after death (19:67).`
+  },
+  {
+    id: `not-unhappy`,
+    theme: `Confidence in prayer`,
+    title: `Never unhappy in supplication to my Lord`,
+    refs: `19:4 ↔ 19:48`,
+    leftRef: `19:4 · Zechariah's quiet plea`,
+    rightRef: `19:48 · Abraham's departure from idolatry`,
+    leftV: 4,
+    rightV: 48,
+    insight: `Despite frailty (Zechariah) or family rejection (Abraham), both prophets close their appeals with the exact phrase "bi-du'ā'i rabbī shaqiyyā"—trusting that calling upon God never ends in disappointment.`
+  },
+  {
+    id: `threefold-peace`,
+    theme: `Blessing across existence`,
+    title: `Peace on birth, death, and resurrection`,
+    refs: `19:15 ↔ 19:33`,
+    leftRef: `19:15 · Spoken over John (3rd person)`,
+    rightRef: `19:33 · Spoken by Jesus (1st person)`,
+    leftV: 15,
+    rightV: 33,
+    insight: `John receives this three-fold salām in the third person; Jesus declares the exact same formula in the first person from the cradle, linking both miraculous births under one prophetic mission.`
+  },
+  {
+    id: `dutiful-not-tyrant`,
+    theme: `Prophetic character`,
+    title: `Dutiful to parents, not a tyrant`,
+    refs: `19:14 ↔ 19:32`,
+    leftRef: `19:14 · Character of John`,
+    rightRef: `19:32 · Character of Jesus`,
+    leftV: 14,
+    rightV: 32,
+    insight: `True spiritual stature in Surah Maryam is never arrogant dominance (jabbār). Both John and Jesus are defined by tenderness toward their parents and humility before God.`
+  },
+  {
+    id: `samiyya`,
+    theme: `Uniqueness`,
+    title: `No prior namesake vs. No similarity to God`,
+    refs: `19:7 ↔ 19:65`,
+    leftRef: `19:7 · John's unprecedented name`,
+    rightRef: `19:65 · God's absolute uniqueness`,
+    leftV: 7,
+    rightV: 65,
+    insight: `The rare word samiyyā ("namesake" or "peer/similarity") frames both extremes: John is given a name unmatched among earlier generations, while God Himself has no peer or equal in existence.`
+  },
+  {
+    id: `morning-afternoon`,
+    theme: `Sacred rhythm`,
+    title: `Exalting God vs. Provision in Paradise`,
+    refs: `19:11 ↔ 19:62`,
+    leftRef: `19:11 · Zechariah's gesture from the prayer chamber`,
+    rightRef: `19:62 · Perpetual gardens of Eden`,
+    leftV: 11,
+    rightV: 62,
+    insight: `The phrase "morning and afternoon" (bukratan wa 'ashiyyā) connects earthly devotion—glorifying God day and evening—with the uninterrupted peace and provision of Paradise.`
+  },
+  {
+    id: `prayer-zakah`,
+    theme: `Spiritual constancy`,
+    title: `Enjoining prayer vs. Neglecting prayer`,
+    refs: `19:31, 55 ↔ 19:59`,
+    leftRef: `19:55 · Ishmael's devotion for his family`,
+    rightRef: `19:59 · Later successors who drifted`,
+    leftV: 55,
+    rightV: 59,
+    insight: `Jesus (19:31) and Ishmael (19:55) uphold prayer and zakah as lifelong anchors; the spiritual decline of later generations begins precisely when they "neglected prayer and pursued desires" (19:59).`
+  }
+];
+
+const VOCAB = [
+  { id: `rahman`, ar: `الرَّحْمَٰن`, translit: `ar-Raḥmān`, meaning: `The Most Merciful`, ref: `19:18 (16× total)`, context: `The governing divine name of Surah Maryam, appearing 16 times across Mary's refuge, Abraham's warnings, Paradise, and the final promise of affection.` },
+  { id: `khafiyya`, ar: `نِدَاءً خَفِيًّا`, translit: `Nidā'an khafiyyā`, meaning: `A private, quiet supplication`, ref: `19:3`, context: `Describes how Zechariah called upon his Lord in secret—showing that divine mercy hears what is whispered in sincerity.` },
+  { id: `sawiyya`, ar: `سَوِيًّا`, translit: `Sawiyyā`, meaning: `Sound, well-proportioned, or even`, ref: `19:10, 19:17, 19:43`, context: `Used three ways: Zechariah's physical soundness during silence (19:10), the angel's well-proportioned human form (19:17), and Abraham's "even path" (19:43).` },
+  { id: `samiyya`, ar: `سَمِيًّا`, translit: `Samiyyā`, meaning: `Namesake or peer/similarity`, ref: `19:7, 19:65`, context: `Applied to John's unprecedented name (19:7) and rhetorically to God's transcendence: "Do you know of any similarity to Him?" (19:65).` },
+  { id: `jabbaran`, ar: `جَبَّارًا`, translit: `Jabbāran`, meaning: `An arrogant tyrant`, ref: `19:14, 19:32`, context: `Both John and Jesus are explicitly cleared of being jabbār—linking prophetic rank to gentleness and filial care.` },
+  { id: `kun`, ar: `كُنْ فَيَكُونُ`, translit: `Kun fa-yakūn`, meaning: `"Be," and it is`, ref: `19:35`, context: `Captures effortless divine decree when clarifying Jesus' birth and rejecting the notion that God takes a son.` },
+  { id: `siddiq`, ar: `صِدِّيقًا`, translit: `Ṣiddīqan`, meaning: `A man of unwavering truth`, ref: `19:41, 19:56`, context: `Shared title given to both Abraham and Idrees as prophets grounded in truthfulness.` },
+  { id: `baqiyat`, ar: `الْبَاقِيَاتُ الصَّالِحَاتُ`, translit: `al-Bāqiyāt aṣ-Ṣāliḥāt`, meaning: `The enduring good deeds`, ref: `19:76`, context: `Contrasted with fleeting boasts of wealth and status: what lasts before God in reward and final recourse.` },
+  { id: `farda`, ar: `فَرْدًا`, translit: `Fardā`, meaning: `Alone, individually`, ref: `19:80, 19:95`, context: `Every person comes to the Day of Resurrection alone—stripped of borrowed wealth, false deities, or boastful alliances.` },
+  { id: `wafda`, ar: `وَفْدًا`, translit: `Wafdā`, meaning: `An honored delegation`, ref: `19:85`, context: `How the righteous (al-muttaqīn) are gathered to the Most Merciful—received as respected guests.` },
+  { id: `wirda`, ar: `وِرْدًا`, translit: `Wirdā`, meaning: `Driven in parched thirst`, ref: `19:86`, context: `Paired directly against wafdā: criminals driven toward Hell like thirsty herds.` },
+  { id: `hasrah`, ar: `يَوْمَ الْحَسْرَةِ`, translit: `Yawm al-Ḥasrah`, meaning: `The Day of Regret`, ref: `19:39`, context: `The warning name for the Day when matters are concluded while the heedless remain unconcerned.` },
+  { id: `wudda`, ar: `وُدًّا`, translit: `Wuddā`, meaning: `Deep affection and love`, ref: `19:96`, context: `Surah Maryam's warm culmination: the Most Merciful appoints affection for those who believe and do righteous deeds.` },
+  { id: `rikza`, ar: `رِكْزًا`, translit: `Rikzā`, meaning: `Even the faintest sound or whisper`, ref: `19:98`, context: `The chapter's final word—asking whether anything remains heard from vanished arrogant generations.` }
+];
+
+const QUIZ = [
+  {
+    topic: `Zechariah & John`,
+    q: `What was the sign given to Zechariah confirming he would have a son named John?`,
+    options: [
+      `He would not speak to people for three nights despite being physically sound`,
+      `A stream of water would appear beside the prayer chamber`,
+      `He would fast from food and drink for seven mornings and afternoons`,
+      `His white hair would turn black until the child was born`
+    ],
+    correct: 0,
+    explain: `In 19:10, Zechariah is told: "Your sign is that you will not speak to the people for three nights, [being] sound." In 19:11 he then signals to his people to exalt Allah morning and afternoon.`
+  },
+  {
+    topic: `Mary & Jesus`,
+    q: `According to 19:24–26, how was Mary comforted during the pains of childbirth by the palm tree?`,
+    options: [
+      `Her family came to carry her back into the city`,
+      `A stream was provided beneath her, fresh dates fell when she shook the trunk, and she was told to vow an abstention from speaking`,
+      `She was told to speak immediately to her people to explain the miracle`,
+      `Rain fell to cool the desert valley for forty days`
+    ],
+    correct: 1,
+    explain: `Verses 19:24–26 detail a stream beneath her, ripe fresh dates dropping as she shakes the palm trunk, and the instruction to vow abstention from speaking to any human that day.`
+  },
+  {
+    topic: `Cradle Testimony`,
+    q: `When the infant Jesus spoke from the cradle in 19:30–33, what was his very first declaration?`,
+    options: [
+      `"I have come to overturn the rulers of the earth."`,
+      `"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet."`,
+      `"Do not ask my mother; ask the elders of the sanctuary."`,
+      `"I have been raised to a high station above all angels."`
+    ],
+    correct: 1,
+    explain: `In 19:30, Jesus immediately declares: "Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet," followed by injunctions of prayer, zakah, and dutifulness to his mother.`
+  },
+  {
+    topic: `Verbal Echoes`,
+    q: `Which argument used to reassure Zechariah (19:9) is repeated almost word-for-word against disbelievers doubting resurrection (19:67)?`,
+    options: [
+      `"Peace is on the day you are born and the day you die."`,
+      `"I created you before, while you were nothing."`,
+      `"Morning and afternoon provision awaits the grateful."`,
+      `"Take the Scripture with determination."`
+    ],
+    correct: 1,
+    explain: `In 19:9 the angel tells Zechariah, "I created you before, while you were nothing." In 19:67 the disbeliever who asks if he will be brought forth alive after death is asked: "Does man not remember that We created him before, while he was nothing?"`
+  },
+  {
+    topic: `Abraham's Dialogue`,
+    q: `How did Abraham respond when his father threatened to stone him and told him to leave (19:46–48)?`,
+    options: [
+      `He debated the elders of the town for three nights`,
+      `He wished punishment upon his father immediately`,
+      `He said "Peace will be upon you," promised to ask forgiveness for him, and separated peacefully to invoke his Lord`,
+      `He remained silent in the sanctuary like Zechariah`
+    ],
+    correct: 2,
+    explain: `In 19:47–48, Abraham replies "Peace will be upon you," vows to ask forgiveness for his father, and withdraws from them and their idols, trusting he will not be unhappy in invoking his Lord.`
+  },
+  {
+    topic: `Prophetic Lineage`,
+    q: `Which prophet in 19:54–55 is specifically praised as "true to his promise" (ṣādiq al-wa'd) and for enjoining prayer and zakah upon his people?`,
+    options: [
+      `Idrees`,
+      `Ishmael`,
+      `Moses`,
+      `Aaron`
+    ],
+    correct: 1,
+    explain: `Verses 19:54–55 describe Ishmael as "true to his promise, and he was a messenger and a prophet," who enjoined prayer and zakah on his people and was pleasing to his Lord.`
+  },
+  {
+    topic: `Rhetorical Structure`,
+    q: `What major contrast appears side by side in verses 19:85–86 regarding the gathering on the Day of Judgement?`,
+    options: [
+      `The righteous are gathered as an honored delegation (wafdā) to ar-Raḥmān, while criminals are driven to Hell in thirst (wirdā)`,
+      `Both groups wait silently behind a screen`,
+      `Wealth and children intercede for those who were generous`,
+      `Angels descend without command to gather every nation`
+    ],
+    correct: 0,
+    explain: `Verses 19:85–86 pair two vivid Arabic end-words: the righteous gathered to the Most Merciful as a delegation (wafdā), and criminals driven to Hell in thirst (wirdā).`
+  },
+  {
+    topic: `Closing Promise`,
+    q: `What does 19:96 promise those who believe and do righteous deeds at the conclusion of Surah Maryam?`,
+    options: [
+      `Immediate wealth and large households in this life`,
+      `Exemption from ever speaking to people`,
+      `The Most Merciful will appoint for them affection (wuddā)`,
+      `Knowledge of the unseen before the Hour arrives`
+    ],
+    correct: 2,
+    explain: `Verse 19:96 concludes the surah's core message of divine mercy: "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection (wuddā)."`
+  }
+];
+
+/* Application State (persisted via notebookAppApi) */
+let appState = {
+  studiedVerses: [],
+  notes: {},
+  vocabStatus: {},
+  quizAnswers: {},
+  selectedMovement: 1,
+  archLens: `all`,
+  selectedParallelId: `creation-nothing`,
+  readerFilter: `1`,
+  showArabic: true,
+  highlightRahman: true,
+  recallMode: false,
+  vocabFilter: `all`,
+  fcIndex: 0,
+  fcFlipped: false,
+  quizIndex: 0
+};
+
+let isHydrated = false;
+
+async function persistState() {
+  if (!isHydrated) return;
+  if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+    try {
+      await window.notebookAppApi.setAppState(appState);
+    } catch (e) {
+      // Ignore transient host persistence errors silently
+    }
+  }
+}
+
+function showToast(msg) {
+  const el = document.getElementById('mastery-status-msg');
+  if (!el) return;
+  el.textContent = msg;
+}
+
+function updateMasteryBanner() {
+  const studiedCount = appState.studiedVerses.length;
+  const vocabMastered = VOCAB.filter(item => appState.vocabStatus[item.id] === 'mastered').length;
+  const quizCorrect = QUIZ.reduce((acc, q, idx) => {
+    return acc + (appState.quizAnswers[idx] === q.correct ? 1 : 0);
+  }, 0);
+
+  const verseWeight = (studiedCount / 98) * 50;
+  const vocabWeight = (vocabMastered / VOCAB.length) * 25;
+  const quizWeight = (quizCorrect / QUIZ.length) * 25;
+  const totalPct = Math.round(verseWeight + vocabWeight + quizWeight);
+
+  const elVerses = document.getElementById('stat-verses');
+  const elVocab = document.getElementById('stat-vocab');
+  const elQuiz = document.getElementById('stat-quiz');
+  const elBadge = document.getElementById('mastery-pct-badge');
+  const elFill = document.getElementById('mastery-progress-fill');
+  const elBar = document.getElementById('mastery-progressbar');
+  const elHeadline = document.getElementById('mastery-headline');
+
+  if (elVerses) elVerses.textContent = `${studiedCount} / 98`;
+  if (elVocab) elVocab.textContent = `${vocabMastered} / ${VOCAB.length}`;
+  if (elQuiz) elQuiz.textContent = `${quizCorrect} / ${QUIZ.length}`;
+  if (elBadge) elBadge.textContent = `${totalPct}% mastered`;
+  if (elFill) elFill.style.width = `${totalPct}%`;
+  if (elBar) elBar.setAttribute('aria-valuenow', String(totalPct));
+
+  if (elHeadline) {
+    if (totalPct === 0) {
+      elHeadline.textContent = `Begin exploring Chapter 19`;
+    } else if (totalPct < 40) {
+      elHeadline.textContent = `Building foundations in Surah Maryam`;
+    } else if (totalPct < 80) {
+      elHeadline.textContent = `Deepening recall & thematic connections`;
+    } else {
+      elHeadline.textContent = `Strong mastery across Surah Maryam`;
+    }
+  }
+}
+
+/* Section 1: Architecture Map */
+function isVerseMatchForLens(verse, lens) {
+  if (lens === 'rahman') {
+    return verse.tags.includes('ar-Raḥmān');
+  }
+  if (lens === 'echoes') {
+    return verse.tags.includes('Echo');
+  }
+  if (lens === 'rhyme') {
+    return verse.v >= 75;
+  }
+  return false;
+}
+
+function renderArchitecture() {
+  const listEl = document.getElementById('arch-movements-list');
+  if (!listEl) return;
+
+  const lensButtons = ['all', 'rahman', 'echoes', 'rhyme'];
+  lensButtons.forEach(l => {
+    const btn = document.getElementById(`lens-${l}`);
+    if (btn) btn.classList.toggle('is-active', appState.archLens === l);
+  });
+
+  listEl.innerHTML = MOVEMENTS.map(m => {
+    const mVerses = VERSES.filter(v => v.m === m.id);
+    const isSelected = appState.selectedMovement === m.id;
+    const cellsHtml = mVerses.map(v => {
+      const studied = appState.studiedVerses.includes(v.v);
+      const match = isVerseMatchForLens(v, appState.archLens);
+      const classes = ['verse-cell'];
+      if (appState.archLens === 'rhyme' && v.v >= 75) {
+        classes.push('is-rhyme-shift');
+      } else if (match) {
+        classes.push('is-match');
+      } else if (appState.archLens !== 'all') {
+        classes.push('is-dim');
+      } else if (studied) {
+        classes.push('is-studied');
+      }
+      return `<span class="${classes.join(' ')}" title="Verse 19:${v.v}"></span>`;
+    }).join('');
+
+    return `
+      <button type="button" class="movement-band${isSelected ? ' is-selected' : ''}" onclick="selectArchMovement(${m.id})">
+        <div class="movement-band-head">
+          <span class="movement-title">${m.id}. ${m.title}</span>
+          <span class="movement-range">${m.range} · ${m.end - m.start + 1} verses</span>
+        </div>
+        <div class="verse-dots-row" aria-hidden="true">${cellsHtml}</div>
+      </button>
+    `;
+  }).join('');
+
+  const activeM = MOVEMENTS.find(m => m.id === appState.selectedMovement) || MOVEMENTS[0];
+  const labelEl = document.getElementById('arch-detail-label');
+  const titleEl = document.getElementById('arch-detail-title');
+  const tagsEl = document.getElementById('arch-detail-tags');
+  const summaryEl = document.getElementById('arch-detail-summary');
+
+  if (labelEl) labelEl.textContent = `Movement ${activeM.id} · Verses ${activeM.range}`;
+  if (titleEl) titleEl.textContent = activeM.title;
+  if (summaryEl) summaryEl.textContent = activeM.summary;
+  if (tagsEl) {
+    const studiedInM = VERSES.filter(v => v.m === activeM.id && appState.studiedVerses.includes(v.v)).length;
+    const totalInM = activeM.end - activeM.start + 1;
+    tagsEl.innerHTML = `
+      <span class="tag">${studiedInM}/${totalInM} studied</span>
+      <span class="tag tag-slate">${activeM.rahmanCount}× ar-Raḥmān</span>
+      <span class="tag">${activeM.id === 6 ? '-ddā / -dā cadence' : 'Lyrical -iyyā cadence'}</span>
+    `;
+  }
+
+  renderRahmanChart(activeM.id);
+}
+
+function renderRahmanChart(activeMovementId) {
+  const svg = document.getElementById('rahman-distribution-svg');
+  if (!svg) return;
+  const maxVal = 9;
+  const barWidth = 44;
+  const gap = 20;
+  const startX = 24;
+  const baseY = 148;
+  const maxBarH = 104;
+
+  let markup = `<line x1="16" y1="${baseY}" x2="404" y2="${baseY}" stroke="var(--outline-variant)" stroke-width="1" />`;
+  markup += `<text x="16" y="18" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="11" font-weight="500">Mentions of ar-Raḥmān ("The Most Merciful") by movement</text>`;
+
+  MOVEMENTS.forEach((m, idx) => {
+    const x = startX + idx * (barWidth + gap);
+    const h = m.rahmanCount === 0 ? 3 : Math.round((m.rahmanCount / maxVal) * maxBarH);
+    const y = baseY - h;
+    const isSel = m.id === activeMovementId;
+    const fill = m.rahmanCount === 0
+      ? 'var(--outline-variant)'
+      : (isSel ? 'var(--data-1)' : 'var(--data-2)');
+    markup += `<rect x="${x}" y="${y}" width="${barWidth}" height="${h}" rx="2" fill="${fill}" />`;
+    markup += `<text x="${x + barWidth / 2}" y="${y - 6}" text-anchor="middle" fill="var(--on-surface)" font-family="var(--font-label)" font-size="11" font-weight="500">${m.rahmanCount}</text>`;
+    markup += `<text x="${x + barWidth / 2}" y="${baseY + 16}" text-anchor="middle" fill="${isSel ? 'var(--primary)' : 'var(--on-surface-variant)'}" font-family="var(--font-label)" font-size="11" font-weight="${isSel ? '600' : '400'}">M${m.id}</text>`;
+  });
+  svg.innerHTML = markup;
+}
+
+function setArchLens(lens) {
+  appState.archLens = lens;
+  renderArchitecture();
+  persistState();
+}
+
+function selectArchMovement(id) {
+  appState.selectedMovement = id;
+  renderArchitecture();
+  persistState();
+}
+
+function jumpToSelectedMovement() {
+  appState.readerFilter = String(appState.selectedMovement);
+  const sel = document.getElementById('reader-movement-select');
+  if (sel) sel.value = appState.readerFilter;
+  renderReader();
+  persistState();
+  const readerEl = document.getElementById('reader');
+  if (readerEl) readerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* Section 2: Prophetic Parallels */
+function renderParallels() {
+  const navEl = document.getElementById('parallels-nav');
+  if (!navEl) return;
+
+  navEl.innerHTML = PARALLELS.map(p => {
+    const active = p.id === appState.selectedParallelId;
+    return `
+      <button type="button" role="tab" aria-selected="${active ? 'true' : 'false'}" class="parallel-btn${active ? ' is-active' : ''}" onclick="selectParallel('${p.id}')">
+        <span class="parallel-btn-title">${p.title}</span>
+        <span class="parallel-btn-refs">${p.refs} · ${p.theme}</span>
+      </button>
+    `;
+  }).join('');
+
+  const p = PARALLELS.find(item => item.id === appState.selectedParallelId) || PARALLELS[0];
+  const leftVerse = VERSES.find(item => item.v === p.leftV);
+  const rightVerse = VERSES.find(item => item.v === p.rightV);
+
+  const tagEl = document.getElementById('parallel-theme-tag');
+  const refsEl = document.getElementById('parallel-refs-label');
+  const headEl = document.getElementById('parallel-heading');
+  const lRefEl = document.getElementById('parallel-left-ref');
+  const lArEl = document.getElementById('parallel-left-ar');
+  const lEnEl = document.getElementById('parallel-left-en');
+  const rRefEl = document.getElementById('parallel-right-ref');
+  const rArEl = document.getElementById('parallel-right-ar');
+  const rEnEl = document.getElementById('parallel-right-en');
+  const insightEl = document.getElementById('parallel-insight');
+
+  if (tagEl) tagEl.textContent = p.theme;
+  if (refsEl) refsEl.textContent = p.refs;
+  if (headEl) headEl.textContent = p.title;
+  if (lRefEl) lRefEl.textContent = p.leftRef;
+  if (lArEl && leftVerse) lArEl.textContent = leftVerse.ar;
+  if (lEnEl && leftVerse) lEnEl.textContent = leftVerse.en;
+  if (rRefEl) rRefEl.textContent = p.rightRef;
+  if (rArEl && rightVerse) rArEl.textContent = rightVerse.ar;
+  if (rEnEl && rightVerse) rEnEl.textContent = rightVerse.en;
+  if (insightEl) insightEl.textContent = p.insight;
+}
+
+function selectParallel(id) {
+  appState.selectedParallelId = id;
+  renderParallels();
+  persistState();
+}
+
+/* Section 3: Complete 98-Verse Reader */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function formatEnglishVerse(text) {
+  const safe = escapeHtml(text);
+  if (!appState.highlightRahman) return safe;
+  return safe.replace(/Most Merciful/g, '<span class="highlight-rahman">Most Merciful</span>');
+}
+
+function getFilteredVerses() {
+  const searchInput = document.getElementById('reader-search-input');
+  const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+  return VERSES.filter(v => {
+    const matchesMovement = appState.readerFilter === 'all' || String(v.m) === appState.readerFilter;
+    if (!matchesMovement) return false;
+    if (!q) return true;
+    return (
+      v.en.toLowerCase().includes(q) ||
+      v.ar.includes(q) ||
+      String(v.v) === q ||
+      `19:${v.v}`.includes(q) ||
+      (v.note && v.note.toLowerCase().includes(q))
+    );
+  });
+}
+
+function renderReader() {
+  const streamEl = document.getElementById('verses-stream');
+  const countEl = document.getElementById('reader-count-label');
+  const selEl = document.getElementById('reader-movement-select');
+  if (selEl) selEl.value = appState.readerFilter;
+
+  const btnArabic = document.getElementById('toggle-arabic-btn');
+  const btnRahman = document.getElementById('toggle-rahman-btn');
+  const btnRecall = document.getElementById('toggle-recall-btn');
+
+  if (btnArabic) {
+    btnArabic.classList.toggle('is-active', appState.showArabic);
+    btnArabic.setAttribute('aria-pressed', String(appState.showArabic));
+    btnArabic.textContent = `Arabic text: ${appState.showArabic ? 'On' : 'Off'}`;
+  }
+  if (btnRahman) {
+    btnRahman.classList.toggle('is-active', appState.highlightRahman);
+    btnRahman.setAttribute('aria-pressed', String(appState.highlightRahman));
+    btnRahman.textContent = `Highlight Most Merciful: ${appState.highlightRahman ? 'On' : 'Off'}`;
+  }
+  if (btnRecall) {
+    btnRecall.classList.toggle('is-active', appState.recallMode);
+    btnRecall.setAttribute('aria-pressed', String(appState.recallMode));
+    btnRecall.textContent = `Recall mode (hide English): ${appState.recallMode ? 'On' : 'Off'}`;
+  }
+
+  if (!streamEl) return;
+  const list = getFilteredVerses();
+  if (countEl) countEl.textContent = `Showing ${list.length} verse${list.length === 1 ? '' : 's'}`;
+
+  if (list.length === 0) {
+    streamEl.innerHTML = `
+      <div style="padding: var(--space-xl) 0; display: grid; gap: var(--space-sm);">
+        <p class="prose">No verses match that filter or search term.</p>
+        <div><button type="button" class="btn btn-secondary" onclick="clearReaderFilters()">Show Movement 1 (19:1–15)</button></div>
+      </div>
+    `;
+    return;
+  }
+
+  streamEl.innerHTML = list.map(v => {
+    const studied = appState.studiedVerses.includes(v.v);
+    const savedNote = appState.notes[v.v] || '';
+    const tagsHtml = v.tags.map(t => `<span class="tag${t === 'ar-Raḥmān' ? '' : ' tag-slate'}">${t}</span>`).join('');
+    const arabicHtml = appState.showArabic
+      ? `<div class="arabic-text verse-arabic-lg" lang="ar" dir="rtl">${escapeHtml(v.ar)}</div>`
+      : '';
+    const noteHtml = v.note
+      ? `<p class="verse-note-insight">${escapeHtml(v.note)}</p>`
+      : '';
+
+    return `
+      <article class="verse-row${studied ? ' is-studied-row' : ''}" id="verse-row-${v.v}">
+        <div class="verse-header">
+          <div class="verse-meta-left">
+            <span class="verse-num-badge">19:${v.v}</span>
+            ${tagsHtml}
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-quiet" onclick="toggleNoteEditor(${v.v})">${savedNote ? 'Edit note' : 'Add note'}</button>
+            <button type="button" class="btn ${studied ? 'btn-primary' : 'btn-secondary'}" aria-pressed="${studied ? 'true' : 'false'}" onclick="toggleVerseStudied(${v.v})">${studied ? 'Studied' : 'Mark studied'}</button>
+          </div>
+        </div>
+        ${arabicHtml}
+        <p class="verse-english${appState.recallMode ? ' is-blurred' : ''}" onclick="revealBlurredVerse(this)">${formatEnglishVerse(v.en)}</p>
+        ${noteHtml}
+        ${savedNote ? `<div class="personal-note-drawer" id="saved-note-preview-${v.v}"><span class="label">Your reflection</span><p class="prose" style="font-size:0.9375rem;">${escapeHtml(savedNote)}</p></div>` : ''}
+        <div class="personal-note-drawer" id="note-editor-${v.v}" style="display: none;">
+          <label for="note-textarea-${v.v}" class="field-label">Personal note for 19:${v.v}</label>
+          <textarea id="note-textarea-${v.v}" class="personal-note-input">${escapeHtml(savedNote)}</textarea>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" onclick="saveVerseNote(${v.v})">Save note</button>
+            <button type="button" class="btn btn-quiet" onclick="toggleNoteEditor(${v.v})">Cancel</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function revealBlurredVerse(el) {
+  if (!el) return;
+  if (appState.recallMode) {
+    el.classList.toggle('is-revealed');
+  }
+}
+
+function onReaderFilterChange() {
+  const sel = document.getElementById('reader-movement-select');
+  if (sel) appState.readerFilter = sel.value;
+  renderReader();
+  persistState();
+}
+
+function clearReaderFilters() {
+  appState.readerFilter = '1';
+  const searchInput = document.getElementById('reader-search-input');
+  if (searchInput) searchInput.value = '';
+  renderReader();
+  persistState();
+}
+
+function toggleReaderOption(key) {
+  appState[key] = !appState[key];
+  renderReader();
+  persistState();
+}
+
+function toggleVerseStudied(verseNum) {
+  const idx = appState.studiedVerses.indexOf(verseNum);
+  if (idx >= 0) {
+    appState.studiedVerses.splice(idx, 1);
+  } else {
+    appState.studiedVerses.push(verseNum);
+    appState.studiedVerses.sort((a, b) => a - b);
+  }
+  renderReader();
+  renderArchitecture();
+  updateMasteryBanner();
+  persistState();
+}
+
+function markVisibleMovementStudied() {
+  const visible = getFilteredVerses();
+  visible.forEach(v => {
+    if (!appState.studiedVerses.includes(v.v)) {
+      appState.studiedVerses.push(v.v);
+    }
+  });
+  appState.studiedVerses.sort((a, b) => a - b);
+  renderReader();
+  renderArchitecture();
+  updateMasteryBanner();
+  persistState();
+  showToast(`Marked ${visible.length} visible verse${visible.length === 1 ? '' : 's'} as studied.`);
+}
+
+function toggleNoteEditor(verseNum) {
+  const editor = document.getElementById(`note-editor-${verseNum}`);
+  if (!editor) return;
+  const open = editor.style.display !== 'none';
+  editor.style.display = open ? 'none' : 'grid';
+}
+
+function saveVerseNote(verseNum) {
+  const ta = document.getElementById(`note-textarea-${verseNum}`);
+  if (!ta) return;
+  const val = ta.value.trim();
+  if (val) {
+    appState.notes[verseNum] = val;
+  } else {
+    delete appState.notes[verseNum];
+  }
+  renderReader();
+  persistState();
+  showToast(`Saved note for verse 19:${verseNum}.`);
+}
+
+/* Section 4: Vocabulary Flashcards */
+function getFilteredVocab() {
+  if (appState.vocabFilter === 'mastered') {
+    return VOCAB.filter(v => appState.vocabStatus[v.id] === 'mastered');
+  }
+  if (appState.vocabFilter === 'review') {
+    return VOCAB.filter(v => appState.vocabStatus[v.id] !== 'mastered');
+  }
+  return VOCAB;
+}
+
+function renderVocab() {
+  ['all', 'review', 'mastered'].forEach(f => {
+    const btn = document.getElementById(`vocab-filter-${f}`);
+    if (btn) btn.classList.toggle('is-active', appState.vocabFilter === f);
+  });
+
+  const deck = getFilteredVocab();
+  if (appState.fcIndex >= deck.length) appState.fcIndex = 0;
+
+  const indexEl = document.getElementById('vocab-index-list');
+  const counterEl = document.getElementById('fc-counter');
+  const refEl = document.getElementById('fc-verse-ref');
+  const arEl = document.getElementById('fc-arabic');
+  const transEl = document.getElementById('fc-translit');
+  const meanEl = document.getElementById('fc-meaning');
+  const ctxEl = document.getElementById('fc-context');
+  const statusEl = document.getElementById('fc-status-label');
+  const frontEl = document.getElementById('fc-face-front');
+  const backEl = document.getElementById('fc-face-back');
+
+  if (deck.length === 0) {
+    if (counterEl) counterEl.textContent = `0 cards in this filter`;
+    if (refEl) refEl.textContent = `Complete`;
+    if (arEl) arEl.textContent = `—`;
+    if (transEl) transEl.textContent = `No cards match this filter.`;
+    if (frontEl) frontEl.style.display = 'grid';
+    if (backEl) backEl.style.display = 'none';
+    if (statusEl) statusEl.textContent = `Switch filter to view all cards`;
+    if (indexEl) indexEl.innerHTML = `<p class="prose-muted">No terms in this view.</p>`;
+    return;
+  }
+
+  const card = deck[appState.fcIndex];
+  const st = appState.vocabStatus[card.id] || 'unreviewed';
+
+  if (counterEl) counterEl.textContent = `Card ${appState.fcIndex + 1} of ${deck.length}`;
+  if (refEl) refEl.textContent = card.ref;
+  if (arEl) arEl.textContent = card.ar;
+  if (transEl) transEl.textContent = card.translit;
+  if (meanEl) meanEl.textContent = card.meaning;
+  if (ctxEl) ctxEl.textContent = card.context;
+  if (statusEl) {
+    statusEl.textContent = st === 'mastered' ? `Status: Mastered` : (st === 'review' ? `Status: Needs review` : `Status: Unreviewed`);
+  }
+
+  if (frontEl) frontEl.style.display = appState.fcFlipped ? 'none' : 'grid';
+  if (backEl) backEl.style.display = appState.fcFlipped ? 'grid' : 'none';
+
+  if (indexEl) {
+    indexEl.innerHTML = deck.map((item, idx) => {
+      const itemSt = appState.vocabStatus[item.id];
+      const badge = itemSt === 'mastered' ? 'Mastered' : (itemSt === 'review' ? 'Review' : item.ref);
+      return `
+        <button type="button" class="vocab-index-item${idx === appState.fcIndex ? ' is-current' : ''}" onclick="selectVocabCard(${idx})">
+          <span style="font-weight: 500; color: var(--on-surface);">${item.translit}</span>
+          <span class="tag${itemSt === 'mastered' ? '' : ' tag-slate'}">${badge}</span>
+        </button>
+      `;
+    }).join('');
+  }
+}
+
+function setVocabFilter(f) {
+  appState.vocabFilter = f;
+  appState.fcIndex = 0;
+  appState.fcFlipped = false;
+  renderVocab();
+  persistState();
+}
+
+function flipFlashcard() {
+  appState.fcFlipped = !appState.fcFlipped;
+  renderVocab();
+}
+
+function selectVocabCard(idx) {
+  appState.fcIndex = idx;
+  appState.fcFlipped = false;
+  renderVocab();
+}
+
+function prevFlashcard() {
+  const deck = getFilteredVocab();
+  if (deck.length === 0) return;
+  appState.fcIndex = (appState.fcIndex - 1 + deck.length) % deck.length;
+  appState.fcFlipped = false;
+  renderVocab();
+}
+
+function nextFlashcard() {
+  const deck = getFilteredVocab();
+  if (deck.length === 0) return;
+  appState.fcIndex = (appState.fcIndex + 1) % deck.length;
+  appState.fcFlipped = false;
+  renderVocab();
+}
+
+function markCurrentVocab(isMastered) {
+  const deck = getFilteredVocab();
+  if (deck.length === 0) return;
+  const card = deck[appState.fcIndex];
+  appState.vocabStatus[card.id] = isMastered ? 'mastered' : 'review';
+  updateMasteryBanner();
+  if (appState.fcIndex + 1 < deck.length) {
+    appState.fcIndex += 1;
+  }
+  appState.fcFlipped = false;
+  renderVocab();
+  persistState();
+}
+
+/* Section 5: Comprehension Quiz */
+function renderQuiz() {
+  const idx = appState.quizIndex;
+  const q = QUIZ[idx];
+  const chosen = appState.quizAnswers[idx];
+  const hasAnswered = chosen !== undefined;
+
+  const qLabel = document.getElementById('quiz-q-label');
+  const qTopic = document.getElementById('quiz-q-topic');
+  const qText = document.getElementById('quiz-q-text');
+  const optContainer = document.getElementById('quiz-options');
+  const fbBox = document.getElementById('quiz-feedback');
+  const fbVerdict = document.getElementById('quiz-feedback-verdict');
+  const fbExplain = document.getElementById('quiz-feedback-explain');
+  const prevBtn = document.getElementById('quiz-prev-btn');
+  const nextBtn = document.getElementById('quiz-next-btn');
+
+  if (qLabel) qLabel.textContent = `Question ${idx + 1} of ${QUIZ.length}`;
+  if (qTopic) qTopic.textContent = q.topic;
+  if (qText) qText.textContent = q.q;
+
+  if (optContainer) {
+    optContainer.innerHTML = q.options.map((opt, oIdx) => {
+      const classes = ['quiz-option-btn'];
+      if (hasAnswered) {
+        if (oIdx === q.correct) classes.push('is-correct');
+        else if (oIdx === chosen) classes.push('is-wrong');
+      }
+      const letter = String.fromCharCode(65 + oIdx);
+      return `
+        <button type="button" class="${classes.join(' ')}" ${hasAnswered ? 'disabled' : ''} onclick="answerQuiz(${oIdx})">
+          <span class="label" style="min-width: 24px;">${letter}.</span>
+          <span>${escapeHtml(opt)}</span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  if (fbBox && fbVerdict && fbExplain) {
+    if (hasAnswered) {
+      fbBox.style.display = 'grid';
+      const isRight = chosen === q.correct;
+      fbVerdict.textContent = isRight ? `Correct` : `Not quite — review the verse reference`;
+      fbVerdict.style.color = isRight ? 'var(--positive)' : 'var(--error)';
+      fbExplain.textContent = q.explain;
+    } else {
+      fbBox.style.display = 'none';
+    }
+  }
+
+  if (prevBtn) prevBtn.disabled = idx === 0;
+  if (nextBtn) nextBtn.disabled = idx === QUIZ.length - 1;
+
+  const trackerEl = document.getElementById('quiz-tracker-grid');
+  const summaryEl = document.getElementById('quiz-summary-caption');
+  const correctTotal = QUIZ.reduce((acc, item, qIdx) => acc + (appState.quizAnswers[qIdx] === item.correct ? 1 : 0), 0);
+
+  if (summaryEl) summaryEl.textContent = `${correctTotal} of ${QUIZ.length} answered correctly`;
+  if (trackerEl) {
+    trackerEl.innerHTML = QUIZ.map((item, qIdx) => {
+      const ans = appState.quizAnswers[qIdx];
+      const cls = ['quiz-pip'];
+      if (qIdx === idx) cls.push('is-current');
+      if (ans !== undefined) {
+        cls.push(ans === item.correct ? 'is-right' : 'is-missed');
+      }
+      return `<button type="button" class="${cls.join(' ')}" onclick="jumpToQuiz(${qIdx})">Q${qIdx + 1}</button>`;
+    }).join('');
+  }
+}
+
+function answerQuiz(optIdx) {
+  appState.quizAnswers[appState.quizIndex] = optIdx;
+  renderQuiz();
+  updateMasteryBanner();
+  persistState();
+}
+
+function prevQuizQuestion() {
+  if (appState.quizIndex > 0) {
+    appState.quizIndex -= 1;
+    renderQuiz();
+  }
+}
+
+function nextQuizQuestion() {
+  if (appState.quizIndex < QUIZ.length - 1) {
+    appState.quizIndex += 1;
+    renderQuiz();
+  }
+}
+
+function jumpToQuiz(idx) {
+  appState.quizIndex = idx;
+  renderQuiz();
+}
+
+function resetQuiz() {
+  appState.quizAnswers = {};
+  appState.quizIndex = 0;
+  renderQuiz();
+  updateMasteryBanner();
+  persistState();
+  showToast(`Quiz reset.`);
+}
+
+/* Export & Two-Step Inline Reset */
+function exportStudyNotes() {
+  const lines = [
+    `SURAH MARYAM (CHAPTER 19) — STUDY SUMMARY`,
+    `=======================================`,
+    `Verses marked studied: ${appState.studiedVerses.length} / 98`,
+    `Key terms mastered: ${VOCAB.filter(v => appState.vocabStatus[v.id] === 'mastered').length} / ${VOCAB.length}`,
+    ``
+  ];
+  const noteKeys = Object.keys(appState.notes).map(Number).sort((a, b) => a - b);
+  if (noteKeys.length > 0) {
+    lines.push(`PERSONAL VERSE NOTES:`);
+    noteKeys.forEach(num => {
+      const verse = VERSES.find(v => v.v === num);
+      lines.push(`- 19:${num}: ${appState.notes[num]}`);
+      if (verse) lines.push(`  Text: ${verse.en}`);
+    });
+  } else {
+    lines.push(`No personal verse notes recorded yet.`);
+  }
+
+  const content = lines.join('\n');
+  if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+    window.notebookAppApi.triggerFileDownload({
+      content: content,
+      contentType: 'text/plain',
+      encoding: 'UTF-8',
+      filename: 'surah-maryam-study-notes.txt'
+    });
+    showToast(`Exported study summary.`);
+  } else {
+    showToast(`Summary prepared (${noteKeys.length} notes).`);
+  }
+}
+
+function handleResetProgress(btn) {
+  if (!btn) return;
+  if (btn.dataset.armed !== 'true') {
+    btn.dataset.armed = 'true';
+    btn.textContent = `Click again to confirm reset`;
+    showToast(`Click "Click again to confirm reset" to clear all study progress and notes.`);
+    return;
+  }
+  btn.dataset.armed = 'false';
+  btn.textContent = `Reset progress`;
+  appState.studiedVerses = [];
+  appState.notes = {};
+  appState.vocabStatus = {};
+  appState.quizAnswers = {};
+  appState.quizIndex = 0;
+  renderArchitecture();
+  renderReader();
+  renderVocab();
+  renderQuiz();
+  updateMasteryBanner();
+  persistState();
+  showToast(`All study progress has been reset.`);
+}
+
+/* Scroll Reveal */
+function initScrollReveal() {
+  const nodes = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    nodes.forEach(n => n.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  nodes.forEach(n => io.observe(n));
+}
+
+/* Initialization */
+async function initApp() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+    try {
+      const saved = await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === 'object') {
+        appState = Object.assign({}, appState, saved);
+        if (!Array.isArray(appState.studiedVerses)) appState.studiedVerses = [];
+        if (!appState.notes || typeof appState.notes !== 'object') appState.notes = {};
+        if (!appState.vocabStatus || typeof appState.vocabStatus !== 'object') appState.vocabStatus = {};
+        if (!appState.quizAnswers || typeof appState.quizAnswers !== 'object') appState.quizAnswers = {};
+      }
+    } catch (e) {
+      // Proceed with clean defaults if state retrieval fails
+    }
+  }
+
+  isHydrated = true;
+  renderArchitecture();
+  renderParallels();
+  renderReader();
+  renderVocab();
+  renderQuiz();
+  updateMasteryBanner();
+  initScrollReveal();
+
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

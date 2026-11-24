@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="nocturne">
+  <title>Surah Al-Jathiyah (Chapter 45) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+
+      /* Page and surfaces: Prussian midnight steps */
+      --background: #0a101d;
+      --surface-container-low: #0e1626;
+      --surface-container: #111b2e;
+      --surface-container-high: #17243c;
+
+      /* Text */
+      --on-surface: #f2ece1;
+      --on-surface-variant: #9ba8bf;
+
+      /* Borders */
+      --outline: #384d73;
+      --outline-variant: #21304d;
+
+      /* Accents */
+      --primary: #dfaa5b;
+      --on-primary: #0a101d;
+      --primary-container: #2b261c;
+      --on-primary-container: #f5dcb0;
+      --secondary: #687a99;
+      --tertiary: #7cc4e8;
+      --error: #f27474;
+      --on-error: #1a0606;
+
+      /* Data series, in order of use */
+      --data-1: #dfaa5b;
+      --data-2: #7cc4e8;
+      --data-3: #52d19c;
+      --data-4: #e07a5f;
+      --data-context: #4a5d80;
+
+      /* Fonts */
+      --font-headline: 'EB Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-strong: 1px solid var(--outline);
+      --panel-highlight: inset 0 1px 0 rgba(242, 236, 225, 0.05);
+      --brass-glow: radial-gradient(circle at 88% 12%, rgba(223, 170, 91, 0.09), transparent 48%);
+      --heading-tracking: -0.015em;
+      --label-tracking: 0.06em;
+      --sky-tint: color-mix(in srgb, var(--tertiary) 12%, transparent);
+      --brass-tint: color-mix(in srgb, var(--primary) 14%, transparent);
+      --mint-tint: color-mix(in srgb, var(--data-3) 14%, transparent);
+      --coral-tint: color-mix(in srgb, var(--data-4) 14%, transparent);
+      --error-tint: color-mix(in srgb, var(--error) 14%, transparent);
+
+      /* Shared semantic tokens */
+      --positive: #52d19c;
+      --warning: #dfaa5b;
+      --focus: #dfaa5b;
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.35rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.55vw, 1.45rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      letter-spacing: var(--heading-tracking);
+      color: var(--on-surface);
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      max-width: 68ch;
+      color: var(--on-surface);
+    }
+    .muted {
+      color: var(--on-surface-variant);
+    }
+    .coord-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+    }
+    .deck-brass {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-top: var(--space-xs);
+    }
+    .ar-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.95;
+      color: var(--on-surface);
+    }
+    .ar-inline {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      font-size: 1.1em;
+      color: var(--primary);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Nocturne hero header */
+    .hero-header {
+      background-color: var(--background);
+      background-image: var(--brass-glow);
+      border-bottom: var(--hairline);
+      padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+    }
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .badge {
+      background: var(--sky-tint);
+      color: var(--tertiary);
+      border: 1px solid color-mix(in srgb, var(--tertiary) 35%, transparent);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .badge-brass {
+      background: var(--brass-tint);
+      color: var(--primary);
+      border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+    }
+    .badge-mint {
+      background: var(--mint-tint);
+      color: var(--positive);
+      border: 1px solid color-mix(in srgb, var(--positive) 35%, transparent);
+    }
+    .hero-title {
+      font-size: var(--display-size);
+      line-height: 1.06;
+      max-width: 19ch;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+    .hero-lede {
+      color: var(--on-surface-variant);
+      font-size: var(--subhead-size);
+      line-height: 1.5;
+      max-width: 64ch;
+    }
+
+    /* Telemetry / progress bar in hero */
+    .mastery-telemetry {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+    }
+    .panel {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .panel-low {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+    .stat-tile {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .stat-note {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+
+    /* Section jump landmark strip */
+    .landmark-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--hairline);
+    }
+    .landmark-link {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      text-decoration: none;
+      padding: var(--space-sm) var(--space-md);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .landmark-link:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Sections */
+    .study-section {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-xl);
+      border-top: var(--hairline);
+    }
+    .study-section:first-child {
+      border-top: none;
+      padding-top: var(--space-md);
+    }
+    .section-header {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .section-title {
+      font-size: var(--headline-size);
+      line-height: 1.12;
+    }
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    /* Asymmetric split grid for narrative + interactive diagram */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .split-layout-even {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .split-layout,
+      .split-layout-even {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Recessed observation well */
+    .observation-well {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      color: var(--on-surface);
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      border: var(--hairline-strong);
+      background: transparent;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+      border-color: var(--primary);
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      color: var(--on-primary);
+    }
+    .btn-active,
+    .btn[aria-pressed="true"] {
+      background: var(--brass-tint);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-success[aria-pressed="true"] {
+      background: var(--mint-tint);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Interactive Movement Arc Selector */
+    .arc-diagram-wrap {
+      min-height: 300px;
+      display: grid;
+      gap: var(--space-md);
+    }
+    .arc-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .arc-node {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out);
+    }
+    .arc-node-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .arc-step-btn {
+      text-align: left;
+      justify-content: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--label-size);
+    }
+
+    /* Epistemology 4-Ladder Explorer */
+    .epistemology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .sign-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      color: var(--on-surface);
+      min-height: 44px;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .sign-card:hover {
+      background: var(--surface-container-high);
+      transform: translateY(-2px);
+    }
+    .sign-card[aria-pressed="true"] {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .sign-card-title {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 500;
+      color: var(--on-surface);
+    }
+
+    /* Comparison / Dialectics Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table.study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    table.study-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--tertiary);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--hairline-strong);
+    }
+    table.study-table td {
+      padding: var(--space-md);
+      border-bottom: var(--hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    table.study-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Hawa vs Shari'ah Interactive Pathway */
+    .pathway-toggle {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .cascade-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .cascade-item {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .cascade-item.is-warning {
+      border-left-color: var(--data-4);
+    }
+    .cascade-item.is-positive {
+      border-left-color: var(--positive);
+    }
+
+    /* Verse Explorer Controls */
+    .explorer-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+    }
+    @media (max-width: 780px) {
+      .explorer-controls {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .text-input,
+    .select-input {
+      background: var(--background);
+      border: var(--hairline-strong);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      width: 100%;
+    }
+    .select-input {
+      padding-right: var(--space-xl);
+    }
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      container-type: inline-size;
+    }
+    .verse-card.is-studied {
+      border-color: color-mix(in srgb, var(--positive) 45%, var(--outline-variant));
+    }
+    .verse-top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+      line-height: 2.05;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      letter-spacing: 0;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+    }
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: clamp(1.15rem, 1.05rem + 0.35vw, 1.35rem);
+      line-height: 1.5;
+      color: var(--on-surface);
+    }
+    .verse-commentary {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      border-left: 2px solid var(--outline);
+      padding-left: var(--space-md);
+    }
+    .verse-key-term {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--primary);
+    }
+
+    /* Flashcards & Quiz */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .flashcard {
+      background: var(--surface-container);
+      border: var(--hairline);
+      box-shadow: var(--panel-highlight);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: space-between;
+    }
+    .flashcard.is-mastered {
+      border-color: color-mix(in srgb, var(--positive) 45%, var(--outline-variant));
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      font-family: var(--font-body);
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: var(--body-size);
+      padding: var(--space-md);
+      line-height: 1.45;
+    }
+    .quiz-option.is-correct {
+      background: var(--mint-tint);
+      border-color: var(--positive);
+      color: var(--on-surface);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-tint);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      border: var(--hairline);
+      background: var(--surface-container-low);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .feedback-box.is-correct {
+      border-color: var(--positive);
+      background: var(--mint-tint);
+    }
+    .feedback-box.is-wrong {
+      border-color: var(--error);
+      background: var(--error-tint);
+    }
+
+    /* Callout quote */
+    .callout-quote {
+      background: var(--surface-container-low);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .callout-quote blockquote {
+      margin: 0;
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      line-height: 1.45;
+      color: var(--on-surface);
+    }
+
+    /* Reveal animation */
+    .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-hidden-init {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    /* Footer / Sources */
+    .study-footer {
+      border-top: var(--hairline);
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .hero-header {
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
+      }
+      .panel {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="hero-inner">
+      <div class="hero-meta-row">
+        <span class="badge"><i data-lucide="compass" aria-hidden="true"></i> Chapter 45 · Surah Al-Jathiyah</span>
+        <span class="badge badge-brass">37 Verses · Al-Ha-Meem Sequence</span>
+        <span class="badge badge-mint" id="hero-saved-badge">Progress Synced</span>
+      </div>
+
+      <div>
+        <h1 class="hero-title">Signs, Reason, and the <em>Kneeling</em> of Nations</h1>
+        <p class="deck-brass">An Interactive Study &amp; Mastery Companion to Surah Al-Jathiyah (45:1–37)</p>
+      </div>
+
+      <p class="hero-lede">
+        Bookended by the Divine Names <em>Al-Aziz Al-Hakim</em> (the Exalted in Might, the Wise), Chapter 45 constructs an unbroken philosophical and spiritual argument: from the observable cosmos and ecological cycles to individual moral agency, the lessons of historical covenant, the refutation of materialist determinism (<em>Dahriyyah</em>), and the dramatic summoning of every nation upon its knees before its speaking record.
+      </p>
+
+      <div class="mastery-telemetry" aria-label="Study progress overview">
+        <div class="stat-tile">
+          <span class="coord-label">Verses Studied</span>
+          <span class="stat-value" id="stat-verses">0 / 37</span>
+          <span class="stat-note" id="stat-bookmarks">0 bookmarked for review</span>
+        </div>
+        <div class="stat-tile">
+          <span class="coord-label">Core Terms Mastered</span>
+          <span class="stat-value" id="stat-terms">0 / 10</span>
+          <span class="stat-note">Key Arabic concepts</span>
+        </div>
+        <div class="stat-tile">
+          <span class="coord-label">Mastery Check</span>
+          <span class="stat-value" id="stat-quiz">0 / 8</span>
+          <span class="stat-note" id="stat-quiz-note">Diagnostic questions answered correctly</span>
+        </div>
+      </div>
+
+      <nav class="landmark-nav" aria-label="Study sections">
+        <a class="landmark-link" href="#sec-architecture">I. Structural Arc</a>
+        <a class="landmark-link" href="#sec-epistemology">II. Cosmic Signs</a>
+        <a class="landmark-link" href="#sec-covenant">III. Covenant &amp; Shari'ah</a>
+        <a class="landmark-link" href="#sec-dahriyyah">IV. Dahriyyah Critique</a>
+        <a class="landmark-link" href="#sec-jathiyah">V. Al-Jathiyah &amp; Grandeur</a>
+        <a class="landmark-link" href="#sec-verses">VI. All 37 Verses</a>
+        <a class="landmark-link" href="#sec-mastery">VII. Mastery Lab</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-grid">
+
+    <!-- SECTION I: ARCHITECTURAL OVERVIEW -->
+    <section id="sec-architecture" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section I · Verses 45:1–37 · Literary Architecture</span>
+        <h2 class="section-title">A Ring Composition Framed by <em>Al-Aziz Al-Hakim</em></h2>
+        <p class="muted">Surah Al-Jathiyah unfolds across six tightly linked movements. Select any node along the arc below to inspect how its argument builds toward the Day of Resurrection.</p>
+      </div>
+
+      <div class="split-layout">
+        <div class="panel arc-diagram-wrap">
+          <div class="coord-label">Interactive Structural Schematic · Click a Movement</div>
+          <svg class="arc-svg" viewBox="0 0 640 250" role="img" aria-label="Six-part structural arc of Surah Al-Jathiyah framed by 45:2 and 45:37">
+            <!-- Horizon baseline -->
+            <line x1="36" y1="205" x2="604" y2="205" stroke="var(--outline)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- Inclusio bracket -->
+            <path d="M 48 205 C 48 48, 592 48, 592 205" fill="none" stroke="var(--outline-variant)" stroke-width="2" />
+            <path id="arc-progress-path" d="M 48 205 C 48 48, 592 48, 592 205" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="8 6" opacity="0.55" />
+
+            <!-- Inclusio annotations -->
+            <text x="48" y="230" text-anchor="middle" fill="var(--primary)" font-family="JetBrains Mono, monospace" font-size="11">45:2 AL-AZIZ AL-HAKIM</text>
+            <text x="592" y="230" text-anchor="middle" fill="var(--primary)" font-family="JetBrains Mono, monospace" font-size="11">45:37 AL-AZIZ AL-HAKIM</text>
+            <text x="320" y="34" text-anchor="middle" fill="var(--tertiary)" font-family="JetBrains Mono, monospace" font-size="11">THEMATIC INCLUSIO · REVELATION TO COSMIC GRANDEUR</text>
+
+            <!-- 6 Interactive Nodes along the curve -->
+            <g class="arc-node" onclick="selectMovement(0)" tabindex="0" role="button" aria-label="Movement 1: Cosmic and Scriptural Ayat (45:1-6)">
+              <circle id="arc-dot-0" cx="68" cy="148" r="14" fill="var(--surface-container-high)" stroke="var(--primary)" stroke-width="2.5" />
+              <text x="68" y="152" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">01</text>
+              <text x="68" y="182" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">1–6</text>
+            </g>
+
+            <g class="arc-node" onclick="selectMovement(1)" tabindex="0" role="button" aria-label="Movement 2: Rejection, Taskhir and Moral Autonomy (45:7-15)">
+              <circle id="arc-dot-1" cx="155" cy="96" r="14" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="2" />
+              <text x="155" y="100" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">02</text>
+              <text x="155" y="128" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">7–15</text>
+            </g>
+
+            <g class="arc-node" onclick="selectMovement(2)" tabindex="0" role="button" aria-label="Movement 3: Covenant, Shari'ah and Hawa (45:16-23)">
+              <circle id="arc-dot-2" cx="264" cy="68" r="14" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="2" />
+              <text x="264" y="72" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">03</text>
+              <text x="264" y="100" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">16–23</text>
+            </g>
+
+            <g class="arc-node" onclick="selectMovement(3)" tabindex="0" role="button" aria-label="Movement 4: Critique of Dahriyyah Materialism (45:24-26)">
+              <circle id="arc-dot-3" cx="376" cy="68" r="14" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="2" />
+              <text x="376" y="72" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">04</text>
+              <text x="376" y="100" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">24–26</text>
+            </g>
+
+            <g class="arc-node" onclick="selectMovement(4)" tabindex="0" role="button" aria-label="Movement 5: Al-Jathiyah and the Speaking Record (45:27-35)">
+              <circle id="arc-dot-4" cx="485" cy="96" r="14" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="2" />
+              <text x="485" y="100" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">05</text>
+              <text x="485" y="128" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">27–35</text>
+            </g>
+
+            <g class="arc-node" onclick="selectMovement(5)" tabindex="0" role="button" aria-label="Movement 6: Concluding Doxology and Al-Kibriya' (45:36-37)">
+              <circle id="arc-dot-5" cx="572" cy="148" r="14" fill="var(--surface-container-high)" stroke="var(--outline)" stroke-width="2" />
+              <text x="572" y="152" text-anchor="middle" fill="var(--on-surface)" font-family="JetBrains Mono, monospace" font-size="11">06</text>
+              <text x="572" y="182" text-anchor="middle" fill="var(--on-surface-variant)" font-family="JetBrains Mono, monospace" font-size="10">36–37</text>
+            </g>
+          </svg>
+
+          <div class="arc-node-btn-grid" aria-label="Select movement">
+            <button type="button" class="btn arc-step-btn" id="mov-btn-0" aria-pressed="true" onclick="selectMovement(0)">01 · Signs (1–6)</button>
+            <button type="button" class="btn arc-step-btn" id="mov-btn-1" aria-pressed="false" onclick="selectMovement(1)">02 · Taskhir (7–15)</button>
+            <button type="button" class="btn arc-step-btn" id="mov-btn-2" aria-pressed="false" onclick="selectMovement(2)">03 · Shari'ah (16–23)</button>
+            <button type="button" class="btn arc-step-btn" id="mov-btn-3" aria-pressed="false" onclick="selectMovement(3)">04 · Dahriyyah (24–26)</button>
+            <button type="button" class="btn arc-step-btn" id="mov-btn-4" aria-pressed="false" onclick="selectMovement(4)">05 · Jathiyah (27–35)</button>
+            <button type="button" class="btn arc-step-btn" id="mov-btn-5" aria-pressed="false" onclick="selectMovement(5)">06 · Kibriya' (36–37)</button>
+          </div>
+        </div>
+
+        <aside class="panel" id="movement-detail-panel" aria-live="polite">
+          <div class="coord-label" id="mov-range">Movement 01 · Verses 45:1–6</div>
+          <h3 id="mov-title" style="font-size: var(--subhead-size); margin-top: var(--space-xs);">Revelation &amp; the Grammar of Cosmic Signs</h3>
+          <p id="mov-summary" style="margin-top: var(--space-sm);">Opening with Ha-Meem and the descent of the Book from Al-Aziz Al-Hakim, the Surah immediately points outward to the heavens and earth and inward to human biology, uniting physical reality and recited revelation under a single Arabic word: Ayat (signs).</p>
+          <div class="observation-well" style="margin-top: var(--space-md);">
+            <div class="coord-label" style="margin-bottom: var(--space-xs);">Key Structural Pivot</div>
+            <div id="mov-pivot">Verse 45:6 pivots from cosmic signs observed by the eye to scriptural signs heard by the ear: "In what statement (hadith) after Allah and His verses will they believe?"</div>
+          </div>
+          <div class="btn-row" style="margin-top: var(--space-md);">
+            <span class="badge badge-brass" id="mov-keywords">Ayat · Tanzil · Yaqin · 'Aql</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION II: COSMIC & ECOLOGICAL SIGNS -->
+    <section id="sec-epistemology" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section II · Verses 45:3–15 · Epistemology &amp; Subjection</span>
+        <h2 class="section-title">The Fourfold Ladder of <em>Ayat</em> &amp; Ecological <em>Taskhir</em></h2>
+        <p class="muted">Chapter 45 does not treat nature as mute matter. Four successive passages pair specific cosmic, biological, and ecological phenomena with four distinct human cognitive postures—culminating in individual moral responsibility (45:14–15).</p>
+      </div>
+
+      <div class="epistemology-grid" role="group" aria-label="Select cosmic sign tier">
+        <button type="button" class="sign-card" id="sign-btn-0" aria-pressed="true" onclick="selectSignTier(0)">
+          <span class="coord-label">45:3 · Macrocosm</span>
+          <span class="sign-card-title">Heavens &amp; Earth</span>
+          <span class="muted">For believers (<span class="ar-inline" dir="rtl" lang="ar">لِلْمُؤْمِنِينَ</span>)</span>
+        </button>
+        <button type="button" class="sign-card" id="sign-btn-1" aria-pressed="false" onclick="selectSignTier(1)">
+          <span class="coord-label">45:4 · Microcosm</span>
+          <span class="sign-card-title">Human &amp; Animal Life</span>
+          <span class="muted">For the certain (<span class="ar-inline" dir="rtl" lang="ar">لِقَوْمٍ يُوقِنُونَ</span>)</span>
+        </button>
+        <button type="button" class="sign-card" id="sign-btn-2" aria-pressed="false" onclick="selectSignTier(2)">
+          <span class="coord-label">45:5 · Biosphere</span>
+          <span class="sign-card-title">Night, Rain &amp; Winds</span>
+          <span class="muted">For those who reason (<span class="ar-inline" dir="rtl" lang="ar">لِقَوْمٍ يَعْقِلُونَ</span>)</span>
+        </button>
+        <button type="button" class="sign-card" id="sign-btn-3" aria-pressed="false" onclick="selectSignTier(3)">
+          <span class="coord-label">45:12–13 · Taskhir</span>
+          <span class="sign-card-title">Sea &amp; Subjected Cosmos</span>
+          <span class="muted">For those who reflect (<span class="ar-inline" dir="rtl" lang="ar">لِقَوْمٍ يَتَفَكَّرُونَ</span>)</span>
+        </button>
+      </div>
+
+      <div class="panel" id="sign-detail-panel" aria-live="polite">
+        <div class="split-layout">
+          <div style="display: grid; gap: var(--space-md);">
+            <div class="hero-meta-row">
+              <span class="badge" id="sign-verse-ref">Verse 45:3</span>
+              <span class="badge badge-brass" id="sign-faculty">Faculty: Iman (Faithful Receptivity)</span>
+            </div>
+            <div class="verse-arabic" id="sign-arabic" dir="rtl" lang="ar">إِنَّ فِي السَّمَاوَاتِ وَالْأَرْضِ لَآيَاتٍ لِلْمُؤْمِنِينَ</div>
+            <p class="verse-translation" id="sign-translation">Indeed, within the heavens and earth are signs for the believers.</p>
+          </div>
+          <div style="display: grid; gap: var(--space-md);">
+            <div>
+              <div class="coord-label">Domain &amp; Epistemological Commentary</div>
+              <p id="sign-commentary" style="margin-top: var(--space-xs);">The Surah opens its empirical argument at the widest scale: cosmic architecture. Yet those signs yield meaning first to believers (al-mu'minin), because faith acts as an interpretive lens that refuses to dismiss order as accident.</p>
+            </div>
+            <div class="observation-well">
+              <div class="coord-label" style="margin-bottom: var(--space-xs);">Cognitive Shift</div>
+              <div id="sign-shift">Observable Magnitude → Faithful Trust (Iman): prepares the mind to read smaller biological and ecological patterns as intentional communications.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-layout-even">
+        <div class="callout-quote">
+          <span class="coord-label">45:7–11 · The Anatomy of Arrogant Rejection</span>
+          <blockquote>"Who hears the verses of Allah recited to him, then persists arrogantly as if he had not heard them."</blockquote>
+          <p class="muted">In direct contrast to the four receptive faculties above, verses 45:7–11 diagnose willful deafness: hearing revelation yet acting as though silent (<span class="ar-inline" dir="rtl" lang="ar">كَأَنْ لَمْ يَسْمَعْهَا</span>), culminating in mockery (<span class="ar-inline" dir="rtl" lang="ar">هُزُوًا</span>).</p>
+        </div>
+        <div class="callout-quote">
+          <span class="coord-label">45:14–15 · Patience &amp; Moral Autonomy</span>
+          <blockquote>"Whoever does a good deed — it is for himself; and whoever does evil — it is against the self. Then to your Lord you will be returned."</blockquote>
+          <p class="muted">Because Allah subjects sea and sky to humanity (45:12–13), believers are commanded to forgive those who do not anticipate the "Days of Allah" (45:14)—not out of weakness, but out of confidence in ultimate moral symmetry.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION III: HISTORICAL COVENANT & SHARI'AH VS HAWA -->
+    <section id="sec-covenant" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section III · Verses 45:16–23 · History &amp; Moral Allegiance</span>
+        <h2 class="section-title">Historical Covenant, <em>Shari'ah</em>, and the Idolization of <em>Hawa</em></h2>
+        <p class="muted">Having established cosmic evidence, the Surah turns to sacred history and inner psychology: why communities with clear revelation still fracture, and why obeying an ordained way (Shari'ah) protects the mind from the tyranny of impulse (Hawa).</p>
+      </div>
+
+      <div class="split-layout">
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div class="coord-label">45:16–17 · The Covenant of the Children of Israel</div>
+          <p>Verses 45:16–17 enumerate five extraordinary gifts granted to the Children of Israel—yet pinpoint the exact psychological root of their subsequent schism.</p>
+          <div class="table-wrap">
+            <table class="study-table">
+              <thead>
+                <tr>
+                  <th>Divine Gift (45:16–17)</th>
+                  <th>Arabic Term</th>
+                  <th>Function in Covenant</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>The Scripture</td>
+                  <td><span class="ar-inline" dir="rtl" lang="ar">الْكِتَابَ</span></td>
+                  <td>Written moral &amp; theological charter</td>
+                </tr>
+                <tr>
+                  <td>Judgement &amp; Wisdom</td>
+                  <td><span class="ar-inline" dir="rtl" lang="ar">الْحُكْمَ</span></td>
+                  <td>Jurisprudence and discernment in governance</td>
+                </tr>
+                <tr>
+                  <td>Prophethood</td>
+                  <td><span class="ar-inline" dir="rtl" lang="ar">النُّبُوَّةَ</span></td>
+                  <td>Continuous living prophetic guidance</td>
+                </tr>
+                <tr>
+                  <td>Goodly Provisions &amp; Preference</td>
+                  <td><span class="ar-inline" dir="rtl" lang="ar">الطَّيِّبَاتِ · فَضَّلْنَاهُمْ</span></td>
+                  <td>Material flourishing and historical distinction</td>
+                </tr>
+                <tr>
+                  <td>Clear Proofs — Yet Divergence</td>
+                  <td><span class="ar-inline" dir="rtl" lang="ar">بَغْيًا بَيْنَهُمْ</span></td>
+                  <td>Division arose <em>after</em> knowledge arrived, from mutual jealous rivalry</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div class="coord-label">45:18–23 · Interactive Allegiance Explorer</div>
+          <p class="muted">Verse 45:18 places revelation as an ordained path (<em>Shari'ah</em>) in direct opposition to ungrounded desires (<em>ahwa'</em>). Toggle between the two internal pathways described in 45:18–23.</p>
+
+          <div class="pathway-toggle" role="group" aria-label="Select moral pathway">
+            <button type="button" class="btn" id="path-btn-shariah" aria-pressed="true" onclick="selectPathway('shariah')">Path of Shari'ah (45:18–22)</button>
+            <button type="button" class="btn" id="path-btn-hawa" aria-pressed="false" onclick="selectPathway('hawa')">Path of Deified Hawa (45:23)</button>
+          </div>
+
+          <ul class="cascade-list" id="pathway-list" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="callout-quote">
+        <span class="coord-label">45:21–22 · Rejection of Moral Equivalence</span>
+        <blockquote>"Or do those who commit evils think We will make them like those who have believed and done righteous deeds — equal in their life and their death? Evil is that which they judge."</blockquote>
+        <p class="muted">Verse 45:22 anchors ethics in ontology: Allah created the heavens and earth <em>bi-l-haqq</em> (in truth and purposeful order) precisely so every soul can be recompensed without injustice. To deny resurrection is to render moral distinction meaningless.</p>
+      </div>
+    </section>
+
+    <!-- SECTION IV: CRITIQUE OF MATERIALIST DETERMINISM (DAHRIYYAH) -->
+    <section id="sec-dahriyyah" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section IV · Verses 45:24–26 · Philosophical Polemic</span>
+        <h2 class="section-title">Critique of Materialist Determinism: <em>"Nothing Destroys Us Except Time"</em></h2>
+        <p class="muted">Verse 45:24 preserves one of the Qur'an's sharpest portraits of secular materialism (known in classical exegesis as the Dahriyyah): reducing existence to a closed biological loop governed solely by blind time (Al-Dahr).</p>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-lg);">
+        <div class="verse-arabic" dir="rtl" lang="ar">وَقَالُوا مَا هِيَ إِلَّا حَيَاتُنَا الدُّنْيَا نَمُوتُ وَنَحْيَا وَمَا يُهْلِكُنَا إِلَّا الدَّهْرُ ۚ وَمَا لَهُمْ بِذَٰلِكَ مِنْ عِلْمٍ ۖ إِنْ هُمْ إِلَّا يَظُنُّونَ</div>
+        <p class="verse-translation">"And they say, 'There is not but our worldly life; we die and live, and nothing destroys us except time.' And they have of that no knowledge; they are only assuming." (45:24)</p>
+
+        <div class="btn-row" role="group" aria-label="Select Dahriyyah claim to analyze">
+          <button type="button" class="btn" id="dahr-btn-0" aria-pressed="true" onclick="selectDahrClaim(0)">1. "Only our worldly life"</button>
+          <button type="button" class="btn" id="dahr-btn-1" aria-pressed="false" onclick="selectDahrClaim(1)">2. "Destroyed only by Time (Al-Dahr)"</button>
+          <button type="button" class="btn" id="dahr-btn-2" aria-pressed="false" onclick="selectDahrClaim(2)">3. "Bring back our forefathers" (45:25)</button>
+        </div>
+
+        <div class="split-layout-even" id="dahr-analysis-box" aria-live="polite">
+          <div class="observation-well" style="display: grid; gap: var(--space-xs);">
+            <span class="coord-label" style="color: var(--data-4);">The Materialist Assertion</span>
+            <h3 id="dahr-claim-title" style="font-size: var(--subhead-size);">Ontological Closure</h3>
+            <p id="dahr-claim-text" class="muted">By saying "ma hiya illa hayatuna al-dunya namutu wa nahya" ("we die and live"), the speaker inverts the natural sequence—foregrounding extinction and generational turnover as a closed, self-contained cycle with no horizon beyond this world.</p>
+          </div>
+          <div class="observation-well" style="display: grid; gap: var(--space-xs);">
+            <span class="coord-label" style="color: var(--positive);">The Qur'anic Rebuttal (45:24b, 26)</span>
+            <h3 id="dahr-rebuttal-title" style="font-size: var(--subhead-size);">Conjecture vs. Sovereign Sequence</h3>
+            <p id="dahr-rebuttal-text" class="muted">First, the Surah exposes an epistemic overreach: asserting a negative metaphysical absolute ("there is nothing beyond") without empirical knowledge is pure zann (conjecture). Verse 45:26 then restores the true causal order: Allah causes you to live, then causes you to die, then gathers you to a Day with no doubt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION V: DAY OF RESURRECTION (AL-JATHIYAH) & CONCLUDING GRANDEUR -->
+    <section id="sec-jathiyah" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section V · Verses 45:27–37 · Eschatology &amp; Doxology</span>
+        <h2 class="section-title">Every Nation on <em>Bended Knees</em> Before Its Speaking Record</h2>
+        <p class="muted">From verse 28—which gives the chapter its name, Al-Jathiyah—the Surah dramatizes the reversal of worldly arrogance, culminating in the majestic closing doxology of Al-Kibriya' (45:36–37).</p>
+      </div>
+
+      <div class="split-layout">
+        <div class="panel" style="display: grid; gap: var(--space-md);">
+          <div class="coord-label">45:28–29 · The Courtroom of Truth</div>
+          <div class="verse-arabic" dir="rtl" lang="ar">وَتَرَىٰ كُلَّ أُمَّةٍ جَاثِيَةً ۚ كُلُّ أُمَّةٍ تُدْعَىٰ إِلَىٰ كِتَابِهَا الْيَوْمَ تُجْزَوْنَ مَا كُنْتُمْ تَعْمَلُونَ ۝ هَٰذَا كِتَابُنَا يَنْطِقُ عَلَيْكُمْ بِالْحَقِّ ۚ إِنَّا كُنَّا نَسْتَنْسِخُ مَا كُنْتُمْ تَعْمَلُونَ</div>
+          <p class="muted">Three vivid verbs define this scene:</p>
+          <div class="cascade-list">
+            <div class="cascade-item">
+              <span class="coord-label">Jathiyah (<span class="ar-inline" dir="rtl" lang="ar">جَاثِيَةً</span>) · 45:28</span>
+              <p class="muted">Kneeling upon the knees from awe and dread—a posture of total humility shared by every nation (<span class="ar-inline" dir="rtl" lang="ar">كُلَّ أُمَّةٍ</span>) as collective and personal histories are opened.</p>
+            </div>
+            <div class="cascade-item">
+              <span class="coord-label">Yantiqu bi-l-Haqq (<span class="ar-inline" dir="rtl" lang="ar">يَنْطِقُ عَلَيْكُمْ بِالْحَقِّ</span>) · 45:29</span>
+              <p class="muted">The record is not silent archival parchment; it actively speaks against you in truth, leaving no room for the conjecture (<span class="ar-inline" dir="rtl" lang="ar">ظَنّ</span>) admitted by deniers in 45:32.</p>
+            </div>
+            <div class="cascade-item">
+              <span class="coord-label">Nastansikhu (<span class="ar-inline" dir="rtl" lang="ar">نَسْتَنْسِخُ</span>) · 45:29</span>
+              <p class="muted">From the root <em>n-s-kh</em> in Form X: "We were continually having transcribed" every deed in real time—an exact counterpoint to the claim in 45:24 that time merely erases human life.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; gap: var(--space-lg);">
+          <div class="panel" style="display: grid; gap: var(--space-md);">
+            <div class="coord-label">45:30–35 · Two Destinies, Mirroring Posture</div>
+            <p class="muted">Verses 45:30–35 juxtapose two verdicts:</p>
+            <div class="observation-well" style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label" style="color: var(--positive);">45:30 · The Clear Attainment (Al-Fawz Al-Mubin)</span>
+              <p class="muted">Those who believed and did righteous deeds are admitted directly into their Lord's mercy—completing the trajectory of <em>Iman</em> and <em>Yaqin</em>.</p>
+            </div>
+            <div class="observation-well" style="display: grid; gap: var(--space-xs);">
+              <span class="coord-label" style="color: var(--data-4);">45:31–35 · Reciprocal Neglect</span>
+              <p class="muted">Those who mocked Allah's signs and confessed "we were not convinced" (45:32) meet poetic justice: "Today We will forget you as you forgot the meeting of this Day of yours" (45:34).</p>
+            </div>
+          </div>
+
+          <div class="panel" style="display: grid; gap: var(--space-sm); border-color: color-mix(in srgb, var(--primary) 45%, var(--outline-variant));">
+            <span class="coord-label" style="color: var(--primary);">45:36–37 · Al-Hamd &amp; Al-Kibriya'</span>
+            <div class="verse-arabic" dir="rtl" lang="ar">فَلِلَّهِ الْحَمْدُ رَبِّ السَّمَاوَاتِ وَرَبِّ الْأَرْضِ رَبِّ الْعَالَمِينَ ۝ وَلَهُ الْكِبْرِيَاءُ فِي السَّمَاوَاتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ</div>
+            <p class="muted">Where humans practiced <em>istikbar</em> (arrogance, 45:8, 31), the closing verse reclaims true <em>Al-Kibriya'</em> (all cosmic grandeur and majesty) exclusively for Allah, closing the ring with <em>Al-Aziz Al-Hakim</em>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION VI: COMPLETE VERSE-BY-VERSE STUDY COMPANION -->
+    <section id="sec-verses" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section VI · Complete Text (45:1–37) · Annotated Companion</span>
+        <h2 class="section-title">Verse-by-Verse Study &amp; <em>Commentary</em> Explorer</h2>
+        <p class="muted">Read all 37 verses of Surah Al-Jathiyah with Arabic text, English translation, thematic commentary, and persistent progress tracking. Mark verses as studied or bookmark them for deeper review.</p>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-md);">
+        <div class="explorer-controls">
+          <div class="field-group">
+            <label class="field-label" for="verse-search">Search translation, commentary, or Arabic root</label>
+            <input type="search" id="verse-search" class="text-input" placeholder="e.g., time, Shari'ah, kneeling, signs, Israel" oninput="renderVerses()">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="verse-theme-filter">Filter by thematic movement</label>
+            <select id="verse-theme-filter" class="select-input" onchange="renderVerses()">
+              <option value="all">All 37 Verses</option>
+              <option value="signs">1–15 · Cosmic Signs &amp; Taskhir</option>
+              <option value="covenant">16–23 · Covenant, Shari'ah &amp; Hawa</option>
+              <option value="dahriyyah">24–26 · Dahriyyah Materialism</option>
+              <option value="jathiyah">27–37 · Al-Jathiyah &amp; Al-Kibriya'</option>
+              <option value="bookmarked">Bookmarked Only</option>
+              <option value="unstudied">Unstudied Only</option>
+            </select>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn" id="toggle-commentary-btn" aria-pressed="true" onclick="toggleCommentary()">Hide Commentary</button>
+          </div>
+        </div>
+        <div class="hero-meta-row" style="justify-content: space-between;">
+          <span class="coord-label" id="verse-count-status">Showing 37 of 37 verses</span>
+          <div class="btn-row">
+            <button type="button" class="btn" onclick="markVisibleStudied()">Mark Filtered as Studied</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container"></div>
+    </section>
+
+    <!-- SECTION VII: MASTERY SELF-ASSESSMENT & CONCEPT LAB -->
+    <section id="sec-mastery" class="study-section">
+      <div class="section-header">
+        <span class="coord-label">Section VII · Active Recall &amp; Diagnostics</span>
+        <h2 class="section-title">Mastery <em>Self-Assessment</em> &amp; Arabic Lexicon</h2>
+        <p class="muted">Test your grasp of Surah Al-Jathiyah's conceptual framework through ten essential Arabic terms and an eight-question diagnostic assessment. Your mastery progress is saved automatically.</p>
+      </div>
+
+      <div style="display: grid; gap: var(--space-md);">
+        <div class="hero-meta-row" style="justify-content: space-between;">
+          <div>
+            <span class="coord-label">Part A · Essential Lexicon Flashcards</span>
+            <h3 style="font-size: var(--subhead-size); margin-top: var(--space-xs);">Click a Card to Reveal Its Verse Context, Then Mark Mastered</h3>
+          </div>
+          <span class="badge badge-mint" id="flashcard-progress-badge">0 / 10 Mastered</span>
+        </div>
+        <div class="flashcard-grid" id="flashcard-grid"></div>
+      </div>
+
+      <div class="panel" style="display: grid; gap: var(--space-lg); margin-top: var(--space-md);">
+        <div class="hero-meta-row" style="justify-content: space-between;">
+          <div>
+            <span class="coord-label">Part B · Thematic &amp; Verse Diagnostic (8 Questions)</span>
+            <h3 style="font-size: var(--subhead-size); margin-top: var(--space-xs);">Check Conceptual Mastery</h3>
+          </div>
+          <span class="badge badge-brass" id="quiz-score-badge">Score: 0 / 8</span>
+        </div>
+
+        <div id="quiz-container" style="display: grid; gap: var(--space-lg);"></div>
+
+        <div class="hero-meta-row" style="justify-content: space-between; border-top: var(--hairline); padding-top: var(--space-md);">
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" onclick="exportStudySummary()">
+              <i data-lucide="download" aria-hidden="true"></i> Export Study Summary
+            </button>
+            <button type="button" class="btn" id="reset-progress-btn" onclick="handleResetProgress(this)">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i> Reset Progress
+            </button>
+          </div>
+          <span class="coord-label" id="action-status-msg" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="study-footer">
+    <p class="muted" style="font-size: 0.9rem;">
+      Source grounding: Surah Al-Jathiyah (Chapter 45:1–37) Arabic text and English translation derived from the provided source text (<em>45..pdf</em>). Study commentary, structural analysis, and interactive diagnostics prepared as an original educational companion.
+    </p>
+    <span class="coord-label">Surah 45 · Al-Jathiyah Study Guide</span>
+  </footer>
+
+  <api-shim></api-shim>
+  <script>
+    const MOVEMENTS = [
+      {
+        range: `Movement 01 · Verses 45:1–6`,
+        title: `Revelation & the Grammar of Cosmic Signs`,
+        summary: `Opening with Ha-Meem and the descent of the Book from Al-Aziz Al-Hakim, the Surah immediately points outward to the heavens and earth and inward to human biology, uniting physical reality and recited revelation under a single Arabic word: Ayat (signs).`,
+        pivot: `Verse 45:6 pivots from cosmic signs observed by the eye to scriptural signs heard by the ear: "In what statement (hadith) after Allah and His verses will they believe?"`,
+        keywords: `Ayat · Tanzil · Yaqin · 'Aql`
+      },
+      {
+        range: `Movement 02 · Verses 45:7–15`,
+        title: `Arrogant Denial, Subjection of Nature & Moral Autonomy`,
+        summary: `Contrasts the "sinful liar" who hears verses yet persists in arrogance and mockery (45:7–11) with the benevolence of Taskhir—subjecting seas, skies, and earth to humanity (45:12–13)—before calling believers to patience and individual moral accountability (45:14–15).`,
+        pivot: `Verses 45:14–15 connect patience toward skeptics with cosmic justice: every good or evil act returns strictly to the agent's own self.`,
+        keywords: `Istikbar · Taskhir · Tafakkur · Agency`
+      },
+      {
+        range: `Movement 03 · Verses 45:16–23`,
+        title: `Historical Covenant, Shari'ah & the Idolization of Hawa`,
+        summary: `Recounts the fivefold blessings given to the Children of Israel, whose division arose out of jealous rivalry after receiving knowledge (45:16–17). The Prophet is placed upon an ordained way (Shari'ah) opposed to blind inclination (Hawa), warning against making desire one's deity (45:23).`,
+        pivot: `Verse 45:21–22 rejects moral equivalence: creation in truth (bi-l-haqq) demands an ethical reckoning after death.`,
+        keywords: `Baghy · Shari'ah · Basa'ir · Hawa`
+      },
+      {
+        range: `Movement 04 · Verses 45:24–26`,
+        title: `Critique of Materialist Determinism (Dahriyyah)`,
+        summary: `Quotes the materialist worldview verbatim—"there is not but our worldly life... nothing destroys us except time (al-dahr)"—and dismantles it as unverified conjecture (zann) masquerading as knowledge, countering with Allah's sequence of life, death, and assembly.`,
+        pivot: `Verse 45:24b exposes the hidden epistemological flaw: materialism cannot empirically prove the non-existence of resurrection.`,
+        keywords: `Al-Dahr · Zann · 'Ilm · Resurrection`
+      },
+      {
+        range: `Movement 05 · Verses 45:27–35`,
+        title: `Al-Jathiyah: Every Nation Kneeling Before Its Speaking Record`,
+        summary: `Dramatizes the Hour when every nation kneels (jathiyah) and is summoned to a record transcribed continuously in life that now speaks in truth (45:28–29). Contrasts clear attainment in mercy with the deniers' admission of mere assumption (45:32) and reciprocal forgetting (45:34).`,
+        pivot: `Verse 45:29 ("nastansikhu") answers 45:24: time does not annihilate human deeds; rather, every moment is faithfully archived.`,
+        keywords: `Jathiyah · Nastansikhu · Al-Fawz Al-Mubin`
+      },
+      {
+        range: `Movement 06 · Verses 45:36–37`,
+        title: `Concluding Doxology & Cosmic Grandeur (Al-Kibriya')`,
+        summary: `Closes the Surah by reclaiming all praise (al-hamd) and absolute majesty (al-kibriya') across the heavens and earth for Allah alone, repeating the exact Divine Name pair from 45:2: Al-Aziz Al-Hakim.`,
+        pivot: `True Kibriya' belongs solely to the Creator, exposing human istikbar (arrogance) in verses 8 and 31 as a cosmic usurpation.`,
+        keywords: `Al-Hamd · Al-Kibriya' · Al-Aziz Al-Hakim`
+      }
+    ];
+
+    const SIGN_TIERS = [
+      {
+        ref: `Verse 45:3`,
+        faculty: `Faculty: Iman (Faithful Receptivity)`,
+        arabic: `إِنَّ فِي السَّمَاوَاتِ وَالْأَرْضِ لَآيَاتٍ لِلْمُؤْمِنِينَ`,
+        translation: `Indeed, within the heavens and earth are signs for the believers.`,
+        commentary: `The Surah opens its empirical argument at the widest scale: cosmic architecture. Yet those signs yield meaning first to believers (al-mu'minin), because faith acts as an interpretive lens that refuses to dismiss vast order as accident.`,
+        shift: `Observable Magnitude → Faithful Trust (Iman): prepares the observer to read biological and ecological patterns as purposeful communications.`
+      },
+      {
+        ref: `Verse 45:4`,
+        faculty: `Faculty: Yaqin (Deep Conviction)`,
+        arabic: `وَفِي خَلْقِكُمْ وَمَا يَبُثُّ مِنْ دَابَّةٍ آيَاتٌ لِقَوْمٍ يُوقِنُونَ`,
+        translation: `And in the creation of yourselves and what He disperses of moving creatures are signs for people who are certain [in faith].`,
+        commentary: `Attention zooms from celestial expanse to embodiment: human physiology and biodiversity (dabbah). Introspecting on the intricacy of one's own body and ecosystems deepens initial belief into settled certainty (yaqin).`,
+        shift: `Biological Complexity → Certainty (Yaqin): anchors faith not in wishful thinking, but in inescapable self-observation.`
+      },
+      {
+        ref: `Verse 45:5`,
+        faculty: `Faculty: 'Aql (Discerning Reason)`,
+        arabic: `وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ وَمَا أَنْزَلَ اللَّهُ مِنَ السَّمَاءِ مِنْ رِزْقٍ فَأَحْيَا بِهِ الْأَرْضَ بَعْدَ مَوْتِهَا وَتَصْرِيفِ الرِّيَاحِ آيَاتٌ لِقَوْمٍ يَعْقِلُونَ`,
+        translation: `And [in] the alternation of night and day and [in] what Allah sends down from the sky of provision and gives life thereby to the earth after its lifelessness and [in His] directing of the winds are signs for a people who reason.`,
+        commentary: `Temporal cycles (night and day), hydrological renewal (rain reviving barren soil), and atmospheric circulation (winds) directly prefigure resurrection: the Creator who revives dead earth every season plainly possesses power over life after death.`,
+        shift: `Dynamic Cycles → Reason ('Aql): links ecological renewal directly to the rational plausibility of resurrection.`
+      },
+      {
+        ref: `Verses 45:12–13`,
+        faculty: `Faculty: Tafakkur (Contemplative Reflection) & Shukr`,
+        arabic: `اللَّهُ الَّذِي سَخَّرَ لَكُمُ الْبَحْرَ لِتَجْرِيَ الْفُلْكُ فِيهِ بِأَمْرِهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ وَلَعَلَّكُمْ تَشْكُرُونَ ۝ وَسَخَّرَ لَكُمْ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ جَمِيعًا مِنْهُ ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ`,
+        translation: `It is Allah who subjected to you the sea so that ships may sail upon it by His command and that you may seek of His bounty; and perhaps you will be grateful. And He has subjected to you whatever is in the heavens and whatever is on the earth — all from Him. Indeed in that are signs for a people who give thought.`,
+        commentary: `Human civilization—trade, navigation, agriculture, technology—depends on physical laws remaining intelligible and hospitable (taskhir). Recognizing that nature is a gift rather than an entitlement inspires reflection (tafakkur) and gratitude (shukr).`,
+        shift: `Usability of Nature → Gratitude & Reflection (Tafakkur): transforms natural science from hubris into stewardship.`
+      }
+    ];
+
+    const PATHWAYS = {
+      shariah: [
+        {
+          type: `is-positive`,
+          label: `1. Ordained Trajectory (45:18)`,
+          text: `Placed upon a clear, life-giving path (Shari'atan min al-amr)—grounded in divine revelation rather than shifting social consensus.`
+        },
+        {
+          type: `is-positive`,
+          label: `2. Protected Allegiance (45:19)`,
+          text: `Allah acts as the true Guardian and Protector (Waliyy al-Muttaqin), liberating the believer from unstable alliances among wrongdoers.`
+        },
+        {
+          type: `is-positive`,
+          label: `3. Illuminated Vision (45:20)`,
+          text: `Revelation becomes Basa'ir (clear inner eyesight), guidance (huda), and mercy (rahmah) for those cultivating certainty (yaqin).`
+        },
+        {
+          type: `is-positive`,
+          label: `4. Moral Symmetry in Truth (45:21–22)`,
+          text: `Acknowledges that righteous life and moral corruption cannot yield identical endings in a cosmos created bi-l-haqq.`
+        }
+      ],
+      hawa: [
+        {
+          type: `is-warning`,
+          label: `1. Following the Uninformed (45:18)`,
+          text: `Substituting disciplined revelation with ahwa'—erratic inclinations and desires of those who lack genuine knowledge.`
+        },
+        {
+          type: `is-warning`,
+          label: `2. Deification of Desire (45:23)`,
+          text: `Ittakhadha ilahahu hawahu: making personal impulse the supreme arbiter of truth and value, even after knowledge was encountered ('ala 'ilm).`
+        },
+        {
+          type: `is-warning`,
+          label: `3. Sensory & Spiritual Closure (45:23)`,
+          text: `A progressive hardening: Allah sets a seal upon hearing (sam') and heart (qalb), and draws a veil (ghishawah) over sight (basar).`
+        },
+        {
+          type: `is-warning`,
+          label: `4. Loss of Moral Discernment (45:21)`,
+          text: `Judges evildoers and the righteous to be equal in life and death—"Evil is that which they judge."`
+        }
+      ]
+    };
+
+    const DAHR_CLAIMS = [
+      {
+        claimTitle: `Ontological Closure ("Only our worldly life")`,
+        claimText: `By stating "ma hiya illa hayatuna al-dunya namutu wa nahya" ("we die and live"), the materialist reduces existence to a closed biological loop, foregrounding extinction as the sole horizon of human meaning.`,
+        rebuttalTitle: `Conjecture Exposed & Sequence Restored`,
+        rebuttalText: `Verse 45:24b challenges the epistemic premise: claiming absolute knowledge of a negative ("nothing exists beyond") without empirical access is mere assumption (zann). Verse 45:26 restores the true sequence: Allah gives life, decrees death, and gathers humanity to a certain Day.`
+      },
+      {
+        claimTitle: `Causal Reduction ("Destroyed only by Time / Al-Dahr")`,
+        claimText: `Al-Dahr personifies impersonal, blind time as the ultimate destroyer—stripping history of moral agency, divine purpose, and accountability.`,
+        rebuttalTitle: `Time as Created Canvas, Not Sovereign Agent`,
+        rebuttalText: `Earlier in 45:5, the alternation of night and day was shown to be an ordered sign; in 45:22, the universe was created bi-l-haqq so souls are recompensed. Time is a medium within Allah's dominion (45:27), not an independent deity that erases moral consequence.`
+      },
+      {
+        claimTitle: `Empirical Evasion ("Bring back our forefathers")`,
+        claimText: `When confronted with clear verses, skeptics in 45:25 demand an immediate laboratory demonstration—resurrecting deceased ancestors on demand inside worldly time.`,
+        rebuttalTitle: `Misunderstanding the Moral Test`,
+        rebuttalText: `Resurrection is the culmination of the moral test, not an arbitrary spectacle inside it. Verse 45:26 affirms that assembly occurs at the appointed Day of Resurrection ("about which there is no doubt"), while 45:32 reveals that the deniers' skepticism was rooted in willful uncertainty ("we assume only assumption").`
+      }
+    ];
+
+    const VERSES = [
+      {
+        num: 1,
+        theme: `signs`,
+        arabic: `حم`,
+        translation: `Ha, Meem.`,
+        term: `Al-Huruf al-Muqatta'at (Disjoined Letters)`,
+        commentary: `One of seven consecutive surahs (chapters 40–46) opening with Ha-Meem, signaling the miraculous linguistic composition of the Arabic Qur'an out of familiar alphabetical letters.`
+      },
+      {
+        num: 2,
+        theme: `signs`,
+        arabic: `تَنْزِيلُ الْكِتَابِ مِنَ اللَّهِ الْعَزِيزِ الْحَكِيمِ`,
+        translation: `The revelation of the Book is from Allah, the Exalted in Might, the Wise.`,
+        term: `Tanzil · Al-Aziz Al-Hakim`,
+        commentary: `Establishes the origin of revelation—power tempered by wisdom—and sets the opening half of an inclusio completed verbatim in the final verse (45:37).`
+      },
+      {
+        num: 3,
+        theme: `signs`,
+        arabic: `إِنَّ فِي السَّمَاوَاتِ وَالْأَرْضِ لَآيَاتٍ لِلْمُؤْمِنِينَ`,
+        translation: `Indeed, within the heavens and earth are signs for the believers.`,
+        term: `Ayat · Al-Mu'minin`,
+        commentary: `Begins the Surah's empirical epistemology at cosmic scale: heavens and earth carry intelligible meanings for those open to faith.`
+      },
+      {
+        num: 4,
+        theme: `signs`,
+        arabic: `وَفِي خَلْقِكُمْ وَمَا يَبُثُّ مِنْ دَابَّةٍ آيَاتٌ لِقَوْمٍ يُوقِنُونَ`,
+        translation: `And in the creation of yourselves and what He disperses of moving creatures are signs for people who are certain [in faith].`,
+        term: `Dabbah · Yaqin`,
+        commentary: `Shifts from macrocosm to biology: human anatomy and diverse living species transform initial belief into settled certainty (yaqin).`
+      },
+      {
+        num: 5,
+        theme: `signs`,
+        arabic: `وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ وَمَا أَنْزَلَ اللَّهُ مِنَ السَّمَاءِ مِنْ رِزْقٍ فَأَحْيَا بِهِ الْأَرْضَ بَعْدَ مَوْتِهَا وَتَصْرِيفِ الرِّيَاحِ آيَاتٌ لِقَوْمٍ يَعْقِلُونَ`,
+        translation: `And [in] the alternation of night and day and [in] what Allah sends down from the sky of provision and gives life thereby to the earth after its lifelessness and [in His] directing of the winds are signs for a people who reason.`,
+        term: `Ikhtilaf · Tasrif al-Riyah · 'Aql`,
+        commentary: `Rain reviving dead soil demonstrates observable resurrection in nature, inviting rational reflection ('aql) on life after death.`
+      },
+      {
+        num: 6,
+        theme: `signs`,
+        arabic: `تِلْكَ آيَاتُ اللَّهِ نَتْلُوهَا عَلَيْكَ بِالْحَقِّ ۖ فَبِأَيِّ حَدِيثٍ بَعْدَ اللَّهِ وَآيَاتِهِ يُؤْمِنُونَ`,
+        translation: `These are the verses of Allah which We recite to you in truth. Then in what statement after Allah and His verses will they believe?`,
+        term: `Bi-l-Haqq · Hadith`,
+        commentary: `Pivots seamlessly from physical signs in nature (ayat) to recited verses of Scripture (ayat), challenging skeptics to name any more credible testimony.`
+      },
+      {
+        num: 7,
+        theme: `signs`,
+        arabic: `وَيْلٌ لِكُلِّ أَفَّاكٍ أَثِيمٍ`,
+        translation: `Woe to every sinful liar`,
+        term: `Affak Athim`,
+        commentary: `Introduces the moral profile of active falsification—pairing deliberate fabrication (affak) with habitual sin (athim).`
+      },
+      {
+        num: 8,
+        theme: `signs`,
+        arabic: `يَسْمَعُ آيَاتِ اللَّهِ تُتْلَىٰ عَلَيْهِ ثُمَّ يُصِرُّ مُسْتَكْبِرًا كَأَنْ لَمْ يَسْمَعْهَا ۖ فَبَشِّرْهُ بِعَذَابٍ أَلِيمٍ`,
+        translation: `Who hears the verses of Allah recited to him, then persists arrogantly as if he had not heard them. So give him tidings of a painful punishment.`,
+        term: `Yusirru Mustakbiran`,
+        commentary: `Rejection here is not intellectual incapacity; the individual clearly hears the recitation, yet pride (istikbar) motivates feigned deafness.`
+      },
+      {
+        num: 9,
+        theme: `signs`,
+        arabic: `وَإِذَا عَلِمَ مِنْ آيَاتِنَا شَيْئًا اتَّخَذَهَا هُزُوًا ۚ أُولَٰئِكَ لَهُمْ عَذَابٌ مُهِينٌ`,
+        translation: `And when he knows anything of Our verses, he takes them in ridicule. Those will have a humiliating punishment.`,
+        term: `Huzuwan · 'Adhab Muhin`,
+        commentary: `Poetic justice: degrading divine signs through ridicule (huzuwan) results in a specifically humiliating ('adhab muhin) consequence.`
+      },
+      {
+        num: 10,
+        theme: `signs`,
+        arabic: `مِنْ وَرَائِهِمْ جَهَنَّمُ ۖ وَلَا يُغْنِي عَنْهُمْ مَا كَسَبُوا شَيْئًا وَلَا مَا اتَّخَذُوا مِنْ دُونِ اللَّهِ أَوْلِيَاءَ ۖ وَلَهُمْ عَذَابٌ عَظِيمٌ`,
+        translation: `Before them is Hell, and what they had earned will not avail them at all nor what they had taken besides Allah as allies. And they will have a great punishment.`,
+        term: `Ma Kasabu · Awliya'`,
+        commentary: `Strips away the two worldly shields of arrogance—accumulated wealth/achievements and partisan patrons—before ultimate accountability.`
+      },
+      {
+        num: 11,
+        theme: `signs`,
+        arabic: `هَٰذَا هُدًى ۖ وَالَّذِينَ كَفَرُوا بِآيَاتِ رَبِّهِمْ لَهُمْ عَذَابٌ مِنْ رِجْزٍ أَلِيمٌ`,
+        translation: `This [Qur'an] is guidance. And those who have disbelieved in the verses of their Lord will have a painful punishment of foul nature.`,
+        term: `Huda · Rijz`,
+        commentary: `Affirms the Qur'an's primary identity as clear guidance (huda), making disbelief a deliberate turn away from illumination.`
+      },
+      {
+        num: 12,
+        theme: `signs`,
+        arabic: `اللَّهُ الَّذِي سَخَّرَ لَكُمُ الْبَحْرَ لِتَجْرِيَ الْفُلْكُ فِيهِ بِأَمْرِهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ وَلَعَلَّكُمْ تَشْكُرُونَ`,
+        translation: `It is Allah who subjected to you the sea so that ships may sail upon it by His command and that you may seek of His bounty; and perhaps you will be grateful.`,
+        term: `Taskhir · Tashkurun`,
+        commentary: `Highlights maritime navigation and commerce as manifestations of divine command (amr), meant to awaken human gratitude rather than self-sufficiency.`
+      },
+      {
+        num: 13,
+        theme: `signs`,
+        arabic: `وَسَخَّرَ لَكُمْ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ جَمِيعًا مِنْهُ ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ`,
+        translation: `And He has subjected to you whatever is in the heavens and whatever is on the earth — all from Him. Indeed in that are signs for a people who give thought.`,
+        term: `Jami'an Minhu · Tafakkur`,
+        commentary: `Completes the fourfold cognitive ladder: recognizing that every physical resource across heavens and earth originates "all from Him" invites deep contemplation (tafakkur).`
+      },
+      {
+        num: 14,
+        theme: `signs`,
+        arabic: `قُلْ لِلَّذِينَ آمَنُوا يَغْفِرُوا لِلَّذِينَ لَا يَرْجُونَ أَيَّامَ اللَّهِ لِيَجْزِيَ قَوْمًا بِمَا كَانُوا يَكْسِبُونَ`,
+        translation: `Say, [O Muhammad], to those who have believed that they [should] forgive those who expect not the days of Allah so that He may recompense a people for what they used to earn.`,
+        term: `Yaghfiru · Ayyam Allah`,
+        commentary: `Instructs early believers to forbear and forgive hostility from those indifferent to "the Days of Allah" (moments of divine reckoning), trusting Allah's ultimate justice.`
+      },
+      {
+        num: 15,
+        theme: `signs`,
+        arabic: `مَنْ عَمِلَ صَالِحًا فَلِنَفْسِهِ ۖ وَمَنْ أَسَاءَ فَعَلَيْهَا ۖ ثُمَّ إِلَىٰ رَبِّكُمْ تُرْجَعُونَ`,
+        translation: `Whoever does a good deed — it is for himself; and whoever does evil — it is against the self. Then to your Lord you will be returned.`,
+        term: `Moral Autonomy`,
+        commentary: `Establishes unambiguous personal responsibility: righteousness and harm accrue directly to the moral agent's own soul ahead of the return to Allah.`
+      },
+      {
+        num: 16,
+        theme: `covenant`,
+        arabic: `وَلَقَدْ آتَيْنَا بَنِي إِسْرَائِيلَ الْكِتَابَ وَالْحُكْمَ وَالنُّبُوَّةَ وَرَزَقْنَاهُمْ مِنَ الطَّيِّبَاتِ وَفَضَّلْنَاهُمْ عَلَى الْعَالَمِينَ`,
+        translation: `And We did certainly give the Children of Israel the Scripture and judgement and prophethood, and We provided them with good things and preferred them over the worlds.`,
+        term: `Al-Kitab · Al-Hukm · Al-Nubuwwah`,
+        commentary: `Acknowledges the historic covenantal dignity conferred upon Bani Isra'il: revelation, governance, prophetic lineage, and material blessing.`
+      },
+      {
+        num: 17,
+        theme: `covenant`,
+        arabic: `وَآتَيْنَاهُمْ بَيِّنَاتٍ مِنَ الْأَمْرِ ۖ فَمَا اخْتَلَفُوا إِلَّا مِنْ بَعْدِ مَا جَاءَهُمُ الْعِلْمُ بَغْيًا بَيْنَهُمْ ۚ إِنَّ رَبَّكَ يَقْضِي بَيْنَهُمْ يَوْمَ الْقِيَامَةِ فِيمَا كَانُوا فِيهِ يَخْتَلِفُونَ`,
+        translation: `And We gave them clear proofs of the matter [of religion]. And they did not differ except after knowledge had come to them — out of jealous animosity between themselves. Indeed, your Lord will judge between them on the Day of Resurrection concerning that over which they used to differ.`,
+        term: `Bayyinat · Baghyan Baynahum`,
+        commentary: `Diagnoses sectarian fragmentation: division happened not from obscurity or lack of evidence, but from mutual rivalry and transgression (baghy) after knowledge arrived.`
+      },
+      {
+        num: 18,
+        theme: `covenant`,
+        arabic: `ثُمَّ جَعَلْنَاكَ عَلَىٰ شَرِيعَةٍ مِنَ الْأَمْرِ فَاتَّبِعْهَا وَلَا تَتَّبِعْ أَهْوَاءَ الَّذِينَ لَا يَعْلَمُونَ`,
+        translation: `Then We put you, [O Muhammad], on an ordained way concerning the matter [of religion]; so follow it and do not follow the inclinations of those who do not know.`,
+        term: `Shari'ah · Ahwa'`,
+        commentary: `Defines Shari'ah as a clear, principled path concerning the divine matter (al-amr), standing in direct contrast to the uninformed whims (ahwa') of those driven by rivalry or ignorance.`
+      },
+      {
+        num: 19,
+        theme: `covenant`,
+        arabic: `إِنَّهُمْ لَنْ يُغْنُوا عَنْكَ مِنَ اللَّهِ شَيْئًا ۚ وَإِنَّ الظَّالِمِينَ بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ ۖ وَاللَّهُ وَلِيُّ الْمُتَّقِينَ`,
+        translation: `Indeed, they will never avail you against Allah at all. And indeed, the wrongdoers are allies of one another; but Allah is the protector of the righteous.`,
+        term: `Waliyy al-Muttaqin`,
+        commentary: `Draws a sharp line between fragile coalitions of wrongdoing and the unbreakable guardianship (wilayah) Allah extends to the conscientious (muttaqin).`
+      },
+      {
+        num: 20,
+        theme: `covenant`,
+        arabic: `هَٰذَا بَصَائِرُ لِلنَّاسِ وَهُدًى وَرَحْمَةٌ لِقَوْمٍ يُوقِنُونَ`,
+        translation: `This [Qur'an] is enlightenment for mankind and guidance and mercy for a people who are certain [in faith].`,
+        term: `Basa'ir · Rahmah`,
+        commentary: `Describes the Qur'an as basa'ir—spiritual eyesight or clear discernment for all humanity, yielding guidance and mercy specifically to those who cultivate certainty.`
+      },
+      {
+        num: 21,
+        theme: `covenant`,
+        arabic: `أَمْ حَسِبَ الَّذِينَ اجْتَرَحُوا السَّيِّئَاتِ أَنْ نَجْعَلَهُمْ كَالَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَوَاءً مَحْيَاهُمْ وَمَمَاتُهُمْ ۚ سَاءَ مَا يَحْكُمُونَ`,
+        translation: `Or do those who commit evils think We will make them like those who have believed and done righteous deeds — [make them] equal in their life and their death? Evil is that which they judge.`,
+        term: `Moral Non-Equivalence`,
+        commentary: `Refutes moral nihilism: treating integrity and corruption as having identical outcomes violates both justice and sound judgment.`
+      },
+      {
+        num: 22,
+        theme: `covenant`,
+        arabic: `وَخَلَقَ اللَّهُ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ وَلِتُجْزَىٰ كُلُّ نَفْسٍ بِمَا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ`,
+        translation: `And Allah created the heavens and earth in truth and so that every soul may be recompensed for what it has earned, and they will not be wronged.`,
+        term: `Creation Bi-l-Haqq`,
+        commentary: `Links cosmology directly to eschatology: the purposeful creation of the cosmos guarantees an afterlife where every soul receives uncorrupted justice.`
+      },
+      {
+        num: 23,
+        theme: `covenant`,
+        arabic: `أَفَرَأَيْتَ مَنِ اتَّخَذَ إِلَٰهَهُ هَوَاهُ وَأَضَلَّهُ اللَّهُ عَلَىٰ عِلْمٍ وَخَتَمَ عَلَىٰ سَمْعِهِ وَقَلْبِهِ وَجَعَلَ عَلَىٰ بَصَرِهِ غِشَاوَةً فَمَنْ يَهْدِيهِ مِنْ بَعْدِ اللَّهِ ۚ أَفَلَا تَذَكَّرُونَ`,
+        translation: `Have you seen he who has taken as his god his [own] desire, and Allah has sent him astray due to knowledge and has set a seal upon his hearing and his heart and put over his vision a veil? So who will guide him after Allah? Then will you not be reminded?`,
+        term: `Ilahahu Hawahu · Ghishawah`,
+        commentary: `A penetrating diagnosis of inner idolatry: elevating personal desire into a deity seals hearing, heart, and vision even when intellectual knowledge is present.`
+      },
+      {
+        num: 24,
+        theme: `dahriyyah`,
+        arabic: `وَقَالُوا مَا هِيَ إِلَّا حَيَاتُنَا الدُّنْيَا نَمُوتُ وَنَحْيَا وَمَا يُهْلِكُنَا إِلَّا الدَّهْرُ ۚ وَمَا لَهُمْ بِذَٰلِكَ مِنْ عِلْمٍ ۖ إِنْ هُمْ إِلَّا يَظُنُّونَ`,
+        translation: `And they say, "There is not but our worldly life; we die and live, and nothing destroys us except time." And they have of that no knowledge; they are only assuming.`,
+        term: `Al-Dahr · Zann`,
+        commentary: `Articulates and critiques materialist determinism (Dahriyyah): attributing mortality solely to blind time and denying the hereafter rests on speculation (zann), not verified knowledge ('ilm).`
+      },
+      {
+        num: 25,
+        theme: `dahriyyah`,
+        arabic: `وَإِذَا تُتْلَىٰ عَلَيْهِمْ آيَاتُنَا بَيِّنَاتٍ مَا كَانَ حُجَّتَهُمْ إِلَّا أَنْ قَالُوا ائْتُوا بِآبَائِنَا إِنْ كُنْتُمْ صَادِقِينَ`,
+        translation: `And when Our verses are recited to them as clear evidences, their argument is only that they say, "Bring [back] our forefathers, if you should be truthful."`,
+        term: `Hujjah (Evasive Counter-Demand)`,
+        commentary: `Instead of engaging the rational arguments of creation and renewal, deniers resort to a theatrical demand to resurrect ancestors within present worldly time.`
+      },
+      {
+        num: 26,
+        theme: `dahriyyah`,
+        arabic: `قُلِ اللَّهُ يُحْيِيكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يَجْمَعُكُمْ إِلَىٰ يَوْمِ الْقِيَامَةِ لَا رَيْبَ فِيهِ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ`,
+        translation: `Say, "Allah causes you to live, then causes you to die; then He will assemble you for the Day of Resurrection, about which there is no doubt, but most of the people do not know."`,
+        term: `Yuhyikum · Yumitukum · Yajma'ukum`,
+        commentary: `Directly reverses the materialist slogan of 45:24: life, death, and final assembly are deliberate acts of Allah, not byproducts of impersonal time.`
+      },
+      {
+        num: 27,
+        theme: `jathiyah`,
+        arabic: `وَلِلَّهِ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ ۚ وَيَوْمَ تَقُومُ السَّاعَةُ يَوْمَئِذٍ يَخْسَرُ الْمُبْطِلُونَ`,
+        translation: `And to Allah belongs the dominion of the heavens and the earth. And the Day the Hour appears — that Day the falsifiers will lose.`,
+        term: `Mulk · Al-Mubtilun`,
+        commentary: `Transitions to the Judgment scene: absolute sovereignty belongs to Allah, meaning those who traded truth for falsehood (al-mubtilun) suffer total loss.`
+      },
+      {
+        num: 28,
+        theme: `jathiyah`,
+        arabic: `وَتَرَىٰ كُلَّ أُمَّةٍ جَاثِيَةً ۚ كُلُّ أُمَّةٍ تُدْعَىٰ إِلَىٰ كِتَابِهَا الْيَوْمَ تُجْزَوْنَ مَا كُنْتُمْ تَعْمَلُونَ`,
+        translation: `And you will see every nation kneeling [from fear]. Every nation will be called to its record [and told], "Today you will be recompensed for what you used to do."`,
+        term: `Jathiyah · Kitabiha`,
+        commentary: `The titular climax: every human community kneels in awe as its comprehensive moral record is summoned before it.`
+      },
+      {
+        num: 29,
+        theme: `jathiyah`,
+        arabic: `هَٰذَا كِتَابُنَا يَنْطِقُ عَلَيْكُمْ بِالْحَقِّ ۚ إِنَّا كُنَّا نَسْتَنْسِخُ مَا كُنْتُمْ تَعْمَلُونَ`,
+        translation: `This, Our record, speaks about you in truth. Indeed, We were having transcribed whatever you used to do.`,
+        term: `Yantiqu · Nastansikhu`,
+        commentary: `Deeds are not lost to time (contra 45:24); they were faithfully transcribed in real time and now articulate the truth undeniably.`
+      },
+      {
+        num: 30,
+        theme: `jathiyah`,
+        arabic: `فَأَمَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَيُدْخِلُهُمْ رَبُّهُمْ فِي رَحْمَتِهِ ۚ ذَٰلِكَ هُوَ الْفَوْزُ الْمُبِينُ`,
+        translation: `So as for those who believed and did righteous deeds, their Lord will admit them into His mercy. That is what is the clear attainment.`,
+        term: `Al-Fawz al-Mubin`,
+        commentary: `Defines ultimate success: entry into Divine Mercy earned through the pairing of faith (iman) and constructive action (salih deeds).`
+      },
+      {
+        num: 31,
+        theme: `jathiyah`,
+        arabic: `وَأَمَّا الَّذِينَ كَفَرُوا أَفَلَمْ تَكُنْ آيَاتِي تُتْلَىٰ عَلَيْكُمْ فَاسْتَكْبَرْتُمْ وَكُنْتُمْ قَوْمًا مُجْرِمِينَ`,
+        translation: `But as for those who disbelieved, [it will be said], "Were not Our verses recited to you, but you were arrogant and became a people of criminals?"`,
+        term: `Istakbartum`,
+        commentary: `Echoes 45:8 directly: the root tragedy of the disbelievers was not lack of warning, but arrogance when revelation was recited.`
+      },
+      {
+        num: 32,
+        theme: `jathiyah`,
+        arabic: `وَإِذَا قِيلَ إِنَّ وَعْدَ اللَّهِ حَقٌّ وَالسَّاعَةُ لَا رَيْبَ فِيهَا قُلْتُمْ مَا نَدْرِي مَا السَّاعَةُ إِنْ نَظُنُّ إِلَّا ظَنًّا وَمَا نَحْنُ بِمُسْتَيْقِنِينَ`,
+        translation: `And when it was said, "Indeed, the promise of Allah is truth and the Hour [is coming] — no doubt about it," you said, "We know not what is the Hour. We assume only assumption, and we are not convinced."`,
+        term: `In Nazunnu Illa Zanna`,
+        commentary: `Notice the irony: in 45:24 the Qur'an diagnosed their denial as mere assumption (zann); here on the Day of Judgment, they confess it in their own words.`
+      },
+      {
+        num: 33,
+        theme: `jathiyah`,
+        arabic: `وَبَدَا لَهُمْ سَيِّئَاتُ مَا عَمِلُوا وَحَاقَ بِهِمْ مَا كَانُوا بِهِ يَسْتَهْزِئُونَ`,
+        translation: `And the evil consequences of what they did will appear to them, and they will be enveloped by what they used to ridicule.`,
+        term: `Bada Lahum`,
+        commentary: `Hidden moral realities become visible: the very warning they treated as a joke (45:9) now surrounds them completely.`
+      },
+      {
+        num: 34,
+        theme: `jathiyah`,
+        arabic: `وَقِيلَ الْيَوْمَ نَنْسَاكُمْ كَمَا نَسِيتُمْ لِقَاءَ يَوْمِكُمْ هَٰذَا وَمَأْوَاكُمُ النَّارُ وَمَا لَكُمْ مِنْ نَاصِرِينَ`,
+        translation: `And it will be said, "Today We will forget you as you forgot the meeting of this Day of yours, and your refuge is the Fire, and for you there are no helpers."`,
+        term: `Nansakum (Reciprocal Neglect)`,
+        commentary: `Divine "forgetting" denotes deliberate abandonment from mercy—an exact mirror of how they deliberately sidelined the meeting with their Lord.`
+      },
+      {
+        num: 35,
+        theme: `jathiyah`,
+        arabic: `ذَٰلِكُمْ بِأَنَّكُمُ اتَّخَذْتُمْ آيَاتِ اللَّهِ هُزُوًا وَغَرَّتْكُمُ الْحَيَاةُ الدُّنْيَا ۚ فَالْيَوْمَ لَا يُخْرَجُونَ مِنْهَا وَلَا هُمْ يُسْتَعْتَبُونَ`,
+        translation: `That is because you took the verses of Allah in ridicule, and worldly life deluded you. So that Day they will not be removed from it, nor will they be asked to appease [Allah].`,
+        term: `Gharratkum al-Hayat al-Dunya`,
+        commentary: `Closes the indictment with two causes: mocking Allah's signs and allowing transient worldly allure to deceive one's ultimate loyalty.`
+      },
+      {
+        num: 36,
+        theme: `jathiyah`,
+        arabic: `فَلِلَّهِ الْحَمْدُ رَبِّ السَّمَاوَاتِ وَرَبِّ الْأَرْضِ رَبِّ الْعَالَمِينَ`,
+        translation: `Then, to Allah belongs [all] praise — Lord of the heavens and Lord of the earth, Lord of the worlds.`,
+        term: `Al-Hamd · Rabb al-'Alamin`,
+        commentary: `Rises above the courtroom scene into cosmic praise: the same Lord of heavens and earth whose signs opened the Surah (45:3) is praised in absolute sovereignty.`
+      },
+      {
+        num: 37,
+        theme: `jathiyah`,
+        arabic: `وَلَهُ الْكِبْرِيَاءُ فِي السَّمَاوَاتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ`,
+        translation: `And to Him belongs [all] grandeur within the heavens and the earth, and He is the Exalted in Might, the Wise.`,
+        term: `Al-Kibriya' · Al-Aziz Al-Hakim`,
+        commentary: `Completes the Surah's structural ring with 45:2: true grandeur (Al-Kibriya') belongs exclusively to Allah, rendering all human arrogance baseless.`
+      }
+    ];
+
+    const FLASHCARDS = [
+      {
+        id: `ayat`,
+        arabic: `آيَات`,
+        translit: `Ayat`,
+        verse: `45:3–6`,
+        meaning: `Signs & Verses: unites observable phenomena in nature (cosmos, biology, cycles) with recited Qur'anic verses as intelligible communications from Allah.`
+      },
+      {
+        id: `yaqin`,
+        arabic: `يَقِين`,
+        translit: `Yaqin`,
+        verse: `45:4, 20, 32`,
+        meaning: `Settled Certainty: deep conviction grounded in contemplation of creation and revelation, explicitly contrasted with the deniers' lack of conviction in 45:32.`
+      },
+      {
+        id: `taskhir`,
+        arabic: `تَسْخِير`,
+        translit: `Taskhir`,
+        verse: `45:12–13`,
+        meaning: `Subjection / Serviceability: Allah's orderly arrangement of the sea, heavens, and earth so humanity can navigate, thrive, reflect, and show gratitude.`
+      },
+      {
+        id: `baghy`,
+        arabic: `بَغْي`,
+        translit: `Baghy`,
+        verse: `45:17`,
+        meaning: `Jealous Animosity / Transgression: the internal rivalry that fractured the Children of Israel only after clear knowledge had already been granted to them.`
+      },
+      {
+        id: `shariah`,
+        arabic: `شَرِيعَة`,
+        translit: `Shari'ah`,
+        verse: `45:18`,
+        meaning: `Ordained Way: the divinely charted path concerning religion—used here in its classic Qur'anic sense as the principled alternative to erratic desires.`
+      },
+      {
+        id: `hawa`,
+        arabic: `هَوًى`,
+        translit: `Hawa`,
+        verse: `45:18, 23`,
+        meaning: `Whim / Deified Desire: personal inclination elevated into a supreme god ("ittakhadha ilahahu hawahu"), sealing hearing, heart, and vision.`
+      },
+      {
+        id: `dahr`,
+        arabic: `الدَّهْر`,
+        translit: `Al-Dahr`,
+        verse: `45:24`,
+        meaning: `Impersonal Time: invoked by materialists (Dahriyyah) as the sole force that brings life and destruction, denying resurrection.`
+      },
+      {
+        id: `zann`,
+        arabic: `ظَنّ`,
+        translit: `Zann`,
+        verse: `45:24, 32`,
+        meaning: `Unverified Assumption: exposes both materialist denial and agnosticism about the Hour as speculative guesswork rather than knowledge ('ilm).`
+      },
+      {
+        id: `jathiyah`,
+        arabic: `جَاثِيَة`,
+        translit: `Jathiyah`,
+        verse: `45:28`,
+        meaning: `Kneeling (on Bended Knees): the posture of every nation summoned in awe before its continuously transcribed, speaking record.`
+      },
+      {
+        id: `kibriya`,
+        arabic: `الْكِبْرِيَاء`,
+        translit: `Al-Kibriya'`,
+        verse: `45:37`,
+        meaning: `Absolute Cosmic Grandeur: majesty across the heavens and earth belonging solely to Allah—rebuking human arrogance (istikbar).`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        question: `Which pair of Divine Names opens Surah Al-Jathiyah at 45:2 and closes it verbatim at 45:37, forming a literary inclusio?`,
+        options: [
+          `Al-Ghafur Al-Rahim (The Forgiving, The Merciful)`,
+          `Al-Aziz Al-Hakim (The Exalted in Might, The Wise)`,
+          `Al-Sami' Al-Basir (The All-Hearing, The All-Seeing)`,
+          `Al-Khaliq Al-Bari' (The Creator, The Inventor)`
+        ],
+        correct: 1,
+        explanation: `Both 45:2 ("tanzil al-kitab min Allahi al-'Aziz al-Hakim") and 45:37 ("wa huwa al-'Aziz al-Hakim") pair Might with Wisdom, framing cosmic signs and judgment alike.`
+      },
+      {
+        id: `q2`,
+        question: `In verses 45:3–5, what specific human faculty is matched with the alternation of night and day, rain reviving dead earth, and directing of the winds (45:5)?`,
+        options: [
+          `People who reason (li-qawmin ya'qilun)`,
+          `People who remember (li-qawmin yadhakkirun)`,
+          `People who fear (li-qawmin yattaqun)`,
+          `People who hear (li-qawmin yasma'un)`
+        ],
+        correct: 0,
+        explanation: `45:3 pairs heavens and earth with believers (mu'minin), 45:4 pairs human/animal creation with certainty (yuqinun), and 45:5 pairs ecological cycles with reason ('aql).`
+      },
+      {
+        id: `q3`,
+        question: `According to verse 45:14, how are believers commanded to respond to those who do not anticipate "the Days of Allah"?`,
+        options: [
+          `Refuse all trade and communication with them`,
+          `Demand immediate miracles to silence their skepticism`,
+          `Forgive them (yaghfiru), leaving ultimate recompense to Allah`,
+          `Debate them continuously until they yield`
+        ],
+        correct: 2,
+        explanation: `Verse 45:14 instructs believers to forgive those who expect not the Days of Allah, paired in 45:15 with the principle that every good or evil deed returns to the agent's own self.`
+      },
+      {
+        id: `q4`,
+        question: `In verse 45:17, what caused the Children of Israel to diverge after clear proofs and knowledge had already come to them?`,
+        options: [
+          `Loss of their prophetic manuscripts during exile`,
+          `Jealous animosity between themselves (baghyan baynahum)`,
+          `Confusion caused by ambiguous parables`,
+          `Isolation from neighboring civilizations`
+        ],
+        correct: 1,
+        explanation: `45:17 emphasizes that divergence happened "only after knowledge had come to them — out of jealous animosity (baghyan) between themselves."`
+      },
+      {
+        id: `q5`,
+        question: `In verse 45:18, what is set in direct opposition to following "an ordained way concerning the matter" (Shari'atan min al-amr)?`,
+        options: [
+          `The ancestral customs of desert tribes`,
+          `The inclinations/desires of those who do not know (ahwa' alladhina la ya'lamun)`,
+          `Strict legal codes of ancient empires`,
+          `Empirical observation of the physical sea`
+        ],
+        correct: 1,
+        explanation: `45:18 contrasts following Shari'ah with following the erratic desires (ahwa') of those lacking true knowledge—a theme deepened in 45:23.`
+      },
+      {
+        id: `q6`,
+        question: `What diagnostic sequence occurs in 45:23 when a person takes their own desire (hawa) as their god?`,
+        options: [
+          `Their wealth increases rapidly while their community fragments`,
+          `They stray despite knowledge, with a seal on hearing and heart, and a veil over vision`,
+          `They immediately forget their ancestors and flee to the sea`,
+          `They ask for the record of their deeds ahead of the Hour`
+        ],
+        correct: 1,
+        explanation: `45:23 traces a tragic spiritual closure: straying despite knowledge ('ala 'ilm), sealing of hearing (sam') and heart (qalb), and placing a veil (ghishawah) over sight (basar).`
+      },
+      {
+        id: `q7`,
+        question: `How does verse 45:24 evaluate the materialist Dahriyyah claim that "nothing destroys us except time (al-dahr)"?`,
+        options: [
+          `It concedes that time is an independent creative force`,
+          `It critiques the claim as lacking knowledge and resting purely on assumption (zann)`,
+          `It treats the claim as valid science for earthly biology only`,
+          `It attributes the slogan exclusively to the Children of Israel`
+        ],
+        correct: 1,
+        explanation: `45:24b states: "And they have of that no knowledge; they are only assuming (in hum illa yazunnun)"—a confession echoed on Judgment Day in 45:32.`
+      },
+      {
+        id: `q8`,
+        question: `In verses 45:28–29, what does the Arabic verb "nastansikhu" reveal about the written record facing every kneeling nation?`,
+        options: [
+          `The record is written retroactively after the Hour arrives`,
+          `Only major public treaties are preserved in the Book`,
+          `Allah was continually having every human action transcribed in real time`,
+          `The record remains silent until angels translate it`
+        ],
+        correct: 2,
+        explanation: `45:29 declares: "This, Our record, speaks about you in truth (yantiqu 'alaykum bi-l-haqq). Indeed, We were having transcribed (nastansikhu) whatever you used to do."`
+      }
+    ];
+
+    /* Persistent State Schema */
+    let appState = {
+      studiedVerses: [],
+      bookmarkedVerses: [],
+      masteredTerms: [],
+      quizAnswers: {},
+      showCommentary: true,
+      activeMovement: 0,
+      activeSignTier: 0,
+      activePathway: `shariah`,
+      activeDahrClaim: 0
+    };
+
+    async function saveState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        console.warn(`State save skipped:`, err);
+      }
+    }
+
+    function updateTelemetry() {
+      const studiedCount = appState.studiedVerses.length;
+      const bookmarkedCount = appState.bookmarkedVerses.length;
+      const masteredCount = appState.masteredTerms.length;
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q) {
+        if (appState.quizAnswers[q.id] === q.correct) {
+          correctCount += 1;
+        }
+      });
+
+      const statVerses = document.getElementById(`stat-verses`);
+      if (statVerses) statVerses.textContent = `${studiedCount} / 37`;
+
+      const statBookmarks = document.getElementById(`stat-bookmarks`);
+      if (statBookmarks) statBookmarks.textContent = `${bookmarkedCount} bookmarked for review`;
+
+      const statTerms = document.getElementById(`stat-terms`);
+      if (statTerms) statTerms.textContent = `${masteredCount} / ${FLASHCARDS.length}`;
+
+      const statQuiz = document.getElementById(`stat-quiz`);
+      if (statQuiz) statQuiz.textContent = `${correctCount} / ${QUIZ_QUESTIONS.length}`;
+
+      const flashBadge = document.getElementById(`flashcard-progress-badge`);
+      if (flashBadge) flashBadge.textContent = `${masteredCount} / ${FLASHCARDS.length} Mastered`;
+
+      const quizBadge = document.getElementById(`quiz-score-badge`);
+      if (quizBadge) quizBadge.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+    }
+
+    function selectMovement(idx) {
+      const mov = MOVEMENTS[idx];
+      if (!mov) return;
+      appState.activeMovement = idx;
+
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const dot = document.getElementById(`arc-dot-${i}`);
+        if (dot) {
+          dot.setAttribute(`stroke`, i === idx ? `var(--primary)` : `var(--outline)`);
+          dot.setAttribute(`stroke-width`, i === idx ? `2.5` : `2`);
+          dot.setAttribute(`fill`, i === idx ? `var(--primary-container)` : `var(--surface-container-high)`);
+        }
+        const btn = document.getElementById(`mov-btn-${i}`);
+        if (btn) btn.setAttribute(`aria-pressed`, i === idx ? `true` : `false`);
+      }
+
+      const rangeEl = document.getElementById(`mov-range`);
+      const titleEl = document.getElementById(`mov-title`);
+      const sumEl = document.getElementById(`mov-summary`);
+      const pivEl = document.getElementById(`mov-pivot`);
+      const kwEl = document.getElementById(`mov-keywords`);
+
+      if (rangeEl) rangeEl.textContent = mov.range;
+      if (titleEl) titleEl.textContent = mov.title;
+      if (sumEl) sumEl.textContent = mov.summary;
+      if (pivEl) pivEl.textContent = mov.pivot;
+      if (kwEl) kwEl.textContent = mov.keywords;
+
+      saveState();
+    }
+
+    function selectSignTier(idx) {
+      const tier = SIGN_TIERS[idx];
+      if (!tier) return;
+      appState.activeSignTier = idx;
+
+      for (let i = 0; i < SIGN_TIERS.length; i++) {
+        const btn = document.getElementById(`sign-btn-${i}`);
+        if (btn) btn.setAttribute(`aria-pressed`, i === idx ? `true` : `false`);
+      }
+
+      const refEl = document.getElementById(`sign-verse-ref`);
+      const facEl = document.getElementById(`sign-faculty`);
+      const arEl = document.getElementById(`sign-arabic`);
+      const trEl = document.getElementById(`sign-translation`);
+      const comEl = document.getElementById(`sign-commentary`);
+      const shEl = document.getElementById(`sign-shift`);
+
+      if (refEl) refEl.textContent = tier.ref;
+      if (facEl) facEl.textContent = tier.faculty;
+      if (arEl) arEl.textContent = tier.arabic;
+      if (trEl) trEl.textContent = tier.translation;
+      if (comEl) comEl.textContent = tier.commentary;
+      if (shEl) shEl.textContent = tier.shift;
+
+      saveState();
+    }
+
+    function selectPathway(mode) {
+      const items = PATHWAYS[mode];
+      if (!items) return;
+      appState.activePathway = mode;
+
+      const btnSh = document.getElementById(`path-btn-shariah`);
+      const btnHa = document.getElementById(`path-btn-hawa`);
+      if (btnSh) btnSh.setAttribute(`aria-pressed`, mode === `shariah` ? `true` : `false`);
+      if (btnHa) btnHa.setAttribute(`aria-pressed`, mode === `hawa` ? `true` : `false`);
+
+      const list = document.getElementById(`pathway-list`);
+      if (!list) return;
+
+      list.innerHTML = items.map(function (item) {
+        return `
+          <li class="cascade-item ${item.type}">
+            <span class="coord-label">${item.label}</span>
+            <p class="muted">${item.text}</p>
+          </li>
+        `;
+      }).join(``);
+
+      saveState();
+    }
+
+    function selectDahrClaim(idx) {
+      const item = DAHR_CLAIMS[idx];
+      if (!item) return;
+      appState.activeDahrClaim = idx;
+
+      for (let i = 0; i < DAHR_CLAIMS.length; i++) {
+        const btn = document.getElementById(`dahr-btn-${i}`);
+        if (btn) btn.setAttribute(`aria-pressed`, i === idx ? `true` : `false`);
+      }
+
+      const ct = document.getElementById(`dahr-claim-title`);
+      const cx = document.getElementById(`dahr-claim-text`);
+      const rt = document.getElementById(`dahr-rebuttal-title`);
+      const rx = document.getElementById(`dahr-rebuttal-text`);
+
+      if (ct) ct.textContent = item.claimTitle;
+      if (cx) cx.textContent = item.claimText;
+      if (rt) rt.textContent = item.rebuttalTitle;
+      if (rx) rx.textContent = item.rebuttalText;
+
+      saveState();
+    }
+
+    function getFilteredVerses() {
+      const searchEl = document.getElementById(`verse-search`);
+      const filterEl = document.getElementById(`verse-theme-filter`);
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : ``;
+      const filterVal = filterEl ? filterEl.value : `all`;
+
+      return VERSES.filter(function (v) {
+        if (filterVal === `bookmarked` && appState.bookmarkedVerses.indexOf(v.num) === -1) return false;
+        if (filterVal === `unstudied` && appState.studiedVerses.indexOf(v.num) !== -1) return false;
+        if ([`signs`, `covenant`, `dahriyyah`, `jathiyah`].indexOf(filterVal) !== -1 && v.theme !== filterVal) return false;
+
+        if (!query) return true;
+        const haystack = `${v.num} 45:${v.num} ${v.translation} ${v.commentary} ${v.term} ${v.arabic}`.toLowerCase();
+        return haystack.indexOf(query) !== -1;
+      });
+    }
+
+    function toggleCommentary() {
+      appState.showCommentary = !appState.showCommentary;
+      const btn = document.getElementById(`toggle-commentary-btn`);
+      if (btn) {
+        btn.setAttribute(`aria-pressed`, appState.showCommentary ? `true` : `false`);
+        btn.textContent = appState.showCommentary ? `Hide Commentary` : `Show Commentary`;
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function toggleVerseStudied(num) {
+      const idx = appState.studiedVerses.indexOf(num);
+      if (idx === -1) {
+        appState.studiedVerses.push(num);
+      } else {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      updateTelemetry();
+      renderVerses();
+      saveState();
+    }
+
+    function toggleVerseBookmark(num) {
+      const idx = appState.bookmarkedVerses.indexOf(num);
+      if (idx === -1) {
+        appState.bookmarkedVerses.push(num);
+      } else {
+        appState.bookmarkedVerses.splice(idx, 1);
+      }
+      updateTelemetry();
+      renderVerses();
+      saveState();
+    }
+
+    function markVisibleStudied() {
+      const list = getFilteredVerses();
+      list.forEach(function (v) {
+        if (appState.studiedVerses.indexOf(v.num) === -1) {
+          appState.studiedVerses.push(v.num);
+        }
+      });
+      updateTelemetry();
+      renderVerses();
+      saveState();
+    }
+
+    function renderVerses() {
+      const container = document.getElementById(`verse-list-container`);
+      const statusEl = document.getElementById(`verse-count-status`);
+      if (!container) return;
+
+      const filtered = getFilteredVerses();
+      if (statusEl) statusEl.textContent = `Showing ${filtered.length} of ${VERSES.length} verses`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="panel" style="text-align: center; padding: var(--space-xl);">
+            <p class="muted">No verses match your current filter or search term. Clear the search box or switch back to "All 37 Verses" to resume reading.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(function (v) {
+        const isStudied = appState.studiedVerses.indexOf(v.num) !== -1;
+        const isBookmarked = appState.bookmarkedVerses.indexOf(v.num) !== -1;
+        const commentaryHtml = appState.showCommentary
+          ? `<div class="verse-commentary">${v.commentary}</div>`
+          : ``;
+
+        return `
+          <article class="verse-card ${isStudied ? `is-studied` : ``}">
+            <div class="verse-top-bar">
+              <div class="hero-meta-row">
+                <span class="badge">45:${v.num}</span>
+                <span class="verse-key-term">${v.term}</span>
+              </div>
+              <div class="btn-row">
+                <button type="button" class="btn" aria-pressed="${isBookmarked}" onclick="toggleVerseBookmark(${v.num})">
+                  ${isBookmarked ? `Bookmarked` : `Bookmark`}
+                </button>
+                <button type="button" class="btn btn-success" aria-pressed="${isStudied}" onclick="toggleVerseStudied(${v.num})">
+                  ${isStudied ? `Studied` : `Mark Studied`}
+                </button>
+              </div>
+            </div>
+            <div class="verse-arabic" dir="rtl" lang="ar">${v.arabic}</div>
+            <p class="verse-translation">${v.translation}</p>
+            ${commentaryHtml}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function toggleTermMastered(id) {
+      const idx = appState.masteredTerms.indexOf(id);
+      if (idx === -1) {
+        appState.masteredTerms.push(id);
+      } else {
+        appState.masteredTerms.splice(idx, 1);
+      }
+      updateTelemetry();
+      renderFlashcards();
+      saveState();
+    }
+
+    function revealFlashcard(id) {
+      const detail = document.getElementById(`fc-detail-${id}`);
+      const btn = document.getElementById(`fc-reveal-${id}`);
+      if (!detail || !btn) return;
+      const isHidden = detail.hidden;
+      detail.hidden = !isHidden;
+      btn.textContent = isHidden ? `Hide Context` : `Reveal Meaning`;
+      btn.setAttribute(`aria-expanded`, isHidden ? `true` : `false`);
+    }
+
+    function renderFlashcards() {
+      const grid = document.getElementById(`flashcard-grid`);
+      if (!grid) return;
+
+      grid.innerHTML = FLASHCARDS.map(function (card) {
+        const isMastered = appState.masteredTerms.indexOf(card.id) !== -1;
+        return `
+          <div class="flashcard ${isMastered ? `is-mastered` : ``}">
+            <div style="display: grid; gap: var(--space-xs);">
+              <div class="hero-meta-row" style="justify-content: space-between;">
+                <span class="coord-label">${card.verse}</span>
+                <span class="badge ${isMastered ? `badge-mint` : ``}">${isMastered ? `Mastered` : `Key Term`}</span>
+              </div>
+              <div class="ar-text" style="font-size: 1.75rem; line-height: 1.6;" dir="rtl" lang="ar">${card.arabic}</div>
+              <h4 style="font-size: var(--subhead-size);">${card.translit}</h4>
+              <p id="fc-detail-${card.id}" class="muted" hidden style="font-size: 0.94rem; margin-top: var(--space-xs);">${card.meaning}</p>
+            </div>
+            <div class="btn-row" style="margin-top: var(--space-md);">
+              <button type="button" class="btn" id="fc-reveal-${card.id}" aria-expanded="false" onclick="revealFlashcard('${card.id}')">Reveal Meaning</button>
+              <button type="button" class="btn btn-success" aria-pressed="${isMastered}" onclick="toggleTermMastered('${card.id}')">
+                ${isMastered ? `Mastered` : `Mark Mastered`}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function selectQuizAnswer(qId, optionIdx) {
+      appState.quizAnswers[qId] = optionIdx;
+      updateTelemetry();
+      renderQuiz();
+      saveState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function (q, qIndex) {
+        const selected = appState.quizAnswers[q.id];
+        const hasAnswered = typeof selected === `number`;
+        const isCorrect = selected === q.correct;
+
+        const optionsHtml = q.options.map(function (opt, oIdx) {
+          let cls = `btn quiz-option`;
+          if (hasAnswered) {
+            if (oIdx === q.correct) cls += ` is-correct`;
+            else if (oIdx === selected) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" aria-pressed="${selected === oIdx}" onclick="selectQuizAnswer('${q.id}', ${oIdx})">
+              ${String.fromCharCode(65 + oIdx)}. ${opt}
+            </button>
+          `;
+        }).join(``);
+
+        const feedbackHtml = hasAnswered
+          ? `
+            <div class="feedback-box ${isCorrect ? `is-correct` : `is-wrong`}">
+              <span class="coord-label" style="color: ${isCorrect ? `var(--positive)` : `var(--error)`};">
+                ${isCorrect ? `Correct` : `Review Needed`}
+              </span>
+              <p class="muted">${q.explanation}</p>
+            </div>
+          `
+          : ``;
+
+        return `
+          <div class="panel-low" style="display: grid; gap: var(--space-sm);">
+            <span class="coord-label">Question ${qIndex + 1} of ${QUIZ_QUESTIONS.length}</span>
+            <p style="font-weight: 600;">${q.question}</p>
+            <div style="display: grid; gap: var(--space-sm); margin-top: var(--space-xs);">
+              ${optionsHtml}
+            </div>
+            ${feedbackHtml}
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click Again to Confirm Reset`;
+        const msg = document.getElementById(`action-status-msg`);
+        if (msg) msg.textContent = `Click reset once more to clear studied verses, flashcards, and quiz answers.`;
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" aria-hidden="true"></i> Reset Progress`;
+      if (window.lucide) window.lucide.createIcons();
+
+      appState.studiedVerses = [];
+      appState.bookmarkedVerses = [];
+      appState.masteredTerms = [];
+      appState.quizAnswers = {};
+
+      updateTelemetry();
+      renderVerses();
+      renderFlashcards();
+      renderQuiz();
+      saveState();
+
+      const msg = document.getElementById(`action-status-msg`);
+      if (msg) msg.textContent = `All study progress has been reset.`;
+    }
+
+    function exportStudySummary() {
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q) {
+        if (appState.quizAnswers[q.id] === q.correct) correctCount += 1;
+      });
+
+      const lines = [
+        `SURAH AL-JATHIYAH (CHAPTER 45) — PERSONAL STUDY SUMMARY`,
+        `=======================================================`,
+        `Verses Studied: ${appState.studiedVerses.length} / 37`,
+        `Bookmarked Verses: ${appState.bookmarkedVerses.length > 0 ? appState.bookmarkedVerses.map(function (n) { return `45:` + n; }).join(`, `) : `None`}`,
+        `Core Terms Mastered: ${appState.masteredTerms.length} / ${FLASHCARDS.length}`,
+        `Diagnostic Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `KEY CONCEPTUAL TAKEAWAYS:`,
+        `- Inclusio: Framed by Al-Aziz Al-Hakim (45:2 and 45:37).`,
+        `- Epistemology (45:3-5, 13): Nature as signs for believers, the certain, those who reason, and those who reflect.`,
+        `- Covenant & Divergence (45:16-18): Schism caused by jealous rivalry (baghy) after knowledge; Shari'ah vs. Hawa (45:23).`,
+        `- Critique of Dahriyyah (45:24-26): Attributing death solely to Time (al-dahr) is assumption (zann), not knowledge.`,
+        `- Al-Jathiyah (45:28-29): Every nation kneeling before its continuously transcribed, speaking record.`
+      ];
+
+      const summaryText = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: summaryText,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-45-al-jathiyah-study-summary.txt`
+        });
+      }
+
+      const msg = document.getElementById(`action-status-msg`);
+      if (msg) msg.textContent = `Study summary exported as surah-45-al-jathiyah-study-summary.txt`;
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign(appState, saved);
+          }
+        }
+      } catch (err) {
+        console.warn(`Could not restore state:`, err);
+      }
+
+      const toggleBtn = document.getElementById(`toggle-commentary-btn`);
+      if (toggleBtn) {
+        toggleBtn.setAttribute(`aria-pressed`, appState.showCommentary ? `true` : `false`);
+        toggleBtn.textContent = appState.showCommentary ? `Hide Commentary` : `Show Commentary`;
+      }
+
+      selectMovement(appState.activeMovement || 0);
+      selectSignTier(appState.activeSignTier || 0);
+      selectPathway(appState.activePathway || `shariah`);
+      selectDahrClaim(appState.activeDahrClaim || 0);
+
+      updateTelemetry();
+      renderVerses();
+      renderFlashcards();
+      renderQuiz();
+
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

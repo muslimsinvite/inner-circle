@@ -1,0 +1,2578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-An'am (Chapter 6) — Thematic &amp; Theological Study Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border-soft: #c98a6b;
+      --tertiary-border-soft: #b5d6c9;
+      --secondary-border: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fbe8e8;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Semantic tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.08);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 140ms;
+      --dur-short: 240ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .kicker-meta {
+      color: var(--secondary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      margin: 0 0 var(--space-lg) 0;
+      line-height: 1.65;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .prose strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Arabic Script Rules */
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+      line-height: 2.05;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.15em;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Brass Diamond Ornamental Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Riad Arch Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.1rem, 1.8rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--tertiary);
+      line-height: 1.35;
+    }
+
+    /* Badges & Pills */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border-soft);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--secondary-border);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .btn-emerald {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background: var(--on-tertiary-container);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.8125rem;
+    }
+
+    /* Quick Orientation / Study Progress Strip */
+    .progress-strip {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+    .progress-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    .progress-stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .progress-stat-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--on-surface-variant);
+    }
+    .progress-stat-val {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.375rem;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-bar-track {
+      width: 180px;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+      width: 0%;
+    }
+
+    /* Jump Nav Ribbon */
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border-color: var(--outline);
+    }
+
+    /* Section Containers */
+    .story-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .section-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    /* Movement Spine Proportional Map */
+    .spine-bar {
+      display: grid;
+      grid-template-columns: 30fr 28fr 32fr 37fr 23fr 15fr;
+      gap: 4px;
+      background: var(--surface-container-low);
+      padding: var(--space-sm);
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+    }
+    .spine-segment {
+      min-height: 52px;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      cursor: pointer;
+      padding: var(--space-xs) var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .spine-segment:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .spine-segment.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow);
+    }
+    .spine-segment.is-studied {
+      border-bottom: 3px solid var(--tertiary);
+    }
+    .spine-seg-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+    }
+    .spine-seg-range {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Two-Column Asymmetric Split */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .split-layout-equal {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .movement-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .movement-btn {
+      width: 100%;
+      min-height: 44px;
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .movement-btn:hover {
+      background: var(--surface-container);
+    }
+    .movement-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+    .movement-btn-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--on-surface);
+      display: block;
+    }
+    .movement-btn-meta {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .detail-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .verse-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .verse-translation {
+      color: var(--on-surface);
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Argument Pills & Matrix */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .filter-pill {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-border);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .filter-pill:hover {
+      background: var(--surface-container-high);
+    }
+    .filter-pill.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .logic-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .logic-step {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .logic-step-tag {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--tertiary);
+    }
+
+    /* Abraham Celestial Inquiry Diagram */
+    .abraham-stage-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .celestial-svg-box {
+      background: var(--on-surface);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border: 1px solid var(--secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 290px;
+      position: relative;
+      overflow: hidden;
+    }
+    .celestial-caption {
+      margin-top: var(--space-sm);
+      font-size: var(--label-size);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--surface-container);
+      font-weight: 600;
+      text-align: center;
+    }
+    .step-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Concept Cards Grid */
+    .card-wrapper { container-type: inline-size; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .concept-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+    .concept-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    /* Passage Search & Explorer */
+    .explorer-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: end;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--on-surface-variant);
+    }
+    .text-input, .select-input, .textarea-input {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      width: 100%;
+      color: var(--on-surface);
+      transition: border-color var(--dur-micro) var(--ease-out);
+    }
+    .select-input {
+      padding-right: var(--space-xl);
+    }
+    .textarea-input {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .text-input:focus, .select-input:focus, .textarea-input:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--primary-container);
+    }
+
+    .passage-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .passage-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Table styling (Terracotta) */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    .study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .study-table thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .study-table tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+    .study-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .study-table tbody tr:hover {
+      background: var(--background);
+    }
+    .tabular-ref {
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Moral Charter Checklist & Journal */
+    .charter-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .charter-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .charter-item:hover {
+      background: var(--surface-container);
+    }
+    .charter-item.is-checked {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border-soft);
+    }
+    .charter-checkbox {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      margin-top: 2px;
+      accent-color: var(--tertiary);
+      cursor: pointer;
+    }
+
+    .journal-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+    .save-status {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+      min-height: 1.25rem;
+    }
+
+    /* Mastery Studio (Quiz & Flashcards) */
+    .studio-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--secondary-border);
+      background: var(--background);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .flashcard-stage {
+      background: var(--background);
+      border: 1px solid var(--primary-border-soft);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      cursor: pointer;
+    }
+
+    .feedback-box {
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      background: var(--primary-container);
+      border: 1px solid var(--primary-border-soft);
+      color: var(--on-surface);
+    }
+    .feedback-box.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border-soft);
+    }
+
+    .footer-note {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .hidden-panel { display: none !important; }
+
+    /* Reveal animation */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .split-layout, .split-layout-equal, .abraham-stage-wrap {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .logic-flow { grid-template-columns: minmax(0, 1fr); }
+      .spine-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .arch-grid { grid-template-columns: minmax(0, 1fr); }
+      .spine-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .explorer-controls { grid-template-columns: minmax(0, 1fr); }
+      .detail-panel, .studio-panel, .abraham-stage-wrap { padding: var(--space-md); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO & ARCHITECTURAL OVERVIEW -->
+    <header class="story-section">
+      <div class="kicker">
+        <span>Chapter 6 &middot; Surah Al-An&#x2019;am (The Cattle)</span>
+        <span class="kicker-meta">Verses 6:1&#x2013;6:165 &middot; Complete Study Guide</span>
+      </div>
+      <h1 class="title">Surah Al-An&#x2019;am: The Architecture of <em>Monotheism</em></h1>
+      <p class="lede">
+        Opening with cosmic praise and closing with total personal devotion, Chapter 6 builds an interlocking case for the oneness of Allah—uniting natural observation, Abrahamic reason, prophetic history, and a ten-point moral charter across 165 verses.
+      </p>
+
+      <div class="ornament-rule"><span>&#x25C6; Structural Overview &#x25C6;</span></div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <span class="arch-label">Total Span</span>
+          <span class="arch-value">165</span>
+          <span class="arch-caption">Verses from cosmic origin (6:1) to earthly stewardship (6:165)</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Narrative Arc</span>
+          <span class="arch-value">6</span>
+          <span class="arch-caption">Thematic movements linking creation, reason &amp; ethics</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Prophetic Chain</span>
+          <span class="arch-value">18</span>
+          <span class="arch-caption">Messengers named in unified guidance (6:83&#x2013;86)</span>
+        </div>
+        <div class="arch-card is-featured">
+          <span class="arch-label">Straight Path</span>
+          <span class="arch-value">10</span>
+          <span class="arch-caption">Core moral &amp; social duties in the closing charter (6:151&#x2013;153)</span>
+        </div>
+      </div>
+
+      <!-- Persistent Study Progress Strip -->
+      <div class="progress-strip" aria-label="Study progress tracker">
+        <div class="progress-meta">
+          <div class="progress-stat">
+            <span class="progress-stat-label">Overall Mastery</span>
+            <span class="progress-stat-val" id="mastery-pct">0%</span>
+            <div class="progress-bar-track" aria-hidden="true">
+              <div class="progress-bar-fill" id="mastery-bar"></div>
+            </div>
+          </div>
+          <div class="progress-stat">
+            <span class="progress-stat-label">Movements Studied</span>
+            <span class="progress-stat-val" id="stat-movements">0 / 6</span>
+          </div>
+          <div class="progress-stat">
+            <span class="progress-stat-label">Charter Reflected</span>
+            <span class="progress-stat-val" id="stat-charter">0 / 10</span>
+          </div>
+          <div class="progress-stat">
+            <span class="progress-stat-label">Quiz Score</span>
+            <span class="progress-stat-val" id="stat-quiz">0 / 10</span>
+          </div>
+        </div>
+        <div class="pill-row">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="exportStudyNotes()">
+            <i data-lucide="download" width="16" height="16" aria-hidden="true"></i>
+            <span>Export Study Notes</span>
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="reset-progress-btn" onclick="handleResetProgress(this)">
+            <i data-lucide="rotate-ccw" width="16" height="16" aria-hidden="true"></i>
+            <span>Reset Progress</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Section Jump Navigation -->
+      <nav class="chapter-nav" aria-label="Chapter sections">
+        <a class="nav-pill" href="#thematic-spine">1. Thematic Spine (6:1&#x2013;165)</a>
+        <a class="nav-pill" href="#theological-arguments">2. Monotheism &amp; Creation</a>
+        <a class="nav-pill" href="#abraham-inquiry">3. Abraham&#x2019;s Inquiry (6:74&#x2013;83)</a>
+        <a class="nav-pill" href="#key-concepts">4. Key Concepts &amp; Passage Lookup</a>
+        <a class="nav-pill" href="#moral-charter">5. Straight Path &amp; Reflections</a>
+        <a class="nav-pill" href="#mastery-studio">6. Mastery Studio</a>
+      </nav>
+    </header>
+
+    <!-- SECTION 1: THEMATIC SPINE -->
+    <section id="thematic-spine" class="story-section reveal-item">
+      <div>
+        <div class="kicker"><span>Section I &middot; Macro-Structure</span></div>
+        <h2 class="section-heading">Six progressive movements carry the chapter from cosmic origin to <em>personal covenant</em></h2>
+        <p class="prose">
+          Rather than a loose collection of admonitions, Surah Al-An&#x2019;am unfolds as a sustained argument. Select any segment along the proportional verse map below to inspect its structure, anchor passage, and core claim.
+        </p>
+      </div>
+
+      <div class="spine-bar" role="tablist" aria-label="Proportional verse map of Surah Al-An'am">
+        <button type="button" class="spine-segment is-active" id="seg-0" onclick="selectMovement(0)">
+          <span class="spine-seg-num">I. Origin</span>
+          <span class="spine-seg-range">6:1&#x2013;30 (30v)</span>
+        </button>
+        <button type="button" class="spine-segment" id="seg-1" onclick="selectMovement(1)">
+          <span class="spine-seg-num">II. Mercy</span>
+          <span class="spine-seg-range">6:31&#x2013;58 (28v)</span>
+        </button>
+        <button type="button" class="spine-segment" id="seg-2" onclick="selectMovement(2)">
+          <span class="spine-seg-num">III. Reason</span>
+          <span class="spine-seg-range">6:59&#x2013;90 (32v)</span>
+        </button>
+        <button type="button" class="spine-segment" id="seg-3" onclick="selectMovement(3)">
+          <span class="spine-seg-num">IV. Signs</span>
+          <span class="spine-seg-range">6:91&#x2013;127 (37v)</span>
+        </button>
+        <button type="button" class="spine-segment" id="seg-4" onclick="selectMovement(4)">
+          <span class="spine-seg-num">V. Critique</span>
+          <span class="spine-seg-range">6:128&#x2013;150 (23v)</span>
+        </button>
+        <button type="button" class="spine-segment" id="seg-5" onclick="selectMovement(5)">
+          <span class="spine-seg-num">VI. Charter</span>
+          <span class="spine-seg-range">6:151&#x2013;165 (15v)</span>
+        </button>
+      </div>
+
+      <div class="split-layout">
+        <div class="movement-list" id="movement-list">
+          <!-- Populated by JS -->
+        </div>
+
+        <article class="detail-panel" id="movement-detail" aria-live="polite">
+          <!-- Populated by JS -->
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CORE THEOLOGICAL ARGUMENTS -->
+    <section id="theological-arguments" class="story-section section-band reveal-item">
+      <div>
+        <div class="kicker"><span>Section II &middot; Core Theology</span></div>
+        <h2 class="section-heading">Five pillars of reasoning dismantle polytheism through <em>creation and conscience</em></h2>
+        <p class="prose">
+          Surah Al-An&#x2019;am rarely asks for blind assent. Instead, it confronts polytheism with five recurring philosophical and empirical arguments—challenging listeners to examine who sustains life, who rescues in crisis, and whether inherited custom rests on genuine knowledge.
+        </p>
+      </div>
+
+      <div class="pill-row" id="argument-tabs" role="tablist" aria-label="Core theological arguments">
+        <!-- Populated by JS -->
+      </div>
+
+      <article class="detail-panel" id="argument-detail" aria-live="polite">
+        <!-- Populated by JS -->
+      </article>
+    </section>
+
+    <!-- SECTION 3: ABRAHAM'S DEDUCTIVE INQUIRY -->
+    <section id="abraham-inquiry" class="story-section reveal-item">
+      <div>
+        <div class="kicker"><span>Section III &middot; Prophetic Dialectic (6:74&#x2013;83)</span></div>
+        <h2 class="section-heading">Abraham tests celestial brilliance against <em>impermanence</em></h2>
+        <p class="prose">
+          In one of the Qur&#x2019;an&#x2019;s clearest philosophical narratives, Abraham (Ibrahim) steps outside idol-making (6:74) and guides his people through three escalating celestial observations. Each luminous object fails the same decisive criterion: <strong>whatever sets or disappears cannot be ultimate.</strong>
+        </p>
+      </div>
+
+      <div class="abraham-stage-wrap">
+        <div class="celestial-svg-box">
+          <svg id="abraham-svg" viewBox="0 0 320 220" width="100%" height="220" aria-hidden="true">
+            <!-- Horizon & night sky background -->
+            <rect x="0" y="0" width="320" height="220" fill="#261b15" rx="8"></rect>
+            <!-- Subtle stars -->
+            <circle cx="44" cy="42" r="1.5" fill="#d8c3b0" opacity="0.6"></circle>
+            <circle cx="95" cy="28" r="1.2" fill="#d8c3b0" opacity="0.5"></circle>
+            <circle cx="240" cy="36" r="1.5" fill="#d8c3b0" opacity="0.6"></circle>
+            <circle cx="280" cy="64" r="1.2" fill="#d8c3b0" opacity="0.4"></circle>
+            <circle cx="62" cy="90" r="1" fill="#d8c3b0" opacity="0.4"></circle>
+            <!-- Horizon arc -->
+            <path d="M 10 175 Q 160 158 310 175 L 310 220 L 10 220 Z" fill="#3a2a21"></path>
+            <line x1="16" y1="175" x2="304" y2="175" stroke="#8f6524" stroke-width="1" stroke-dasharray="4 4"></line>
+            <!-- Trajectory arc -->
+            <path id="svg-arc" d="M 55 168 Q 160 32 265 168" fill="none" stroke="#9e8a78" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.65"></path>
+            <!-- Stage 0: Star -->
+            <g id="celestial-star" opacity="1">
+              <circle cx="160" cy="72" r="18" fill="#b5893e" opacity="0.22"></circle>
+              <polygon points="160,52 164,66 178,66 167,74 171,88 160,80 149,88 153,74 142,66 156,66" fill="#f7ebe0"></polygon>
+            </g>
+            <!-- Stage 1: Moon -->
+            <g id="celestial-moon" opacity="0.18">
+              <circle cx="205" cy="84" r="24" fill="#e1efe9" opacity="0.16"></circle>
+              <path d="M 210 64 A 20 20 0 1 0 222 98 A 15 15 0 1 1 210 64 Z" fill="#f3e9dc"></path>
+            </g>
+            <!-- Stage 2: Sun -->
+            <g id="celestial-sun" opacity="0.15">
+              <circle cx="115" cy="90" r="34" fill="#b84a24" opacity="0.28"></circle>
+              <circle cx="115" cy="90" r="21" fill="#e07a52"></circle>
+            </g>
+            <!-- Stage 3: Hanif / Compass -->
+            <g id="celestial-hanif" opacity="0.15">
+              <circle cx="160" cy="105" r="46" fill="none" stroke="#5ec2b0" stroke-width="1.5"></circle>
+              <circle cx="160" cy="105" r="28" fill="none" stroke="#b5893e" stroke-width="1"></circle>
+              <polygon points="160,52 167,105 160,158 153,105" fill="#e1efe9" opacity="0.9"></polygon>
+              <polygon points="108,105 160,98 212,105 160,112" fill="#b5893e" opacity="0.7"></polygon>
+            </g>
+          </svg>
+          <div class="celestial-caption" id="abraham-svg-caption">Stage 1 of 4 &middot; The Setting Star (6:76)</div>
+        </div>
+
+        <div id="abraham-content" style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="step-controls" aria-label="Abraham inquiry navigation">
+        <button type="button" class="btn btn-secondary" id="abraham-prev" onclick="stepAbraham(-1)">
+          <i data-lucide="chevron-left" width="16" height="16" aria-hidden="true"></i>
+          <span>Previous Stage</span>
+        </button>
+        <div class="pill-row" id="abraham-pills">
+          <button type="button" class="filter-pill is-active" id="ab-pill-0" onclick="setAbrahamStage(0)">1. Star (6:76)</button>
+          <button type="button" class="filter-pill" id="ab-pill-1" onclick="setAbrahamStage(1)">2. Moon (6:77)</button>
+          <button type="button" class="filter-pill" id="ab-pill-2" onclick="setAbrahamStage(2)">3. Sun (6:78)</button>
+          <button type="button" class="filter-pill" id="ab-pill-3" onclick="setAbrahamStage(3)">4. Hanif Turn (6:79&#x2013;82)</button>
+        </div>
+        <button type="button" class="btn btn-primary" id="abraham-next" onclick="stepAbraham(1)">
+          <span>Next Stage</span>
+          <i data-lucide="chevron-right" width="16" height="16" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 4: KEY CONCEPTS, SUPERSTITION CRITIQUE & PASSAGE EXPLORER -->
+    <section id="key-concepts" class="story-section section-band reveal-item">
+      <div>
+        <div class="kicker"><span>Section IV &middot; Signature Concepts &amp; Textual Explorer</span></div>
+        <h2 class="section-heading">Mercy, living light, and the dismantling of <em>baseless taboos</em></h2>
+        <p class="prose">
+          Surah Al-An&#x2019;am takes its name from verses 6:136&#x2013;145, which confront fabricated restrictions placed on livestock (<span class="arabic-inline" lang="ar" dir="rtl">الْأَنْعَام</span>) and harvests. Alongside this social critique, the chapter introduces unforgettable metaphors of spiritual life and divine compassion.
+        </p>
+      </div>
+
+      <div class="card-wrapper">
+        <div class="card-grid">
+          <article class="concept-card">
+            <div class="concept-card-header">
+              <span class="badge-emerald">6:12 &amp; 6:54</span>
+              <span class="verse-ref">Self-Decreed Mercy</span>
+            </div>
+            <h3 class="subhead">Kataba &#x2018;ala Nafsihi al-Rahmah</h3>
+            <p class="arabic-verse" lang="ar" dir="rtl">كَتَبَ عَلَى نَفْسِهِ الرَّحْمَةَ</p>
+            <p class="prose">
+              Mentioned twice in this chapter alone, Allah declares that He has <strong>prescribed mercy upon Himself</strong>—offering peace (<em>Salamun &#x2018;alaykum</em>) and forgiveness to anyone who errs in ignorance, repents, and reforms (6:54).
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-card-header">
+              <span class="badge-terracotta">6:122 &amp; 6:125</span>
+              <span class="verse-ref">Inner Transformation</span>
+            </div>
+            <h3 class="subhead">Resurrected Light &amp; Expanded Chest</h3>
+            <p class="arabic-verse" lang="ar" dir="rtl">أَوَمَنْ كَانَ مَيْتًا فَأَحْيَيْنَاهُ وَجَعَلْنَا لَهُ نُورًا</p>
+            <p class="prose">
+              Guidance is compared to being brought from death to life with a lamp to walk among people (6:122), expanding the chest toward Islam—whereas denial constricts it as though straining upward into thin air (6:125).
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-card-header">
+              <span class="badge-emerald">6:38 &amp; 6:59</span>
+              <span class="verse-ref">Ecological Registry</span>
+            </div>
+            <h3 class="subhead">Communities Like You</h3>
+            <p class="arabic-verse" lang="ar" dir="rtl">إِلَّا أُمَمٌ أَمْثَالُكُمْ</p>
+            <p class="prose">
+              Every terrestrial creature and winged bird forms a community parallel to humanity (6:38), while every falling leaf and hidden grain in the dark earth is recorded in a clear register (6:59).
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Dietary & Ritual Superstition Comparison Table (6:136-145) -->
+      <div>
+        <h3 class="subhead">Why the Chapter Is Named <em>Al-An&#x2019;am</em> (6:136&#x2013;145)</h3>
+        <p class="prose">
+          The Qur&#x2019;an contrasts arbitrary, discriminatory pre-Islamic livestock taboos against the four clear, universal dietary boundaries revealed in 6:145.
+        </p>
+        <div class="table-wrap">
+          <table class="study-table">
+            <thead>
+              <tr>
+                <th>Verse</th>
+                <th>Pagan Custom or Claim</th>
+                <th>Qur&#x2019;anic Critique &amp; Principle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tabular-ref">6:136</td>
+                <td>Dividing crops and livestock between Allah and idols—yet diverting Allah&#x2019;s share toward idols.</td>
+                <td>Exposes self-serving hypocrisy in how people assign priority to lesser attachments over the Creator.</td>
+              </tr>
+              <tr>
+                <td class="tabular-ref">6:138&#x2013;139</td>
+                <td>Declaring certain camels&#x2019; backs off-limits, or reserving unborn animal offspring exclusively for men while banning women unless stillborn.</td>
+                <td>Condemns gender-biased and class-based sacralizing of food as false attribution (<em>iftira&#x2019;</em>) to Allah.</td>
+              </tr>
+              <tr>
+                <td class="tabular-ref">6:143&#x2013;144</td>
+                <td>Selective bans on male or female sheep, goats, camels, and cattle (the eight mates).</td>
+                <td>Challenges claimants with deductive logic: did Allah forbid the males, females, or wombs? Demand evidence before declaring things sacred or forbidden.</td>
+              </tr>
+              <tr>
+                <td class="tabular-ref">6:145</td>
+                <td>Inventing endless prohibitions without revelation.</td>
+                <td>Establishes only four explicit prohibitions: carrion (dead animal), spilled blood, swine flesh, and what is dedicated to other than Allah—with an exception for necessity.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Interactive Key Passage Lookup -->
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <h3 class="subhead">Interactive Key Passages Explorer</h3>
+        <div class="explorer-controls">
+          <div class="field-group">
+            <label class="field-label" for="passage-search">Search verses, concepts, or Arabic/English phrases</label>
+            <input type="search" id="passage-search" class="text-input" placeholder="Try: leaf, mercy, clay, burden, birds, light..." oninput="filterPassages()">
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="passage-theme">Filter by Theological Theme</label>
+            <select id="passage-theme" class="select-input" onchange="filterPassages()">
+              <option value="all">All Key Passages (16)</option>
+              <option value="monotheism">Monotheism &amp; Divine Nature</option>
+              <option value="creation">Creation, Nature &amp; Unseen</option>
+              <option value="mercy">Mercy, Guidance &amp; Heart</option>
+              <option value="ethics">Ethics, Accountability &amp; Society</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="passage-count" class="arch-label" style="color: var(--secondary);">Showing 16 curated passages</div>
+        <div class="passage-list" id="passage-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: STRAIGHT PATH CHARTER & REFLECTIVE JOURNAL -->
+    <section id="moral-charter" class="story-section reveal-item">
+      <div>
+        <div class="kicker"><span>Section V &middot; Ethical Synthesis (6:151&#x2013;165)</span></div>
+        <h2 class="section-heading">Ten foundational duties translate belief into <em>social justice and personal devotion</em></h2>
+        <p class="prose">
+          Near the close of Surah Al-An&#x2019;am, verses 6:151&#x2013;153 lay out the universal moral charter—the Straight Path (<em>Sirat Mustaqim</em>)—followed by the ultimate personal pledge in 6:162: prayer, sacrifice, life, and death aligned solely with the Lord of the worlds.
+        </p>
+      </div>
+
+      <div class="split-layout-equal">
+        <div>
+          <h3 class="subhead">The Ten Duties of the Straight Path (6:151&#x2013;153)</h3>
+          <p class="prose">Check off each principle as you review its verse grounding and reflect on its modern ethical weight.</p>
+          <div class="charter-list" id="charter-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="journal-box">
+          <div>
+            <span class="badge-terracotta">Reflective Exploration</span>
+            <h3 class="subhead" style="margin-top: var(--space-sm);">Personal Study &amp; Reflection Prompts</h3>
+            <p class="prose" style="margin-bottom: 0;">
+              Select a contemplative prompt anchored in Surah Al-An&#x2019;am and record your reflections. Your notes save automatically inside this workspace.
+            </p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="reflection-prompt-select">Choose Reflection Prompt</label>
+            <select id="reflection-prompt-select" class="select-input" onchange="switchReflectionPrompt()">
+              <option value="0">1. Sincerity Over Status (6:52&#x2013;53)</option>
+              <option value="1">2. Humility Before the Unseen (6:59)</option>
+              <option value="2">3. Apparent &amp; Concealed Integrity (6:120 &amp; 6:151)</option>
+              <option value="3">4. Living &amp; Dying for One Purpose (6:162&#x2013;165)</option>
+            </select>
+          </div>
+
+          <div class="verse-box" id="reflection-prompt-verse">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="reflection-textarea">Your Reflection Notes</label>
+            <textarea id="reflection-textarea" class="textarea-input" placeholder="Write your reflection on how this verse speaks to belief, reason, or daily conduct..." oninput="saveReflectionDebounced()"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+            <span class="save-status" id="reflection-save-status" aria-live="polite"></span>
+            <button type="button" class="btn btn-primary btn-sm" onclick="saveReflectionNow()">Save Note</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE MASTERY STUDIO -->
+    <section id="mastery-studio" class="story-section section-band reveal-item">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--space-md);">
+        <div>
+          <div class="kicker"><span>Section VI &middot; Active Recall &amp; Testing</span></div>
+          <h2 class="section-heading">Verify your mastery of Surah Al-An&#x2019;am&#x2019;s <em>arguments and motifs</em></h2>
+        </div>
+        <div class="pill-row" role="tablist" aria-label="Study mode selector">
+          <button type="button" class="filter-pill is-active" id="mode-quiz-btn" onclick="switchStudioMode('quiz')">Diagnostic Quiz (10)</button>
+          <button type="button" class="filter-pill" id="mode-cards-btn" onclick="switchStudioMode('cards')">Concept Flashcards (12)</button>
+        </div>
+      </div>
+
+      <!-- Quiz View -->
+      <div class="studio-panel" id="studio-quiz-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="badge-emerald" id="quiz-progress-badge">Question 1 of 10</span>
+          <span class="arch-label" id="quiz-score-label" style="color: var(--secondary);">Score: 0 / 10</span>
+        </div>
+
+        <h3 class="subhead" id="quiz-question-text">Loading question...</h3>
+
+        <div class="quiz-options" id="quiz-options">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="feedback-box hidden-panel" id="quiz-feedback" aria-live="polite"></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <button type="button" class="btn btn-secondary" id="quiz-prev-btn" onclick="moveQuiz(-1)">Previous</button>
+          <div class="pill-row">
+            <button type="button" class="btn btn-secondary" id="quiz-restart-btn" onclick="restartQuiz()">Restart Quiz</button>
+            <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="moveQuiz(1)">Next Question</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flashcards View -->
+      <div class="studio-panel hidden-panel" id="studio-cards-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="badge-terracotta" id="card-index-badge">Card 1 of 12</span>
+          <span class="arch-label" id="card-mastered-label" style="color: var(--tertiary);">Mastered: 0 / 12</span>
+        </div>
+
+        <div class="flashcard-stage" id="flashcard-stage" tabindex="0" role="button" aria-label="Flip flashcard" onclick="flipFlashcard()" onkeydown="handleCardKey(event)">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <div class="pill-row">
+            <button type="button" class="btn btn-secondary" onclick="moveFlashcard(-1)">Previous Card</button>
+            <button type="button" class="btn btn-secondary" onclick="flipFlashcard()">Flip Card</button>
+            <button type="button" class="btn btn-secondary" onclick="moveFlashcard(1)">Next Card</button>
+          </div>
+          <button type="button" class="btn btn-emerald" id="card-master-btn" onclick="toggleCardMastered()">Mark as Mastered</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>Source: Surah Al-An&#x2019;am (Chapter 6, Verses 1&#x2013;165), Arabic text and English translation (Sahih International) provided in the notebook source.</span>
+      <span>Interactive Study Studio &middot; Progress persists automatically in workspace state.</span>
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const MOVEMENTS = [
+      {
+        id: 0,
+        num: `Movement I`,
+        range: `6:1–30`,
+        title: `Creation, Denial & Cosmic Accountability`,
+        summary: `Opens with absolute praise for the Creator of the heavens, earth, darkness, and light (6:1) and of humanity from clay (6:2). Confronts stubborn demands for physical miracles or angels (6:7–9), reminds listeners of destroyed past civilizations (6:6, 6:11), and previews the Day when polytheists lie about their own idolatry before standing before their Lord (6:22–30).`,
+        keyThemes: [`Creation from clay & specified terms (6:2)`, `Allah's knowledge of secret and public deeds (6:3)`, `Self-decreed mercy & inevitable Resurrection (6:12)`, `No harm or benefit except by Allah's will (6:17)`],
+        verseRef: `6:1–2`,
+        arabic: `الْحَمْدُ لِلَّهِ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ وَجَعَلَ الظُّلُمَاتِ وَالنُّورُ ثُمَّ الَّذِينَ كَفَرُوا بِرَبِّهِمْ يَعْدِلُونَ ۝ هُوَ الَّذِي خَلَقَكُمْ مِنْ طِينٍ ثُمَّ قَضَى أَجَلًا وَأَجَلٌ مُسَمًّى عِنْدَهُ ثُمَّ أَنْتُمْ تَمْتَرُونَ`,
+        english: `[All] praise is [due] to Allah, who created the heavens and the earth and made the darkness and the light. Then those who disbelieve equate [others] with their Lord. It is He who created you from clay and then decreed a term and a specified time [known] to Him; then [still] you are in dispute.`
+      },
+      {
+        id: 1,
+        num: `Movement II`,
+        range: `6:31–58`,
+        title: `Prophetic Steadfastness & Divine Mercy`,
+        summary: `Consoles the Prophet against painful rejection: disbelievers are rejecting Allah's signs, not his character (6:33). Presents creatures and birds as communities like humanity (6:38), shows how sudden crisis strips away false gods (6:40–41), commands honoring humble believers who call on Allah morning and evening (6:52), and reiterates Allah's pledge of mercy and forgiveness upon repentance (6:54).`,
+        keyThemes: [`Worldly life as brief amusement vs. the Hereafter (6:32)`, `Animal & bird communities (6:38)`, `Command not to turn away poor devotees (6:52–53)`, `Greeting believers with Peace and Mercy (6:54)`],
+        verseRef: `6:54`,
+        arabic: `وَإِذَا جَاءَكَ الَّذِينَ يُؤْمِنُونَ بِآيَاتِنَا فَقُلْ سَلَامٌ عَلَيْكُمْ كَتَبَ رَبُّكُمْ عَلَى نَفْسِهِ الرَّحْمَةَ ۖ أَنَّهُ مَنْ عَمِلَ مِنْكُمْ سُوءًا بِجَهَالَةٍ ثُمَّ تَابَ مِنْ بَعْدِهِ وَأَصْلَحَ فَأَنَّهُ غَفُورٌ رَحِيمٌ`,
+        english: `And when those come to you who believe in Our verses, say, "Peace be upon you. Your Lord has decreed upon Himself mercy: that any of you who does wrong out of ignorance and then repents after that and corrects himself - indeed, He is Forgiving and Merciful."`
+      },
+      {
+        id: 2,
+        num: `Movement III`,
+        range: `6:59–90`,
+        title: `The Unseen, Abraham's Inquiry & Prophetic Lineage`,
+        summary: `Unfolds the awe-inspiring image of the Keys of the Unseen (6:59) and daily sleep as a nightly taking of the soul (6:60). Transitions into Abraham's rejection of idolatry (6:74) and his systematic celestial inquiry from star to moon to sun (6:75–83), concluding with an unbroken chain of 18 guided prophets from Noah and Abraham through David, Moses, and Jesus (6:84–90).`,
+        keyThemes: [`Every falling leaf and hidden grain known (6:59)`, `Rescue from land and sea darknesses (6:63–64)`, `Abraham's critique of setting deities (6:76–79)`, `18 prophets sharing one straight guidance (6:84–90)`],
+        verseRef: `6:59`,
+        arabic: `وَعِنْدَهُ مَفَاتِحُ الْغَيْبِ لَا يَعْلَمُهَا إِلَّا هُوَ وَيَعْلَمُ مَا فِي الْبَرِّ وَالْبَحْرِ وَمَا تَسْقُطُ مِنْ وَرَقَةٍ إِلَّا يَعْلَمُهَا وَلَا حَبَّةٍ فِي ظُلُمَاتِ الْأَرْضِ وَلَا رَطْبٍ وَلَا يَابِسٍ إِلَّا فِي كِتَابٍ مُبِينٍ`,
+        english: `And with Him are the keys of the unseen; none knows them except Him. And He knows what is on the land and in the sea. Not a leaf falls but that He knows it. And no grain is there within the darknesses of the earth and no moist or dry [thing] but that it is [written] in a clear record.`
+      },
+      {
+        id: 3,
+        num: `Movement IV`,
+        range: `6:91–127`,
+        title: `Living Signs in Nature & Spiritual Awakening`,
+        summary: `Connects scriptural revelation (6:91–92) with the miracle of everyday biology and astronomy: Allah cleaves the seed and daybreak, arranges stars for navigation, and sends rain to bring forth layered grains, palms, grapes, olives, and pomegranates (6:95–99). Refutes attributing children or jinn partners to Him (6:100–101), forbids insulting others' deities (6:108), and depicts guidance as resurrection into light and expansion of the chest (6:122, 6:125).`,
+        keyThemes: [`Cleaver of grain, date seeds & daybreak (6:95–96)`, `Vision perceives Him not; He perceives all vision (6:103)`, `Civility: do not insult others' deities (6:108)`, `Dead brought to walking light & expanded chest (6:122, 6:125)`],
+        verseRef: `6:95`,
+        arabic: `إِنَّ اللَّهَ فَالِقُ الْحَبِّ وَالنَّوَى يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَمُخْرِجُ الْمَيِّتِ مِنَ الْحَيِّ ذُلِكُمُ اللَّهُ ۖ فَأَنَّى تُؤْفَكُونَ`,
+        english: `Indeed, Allah is the cleaver of grain and date seeds. He brings the living out of the dead and brings the dead out of the living. That is Allah; so how are you deluded?`
+      },
+      {
+        id: 4,
+        num: `Movement V`,
+        range: `6:128–150`,
+        title: `Deconstructing Fabricated Rituals (Al-An'am)`,
+        summary: `Following the judgment scene of jinn and humankind admitting messengers came to them (6:128–132), the chapter directly dismantles the pagan taboos surrounding livestock and agriculture—from sacrificing children in poverty and foolhardiness (6:137, 6:140) to inventing arbitrary bans on cattle, sheep, goats, and camels (6:136–144). Clarifies the four true dietary prohibitions (6:145) and refutes fatalistic excuses (6:148–150).`,
+        keyThemes: [`Degrees of deeds & succession on earth (6:132–133)`, `Due charity (zakah) at harvest & moderation (6:141)`, `Critique of gender-biased livestock taboos (6:139, 143–144)`, `Rejecting fatalistic shirk excuses (6:148–149)`],
+        verseRef: `6:141`,
+        arabic: `كُلُوا مِنْ ثَمَرِهِ إِذَا أَثْمَرَ وَآتُوا حَقَّهُ يَوْمَ حَصَادِهِ وَلَا تُسْرِفُوا إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ`,
+        english: `Eat of [each of] its fruit when it yields and give its due [zakah] on the day of its harvest. And be not excessive. Indeed, He does not like those who commit excess.`
+      },
+      {
+        id: 5,
+        num: `Movement VI`,
+        range: `6:151–165`,
+        title: `The Straight Path Charter & Total Devotion`,
+        summary: `Crystallizes the chapter's theology into ten concrete ethical prohibitions and duties (6:151–153), links the Qur'an as a blessed confirmation alongside Moses' scripture (6:154–157), warns against sectarian division (6:159), announces tenfold reward for good deeds versus single recompense for evil (6:160), and culminates in total personal dedication to Allah and earthly stewardship (6:162–165).`,
+        keyThemes: [`Ten duties of the Straight Path (6:151–153)`, `Tenfold reward for good, exact measure for evil (6:160)`, `Prayer, sacrifice, life, and death for Allah (6:162)`, `Individual accountability & earthly succession (6:164–165)`],
+        verseRef: `6:162–164`,
+        arabic: `قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ ۝ لَا شَرِيكَ لَهُ ۖ وَبِذُلِكَ أُمِرْتُ وَأَنَا أَوَّلُ الْمُسْلِمِينَ`,
+        english: `Say, "Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds. No partner has He. And this I have been commanded, and I am the first [among you] of the Muslims."`
+      }
+    ];
+
+    const ARGUMENTS = [
+      {
+        id: 0,
+        tab: `1. Creator vs. Partners`,
+        title: `Ontological Asymmetry: Why Nothing Created Can Equal the Creator`,
+        verses: `6:1, 6:14, 6:100–102`,
+        premise: `Anything finite, dependent, or created—whether celestial bodies, jinn, or imagined offspring—requires sustenance and an origin. Allah alone creates heavens, earth, darkness, and light, feeds without being fed (6:14), and has no consort or child (6:101).`,
+        logic: `To equate dependent beings with the Self-Sufficient Originator violates basic rational gratitude and category distinction.`,
+        implication: `Worship, protection-seeking (wilayah), and reliance belong exclusively to the One who holds absolute creative sovereignty.`,
+        arabic: `قُلْ أَغَيْرَ اللَّهِ أَتَّخِذُ وَلِيًّا فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ وَهُوَ يُطْعِمُ وَلَا يُطْعَمُ`,
+        english: `Say, "Is it other than Allah I should take as a protector, Creator of the heavens and the earth, while it is He who feeds and is not fed?" (6:14)`
+      },
+      {
+        id: 1,
+        tab: `2. Keys of the Unseen`,
+        title: `Epistemological Scale: Total Knowledge vs. Human Limitation`,
+        verses: `6:3, 6:50, 6:59, 6:103`,
+        premise: `Human perception is bounded: even the Messenger explicitly affirms he does not possess Allah's treasuries or know the unseen (6:50). By contrast, Allah knows every secret and public deed (6:3), every falling leaf, and every hidden grain in the dark earth (6:59).`,
+        logic: `Vision cannot encompass Allah, yet He encompasses all vision (6:103). Only an all-knowing Sustainer can judge justly and guide infallibly.`,
+        implication: `Reverence arises from recognizing how completely human life is enveloped by the Subtle, the Acquainted (Al-Latif, Al-Khabir).`,
+        arabic: `لَا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ وَهُوَ اللَّطِيفُ الْخَبِيرُ`,
+        english: `Vision perceives Him not, but He perceives [all] vision; and He is the Subtle, the Acquainted. (6:103)`
+      },
+      {
+        id: 2,
+        tab: `3. Fitrah in Crisis`,
+        title: `The Crisis Proof: Innate Monotheism Under Distress`,
+        verses: `6:40–41, 6:63–64`,
+        premise: `Surah Al-An'am twice asks a penetrating psychological question: when calamity or peril strikes on land or sea, whom do people call out to in desperation?`,
+        logic: `In moments of mortal urgency, polytheists instinctively forget their idols and plead directly with Allah alone—proving that monotheism lies beneath surface habit.`,
+        implication: `Returning to partners once relief arrives (6:64) exposes idolatry as ingratitude rather than sincere conviction.`,
+        arabic: `قُلْ مَنْ يُنَجِّيكُمْ مِنْ ظُلُمَاتِ الْبَرِّ وَالْبَحْرِ تَدْعُونَهُ تَضَرُّعًا وَخُفْيَةً`,
+        english: `Say, "Who rescues you from the darknesses of the land and sea [when] you call upon Him imploring [aloud] and privately, 'If He should save us from this [crisis], we will surely be among the thankful.'"`
+      },
+      {
+        id: 3,
+        tab: `4. Continuous Cleaving`,
+        title: `Living Governance: Bringing Life From Death in Seed and Dawn`,
+        verses: `6:95–99`,
+        premise: `Creation is not a distant past event. Every split seed, date pit, breaking dawn, tidal star-map, and rain-nourished orchard of olives and pomegranates reveals active, purposeful design (6:95–99).`,
+        logic: `If the same Power brings living shoots from dormant seeds and living consciousness out of stillness, resurrection and accountability follow naturally.`,
+        implication: `Observing the natural world (` + "`unzuru ila thamarihi`" + `, "look at its fruit," 6:99) becomes an act of theological reflection.`,
+        arabic: `فَالِقُ الْإِصْبَاحِ وَجَعَلَ اللَّيْلَ سَكَنًا وَالشَّمْسَ وَالْقَمَرَ حُسْبَانًا ۚ ذُلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ`,
+        english: `[He is] the cleaver of daybreak and has made the night for rest and the sun and moon for calculation. That is the determination of the Exalted in Might, the Knowing. (6:96)`
+      },
+      {
+        id: 4,
+        tab: `5. Refuting Fatalism`,
+        title: `Moral Responsibility: Dismantling Deterministic Excuses`,
+        verses: `6:148–150, 6:164`,
+        premise: `When confronted with their baseless taboos and idolatry, polytheists argue: "If Allah had willed, we would not have associated, nor our fathers" (6:148)—misusing divine sovereignty to evade responsibility.`,
+        logic: `The Qur'an exposes this claim as mere conjecture (zann) unsupported by any revealed authority or knowledge ('ilm), and affirms that no soul bears another's burden (6:164).`,
+        implication: `Divine wisdom grants human choice and demands honest evidence rather than hiding behind fatalism.`,
+        arabic: `قُلْ هَلْ عِنْدَكُمْ مِنْ عِلْمٍ فَتُخْرِجُوهُ لَنَا ۖ إِنْ تَتَّبِعُونَ إِلَّا الظَّنَّ وَإِنْ أَنْتُمْ إِلَّا تَخْرُصُونَ`,
+        english: `Say, "Do you have any knowledge that you can produce for us? You follow not except assumption, and you are not but falsifying." (6:148)`
+      }
+    ];
+
+    const ABRAHAM_STAGES = [
+      {
+        title: `Stage 1: The Setting Star (Kawkab) — Rejecting What Fades`,
+        caption: `Stage 1 of 4 · The Setting Star (6:76)`,
+        badge: `Verses 6:75–76`,
+        arabic: `فَلَمَّا جَنَّ عَلَيْهِ اللَّيْلُ رَأَى كَوْكَبًا ۖ قَالَ هُذَا رَبِّي فَلَمَّا أَفَلَ قَالَ لَا أُحِبُّ الْآفِلِينَ`,
+        english: `So when the night covered him [with darkness], he saw a star. He said, "This is my lord." But when it set, he said, "I like not those that disappear."`,
+        insight: `Having already challenged his father Azar over carved idols (6:74), Abraham applies a clear philosophical standard to celestial worship: any object bound by rising and setting (uful) is transient and contingent—therefore unfit for ultimate devotion.`
+      },
+      {
+        title: `Stage 2: The Rising Moon (Qamar) — Brilliance Still Needs Guidance`,
+        caption: `Stage 2 of 4 · The Rising Moon (6:77)`,
+        badge: `Verse 6:77`,
+        arabic: `فَلَمَّا رَأَى الْقَمَرَ بَازِغًا قَالَ هُذَا رَبِّي فَلَمَّا أَفَلَ قَالَ لَئِنْ لَمْ يَهْدِنِي رَبِّي لَأَكُونَنَّ مِنَ الْقَوْمِ الضَّالِّينَ`,
+        english: `And when he saw the moon rising, he said, "This is my lord." But when it set, he said, "Unless my Lord guides me, I will surely be among the people gone astray."`,
+        insight: `The moon commands more awe than a single star, yet suffers the exact same limitation. Here Abraham moves from negation to humility—recognizing that human intellect alone needs divine guidance to avoid mistaking grandeur for divinity.`
+      },
+      {
+        title: `Stage 3: The Great Sun (Shams) — Scaling Up Only Sharpens the Proof`,
+        caption: `Stage 3 of 4 · The Setting Sun (6:78)`,
+        badge: `Verse 6:78`,
+        arabic: `فَلَمَّا رَأَى الشَّمْسَ بَازِغَةً قَالَ هُذَا رَبِّي هُذَا أَكْبَرُ فَلَمَّا أَفَلَتْ قَالَ يَا قَوْمِ إِنِّي بَرِيءٌ مِمَّا تُشْرِكُونَ`,
+        english: `And when he saw the sun rising, he said, "This is my lord; this is greater." But when it set, he said, "O my people, indeed I am free from what you associate with Allah."`,
+        insight: `Even the greatest visible source of light and heat is governed by an orbit it cannot alter. When it sets, Abraham addresses his community directly: sheer scale does not confer divinity.`
+      },
+      {
+        title: `Stage 4: Turning Hanifan — Unmixed Faith Yields Security`,
+        caption: `Stage 4 of 4 · Turning to the Originator (6:79–82)`,
+        badge: `Verses 6:79–83`,
+        arabic: `إِنِّي وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالْأَرْضَ حَنِيفًا ۖ وَمَا أَنَا مِنَ الْمُشْرِكِينَ`,
+        english: `Indeed, I have turned my face toward He who created the heavens and the earth, inclining toward truth, and I am not of those who associate others with Allah. (6:79)`,
+        insight: `Having proved that created things vanish, Abraham turns to the Originator behind the entire system—and then asks in 6:81–82 which party truly deserves inner security (al-amn): those who fear powerless idols, or those who keep their faith unmixed with injustice (zulm)?`
+      }
+    ];
+
+    const KEY_PASSAGES = [
+      {
+        ref: `6:1`,
+        theme: `monotheism`,
+        themeLabel: `Monotheism`,
+        title: `Cosmic Praise & Creation of Light`,
+        arabic: `الْحَمْدُ لِلَّهِ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ وَجَعَلَ الظُّلُمَاتِ وَالنُّورُ ثُمَّ الَّذِينَ كَفَرُوا بِرَبِّهِمْ يَعْدِلُونَ`,
+        english: `[All] praise is [due] to Allah, who created the heavens and the earth and made the darkness and the light. Then those who disbelieve equate [others] with their Lord.`
+      },
+      {
+        ref: `6:2`,
+        theme: `creation`,
+        themeLabel: `Creation`,
+        title: `Origin From Clay & Appointed Terms`,
+        arabic: `هُوَ الَّذِي خَلَقَكُمْ مِنْ طِينٍ ثُمَّ قَضَى أَجَلًا وَأَجَلٌ مُسَمًّى عِنْدَهُ ثُمَّ أَنْتُمْ تَمْتَرُونَ`,
+        english: `It is He who created you from clay and then decreed a term and a specified time [known] to Him; then [still] you are in dispute.`
+      },
+      {
+        ref: `6:12`,
+        theme: `mercy`,
+        themeLabel: `Mercy`,
+        title: `Mercy Decreed Upon Himself`,
+        arabic: `قُلْ لِمَنْ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ قُلْ لِلَّهِ ۚ كَتَبَ عَلَى نَفْسِهِ الرَّحْمَةَ`,
+        english: `Say, "To whom belongs whatever is in the heavens and earth?" Say, "To Allah." He has decreed upon Himself mercy.`
+      },
+      {
+        ref: `6:17`,
+        theme: `monotheism`,
+        themeLabel: `Monotheism`,
+        title: `Sole Remover of Adversity`,
+        arabic: `وَإِنْ يَمْسَسْكَ اللَّهُ بِضُرٍّ فَلَا كَاشِفَ لَهُ إِلَّا هُوَ وَإِنْ يَمْسَسْكَ بِخَيْرٍ فَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,
+        english: `And if Allah should touch you with adversity, there is no remover of it except Him. And if He touches you with good - then He is over all things competent.`
+      },
+      {
+        ref: `6:32`,
+        theme: `ethics`,
+        themeLabel: `Ethics`,
+        title: `Transience of Worldly Diversion`,
+        arabic: `وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِلَّذِينَ يَتَّقُونَ أَفَلَا تَعْقِلُونَ`,
+        english: `And the worldly life is not but amusement and diversion; but the home of the Hereafter is best for those who fear Allah, so will you not reason?`
+      },
+      {
+        ref: `6:38`,
+        theme: `creation`,
+        themeLabel: `Creation`,
+        title: `Animal & Bird Communities`,
+        arabic: `وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ وَلَا طَائِرٍ يَطِيرُ بِجَنَاحَيْهِ إِلَّا أُمَمٌ أَمْثَالُكُمْ`,
+        english: `And there is no creature on [or within] the earth or bird that flies with its wings except [that they are] communities like you. We have not neglected in the Register a thing. Then unto their Lord they will be gathered.`
+      },
+      {
+        ref: `6:52`,
+        theme: `ethics`,
+        themeLabel: `Ethics`,
+        title: `Dignity of Humble Devotees`,
+        arabic: `وَلَا تَطْرُدِ الَّذِينَ يَدْعُونَ رَبَّهُمْ بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ`,
+        english: `And do not send away those who call upon their Lord morning and afternoon, seeking His countenance.`
+      },
+      {
+        ref: `6:59`,
+        theme: `creation`,
+        themeLabel: `Unseen`,
+        title: `The Keys of the Unseen & Falling Leaf`,
+        arabic: `وَعِنْدَهُ مَفَاتِحُ الْغَيْبِ لَا يَعْلَمُهَا إِلَّا هُوَ وَيَعْلَمُ مَا فِي الْبَرِّ وَالْبَحْرِ وَمَا تَسْقُطُ مِنْ وَرَقَةٍ إِلَّا يَعْلَمُهَا`,
+        english: `And with Him are the keys of the unseen; none knows them except Him. And He knows what is on the land and in the sea. Not a leaf falls but that He knows it.`
+      },
+      {
+        ref: `6:82`,
+        theme: `monotheism`,
+        themeLabel: `Monotheism`,
+        title: `Unmixed Faith & True Security`,
+        arabic: `الَّذِينَ آمَنُوا وَلَمْ يَلْبِسُوا إِيمَانَهُمْ بِظُلْمٍ أُولئِكَ لَهُمُ الْأَمْنُ وَهُمْ مُهْتَدُونَ`,
+        english: `They who believe and do not mix their belief with injustice - those will have security, and they are [rightly] guided.`
+      },
+      {
+        ref: `6:95`,
+        theme: `creation`,
+        themeLabel: `Creation`,
+        title: `Cleaving Grain & Date Seeds`,
+        arabic: `إِنَّ اللَّهَ فَالِقُ الْحَبِّ وَالنَّوَى يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَمُخْرِجُ الْمَيِّتِ مِنَ الْحَيِّ`,
+        english: `Indeed, Allah is the cleaver of grain and date seeds. He brings the living out of the dead and brings the dead out of the living.`
+      },
+      {
+        ref: `6:103`,
+        theme: `monotheism`,
+        themeLabel: `Monotheism`,
+        title: `Beyond Human Sight, Yet Perceiving All`,
+        arabic: `لَا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ وَهُوَ اللَّطِيفُ الْخَبِيرُ`,
+        english: `Vision perceives Him not, but He perceives [all] vision; and He is the Subtle, the Acquainted.`
+      },
+      {
+        ref: `6:108`,
+        theme: `ethics`,
+        themeLabel: `Ethics`,
+        title: `Restraint in Dialogue Across Beliefs`,
+        arabic: `وَلَا تَسُبُّوا الَّذِينَ يَدْعُونَ مِنْ دُونِ اللَّهِ فَيَسُبُّوا اللهَ عَدْوًا بِغَيْرِ عِلْمٍ`,
+        english: `And do not insult those they invoke other than Allah, lest they insult Allah in enmity without knowledge.`
+      },
+      {
+        ref: `6:122`,
+        theme: `mercy`,
+        themeLabel: `Guidance`,
+        title: `Life & Light Among People`,
+        arabic: `أَوَمَنْ كَانَ مَيْتًا فَأَحْيَيْنَاهُ وَجَعَلْنَا لَهُ نُورًا يَمْشِي بِهِ فِي النَّاسِ`,
+        english: `And is one who was dead and We gave him life and made for him light by which to walk among the people like one who is in darkness, never to emerge therefrom?`
+      },
+      {
+        ref: `6:125`,
+        theme: `mercy`,
+        themeLabel: `Guidance`,
+        title: `Expansion vs. Constriction of the Chest`,
+        arabic: `فَمَنْ يُرِدِ اللَّهُ أَنْ يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلْإِسْلَامِ وَمَنْ يُرِدْ أَنْ يُضِلَّهُ يَجْعَلْ صَدْرَهُ ضَيِّقًا حَرَجًا`,
+        english: `So whoever Allah wants to guide - He expands his breast to [contain] Islam; and whoever He wants to misguide - He makes his breast tight and constricted as though he were climbing into the sky.`
+      },
+      {
+        ref: `6:160`,
+        theme: `mercy`,
+        themeLabel: `Mercy`,
+        title: `Tenfold Reward for Good Deeds`,
+        arabic: `مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا ۖ وَمَنْ جَاءَ بِالسَّيِّئَةِ فَلَا يُجْزَى إِلَّا مِثْلَهَا وَهُمْ لَا يُظْلَمُونَ`,
+        english: `Whoever comes [on the Day of Judgement] with a good deed will have ten times the like thereof [to his credit], and whoever comes with an evil deed will not be recompensed except the like thereof; and they will not be wronged.`
+      },
+      {
+        ref: `6:164`,
+        theme: `ethics`,
+        themeLabel: `Accountability`,
+        title: `Personal Moral Responsibility`,
+        arabic: `وَلَا تَكْسِبُ كُلُّ نَفْسٍ إِلَّا عَلَيْهَا ۚ وَلَا تَزِرُ وَازِرَةٌ وِزْرَ أُخْرَىٰ`,
+        english: `And every soul earns not [blame] except against itself, and no bearer of burdens will bear the burden of another.`
+      }
+    ];
+
+    const CHARTER_ITEMS = [
+      { id: 0, ref: `6:151`, title: `Associate nothing with Allah`, desc: `Anchor life in pure, undivided devotion.` },
+      { id: 1, ref: `6:151`, title: `Show excellence (ihsan) to parents`, desc: `Honor kinship at the foundation of social ethics.` },
+      { id: 2, ref: `6:151`, title: `Do not kill children out of poverty`, desc: `Trust Allah's provision ("We will provide for you and them").` },
+      { id: 3, ref: `6:151`, title: `Avoid apparent and hidden immoralities`, desc: `Cultivate integrity in public and private alike.` },
+      { id: 4, ref: `6:151`, title: `Do not take life except by legal right`, desc: `Uphold the inviolable sanctity of human life.` },
+      { id: 5, ref: `6:152`, title: `Protect the orphan's property`, desc: `Steward vulnerable trusts only in what is best until maturity.` },
+      { id: 6, ref: `6:152`, title: `Give full measure and weight in justice`, desc: `Practice honesty in commerce; Allah charges only within capacity.` },
+      { id: 7, ref: `6:152`, title: `Testify with justice, even against close kin`, desc: `Place truth above tribal or family partiality.` },
+      { id: 8, ref: `6:152`, title: `Fulfill the covenant of Allah`, desc: `Honor sacred commitments and trust.` },
+      { id: 9, ref: `6:153`, title: `Follow the Straight Path without splitting into sects`, desc: `Remain united upon revelation rather than splintered paths.` }
+    ];
+
+    const REFLECTION_PROMPTS = [
+      {
+        ref: `6:52–53`,
+        arabic: `وَلَا تَطْرُدِ الَّذِينَ يَدْعُونَ رَبَّهُمْ بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ`,
+        english: `And do not send away those who call upon their Lord morning and afternoon, seeking His countenance... Is not Allah most knowing of those who are grateful?`,
+        question: `How does this verse challenge prestige, wealth, or status-based hierarchies in religious or social spaces?`
+      },
+      {
+        ref: `6:59`,
+        arabic: `وَمَا تَسْقُطُ مِنْ وَرَقَةٍ إِلَّا يَعْلَمُهَا`,
+        english: `Not a leaf falls but that He knows it. And no grain is there within the darknesses of the earth and no moist or dry [thing] but that it is [written] in a clear record.`,
+        question: `What changes in your sense of anxiety, unseen effort, or isolation if even a single falling leaf is encompassed in divine awareness?`
+      },
+      {
+        ref: `6:120 & 6:151`,
+        arabic: `وَذَرُوا ظَاهِرَ الْإِثْمِ وَبَاطِنَهُ`,
+        english: `And leave what is apparent of sin and what is concealed thereof. Indeed, those who earn [blame for] sin will be recompensed for that which they used to commit.`,
+        question: `Why does Surah Al-An'am repeatedly pair "apparent" and "concealed" wrongdoing—and how do hidden habits shape public character?`
+      },
+      {
+        ref: `6:162–165`,
+        arabic: `قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ`,
+        english: `Say, "Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds."`,
+        question: `What does it mean in practical terms to view ordinary daily life ("my living") alongside formal worship ("my prayer") as unified service?`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `What unique phrase describing Allah's relationship to mercy appears twice in Surah Al-An'am (6:12 and 6:54)?`,
+        options: [
+          `He has decreed upon Himself mercy (kataba 'ala nafsihi al-rahmah)`,
+          `He never delays forgiveness until the Hour`,
+          `Mercy is restricted solely to previous prophets`,
+          `Only angels may intercede for mercy`
+        ],
+        correct: 0,
+        explanation: `Both 6:12 and 6:54 state that Allah has written/decreed mercy upon Himself, welcoming sincere repentance and self-correction.`
+      },
+      {
+        q: `In 6:38, how does Surah Al-An'am describe creatures on earth and birds flying with wings?`,
+        options: [
+          `Silent ornaments without purpose`,
+          `Communities like you (umamun amthalukum), recorded and gathered back to their Lord`,
+          `Beings exempt from all natural order`,
+          `Symbols exclusive to desert navigation`
+        ],
+        correct: 1,
+        explanation: `Verse 6:38 teaches ecological and moral reverence: terrestrial creatures and birds are communities like humanity, nothing is neglected in the Register, and all are gathered to Allah.`
+      },
+      {
+        q: `What philosophical criterion does Abraham use in 6:76–78 to reject worshipping the star, moon, and sun?`,
+        options: [
+          `They are invisible during storms`,
+          `They are too small compared to earthly mountains`,
+          `They set and disappear (uful), proving they are transient and governed`,
+          `They belong only to night rather than day`
+        ],
+        correct: 2,
+        explanation: `As each celestial body sets (afala), Abraham concludes "I like not those that disappear" (6:76), establishing permanence and independence as essential to divinity.`
+      },
+      {
+        q: `According to 6:40–41 and 6:63–64, what happens when polytheists face overwhelming crisis on land or sea?`,
+        options: [
+          `They cling even tighter to carved idols`,
+          `They forget their false partners and implore Allah alone`,
+          `They deny that rescue is possible`,
+          `They demand an angel descend immediately`
+        ],
+        correct: 1,
+        explanation: `Extremity strips away artificial intermediaries: people instinctively call upon Allah alone (6:41, 6:63–64), exposing later polytheism as ungrateful forgetfulness.`
+      },
+      {
+        q: `How many earlier prophets are named in the unified chain of guidance in verses 6:83–86?`,
+        options: [
+          `7 prophets`,
+          `12 prophets`,
+          `18 prophets`,
+          `25 prophets`
+        ],
+        correct: 2,
+        explanation: `Verses 6:83–86 name 18 prophets: Abraham, Isaac, Jacob, Noah, David, Solomon, Job, Joseph, Moses, Aaron, Zechariah, John, Jesus, Elias, Ishmael, Elisha, Jonah, and Lot.`
+      },
+      {
+        q: `In 6:103, how is the relationship between human vision and Allah described?`,
+        options: [
+          `Vision encompasses Allah completely in dreams`,
+          `Vision perceives Him not, but He perceives all vision`,
+          `Neither vision nor knowledge exists in this life`,
+          `Only angels perceive all vision`
+        ],
+        correct: 1,
+        explanation: `Verse 6:103 affirms transcendence alongside intimacy: "Vision perceives Him not, but He perceives [all] vision; and He is the Subtle, the Acquainted."`
+      },
+      {
+        q: `Why does verse 6:108 instruct believers not to insult the deities that others invoke besides Allah?`,
+        options: [
+          `Because those deities possess hidden power`,
+          `Lest they insult Allah in enmity without knowledge`,
+          `Because all religions share identical rituals`,
+          `To avoid paying market taxes`
+        ],
+        correct: 1,
+        explanation: `Verse 6:108 sets an ethical boundary for respectful discourse: insulting what others hold sacred provokes hostile retaliation against Allah out of ignorance.`
+      },
+      {
+        q: `Why does Chapter 6 carry the name "Al-An'am" (The Cattle / Livestock)?`,
+        options: [
+          `It prescribes pastoral farming techniques`,
+          `Verses 6:136–145 dismantle invented pagan taboos on livestock and produce`,
+          `It narrates a miracle involving a golden calf`,
+          `It deals only with animal sacrifice laws`
+        ],
+        correct: 1,
+        explanation: `Verses 6:136–145 challenge pre-Islamic superstitions that forbade certain camels, offspring, or crops without divine authority, reducing prohibited meats to four clear categories (6:145).`
+      },
+      {
+        q: `How does verse 6:148 refute the polytheist excuse, "If Allah had willed, we would not have associated"?`,
+        options: [
+          `By accepting fatalism as valid`,
+          `By demanding concrete knowledge ('ilm) and exposing their excuse as baseless conjecture (zann)`,
+          `By promising them an exemption from judgment`,
+          `By attributing human sin to stars`
+        ],
+        correct: 1,
+        explanation: `Verse 6:148 asks "Do you have any knowledge that you can produce for us?"—showing they follow only assumption and fabrication rather than evidence.`
+      },
+      {
+        q: `According to 6:160, how are good deeds and evil deeds weighed in divine justice?`,
+        options: [
+          `Equal one-for-one in both cases`,
+          `Ten times the like for a good deed; only the exact equivalent for an evil deed`,
+          `Good deeds are doubled; evil deeds are multiplied tenfold`,
+          `Rewards depend on lineage rather than deeds`
+        ],
+        correct: 1,
+        explanation: `Verse 6:160 highlights overwhelming generosity balanced with strict fairness: a good deed earns tenfold, while an evil deed is recompensed only by its like.`
+      }
+    ];
+
+    const FLASHCARDS = [
+      { ref: `6:1`, term: `Al-Zulumat wa al-Nur`, front: `Darknesses (plural) and Light (singular)`, back: `Allah created heavens and earth and made darknesses and light (6:1). Notice darkness is plural while truth/light is singular—reflecting the unity of truth versus scattered error.` },
+      { ref: `6:12 / 6:54`, term: `Kataba 'ala Nafsihi al-Rahmah`, front: `Self-Decreed Mercy`, back: `Allah has prescribed mercy upon Himself. Believers are greeted with Peace, and sincere repentance plus reform brings forgiveness.` },
+      { ref: `6:38`, term: `Umamun Amthalukum`, front: `"Communities like you"`, back: `Creatures on earth and birds in flight are organized communities known to Allah, recorded in the Register and gathered back to Him.` },
+      { ref: `6:59`, term: `Mafatihu al-Ghayb`, front: `The Keys of the Unseen`, back: `Known solely to Allah—encompassing land, sea, every falling leaf, and every grain hidden in the darknesses of the earth.` },
+      { ref: `6:76–79`, term: `Afala / Hanifan`, front: `Setting vs. Inclining Upright`, back: `Abraham rejects setting stars, moon, and sun ("I like not those that disappear") and turns his face hanifan (upright in pure monotheism) to the Creator.` },
+      { ref: `6:82`, term: `Al-Amn`, front: `True Inner Security`, back: `Belonging to those who believe and do not mix faith with zulm (injustice/shirk); they have both security and guidance.` },
+      { ref: `6:95`, term: `Faliqu al-Habbi wa al-Nawa`, front: `Cleaver of Grain & Date Seeds`, back: `Allah brings the living out of the dead and the dead out of the living—an everyday biological witness to creation and resurrection.` },
+      { ref: `6:103`, term: `Al-Latif al-Khabir`, front: `The Subtle, the Acquainted`, back: `Human vision cannot perceive Him, yet He perceives all vision.` },
+      { ref: `6:122`, term: `Maytan fa-Ahyaynahu`, front: `Dead, Then Given Life & Light`, back: `Parable of spiritual awakening: walking among people with guiding light rather than trapped in unending darkness.` },
+      { ref: `6:125`, term: `Yashrah Sadrahu`, front: `Expanding the Breast`, back: `Guidance expands the heart with spacious clarity, whereas persistent rejection constricts it like climbing into thin sky air.` },
+      { ref: `6:151–153`, term: `Sirat Mustaqim`, front: `The Straight Path Charter`, back: `Ten comprehensive duties: pure monotheism, honoring parents, protecting children, orphans, life, chastity, fair measure, just testimony, covenants, and unity.` },
+      { ref: `6:164`, term: `La Taziru Waziratan Wizra Ukhra`, front: `Individual Moral Agency`, back: `Every soul earns only against itself, and no bearer of burdens carries the burden of another.` }
+    ];
+
+    /* Application State */
+    let appState = {
+      activeMovement: 0,
+      studiedMovements: [],
+      activeArgument: 0,
+      abrahamStage: 0,
+      charterChecked: [],
+      reflections: {},
+      activeReflectionIdx: 0,
+      studioMode: `quiz`,
+      quizIndex: 0,
+      quizAnswers: {},
+      cardIndex: 0,
+      cardFlipped: false,
+      masteredCards: []
+    };
+
+    let saveTimer = null;
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        console.error(`State persistence error:`, err);
+      }
+      updateProgressDisplay();
+    }
+
+    function updateProgressDisplay() {
+      const studiedCount = appState.studiedMovements.length;
+      const charterCount = appState.charterChecked.length;
+      const quizAnsweredCorrect = Object.keys(appState.quizAnswers).filter(function(idx) {
+        const q = QUIZ_QUESTIONS[Number(idx)];
+        return q && appState.quizAnswers[idx] === q.correct;
+      }).length;
+      const masteredCardCount = appState.masteredCards.length;
+
+      // Weighted mastery percentage across movements (30%), charter (25%), quiz (25%), flashcards (20%)
+      const pct = Math.round(
+        (studiedCount / MOVEMENTS.length) * 30 +
+        (charterCount / CHARTER_ITEMS.length) * 25 +
+        (quizAnsweredCorrect / QUIZ_QUESTIONS.length) * 25 +
+        (masteredCardCount / FLASHCARDS.length) * 20
+      );
+
+      const pctEl = document.getElementById(`mastery-pct`);
+      const barEl = document.getElementById(`mastery-bar`);
+      const movEl = document.getElementById(`stat-movements`);
+      const chaEl = document.getElementById(`stat-charter`);
+      const quizEl = document.getElementById(`stat-quiz`);
+
+      if (pctEl) pctEl.textContent = `${pct}%`;
+      if (barEl) barEl.style.width = `${pct}%`;
+      if (movEl) movEl.textContent = `${studiedCount} / ${MOVEMENTS.length}`;
+      if (chaEl) chaEl.textContent = `${charterCount} / ${CHARTER_ITEMS.length}`;
+      if (quizEl) quizEl.textContent = `${quizAnsweredCorrect} / ${QUIZ_QUESTIONS.length}`;
+    }
+
+    /* Section 1: Thematic Movements */
+    function renderMovements() {
+      const listEl = document.getElementById(`movement-list`);
+      const detailEl = document.getElementById(`movement-detail`);
+      if (!listEl || !detailEl) return;
+
+      listEl.innerHTML = MOVEMENTS.map(function(m) {
+        const isActive = m.id === appState.activeMovement;
+        const isStudied = appState.studiedMovements.indexOf(m.id) !== -1;
+        const segEl = document.getElementById(`seg-${m.id}`);
+        if (segEl) {
+          segEl.classList.toggle(`is-active`, isActive);
+          segEl.classList.toggle(`is-studied`, isStudied);
+        }
+        return `
+          <button type="button" class="movement-btn ${isActive ? `is-active` : ``}" onclick="selectMovement(${m.id})">
+            <div>
+              <span class="movement-btn-title">${m.num}: ${m.title}</span>
+              <span class="movement-btn-meta">Verses ${m.range}</span>
+            </div>
+            <span class="${isStudied ? `badge-emerald` : `arch-label`}">${isStudied ? `Studied` : `Review`}</span>
+          </button>
+        `;
+      }).join(``);
+
+      const active = MOVEMENTS[appState.activeMovement] || MOVEMENTS[0];
+      const studied = appState.studiedMovements.indexOf(active.id) !== -1;
+
+      detailEl.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="badge-terracotta">${active.num} &middot; Verses ${active.range}</span>
+          <button type="button" class="btn ${studied ? `btn-emerald` : `btn-secondary`} btn-sm" onclick="toggleMovementStudied(${active.id})">
+            ${studied ? `Completed (Click to Unmark)` : `Mark Movement Studied`}
+          </button>
+        </div>
+        <h3 class="subhead">${active.title}</h3>
+        <p class="prose" style="margin-bottom: 0;">${active.summary}</p>
+        <div>
+          <div class="arch-label" style="margin-bottom: var(--space-xs); color: var(--secondary);">Key Anchors</div>
+          <ul style="margin: 0; padding-left: var(--space-lg); color: var(--on-surface-variant);">
+            ${active.keyThemes.map(function(t) { return `<li>${t}</li>`; }).join(``)}
+          </ul>
+        </div>
+        <div class="verse-box">
+          <div class="verse-ref">Anchor Passage &middot; ${active.verseRef}</div>
+          <p class="arabic-verse" lang="ar" dir="rtl">${active.arabic}</p>
+          <p class="verse-translation">${active.english}</p>
+        </div>
+      `;
+    }
+
+    function selectMovement(id) {
+      appState.activeMovement = id;
+      renderMovements();
+      persistState();
+    }
+
+    function toggleMovementStudied(id) {
+      const idx = appState.studiedMovements.indexOf(id);
+      if (idx === -1) {
+        appState.studiedMovements.push(id);
+      } else {
+        appState.studiedMovements.splice(idx, 1);
+      }
+      renderMovements();
+      persistState();
+    }
+
+    /* Section 2: Theological Arguments */
+    function renderArguments() {
+      const tabsEl = document.getElementById(`argument-tabs`);
+      const detailEl = document.getElementById(`argument-detail`);
+      if (!tabsEl || !detailEl) return;
+
+      tabsEl.innerHTML = ARGUMENTS.map(function(arg) {
+        const isActive = arg.id === appState.activeArgument;
+        return `<button type="button" class="filter-pill ${isActive ? `is-active` : ``}" onclick="selectArgument(${arg.id})">${arg.tab}</button>`;
+      }).join(``);
+
+      const current = ARGUMENTS[appState.activeArgument] || ARGUMENTS[0];
+      detailEl.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);">
+          <span class="badge-emerald">Key Verses: ${current.verses}</span>
+          <span class="arch-label" style="color: var(--secondary);">Pillar ${current.id + 1} of ${ARGUMENTS.length}</span>
+        </div>
+        <h3 class="subhead">${current.title}</h3>
+        <div class="logic-flow">
+          <div class="logic-step">
+            <span class="logic-step-tag">1. Observation / Premise</span>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">${current.premise}</p>
+          </div>
+          <div class="logic-step">
+            <span class="logic-step-tag">2. Rational Inference</span>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">${current.logic}</p>
+          </div>
+          <div class="logic-step">
+            <span class="logic-step-tag">3. Existential Conclusion</span>
+            <p style="margin: 0; font-size: 0.95rem; color: var(--on-surface-variant);">${current.implication}</p>
+          </div>
+        </div>
+        <div class="verse-box">
+          <div class="verse-ref">Primary Textual Proof</div>
+          <p class="arabic-verse" lang="ar" dir="rtl">${current.arabic}</p>
+          <p class="verse-translation">${current.english}</p>
+        </div>
+      `;
+    }
+
+    function selectArgument(id) {
+      appState.activeArgument = id;
+      renderArguments();
+      persistState();
+    }
+
+    /* Section 3: Abraham's Inquiry */
+    function renderAbraham() {
+      const stage = ABRAHAM_STAGES[appState.abrahamStage] || ABRAHAM_STAGES[0];
+      const contentEl = document.getElementById(`abraham-content`);
+      const captionEl = document.getElementById(`abraham-svg-caption`);
+      const prevBtn = document.getElementById(`abraham-prev`);
+      const nextBtn = document.getElementById(`abraham-next`);
+
+      if (captionEl) captionEl.textContent = stage.caption;
+      if (prevBtn) prevBtn.disabled = appState.abrahamStage === 0;
+      if (nextBtn) nextBtn.disabled = appState.abrahamStage === ABRAHAM_STAGES.length - 1;
+
+      const svgGroups = [`celestial-star`, `celestial-moon`, `celestial-sun`, `celestial-hanif`];
+      svgGroups.forEach(function(gid, i) {
+        const g = document.getElementById(gid);
+        if (g) g.setAttribute(`opacity`, i === appState.abrahamStage ? `1` : `0.12`);
+      });
+
+      for (let i = 0; i < ABRAHAM_STAGES.length; i++) {
+        const pill = document.getElementById(`ab-pill-${i}`);
+        if (pill) pill.classList.toggle(`is-active`, i === appState.abrahamStage);
+      }
+
+      if (contentEl) {
+        contentEl.innerHTML = `
+          <div>
+            <span class="badge-terracotta">${stage.badge}</span>
+          </div>
+          <h3 class="subhead">${stage.title}</h3>
+          <div class="verse-box">
+            <p class="arabic-verse" lang="ar" dir="rtl">${stage.arabic}</p>
+            <p class="verse-translation">${stage.english}</p>
+          </div>
+          <p class="prose" style="margin-bottom: 0;">${stage.insight}</p>
+        `;
+      }
+    }
+
+    function setAbrahamStage(idx) {
+      appState.abrahamStage = Math.max(0, Math.min(ABRAHAM_STAGES.length - 1, idx));
+      renderAbraham();
+      persistState();
+    }
+
+    function stepAbraham(delta) {
+      setAbrahamStage(appState.abrahamStage + delta);
+    }
+
+    /* Section 4: Passage Explorer */
+    function filterPassages() {
+      const queryInput = document.getElementById(`passage-search`);
+      const themeSelect = document.getElementById(`passage-theme`);
+      const listEl = document.getElementById(`passage-list`);
+      const countEl = document.getElementById(`passage-count`);
+      if (!listEl) return;
+
+      const q = (queryInput ? queryInput.value : ``).trim().toLowerCase();
+      const theme = themeSelect ? themeSelect.value : `all`;
+
+      const filtered = KEY_PASSAGES.filter(function(p) {
+        const matchesTheme = theme === `all` || p.theme === theme;
+        const matchesQuery = !q ||
+          p.title.toLowerCase().indexOf(q) !== -1 ||
+          p.english.toLowerCase().indexOf(q) !== -1 ||
+          p.ref.toLowerCase().indexOf(q) !== -1 ||
+          p.arabic.indexOf(q) !== -1;
+        return matchesTheme && matchesQuery;
+      });
+
+      if (countEl) {
+        countEl.textContent = filtered.length === 1
+          ? `Showing 1 matching passage`
+          : `Showing ${filtered.length} curated passages`;
+      }
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="detail-panel" style="grid-column: 1 / -1; text-align: center;">
+            <p class="prose" style="margin: 0 auto;">No passages matched your search query. Clear the search box or choose "All Key Passages" to browse all 16 anchor texts.</p>
+            <div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="clearPassageFilters()">Reset Search Filters</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(function(p) {
+        return `
+          <article class="passage-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+              <span class="badge-emerald">Verse ${p.ref}</span>
+              <span class="arch-label" style="color: var(--secondary);">${p.themeLabel}</span>
+            </div>
+            <h4 class="subhead" style="margin: 0;">${p.title}</h4>
+            <p class="arabic-verse" lang="ar" dir="rtl" style="font-size: 1.35rem;">${p.arabic}</p>
+            <p class="verse-translation" style="font-size: 0.95rem; color: var(--on-surface-variant);">${p.english}</p>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function clearPassageFilters() {
+      const qEl = document.getElementById(`passage-search`);
+      const tEl = document.getElementById(`passage-theme`);
+      if (qEl) qEl.value = ``;
+      if (tEl) tEl.value = `all`;
+      filterPassages();
+    }
+
+    /* Section 5: Straight Path Charter & Reflections */
+    function renderCharter() {
+      const el = document.getElementById(`charter-list`);
+      if (!el) return;
+
+      el.innerHTML = CHARTER_ITEMS.map(function(item) {
+        const checked = appState.charterChecked.indexOf(item.id) !== -1;
+        return `
+          <label class="charter-item ${checked ? `is-checked` : ``}">
+            <input type="checkbox" class="charter-checkbox" ${checked ? `checked` : ``} onchange="toggleCharterItem(${item.id})">
+            <div>
+              <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+                <span class="tabular-ref">${item.ref}</span>
+                <strong style="color: var(--on-surface);">${item.title}</strong>
+              </div>
+              <div style="font-size: 0.925rem; color: var(--on-surface-variant);">${item.desc}</div>
+            </div>
+          </label>
+        `;
+      }).join(``);
+    }
+
+    function toggleCharterItem(id) {
+      const idx = appState.charterChecked.indexOf(id);
+      if (idx === -1) {
+        appState.charterChecked.push(id);
+      } else {
+        appState.charterChecked.splice(idx, 1);
+      }
+      renderCharter();
+      persistState();
+    }
+
+    function renderReflectionPrompt() {
+      const selectEl = document.getElementById(`reflection-prompt-select`);
+      const verseEl = document.getElementById(`reflection-prompt-verse`);
+      const textEl = document.getElementById(`reflection-textarea`);
+      if (!verseEl || !textEl) return;
+
+      if (selectEl) selectEl.value = String(appState.activeReflectionIdx);
+      const p = REFLECTION_PROMPTS[appState.activeReflectionIdx] || REFLECTION_PROMPTS[0];
+
+      verseEl.innerHTML = `
+        <div class="verse-ref">Prompt Anchor &middot; ${p.ref}</div>
+        <p class="arabic-verse" lang="ar" dir="rtl" style="font-size: 1.35rem;">${p.arabic}</p>
+        <p class="verse-translation" style="font-size: 0.95rem;">${p.english}</p>
+        <p style="margin: 0; font-weight: 600; color: var(--primary); font-size: 0.95rem;">${p.question}</p>
+      `;
+
+      textEl.value = appState.reflections[String(appState.activeReflectionIdx)] || ``;
+    }
+
+    function switchReflectionPrompt() {
+      const selectEl = document.getElementById(`reflection-prompt-select`);
+      if (!selectEl) return;
+      appState.activeReflectionIdx = Number(selectEl.value) || 0;
+      renderReflectionPrompt();
+      persistState();
+    }
+
+    function saveReflectionNow() {
+      const textEl = document.getElementById(`reflection-textarea`);
+      const statusEl = document.getElementById(`reflection-save-status`);
+      if (!textEl) return;
+
+      appState.reflections[String(appState.activeReflectionIdx)] = textEl.value;
+      persistState();
+      if (statusEl) statusEl.textContent = `Saved to workspace notes.`;
+    }
+
+    function saveReflectionDebounced() {
+      const statusEl = document.getElementById(`reflection-save-status`);
+      if (statusEl) statusEl.textContent = `Saving…`;
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function() {
+        saveReflectionNow();
+      }, 450);
+    }
+
+    /* Section 6: Mastery Studio (Quiz & Flashcards) */
+    function switchStudioMode(mode) {
+      appState.studioMode = mode;
+      const qBtn = document.getElementById(`mode-quiz-btn`);
+      const cBtn = document.getElementById(`mode-cards-btn`);
+      const qPanel = document.getElementById(`studio-quiz-panel`);
+      const cPanel = document.getElementById(`studio-cards-panel`);
+
+      if (qBtn) qBtn.classList.toggle(`is-active`, mode === `quiz`);
+      if (cBtn) cBtn.classList.toggle(`is-active`, mode === `cards`);
+      if (qPanel) qPanel.classList.toggle(`hidden-panel`, mode !== `quiz`);
+      if (cPanel) cPanel.classList.toggle(`hidden-panel`, mode !== `cards`);
+      persistState();
+    }
+
+    function renderQuiz() {
+      const q = QUIZ_QUESTIONS[appState.quizIndex] || QUIZ_QUESTIONS[0];
+      const badgeEl = document.getElementById(`quiz-progress-badge`);
+      const scoreEl = document.getElementById(`quiz-score-label`);
+      const qTextEl = document.getElementById(`quiz-question-text`);
+      const optsEl = document.getElementById(`quiz-options`);
+      const fbEl = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      const correctCount = Object.keys(appState.quizAnswers).filter(function(idx) {
+        const item = QUIZ_QUESTIONS[Number(idx)];
+        return item && appState.quizAnswers[idx] === item.correct;
+      }).length;
+
+      if (badgeEl) badgeEl.textContent = `Question ${appState.quizIndex + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (scoreEl) scoreEl.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      if (qTextEl) qTextEl.textContent = q.q;
+      if (prevBtn) prevBtn.disabled = appState.quizIndex === 0;
+      if (nextBtn) nextBtn.disabled = appState.quizIndex === QUIZ_QUESTIONS.length - 1;
+
+      const userChoice = appState.quizAnswers[String(appState.quizIndex)];
+      const hasAnswered = userChoice !== undefined;
+
+      if (optsEl) {
+        optsEl.innerHTML = q.options.map(function(opt, idx) {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (idx === q.correct) cls += ` is-correct`;
+            else if (idx === userChoice) cls += ` is-wrong`;
+          }
+          return `<button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="answerQuiz(${idx})">${opt}</button>`;
+        }).join(``);
+      }
+
+      if (fbEl) {
+        if (hasAnswered) {
+          const isRight = userChoice === q.correct;
+          fbEl.className = `feedback-box ${isRight ? `is-correct` : ``}`;
+          fbEl.innerHTML = `<strong>${isRight ? `Correct.` : `Review:`}</strong> ${q.explanation}`;
+        } else {
+          fbEl.className = `feedback-box hidden-panel`;
+          fbEl.textContent = ``;
+        }
+      }
+    }
+
+    function answerQuiz(optIdx) {
+      appState.quizAnswers[String(appState.quizIndex)] = optIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function moveQuiz(delta) {
+      appState.quizIndex = Math.max(0, Math.min(QUIZ_QUESTIONS.length - 1, appState.quizIndex + delta));
+      renderQuiz();
+      persistState();
+    }
+
+    function restartQuiz() {
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      renderQuiz();
+      persistState();
+    }
+
+    function renderFlashcard() {
+      const card = FLASHCARDS[appState.cardIndex] || FLASHCARDS[0];
+      const badgeEl = document.getElementById(`card-index-badge`);
+      const masteredEl = document.getElementById(`card-mastered-label`);
+      const stageEl = document.getElementById(`flashcard-stage`);
+      const masterBtn = document.getElementById(`card-master-btn`);
+
+      const isMastered = appState.masteredCards.indexOf(appState.cardIndex) !== -1;
+
+      if (badgeEl) badgeEl.textContent = `Card ${appState.cardIndex + 1} of ${FLASHCARDS.length}`;
+      if (masteredEl) masteredEl.textContent = `Mastered: ${appState.masteredCards.length} / ${FLASHCARDS.length}`;
+      if (masterBtn) {
+        masterBtn.textContent = isMastered ? `Mastered (Click to Unmark)` : `Mark as Mastered`;
+      }
+
+      if (stageEl) {
+        if (!appState.cardFlipped) {
+          stageEl.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="verse-ref">Front &middot; Verse ${card.ref}</span>
+              <span class="arch-label" style="color: var(--secondary);">Click to Reveal</span>
+            </div>
+            <div style="text-align: center; padding-block: var(--space-lg);">
+              <div style="font-family: var(--font-headline); font-size: clamp(1.75rem, 1.4rem + 1vw, 2.35rem); font-weight: 600; color: var(--on-surface); margin-bottom: var(--space-xs);">${card.term}</div>
+              <div style="color: var(--primary); font-weight: 600;">${card.front}</div>
+            </div>
+            <div class="arch-label" style="text-align: center; color: var(--on-surface-variant);">Tap or press Enter to flip</div>
+          `;
+        } else {
+          stageEl.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="badge-emerald">Meaning &amp; Context &middot; ${card.ref}</span>
+              <span class="arch-label" style="color: var(--secondary);">Click to Return</span>
+            </div>
+            <p class="prose" style="margin: var(--space-md) auto; font-size: 1.0625rem; color: var(--on-surface); text-align: center;">${card.back}</p>
+            <div class="arch-label" style="text-align: center; color: var(--on-surface-variant);">Tap or press Enter to flip back</div>
+          `;
+        }
+      }
+    }
+
+    function flipFlashcard() {
+      appState.cardFlipped = !appState.cardFlipped;
+      renderFlashcard();
+    }
+
+    function handleCardKey(e) {
+      if (e.key === `Enter` || e.key === ` `) {
+        e.preventDefault();
+        flipFlashcard();
+      }
+    }
+
+    function moveFlashcard(delta) {
+      appState.cardIndex = (appState.cardIndex + delta + FLASHCARDS.length) % FLASHCARDS.length;
+      appState.cardFlipped = false;
+      renderFlashcard();
+      persistState();
+    }
+
+    function toggleCardMastered() {
+      const idx = appState.masteredCards.indexOf(appState.cardIndex);
+      if (idx === -1) {
+        appState.masteredCards.push(appState.cardIndex);
+      } else {
+        appState.masteredCards.splice(idx, 1);
+      }
+      renderFlashcard();
+      persistState();
+    }
+
+    /* Export & Reset */
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-AN'AM (CHAPTER 6) — PERSONAL STUDY NOTES`,
+        `===================================================`,
+        `Movements Studied: ${appState.studiedMovements.length} / ${MOVEMENTS.length}`,
+        `Straight Path Charter Items Reviewed: ${appState.charterChecked.length} / ${CHARTER_ITEMS.length}`,
+        `Quiz Score: ${Object.keys(appState.quizAnswers).filter(function(i) { return appState.quizAnswers[i] === QUIZ_QUESTIONS[Number(i)].correct; }).length} / ${QUIZ_QUESTIONS.length}`,
+        `Flashcards Mastered: ${appState.masteredCards.length} / ${FLASHCARDS.length}`,
+        ``,
+        `REFLECTIONS:`
+      ];
+
+      REFLECTION_PROMPTS.forEach(function(p, idx) {
+        const note = appState.reflections[String(idx)] || `(No reflection entered yet)`;
+        lines.push(`\n[${p.ref}] ${p.question}\nNotes: ${note}`);
+      });
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-anam-study-notes.txt`
+        });
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="rotate-ccw" width="16" height="16" aria-hidden="true"></i><span>Reset Progress</span>`;
+            if (window.lucide && typeof window.lucide.createIcons === `function`) window.lucide.createIcons();
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" width="16" height="16" aria-hidden="true"></i><span>Reset Progress</span>`;
+      if (window.lucide && typeof window.lucide.createIcons === `function`) window.lucide.createIcons();
+
+      appState = {
+        activeMovement: 0,
+        studiedMovements: [],
+        activeArgument: 0,
+        abrahamStage: 0,
+        charterChecked: [],
+        reflections: {},
+        activeReflectionIdx: 0,
+        studioMode: `quiz`,
+        quizIndex: 0,
+        quizAnswers: {},
+        cardIndex: 0,
+        cardFlipped: false,
+        masteredCards: []
+      };
+
+      renderAll();
+      persistState();
+    }
+
+    function renderAll() {
+      renderMovements();
+      renderArguments();
+      renderAbraham();
+      filterPassages();
+      renderCharter();
+      renderReflectionPrompt();
+      switchStudioMode(appState.studioMode);
+      renderQuiz();
+      renderFlashcard();
+      updateProgressDisplay();
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function setupRevealObserver() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function(el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const observer = new IntersectionObserver(function(entries, obs) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function(el) { observer.observe(el); });
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign({}, appState, saved);
+          }
+        }
+      } catch (err) {
+        console.error(`Failed to load saved state:`, err);
+      }
+
+      renderAll();
+      setupRevealObserver();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

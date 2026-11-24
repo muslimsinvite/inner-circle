@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Qaf (Chapter 50) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Terracotta style tokens */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-soft: #c4b29e;
+      --primary-border-soft: #c98a6b;
+      --tertiary-border-soft: #b5d6c9;
+
+      --primary: #b84a24;
+      --primary-hover: #9d3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #f8e4e4;
+      --on-error: #ffffff;
+
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-label: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--outline-variant), var(--data-3), var(--outline-variant));
+
+      /* Shared tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: var(--primary);
+
+      /* Narrative type scale */
+      --display-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.3rem + 1.8vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    header { position: static !important; }
+
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .muted-note {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Arabic Typography */
+    .arabic-display {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.625rem, 1.35rem + 1vw, 2.25rem);
+      line-height: 2;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      unicode-bidi: isolate;
+      color: var(--on-surface);
+      text-align: right;
+    }
+
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.75rem);
+      line-height: 2.05;
+      letter-spacing: 0;
+      text-transform: none;
+      direction: rtl;
+      unicode-bidi: isolate;
+      color: var(--on-surface);
+      text-align: right;
+      margin: 0;
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.22em;
+      line-height: 1.4;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-primary-container);
+      padding-inline: var(--space-xs);
+    }
+
+    /* Defining Terracotta Treatments */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.7rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      padding: var(--space-xs) 0.75rem;
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border-soft);
+      padding: var(--space-xs) 0.75rem;
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Structural Navigation & Mastery Bar */
+    .study-nav-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .nav-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: var(--background);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--outline-soft);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .btn-tertiary {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border-soft);
+      color: var(--on-tertiary-container);
+    }
+    .btn-tertiary:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.875rem;
+    }
+
+    /* Section Containers & Tonal Bands */
+    .story-section {
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Two-column Asymmetric Interactive Layouts */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* Ring Structure Interactive Diagram */
+    .ring-diagram-box {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .ring-node-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      min-height: 44px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .ring-node-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+    .ring-node-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+    .ring-node-btn.is-mirror {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      box-shadow: inset 4px 0 0 var(--tertiary);
+    }
+
+    .ring-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .ring-svg-wrap {
+      width: 100%;
+      min-height: 220px;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Stepper / Stage Selector */
+    .step-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .step-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-soft);
+      background: var(--background);
+      color: var(--on-surface);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+    }
+    .step-btn:hover {
+      background: var(--primary-container);
+    }
+    .step-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.9375rem;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* Diptych Contrast Cards */
+    .diptych-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .diptych-hell {
+      background: var(--primary-container);
+      border: 1px solid var(--primary-border-soft);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .diptych-paradise {
+      background: var(--tertiary-container);
+      border: 1px solid var(--tertiary-border-soft);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .trait-list {
+      margin: var(--space-md) 0 0;
+      padding-left: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Verse Explorer */
+    .explorer-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .text-input, .select-input {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-soft);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      width: 100%;
+    }
+    .select-input {
+      padding-right: 2.25rem;
+    }
+    .text-input:focus, .select-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+    .verse-card.is-reviewed {
+      border-left: 4px solid var(--tertiary);
+    }
+
+    .verse-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-insight {
+      background: var(--background);
+      border-left: 3px solid var(--secondary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Vocabulary Flashcards */
+    .vocab-wrapper { container-type: inline-size; }
+
+    .vocab-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+    .vocab-card.is-mastered {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border-soft);
+    }
+
+    .vocab-reveal {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    /* Mastery Quiz */
+    .quiz-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-lg);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      min-height: 44px;
+      text-align: left;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-soft);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--primary-container);
+      border-color: var(--primary-border-soft);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option-btn.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .feedback-box {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border-left: 4px solid var(--tertiary);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .feedback-box.is-error {
+      border-left-color: var(--error);
+      background: var(--error-container);
+      color: var(--error);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Responsive rules */
+    @container (min-width: 420px) {
+      .vocab-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-md);
+      }
+    }
+
+    @media (max-width: 780px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+      }
+      .explorer-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .tonal-band, .quiz-panel {
+        padding: var(--space-lg) var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- HERO -->
+    <header>
+      <div class="kicker">
+        <span>Chapter 50 • Makkan Surah • 45 Verses</span>
+        <span class="badge-emerald">Comprehensive Study Guide</span>
+      </div>
+      <h1 class="title">Surah <em>Qaf</em>: The Anatomy of Return</h1>
+      <p class="lede">
+        Opening with a mysterious disjointed letter and an oath by the honored Qur'an, Chapter 50 dismantles skepticism toward bodily resurrection by uniting three realms of evidence: the regenerative cosmos above, the intimate witness closer than the jugular vein within, and the inescapable courtroom of the hereafter.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">&#9670; Surah Qaf Structural Overview &#9670;</div>
+
+      <div class="arch-grid">
+        <div class="arch-card is-featured">
+          <div class="arch-label">Opening &amp; Closing Ring</div>
+          <div class="arch-value">50:1 — 50:45</div>
+          <div class="arch-caption">Honored Qur'an brackets the Surah</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Resurrection Proofs</div>
+          <div class="arch-value">6 Signs</div>
+          <div class="arch-caption">Sky, Earth, Rain, Gardens, Palms, Revival</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Historical Warnings</div>
+          <div class="arch-value">8 Nations</div>
+          <div class="arch-caption">From Noah's folk to Tubba' (50:12–14)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Mirrored Question</div>
+          <div class="arch-value">Mazid</div>
+          <div class="arch-caption">Hell's hunger vs. Divine bounty</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- STRUCTURAL NAVIGATION & PROGRESS TRACKER -->
+    <nav class="study-nav-panel" aria-label="Study Guide Navigation and Progress">
+      <div class="nav-top-row">
+        <div>
+          <div class="arch-label" style="margin-bottom: 0;">Mastery Progress</div>
+          <div id="mastery-summary-text" class="muted-note">Loading study progress…</div>
+        </div>
+        <div class="action-row">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="exportStudyNotes()">Export Study Summary</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="reset-progress-btn" onclick="resetAllProgress(this)">Reset Progress</button>
+        </div>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="mastery-progress-fill"></div>
+      </div>
+      <div class="nav-links">
+        <a class="nav-pill" href="#act-ring">1. Ring Architecture</a>
+        <a class="nav-pill" href="#act-cosmos">2. Cosmic Signs &amp; Nations</a>
+        <a class="nav-pill" href="#act-jugular">3. Jugular Vein &amp; Witnesses</a>
+        <a class="nav-pill" href="#act-diptych">4. Hell &amp; Paradise Dialogue</a>
+        <a class="nav-pill" href="#act-explorer">5. Complete 45-Verse Explorer</a>
+        <a class="nav-pill" href="#act-vocab">6. Arabic Lexicon</a>
+        <a class="nav-pill" href="#act-mastery">7. Self-Test Mastery</a>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: RING STRUCTURE & SYMMETRY -->
+    <section id="act-ring" class="story-section">
+      <div>
+        <div class="kicker"><span>Act I • Structural Symmetry</span></div>
+        <h2 class="section-title">How <em>Distance</em> Collapses Into Nearness</h2>
+        <p class="prose">
+          Surah Qaf is built as a concentric literary mirror. Its disbelievers dismiss resurrection as a <q>distant return</q> (<bdi dir="rtl" lang="ar" class="arabic-inline">رَجْعٌ بَعِيدٌ</bdi>, 50:3), yet every movement of the Surah systematically collapses that perceived distance—culminating in a Paradise brought <q>not far</q> (<bdi dir="rtl" lang="ar" class="arabic-inline">غَيْرَ بَعِيدٍ</bdi>, 50:31) and a Caller summoning humanity from <q>a place that is near</q> (<bdi dir="rtl" lang="ar" class="arabic-inline">مَكَانٍ قَرِيبٍ</bdi>, 50:41).
+        </p>
+      </div>
+
+      <div class="split-layout">
+        <div class="ring-diagram-box">
+          <div class="subhead">Interactive Symmetrical Architecture</div>
+          <p class="muted-note" style="margin-bottom: var(--space-md);">Select any structural band to highlight its mirrored counterpart across the Surah.</p>
+
+          <svg class="ring-svg-wrap" viewBox="0 0 640 220" role="img" aria-label="Concentric symmetry diagram of Surah Qaf from verse 1 to verse 45">
+            <rect x="10" y="10" width="620" height="200" rx="12" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5" />
+            <!-- Concentric symmetry arcs -->
+            <path d="M 60 170 Q 320 15 580 170" fill="none" stroke="var(--data-1)" stroke-width="2.5" id="arc-0" />
+            <path d="M 120 170 Q 320 45 520 170" fill="none" stroke="var(--data-3)" stroke-width="2" stroke-dasharray="5 4" id="arc-1" />
+            <path d="M 185 170 Q 320 80 455 170" fill="none" stroke="var(--data-2)" stroke-width="2.5" id="arc-2" />
+            <circle cx="320" cy="148" r="24" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2" id="arc-3" />
+
+            <!-- Nodes -->
+            <circle cx="60" cy="170" r="8" fill="var(--data-1)" />
+            <circle cx="580" cy="170" r="8" fill="var(--data-1)" />
+            <circle cx="120" cy="170" r="7" fill="var(--data-3)" />
+            <circle cx="520" cy="170" r="7" fill="var(--data-3)" />
+            <circle cx="185" cy="170" r="8" fill="var(--data-2)" />
+            <circle cx="455" cy="170" r="8" fill="var(--data-2)" />
+
+            <text x="60" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:1–5</text>
+            <text x="120" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:6–15</text>
+            <text x="185" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:16–23</text>
+            <text x="320" y="152" text-anchor="middle" fill="var(--on-primary-container)" font-size="11" font-weight="700">50:24–35</text>
+            <text x="320" y="196" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="700">Court &amp; Mazid</text>
+            <text x="455" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:36–40</text>
+            <text x="520" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:38/41–44</text>
+            <text x="580" y="196" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">50:45</text>
+          </svg>
+
+          <div class="ring-list" id="ring-buttons">
+            <button type="button" class="ring-node-btn is-active" data-ring="0" onclick="selectRingPair(0)">
+              <span><strong>A / A' — Qur'an Oath &amp; Mandate</strong> (50:1–5 &amp; 50:45)</span>
+              <span class="badge-brass">Outer Frame</span>
+            </button>
+            <button type="button" class="ring-node-btn" data-ring="1" onclick="selectRingPair(1)">
+              <span><strong>B / B' — Creation Without Failure &amp; Emergence</strong> (50:6–15 &amp; 50:38, 41–44)</span>
+              <span class="badge-brass">Cosmic Frame</span>
+            </button>
+            <button type="button" class="ring-node-btn" data-ring="2" onclick="selectRingPair(2)">
+              <span><strong>C / C' — Intimate Knowledge &amp; Mindful Hearing</strong> (50:16–23 &amp; 50:36–40)</span>
+              <span class="badge-emerald">Human Heart</span>
+            </button>
+            <button type="button" class="ring-node-btn" data-ring="3" onclick="selectRingPair(3)">
+              <span><strong>D — Centerpiece: Verdict, Hell &amp; Paradise</strong> (50:24–35)</span>
+              <span class="badge-emerald">Pivot Axis</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-card" id="ring-detail-panel">
+          <div class="badge-brass" id="ring-detail-tag">Outer Frame • 50:1–5 ↔ 50:45</div>
+          <h3 class="subhead" id="ring-detail-title" style="margin-top: var(--space-sm);">By the Honored Qur'an → Remind by the Qur'an</h3>
+          <p class="arabic-verse" id="ring-detail-arabic" lang="ar" dir="rtl">ق ۚ وَالْقُرْآنِ الْمَجِيدِ ... فَذَكِّرْ بِالْقُرْآنِ مَنْ يَخَافُ وَعِيدِ</p>
+          <p class="prose" id="ring-detail-body" style="margin-top: var(--space-md);">
+            The Surah begins by swearing by <em>al-Qur'an al-Majid</em> (50:1) amidst denial of the warner and the threat (50:2–5). It closes in 50:45 by instructing the Prophet not to act as a tyrant over their speech, but to <em>remind by the Qur'an whoever fears My threat</em> (<bdi dir="rtl" lang="ar" class="arabic-inline">وَعِيدِ</bdi>). The revelation that opened as an oath becomes the very instrument of awakening.
+          </p>
+          <div class="verse-insight" id="ring-detail-echo">
+            <strong>Verbal Echo:</strong> The first-person possessive threat <em>Wa'idi</em> ("My threat") appears in 50:14 and concludes the entire Surah in 50:45, alongside the shift from "distant return" (50:3) to "near" (50:41).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: COSMIC SIGNS OF RENEWAL & HISTORICAL WARNINGS -->
+    <section id="act-cosmos" class="story-section tonal-band">
+      <div>
+        <div class="kicker"><span>Act II • Empirical Theology (50:6–15)</span></div>
+        <h2 class="section-title">Rain on a Dead Land: <em>Thus Is the Emergence</em></h2>
+        <p class="prose">
+          When disbelievers ask how dust can live again (50:3), Surah Qaf does not offer abstract metaphysics—it commands them to look up at the flawless sky (50:6) and down at the seasonal resurrection beneath their feet (50:9–11). Every spring harvest is a live rehearsal of <em>al-Khuruj</em> (the Emergence from the graves).
+        </p>
+      </div>
+
+      <div class="split-layout">
+        <div class="panel-card">
+          <div class="subhead">Interactive 6-Stage Revival Progression (50:6–11)</div>
+          <div class="step-tabs" role="tablist" aria-label="Cosmic revival stages">
+            <button type="button" class="step-btn is-active" onclick="selectCosmicStep(0)" data-cosmic="0">1. Heaven (50:6)</button>
+            <button type="button" class="step-btn" onclick="selectCosmicStep(1)" data-cosmic="1">2. Earth (50:7)</button>
+            <button type="button" class="step-btn" onclick="selectCosmicStep(2)" data-cosmic="2">3. Insight (50:8)</button>
+            <button type="button" class="step-btn" onclick="selectCosmicStep(3)" data-cosmic="3">4. Blessed Rain (50:9)</button>
+            <button type="button" class="step-btn" onclick="selectCosmicStep(4)" data-cosmic="4">5. Lofty Palms (50:10)</button>
+            <button type="button" class="step-btn" onclick="selectCosmicStep(5)" data-cosmic="5">6. Al-Khuruj (50:11)</button>
+          </div>
+
+          <div id="cosmic-stage-card" style="margin-top: var(--space-lg); display: grid; gap: var(--space-sm);">
+            <div class="badge-emerald" id="cosmic-ref">Verse 50:6 • Structural Perfection</div>
+            <p class="arabic-verse" id="cosmic-arabic" lang="ar" dir="rtl">أَفَلَمْ يَنْظُرُوا إِلَى السَّمَاءِ فَوْقَهُمْ كَيْفَ بَنَيْنَاهَا وَزَيَّنَّاهَا وَمَا لَهَا مِنْ فُرُوجٍ</p>
+            <p class="prose" id="cosmic-translation">“Have they not looked at the heaven above them — how We structured it and adorned it and [how] it has no rifts?”</p>
+            <div class="verse-insight" id="cosmic-note">
+              <strong>Linguistic Insight:</strong> <em>Furuj</em> (<bdi dir="rtl" lang="ar" class="arabic-inline">فُرُوجٍ</bdi>) denotes cracks, gaps, or structural fractures. Before arguing for re-creation, the verse directs attention to a seamless sky built and adorned without a single flaw.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="subhead">The Eight Precedents of Denial (50:12–14)</h3>
+          <p class="muted-note" style="margin-bottom: var(--space-md);">
+            Immediately after nature's proof of renewal, the Surah cites eight historical communities whose rejection triggered the fulfillment of Allah's warning—followed by the rhetorical climax: <em>“Did We fail in the first creation?”</em> (50:15).
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Verse</th>
+                  <th>Community Cited</th>
+                  <th>Arabic Form</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>50:12</td>
+                  <td>People of Noah</td>
+                  <td><bdi dir="rtl" lang="ar" class="arabic-inline">قَوْمُ نُوحٍ</bdi></td>
+                </tr>
+                <tr>
+                  <td>50:12</td>
+                  <td>Companions of the Well</td>
+                  <td><bdi dir="rtl" lang="ar" class="arabic-inline">أَصْحَابُ الرَّسِّ</bdi></td>
+                </tr>
+                <tr>
+                  <td>50:12</td>
+                  <td>Thamud</td>
+                  <td><bdi dir="rtl" lang="ar" class="arabic-inline">ثَمُودُ</bdi></td>
+                </tr>
+                <tr>
+                  <td>50:13</td>
+                  <td>'Aad, Pharaoh &amp; Brothers of Lot</td>
+                  <td><bdi dir="rtl" lang="ar" class="arabic-inline">عَادٌ وَفِرْعَوْنُ وَإِخْوَانُ لُوطٍ</bdi></td>
+                </tr>
+                <tr>
+                  <td>50:14</td>
+                  <td>Companions of the Thicket &amp; People of Tubba'</td>
+                  <td><bdi dir="rtl" lang="ar" class="arabic-inline">أَصْحَابُ الْأَيْكَةِ وَقَوْمُ تُبَّعٍ</bdi></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: JUGULAR VEIN, RECORDING ANGELS & STUPOR OF DEATH -->
+    <section id="act-jugular" class="story-section">
+      <div>
+        <div class="kicker"><span>Act III • Interiority &amp; Reckoning (50:16–29)</span></div>
+        <h2 class="section-title">Closer Than the <em>Jugular Vein</em></h2>
+        <p class="prose">
+          At verse 16, the camera zooms from skies and vanished civilizations straight into the human chest. Not only does Allah know what the soil consumes of physical bodies (50:4); He knows what the human soul whispers (<bdi dir="rtl" lang="ar" class="arabic-inline">تُوَسْوِسُ بِهِ نَفْسُهُ</bdi>) before a syllable is spoken—and every spoken word meets an observer prepared at the right and left.
+        </p>
+      </div>
+
+      <div class="panel-card">
+        <div class="subhead">Interactive Diagram: Four Thresholds of Accountability (50:16–29)</div>
+        <div class="step-tabs" style="margin-bottom: var(--space-lg);">
+          <button type="button" class="step-btn is-active" onclick="selectWitnessStage(0)" data-witness="0">I. Inner Proximity (50:16)</button>
+          <button type="button" class="step-btn" onclick="selectWitnessStage(1)" data-witness="1">II. Two Receivers (50:17–18)</button>
+          <button type="button" class="step-btn" onclick="selectWitnessStage(2)" data-witness="2">III. Death's Stupor &amp; Sharp Sight (50:19–23)</button>
+          <button type="button" class="step-btn" onclick="selectWitnessStage(3)" data-witness="3">IV. Courtroom &amp; Qarin Dispute (50:24–29)</button>
+        </div>
+
+        <div class="split-layout">
+          <div>
+            <svg viewBox="0 0 480 250" style="width: 100%; min-height: 220px;" role="img" aria-label="Diagram of concentric layers of divine omniscience, angels, death veil removal, and final judgment">
+              <rect x="8" y="8" width="464" height="234" rx="12" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1.5" />
+              <!-- Concentric zones -->
+              <rect x="28" y="28" width="424" height="194" rx="10" fill="var(--surface-container-low)" stroke="var(--outline-soft)" stroke-width="1.5" id="wzone-3" />
+              <rect x="64" y="52" width="352" height="146" rx="10" fill="var(--surface-container)" stroke="var(--outline-soft)" stroke-width="1.5" id="wzone-2" />
+              <rect x="104" y="76" width="272" height="98" rx="10" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="1.5" id="wzone-1" />
+              <rect x="154" y="100" width="172" height="50" rx="25" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5" id="wzone-0" />
+
+              <text x="240" y="129" text-anchor="middle" fill="var(--on-primary-container)" font-size="12" font-weight="700">Habl al-Warid (50:16)</text>
+              <text x="240" y="92" text-anchor="middle" fill="var(--on-tertiary-container)" font-size="11" font-weight="700">Right &amp; Left: Raqibun 'Atid (50:17–18)</text>
+              <text x="240" y="68" text-anchor="middle" fill="var(--on-surface)" font-size="11" font-weight="700">Veil Removed • Sa'iq &amp; Shahid (50:19–23)</text>
+              <text x="240" y="44" text-anchor="middle" fill="var(--on-surface-variant)" font-size="11" font-weight="700">No Dispute Before Me • Unchanging Word (50:24–29)</text>
+            </svg>
+          </div>
+
+          <div id="witness-detail-box" style="display: grid; gap: var(--space-sm);">
+            <div class="badge-brass" id="witness-badge">Threshold I • Verse 50:16</div>
+            <h3 class="subhead" id="witness-title" style="margin: 0;">Closer Than the Jugular Vein</h3>
+            <p class="arabic-verse" id="witness-arabic" lang="ar" dir="rtl">وَلَقَدْ خَلَقْنَا الْإِنْسَانَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ</p>
+            <p class="prose" id="witness-desc">
+              The <em>habl al-warid</em> (jugular vein) is the vital conduit pulsing in the neck—yet Allah's knowledge and nearness precede even a person's own silent inner monologue (<em>ma tuwaswisu bihi nafsuhu</em>).
+            </p>
+            <div class="verse-insight" id="witness-insight">
+              <strong>Key Role:</strong> Unlike human surveillance that observes only outward acts, Divine proximity encompasses unvoiced impulses before they become words.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE DIALOGUE OF HELL & PARADISE -->
+    <section id="act-diptych" class="story-section tonal-band">
+      <div>
+        <div class="kicker"><span>Act IV • The Great Contrast (50:24–35)</span></div>
+        <h2 class="section-title">Two Answers to <em>“Is There More?”</em></h2>
+        <p class="prose">
+          The moral heart of Surah Qaf stands in verses 24–35: a razor-sharp parallel between the five traits that cast a soul into Hell and the four inward qualities that bring Paradise within reach—culminating in the same Arabic noun, <bdi dir="rtl" lang="ar" class="arabic-inline">مَزِيدٌ</bdi> (<em>mazid</em>, "more"), spoken in opposite keys.
+        </p>
+      </div>
+
+      <div class="diptych-grid">
+        <article class="diptych-hell">
+          <div class="badge-brass">50:24–26 &amp; 50:30 • Jahannam</div>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">“Are There Some More?” (<bdi dir="rtl" lang="ar" class="arabic-inline">هَلْ مِنْ مَزِيدٍ</bdi>)</h3>
+          <p class="arabic-verse" lang="ar" dir="rtl">يَوْمَ نَقُولُ لِجَهَنَّمَ هَلِ امْتَلَأْتِ وَتَقُولُ هَلْ مِنْ مَزِيدٍ</p>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            “On the Day We will say to Hell, ‘Have you been filled?’ and it will say, ‘Are there some more?’” (50:30)
+          </p>
+          <ul class="trait-list">
+            <li><strong>Obstinate disbeliever</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">كَفَّارٍ عَنِيدٍ</bdi>) — stubbornly rejecting truth despite clear signs.</li>
+            <li><strong>Preventer of good</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">مَنَّاعٍ لِلْخَيْرِ</bdi>) — withholding generosity, justice, and benefit from others.</li>
+            <li><strong>Aggressor</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">مُعْتَدٍ</bdi>) — transgressing moral and human boundaries.</li>
+            <li><strong>Chronic doubter</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">مُرِيبٍ</bdi>) — sowing suspicion against revelation.</li>
+            <li><strong>Associating another deity</strong> — placing a rival alongside Allah (50:26).</li>
+          </ul>
+        </article>
+
+        <article class="diptych-paradise">
+          <div class="badge-emerald">50:31–35 • Al-Jannah</div>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">“And With Us Is More” (<bdi dir="rtl" lang="ar" class="arabic-inline">وَلَدَيْنَا مَزِيدٌ</bdi>)</h3>
+          <p class="arabic-verse" lang="ar" dir="rtl">لَهُمْ مَا يَشَاءُونَ فِيهَا وَلَدَيْنَا مَزِيدٌ</p>
+          <p class="muted-note" style="margin-top: var(--space-xs);">
+            “They will have whatever they wish therein, and with Us is more.” (50:35)
+          </p>
+          <ul class="trait-list">
+            <li><strong>Every constant returner</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">أَوَّابٍ</bdi>) — one who repeatedly turns back to Allah in repentance.</li>
+            <li><strong>Keeper of the covenant</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">حَفِيظٍ</bdi>) — guarding limits, trusts, and remembrance.</li>
+            <li><strong>Feared the Most Merciful unseen</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">خَشِيَ الرَّحْمَٰنَ بِالْغَيْبِ</bdi>) — reverent integrity when no human eye watches.</li>
+            <li><strong>A turning, humble heart</strong> (<bdi dir="rtl" lang="ar" class="arabic-inline">قَلْبٍ مُنِيبٍ</bdi>) — entering the Day of Eternity in peace (<em>bi-salam</em>, 50:34).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: COMPLETE 45-VERSE EXPLORER -->
+    <section id="act-explorer" class="story-section">
+      <div>
+        <div class="kicker"><span>Act V • Full Textual Study (50:1–45)</span></div>
+        <h2 class="section-title">Complete Verse-by-Verse <em>Navigator</em></h2>
+        <p class="prose">
+          Explore all 45 verses of Surah Qaf with their Arabic script, English translation, and concise thematic notes. Mark verses as reviewed as you study—your progress is preserved across sessions.
+        </p>
+      </div>
+
+      <div class="explorer-controls">
+        <div class="field-group">
+          <label for="verse-search" class="field-label">Search verses by keyword or number</label>
+          <input type="text" id="verse-search" class="text-input" placeholder="Try: jugular, rain, 30, peace, patience…" oninput="filterVerses()">
+        </div>
+        <div class="field-group">
+          <label for="verse-act-filter" class="field-label">Filter by thematic act</label>
+          <select id="verse-act-filter" class="select-input" onchange="filterVerses()">
+            <option value="all">All 45 Verses</option>
+            <option value="act1">Act I: Oath &amp; Denial (1–5)</option>
+            <option value="act2">Act II: Cosmic Signs &amp; Nations (6–15)</option>
+            <option value="act3">Act III: Omniscience &amp; Death (16–29)</option>
+            <option value="act4">Act IV: Hell &amp; Paradise (30–35)</option>
+            <option value="act5">Act V: Patience, Praise &amp; Emergence (36–45)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="action-row" style="justify-content: space-between;">
+        <span id="verse-count-status" class="muted-note">Showing 45 of 45 verses</span>
+        <div class="action-row">
+          <button type="button" class="btn btn-secondary btn-sm" id="toggle-insights-btn" onclick="toggleAllInsights()">Hide Commentary Notes</button>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container"></div>
+    </section>
+
+    <!-- SECTION 6: ARABIC VOCABULARY & LINGUISTIC MASTERY -->
+    <section id="act-vocab" class="story-section tonal-band">
+      <div>
+        <div class="kicker"><span>Act VI • Lexical &amp; Morphological Depth</span></div>
+        <h2 class="section-title">Key Arabic Vocabulary &amp; <em>Root Insights</em></h2>
+        <p class="prose">
+          Tap any vocabulary card to reveal its English meaning, root morphology, and rhetorical role in Surah Qaf, then mark it as mastered once you can recall it without looking.
+        </p>
+      </div>
+
+      <div class="card-grid vocab-wrapper" id="vocab-grid-container"></div>
+    </section>
+
+    <!-- SECTION 7: SELF-TESTING MASTERY MODULE -->
+    <section id="act-mastery" class="story-section">
+      <div>
+        <div class="kicker"><span>Act VII • Active Recall &amp; Synthesis</span></div>
+        <h2 class="section-title">Self-Testing <em>Mastery Check</em></h2>
+        <p class="prose">
+          Verify your command of Surah Qaf's arguments, linguistic motifs, and verse structure across 8 diagnostic questions.
+        </p>
+      </div>
+
+      <div class="quiz-panel" id="quiz-container">
+        <div class="nav-top-row">
+          <span class="badge-brass" id="quiz-progress-badge">Question 1 of 8</span>
+          <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 8</span>
+        </div>
+
+        <h3 class="subhead" id="quiz-question-text" style="margin: 0;">Loading question…</h3>
+
+        <div class="quiz-options" id="quiz-options-container"></div>
+
+        <div id="quiz-feedback-area" hidden></div>
+
+        <div class="action-row" style="justify-content: space-between;">
+          <button type="button" class="btn btn-secondary" id="quiz-prev-btn" onclick="prevQuizQuestion()">Previous</button>
+          <div class="action-row">
+            <button type="button" class="btn btn-secondary" id="quiz-retry-btn" onclick="resetQuizOnly(this)">Restart Quiz</button>
+            <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="nextQuizQuestion()">Next Question</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top: var(--warm-hairline); padding-top: var(--space-lg);">
+      <p class="muted-note">
+        Source Grounding: All 45 Quranic verses, translations, and thematic structures are derived directly from the Chapter 50 (Surah Qaf) source text provided in this notebook. Progress and quiz states persist automatically inside your study session.
+      </p>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const SURAH_VERSES = [
+      { n: 1, act: `act1`, ar: `ق ۚ وَالْقُرْآنِ الْمَجِيدِ`, en: `Qaf. By the honored Qur'an...`, note: `Opens with the disjointed letter Qaf and a majestic oath by the Qur'an (al-Majid), paired symmetrically with 50:45.` },
+      { n: 2, act: `act1`, ar: `بَلْ عَجِبُوا أَنْ جَاءَهُمْ مُنْذِرٌ مِنْهُمْ فَقَالَ الْكَافِرُونَ هَٰذَا شَيْءٌ عَجِيبٌ`, en: `But they wonder that there has come to them a warner from among themselves, and the disbelievers say, "This is an amazing thing."`, note: `Wordplay on 'ajibu (they wonder) and shay'un 'ajib (an amazing/strange thing)—ironically finding a human messenger stranger than their own denial.` },
+      { n: 3, act: `act1`, ar: `أَإِذَا مِتْنَا وَكُنَّا تُرَابًا ۖ ذَٰلِكَ رَجْعٌ بَعِيدٌ`, en: `When we have died and have become dust, [we will return to life]? That is a distant return.`, note: `Introduces the motif of ba'id ("distant"), which the Surah refutes in 50:31 (ghayra ba'id) and 50:41 (makanin qarib).` },
+      { n: 4, act: `act1`, ar: `قَدْ عَلِمْنَا مَا تَنْقُصُ الْأَرْضُ مِنْهُمْ ۖ وَعِنْدَنَا كِتَابٌ حَفِيظٌ`, en: `We know what the earth diminishes of them, and with Us is a retaining record.`, note: `Refutes decomposition as loss of identity: every particle taken by the soil is accounted for in a Kitabun Hafiz (retaining record).` },
+      { n: 5, act: `act1`, ar: `بَلْ كَذَّبُوا بِالْحَقِّ لَمَّا جَاءَهُمْ فَهُمْ فِي أَمْرٍ مَرِيجٍ`, en: `But they denied the truth when it came to them, so they are in a confused condition.`, note: `Amrin marij describes an unstable, mixed-up, fluctuating state of mind resulting from rejecting clear truth.` },
+      { n: 6, act: `act2`, ar: `أَفَلَمْ يَنْظُرُوا إِلَى السَّمَاءِ فَوْقَهُمْ كَيْفَ بَنَيْنَاهَا وَزَيَّنَّاهَا وَمَا لَهَا مِنْ فُرُوجٍ`, en: `Have they not looked at the heaven above them - how We structured it and adorned it and [how] it has no rifts?`, note: `First cosmic proof: the sky's seamless architecture (no furuj/cracks) demonstrates effortless creative precision.` },
+      { n: 7, act: `act2`, ar: `وَالْأَرْضَ مَدَدْنَاهَا وَأَلْقَيْنَا فِيهَا رَوَاسِيَ وَأَنْبَتْنَا فِيهَا مِنْ كُلِّ زَوْجٍ بَهِيجٍ`, en: `And the earth - We spread it out and cast therein firmly set mountains and made grow therein [something] of every beautiful kind,`, note: `Pairs stability (rawasi, anchored mountains) with aesthetic vibrancy (zawjin bahij, every joyful/beautiful pair).` },
+      { n: 8, act: `act2`, ar: `تَبْصِرَةً وَذِكْرَىٰ لِكُلِّ عَبْدٍ مُنِيبٍ`, en: `Giving insight and a reminder for every servant who turns [to Allah].`, note: `Reveals that cosmic signs only awaken inner sight (tabsirah) in a servant who turns back ('abdin munib).` },
+      { n: 9, act: `act2`, ar: `وَنَزَّلْنَا مِنَ السَّمَاءِ مَاءً مُبَارَكًا فَأَنْبَتْنَا بِهِ جَنَّاتٍ وَحَبَّ الْحَصِيدِ`, en: `And We have sent down blessed rain from the sky and made grow thereby gardens and grain from the harvest`, note: `Connects sky and soil via "blessed rain" (ma'an mubarakan), yielding both lush gardens and staple grain.` },
+      { n: 10, act: `act2`, ar: `وَالنَّخْلَ بَاسِقَاتٍ لَهَا طَلْعٌ نَضِيدٌ`, en: `And lofty palm trees having fruit arranged in layers`, note: `Basiqat (towering/lofty) palms bearing tal'un nadid (compactly stacked fruit clusters).` },
+      { n: 11, act: `act2`, ar: `رِزْقًا لِلْعِبَادِ ۖ وَأَحْيَيْنَا بِهِ بَلْدَةً مَيْتًا ۚ كَذَٰلِكَ الْخُرُوجُ`, en: `As provision for the servants, and We have given life thereby to a dead land. Thus is the resurrection.`, note: `Direct empirical analogy: reviving a barren land mirrors al-Khuruj—human emergence from the earth (echoed in 50:42).` },
+      { n: 12, act: `act2`, ar: `كَذَّبَتْ قَبْلَهُمْ قَوْمُ نُوحٍ وَأَصْحَابُ الرَّسِّ وَثَمُودُ`, en: `The people of Noah denied before them, and the companions of the well and Thamud`, note: `Begins the historical roll call of deniers across eras and regions.` },
+      { n: 13, act: `act2`, ar: `وَعَادٌ وَفِرْعَوْنُ وَإِخْوَانُ لُوطٍ`, en: `And 'Aad and Pharaoh and the brothers of Lot`, note: `Continues with 'Aad, Pharaoh, and the kinsfolk/brothers of Lot.` },
+      { n: 14, act: `act2`, ar: `وَأَصْحَابُ الْأَيْكَةِ وَقَوْمُ تُبَّعٍ ۚ كُلٌّ كَذَّبَ الرُّسُلَ فَحَقَّ وَعِيدِ`, en: `And the companions of the thicket and the people of Tubba'. All denied the messengers, so My threat was justly fulfilled.`, note: `Completes the eight nations; "so My threat was justly fulfilled" (fa-haqqa wa'id) establishes historical certainty.` },
+      { n: 15, act: `act2`, ar: `أَفَعَيِينَا بِالْخَلْقِ الْأَوَّلِ ۚ بَلْ هُمْ فِي لَبْسٍ مِنْ خَلْقٍ جَدِيدٍ`, en: `Did We fail in the first creation? But they are in confusion over a new creation.`, note: `Logical rebuttal: the Originator who did not tire at first creation cannot fail at re-creation (labs echoes amrin marij in 50:5).` },
+      { n: 16, act: `act3`, ar: `وَلَقَدْ خَلَقْنَا الْإِنْسَانَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ`, en: `And We have already created man and know what his soul whispers to him, and We are closer to him than [his] jugular vein`, note: `Pivotal verse on Divine omniscience and closeness closer than habl al-warid—penetrating even unspoken inner whispers.` },
+      { n: 17, act: `act3`, ar: `إِذْ يَتَلَقَّى الْمُتَلَقِّيَانِ عَنِ الْيَمِينِ وَعَنِ الشِّمَالِ قَعِيدٌ`, en: `When the two receivers receive, seated on the right and on the left.`, note: `Al-Mutaqalliyan: two recording angels positioned on the right and left flanks of every person.` },
+      { n: 18, act: `act3`, ar: `مَا يَلْفِظُ مِنْ قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ`, en: `Man does not utter any word except that with him is an observer prepared [to record].`, note: `Raqibun 'Atid means a vigilant watcher ever-present and prepared—not merely two proper names, but functional titles of absolute readiness.` },
+      { n: 19, act: `act3`, ar: `وَجَاءَتْ سَكْرَةُ الْمَوْتِ بِالْحَقِّ ۖ ذَٰلِكَ مَا كُنْتَ مِنْهُ تَحِيدُ`, en: `And the intoxication of death will bring the truth; that is what you were trying to avoid.`, note: `Sakrat al-mawt (the stupor/agony of death) strips away illusions and confronts the human being with the truth they tried to evade (tahid).` },
+      { n: 20, act: `act3`, ar: `وَنُفِخَ فِي الصُّورِ ۚ ذَٰلِكَ يَوْمُ الْوَعِيدِ`, en: `And the Horn will be blown. That is the Day of [carrying out] the threat.`, note: `The trumpet blast inaugurates Yawm al-Wa'id—turning the oft-doubted warning into immediate reality.` },
+      { n: 21, act: `act3`, ar: `وَجَاءَتْ كُلُّ نَفْسٍ مَعَهَا سَائِقٌ وَشَهِيدٌ`, en: `And every soul will come, with it a driver and a witness.`, note: `Every soul arrives escorted by two agents: a driver (sa'iq) leading it to judgment and a witness (shahid) testifying to its deeds.` },
+      { n: 22, act: `act3`, ar: `لَقَدْ كُنْتَ فِي غَفْلَةٍ مِنْ هَٰذَا فَكَشَفْنَا عَنْكَ غِطَاءَكَ فَبَصَرُكَ الْيَوْمَ حَدِيدٌ`, en: `[It will be said], "You were certainly in unmindfulness of this, and We have removed from you your cover, so your sight, this Day, is sharp."`, note: `Ghaflah (heedlessness) ends when the veil (ghita') is lifted, making vision "iron-sharp" (hadid).` },
+      { n: 23, act: `act3`, ar: `وَقَالَ قَرِينُهُ هَٰذَا مَا لَدَيَّ عَتِيدٌ`, en: `And his companion, [the angel], will say, "This [record] is what is with me, prepared."`, note: `The accompanying angel presents the intact dossier ('atid) for adjudication.` },
+      { n: 24, act: `act3`, ar: `أَلْقِيَا فِي جَهَنَّمَ كُلَّ كَفَّارٍ عَنِيدٍ`, en: `[Allah will say], "Throw into Hell every obstinate disbeliever,`, note: `Dual imperative (alqiya—"cast, you two") addressed to the accompanying angels, targeting stubborn ingratitude (kaffar 'anid).` },
+      { n: 25, act: `act3`, ar: `مَنَّاعٍ لِلْخَيْرِ مُعْتَدٍ مُرِيبٍ`, en: `Preventer of good, aggressor, and doubter,`, note: `Intensive Arabic forms (manna') highlight habitual blocking of good, aggression, and active spreading of doubt.` },
+      { n: 26, act: `act3`, ar: `الَّذِي جَعَلَ مَعَ اللَّهِ إِلَٰهًا آخَرَ فَأَلْقِيَاهُ فِي الْعَذَابِ الشَّدِيدِ`, en: `Who made [as equal] with Allah another deity; then throw him into the severe punishment."`, note: `Identifies the root spiritual breach—shirk (setting another deity beside Allah).` },
+      { n: 27, act: `act3`, ar: `قَالَ قَرِينُهُ رَبَّنَا مَا أَطْغَيْتُهُ وَلَٰكِنْ كَانَ فِي ضَلَالٍ بَعِيدٍ`, en: `His [devil] companion will say, "Our Lord, I did not make him transgress, but he [himself] was in extreme error."`, note: `The devilish qarin disowns responsibility, underscoring human moral agency; note again the echo of ba'id ("far/extreme error").` },
+      { n: 28, act: `act3`, ar: `قَالَ لَا تَخْتَصِمُوا لَدَيَّ وَقَدْ قَدَّمْتُ إِلَيْكُمْ بِالْوَعِيدِ`, en: `[Allah] will say, "Do not dispute before Me, while I had already presented to you the warning.`, note: `Divine authority halts blame-shifting in the courtroom: prior warning had already been delivered.` },
+      { n: 29, act: `act3`, ar: `مَا يُبَدَّلُ الْقَوْلُ لَدَيَّ وَمَا أَنَا بِظَلَّامٍ لِلْعَبِيدِ`, en: `The word will not be changed with Me, and never will I be unjust to the servants."`, note: `Affirms both the immutability of Divine decree and absolute justice (negative intensive zallam: not even a trace of injustice).` },
+      { n: 30, act: `act4`, ar: `يَوْمَ نَقُولُ لِجَهَنَّمَ هَلِ امْتَلَأْتِ وَتَقُولُ هَلْ مِنْ مَزِيدٍ`, en: `On the Day We will say to Hell, "Have you been filled?" and it will say, "Are there some more,"`, note: `Dramatic personification of Hell answering with an insatiable "Hal min mazid?"—contrasted directly with 50:35.` },
+      { n: 31, act: `act4`, ar: `وَأُزْلِفَتِ الْجَنَّةُ لِلْمُتَّقِينَ غَيْرَ بَعِيدٍ`, en: `And Paradise will be brought near to the righteous, not far,`, note: `Uzlifat (brought close) and ghayra ba'id ("not far") directly reverse the skeptics' taunt in 50:3.` },
+      { n: 32, act: `act4`, ar: `هَٰذَا مَا تُوعَدُونَ لِكُلِّ أَوَّابٍ حَفِيظٍ`, en: `[It will be said], "This is what you were promised - for every returner [to Allah] and keeper [of His covenant]`, note: `Awwab (frequent returner in repentance) and Hafiz (mindful keeper of Allah's boundaries, mirroring Kitabun Hafiz in 50:4).` },
+      { n: 33, act: `act4`, ar: `مَنْ خَشِيَ الرَّحْمَٰنَ بِالْغَيْبِ وَجَاءَ بِقَلْبٍ مُنِيبٍ`, en: `Who feared the Most Merciful unseen and came with a heart returning [in repentance].`, note: `Highlights private reverence for al-Rahman (the Most Merciful) and a turning heart (qalbin munib, echoing 50:8).` },
+      { n: 34, act: `act4`, ar: `ادْخُلُوهَا بِسَلَامٍ ۖ ذَٰلِكَ يَوْمُ الْخُلُودِ`, en: `Enter it in peace. This is the Day of Eternity."`, note: `Salutation of absolute peace (bi-salam) inaugurating timeless eternity (Yawm al-Khulud).` },
+      { n: 35, act: `act4`, ar: `لَهُمْ مَا يَشَاءُونَ فِيهَا وَلَدَيْنَا مَزِيدٌ`, en: `They will have whatever they wish therein, and with Us is more.`, note: `Completes the mazid contrast: unlike Hell's hunger for more, Paradise overflows with unimagined Divine surplus (wa ladayna mazid).` },
+      { n: 36, act: `act5`, ar: `وَكَمْ أَهْلَكْنَا قَبْلَهُمْ مِنْ قَرْنٍ هُمْ أَشَدُّ مِنْهُمْ بَطْشًا فَنَقَّبُوا فِي الْبِلَادِ هَلْ مِنْ مَحِيصٍ`, en: `And how many a generation before them did We destroy who were greater than them in [striking] power and had explored throughout the lands. Is there any place of escape?`, note: `Naqqabu fi al-bilad evokes scouring/excavating lands for refuge or power—yet leaving the question: "Is there any place of escape?"` },
+      { n: 37, act: `act5`, ar: `إِنَّ فِي ذَٰلِكَ لَذِكْرَىٰ لِمَنْ كَانَ لَهُ قَلْبٌ أَوْ أَلْقَى السَّمْعَ وَهُوَ شَهِيدٌ`, en: `Indeed in that is a reminder for whoever has a heart or who listens while he is present [in mind].`, note: `Two receptive postures: possessing an awakened heart (qalb), or attentively lending one's ear with full presence (wa huwa shahid).` },
+      { n: 38, act: `act5`, ar: `وَلَقَدْ خَلَقْنَا السَّمَاوَاتِ وَالْأَرْضَ وَمَا بَيْنَهُمَا فِي سِتَّةِ أَيَّامٍ وَمَا مَسَّنَا مِنْ لُغُوبٍ`, en: `And We did certainly create the heavens and earth and what is between them in six days, and there touched Us no weariness.`, note: `Explicitly refutes fatigue (lughub) in creation, reinforcing 50:15 ("Did We fail in the first creation?").` },
+      { n: 39, act: `act5`, ar: `فَاصْبِرْ عَلَىٰ مَا يَقُولُونَ وَسَبِّحْ بِحَمْدِ رَبِّكَ قَبْلَ طُلُوعِ الشَّمْسِ وَقَبْلَ الْغُرُوبِ`, en: `So be patient, [O Muhammad], over what they say and exalt [Allah] with praise of your Lord before the rising of the sun and before its setting,`, note: `Prescribes spiritual anchoring against verbal hostility: steadfast patience paired with praise before sunrise and sunset.` },
+      { n: 40, act: `act5`, ar: `وَمِنَ اللَّيْلِ فَسَبِّحْهُ وَأَدْبَارَ السُّجُودِ`, en: `And [in part] of the night exalt Him and after prostration.`, note: `Extends tasbih into the night and immediately following prostrations (adbar al-sujud).` },
+      { n: 41, act: `act5`, ar: `وَاسْتَمِعْ يَوْمَ يُنَادِ الْمُنَادِ مِنْ مَكَانٍ قَرِيبٍ`, en: `And listen on the Day when the Caller will call out from a place that is near`, note: `Calls the listener to attention for the summon from makanin qarib ("a place that is near")—answering 50:3.` },
+      { n: 42, act: `act5`, ar: `يَوْمَ يَسْمَعُونَ الصَّيْحَةَ بِالْحَقِّ ۚ ذَٰلِكَ يَوْمُ الْخُرُوجِ`, en: `The Day they will hear the blast [of the Horn] in truth. That is the Day of Emergence [from the graves].`, note: `Al-Sayhah bi-l-Haqq (the truthful blast) unleashes Yawm al-Khuruj, uniting the biological seed metaphor of 50:11 with final resurrection.` },
+      { n: 43, act: `act5`, ar: `إِنَّا نَحْنُ نُحْيِي وَنُمِيتُ وَإِلَيْنَا الْمَصِيرُ`, en: `Indeed, it is We who give life and cause death, and to Us is the destination`, note: `Emphatic pronoun construction (Inna Nahnu—"Indeed, We Ourselves") affirms sole sovereignty over life, death, and final return.` },
+      { n: 44, act: `act5`, ar: `يَوْمَ تَشَقَّقُ الْأَرْضُ عَنْهُمْ سِرَاعًا ۚ ذَٰلِكَ حَشْرٌ عَلَيْنَا يَسِيرٌ`, en: `On the Day the earth breaks away from them [and they emerge] rapidly; that is a gathering easy for Us.`, note: `Hashrun 'alayna yasir ("a gathering easy for Us") resolves every doubt about the scale of universal resurrection.` },
+      { n: 45, act: `act5`, ar: `نَحْنُ أَعْلَمُ بِمَا يَقُولُونَ وَمَا أَنْتَ عَلَيْهِمْ بِجَبَّارٍ ۖ فَذَكِّرْ بِالْقُرْآنِ مَنْ يَخَافُ وَعِيدِ`, en: `We are most knowing of what they say, and you are not over them a tyrant. But remind by the Qur'an whoever fears My threat.`, note: `Concludes the Surah: the Messenger is a reminder, not a coercive tyrant (jabbar), bringing the Surah back to the Qur'an of 50:1.` }
+    ];
+
+    const RING_PAIRS = [
+      {
+        tag: `Outer Frame • 50:1–5 ↔ 50:45`,
+        title: `By the Honored Qur'an → Remind by the Qur'an`,
+        arabic: `ق ۚ وَالْقُرْآنِ الْمَجِيدِ ... فَذَكِّرْ بِالْقُرْآنِ مَنْ يَخَافُ وَعِيدِ`,
+        body: `The Surah begins by swearing by <em>al-Qur'an al-Majid</em> (50:1) amidst denial of the warner and the threat (50:2–5). It closes in 50:45 by instructing the Prophet not to act as a tyrant over their speech, but to <em>remind by the Qur'an whoever fears My threat</em>.`,
+        echo: `<strong>Verbal Echo:</strong> The possessive warning <em>Wa'idi</em> ("My threat") appears in 50:14 and closes the entire Surah in 50:45, alongside the shift from "distant return" (50:3) to "near" (50:41).`
+      },
+      {
+        tag: `Cosmic Frame • 50:6–15 ↔ 50:38, 41–44`,
+        title: `Creation Without Failure → Six Days Without Weariness`,
+        arabic: `أَفَعَيِينَا بِالْخَلْقِ الْأَوَّلِ ... وَمَا مَسَّنَا مِنْ لُغُوبٍ`,
+        body: `Verses 6–15 point to the seamless sky, anchored earth, blessed rain, and dead land revived (<em>al-Khuruj</em>, 50:11), asking: <em>"Did We fail in the first creation?"</em> Verses 38 and 41–44 mirror this directly: six days of creation touched by <em>no weariness</em>, followed by the earth splitting for an easy gathering (<em>Yawm al-Khuruj</em>).`,
+        echo: `<strong>Verbal Echo:</strong> <em>Al-Khuruj</em> (Emergence) links plant growth in 50:11 to bodily resurrection in 50:42.`
+      },
+      {
+        tag: `Human Heart Frame • 50:16–23 ↔ 50:36–40`,
+        title: `Inner Whispers & Sight → Presence of Heart & Praise`,
+        arabic: `وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ ... لِمَنْ كَانَ لَهُ قَلْبٌ أَوْ أَلْقَى السَّمْعَ وَهُوَ شَهِيدٌ`,
+        body: `Before the courtroom scene, 50:16–23 reveal Divine nearness to the soul's whispers and the <em>shahid</em> (witness) accompanying every soul. After Paradise, 50:36–40 invite the living listener to become <em>shahid</em> (present in mind) right now through an awakened heart and daily remembrance.`,
+        echo: `<strong>Verbal Echo:</strong> <em>Shahid</em> shifts from the courtroom witness of deeds (50:21) to the attentive human listener present with their heart (50:37).`
+      },
+      {
+        tag: `Pivot Axis • 50:24–35`,
+        title: `The Verdict & The Two Answers to "Mazid"`,
+        arabic: `هَلْ مِنْ مَزِيدٍ ... وَلَدَيْنَا مَزِيدٌ`,
+        body: `At the center of the Surah stands the final separation: the obstinate disbeliever's failed dispute with his <em>qarin</em>, Hell asking <em>"Are there some more?"</em> (50:30), and Paradise brought <em>"not far"</em> (50:31) where the righteous receive whatever they wish—<em>"and with Us is more"</em> (50:35).`,
+        echo: `<strong>Verbal Echo:</strong> <em>Mazid</em> ("more") encapsulates insatiable torment versus boundless Divine generosity.`
+      }
+    ];
+
+    const COSMIC_STEPS = [
+      {
+        ref: `Verse 50:6 • Structural Perfection`,
+        ar: `أَفَلَمْ يَنْظُرُوا إِلَى السَّمَاءِ فَوْقَهُمْ كَيْفَ بَنَيْنَاهَا وَزَيَّنَّاهَا وَمَا لَهَا مِنْ فُرُوجٍ`,
+        tr: `“Have they not looked at the heaven above them - how We structured it and adorned it and [how] it has no rifts?”`,
+        note: `<strong>Linguistic Insight:</strong> <em>Furuj</em> (<bdi dir="rtl" lang="ar" class="arabic-inline">فُرُوجٍ</bdi>) denotes cracks, gaps, or structural fractures. Before arguing for re-creation, the verse directs attention to a seamless sky built and adorned without flaw.`
+      },
+      {
+        ref: `Verse 50:7 • Stability & Beauty`,
+        ar: `وَالْأَرْضَ مَدَدْنَاهَا وَأَلْقَيْنَا فِيهَا رَوَاسِيَ وَأَنْبَتْنَا فِيهَا مِنْ كُلِّ زَوْجٍ بَهِيجٍ`,
+        tr: `“And the earth - We spread it out and cast therein firmly set mountains and made grow therein [something] of every beautiful kind,”`,
+        note: `<strong>Linguistic Insight:</strong> <em>Zawjin bahij</em> (<bdi dir="rtl" lang="ar" class="arabic-inline">زَوْجٍ بَهِيجٍ</bdi>) refers to paired botanical species bursting with beauty that delights the eye—combining architectural engineering (mountains) with life.`
+      },
+      {
+        ref: `Verse 50:8 • The Precondition of Insight`,
+        ar: `تَبْصِرَةً وَذِكْرَىٰ لِكُلِّ عَبْدٍ مُنِيبٍ`,
+        tr: `“Giving insight and a reminder for every servant who turns [to Allah].”`,
+        note: `<strong>Theological Key:</strong> Signs in nature are accessible to everyone, yet they become <em>tabsirah</em> (inner illumination) and <em>dhikra</em> (awakened memory) specifically for the <em>'abd munib</em>—one whose heart turns toward Allah.`
+      },
+      {
+        ref: `Verse 50:9 • Blessed Rain`,
+        ar: `وَنَزَّلْنَا مِنَ السَّمَاءِ مَاءً مُبَارَكًا فَأَنْبَتْنَا بِهِ جَنَّاتٍ وَحَبَّ الْحَصِيدِ`,
+        tr: `“And We have sent down blessed rain from the sky and made grow thereby gardens and grain from the harvest”`,
+        note: `<strong>Botanical Breadth:</strong> Rain is called <em>mubarak</em> (blessed/abundant in lasting benefit), nourishing both perennial orchards (<em>jannat</em>) and annual harvested crops (<em>habb al-hasid</em>).`
+      },
+      {
+        ref: `Verse 50:10 • Lofty Palms`,
+        ar: `وَالنَّخْلَ بَاسِقَاتٍ لَهَا طَلْعٌ نَضِيدٌ`,
+        tr: `“And lofty palm trees having fruit arranged in layers”`,
+        note: `<strong>Visual Precision:</strong> <em>Basiqat</em> highlights towering height while <em>tal'un nadid</em> depicts dates arranged in dense, orderly tiers—another signature of intentional design.`
+      },
+      {
+        ref: `Verse 50:11 • Dead Land Revived = Resurrection`,
+        ar: `رِزْقًا لِلْعِبَادِ ۖ وَأَحْيَيْنَا بِهِ بَلْدَةً مَيْتًا ۚ كَذَٰلِكَ الْخُرُوجُ`,
+        tr: `“As provision for the servants, and We have given life thereby to a dead land. Thus is the resurrection.”`,
+        note: `<strong>The Decisive Conclusion:</strong> <em>Kadhalika al-Khuruj</em> ("Thus is the Emergence") equates the sprouting of dormant seeds in lifeless soil with humanity emerging from graves on the Last Day.`
+      }
+    ];
+
+    const WITNESS_STAGES = [
+      {
+        badge: `Threshold I • Verse 50:16`,
+        title: `Closer Than the Jugular Vein`,
+        ar: `وَلَقَدْ خَلَقْنَا الْإِنْسَانَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ`,
+        desc: `The <em>habl al-warid</em> (jugular vein) is the vital conduit pulsing in the neck—yet Allah's knowledge and nearness precede even a person's own silent inner monologue (<em>ma tuwaswisu bihi nafsuhu</em>).`,
+        insight: `<strong>Key Role:</strong> Unlike human observation that perceives only outward acts, Divine proximity encompasses unvoiced impulses before they ever become words.`
+      },
+      {
+        badge: `Threshold II • Verses 50:17–18`,
+        title: `The Two Receivers & Vigilant Observer`,
+        ar: `إِذْ يَتَلَقَّى الْمُتَلَقِّيَانِ عَنِ الْيَمِينِ وَعَنِ الشِّمَالِ قَعِيدٌ ۝ مَا يَلْفِظُ مِنْ قَوْلٍ إِلَّا لَدَيْهِ رَقِيبٌ عَتِيدٌ`,
+        desc: `Seated on the right and left, two angelic receivers record every spoken utterance. Nothing slips past unrecorded: every word meets a <em>Raqibun 'Atid</em>—a vigilant, ever-prepared observer.`,
+        insight: `<strong>Linguistic Note:</strong> The verb <em>yalfizu</em> literally suggests "casting out" a word from the mouth, emphasizing how effortlessly spoken speech is captured permanently.`
+      },
+      {
+        badge: `Threshold III • Verses 50:19–23`,
+        title: `Death's Stupor & The Lifted Veil`,
+        ar: `وَجَاءَتْ سَكْرَةُ الْمَوْتِ بِالْحَقِّ ۖ ذَٰلِكَ مَا كُنْتَ مِنْهُ تَحِيدُ ... فَكَشَفْنَا عَنْكَ غِطَاءَكَ فَبَصَرُكَ الْيَوْمَ حَدِيدٌ`,
+        desc: `At death, <em>sakrat al-mawt</em> delivers the undeniable truth one spent life evading. Then the Horn blows, every soul arrives escorted by a driver (<em>sa'iq</em>) and witness (<em>shahid</em>), and the veil of heedlessness is torn away so sight becomes sharp (<em>hadid</em>).`,
+        insight: `<strong>Metaphor of Clarity:</strong> <em>Hadid</em> literally means "iron" or "razor-sharp"—the exact opposite of the fog of earthly <em>ghaflah</em> (unmindfulness).`
+      },
+      {
+        badge: `Threshold IV • Verses 50:24–29`,
+        title: `The Courtroom & The Qarin's Disclaimer`,
+        ar: `قَالَ قَرِينُهُ رَبَّنَا مَا أَطْغَيْتُهُ وَلَٰكِنْ كَانَ فِي ضَلَالٍ بَعِيدٍ ۝ قَالَ لَا تَخْتَصِمُوا لَدَيَّ`,
+        desc: `In 50:23 the angel companion presents the prepared record; in 50:27 the devilish companion (<em>qarin</em>) disclaims responsibility, declaring the human was already in extreme error (<em>dalalin ba'id</em>). Allah silences all dispute: the warning came beforehand, and His word never shifts into injustice.`,
+        insight: `<strong>Moral Agency:</strong> Even the devil companion cannot force transgression—each soul bears accountability for choosing heedlessness over warning.`
+      }
+    ];
+
+    const VOCAB_DECK = [
+      { id: `v1`, ar: `حَبْلِ الْوَرِيدِ`, tr: `Habl al-Warid`, en: `The jugular vein`, ref: `50:16`, root: `ح-ب-ل / و-ر-د`, note: `Signifies the closest anatomical artery of life in the human body, used to illustrate Allah's unsurpassed intimacy and knowledge of the soul's whispers.` },
+      { id: `v2`, ar: `رَجْعٌ بَعِيدٌ`, tr: `Raj'un Ba'id`, en: `A distant (improbable) return`, ref: `50:3`, root: `ر-ج-ع / ب-ع-د`, note: `The disbelievers' skeptical dismissal of returning from dust—systematically overturned by "not far" (50:31) and "a near place" (50:41).` },
+      { id: `v3`, ar: `أَمْرٍ مَرِيجٍ`, tr: `Amrin Marij`, en: `A confused, unstable condition`, ref: `50:5`, root: `م-ر-ج`, note: `Describes something mixed together, wavering, and lacking coherence—the intellectual turbulence caused by denying clear truth.` },
+      { id: `v4`, ar: `فُرُوجٍ`, tr: `Furuj`, en: `Rifts, cracks, or gaps`, ref: `50:6`, root: `ف-ر-ج`, note: `Plural of farj (opening/fissure). Used to highlight the structural perfection of the heavens overhead.` },
+      { id: `v5`, ar: `زَوْجٍ بَهِيجٍ`, tr: `Zawjin Bahij`, en: `Every joyful / beautiful kind`, ref: `50:7`, root: `ز-و-ج / ب-ه-ج`, note: `Bahij comes from bahjah (radiant gladness). Earth's paired botanical life brings both physical sustenance and spiritual delight.` },
+      { id: `v6`, ar: `طَلْعٌ نَضِيدٌ`, tr: `Tal'un Nadid`, en: `Fruit arranged in neat layers`, ref: `50:10`, root: `ط-ل-ع / ن-ض-د`, note: `Depicts palm blossom/fruit clusters stacked in orderly tiers—an emblem of meticulous provision.` },
+      { id: `v7`, ar: `رَقِيبٌ عَتِيدٌ`, tr: `Raqibun 'Atid`, en: `A vigilant, ever-prepared observer`, ref: `50:18`, root: `ر-ق-ب / ع-ت-د`, note: `Descriptive titles of the recording angels: Raqib watches constantly without lapse; 'Atid stands completely ready to log every word.` },
+      { id: `v8`, ar: `سَكْرَةُ الْمَوْتِ`, tr: `Sakrat al-Mawt`, en: `The intoxication / stupor of death`, ref: `50:19`, root: `س-ك-ر`, note: `The overwhelming intensity of death that shatters earthly distraction and ushers in undeniable truth (bi-l-haqq).` },
+      { id: `v9`, ar: `بَصَرُكَ الْيَوْمَ حَدِيدٌ`, tr: `Basaruka al-Yawma Hadid`, en: `Your sight, this Day, is sharp`, ref: `50:22`, root: `ب-ص-ر / ح-د-د`, note: `Hadid means iron or razor-sharp. Once the veil of heedlessness (ghita') is lifted, spiritual perception becomes piercing.` },
+      { id: `v10`, ar: `كَفَّارٍ عَنِيدٍ`, tr: `Kaffar 'Anid`, en: `Obstinate, stubborn disbeliever`, ref: `50:24`, root: `ك-ف-ر / ع-ن-د`, note: `Intensive noun (kaffar) paired with 'anid (willfully rebellious against truth despite recognizing it).` },
+      { id: `v11`, ar: `أَوَّابٍ حَفِيظٍ`, tr: `Awwab Hafiz`, en: `Constant returner & covenant-keeper`, ref: `50:32`, root: `أ-و-ب / ح-ف-ظ`, note: `Intensive forms describing the inheritors of Paradise: repeatedly turning back in repentance (awwab) and guarding sacred limits (hafiz).` },
+      { id: `v12`, ar: `لُغُوبٍ`, tr: `Lughub`, en: `Weariness or fatigue`, ref: `50:38`, root: `ل-غ-ب`, note: `Denies any trace of exhaustion in the six-day creation of heaven and earth, proving resurrection is effortless for Allah.` }
+    ];
+
+    const MASTERY_QUIZ = [
+      {
+        q: `How does Surah Qaf directly answer the disbelievers' taunt that returning from dust is a "distant return" (raj'un ba'id, 50:3)?`,
+        options: [
+          `By promising a thousand-year delay before judgment`,
+          `By declaring Paradise "not far" (ghayra ba'id, 50:31) and the Caller summoning from "a place that is near" (makanin qarib, 50:41)`,
+          `By stating that souls remain permanently asleep in the earth`,
+          `By claiming only past nations will be resurrected`
+        ],
+        answer: 1,
+        explanation: `Surah Qaf intentionally echoes the root b-'-d ("distant"): the mockers call resurrection "distant" (50:3), yet Paradise is brought "not far" (50:31) and the final Call sounds from "a place that is near" (50:41).`
+      },
+      {
+        q: `What biological phenomenon in verses 50:9–11 serves as Allah's direct empirical parallel to "al-Khuruj" (Resurrection)?`,
+        options: [
+          `Ocean tides rising and falling beneath the moon`,
+          `Blessed rain reviving a dead land into gardens, grain, and lofty palm trees`,
+          `Mountains shifting across tectonic plates`,
+          `Stars orbiting without colliding in the night sky`
+        ],
+        answer: 1,
+        explanation: `Verses 50:9–11 trace blessed rain transforming a barren, dead land (baldatan maytan) into gardens, harvested grain, and palm trees, concluding: "Thus is the resurrection" (Kadhalika al-Khuruj).`
+      },
+      {
+        q: `In verse 50:16, what does the phrase "closer to him than [his] jugular vein" (habl al-warid) emphasize?`,
+        options: [
+          `Physical anatomy lessons for ancient physicians`,
+          `That angels sit only inside the chest cavity`,
+          `Allah's complete, intimate awareness of even the unspoken whispers of the human soul`,
+          `That humans have no free will over their speech`
+        ],
+        answer: 2,
+        explanation: `Verse 50:16 pairs Divine creation of humanity with knowing "what his soul whispers to him" (ma tuwaswisu bihi nafsuhu), illustrating inescapable inward nearness.`
+      },
+      {
+        q: `What are the roles of the two companions accompanying every soul upon arrival in verse 50:21?`,
+        options: [
+          `A prosecutor and a defense attorney`,
+          `A driver (sa'iq) and a witness (shahid)`,
+          `A scribe and a gatekeeper`,
+          `A ruler and a translator`
+        ],
+        answer: 1,
+        explanation: `Verse 50:21 states: "And every soul will come, with it a driver (sa'iq) and a witness (shahid)." This is followed in 50:22 by the lifting of the veil so sight becomes sharp.`
+      },
+      {
+        q: `In the courtroom scene of 50:27–29, how does Allah respond when the devil companion (qarin) denies making the person transgress?`,
+        options: [
+          `Allah allows a prolonged debate between them`,
+          `Allah says: "Do not dispute before Me, while I had already presented to you the warning. The word will not be changed with Me"`,
+          `Allah transfers all guilt onto the devil companion alone`,
+          `Allah postpones the verdict until another hearing`
+        ],
+        answer: 1,
+        explanation: `Verses 50:28–29 halt all courtroom disputation: the warning had already been presented, Allah's word does not change, and He is never unjust to the servants.`
+      },
+      {
+        q: `How does the Surah contrast Hell and Paradise using the Arabic word "mazid" ("more") in verses 50:30 and 50:35?`,
+        options: [
+          `Both Hell and Paradise ask for more inhabitants`,
+          `Hell insatiably asks "Are there some more?" (Hal min mazid), while for the righteous in Paradise "with Us is more" (wa ladayna mazid)`,
+          `Paradise asks for more rain while Hell asks for shade`,
+          `Mazid refers to the number of years in earthly life`
+        ],
+        answer: 1,
+        explanation: `This is one of Surah Qaf's most vivid rhetorical mirrors: Hell's hunger ("Are there some more?", 50:30) contrasts with Divine abundance in Paradise ("They will have whatever they wish therein, and with Us is more," 50:35).`
+      },
+      {
+        q: `According to 50:32–33, which pair of qualities characterizes those welcomed into Paradise in peace?`,
+        options: [
+          `Great striking power (batsh) and exploring the lands`,
+          `Every constant returner (awwab) and keeper (hafiz), who feared al-Rahman unseen and came with a turning heart`,
+          `Avoiding speech altogether and living in isolation`,
+          `Wealth in grain and lofty palm orchards`
+        ],
+        answer: 1,
+        explanation: `Verses 50:32–33 describe the inheritors as every returner (awwab) and keeper of covenant (hafiz) who feared the Most Merciful unseen (bi-l-ghayb) and brought a turning heart (qalbin munib).`
+      },
+      {
+        q: `What closing instruction in 50:39–40 and 50:45 equips the Prophet (and believer) against hostile mockery?`,
+        options: [
+          `Debate every mocker until they surrender`,
+          `Be patient, exalt Allah with praise before sunrise, before sunset, in the night, and after prostration—and remind by the Qur'an without acting as a tyrant`,
+          `Leave the city immediately before the Horn blows`,
+          `Refrain from reciting the Qur'an in public`
+        ],
+        answer: 1,
+        explanation: `Verses 50:39–40 anchor resilience in patience and rhythmic tasbih (before sunrise, before sunset, during night, after prostration), while 50:45 clarifies "you are not over them a tyrant (jabbar)—remind by the Qur'an whoever fears My threat."`
+      }
+    ];
+
+    let appState = {
+      reviewedVerses: [],
+      masteredVocab: [],
+      revealedVocab: [],
+      quizAnswers: {},
+      currentQuizIdx: 0,
+      showInsights: true,
+      activeRing: 0,
+      activeCosmic: 0,
+      activeWitness: 0
+    };
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        // Ignore transient host persistence errors silently
+      }
+      updateMasteryBar();
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+          const loaded = await window.notebookAppApi.getAppState();
+          if (loaded && typeof loaded === 'object') {
+            appState = Object.assign({}, appState, loaded);
+          }
+        }
+      } catch (err) {
+        // Fallback to clean initial state
+      }
+
+      selectRingPair(appState.activeRing || 0, true);
+      selectCosmicStep(appState.activeCosmic || 0, true);
+      selectWitnessStage(appState.activeWitness || 0, true);
+      renderVerses();
+      renderVocabDeck();
+      renderQuizQuestion();
+      updateMasteryBar();
+
+      const insightsBtn = document.getElementById('toggle-insights-btn');
+      if (insightsBtn) {
+        insightsBtn.textContent = appState.showInsights ? 'Hide Commentary Notes' : 'Show Commentary Notes';
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    function updateMasteryBar() {
+      const versePct = Math.min(1, (appState.reviewedVerses.length / SURAH_VERSES.length)) * 40;
+      const vocabPct = Math.min(1, (appState.masteredVocab.length / VOCAB_DECK.length)) * 30;
+      const correctCount = Object.keys(appState.quizAnswers).filter(function(k) {
+        const idx = Number(k);
+        return MASTERY_QUIZ[idx] && appState.quizAnswers[k] === MASTERY_QUIZ[idx].answer;
+      }).length;
+      const quizPct = Math.min(1, (correctCount / MASTERY_QUIZ.length)) * 30;
+      const total = Math.round(versePct + vocabPct + quizPct);
+
+      const summaryEl = document.getElementById('mastery-summary-text');
+      const fillEl = document.getElementById('mastery-progress-fill');
+      if (summaryEl) {
+        summaryEl.textContent = `${total}% complete — ${appState.reviewedVerses.length}/45 verses reviewed · ${appState.masteredVocab.length}/12 terms mastered · ${correctCount}/8 quiz items correct`;
+      }
+      if (fillEl) {
+        fillEl.style.width = `${total}%`;
+      }
+    }
+
+    function selectRingPair(idx, skipSave) {
+      const pair = RING_PAIRS[idx];
+      if (!pair) return;
+      appState.activeRing = idx;
+
+      const btns = document.querySelectorAll('#ring-buttons .ring-node-btn');
+      btns.forEach(function(btn, i) {
+        btn.classList.remove('is-active', 'is-mirror');
+        if (i === idx) btn.classList.add('is-active');
+      });
+
+      for (let i = 0; i < 4; i++) {
+        const arc = document.getElementById(`arc-${i}`);
+        if (arc) {
+          arc.setAttribute('stroke-width', i === idx ? '4' : '1.5');
+          arc.setAttribute('opacity', i === idx ? '1' : '0.35');
+        }
+      }
+
+      const tagEl = document.getElementById('ring-detail-tag');
+      const titleEl = document.getElementById('ring-detail-title');
+      const arEl = document.getElementById('ring-detail-arabic');
+      const bodyEl = document.getElementById('ring-detail-body');
+      const echoEl = document.getElementById('ring-detail-echo');
+
+      if (tagEl) tagEl.textContent = pair.tag;
+      if (titleEl) titleEl.textContent = pair.title;
+      if (arEl) arEl.textContent = pair.arabic;
+      if (bodyEl) bodyEl.innerHTML = pair.body;
+      if (echoEl) echoEl.innerHTML = pair.echo;
+
+      if (!skipSave) persistState();
+    }
+
+    function selectCosmicStep(idx, skipSave) {
+      const step = COSMIC_STEPS[idx];
+      if (!step) return;
+      appState.activeCosmic = idx;
+
+      document.querySelectorAll('[data-cosmic]').forEach(function(btn) {
+        btn.classList.toggle('is-active', Number(btn.dataset.cosmic) === idx);
+      });
+
+      const refEl = document.getElementById('cosmic-ref');
+      const arEl = document.getElementById('cosmic-arabic');
+      const trEl = document.getElementById('cosmic-translation');
+      const noteEl = document.getElementById('cosmic-note');
+
+      if (refEl) refEl.textContent = step.ref;
+      if (arEl) arEl.textContent = step.ar;
+      if (trEl) trEl.textContent = step.tr;
+      if (noteEl) noteEl.innerHTML = step.note;
+
+      if (!skipSave) persistState();
+    }
+
+    function selectWitnessStage(idx, skipSave) {
+      const stage = WITNESS_STAGES[idx];
+      if (!stage) return;
+      appState.activeWitness = idx;
+
+      document.querySelectorAll('[data-witness]').forEach(function(btn) {
+        btn.classList.toggle('is-active', Number(btn.dataset.witness) === idx);
+      });
+
+      for (let i = 0; i < 4; i++) {
+        const zone = document.getElementById(`wzone-${i}`);
+        if (zone) {
+          zone.setAttribute('stroke-width', i === idx ? '3' : '1');
+        }
+      }
+
+      const badgeEl = document.getElementById('witness-badge');
+      const titleEl = document.getElementById('witness-title');
+      const arEl = document.getElementById('witness-arabic');
+      const descEl = document.getElementById('witness-desc');
+      const insEl = document.getElementById('witness-insight');
+
+      if (badgeEl) badgeEl.textContent = stage.badge;
+      if (titleEl) titleEl.textContent = stage.title;
+      if (arEl) arEl.textContent = stage.ar;
+      if (descEl) descEl.innerHTML = stage.desc;
+      if (insEl) insEl.innerHTML = stage.insight;
+
+      if (!skipSave) persistState();
+    }
+
+    function filterVerses() {
+      renderVerses();
+    }
+
+    function toggleAllInsights() {
+      appState.showInsights = !appState.showInsights;
+      const btn = document.getElementById('toggle-insights-btn');
+      if (btn) {
+        btn.textContent = appState.showInsights ? 'Hide Commentary Notes' : 'Show Commentary Notes';
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function toggleVerseReviewed(num) {
+      const idx = appState.reviewedVerses.indexOf(num);
+      if (idx === -1) {
+        appState.reviewedVerses.push(num);
+      } else {
+        appState.reviewedVerses.splice(idx, 1);
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function renderVerses() {
+      const container = document.getElementById('verse-list-container');
+      const countEl = document.getElementById('verse-count-status');
+      const searchEl = document.getElementById('verse-search');
+      const filterEl = document.getElementById('verse-act-filter');
+      if (!container) return;
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : '';
+      const actFilter = filterEl ? filterEl.value : 'all';
+
+      const filtered = SURAH_VERSES.filter(function(v) {
+        const matchesAct = actFilter === 'all' || v.act === actFilter;
+        if (!matchesAct) return false;
+        if (!query) return true;
+        return String(v.n) === query ||
+               `50:${v.n}` === query ||
+               v.en.toLowerCase().includes(query) ||
+               v.note.toLowerCase().includes(query) ||
+               v.ar.includes(query);
+      });
+
+      if (countEl) {
+        countEl.textContent = `Showing ${filtered.length} of 45 verses`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="panel-card"><p class="prose" style="margin:0;">No verses matched "${query}". Try clearing your search filter or choosing "All 45 Verses".</p></div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(function(v) {
+        const isReviewed = appState.reviewedVerses.indexOf(v.n) !== -1;
+        return `
+          <article class="verse-card ${isReviewed ? 'is-reviewed' : ''}">
+            <div class="verse-meta">
+              <span class="badge-brass">Ayah 50:${v.n}</span>
+              <button type="button" class="btn btn-sm ${isReviewed ? 'btn-tertiary' : 'btn-secondary'}" onclick="toggleVerseReviewed(${v.n})">
+                ${isReviewed ? 'Reviewed ✓' : 'Mark Reviewed'}
+              </button>
+            </div>
+            <p class="arabic-verse" lang="ar" dir="rtl">${v.ar}</p>
+            <p class="prose" style="margin:0;">${v.en}</p>
+            ${appState.showInsights ? `<div class="verse-insight"><strong>Study Note:</strong> ${v.note}</div>` : ''}
+          </article>
+        `;
+      }).join('');
+    }
+
+    function toggleVocabReveal(id) {
+      const idx = appState.revealedVocab.indexOf(id);
+      if (idx === -1) {
+        appState.revealedVocab.push(id);
+      } else {
+        appState.revealedVocab.splice(idx, 1);
+      }
+      renderVocabDeck();
+      persistState();
+    }
+
+    function toggleVocabMastered(id) {
+      const idx = appState.masteredVocab.indexOf(id);
+      if (idx === -1) {
+        appState.masteredVocab.push(id);
+      } else {
+        appState.masteredVocab.splice(idx, 1);
+      }
+      renderVocabDeck();
+      persistState();
+    }
+
+    function renderVocabDeck() {
+      const container = document.getElementById('vocab-grid-container');
+      if (!container) return;
+
+      container.innerHTML = VOCAB_DECK.map(function(item) {
+        const isRevealed = appState.revealedVocab.indexOf(item.id) !== -1;
+        const isMastered = appState.masteredVocab.indexOf(item.id) !== -1;
+        return `
+          <article class="vocab-card ${isMastered ? 'is-mastered' : ''}">
+            <div class="vocab-header-row">
+              <span class="badge-brass">Verse ${item.ref}</span>
+              <span class="muted-note" style="font-size:0.8125rem; font-weight:600;">${item.tr}</span>
+            </div>
+            <div class="arabic-display" lang="ar" dir="rtl">${item.ar}</div>
+            ${isRevealed ? `
+              <div class="vocab-reveal">
+                <strong>${item.en}</strong>
+                <span class="muted-note">Root: <bdi dir="rtl" lang="ar">${item.root}</bdi></span>
+                <p class="muted-note" style="margin-top: var(--space-xs);">${item.note}</p>
+              </div>
+            ` : `
+              <div class="vocab-reveal">
+                <span class="muted-note">Test your recall first, then reveal the meaning and root insight.</span>
+              </div>
+            `}
+            <div class="action-row" style="justify-content: space-between;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="toggleVocabReveal('${item.id}')">
+                ${isRevealed ? 'Hide Meaning' : 'Reveal Meaning'}
+              </button>
+              <button type="button" class="btn btn-sm ${isMastered ? 'btn-tertiary' : 'btn-primary'}" onclick="toggleVocabMastered('${item.id}')">
+                ${isMastered ? 'Mastered ✓' : 'Mark Mastered'}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectQuizOption(optIdx) {
+      const qIdx = appState.currentQuizIdx;
+      appState.quizAnswers[qIdx] = optIdx;
+      renderQuizQuestion();
+      persistState();
+    }
+
+    function prevQuizQuestion() {
+      if (appState.currentQuizIdx > 0) {
+        appState.currentQuizIdx -= 1;
+        renderQuizQuestion();
+        persistState();
+      }
+    }
+
+    function nextQuizQuestion() {
+      if (appState.currentQuizIdx < MASTERY_QUIZ.length - 1) {
+        appState.currentQuizIdx += 1;
+        renderQuizQuestion();
+        persistState();
+      }
+    }
+
+    function resetQuizOnly(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to restart';
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Restart Quiz';
+      }
+      appState.quizAnswers = {};
+      appState.currentQuizIdx = 0;
+      renderQuizQuestion();
+      persistState();
+    }
+
+    function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Confirm Reset All';
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Reset Progress';
+      }
+      appState = {
+        reviewedVerses: [],
+        masteredVocab: [],
+        revealedVocab: [],
+        quizAnswers: {},
+        currentQuizIdx: 0,
+        showInsights: true,
+        activeRing: 0,
+        activeCosmic: 0,
+        activeWitness: 0
+      };
+      selectRingPair(0, true);
+      selectCosmicStep(0, true);
+      selectWitnessStage(0, true);
+      renderVerses();
+      renderVocabDeck();
+      renderQuizQuestion();
+      persistState();
+    }
+
+    function renderQuizQuestion() {
+      const qIdx = appState.currentQuizIdx;
+      const item = MASTERY_QUIZ[qIdx];
+      if (!item) return;
+
+      const progBadge = document.getElementById('quiz-progress-badge');
+      const scoreBadge = document.getElementById('quiz-score-badge');
+      const qText = document.getElementById('quiz-question-text');
+      const optContainer = document.getElementById('quiz-options-container');
+      const fbArea = document.getElementById('quiz-feedback-area');
+      const prevBtn = document.getElementById('quiz-prev-btn');
+      const nextBtn = document.getElementById('quiz-next-btn');
+
+      const correctCount = Object.keys(appState.quizAnswers).filter(function(k) {
+        const i = Number(k);
+        return MASTERY_QUIZ[i] && appState.quizAnswers[k] === MASTERY_QUIZ[i].answer;
+      }).length;
+
+      if (progBadge) progBadge.textContent = `Question ${qIdx + 1} of ${MASTERY_QUIZ.length}`;
+      if (scoreBadge) scoreBadge.textContent = `Score: ${correctCount} / ${MASTERY_QUIZ.length}`;
+      if (qText) qText.textContent = item.q;
+      if (prevBtn) prevBtn.disabled = qIdx === 0;
+      if (nextBtn) {
+        nextBtn.disabled = qIdx === MASTERY_QUIZ.length - 1;
+        nextBtn.textContent = qIdx === MASTERY_QUIZ.length - 1 ? 'Final Question' : 'Next Question';
+      }
+
+      const chosen = appState.quizAnswers[qIdx];
+      const hasAnswered = typeof chosen === 'number';
+
+      if (optContainer) {
+        optContainer.innerHTML = item.options.map(function(opt, i) {
+          let cls = 'quiz-option-btn';
+          if (hasAnswered) {
+            if (i === item.answer) cls += ' is-correct';
+            else if (i === chosen) cls += ' is-wrong';
+          }
+          return `<button type="button" class="${cls}" onclick="selectQuizOption(${i})">${opt}</button>`;
+        }).join('');
+      }
+
+      if (fbArea) {
+        if (hasAnswered) {
+          const isCorrect = chosen === item.answer;
+          fbArea.hidden = false;
+          fbArea.className = isCorrect ? 'feedback-box' : 'feedback-box is-error';
+          fbArea.innerHTML = `<strong>${isCorrect ? 'Correct:' : 'Review:'}</strong> ${item.explanation}`;
+        } else {
+          fbArea.hidden = true;
+          fbArea.innerHTML = '';
+        }
+      }
+    }
+
+    function exportStudyNotes() {
+      const correctCount = Object.keys(appState.quizAnswers).filter(function(k) {
+        const i = Number(k);
+        return MASTERY_QUIZ[i] && appState.quizAnswers[k] === MASTERY_QUIZ[i].answer;
+      }).length;
+
+      const lines = [
+        `SURAH QAF (CHAPTER 50) — STUDY & MASTERY SUMMARY`,
+        `================================================`,
+        `Verses Reviewed: ${appState.reviewedVerses.length} / 45 (${appState.reviewedVerses.sort(function(a,b){return a-b;}).join(', ') || 'None yet'})`,
+        `Arabic Vocabulary Mastered: ${appState.masteredVocab.length} / ${VOCAB_DECK.length}`,
+        `Mastery Quiz Score: ${correctCount} / ${MASTERY_QUIZ.length}`,
+        ``,
+        `KEY THEMATIC PILLARS:`,
+        `1. Ring Frame: 50:1 ("By the honored Qur'an") <-> 50:45 ("Remind by the Qur'an")`,
+        `2. Distance Overturned: 50:3 ("distant return") <-> 50:31 ("not far") & 50:41 ("near place")`,
+        `3. Cosmic Proofs (50:6-11): Seamless sky, anchored earth, blessed rain -> Thus is the Emergence (al-Khuruj)`,
+        `4. Divine Proximity (50:16-18): Closer than habl al-warid; right & left observers (Raqibun 'Atid)`,
+        `5. Death & Courtroom (50:19-29): Sakrat al-mawt, lifted veil, sharp sight (hadid), Qarin disclaimer`,
+        `6. The Mazid Contrast: Hell's hunger ("Hal min mazid?", 50:30) vs. Paradise's abundance ("Wa ladayna mazid", 50:35)`
+      ];
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: lines.join('\n'),
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-qaf-mastery-summary.txt'
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

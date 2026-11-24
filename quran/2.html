@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="haven">
+  <title>Surah Al-Baqarah (Chapter 2) — Interactive Study Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400;600&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Haven) */
+      --background: #f5f6f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3ebe2;
+      --surface-container-high: #dbe2dd;
+
+      /* Ink */
+      --on-surface: #23272a;
+      --on-surface-variant: #5c6468;
+
+      /* Rules */
+      --outline: #c9d0cc;
+      --outline-variant: #dde2df;
+
+      /* Accents */
+      --primary: #3c5a6e;
+      --on-primary: #ffffff;
+      --primary-container: #e2e9ee;
+      --on-primary-container: #2a4152;
+      --secondary: #4f6b53;
+      --tertiary: #5f7c63;
+      --error: #a63d32;
+      --on-error: #ffffff;
+      --error-container: #f5e6e4;
+
+      /* Data series */
+      --data-1: #3c5a6e;
+      --data-2: #5f7c63;
+      --data-3: #a8694a;
+      --data-4: #8a7a68;
+      --data-context: #c3cac6;
+
+      /* Fonts */
+      --font-headline: 'Outfit', sans-serif;
+      --font-body: 'Hanken Grotesk', sans-serif;
+      --font-label: 'Outfit', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-control: 1px solid var(--outline);
+      --elevation: none;
+
+      /* Shared semantic & focus tokens */
+      --positive: #3f6a47;
+      --positive-container: #e3ebe2;
+      --warning: #8f6330;
+      --warning-container: #f4ece1;
+      --focus: var(--primary);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.35rem, 1.4rem + 3.4vw, 3.85rem);
+      --headline-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.4rem);
+      --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.22vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.14vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography roles */
+    .headline {
+      font-family: var(--font-headline);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline b, .headline strong {
+      font-weight: 600;
+    }
+    .display-title {
+      font-size: var(--display-size);
+    }
+    .section-title {
+      font-size: var(--headline-size);
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      text-transform: none;
+      color: var(--on-surface-variant);
+    }
+    .caption-sage {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--secondary);
+      margin-top: var(--space-xs);
+    }
+    .prose {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .prose-muted {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+
+    /* Arabic scripture typography */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      text-align: right;
+      font-size: clamp(1.3rem, 1.15rem + 0.5vw, 1.55rem);
+      line-height: 2.05;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      font-weight: 400;
+      margin: 0;
+    }
+    .arabic-term {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Haven panel & section divider */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+    .panel-sage {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .section + .section {
+      border-top: var(--hairline);
+      padding-top: var(--space-2xl);
+      margin-top: var(--space-md);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Buttons & controls */
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: var(--hairline-control);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+      text-decoration: none;
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn:active:not(:disabled) {
+      background: var(--outline-variant);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+    }
+    .btn-primary.is-complete {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--on-primary);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: var(--hairline-control);
+      color: var(--on-surface);
+    }
+    .btn-danger-armed {
+      background: var(--error);
+      color: var(--on-error);
+      border-color: var(--error);
+    }
+    .btn-sm {
+      min-height: 36px;
+      padding: 0 var(--space-sm);
+    }
+
+    /* Tags & pills */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      border: none;
+      line-height: 1.3;
+    }
+    .tag-slate {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Header & Telemetry */
+    .hero-head {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+    .inline-status {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--secondary);
+      min-height: 1.2em;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+    .kpi-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.75rem, 1.35rem + 1.2vw, 2.35rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-short) var(--ease-out);
+      width: 0%;
+    }
+
+    /* Quick section jump links */
+    .nav-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      border-bottom: var(--hairline);
+      padding-bottom: var(--space-sm);
+    }
+    .nav-link {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      padding: var(--space-xs) 0;
+      border-bottom: 2px solid transparent;
+      transition: color var(--dur-micro) var(--ease-out);
+    }
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    .nav-link.is-active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Architectural Map SVG */
+    .blueprint-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .svg-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .blueprint-svg {
+      width: 100%;
+      height: auto;
+      min-width: 560px;
+      display: block;
+    }
+    .seg-bar {
+      cursor: pointer;
+      transition: opacity var(--dur-micro) var(--ease-out);
+    }
+    .seg-bar:hover {
+      opacity: 0.85;
+    }
+    .seg-bar:focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .blueprint-inspector {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+
+    /* Study Workbench (Asymmetric 2-col) */
+    .workbench-layout {
+      display: grid;
+      grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .module-rail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .module-tab {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-sm);
+      width: 100%;
+      min-height: 54px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .module-tab:hover {
+      background: var(--surface-container-high);
+    }
+    .module-tab.is-active {
+      background: var(--primary-container);
+      box-shadow: inset 3px 0 0 var(--primary);
+    }
+    .module-tab-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .module-tab-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      color: var(--on-surface);
+    }
+    .module-tab.is-active .module-tab-title {
+      color: var(--on-primary-container);
+      font-weight: 600;
+    }
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: var(--rounded-full);
+      border: var(--hairline-control);
+      color: var(--on-surface-variant);
+      background: var(--surface-container-low);
+    }
+    .status-dot.is-done {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    /* Active Module Sheet */
+    .module-sheet {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .module-sheet-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+    }
+    .subpassage-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .subpassage-item {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+    }
+    .subpassage-item:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .verse-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+      background: var(--primary-container);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      align-self: start;
+      text-align: center;
+    }
+
+    /* Anchor Scripture Box */
+    .scripture-block {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .scripture-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .english-translation {
+      margin: 0;
+      color: var(--on-surface);
+      font-style: italic;
+    }
+
+    /* Reflection Box */
+    .reflection-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+    .field-label {
+      display: block;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .text-input, .textarea-input, .select-input {
+      width: 100%;
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      transition: box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .text-input, .select-input {
+      min-height: 44px;
+    }
+    .textarea-input {
+      min-height: 96px;
+      resize: vertical;
+    }
+    .text-input:focus, .textarea-input:focus, .select-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .reflection-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Key Concepts Filter & Grid */
+    .filter-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(200px, 280px);
+      gap: var(--space-md);
+      align-items: end;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .filter-pill {
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      border: var(--hairline-control);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .filter-pill:hover {
+      background: var(--surface-container-high);
+    }
+    .filter-pill.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .concept-card-wrap {
+      container-type: inline-size;
+      display: flex;
+    }
+    .concept-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      width: 100%;
+    }
+    .concept-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    .concept-verse-drawer {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .concept-verse-drawer[hidden] {
+      display: none;
+    }
+
+    @container (max-width: 340px) {
+      .concept-head {
+        flex-direction: column;
+      }
+    }
+
+    /* Contrasts Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    .haven-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .haven-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--outline);
+    }
+    .haven-table td {
+      padding: var(--space-md);
+      border-bottom: var(--hairline);
+      vertical-align: top;
+    }
+    .haven-table tbody tr:hover {
+      background: var(--surface-container-high);
+    }
+    .haven-table .num-col {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Self-Assessment Section */
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .quiz-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .quiz-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--hairline);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .quiz-option.is-correct {
+      background: var(--positive-container);
+      box-shadow: inset 3px 0 0 var(--positive);
+      color: var(--on-surface);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      box-shadow: inset 3px 0 0 var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .quiz-feedback[hidden] {
+      display: none;
+    }
+    .quiz-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--hairline);
+    }
+
+    /* Flashcard Recall */
+    .flashcard-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .flashcard-stage {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .flashcard-answer {
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .flashcard-answer[hidden] {
+      display: none;
+    }
+
+    /* Saved Bookmarks Drawer */
+    .bookmarks-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* Footer */
+    .page-footer {
+      border-top: var(--hairline);
+      padding-top: var(--space-lg);
+      margin-top: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 900px) {
+      .workbench-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .assessment-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .telemetry-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+      .telemetry-grid > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .telemetry-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .filter-toolbar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .subpassage-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-xs);
+      }
+      .blueprint-inspector {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- Opening Header & Mastery Telemetry -->
+    <header class="section">
+      <div class="hero-head">
+        <span class="label">Qur'an Chapter 2 · 286 Verses · Interactive Study Guide</span>
+        <h1 class="headline display-title">Mastering Surah <strong>Al-Baqarah</strong></h1>
+        <p class="caption-sage">
+          A clean, guided companion to the longest chapter of the Qur'an — tracing its arc from private conscience and historical covenant to communal worship, justice, and prayer.
+        </p>
+      </div>
+
+      <nav class="nav-strip" aria-label="Study sections">
+        <a href="#blueprint" class="nav-link is-active">1. Structural Blueprint</a>
+        <a href="#modules" class="nav-link">2. Study Modules</a>
+        <a href="#concepts" class="nav-link">3. Key Concepts</a>
+        <a href="#contrasts" class="nav-link">4. Moral Symmetries</a>
+        <a href="#assessment" class="nav-link">5. Self-Assessment</a>
+      </nav>
+
+      <div class="telemetry-grid">
+        <div class="panel kpi-tile">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-sm);">
+            <span class="label">Study modules completed</span>
+            <span class="label" id="kpi-percent">0%</span>
+          </div>
+          <div class="kpi-value" id="kpi-modules">0 / 7</div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="kpi-progress-bar"></div>
+          </div>
+          <p class="caption-sage" id="kpi-modules-note">Begin with Module 1 or explore any passage in the blueprint below.</p>
+        </div>
+
+        <div class="panel kpi-tile">
+          <span class="label">Self-assessment mastery</span>
+          <div class="kpi-value" id="kpi-quiz">0 / 10</div>
+          <p class="caption-sage" id="kpi-quiz-note">10 verse-grounded questions ready</p>
+        </div>
+
+        <div class="panel kpi-tile">
+          <span class="label">Personal reflections &amp; saved verses</span>
+          <div class="kpi-value" id="kpi-notes">0 saved</div>
+          <p class="caption-sage" id="kpi-notes-note">Notes persist across sessions</p>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#modules" class="btn btn-primary">
+          <i data-lucide="book-open" style="width:16px;height:16px;" aria-hidden="true"></i>
+          Open Study Workbench
+        </a>
+        <button type="button" class="btn btn-ghost" onclick="exportStudyNotes()">
+          <i data-lucide="download" style="width:16px;height:16px;" aria-hidden="true"></i>
+          Export Study Notes
+        </button>
+        <button type="button" class="btn btn-ghost" id="btn-reset-all" onclick="handleResetProgress(this)">
+          <i data-lucide="rotate-ccw" style="width:16px;height:16px;" aria-hidden="true"></i>
+          Reset Progress
+        </button>
+        <span class="inline-status" id="global-status" role="status" aria-live="polite"></span>
+      </div>
+    </header>
+
+    <!-- Section 1: Structural Blueprint -->
+    <section id="blueprint" class="section reveal">
+      <div class="section-header">
+        <h2 class="headline section-title">An architecture built around a <strong>balanced center</strong></h2>
+        <p class="prose-muted">
+          Surah Al-Baqarah spans 286 verses divided into seven cohesive thematic movements. Verse 2:143—establishing the believers as a balanced, witnessing community (<em>ummatan wasatan</em>)—sits at the exact numerical midpoint of the chapter. Select any segment below to inspect its structure and jump straight to its study module.
+        </p>
+      </div>
+
+      <div class="panel blueprint-panel">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:var(--space-sm);">
+          <span class="subhead">Proportional Verse Map (vv. 2:1–2:286)</span>
+          <span class="label">Click any block to inspect and open module</span>
+        </div>
+
+        <div class="svg-container">
+          <svg class="blueprint-svg" viewBox="0 0 920 190" role="img" aria-label="Proportional structure of Surah Al-Baqarah across seven study modules totaling 286 verses">
+            <!-- Symmetry arcs above -->
+            <path d="M 46 46 Q 460 -6 874 46" fill="none" stroke="var(--data-context)" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <path d="M 110 46 Q 460 12 798 46" fill="none" stroke="var(--data-context)" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <text x="460" y="16" text-anchor="middle" fill="var(--on-surface-variant)" font-family="Outfit, sans-serif" font-size="11" font-weight="500">Thematic symmetry: Faith &amp; Spending open and close the chapter</text>
+
+            <!-- Midpoint Marker v.143 -->
+            <line x1="460" y1="54" x2="460" y2="146" stroke="var(--data-3)" stroke-width="2"/>
+            <circle cx="460" cy="54" r="4" fill="var(--data-3)"/>
+            <text x="460" y="164" text-anchor="middle" fill="var(--on-surface)" font-family="Outfit, sans-serif" font-size="11.5" font-weight="600">Midpoint v. 2:143 — Ummatan Wasatan</text>
+
+            <!-- Proportional Bars (total width 858px = 3px per verse for 286 verses, x starting at 31) -->
+            <!-- M1: 29v = 87px (31..118) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 1: Verses 1 to 29, 29 verses" onclick="selectBlueprintModule('m1')" onkeydown="handleSvgKey(event, 'm1')">
+              <rect id="svg-rect-m1" x="31" y="64" width="85" height="62" rx="4" fill="var(--data-1)"/>
+              <text x="73" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="12" font-weight="600">M1</text>
+              <text x="73" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10.5">29 vv.</text>
+            </g>
+
+            <!-- M2: 10v = 30px (120..150) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 2: Verses 30 to 39, 10 verses" onclick="selectBlueprintModule('m2')" onkeydown="handleSvgKey(event, 'm2')">
+              <rect id="svg-rect-m2" x="120" y="64" width="28" height="62" rx="4" fill="var(--data-2)"/>
+              <text x="134" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="11" font-weight="600">M2</text>
+              <text x="134" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="9.5">10</text>
+            </g>
+
+            <!-- M3: 84v = 252px (152..404) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 3: Verses 40 to 123, 84 verses" onclick="selectBlueprintModule('m3')" onkeydown="handleSvgKey(event, 'm3')">
+              <rect id="svg-rect-m3" x="152" y="64" width="248" height="62" rx="4" fill="var(--data-4)"/>
+              <text x="276" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="12" font-weight="600">M3 · Covenant &amp; History</text>
+              <text x="276" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10.5">84 verses (2:40–123)</text>
+            </g>
+
+            <!-- M4: 29v = 87px (404..491) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 4: Verses 124 to 152, 29 verses" onclick="selectBlueprintModule('m4')" onkeydown="handleSvgKey(event, 'm4')">
+              <rect id="svg-rect-m4" x="404" y="64" width="85" height="62" rx="4" fill="var(--data-3)"/>
+              <text x="446" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="12" font-weight="600">M4</text>
+              <text x="446" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10.5">29 vv.</text>
+            </g>
+
+            <!-- M5: 90v = 270px (493..763) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 5: Verses 153 to 242, 90 verses" onclick="selectBlueprintModule('m5')" onkeydown="handleSvgKey(event, 'm5')">
+              <rect id="svg-rect-m5" x="493" y="64" width="266" height="62" rx="4" fill="var(--data-1)"/>
+              <text x="626" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="12" font-weight="600">M5 · Ethics, Worship &amp; Law</text>
+              <text x="626" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10.5">90 verses (2:153–242)</text>
+            </g>
+
+            <!-- M6: 18v = 54px (763..817) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 6: Verses 243 to 260, 18 verses" onclick="selectBlueprintModule('m6')" onkeydown="handleSvgKey(event, 'm6')">
+              <rect id="svg-rect-m6" x="763" y="64" width="52" height="62" rx="4" fill="var(--data-2)"/>
+              <text x="789" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="11.5" font-weight="600">M6</text>
+              <text x="789" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10">18 vv.</text>
+            </g>
+
+            <!-- M7: 26v = 78px (819..897) -->
+            <g class="seg-bar" tabindex="0" role="button" aria-label="Module 7: Verses 261 to 286, 26 verses" onclick="selectBlueprintModule('m7')" onkeydown="handleSvgKey(event, 'm7')">
+              <rect id="svg-rect-m7" x="819" y="64" width="76" height="62" rx="4" fill="var(--data-4)"/>
+              <text x="857" y="92" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="12" font-weight="600">M7</text>
+              <text x="857" y="108" text-anchor="middle" fill="var(--on-primary)" font-family="Outfit, sans-serif" font-size="10.5">26 vv.</text>
+            </g>
+
+            <!-- Axis baseline -->
+            <line x1="31" y1="138" x2="895" y2="138" stroke="var(--outline-variant)" stroke-width="1"/>
+            <text x="31" y="153" fill="var(--on-surface-variant)" font-family="Outfit, sans-serif" font-size="10.5">v. 2:1</text>
+            <text x="895" y="153" text-anchor="end" fill="var(--on-surface-variant)" font-family="Outfit, sans-serif" font-size="10.5">v. 2:286</text>
+          </svg>
+        </div>
+
+        <div class="blueprint-inspector" id="blueprint-inspector">
+          <div>
+            <span class="label" id="bp-range">Module 1 · Verses 2:1–2:29 (29 verses · 10.1%)</span>
+            <p class="subhead" id="bp-title" style="margin-top:var(--space-xs);">The Book of Guidance &amp; Three Human Responses</p>
+            <p class="prose-muted" id="bp-summary" style="margin-top:var(--space-xs);">Establishes the Qur'an as guidance for the God-conscious and contrasts sincere believers, stubborn disbelievers, and conflicted hypocrites before issuing the first universal call to worship.</p>
+          </div>
+          <a href="#modules" class="btn btn-ghost" onclick="openModuleFromBlueprint()">
+            Study this module
+            <i data-lucide="arrow-down-right" style="width:16px;height:16px;" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Study Modules & Reflections -->
+    <section id="modules" class="section reveal">
+      <div class="section-header">
+        <h2 class="headline section-title">Seven sequential <strong>study modules</strong></h2>
+        <p class="prose-muted">
+          Work through each thematic block in order or jump to a section. Every module pairs a verse-by-verse structural breakdown with primary Arabic and English anchor passages and a personal reflection journal.
+        </p>
+      </div>
+
+      <div class="workbench-layout">
+        <!-- Left Module Selector Rail -->
+        <div class="module-rail" id="module-rail" role="tablist" aria-label="Surah Al-Baqarah study modules"></div>
+
+        <!-- Right Active Module Workbench -->
+        <article class="panel module-sheet" id="module-sheet" aria-live="polite"></article>
+      </div>
+
+      <!-- Saved Bookmarks Strip (One Sage-Mist Highlight Panel) -->
+      <div class="panel-sage" id="bookmarks-panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+          <div>
+            <span class="label">Saved anchor passages</span>
+            <p class="subhead" style="margin-top:var(--space-xs);">Your personal verse bookmarks across Surah Al-Baqarah</p>
+          </div>
+          <span class="tag" id="bookmarks-count-tag">0 bookmarked</span>
+        </div>
+        <div class="bookmarks-list" id="bookmarks-list" style="margin-top:var(--space-md);"></div>
+      </div>
+    </section>
+
+    <!-- Section 3: Key Concepts & Verse Explorer -->
+    <section id="concepts" class="section reveal">
+      <div class="section-header">
+        <h2 class="headline section-title">Core concepts that <strong>anchor the chapter</strong></h2>
+        <p class="prose-muted">
+          Twelve foundational ideas drawn directly from the text of Surah Al-Baqarah. Filter by theme or search by Arabic term, English keyword, or verse reference, and expand any card to read the source verse.
+        </p>
+      </div>
+
+      <div class="filter-toolbar">
+        <div>
+          <span class="field-label">Filter by thematic domain</span>
+          <div class="pill-row" id="concept-pills">
+            <button type="button" class="filter-pill is-active" data-cat="all" onclick="setConceptFilter('all', this)">All Concepts</button>
+            <button type="button" class="filter-pill" data-cat="faith" onclick="setConceptFilter('faith', this)">Faith &amp; Inner Life</button>
+            <button type="button" class="filter-pill" data-cat="history" onclick="setConceptFilter('history', this)">History &amp; Covenant</button>
+            <button type="button" class="filter-pill" data-cat="community" onclick="setConceptFilter('community', this)">Community &amp; Worship</button>
+            <button type="button" class="filter-pill" data-cat="justice" onclick="setConceptFilter('justice', this)">Law &amp; Economic Justice</button>
+          </div>
+        </div>
+
+        <div>
+          <label for="concept-search" class="field-label">Search term or verse (e.g., 2:177, Riba)</label>
+          <input type="search" id="concept-search" class="text-input" placeholder="Search concepts…" oninput="setConceptSearch(this.value)">
+        </div>
+      </div>
+
+      <div class="card-grid" id="concepts-grid"></div>
+    </section>
+
+    <!-- Section 4: Moral Symmetries & Contrasts Table -->
+    <section id="contrasts" class="section reveal">
+      <div class="section-header">
+        <h2 class="headline section-title">Moral symmetries and <strong>contrasting paths</strong></h2>
+        <p class="prose-muted">
+          Surah Al-Baqarah repeatedly teaches by placing two human postures side by side—illuminating sincerity against pretense, stewardship against arrogance, and circulation of wealth against exploitation.
+        </p>
+      </div>
+
+      <div class="panel table-wrap">
+        <table class="haven-table">
+          <thead>
+            <tr>
+              <th>Theme</th>
+              <th>Path of Integrity</th>
+              <th>Path of Ruin</th>
+              <th>Verse Anchors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Response to Revelation</strong></td>
+              <td>Trust in the unseen, prayer, charity, and certainty in the Hereafter (<em>al-muttaqin</em>).</td>
+              <td>Claiming faith outwardly while harboring disease and mocking believers (<em>al-munafiqun</em>).</td>
+              <td class="num-col">2:2–5 vs. 2:8–20</td>
+            </tr>
+            <tr>
+              <td><strong>Reaction to Error</strong></td>
+              <td>Receiving words from God, turning in sincere repentance, and seeking mercy (Adam).</td>
+              <td>Refusing out of pride and persisting in arrogance against divine command (Iblees).</td>
+              <td class="num-col">2:37 vs. 2:34</td>
+            </tr>
+            <tr>
+              <td><strong>Essence of Righteousness</strong></td>
+              <td>Integrated faith, sacrificial generosity, kept promises, and steadfastness in hardship (<em>al-birr</em>).</td>
+              <td>Treating ritual posture or directional orientation as a substitute for moral action.</td>
+              <td class="num-col">2:177</td>
+            </tr>
+            <tr>
+              <td><strong>Allegiance &amp; Guidance</strong></td>
+              <td>Rejecting false tyranny (<em>Taghut</em>) and grasping the unbreakable handhold—brought from darkness to light.</td>
+              <td>Taking Taghut as ally, sliding back from light into compounded darkness.</td>
+              <td class="num-col">2:256–257</td>
+            </tr>
+            <tr>
+              <td><strong>Circulation of Wealth</strong></td>
+              <td>Discreet, unboastful spending (<em>infaq</em>) yielding sevenfold hundred-grain harvests; easing debtors.</td>
+              <td>Charity canceled by hurtful reminders, or consuming usury (<em>riba</em>) that erodes blessing.</td>
+              <td class="num-col">2:261–265 vs. 2:275–280</td>
+            </tr>
+            <tr>
+              <td><strong>Covenant &amp; Trust</strong></td>
+              <td>Documenting deferred debts justly with scribes, witnesses, and honest testimony.</td>
+              <td>Altering bequests, withholding testimony, or taking bribes to consume others' wealth.</td>
+              <td class="num-col">2:181, 2:188, 2:282–283</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Self-Assessment & Active Recall -->
+    <section id="assessment" class="section reveal">
+      <div class="section-header">
+        <h2 class="headline section-title">Test your mastery of <strong>the surah</strong></h2>
+        <p class="prose-muted">
+          Consolidate your study with ten comprehension questions grounded in specific passages of Surah Al-Baqarah, paired with active-recall flashcards for key Arabic concepts.
+        </p>
+      </div>
+
+      <div class="assessment-grid">
+        <!-- Comprehension Quiz -->
+        <div class="panel quiz-card" id="quiz-container">
+          <div class="quiz-top">
+            <span class="label" id="quiz-progress-label">Question 1 of 10</span>
+            <div style="display:flex; align-items:center; gap:var(--space-sm);">
+              <span class="tag" id="quiz-score-tag">0 correct</span>
+              <button type="button" class="btn btn-ghost btn-sm" onclick="handleResetQuiz(this)">Reset quiz</button>
+            </div>
+          </div>
+
+          <div id="quiz-body"></div>
+
+          <div class="quiz-nav">
+            <button type="button" class="btn btn-ghost" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous</button>
+            <div style="display:flex; gap:var(--space-sm); align-items:center;">
+              <button type="button" class="btn btn-ghost btn-sm" id="quiz-missed-btn" onclick="jumpToNextMissed()" hidden>Next unanswered</button>
+              <button type="button" class="btn btn-primary" id="quiz-next-btn" onclick="stepQuiz(1)">Next question</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Recall Flashcards -->
+        <div class="panel flashcard-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="label">Arabic Term Recall</span>
+            <span class="tag tag-slate" id="flashcard-counter">1 / 8</span>
+          </div>
+
+          <div class="flashcard-stage" id="flashcard-stage"></div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+            <button type="button" class="btn btn-ghost btn-sm" onclick="stepFlashcard(-1)">Prev card</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="flashcard-mastered-btn" onclick="toggleFlashcardMastered()">Mark mastered</button>
+            <button type="button" class="btn btn-ghost btn-sm" onclick="stepFlashcard(1)">Next card</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <span>Sources: Arabic text and English translation of Chapter 2 (Surah Al-Baqarah, Qur'an 2:1–2:286) from the provided source document <em>2. الم.pdf</em>.</span>
+      <span id="footer-session-note">All study progress saves automatically in your notebook workspace.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // DATA: 7 STUDY MODULES COVERING ALL 286 VERSES OF SURAH AL-BAQARAH
+    // =========================================================================
+    const MODULES = [
+      {
+        id: `m1`,
+        number: 1,
+        range: `2:1–2:29`,
+        verseCount: 29,
+        pct: `10.1%`,
+        title: `The Book of Guidance & Three Human Responses`,
+        thesis: `Surah Al-Baqarah opens by declaring the Qur'an an undisputed guide for the God-conscious, immediately mapping three moral postures humanity takes toward revelation before summoning all people to worship their Creator.`,
+        subpassages: [
+          {
+            verses: `2:1–2:5`,
+            heading: `The God-Conscious (Al-Muttaqin)`,
+            detail: `Begins with the disconnected letters (Alif, Lam, Meem) and defines the truly guided: those who trust the unseen (al-ghayb), establish prayer, share from what they are given, honor both current and earlier scriptures, and live with certainty of the Hereafter.`
+          },
+          {
+            verses: `2:6–2:7`,
+            heading: `Entrenched Disbelief`,
+            detail: `Describes those whose persistent rejection closes their own faculties—hearts and hearing sealed, vision veiled—rendering external warnings ineffective.`
+          },
+          {
+            verses: `2:8–2:20`,
+            heading: `Anatomy & Parables of Hypocrisy`,
+            detail: `Exposes double-heartedness: claiming faith while mocking believers, calling corruption "reform" (2:11–12), and trading guidance for error (2:16). Two vivid parables illustrate their condition: a fire whose light is extinguished leaving darkness (2:17–18), and a violent rainstorm where flashes of lightning allow brief steps before paralyzing darkness returns (2:19–20).`
+          },
+          {
+            verses: `2:21–2:29`,
+            heading: `The First Universal Call & Literary Challenge`,
+            detail: `Addresses "O mankind" to worship the One who spread the earth as a bed, raised the sky as a canopy, and sent rain for fruit (2:21–22). Challenges skeptics to produce a single surah like it (2:23), contrasts Paradise's likenesses (2:25) with the parable of the mosquito (2:26), and frames life, death, resurrection, and the seven heavens (2:28–29).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:2`,
+          arabic: `ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ`,
+          english: `This is the Book about which there is no doubt, a guidance for those conscious of Allah.`
+        },
+        secondaryVerse: {
+          ref: `2:21`,
+          arabic: `يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ الَّذِي خَلَقَكُمْ وَالَّذِينَ مِنْ قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ`,
+          english: `O mankind, worship your Lord, who created you and those before you, that you may become righteous.`
+        },
+        reflectionPrompt: `In 2:11, those causing harm genuinely tell themselves "We are only reformers." Where in daily life is it easiest to confuse self-interest with good intention, and how does the description of the muttaqin in 2:3–4 guard against that?`
+      },
+      {
+        id: `m2`,
+        number: 2,
+        range: `2:30–2:39`,
+        verseCount: 10,
+        pct: `3.5%`,
+        title: `Humanity's Stewardship, Knowledge & Repentance`,
+        thesis: `Before any communal law is given, the surah establishes human dignity and moral vulnerability through the story of Adam: honored with stewardship (khalifah) and language, tested by temptation, and restored through divinely taught repentance.`,
+        subpassages: [
+          {
+            verses: `2:30–2:33`,
+            heading: `Appointment of the Khalifah & Gift of Names`,
+            detail: `God informs the angels He is placing a successive authority (khalifah) on earth. When the angels question humanity's potential for bloodshed and corruption, God teaches Adam "all the names"—demonstrating human capacity for conceptual knowledge and moral agency.`
+          },
+          {
+            verses: `2:34`,
+            heading: `Prostration & the Arrogance of Iblees`,
+            detail: `All angels prostrate to honor Adam's station except Iblees, whose refusal stems from pride (istakbara)—marking arrogance, not ignorance, as the root of rebellion.`
+          },
+          {
+            verses: `2:35–2:39`,
+            heading: `The Slip, Descent & Words of Repentance`,
+            detail: `Adam and his wife are given abundance in Paradise with one boundary (2:35). Satan causes them to slip, leading to earthly settlement for an appointed time (2:36). Crucially, Adam receives words from his Lord and repents (2:37), establishing a hopeful covenant: whoever follows divine guidance will have neither fear nor grief (2:38).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:37`,
+          arabic: `فَتَلَقَّىٰ آدَمُ مِنْ رَبِّهِ كَلِمَاتٍ فَتَابَ عَلَيْهِ ۚ إِنَّهُ هُوَ التَّوَّابُ الرَّحِيمُ`,
+          english: `Then Adam received from his Lord [some] words, and He accepted his repentance. Indeed, it is He who is the Accepting of repentance, the Merciful.`
+        },
+        secondaryVerse: {
+          ref: `2:30`,
+          arabic: `وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً`,
+          english: `And [mention, O Muhammad], when your Lord said to the angels, "Indeed, I will make upon the earth a successive authority."`
+        },
+        reflectionPrompt: `Contrast Adam's reaction to failure (2:37) with Iblees's reaction to command (2:34). How does knowing repentance itself is guided by God ("received from his Lord words") reshape how you approach personal mistakes?`
+      },
+      {
+        id: `m3`,
+        number: 3,
+        range: `2:40–2:123`,
+        verseCount: 84,
+        pct: `29.4%`,
+        title: `Covenant, Spiritual History & Lessons of the Cow`,
+        thesis: `Through an extended dialogue with the Children of Israel, this largest historical block warns a rising community against the traps that erode scripture-bearing nations: selective obedience, hard-heartedness, and trading divine trust for short-term gain.`,
+        subpassages: [
+          {
+            verses: `2:40–2:48`,
+            heading: `Remembering Favor & Fulfilling the Covenant`,
+            detail: `Calls for honesty—not mixing truth with falsehood or preaching righteousness while forgetting oneself (2:42–44)—and introduces patience and prayer as anchors for those certain of meeting God (2:45–46).`
+          },
+          {
+            verses: `2:49–2:66`,
+            heading: `Deliverance, Provision & Moral Tests`,
+            detail: `Recounts rescue from Pharaoh, the parted sea, forty nights, worship of the calf and forgiveness, manna and quails, twelve springs from the stone, and trading superior spiritual sustenance for lesser demands (2:61). Nestled here is 2:62, affirming reward for sincere faith in God, the Last Day, and righteous deeds.`
+          },
+          {
+            verses: `2:67–2:74`,
+            heading: `The Namesake Parable: Al-Baqarah (The Cow)`,
+            detail: `When commanded to slaughter a cow to resolve a concealed murder, the people repeatedly demand narrower specifications—age, color, lack of blemish—making a simple act of obedience arduous (2:67–71). Striking the slain man with part of it demonstrates God's power to revive the dead (2:73), yet hearts hardened afterward "like stones or even harder" (2:74).`
+          },
+          {
+            verses: `2:75–2:123`,
+            heading: `Integrity of Scripture & Universal Submission`,
+            detail: `Rebukes altering scripture for small prices (2:79), claiming immunity from accountability (2:80), and obeying only parts of revelation while evicting kin (2:83–85). Mentions Moses, Jesus supported by the Pure Spirit (2:87), the trial of Harut and Marut at Babylon (2:102), abrogation (2:106), and concludes with the enduring principle: whoever submits wholly to Allah while doing good has no fear or grief (2:112).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:74`,
+          arabic: `ثُمَّ قَسَتْ قُلُوبُكُمْ مِنْ بَعْدِ ذَٰلِكَ فَهِيَ كَالْحِجَارَةِ أَوْ أَشَدُّ قَسْوَةً`,
+          english: `Then your hearts became hardened after that, being like stones or even harder. For indeed, there are stones from which rivers burst forth…`
+        },
+        secondaryVerse: {
+          ref: `2:45`,
+          arabic: `وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ`,
+          english: `And seek help through patience and prayer, and indeed, it is difficult except for the humbly submissive [to Allah].`
+        },
+        reflectionPrompt: `In 2:67–71, over-questioning turned a straightforward command into a heavy burden. How can we distinguish between healthy inquiry for understanding and excessive nitpicking that delays action?`
+      },
+      {
+        id: `m4`,
+        number: 4,
+        range: `2:124–2:152`,
+        verseCount: 29,
+        pct: `10.1%`,
+        title: `Abraham's Legacy, the Ka'bah & the Balanced Community`,
+        thesis: `At the structural heart of Surah Al-Baqarah, leadership passes through Abraham's tested integrity to a newly oriented community—marked by the Sacred Mosque (Qiblah), prophetic purification, and the midpoint mandate to be a balanced witness for humanity.`,
+        subpassages: [
+          {
+            verses: `2:124–2:129`,
+            heading: `Abraham Tested & Raising the Foundations`,
+            detail: `Having fulfilled every command, Abraham is made a leader (imam), though told God's covenant never includes wrongdoers (2:124). With Ishmael, he purifies and raises the House (Ka'bah), praying for a secure city, a submitting nation, and a messenger who recites verses, teaches Book and wisdom, and purifies people (2:127–129).`
+          },
+          {
+            verses: `2:130–2:141`,
+            heading: `The Inclusive Creed of Submission`,
+            detail: `Reaffirms the pure monotheism of Abraham, Ishmael, Isaac, and Jacob—commanding believers to affirm all prophets without distinction (2:136) and take on "the coloring of Allah" (sibghat Allah, 2:138) rather than partisan exclusivism.`
+          },
+          {
+            verses: `2:142–2:150`,
+            heading: `The Qiblah Change & Ummatan Wasatan`,
+            detail: `Turns the prayer direction toward al-Masjid al-Haram to test loyalty and unify worship. At verse 2:143—the exact numerical midpoint of the 286-verse surah—believers are named a "just/balanced community" (ummatan wasatan) and exhorted to "race to all that is good" (2:148).`
+          },
+          {
+            verses: `2:151–2:152`,
+            heading: `Fulfilled Prayer & Reciprocal Remembrance`,
+            detail: `Notes that sending the Messenger fulfills Abraham's supplication (2:151), culminating in the intimate promise: "So remember Me; I will remember you. And be grateful to Me" (2:152).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:143`,
+          arabic: `وَكَذَٰلِكَ جَعَلْنَاكُمْ أُمَّةً وَسَطًا لِتَكُونُوا شُهَدَاءَ عَلَى النَّاسِ وَيَكُونَ الرَّسُولُ عَلَيْكُمْ شَهِيدًا`,
+          english: `And thus we have made you a just community that you will be witnesses over the people and the Messenger will be a witness over you.`
+        },
+        secondaryVerse: {
+          ref: `2:152`,
+          arabic: `فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ`,
+          english: `So remember Me; I will remember you. And be grateful to Me and do not deny Me.`
+        },
+        reflectionPrompt: `Abraham's prayer in 2:124 ("And of my descendants?") is met with "My covenant does not include the wrongdoers." What does this teach about spiritual privilege versus personal responsibility?`
+      },
+      {
+        id: `m5`,
+        number: 5,
+        range: `2:153–2:242`,
+        verseCount: 90,
+        pct: `31.5%`,
+        title: `Steadfastness, True Righteousness & Communal Law`,
+        thesis: `Once the community's spiritual center is established, the longest section of the surah translates faith into lived ethics—defining true righteousness (al-birr), detailing fasting and pilgrimage, regulating family life, and anchoring every law in God-consciousness.`,
+        subpassages: [
+          {
+            verses: `2:153–2:176`,
+            heading: `Trials, Signs in Creation & Wholesome Sustenance`,
+            detail: `Prepares believers for tests of fear, hunger, and loss, teaching the response "Indeed we belong to Allah, and indeed to Him we will return" (2:156). Points to creation—heavens, night and day, ships, rain, winds, and clouds—as signs for those who reason (2:164), and commands lawful, wholesome eating (halalan tayyiban, 2:168–173).`
+          },
+          {
+            verses: `2:177–2:182`,
+            heading: `The Charter of True Righteousness (Al-Birr) & Equity`,
+            detail: `Verse 2:177 redefines righteousness away from mere directional ritual into five pillars: sound creed, giving wealth despite love for it to the vulnerable, prayer/zakah, honoring covenants, and patience in hardship. Follows with fair legal retribution tempered by forgiveness (qisas, 2:178–179) and honest bequests (2:180–182).`
+          },
+          {
+            verses: `2:183–2:203`,
+            heading: `Ramadan Fasting, Divine Nearness, Defense & Hajj`,
+            detail: `Prescribes Ramadan fasting so believers attain taqwa (2:183–185), inserting 2:186 right inside the fasting verses: "Indeed I am near; I respond to the supplicant." Prohibits bribery (2:188), sets strict non-transgression limits on defensive fighting (2:190–194), and outlines Hajj rites culminating in praying for good in both worlds (2:201).`
+          },
+          {
+            verses: `2:204–2:242`,
+            heading: `Social Cohesion, Family Care & Marital Ethics`,
+            detail: `Contrasts deceptive rhetoric with wholehearted entry into peace/Islam (2:204–208). Addresses orphans (2:220), marriage compatibility, respectful reconciliation or release in divorce (2:228–232), breastfeeding and child welfare without harm to either parent (2:233), widow waiting periods and graciousness (2:234–237), and guarding the middle prayer (2:238).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:177`,
+          arabic: `لَيْسَ الْبِرَّ أَنْ تُوَلُّوا وُجُوهَكُمْ قِبَلَ الْمَشْرِقِ وَالْمَغْرِبِ وَلَٰكِنَّ الْبِرَّ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ`,
+          english: `Righteousness is not that you turn your faces toward the east or the west, but [true] righteousness is [in] one who believes in Allah, the Last Day… and gives wealth, in spite of love for it…`
+        },
+        secondaryVerse: {
+          ref: `2:186`,
+          arabic: `وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ`,
+          english: `And when My servants ask you, [O Muhammad], concerning Me — indeed I am near. I respond to the invocation of the supplicant when he calls upon Me.`
+        },
+        reflectionPrompt: `Why do you think God placed 2:186 ("Indeed I am near") right in the middle of the legal verses on Ramadan fasting (2:183–187), and how does 2:177 connect inner belief to social generosity?`
+      },
+      {
+        id: `m6`,
+        number: 6,
+        range: `2:243–2:260`,
+        verseCount: 18,
+        pct: `6.3%`,
+        title: `Courage, Sovereignty, Ayat al-Kursi & Resurrection`,
+        thesis: `Moving from law to conviction, this compact and dramatic unit confronts fear of mortality and tyranny—culminating in Ayat al-Kursi, the principle of non-compulsion in faith, and three vivid demonstrations of God's power to revive the dead.`,
+        subpassages: [
+          {
+            verses: `2:243–2:254`,
+            heading: `Moral Courage & Testing of Leadership`,
+            detail: `Recalls thousands who fled death only to be brought back to life (2:243), then narrates Saul's (Talut's) appointment based on knowledge and stature rather than wealth (2:247), the river discipline test (2:249), David's victory over Goliath, and the principle that God checks some people by others so the earth is not corrupted (2:251).`
+          },
+          {
+            verses: `2:255`,
+            heading: `Ayat al-Kursi (The Verse of the Throne)`,
+            detail: `The theological summit of the surah: God is the Ever-Living (Al-Hayy), Sustainer of all existence (Al-Qayyum), untouched by slumber or sleep, whose Kursi extends over heavens and earth and whose preservation never tires Him.`
+          },
+          {
+            verses: `2:256–2:257`,
+            heading: `Freedom of Conscience & the Unbreakable Handhold`,
+            detail: `Declares "There shall be no compulsion in religion" because guidance stands distinct from error (2:256). Rejecting Taghut and trusting God means grasping the firmest handhold (al-urwah al-wuthqa), moving from darknesses into light (2:257).`
+          },
+          {
+            verses: `2:258–2:260`,
+            heading: `Three Proofs of Life After Death`,
+            detail: `Abraham silences an arrogant king by pointing to the rising sun (2:258); a traveler doubting a ruined town's revival is made to die for a hundred years and shown his untouched food beside reassembled donkey bones (2:259); and Abraham's heart is given tranquility through the four birds called back to life (2:260).`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:255`,
+          arabic: `اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ`,
+          english: `Allah — there is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth…`
+        },
+        secondaryVerse: {
+          ref: `2:256`,
+          arabic: `لَا إِكْرَاهَ فِي الدِّينِ ۖ قَدْ تَبَيَّنَ الرُّشْدُ مِنَ الْغَيِّ`,
+          english: `There shall be no compulsion in [acceptance of] the religion. The right course has become clear from the wrong.`
+        },
+        reflectionPrompt: `In 2:260, Abraham already believed in resurrection yet asked to see it "so that my heart may be satisfied." How does this legitimize seeking deeper certainty and peace of heart in faith?`
+      },
+      {
+        id: `m7`,
+        number: 7,
+        range: `2:261–2:286`,
+        verseCount: 26,
+        pct: `9.1%`,
+        title: `Generosity, Economic Justice & The Concluding Prayer`,
+        thesis: `Surah Al-Baqarah closes by mirroring its opening: translating faith into concrete economic mercy—multiplying sincere charity, outlawing usury, mandating transparent contracts—and sealing the chapter with humility, obedience, and a prayer tailored to human capacity.`,
+        subpassages: [
+          {
+            verses: `2:261–2:274`,
+            heading: `The Ethics & Parables of Spending (Infaq)`,
+            detail: `Compares sincere giving to a seed growing seven spikes of a hundred grains each (2:261). Warns that hurtful reminders or showing off wash away charity like rain on bare rock (2:262–264), unlike a hillside garden yielding double (2:265). Urges giving from wholesome earnings (2:267), praises discreet giving (2:271), and honors the self-restrained poor who do not beg persistently (2:273).`
+          },
+          {
+            verses: `2:275–2:281`,
+            heading: `Trade Permitted, Usury (Riba) Forbidden`,
+            detail: `Draws a sharp boundary between productive trade and exploitative interest (riba): God erodes usury and nurtures charity (2:276). Commands granting time—or forgiving debt—to borrowers in hardship (2:280).`
+          },
+          {
+            verses: `2:282–2:283`,
+            heading: `Ayat ad-Dayn: Written Contracts & Witness Integrity`,
+            detail: `The longest verse in the Qur'an establishes meticulous civic accountability: write down deferred debts justly with an impartial scribe and qualified witnesses, or take a security deposit on journeys, and never conceal testimony.`
+          },
+          {
+            verses: `2:284–2:286`,
+            heading: `The Closing Trio: Capacity, Creed & Supplication`,
+            detail: `Reaffirms God's ownership and inner accountability (2:284), unites Messenger and believers in affirming every prophet and declaring "We hear and we obey" (2:285), and closes with the reassuring axiom: "Allah does not charge a soul except with its capacity" (2:286), followed by pleas for pardon, forgiveness, mercy, and strength.`
+          }
+        ],
+        anchorVerse: {
+          ref: `2:261`,
+          arabic: `مَثَلُ الَّذِينَ يُنْفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنْبَتَتْ سَبْعَ سَنَابِلَ فِي كُلِّ سُنْبُلَةٍ مِائَةُ حَبَّةٍ`,
+          english: `The example of those who spend their wealth in the way of Allah is like a seed [of grain] which grows seven spikes; in each spike is a hundred grains.`
+        },
+        secondaryVerse: {
+          ref: `2:286`,
+          arabic: `لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ`,
+          english: `Allah does not charge a soul except [with that within] its capacity. It will have [the consequence of] what [good] it has gained, and it will bear [the consequence of] what [evil] it has earned.`
+        },
+        reflectionPrompt: `Why does Surah Al-Baqarah dedicate its longest single verse (2:282) to documenting financial debts immediately before its grand spiritual finale (2:284–286)? What does that say about the relationship between earthly fairness and spiritual devotion?`
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 12 CORE CONCEPTS (FILTERABLE MATRIX)
+    // =========================================================================
+    const CONCEPTS = [
+      {
+        id: `c1`,
+        category: `faith`,
+        categoryLabel: `Faith & Inner Life`,
+        term: `Al-Muttaqin & Al-Ghayb`,
+        arabicTerm: `الْمُتَّقِينَ · بِالْغَيْبِ`,
+        verses: `2:2–2:5`,
+        summary: `God-consciousness (taqwa) is the prerequisite for benefiting from the Qur'an. It begins with trust in the unseen (al-ghayb) and immediately manifests in prayer, generosity, and certainty in accountability.`,
+        arabicQuote: `الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ`,
+        englishQuote: `Who believe in the unseen, establish prayer, and spend out of what We have provided for them. (2:3)`
+      },
+      {
+        id: `c2`,
+        category: `history`,
+        categoryLabel: `History & Covenant`,
+        term: `Khalifah & Knowledge`,
+        arabicTerm: `خَلِيفَةً · الْأَسْمَاءَ`,
+        verses: `2:30–2:33`,
+        summary: `Humanity is entrusted as a successive moral agent (khalifah) on earth, distinguished by the gift of conceptual language ("all the names")—pairing intellect with responsibility.`,
+        arabicQuote: `وَعَلَّمَ آدَمَ الْأَسْمَاءَ كُلَّهَا ثُمَّ عَرَضَهُمْ عَلَى الْمَلَائِكَةِ`,
+        englishQuote: `And He taught Adam the names — all of them. Then He showed them to the angels… (2:31)`
+      },
+      {
+        id: `c3`,
+        category: `history`,
+        categoryLabel: `History & Covenant`,
+        term: `Al-Baqarah (The Cow)`,
+        arabicTerm: `بَقَرَةً`,
+        verses: `2:67–2:74`,
+        summary: `The chapter's namesake episode warns against evading clear guidance through endless hair-splitting, while showing how God restores life to the dead and softens hearts harder than stone.`,
+        arabicQuote: `إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تَذْبَحُوا بَقَرَةً`,
+        englishQuote: `Indeed, Allah commands you to slaughter a cow. (2:67)`
+      },
+      {
+        id: `c4`,
+        category: `community`,
+        categoryLabel: `Community & Worship`,
+        term: `Ummatan Wasatan & Qiblah`,
+        arabicTerm: `أُمَّةً وَسَطًا`,
+        verses: `2:142–2:148`,
+        summary: `Placed at the exact midpoint of the surah (v. 143), the change of prayer direction to the Ka'bah shapes a balanced, just community called to witness and race toward all good.`,
+        arabicQuote: `وَلِكُلٍّ وِجْهَةٌ هُوَ مُوَلِّيهَا ۖ فَاسْتَبِقُوا الْخَيْرَاتِ`,
+        englishQuote: `For each [religious following] is a direction toward which it faces. So race to [all that is] good. (2:148)`
+      },
+      {
+        id: `c5`,
+        category: `community`,
+        categoryLabel: `Community & Worship`,
+        term: `Al-Birr (True Righteousness)`,
+        arabicTerm: `الْبِرَّ`,
+        verses: `2:177`,
+        summary: `Declares that piety is never reduced to facing East or West; true righteousness unites creed, sacrificial care for the vulnerable, prayer, kept promises, and resilience.`,
+        arabicQuote: `وَالْمُوفُونَ بِعَهْدِهِمْ إِذَا عَاهَدُوا ۖ وَالصَّابِرِينَ فِي الْبَأْسَاءِ وَالْضَّرَّاءِ`,
+        englishQuote: `…[those who] fulfill their promise when they promise; and [those who] are patient in poverty and hardship… (2:177)`
+      },
+      {
+        id: `c6`,
+        category: `community`,
+        categoryLabel: `Community & Worship`,
+        term: `As-Siyam & Nearness`,
+        arabicTerm: `الصِّيَامُ · قَرِيبٌ`,
+        verses: `2:183–2:187`,
+        summary: `Ramadan fasting is legislated to cultivate taqwa with built-in ease for travelers and the ill—and anchored by 2:186 assuring every supplicant that God is near and responsive.`,
+        arabicQuote: `يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ`,
+        englishQuote: `Allah intends for you ease and does not intend for you hardship… (2:185)`
+      },
+      {
+        id: `c7`,
+        category: `justice`,
+        categoryLabel: `Law & Economic Justice`,
+        term: `Al-Qisas & Restraint`,
+        arabicTerm: `الْقِصَاصُ · لَا تَعْتَدُوا`,
+        verses: `2:178–2:194`,
+        summary: `Legal equity in homicide preserves societal life while encouraging gracious pardon (2:178–179), and defensive warfare is strictly bounded by non-aggression and peace when hostilities cease.`,
+        arabicQuote: `وَلَكُمْ فِي الْقِصَاصِ حَيَاةٌ يَا أُولِي الْأَلْبَابِ لَعَلَّكُمْ تَتَّقُونَ`,
+        englishQuote: `And there is for you in legal retribution [saving of] life, O you [people] of understanding… (2:179)`
+      },
+      {
+        id: `c8`,
+        category: `faith`,
+        categoryLabel: `Faith & Inner Life`,
+        term: `Ayat al-Kursi`,
+        arabicTerm: `آيَةُ الْكُرْسِيِّ`,
+        verses: `2:255`,
+        summary: `The supreme verse on divine majesty: Al-Hayy (Ever-Living) and Al-Qayyum (Sustainer), free from fatigue or oversight, holding total knowledge and effortless dominion over cosmos and earth.`,
+        arabicQuote: `وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ`,
+        englishQuote: `His Kursi extends over the heavens and the earth, and their preservation tires Him not. (2:255)`
+      },
+      {
+        id: `c9`,
+        category: `faith`,
+        categoryLabel: `Faith & Inner Life`,
+        term: `Al-Urwah al-Wuthqa`,
+        arabicTerm: `الْعُرْوَةِ الْوُثْقَىٰ`,
+        verses: `2:256–2:257`,
+        summary: `Faith cannot be coerced ("no compulsion in religion"). Rejecting false tyranny (Taghut) and embracing God secures an unbreakable handhold that leads from darkness into light.`,
+        arabicQuote: `فَمَنْ يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِنْ بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ`,
+        englishQuote: `So whoever disbelieves in Taghut and believes in Allah has grasped the most trustworthy handhold with no break in it. (2:256)`
+      },
+      {
+        id: `c10`,
+        category: `justice`,
+        categoryLabel: `Law & Economic Justice`,
+        term: `Infaq (Generous Spending)`,
+        arabicTerm: `يُنْفِقُونَ أَمْوَالَهُمْ`,
+        verses: `2:261–2:274`,
+        summary: `Sincere spending grows seven hundredfold, provided it is free of boastful reminders (mann) and emotional hurt (adha), comes from good earnings, and respects the dignity of the restrained poor.`,
+        arabicQuote: `قَوْلٌ مَعْرُوفٌ وَمَغْفِرَةٌ خَيْرٌ مِنْ صَدَقَةٍ يَتْبَعُهَا أَذًى`,
+        englishQuote: `Kind speech and forgiveness are better than charity followed by injury. (2:263)`
+      },
+      {
+        id: `c11`,
+        category: `justice`,
+        categoryLabel: `Law & Economic Justice`,
+        term: `Bay' vs. Riba (Trade vs. Usury)`,
+        arabicTerm: `الْبَيْعَ · الرِّبَا`,
+        verses: `2:275–2:281`,
+        summary: `Distinguishes mutually beneficial trade from exploitative usury. God erases riba while multiplying charity, and urges lenders to grant respite—or remit debt altogether—for struggling borrowers.`,
+        arabicQuote: `يَمْحَقُ اللَّهُ الرِّبَا وَيُرْبِي الصَّدَقَاتِ`,
+        englishQuote: `Allah destroys interest and gives increase for charities. (2:276)`
+      },
+      {
+        id: `c12`,
+        category: `justice`,
+        categoryLabel: `Law & Economic Justice`,
+        term: `Ayat ad-Dayn & Capacity`,
+        arabicTerm: `بِدَيْنٍ · إِلَّا وُسْعَهَا`,
+        verses: `2:282–2:286`,
+        summary: `Pairs meticulous civic justice—written contracts, fair scribes, and truthful witnesses—with spiritual reassurance: no soul is ever burdened beyond its capacity, closing in mercy and prayer.`,
+        arabicQuote: `ذَٰلِكُمْ أَقْسَطُ عِنْدَ اللَّهِ وَأَقْوَمُ لِلشَّهَادَةِ وَأَدْنَىٰ أَلَّا تَرْتَابُوا`,
+        englishQuote: `That is more just in the sight of Allah and stronger as evidence and more likely to prevent doubt between you. (2:282)`
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 10 SELF-ASSESSMENT QUESTIONS
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        verseRef: `2:2–2:5`,
+        prompt: `According to the opening verses of Surah Al-Baqarah (2:2–5), who directly receives the Qur'an as guidance?`,
+        options: [
+          `Only scholars who master all ancient languages`,
+          `Those conscious of Allah (al-muttaqin) who trust the unseen, pray, spend, and are certain of the Hereafter`,
+          `Anyone who recites the letters without intending action`,
+          `Only those who lived during the time of Moses and Abraham`
+        ],
+        correct: 1,
+        explanation: `Verses 2:2–5 define al-muttaqin (the God-conscious) by five traits: belief in the unseen (al-ghayb), establishing prayer, spending from provision, affirming current and prior revelations, and certainty in the Hereafter.`
+      },
+      {
+        id: `q2`,
+        verseRef: `2:17–2:20`,
+        prompt: `What do the two parables of the kindled fire and the lightning rainstorm (2:17–20) illustrate?`,
+        options: [
+          `The ecological cycle of desert agriculture`,
+          `The unstable, self-deceiving state of hypocrites who receive momentary illumination before returning to darkness`,
+          `The physical signs of approaching seasonal rains`,
+          `The architecture of the heavens and earth`
+        ],
+        correct: 1,
+        explanation: `Both parables depict the hypocrites (2:8–20): like one whose fire goes out leaving darkness, or travelers in a storm who only walk when lightning flashes and freeze in darkness.`
+      },
+      {
+        id: `q3`,
+        verseRef: `2:30–2:37`,
+        prompt: `How does Surah Al-Baqarah contrast Adam's response to error with Iblees's response to God's command?`,
+        options: [
+          `Adam refused to admit fault while Iblees asked for delay`,
+          `Iblees refused out of arrogance (2:34), whereas Adam received words from his Lord and repented (2:37)`,
+          `Both were permanently excluded from divine mercy`,
+          `Adam was never given a boundary in Paradise`
+        ],
+        correct: 1,
+        explanation: `Verse 2:34 notes Iblees "refused and was arrogant," whereas 2:37 shows Adam receiving words from his Lord and turning in repentance, accepted by At-Tawwab ar-Rahim.`
+      },
+      {
+        id: `q4`,
+        verseRef: `2:67–2:71`,
+        prompt: `What lesson emerges from the namesake episode of the Cow (Al-Baqarah) in verses 2:67–71?`,
+        options: [
+          `Agricultural rituals require yellow cattle every spring`,
+          `Excessive questioning and reluctance turned a straightforward divine command into a difficult burden`,
+          `Moses refused to ask God for clarification`,
+          `The people complied immediately without hesitation`
+        ],
+        correct: 1,
+        explanation: `Instead of acting on the simple command to slaughter a cow, the people repeatedly demanded specifications (age, color, work history), making compliance so hard they "could hardly do it" (2:71).`
+      },
+      {
+        id: `q5`,
+        verseRef: `2:143`,
+        prompt: `Sitting at the exact numerical midpoint of the 286-verse chapter, what identity does verse 2:143 confer upon the community?`,
+        options: [
+          `A secluded monastic order`,
+          `A just, balanced community (ummatan wasatan) to be witnesses over humanity`,
+          `A nation exempt from all moral accountability`,
+          `A community bound exclusively to one ancestral lineage`
+        ],
+        correct: 1,
+        explanation: `Verse 2:143 pairs the Qiblah change with the designation "ummatan wasatan" (a just/balanced community) tasked with moral witness, just as the Messenger is a witness over them.`
+      },
+      {
+        id: `q6`,
+        verseRef: `2:177`,
+        prompt: `In verse 2:177, what does Surah Al-Baqarah declare about the essence of True Righteousness (Al-Birr)?`,
+        options: [
+          `Turning one's face toward the East or West is sufficient on its own`,
+          `True righteousness integrates sound belief, generous giving despite love of wealth, prayer, kept promises, and patience in hardship`,
+          `Charity is only owed after all personal desires are fulfilled`,
+          `Only fasting constitutes righteousness`
+        ],
+        correct: 1,
+        explanation: `Verse 2:177 explicitly corrects ritual formalism: righteousness is not merely turning East or West, but uniting belief, compassionate spending, prayer/zakah, promise-keeping, and steadfastness.`
+      },
+      {
+        id: `q7`,
+        verseRef: `2:183–2:186`,
+        prompt: `What remarkable verse appears directly amidst the Ramadan fasting regulations in 2:183–187?`,
+        options: [
+          `The laws governing written commercial contracts`,
+          `2:186: "Indeed I am near. I respond to the invocation of the supplicant when he calls upon Me."`,
+          `The story of Saul and Goliath`,
+          `The prohibition of entering houses from the back`
+        ],
+        correct: 1,
+        explanation: `Placed directly between the rules of Ramadan (2:183–185) and its night permissions (2:187), 2:186 highlights the intimate closeness of God to the praying, fasting believer.`
+      },
+      {
+        id: `q8`,
+        verseRef: `2:247–2:251`,
+        prompt: `In the account of Saul (Talut) and David (2:247–251), by what criteria was Saul chosen as king despite his lack of wealth?`,
+        options: [
+          `Hereditary royal lineage alone`,
+          `Abundant increase in knowledge and physical stature`,
+          `Commercial treaties with Goliath`,
+          `Popularity among those who drank freely from the river`
+        ],
+        correct: 1,
+        explanation: `When the nobles objected that Saul lacked wealth, their prophet explained God had chosen him and increased him abundantly in knowledge and stature (2:247).`
+      },
+      {
+        id: `q9`,
+        verseRef: `2:255–2:256`,
+        prompt: `Which two foundational principles appear side by side in verses 2:255 and 2:256?`,
+        options: [
+          `Laws of pilgrimage and rules of inheritance`,
+          `God's absolute sovereignty as Al-Hayy Al-Qayyum (Ayat al-Kursi) and freedom from compulsion in religion`,
+          `Dietary restrictions and lunar calendars`,
+          `The construction of the Ka'bah and the prayer of Jacob`
+        ],
+        correct: 1,
+        explanation: `Ayat al-Kursi (2:255) affirms God's total, tireless mastery of the cosmos, followed immediately by 2:256: "There shall be no compulsion in [acceptance of] the religion."`
+      },
+      {
+        id: `q10`,
+        verseRef: `2:262–2:286`,
+        prompt: `What protects charity from becoming spiritually void (2:264), and what protects deferred loans from dispute (2:282)?`,
+        options: [
+          `Public announcements for charity, and verbal promises alone for loans`,
+          `Avoiding hurtful reminders/showing off in charity, and writing down deferred debts with impartial scribes and witnesses`,
+          `Charging moderate interest on loans to fund charity`,
+          `Delaying debt documentation until after repayment`
+        ],
+        correct: 1,
+        explanation: `Verses 2:262–264 warn that reminders (mann) and hurt (adha) or ostentation wash away charity like rain on smooth stone, while 2:282 mandates written documentation, fair scribes, and witnesses for deferred debts.`
+      }
+    ];
+
+    // =========================================================================
+    // DATA: 8 ACTIVE-RECALL FLASHCARDS
+    // =========================================================================
+    const FLASHCARDS = [
+      {
+        id: `f1`,
+        term: `Al-Ghayb`,
+        arabic: `الْغَيْبِ`,
+        verse: `2:3`,
+        meaning: `The Unseen`,
+        detail: `Realities beyond direct sensory observation (God, angels, revelation, the Hereafter) trusted by the God-conscious.`
+      },
+      {
+        id: `f2`,
+        term: `Khalifah`,
+        arabic: `خَلِيفَةً`,
+        verse: `2:30`,
+        meaning: `Successive Moral Authority / Steward`,
+        detail: `Humanity's role on earth, honored with knowledge of "all the names" and accountable for justice.`
+      },
+      {
+        id: `f3`,
+        term: `Ummatan Wasatan`,
+        arabic: `أُمَّةً وَسَطًا`,
+        verse: `2:143`,
+        meaning: `A Just, Balanced Community`,
+        detail: `Located at the exact midpoint (v. 143 of 286), called to avoid extremes and stand as ethical witnesses.`
+      },
+      {
+        id: `f4`,
+        term: `Al-Birr`,
+        arabic: `الْبِرَّ`,
+        verse: `2:177`,
+        meaning: `Comprehensive Righteousness`,
+        detail: `Not mere ritual posture, but unified creed, compassionate wealth-sharing, prayer, integrity, and patience.`
+      },
+      {
+        id: `f5`,
+        term: `Al-Hayy Al-Qayyum`,
+        arabic: `الْحَيُّ الْقَيُّومُ`,
+        verse: `2:255`,
+        meaning: `The Ever-Living, Self-Sustaining Sustainer`,
+        detail: `Opening divine names of Ayat al-Kursi, signifying life without slumber and tireless preservation of existence.`
+      },
+      {
+        id: `f6`,
+        term: `Al-Urwah al-Wuthqa`,
+        arabic: `الْعُرْوَةِ الْوُثْقَىٰ`,
+        verse: `2:256`,
+        meaning: `The Unbreakable Firm Handhold`,
+        detail: `Grasped by those who reject false tyranny (Taghut) and sincerely believe in Allah without coercion.`
+      },
+      {
+        id: `f7`,
+        term: `Mann wa Adha`,
+        arabic: `الْمَنِّ وَالْأَذَىٰ`,
+        verse: `2:262–264`,
+        meaning: `Boastful Reminders & Emotional Injury`,
+        detail: `Attitudes that invalidate charity just as a downpour strips dust from a smooth stone.`
+      },
+      {
+        id: `f8`,
+        term: `Wus'aha (Capacity)`,
+        arabic: `وُسْعَهَا`,
+        verse: `2:286`,
+        meaning: `A Soul's Capacity`,
+        detail: `Closing assurance: God never charges any human soul beyond what it has the capacity to bear.`
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT (PERSISTED VIA window.notebookAppApi)
+    // =========================================================================
+    let appState = {
+      activeModuleId: `m1`,
+      completedModules: [],
+      reflections: {},
+      bookmarkedVerses: [],
+      conceptCategory: `all`,
+      conceptQuery: ``,
+      quizIndex: 0,
+      quizAnswers: {},
+      flashcardIndex: 0,
+      flashcardRevealed: false,
+      masteredCards: []
+    };
+
+    let saveTimer = null;
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Graceful fallback if host rejects transient update
+        }
+      }
+    }
+
+    function schedulePersist() {
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(function() {
+        persistState();
+      }, 220);
+    }
+
+    // =========================================================================
+    // RENDERING: TELEMETRY & NAVIGATION
+    // =========================================================================
+    function updateTelemetry() {
+      const doneCount = appState.completedModules.length;
+      const pct = Math.round((doneCount / MODULES.length) * 100);
+
+      const kpiModules = document.getElementById(`kpi-modules`);
+      const kpiPct = document.getElementById(`kpi-percent`);
+      const kpiBar = document.getElementById(`kpi-progress-bar`);
+      const kpiModulesNote = document.getElementById(`kpi-modules-note`);
+
+      if (kpiModules) kpiModules.textContent = `${doneCount} / ${MODULES.length}`;
+      if (kpiPct) kpiPct.textContent = `${pct}%`;
+      if (kpiBar) kpiBar.style.width = `${pct}%`;
+      if (kpiModulesNote) {
+        if (doneCount === 0) {
+          kpiModulesNote.textContent = `Begin with Module 1 or explore any passage in the blueprint below.`;
+        } else if (doneCount < MODULES.length) {
+          kpiModulesNote.textContent = `${MODULES.length - doneCount} module${MODULES.length - doneCount === 1 ? `` : `s`} remaining to complete the chapter.`;
+        } else {
+          kpiModulesNote.textContent = `All seven modules of Surah Al-Baqarah marked complete.`;
+        }
+      }
+
+      // Quiz telemetry
+      let correctCount = 0;
+      let answeredCount = 0;
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        const q = QUIZ_QUESTIONS[i];
+        if (typeof appState.quizAnswers[q.id] === `number`) {
+          answeredCount++;
+          if (appState.quizAnswers[q.id] === q.correct) correctCount++;
+        }
+      }
+      const kpiQuiz = document.getElementById(`kpi-quiz`);
+      const kpiQuizNote = document.getElementById(`kpi-quiz-note`);
+      if (kpiQuiz) kpiQuiz.textContent = `${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      if (kpiQuizNote) {
+        kpiQuizNote.textContent = answeredCount === 0
+          ? `10 verse-grounded questions ready`
+          : `${answeredCount} of ${QUIZ_QUESTIONS.length} answered`;
+      }
+
+      // Reflections + Bookmarks telemetry
+      let reflCount = 0;
+      const keys = Object.keys(appState.reflections);
+      for (let j = 0; j < keys.length; j++) {
+        if (appState.reflections[keys[j]] && appState.reflections[keys[j]].trim().length > 0) {
+          reflCount++;
+        }
+      }
+      const bmCount = appState.bookmarkedVerses.length;
+      const kpiNotes = document.getElementById(`kpi-notes`);
+      const kpiNotesNote = document.getElementById(`kpi-notes-note`);
+      if (kpiNotes) kpiNotes.textContent = `${reflCount + bmCount} saved`;
+      if (kpiNotesNote) {
+        kpiNotesNote.textContent = `${reflCount} reflection${reflCount === 1 ? `` : `s`} · ${bmCount} bookmarked verse${bmCount === 1 ? `` : `s`}`;
+      }
+    }
+
+    // =========================================================================
+    // RENDERING: BLUEPRINT INSPECTOR
+    // =========================================================================
+    function selectBlueprintModule(moduleId) {
+      const mod = MODULES.find(function(m) { return m.id === moduleId; });
+      if (!mod) return;
+
+      appState.activeModuleId = moduleId;
+
+      const bpRange = document.getElementById(`bp-range`);
+      const bpTitle = document.getElementById(`bp-title`);
+      const bpSummary = document.getElementById(`bp-summary`);
+
+      if (bpRange) bpRange.textContent = `Module ${mod.number} · Verses ${mod.range} (${mod.verseCount} verses · ${mod.pct})`;
+      if (bpTitle) bpTitle.textContent = mod.title;
+      if (bpSummary) bpSummary.textContent = mod.thesis;
+
+      // Highlight selected SVG rect subtly via stroke
+      for (let i = 0; i < MODULES.length; i++) {
+        const rect = document.getElementById(`svg-rect-${MODULES[i].id}`);
+        if (rect) {
+          if (MODULES[i].id === moduleId) {
+            rect.setAttribute(`stroke`, `var(--on-surface)`);
+            rect.setAttribute(`stroke-width`, `2.5`);
+          } else {
+            rect.removeAttribute(`stroke`);
+            rect.removeAttribute(`stroke-width`);
+          }
+        }
+      }
+
+      renderModuleWorkbench();
+      schedulePersist();
+    }
+
+    function handleSvgKey(evt, moduleId) {
+      if (evt.key === `Enter` || evt.key === ` `) {
+        evt.preventDefault();
+        selectBlueprintModule(moduleId);
+      }
+    }
+
+    function openModuleFromBlueprint() {
+      renderModuleWorkbench();
+    }
+
+    // =========================================================================
+    // RENDERING: STUDY WORKBENCH & REFLECTIONS
+    // =========================================================================
+    function selectModule(moduleId) {
+      selectBlueprintModule(moduleId);
+    }
+
+    function toggleModuleComplete(moduleId) {
+      const idx = appState.completedModules.indexOf(moduleId);
+      if (idx === -1) {
+        appState.completedModules.push(moduleId);
+      } else {
+        appState.completedModules.splice(idx, 1);
+      }
+      renderModuleWorkbench();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function toggleBookmark(verseRef) {
+      const idx = appState.bookmarkedVerses.indexOf(verseRef);
+      if (idx === -1) {
+        appState.bookmarkedVerses.push(verseRef);
+      } else {
+        appState.bookmarkedVerses.splice(idx, 1);
+      }
+      renderModuleWorkbench();
+      renderBookmarks();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function updateReflection(moduleId, value) {
+      appState.reflections[moduleId] = value;
+      const statusEl = document.getElementById(`reflection-status`);
+      if (statusEl) {
+        statusEl.textContent = value.trim().length > 0 ? `Saved to notebook workspace` : ``;
+      }
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function renderModuleWorkbench() {
+      const rail = document.getElementById(`module-rail`);
+      const sheet = document.getElementById(`module-sheet`);
+      if (!rail || !sheet) return;
+
+      let railHtml = ``;
+      for (let i = 0; i < MODULES.length; i++) {
+        const m = MODULES[i];
+        const isActive = m.id === appState.activeModuleId;
+        const isDone = appState.completedModules.indexOf(m.id) !== -1;
+        railHtml += `
+          <button type="button"
+                  role="tab"
+                  aria-selected="${isActive ? `true` : `false`}"
+                  class="module-tab ${isActive ? `is-active` : ``}"
+                  onclick="selectModule('${m.id}')">
+            <div class="module-tab-meta">
+              <span class="label">Module ${m.number} · ${m.range}</span>
+              <span class="module-tab-title">${m.title}</span>
+            </div>
+            <span class="status-dot ${isDone ? `is-done` : ``}" aria-label="${isDone ? `Completed` : `Not completed`}">
+              ${isDone ? `<i data-lucide="check" style="width:14px;height:14px;" aria-hidden="true"></i>` : `${m.number}`}
+            </span>
+          </button>
+        `;
+      }
+      rail.innerHTML = railHtml;
+
+      const mod = MODULES.find(function(m) { return m.id === appState.activeModuleId; }) || MODULES[0];
+      const isModDone = appState.completedModules.indexOf(mod.id) !== -1;
+      const isPrimarySaved = appState.bookmarkedVerses.indexOf(mod.anchorVerse.ref) !== -1;
+      const isSecondarySaved = appState.bookmarkedVerses.indexOf(mod.secondaryVerse.ref) !== -1;
+      const savedReflection = appState.reflections[mod.id] || ``;
+
+      let subHtml = ``;
+      for (let j = 0; j < mod.subpassages.length; j++) {
+        const sp = mod.subpassages[j];
+        subHtml += `
+          <div class="subpassage-item">
+            <span class="verse-badge">${sp.verses}</span>
+            <div>
+              <p class="subhead" style="font-size:1.05rem;">${sp.heading}</p>
+              <p class="prose-muted" style="margin-top:var(--space-xs);">${sp.detail}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      sheet.innerHTML = `
+        <div class="module-sheet-head">
+          <div>
+            <span class="label">Module ${mod.number} of 7 · Verses ${mod.range} (${mod.verseCount} verses)</span>
+            <h3 class="headline" style="font-size:var(--headline-size); margin-top:var(--space-xs);">${mod.title}</h3>
+          </div>
+          <button type="button"
+                  class="btn btn-primary ${isModDone ? `is-complete` : ``}"
+                  onclick="toggleModuleComplete('${mod.id}')">
+            <i data-lucide="${isModDone ? `check-circle-2` : `circle`}" style="width:16px;height:16px;" aria-hidden="true"></i>
+            ${isModDone ? `Module Completed` : `Mark Module Complete`}
+          </button>
+        </div>
+
+        <p class="prose">${mod.thesis}</p>
+
+        <div class="subpassage-list">
+          ${subHtml}
+        </div>
+
+        <div class="scripture-block">
+          <div class="scripture-meta">
+            <span class="tag tag-slate">Primary Anchor · Qur'an ${mod.anchorVerse.ref}</span>
+            <button type="button" class="btn btn-ghost btn-sm" onclick="toggleBookmark('${mod.anchorVerse.ref}')">
+              <i data-lucide="${isPrimarySaved ? `bookmark-check` : `bookmark`}" style="width:15px;height:15px;" aria-hidden="true"></i>
+              ${isPrimarySaved ? `Bookmarked` : `Bookmark Verse`}
+            </button>
+          </div>
+          <p class="arabic-text" lang="ar" dir="rtl">${mod.anchorVerse.arabic}</p>
+          <p class="english-translation">${mod.anchorVerse.english}</p>
+        </div>
+
+        <div class="scripture-block">
+          <div class="scripture-meta">
+            <span class="tag">Supporting Verse · Qur'an ${mod.secondaryVerse.ref}</span>
+            <button type="button" class="btn btn-ghost btn-sm" onclick="toggleBookmark('${mod.secondaryVerse.ref}')">
+              <i data-lucide="${isSecondarySaved ? `bookmark-check` : `bookmark`}" style="width:15px;height:15px;" aria-hidden="true"></i>
+              ${isSecondarySaved ? `Bookmarked` : `Bookmark Verse`}
+            </button>
+          </div>
+          <p class="arabic-text" lang="ar" dir="rtl">${mod.secondaryVerse.arabic}</p>
+          <p class="english-translation">${mod.secondaryVerse.english}</p>
+        </div>
+
+        <div class="reflection-box">
+          <label for="module-reflection-input" class="field-label">Reflection Journal — Module ${mod.number}</label>
+          <p class="prose-muted" style="margin-bottom:var(--space-xs);">${mod.reflectionPrompt}</p>
+          <textarea id="module-reflection-input"
+                    class="textarea-input"
+                    placeholder="Record your personal takeaways, questions, or verses to revisit…"
+                    oninput="updateReflection('${mod.id}', this.value)">${escapeHtml(savedReflection)}</textarea>
+          <div class="reflection-footer">
+            <span class="inline-status" id="reflection-status" role="status" aria-live="polite">${savedReflection.trim().length > 0 ? `Saved to notebook workspace` : ``}</span>
+            <div style="display:flex; gap:var(--space-sm);">
+              ${mod.number > 1 ? `<button type="button" class="btn btn-ghost btn-sm" onclick="selectModule('m${mod.number - 1}')">Previous Module</button>` : ``}
+              ${mod.number < 7 ? `<button type="button" class="btn btn-ghost btn-sm" onclick="selectModule('m${mod.number + 1}')">Next Module</button>` : ``}
+            </div>
+          </div>
+        </div>
+      `;
+
+      refreshIcons();
+    }
+
+    function renderBookmarks() {
+      const container = document.getElementById(`bookmarks-list`);
+      const countTag = document.getElementById(`bookmarks-count-tag`);
+      if (!container || !countTag) return;
+
+      const list = appState.bookmarkedVerses;
+      countTag.textContent = `${list.length} bookmarked`;
+
+      if (list.length === 0) {
+        container.innerHTML = `<p class="prose-muted">No verses bookmarked yet. Use the "Bookmark Verse" button inside any study module to collect passages for review.</p>`;
+        return;
+      }
+
+      // Collect matching verse objects from MODULES
+      let html = ``;
+      for (let i = 0; i < list.length; i++) {
+        const ref = list[i];
+        let found = null;
+        let modId = `m1`;
+        for (let m = 0; m < MODULES.length; m++) {
+          if (MODULES[m].anchorVerse.ref === ref) { found = MODULES[m].anchorVerse; modId = MODULES[m].id; break; }
+          if (MODULES[m].secondaryVerse.ref === ref) { found = MODULES[m].secondaryVerse; modId = MODULES[m].id; break; }
+        }
+        if (found) {
+          html += `
+            <div class="panel" style="padding:var(--space-md); display:flex; flex-direction:column; gap:var(--space-xs);">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+                <span class="tag tag-slate">Qur'an ${found.ref}</span>
+                <div style="display:flex; gap:var(--space-xs);">
+                  <button type="button" class="btn btn-ghost btn-sm" onclick="selectModule('${modId}')">Open module</button>
+                  <button type="button" class="btn btn-ghost btn-sm" onclick="toggleBookmark('${found.ref}')">Remove</button>
+                </div>
+              </div>
+              <p class="arabic-text" lang="ar" dir="rtl" style="font-size:1.25rem;">${found.arabic}</p>
+              <p class="english-translation" style="font-size:0.95rem;">${found.english}</p>
+            </div>
+          `;
+        }
+      }
+      container.innerHTML = html;
+    }
+
+    // =========================================================================
+    // RENDERING: KEY CONCEPTS EXPLORER
+    // =========================================================================
+    function setConceptFilter(category, btnEl) {
+      appState.conceptCategory = category;
+      const pills = document.querySelectorAll(`#concept-pills .filter-pill`);
+      for (let i = 0; i < pills.length; i++) {
+        pills[i].classList.remove(`is-active`);
+      }
+      if (btnEl) btnEl.classList.add(`is-active`);
+      renderConcepts();
+    }
+
+    function setConceptSearch(query) {
+      appState.conceptQuery = query.trim().toLowerCase();
+      renderConcepts();
+    }
+
+    function toggleConceptVerse(conceptId, btnEl) {
+      const drawer = document.getElementById(`concept-drawer-${conceptId}`);
+      if (!drawer) return;
+      const isHidden = drawer.hasAttribute(`hidden`);
+      if (isHidden) {
+        drawer.removeAttribute(`hidden`);
+        if (btnEl) btnEl.textContent = `Hide source verse`;
+      } else {
+        drawer.setAttribute(`hidden`, ``);
+        if (btnEl) btnEl.textContent = `Read source verse`;
+      }
+    }
+
+    function renderConcepts() {
+      const grid = document.getElementById(`concepts-grid`);
+      if (!grid) return;
+
+      const filtered = CONCEPTS.filter(function(c) {
+        const matchCat = appState.conceptCategory === `all` || c.category === appState.conceptCategory;
+        if (!matchCat) return false;
+        if (!appState.conceptQuery) return true;
+        const hay = `${c.term} ${c.verses} ${c.summary} ${c.categoryLabel} ${c.englishQuote}`.toLowerCase();
+        return hay.indexOf(appState.conceptQuery) !== -1;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="panel" style="grid-column: 1 / -1;">
+            <p class="subhead">No matching concepts found</p>
+            <p class="prose-muted" style="margin-top:var(--space-xs);">Try clearing your search filter or switching back to "All Concepts".</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = ``;
+      for (let i = 0; i < filtered.length; i++) {
+        const c = filtered[i];
+        html += `
+          <div class="concept-card-wrap">
+            <article class="panel concept-card">
+              <div>
+                <div class="concept-head">
+                  <span class="tag">${c.categoryLabel}</span>
+                  <span class="label" style="font-variant-numeric:tabular-nums;">vv. ${c.verses}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-sm); margin-top:var(--space-md);">
+                  <h3 class="subhead">${c.term}</h3>
+                  <span class="arabic-term" lang="ar" dir="rtl">${c.arabicTerm}</span>
+                </div>
+                <p class="prose-muted" style="margin-top:var(--space-sm); font-size:0.96rem;">${c.summary}</p>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:var(--space-sm);">
+                <div class="concept-verse-drawer" id="concept-drawer-${c.id}" hidden>
+                  <p class="arabic-text" lang="ar" dir="rtl" style="font-size:1.2rem;">${c.arabicQuote}</p>
+                  <p class="english-translation" style="font-size:0.9rem;">${c.englishQuote}</p>
+                </div>
+                <button type="button" class="btn btn-ghost btn-sm" style="align-self:flex-start;" onclick="toggleConceptVerse('${c.id}', this)">
+                  Read source verse
+                </button>
+              </div>
+            </article>
+          </div>
+        `;
+      }
+      grid.innerHTML = html;
+    }
+
+    // =========================================================================
+    // RENDERING: SELF-ASSESSMENT QUIZ
+    // =========================================================================
+    function answerQuiz(questionId, optionIndex) {
+      appState.quizAnswers[questionId] = optionIndex;
+      renderQuiz();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next >= 0 && next < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = next;
+        renderQuiz();
+        schedulePersist();
+      }
+    }
+
+    function jumpToNextMissed() {
+      for (let offset = 1; offset <= QUIZ_QUESTIONS.length; offset++) {
+        const idx = (appState.quizIndex + offset) % QUIZ_QUESTIONS.length;
+        const q = QUIZ_QUESTIONS[idx];
+        if (typeof appState.quizAnswers[q.id] !== `number` || appState.quizAnswers[q.id] !== q.correct) {
+          appState.quizIndex = idx;
+          renderQuiz();
+          schedulePersist();
+          return;
+        }
+      }
+    }
+
+    function handleResetQuiz(btn) {
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset`;
+        btn.classList.add(`btn-danger-armed`);
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset quiz`;
+            btn.classList.remove(`btn-danger-armed`);
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset quiz`;
+      btn.classList.remove(`btn-danger-armed`);
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      renderQuiz();
+      updateTelemetry();
+      schedulePersist();
+    }
+
+    function renderQuiz() {
+      const body = document.getElementById(`quiz-body`);
+      const progLabel = document.getElementById(`quiz-progress-label`);
+      const scoreTag = document.getElementById(`quiz-score-tag`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+      const missedBtn = document.getElementById(`quiz-missed-btn`);
+      if (!body || !progLabel || !scoreTag) return;
+
+      const q = QUIZ_QUESTIONS[appState.quizIndex];
+      const userChoice = appState.quizAnswers[q.id];
+      const hasAnswered = typeof userChoice === `number`;
+
+      let correctTotal = 0;
+      let needsReviewCount = 0;
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        const item = QUIZ_QUESTIONS[i];
+        const ans = appState.quizAnswers[item.id];
+        if (ans === item.correct) correctTotal++;
+        else needsReviewCount++;
+      }
+
+      progLabel.textContent = `Question ${appState.quizIndex + 1} of ${QUIZ_QUESTIONS.length} · Anchor ${q.verseRef}`;
+      scoreTag.textContent = `${correctTotal} / ${QUIZ_QUESTIONS.length} correct`;
+
+      let optionsHtml = ``;
+      const letters = [`A`, `B`, `C`, `D`];
+      for (let j = 0; j < q.options.length; j++) {
+        let stateClass = ``;
+        if (hasAnswered) {
+          if (j === q.correct) stateClass = `is-correct`;
+          else if (j === userChoice) stateClass = `is-wrong`;
+        }
+        optionsHtml += `
+          <button type="button"
+                  class="quiz-option ${stateClass}"
+                  onclick="answerQuiz('${q.id}', ${j})">
+            <span class="label" style="min-width:22px; color:var(--primary); font-weight:600;">${letters[j]}.</span>
+            <span>${q.options[j]}</span>
+          </button>
+        `;
+      }
+
+      const isRight = hasAnswered && userChoice === q.correct;
+      body.innerHTML = `
+        <p class="subhead" style="line-height:1.4;">${q.prompt}</p>
+        <div class="quiz-options" style="margin-top:var(--space-md);">
+          ${optionsHtml}
+        </div>
+        <div class="quiz-feedback" style="margin-top:var(--space-md);" ${hasAnswered ? `` : `hidden`}>
+          <span class="label" style="color:${isRight ? `var(--positive)` : `var(--error)`};">
+            ${isRight ? `Correct — Verse ${q.verseRef}` : `Review — Correct answer is ${letters[q.correct]} (${q.verseRef})`}
+          </span>
+          <p class="prose-muted" style="font-size:0.95rem;">${q.explanation}</p>
+        </div>
+      `;
+
+      if (prevBtn) prevBtn.disabled = appState.quizIndex === 0;
+      if (nextBtn) {
+        nextBtn.disabled = appState.quizIndex === QUIZ_QUESTIONS.length - 1;
+        nextBtn.textContent = appState.quizIndex === QUIZ_QUESTIONS.length - 1 ? `End of assessment` : `Next question`;
+      }
+      if (missedBtn) {
+        if (needsReviewCount > 0 && needsReviewCount < QUIZ_QUESTIONS.length) {
+          missedBtn.removeAttribute(`hidden`);
+          missedBtn.textContent = `Review remaining (${needsReviewCount})`;
+        } else {
+          missedBtn.setAttribute(`hidden`, ``);
+        }
+      }
+    }
+
+    // =========================================================================
+    // RENDERING: ACTIVE-RECALL FLASHCARDS
+    // =========================================================================
+    function toggleFlashcardReveal() {
+      appState.flashcardRevealed = !appState.flashcardRevealed;
+      renderFlashcards();
+    }
+
+    function stepFlashcard(delta) {
+      const len = FLASHCARDS.length;
+      appState.flashcardIndex = (appState.flashcardIndex + delta + len) % len;
+      appState.flashcardRevealed = false;
+      renderFlashcards();
+      schedulePersist();
+    }
+
+    function toggleFlashcardMastered() {
+      const card = FLASHCARDS[appState.flashcardIndex];
+      const idx = appState.masteredCards.indexOf(card.id);
+      if (idx === -1) appState.masteredCards.push(card.id);
+      else appState.masteredCards.splice(idx, 1);
+      renderFlashcards();
+      schedulePersist();
+    }
+
+    function renderFlashcards() {
+      const stage = document.getElementById(`flashcard-stage`);
+      const counter = document.getElementById(`flashcard-counter`);
+      const masteredBtn = document.getElementById(`flashcard-mastered-btn`);
+      if (!stage || !counter || !masteredBtn) return;
+
+      const card = FLASHCARDS[appState.flashcardIndex];
+      const isMastered = appState.masteredCards.indexOf(card.id) !== -1;
+
+      counter.textContent = `${appState.flashcardIndex + 1} / ${FLASHCARDS.length} · ${appState.masteredCards.length} mastered`;
+      masteredBtn.textContent = isMastered ? `Mastered` : `Mark mastered`;
+      if (isMastered) masteredBtn.classList.add(`is-complete`);
+      else masteredBtn.classList.remove(`is-complete`);
+
+      stage.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-sm);">
+          <div>
+            <span class="label">Qur'an ${card.verse}</span>
+            <p class="subhead" style="margin-top:var(--space-xs);">${card.term}</p>
+          </div>
+          <span class="arabic-term" lang="ar" dir="rtl" style="font-size:1.35rem;">${card.arabic}</span>
+        </div>
+
+        <div class="flashcard-answer" ${appState.flashcardRevealed ? `` : `hidden`}>
+          <span class="label" style="color:var(--secondary);">${card.meaning}</span>
+          <p class="prose-muted" style="font-size:0.93rem;">${card.detail}</p>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-sm" style="align-self:flex-start;" onclick="toggleFlashcardReveal()">
+          ${appState.flashcardRevealed ? `Hide meaning` : `Reveal meaning`}
+        </button>
+      `;
+    }
+
+    // =========================================================================
+    // GLOBAL ACTIONS: EXPORT & RESET
+    // =========================================================================
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH AL-BAQARAH (CHAPTER 2) — STUDY SUMMARY`,
+        `===========================================`,
+        `Modules Completed: ${appState.completedModules.length} / ${MODULES.length}`,
+        ``
+      ];
+
+      for (let i = 0; i < MODULES.length; i++) {
+        const m = MODULES[i];
+        const done = appState.completedModules.indexOf(m.id) !== -1 ? `[Completed]` : `[In progress]`;
+        const refl = appState.reflections[m.id] ? appState.reflections[m.id].trim() : `(No reflection recorded yet)`;
+        lines.push(`Module ${m.number} (${m.range}): ${m.title} ${done}`);
+        lines.push(`Reflection: ${refl}`);
+        lines.push(``);
+      }
+
+      if (appState.bookmarkedVerses.length > 0) {
+        lines.push(`Bookmarked Verses: ${appState.bookmarkedVerses.join(`, `)}`);
+      }
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-baqarah-study-notes.txt`
+        });
+        setGlobalStatus(`Study notes exported.`);
+      } else {
+        setGlobalStatus(`Export ready inside NotebookLM viewer.`);
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.innerHTML = `<i data-lucide="alert-circle" style="width:16px;height:16px;" aria-hidden="true"></i> Click again to confirm reset`;
+        btn.classList.add(`btn-danger-armed`);
+        refreshIcons();
+        setTimeout(function() {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.innerHTML = `<i data-lucide="rotate-ccw" style="width:16px;height:16px;" aria-hidden="true"></i> Reset Progress`;
+            btn.classList.remove(`btn-danger-armed`);
+            refreshIcons();
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.innerHTML = `<i data-lucide="rotate-ccw" style="width:16px;height:16px;" aria-hidden="true"></i> Reset Progress`;
+      btn.classList.remove(`btn-danger-armed`);
+
+      appState = {
+        activeModuleId: `m1`,
+        completedModules: [],
+        reflections: {},
+        bookmarkedVerses: [],
+        conceptCategory: `all`,
+        conceptQuery: ``,
+        quizIndex: 0,
+        quizAnswers: {},
+        flashcardIndex: 0,
+        flashcardRevealed: false,
+        masteredCards: []
+      };
+
+      const searchEl = document.getElementById(`concept-search`);
+      if (searchEl) searchEl.value = ``;
+      setConceptFilter(`all`, document.querySelector(`#concept-pills .filter-pill[data-cat="all"]`));
+
+      selectBlueprintModule(`m1`);
+      renderBookmarks();
+      renderQuiz();
+      renderFlashcards();
+      updateTelemetry();
+      persistState();
+      setGlobalStatus(`Study progress cleared.`);
+      refreshIcons();
+    }
+
+    function setGlobalStatus(msg) {
+      const el = document.getElementById(`global-status`);
+      if (el) {
+        el.textContent = msg;
+        setTimeout(function() {
+          if (el.textContent === msg) el.textContent = ``;
+        }, 3500);
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+    }
+
+    // =========================================================================
+    // SCROLL REVEAL & NAVIGATION HIGHLIGHTING
+    // =========================================================================
+    function initScrollObservers() {
+      const reveals = document.querySelectorAll(`.reveal`);
+      if (`IntersectionObserver` in window) {
+        const obs = new IntersectionObserver(function(entries) {
+          for (let i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) {
+              entries[i].target.classList.add(`is-visible`);
+              obs.unobserve(entries[i].target);
+            }
+          }
+        }, { threshold: 0.08 });
+        for (let j = 0; j < reveals.length; j++) {
+          obs.observe(reveals[j]);
+        }
+      } else {
+        for (let k = 0; k < reveals.length; k++) {
+          reveals[k].classList.add(`is-visible`);
+        }
+      }
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (saved.activeModuleId) appState.activeModuleId = saved.activeModuleId;
+            if (Array.isArray(saved.completedModules)) appState.completedModules = saved.completedModules;
+            if (saved.reflections && typeof saved.reflections === `object`) appState.reflections = saved.reflections;
+            if (Array.isArray(saved.bookmarkedVerses)) appState.bookmarkedVerses = saved.bookmarkedVerses;
+            if (typeof saved.quizIndex === `number`) appState.quizIndex = saved.quizIndex;
+            if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+            if (typeof saved.flashcardIndex === `number`) appState.flashcardIndex = saved.flashcardIndex;
+            if (Array.isArray(saved.masteredCards)) appState.masteredCards = saved.masteredCards;
+          }
+        } catch (err) {
+          // Proceed with default clean state
+        }
+      }
+
+      selectBlueprintModule(appState.activeModuleId);
+      renderBookmarks();
+      renderConcepts();
+      renderQuiz();
+      renderFlashcards();
+      updateTelemetry();
+      initScrollObservers();
+      refreshIcons();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

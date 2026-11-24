@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="haven">
+  <title>Surah Al-Anfal — Interactive Study &amp; Mastery Guide (Chapter 8)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400;600&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f5f6f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3ebe2;
+      --surface-container-high: #dbe2dd;
+
+      /* Ink */
+      --on-surface: #23272a;
+      --on-surface-variant: #5c6468;
+
+      /* Rules */
+      --outline: #c9d0cc;
+      --outline-variant: #dde2df;
+
+      /* Accents */
+      --primary: #3c5a6e;
+      --on-primary: #ffffff;
+      --primary-container: #e2e9ee;
+      --on-primary-container: #2a4152;
+      --secondary: #4f6b53;
+      --tertiary: #5f7c63;
+      --error: #a63d32;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #3c5a6e;
+      --data-2: #5f7c63;
+      --data-3: #a8694a;
+      --data-4: #8a7a68;
+      --data-context: #c3cac6;
+
+      /* Fonts */
+      --font-headline: 'Outfit', sans-serif;
+      --font-body: 'Hanken Grotesk', sans-serif;
+      --font-label: 'Outfit', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-control: 1px solid var(--outline);
+      --elevation: none;
+
+      /* Semantic */
+      --positive: #4f6b53;
+      --warning: #a8694a;
+      --focus: #3c5a6e;
+
+      /* Narrative type scale */
+      --display-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.55vw, 1.45rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.15rem);
+      --label-size: clamp(0.78rem, 0.74rem + 0.12vw, 0.85rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: text-decoration-thickness var(--dur-micro) var(--ease-out);
+    }
+    a:hover { text-decoration-thickness: 2px; }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .headline {
+      font-family: var(--font-headline);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline strong { font-weight: 600; }
+
+    .display-title {
+      font-size: var(--display-size);
+      max-width: 18ch;
+    }
+    .section-title {
+      font-size: var(--headline-size);
+      max-width: 28ch;
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      text-transform: none;
+      color: var(--on-surface-variant);
+      display: block;
+    }
+
+    .caption-sage {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--secondary);
+      margin: var(--space-xs) 0 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .prose + .prose { margin-top: var(--space-md); }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    /* Panels and containers */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+    .panel-sage {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .section + .section {
+      border-top: var(--hairline);
+      padding-top: var(--space-2xl);
+      margin-top: var(--space-xl);
+    }
+
+    /* Tags & badges */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--rounded-full);
+      border: none;
+      white-space: nowrap;
+    }
+    .tag-slate {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .tag-mastered {
+      background: var(--surface-container);
+      color: var(--secondary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: var(--hairline-control);
+      background: transparent;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+    .btn-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+    .btn-sm {
+      min-height: 36px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    /* Header & progress strip */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: end;
+      padding-bottom: var(--space-lg);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .hero-lede {
+      margin-top: var(--space-md);
+      font-size: 1.15rem;
+      color: var(--on-surface-variant);
+      max-width: 58ch;
+    }
+
+    .mastery-summary {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--outline-variant);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    /* Key figures asymmetric grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1.25fr;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.6rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-top: var(--space-xs);
+    }
+
+    /* Chapter quick-jump nav */
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      padding: var(--space-md) 0;
+      border-top: var(--hairline);
+      border-bottom: var(--hairline);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+      text-decoration: none;
+    }
+
+    /* Asymmetric split layout for sections */
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-xl);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+    .split-reverse {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    /* Tables (Haven: no vertical lines, no zebra stripes) */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+    }
+    table.haven-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    table.haven-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
+      border-bottom: var(--hairline-control);
+    }
+    table.haven-table td {
+      padding: var(--space-md) var(--space-md) var(--space-md) 0;
+      border-bottom: var(--hairline);
+      vertical-align: top;
+      font-size: 0.96rem;
+    }
+    table.haven-table tbody tr:hover {
+      background: var(--surface-container-high);
+    }
+
+    /* Arabic verse styling */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: 1.45rem;
+      line-height: 2.05;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      margin: 0;
+      letter-spacing: 0;
+    }
+    .quote-card {
+      border-left: 2px solid var(--primary);
+      padding-left: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    /* Stepper component (Section 2: Badr Sequence) */
+    .stepper-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .step-stage {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* SVG chart containers */
+    .viz-wrap {
+      width: 100%;
+      min-height: 260px;
+    }
+    .viz-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Inputs & controls */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .input-field, .select-field {
+      min-height: 44px;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.95rem;
+    }
+    .select-field { padding-right: 2.25rem; }
+    .input-field:focus, .select-field:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Ratio comparator */
+    .ratio-bars {
+      display: grid;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .ratio-bar-track {
+      height: 14px;
+      background: var(--outline-variant);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .ratio-bar-fill-primary {
+      height: 100%;
+      background: var(--data-1);
+      border-radius: 2px;
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .ratio-bar-fill-sage {
+      height: 100%;
+      background: var(--data-2);
+      border-radius: 2px;
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    /* Verse Explorer */
+    .explorer-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      margin-top: var(--space-lg);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      transition: border-color var(--dur-micro) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      border-color: var(--secondary);
+    }
+    .verse-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verse-note-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.5rem 0.75rem;
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      background: var(--background);
+      font-size: 0.92rem;
+      resize: vertical;
+    }
+    .verse-note-input:focus {
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    /* Mastery Quiz */
+    .quiz-grid {
+      display: grid;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      justify-content: flex-start;
+      padding: 0.7rem 1rem;
+    }
+    .quiz-option.correct {
+      background: var(--surface-container);
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+    .quiz-option.incorrect {
+      background: var(--surface-container-low);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .feedback-box {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+      font-size: 0.95rem;
+    }
+    .feedback-box.ok {
+      border-color: var(--secondary);
+      color: var(--secondary);
+      background: var(--surface-container);
+    }
+    .feedback-box.bad {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: var(--hairline);
+      padding-top: var(--space-xl);
+      margin-top: var(--space-2xl);
+      color: var(--on-surface-variant);
+      font-size: 0.92rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .hero, .split-layout, .split-reverse {
+        grid-template-columns: 1fr;
+      }
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+      .explorer-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-md);
+      }
+      .panel, .panel-sage, .verse-card {
+        padding: var(--space-md);
+      }
+      .arabic-text {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero / Opening -->
+    <header class="hero">
+      <div>
+        <div class="hero-meta">
+          <span class="tag">Chapter 8</span>
+          <span class="tag tag-slate">Surah Al-Anfal · 75 Verses</span>
+        </div>
+        <h1 class="headline display-title">
+          From battlefield spoils to <strong>stewardship and solidarity</strong>
+        </h1>
+        <p class="hero-lede">
+          Surah Al-Anfal begins with an immediate dispute over the bounties of war after Badr and unfolds into a complete architecture of inner faith, divine agency, battlefield resolve, treaty ethics, and communal alliance.
+        </p>
+      </div>
+
+      <div class="panel mastery-summary" aria-label="Study mastery progress">
+        <div>
+          <span class="label">Study mastery progress</span>
+          <div class="kpi-value tabular" id="hero-mastered-count">0 / 75</div>
+          <p class="caption-sage" id="hero-mastery-caption">Mark verses as mastered below as you read and reflect</p>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="75" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-progress-fill"></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-sm); align-items: center;">
+          <span class="label tabular" id="hero-quiz-score">Recall check: 0 / 10 answered</span>
+          <span class="label tabular" id="hero-bookmark-count">0 bookmarked</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Key Figures -->
+    <section aria-label="Chapter structural milestones">
+      <div class="kpi-grid">
+        <div class="panel">
+          <span class="label">Complete scope</span>
+          <div class="kpi-value tabular">75 verses</div>
+          <p class="caption-sage">Seven coherent movements from Badr to Madinah’s treaty order (8:1–8:75)</p>
+        </div>
+        <div class="panel">
+          <span class="label">Khums allocation (8:41)</span>
+          <div class="kpi-value tabular">1 / 5 (20%)</div>
+          <p class="caption-sage">Set aside for Allah, the Messenger, kin, orphans, the needy, and stranded travelers</p>
+        </div>
+        <div class="panel">
+          <span class="label">Steadfastness easing (8:65–66)</span>
+          <div class="kpi-value tabular">10:1 → 2:1</div>
+          <p class="caption-sage">Threshold lightened from 100 overcoming 1,000 to 100 overcoming 200</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scannable Navigation Strip -->
+    <nav class="chapter-nav" aria-label="Chapter sections">
+      <a class="nav-pill" href="#sec-faith">1. Bounties &amp; True Faith (8:1–4)</a>
+      <a class="nav-pill" href="#sec-badr">2. Badr &amp; Divine Agency (8:5–19)</a>
+      <a class="nav-pill" href="#sec-obedience">3. Hearing, Trusts &amp; Plots (8:20–40)</a>
+      <a class="nav-pill" href="#sec-criterion">4. Day of Criterion (8:41–54)</a>
+      <a class="nav-pill" href="#sec-treaties">5. Treaties, Peace &amp; Captives (8:55–71)</a>
+      <a class="nav-pill" href="#sec-solidarity">6. Emigration &amp; Inheritance (8:72–75)</a>
+      <a class="nav-pill" href="#sec-explorer">7. All 75 Verses Explorer</a>
+      <a class="nav-pill" href="#sec-quiz">8. Mastery Check</a>
+    </nav>
+
+    <!-- Section 1: 8:1-4 -->
+    <section id="sec-faith" class="section reveal">
+      <span class="label">Movement 1 · Verses 8:1–8:4</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Spoils belong to Allah and the Messenger, turning focus to <strong>five marks of faith</strong>
+      </h2>
+      <div class="split-layout">
+        <div>
+          <p class="prose">
+            The chapter opens with a question about <em>al-anfal</em> — the bounties of war (8:1). Rather than diving into material division immediately, the answer places authority with Allah and the Messenger and issues three corrective duties: fear Allah, mend relationships between one another, and obey Allah and His Messenger.
+          </p>
+          <p class="prose">
+            Verses 8:2–8:4 then define who the true believers (<em>al-mu’minuna haqqan</em>) actually are. Only after internal character and worship are anchored does the chapter return, forty verses later (8:41), to the legal distribution of spoils.
+          </p>
+          <div class="panel-sage" style="margin-top: var(--space-lg);">
+            <span class="label">Opening rule · 8:1</span>
+            <p class="arabic-text" dir="rtl" lang="ar" style="margin-top: var(--space-sm);">
+              يَسْأَلُونَكَ عَنِ الْأَنْفَالِ قُلِ الْأَنْفَالُ لِلَّهِ وَالرَّسُولِ فَاتَّقُوا اللَّهَ وَأَصْلِحُوا ذَاتَ بَيْنِكُمْ وَأَطِيعُوا اللَّهَ وَرَسُولَهُ إِنْ كُنْتُمْ مُؤْمِنِينَ
+            </p>
+            <p class="prose" style="margin-top: var(--space-sm); font-size: 0.96rem;">
+              “They ask you, [O Muhammad], about the bounties [of war]. Say, ‘The [decision concerning] bounties is for Allah and the Messenger.’ So fear Allah and amend that which is between you and obey Allah and His Messenger, if you should be believers.”
+            </p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <span class="label">The five traits &amp; three promises (8:2–8:4)</span>
+          <table class="haven-table" style="margin-top: var(--space-sm);">
+            <thead>
+              <tr>
+                <th>Trait</th>
+                <th>Verse</th>
+                <th>Domain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hearts feel awe (<em>wajilat</em>) when Allah is mentioned</td>
+                <td class="tabular">8:2</td>
+                <td>Inner reverence</td>
+              </tr>
+              <tr>
+                <td>Recited verses increase them in faith</td>
+                <td class="tabular">8:2</td>
+                <td>Receptivity to revelation</td>
+              </tr>
+              <tr>
+                <td>Upon their Lord alone they rely (<em>yatawakkalun</em>)</td>
+                <td class="tabular">8:2</td>
+                <td>Trust &amp; reliance</td>
+              </tr>
+              <tr>
+                <td>They establish prayer</td>
+                <td class="tabular">8:3</td>
+                <td>Devotion</td>
+              </tr>
+              <tr>
+                <td>They spend from what Allah provided</td>
+                <td class="tabular">8:3</td>
+                <td>Generosity</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top: var(--space-md); padding-top: var(--space-md); border-top: var(--hairline);">
+            <span class="label">Three promised outcomes (8:4)</span>
+            <p class="caption-sage">
+              High degrees with their Lord · Forgiveness · Noble provision (<em>rizq karim</em>)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: 8:5-19 -->
+    <section id="sec-badr" class="section reveal">
+      <span class="label">Movement 2 · Verses 8:5–8:19</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Reluctant believers met an armed force so <strong>victory would prove divine</strong>
+      </h2>
+      <div class="split-layout split-reverse">
+        <div class="panel">
+          <div class="verse-card-header">
+            <span class="label">Interactive sequence · Badr’s unfolding (8:9–8:19)</span>
+            <span class="tag tag-slate tabular" id="badr-step-badge">Stage 1 of 5</span>
+          </div>
+          <div class="stepper-tabs" style="margin-top: var(--space-md);" role="tablist" aria-label="Stages of Badr">
+            <button type="button" class="btn btn-sm btn-active" onclick="selectBadrStep(0)" id="badr-tab-0">1. Angels (8:9–10)</button>
+            <button type="button" class="btn btn-sm" onclick="selectBadrStep(1)" id="badr-tab-1">2. Slumber &amp; Rain (8:11)</button>
+            <button type="button" class="btn btn-sm" onclick="selectBadrStep(2)" id="badr-tab-2">3. Terror Cast (8:12–14)</button>
+            <button type="button" class="btn btn-sm" onclick="selectBadrStep(3)" id="badr-tab-3">4. No Flight (8:15–16)</button>
+            <button type="button" class="btn btn-sm" onclick="selectBadrStep(4)" id="badr-tab-4">5. True Agency (8:17–19)</button>
+          </div>
+          <div class="step-stage" id="badr-stage"></div>
+        </div>
+
+        <div>
+          <p class="prose">
+            Verses 8:5–8:8 recall the reluctance of a group of believers leaving Madinah: they argued as though driven toward death (8:6), wishing to intercept the unarmed trade caravan (<em>ghayr dhat al-shawka</em>) rather than face an armed army (8:7).
+          </p>
+          <p class="prose">
+            Yet Allah promised one of the two groups and chose the harder confrontation so that truth would be established by His words and falsehood abolished, even if criminals disliked it (8:7–8:8).
+          </p>
+          <div class="panel" style="margin-top: var(--space-lg);">
+            <span class="label">Battlefield flight rule (8:15–8:16)</span>
+            <p class="prose" style="margin-top: var(--space-sm); font-size: 0.96rem;">
+              Turning one’s back to an advancing enemy incurs divine wrath—with exactly <strong>two exceptions</strong> named in 8:16:
+            </p>
+            <ul style="margin: var(--space-sm) 0 0; padding-left: 1.25rem; font-size: 0.95rem;">
+              <li>Swerving as a tactical maneuver for combat (<em>mutaharrifan li-qital</em>).</li>
+              <li>Withdrawing to join another fighting company (<em>mutahayyizan ila fi’ah</em>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: 8:20-40 -->
+    <section id="sec-obedience" class="section reveal">
+      <span class="label">Movement 3 · Verses 8:20–8:40</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Obedience that <strong>gives life</strong> contrasts with willful deafness and broken guardianship
+      </h2>
+      <p class="prose" style="margin-top: var(--space-md);">
+        This central moral discourse links battlefield courage to everyday spiritual alertness. Believers are warned against hollow compliance—saying “We have heard” while failing to listen (8:21)—and reminded that Allah intervenes between a person and their own heart (8:24).
+      </p>
+
+      <div class="card-grid">
+        <div class="panel">
+          <span class="label">Call to life · 8:24</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Respond to what gives you life</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            True obedience to Allah and the Messenger is framed not as restriction, but as what awakens life itself—alongside a sobering reminder that Allah stands between a person and their heart.
+          </p>
+        </div>
+
+        <div class="panel">
+          <span class="label">Collective warning &amp; memory · 8:25–8:26</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">From vulnerable minority to sheltered community</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            Beware a trial (<em>fitnah</em>) that does not strike wrongdoers exclusively (8:25). Remember when you were few, oppressed, and fearing abduction, until Allah sheltered, aided, and provided for you (8:26).
+          </p>
+        </div>
+
+        <div class="panel">
+          <span class="label">Trusts &amp; Criterion · 8:27–8:29</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Wealth, children, and the gift of Furqan</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            Do not knowingly betray Allah, the Messenger, or your trusts (8:27). Properties and children are a test (8:28), while taqwa grants a criterion (<em>furqan</em>) to distinguish truth from falsehood (8:29).
+          </p>
+        </div>
+
+        <div class="panel">
+          <span class="label">Plots &amp; Sanctuary · 8:30–8:35</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Disqualified guardians of the Sacred Mosque</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            Disbelievers plotted to restrain, kill, or evict the Prophet (8:30), mocked revelation (8:31–32), and reduced prayer at the House to whistling and handclapping (8:35). Only the righteous are its true guardians (8:34).
+          </p>
+        </div>
+
+        <div class="panel">
+          <span class="label">Mercy &amp; Conditional Reprieve · 8:33, 8:38–40</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">Forgiveness remains open if hostility ends</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            Allah withheld punishment while the Prophet was among them and while people sought forgiveness (8:33). Even after armed opposition and wasted spending (8:36), ceasing hostilities brings forgiveness of what passed (8:38).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 8:41-54 -->
+    <section id="sec-criterion" class="section reveal">
+      <span class="label">Movement 4 · Verses 8:41–8:54</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        On the Day of Criterion, <strong>valley geometry and mutual perception</strong> sealed a destined encounter
+      </h2>
+
+      <!-- Khums Allocation & Interactive Explorer (8:41) -->
+      <div class="split-layout">
+        <div class="panel">
+          <span class="label">Interactive rule · Khums distribution (8:41)</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">How war booty is partitioned</h3>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+            Returning to the opening question of 8:1, verse 8:41 sets the binding rule: <strong>one-fifth (20%)</strong> belongs to Allah, the Messenger, near relatives, orphans, the needy, and the stranded traveler, while the remaining four-fifths (80%) goes to the participating force.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-md); align-items: end; margin-top: var(--space-md);">
+            <div class="control-group">
+              <label class="label" for="khums-slider">Hypothetical total units</label>
+              <input type="range" id="khums-slider" min="25" max="1000" step="25" value="100" oninput="syncKhumsFromSlider(this.value)">
+            </div>
+            <div class="control-group" style="width: 110px;">
+              <label class="label" for="khums-number">Units</label>
+              <input type="number" class="input-field tabular" id="khums-number" min="25" max="1000" step="25" value="100" oninput="syncKhumsFromNumber(this.value)">
+            </div>
+          </div>
+
+          <div class="viz-wrap" style="min-height: 155px; margin-top: var(--space-md);">
+            <svg class="viz-svg" viewBox="0 0 460 155" role="img" aria-label="Bar breakdown of 80 percent general share and 20 percent Khums share">
+              <text x="0" y="18" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="12" font-weight="500">Total partition (8:41)</text>
+              <rect x="0" y="28" width="368" height="28" rx="2" fill="var(--data-1)"></rect>
+              <rect x="372" y="28" width="88" height="28" rx="2" fill="var(--data-2)"></rect>
+              <text x="10" y="47" fill="var(--on-primary)" font-family="var(--font-label)" font-size="13" font-weight="500" id="svg-share-80">4/5 General (80)</text>
+              <text x="380" y="47" fill="var(--on-primary)" font-family="var(--font-label)" font-size="12" font-weight="500" id="svg-share-20">1/5 (20)</text>
+
+              <text x="0" y="88" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="12" font-weight="500">Five named recipients of the 1/5 Khums share (equal conceptual portions shown):</text>
+              <g id="khums-segments"></g>
+            </svg>
+          </div>
+          <p class="caption-sage tabular" id="khums-readout">
+            Out of 100 units: 80 units general share · 20 units Khums across the 5 named categories (4 units per category if divided evenly).
+          </p>
+        </div>
+
+        <!-- Badr Topography & Perception Schematic (8:42-44) -->
+        <div class="panel">
+          <div class="verse-card-header">
+            <div>
+              <span class="label">Spatial schematic · Verses 8:42–8:44</span>
+              <h3 class="subhead" style="margin-top: var(--space-xs);">Valley positions &amp; mutual perception</h3>
+            </div>
+            <button type="button" class="btn btn-sm" id="perception-toggle-btn" onclick="togglePerceptionMode()">
+              Show: Dream &amp; Battlefield Perception
+            </button>
+          </div>
+
+          <div class="viz-wrap" style="min-height: 220px; margin-top: var(--space-md);">
+            <svg class="viz-svg" viewBox="0 0 480 220" role="img" aria-label="Schematic of the Badr valley positions in 8:42 and visual perception in 8:43-44">
+              <!-- Horizontal valley contour lines -->
+              <line x1="20" y1="185" x2="460" y2="185" stroke="var(--outline-variant)" stroke-width="1"></line>
+              <path d="M 20 80 Q 150 155 240 155 Q 330 155 460 75" fill="none" stroke="var(--outline)" stroke-width="1.5"></path>
+
+              <!-- Believers near side -->
+              <circle cx="95" cy="96" r="18" fill="var(--data-1)"></circle>
+              <text x="95" y="101" text-anchor="middle" fill="var(--on-primary)" font-family="var(--font-label)" font-size="12" font-weight="500" id="svg-believers-num">Few</text>
+              <text x="95" y="52" text-anchor="middle" fill="var(--on-surface)" font-family="var(--font-label)" font-size="13" font-weight="500">Believers</text>
+              <text x="95" y="68" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-body)" font-size="11">Near side (al-‘udwah al-dunya)</text>
+
+              <!-- Caravan lower -->
+              <rect x="200" y="140" width="80" height="28" rx="4" fill="var(--data-4)"></rect>
+              <text x="240" y="158" text-anchor="middle" fill="var(--on-primary)" font-family="var(--font-label)" font-size="12" font-weight="500">Caravan</text>
+              <text x="240" y="203" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-body)" font-size="11">Lower ground (asfala minkum) · 8:42</text>
+
+              <!-- Disbelieving army farther side -->
+              <circle cx="385" cy="92" r="22" fill="var(--data-3)" id="svg-enemy-circle"></circle>
+              <text x="385" y="97" text-anchor="middle" fill="var(--on-primary)" font-family="var(--font-label)" font-size="12" font-weight="500" id="svg-enemy-num">Few</text>
+              <text x="385" y="48" text-anchor="middle" fill="var(--on-surface)" font-family="var(--font-label)" font-size="13" font-weight="500">Opposing Army</text>
+              <text x="385" y="64" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-body)" font-size="11">Farther side (al-‘udwah al-quswa)</text>
+
+              <!-- Sightline -->
+              <line x1="120" y1="95" x2="355" y2="93" stroke="var(--data-2)" stroke-width="1.5" stroke-dasharray="4 4"></line>
+              <text x="240" y="85" text-anchor="middle" fill="var(--secondary)" font-family="var(--font-label)" font-size="11" font-weight="500" id="svg-sightline-label">Mutual perception: each appeared few (8:44)</text>
+            </svg>
+          </div>
+          <p class="prose" id="perception-caption" style="font-size: 0.94rem;">
+            Had the two forces tried to arrange an appointment, they would have missed it (8:42). Instead, Allah brought them together without prior scheduling and showed each side as few in the other’s eyes (8:43–44) so that believers would not lose courage and the destined criterion would unfold on clear evidence.
+          </p>
+        </div>
+      </div>
+
+      <!-- Six pillars of victory & Pharaoh's precedent (8:45-54) -->
+      <div class="split-layout" style="margin-top: var(--space-lg);">
+        <div class="panel">
+          <span class="label">Six commands upon encounter · 8:45–8:46</span>
+          <table class="haven-table" style="margin-top: var(--space-sm);">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Purpose / Warning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stand firm (<em>uthbutu</em>)</td>
+                <td>Do not waver at contact (8:45)</td>
+              </tr>
+              <tr>
+                <td>Remember Allah much</td>
+                <td>Path to success (8:45)</td>
+              </tr>
+              <tr>
+                <td>Obey Allah and His Messenger</td>
+                <td>Unified command (8:46)</td>
+              </tr>
+              <tr>
+                <td>Do not dispute (<em>la tanaza‘u</em>)</td>
+                <td>Dispute destroys courage &amp; strength (8:46)</td>
+              </tr>
+              <tr>
+                <td>Be patient (<em>isbiru</em>)</td>
+                <td>Allah is with the patient (8:46)</td>
+              </tr>
+              <tr>
+                <td>Avoid insolent display</td>
+                <td>Unlike those who marched out to be seen (8:47)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel-sage">
+          <span class="label">Historical law of change · 8:53</span>
+          <p class="arabic-text" dir="rtl" lang="ar" style="margin-top: var(--space-sm);">
+            ذَٰلِكَ بِأَنَّ اللَّهَ لَمْ يَكُ مُغَيِّرًا نِعْمَةً أَنْعَمَهَا عَلَىٰ قَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ وَأَنَّ اللَّهَ سَمِيعٌ عَلِيمٌ
+          </p>
+          <p class="prose" style="margin-top: var(--space-sm); font-size: 0.96rem;">
+            “That is because Allah would not change a favor which He had bestowed upon a people until they change what is within themselves. And indeed, Allah is Hearing and Knowing.”
+          </p>
+          <p class="caption-sage" style="margin-top: var(--space-sm);">
+            Framed between Satan abandoning his allies (8:48), the hypocrites mocking reliance on Allah (8:49), and the historical precedent of Pharaoh’s people (8:52, 8:54).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 8:55-71 -->
+    <section id="sec-treaties" class="section reveal">
+      <span class="label">Movement 5 · Verses 8:55–8:71</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Strict treaty reciprocity pairs <strong>prepared deterrence</strong> with an obligation toward peace
+      </h2>
+
+      <div class="split-layout">
+        <div>
+          <p class="prose">
+            Verses 8:55–8:64 lay down transparent rules for international treaties. Those who break pledges repeatedly (8:56) face decisive deterrence (8:57), yet Muslims may never engage in covert treachery: if betrayal is feared from a treaty partner, the pact must first be formally renounced on equal terms (8:58).
+          </p>
+          <p class="prose">
+            Preparedness (8:60) exists alongside an explicit mandate for peace: if the opposing party inclines to peace, believers must incline to it as well and place trust in Allah (8:61), who alone united the believers’ hearts in a way no earthly wealth could purchase (8:63).
+          </p>
+          <div class="panel" style="margin-top: var(--space-lg);">
+            <span class="label">Captives of war · 8:67–8:71</span>
+            <p class="prose" style="margin-top: var(--space-sm); font-size: 0.95rem;">
+              The passage reprimands prioritizing captives’ ransom before decisive security (8:67), yet pardons what was taken and declares it lawful and good (8:68–69). To the captives themselves, 8:70 offers a remarkable assurance: if Allah knows any good in their hearts, He will grant them something better than what was taken and forgive them.
+            </p>
+          </div>
+        </div>
+
+        <!-- Steadfastness Ratio Explorer (8:65-66) -->
+        <div class="panel">
+          <span class="label">Interactive threshold explorer · Verses 8:65–8:66</span>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">How Allah lightened the steadfastness ratio</h3>
+          <p class="prose" style="margin-top: var(--space-xs); font-size: 0.94rem;">
+            Adjust the number of steadfast believers to compare the initial threshold (8:65, 10:1) with the lightened threshold (8:66, 2:1) enacted after acknowledging human weakness.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--space-md); align-items: end; margin-top: var(--space-md);">
+            <div class="control-group">
+              <label class="label" for="ratio-slider">Steadfast believers</label>
+              <input type="range" id="ratio-slider" min="20" max="1000" step="20" value="100" oninput="syncRatioFromSlider(this.value)">
+            </div>
+            <div class="control-group" style="width: 110px;">
+              <label class="label" for="ratio-number">Count</label>
+              <input type="number" class="input-field tabular" id="ratio-number" min="20" max="1000" step="20" value="100" oninput="syncRatioFromNumber(this.value)">
+            </div>
+          </div>
+
+          <div class="ratio-bars">
+            <div>
+              <div style="display: flex; justify-content: space-between;">
+                <span class="label">Initial standard (8:65 · 10:1)</span>
+                <span class="label tabular" id="ratio-65-text" style="color: var(--primary);">100 overcome 1,000</span>
+              </div>
+              <div class="ratio-bar-track" style="margin-top: var(--space-xs);">
+                <div class="ratio-bar-fill-primary" id="ratio-65-bar" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between;">
+                <span class="label">Lightened standard (8:66 · 2:1)</span>
+                <span class="label tabular" id="ratio-66-text" style="color: var(--secondary);">100 overcome 200</span>
+              </div>
+              <div class="ratio-bar-track" style="margin-top: var(--space-xs);">
+                <div class="ratio-bar-fill-sage" id="ratio-66-bar" style="width: 20%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="caption-sage" style="margin-top: var(--space-md);">
+            Exact benchmarks in the text: 8:65 names 20 → 200 and 100 → 1,000; 8:66 names 100 → 200 and 1,000 → 2,000.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 8:72-75 -->
+    <section id="sec-solidarity" class="section reveal">
+      <span class="label">Movement 6 · Verses 8:72–8:75</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Mutual guardianship binds <strong>emigrants and helpers</strong>, while treaties limit intervention
+      </h2>
+      <p class="prose" style="margin-top: var(--space-md);">
+        The concluding four verses organize the social, political, and legal bonds of the early community in Madinah—distinguishing spiritual brotherhood, mutual defense, treaty fidelity, and blood inheritance.
+      </p>
+
+      <div class="panel data-table-wrap">
+        <table class="haven-table">
+          <thead>
+            <tr>
+              <th>Group in 8:72–8:75</th>
+              <th>Verse</th>
+              <th>Alliance &amp; Guardianship Status</th>
+              <th>Condition / Legal Boundary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Emigrants &amp; Helpers</strong> (<em>Muhajirun</em> &amp; <em>Ansar</em>)</td>
+              <td class="tabular">8:72, 8:74</td>
+              <td>Full mutual allies (<em>awliya’</em>); true believers granted forgiveness and noble provision</td>
+              <td>Struggled with wealth and lives, or gave shelter and aid</td>
+            </tr>
+            <tr>
+              <td><strong>Believers who did not emigrate</strong></td>
+              <td class="tabular">8:72</td>
+              <td>No political guardianship (<em>walayah</em>) until they emigrate</td>
+              <td>Must be helped if they seek aid in religion—<strong>except</strong> against a people bound by a treaty (<em>mithaq</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>Disbelieving factions</strong></td>
+              <td class="tabular">8:73</td>
+              <td>Allies of one another</td>
+              <td>Failure of believers to uphold solidarity produces <em>fitnah</em> and great corruption on earth</td>
+            </tr>
+            <tr>
+              <td><strong>Later emigrants &amp; Blood relatives</strong></td>
+              <td class="tabular">8:75</td>
+              <td>Later emigrants join the community (“they are of you”)</td>
+              <td>Blood relatives (<em>ulu al-arham</em>) hold priority in inheritance by Allah’s decree</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 7: Complete 75-Verse Explorer -->
+    <section id="sec-explorer" class="section reveal">
+      <span class="label">Complete text &amp; mastery tracker · All 75 verses</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Explore, annotate, and <strong>master every verse</strong> of Surah Al-Anfal
+      </h2>
+      <p class="prose" style="margin-top: var(--space-sm);">
+        Browse by thematic movement or search across all 75 Arabic and English verses. Mark verses as mastered, bookmark passages for review, or add personal study notes—your progress persists across sessions.
+      </p>
+
+      <div class="panel" style="margin-top: var(--space-lg);">
+        <div class="explorer-controls">
+          <div class="control-group">
+            <label class="label" for="verse-search">Search Arabic, English, or verse number (e.g. 41, angels, peace)</label>
+            <input type="search" id="verse-search" class="input-field" placeholder="Type a keyword or verse number…" oninput="handleExplorerFilter()">
+          </div>
+          <div class="control-group">
+            <label class="label" for="verse-section-select">Movement filter</label>
+            <select id="verse-section-select" class="select-field" onchange="handleExplorerFilter()">
+              <option value="sec1">1. Bounties &amp; True Faith (8:1–4)</option>
+              <option value="sec2">2. Badr &amp; Divine Agency (8:5–19)</option>
+              <option value="sec3">3. Obedience &amp; Plots (8:20–40)</option>
+              <option value="sec4">4. Day of Criterion (8:41–54)</option>
+              <option value="sec5">5. Treaties &amp; Captives (8:55–71)</option>
+              <option value="sec6">6. Emigration &amp; Solidarity (8:72–75)</option>
+              <option value="all">All 75 Verses (8:1–75)</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label class="label" for="verse-status-select">Status filter</label>
+            <select id="verse-status-select" class="select-field" onchange="handleExplorerFilter()">
+              <option value="any">All statuses</option>
+              <option value="unmastered">Unmastered only</option>
+              <option value="mastered">Mastered only</option>
+              <option value="bookmarked">Bookmarked only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-row" style="justify-content: space-between; align-items: center; padding-top: var(--space-md); border-top: var(--hairline);">
+          <span class="label tabular" id="explorer-count-label">Showing 4 verses</span>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+            <button type="button" class="btn btn-sm" id="toggle-arabic-btn" onclick="toggleArabicVisibility()">Hide Arabic</button>
+            <button type="button" class="btn btn-sm" onclick="markVisibleMastered()">Mark visible mastered</button>
+            <button type="button" class="btn btn-sm" id="export-notes-btn" onclick="exportStudyNotes()">Export progress</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container"></div>
+    </section>
+
+    <!-- Section 8: Active Recall Check -->
+    <section id="sec-quiz" class="section reveal">
+      <span class="label">Active recall · 10-question mastery check</span>
+      <h2 class="headline section-title" style="margin-top: var(--space-xs);">
+        Test your grasp of <strong>Surah Al-Anfal’s rulings and narrative</strong>
+      </h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md); margin-top: var(--space-sm);">
+        <p class="prose">Every question is grounded in a specific verse from 8:1–8:75, with immediate verification.</p>
+        <button type="button" class="btn btn-sm" id="reset-quiz-btn" onclick="handleResetProgress(this)">Reset all progress</button>
+      </div>
+
+      <div class="quiz-grid" id="quiz-container"></div>
+    </section>
+
+    <footer class="site-footer">
+      <span>Source: Complete text and translation of Surah Al-Anfal (Chapter 8, verses 8:1–8:75) provided in the study source.</span>
+      <span class="tabular" id="footer-status">Study state synced</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const VERSES = [
+      {
+        n: 1,
+        sec: `sec1`,
+        theme: `Spoils belong to Allah & the Messenger; taqwa and reconciliation`,
+        ar: `يَسْأَلُونَكَ عَنِ الْأَنْفَالِ قُلِ الْأَنْفَالُ لِلَّهِ وَالرَّسُولِ فَاتَّقُوا اللَّهَ وَأَصْلِحُوا ذَاتَ بَيْنِكُمْ وَأَطِيعُوا اللَّهَ وَرَسُولَهُ إِنْ كُنْتُمْ مُؤْمِنِينَ`,
+        en: `They ask you, [O Muhammad], about the bounties [of war]. Say, "The [decision concerning] bounties is for Allah and the Messenger." So fear Allah and amend that which is between you and obey Allah and His Messenger, if you should be believers.`
+      },
+      {
+        n: 2,
+        sec: `sec1`,
+        theme: `Three inner marks of believers: awe, growing faith, reliance`,
+        ar: `إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ إِذَا ذُكِرَ اللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ آيَاتُهُ زَادَتْهُمْ إِيمَانًا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ`,
+        en: `The believers are only those who, when Allah is mentioned, their hearts become fearful, and when His verses are recited to them, it increases them in faith; and upon their Lord they rely -`
+      },
+      {
+        n: 3,
+        sec: `sec1`,
+        theme: `Two outward marks: establishing prayer and spending`,
+        ar: `الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ`,
+        en: `The ones who establish prayer, and from what We have provided them, they spend.`
+      },
+      {
+        n: 4,
+        sec: `sec1`,
+        theme: `Reward of true believers: degrees, forgiveness, noble provision`,
+        ar: `أُولَئِكَ هُمُ الْمُؤْمِنُونَ حَقًّا لَهُمْ دَرَجَاتٌ عِنْدَ رَبِّهِمْ وَمَغْفِرَةٌ وَرِزْقٌ كَرِيمٌ`,
+        en: `Those are the believers, truly. For them are degrees [of high position] with their Lord and forgiveness and noble provision.`
+      },
+      {
+        n: 5,
+        sec: `sec2`,
+        theme: `Departure for Badr in truth despite reluctance`,
+        ar: `كَمَا أَخْرَجَكَ رَبُّكَ مِنْ بَيْتِكَ بِالْحَقِّ وَإِنَّ فَرِيقًا مِنَ الْمُؤْمِنِينَ لَكَارِهُونَ`,
+        en: `[It is] just as when your Lord brought you out of your home [for the battle of Badr] in truth, while indeed, a party among the believers were unwilling,`
+      },
+      {
+        n: 6,
+        sec: `sec2`,
+        theme: `Arguing over the truth after it became clear`,
+        ar: `يُجَادِلُونَكَ فِي الْحَقِّ بَعْدَمَا تَبَيَّنَ كَأَنَّمَا يُسَاقُونَ إِلَى الْمَوْتِ وَهُمْ يَنْظُرُونَ`,
+        en: `Arguing with you concerning the truth after it had become clear, as if they were being driven toward death while they were looking on.`
+      },
+      {
+        n: 7,
+        sec: `sec2`,
+        theme: `Promise of one of two groups: caravan vs. armed force`,
+        ar: `وَإِذْ يَعِدُكُمُ اللَّهُ إِحْدَى الطَّائِفَتَيْنِ أَنَّهَا لَكُمْ وَتَوَدُّونَ أَنَّ غَيْرَ ذَاتِ الشَّوْكَةِ تَكُونُ لَكُمْ وَيُرِيدُ اللَّهُ أَنْ يُحِقَّ الْحَقَّ بِكَلِمَاتِهِ وَيَقْطَعَ دَابِرَ الْكَافِرِينَ`,
+        en: `[Remember, O believers], when Allah promised you one of the two groups - that it would be yours - and you wished that the unarmed one would be yours. But Allah intended to establish the truth by His words and to eliminate the disbelievers`
+      },
+      {
+        n: 8,
+        sec: `sec2`,
+        theme: `Establishing truth and abolishing falsehood`,
+        ar: `لِيُحِقَّ الْحَقَّ وَيُبْطِلَ الْبَاطِلَ وَلَوْ كَرِهَ الْمُجْرِمُونَ`,
+        en: `That He should establish the truth and abolish falsehood, even if the criminals disliked it.`
+      },
+      {
+        n: 9,
+        sec: `sec2`,
+        theme: `Supplication answered with 1,000 reinforcing angels`,
+        ar: `إِذْ تَسْتَغِيثُونَ رَبَّكُمْ فَاسْتَجَابَ لَكُمْ أَنِّي مُمِدُّكُمْ بِأَلْفِ مِنَ الْمَلَائِكَةِ مُرْدِفِينَ`,
+        en: `[Remember] when you asked help of your Lord, and He answered you, "Indeed, I will reinforce you with a thousand from the angels, following one another."`
+      },
+      {
+        n: 10,
+        sec: `sec2`,
+        theme: `Good tidings for reassurance; victory is solely from Allah`,
+        ar: `وَمَا جَعَلَهُ اللَّهُ إِلَّا بُشْرَىٰ وَلِتَطْمَئِنَّ بِهِ قُلُوبُكُمْ ۚ وَمَا النَّصْرُ إِلَّا مِنْ عِنْدِ اللَّهِ ۚ إِنَّ اللَّهَ عَزِيزٌ حَكِيمٌ`,
+        en: `And Allah made it not but good tidings and so that your hearts would be assured thereby. And victory is not but from Allah. Indeed, Allah is Exalted in Might and Wise.`
+      },
+      {
+        n: 11,
+        sec: `sec2`,
+        theme: `Drowsiness as security and rain to purify and firm feet`,
+        ar: `إِذْ يُغَشِّيكُمُ النُّعَاسَ أَمَنَةً مِنْهُ وَيُنَزِّلُ عَلَيْكُمْ مِنَ السَّمَاءِ مَاءً لِيُطَهِّرَكُمْ بِهِ وَيُذْهِبَ عَنْكُمْ رِجْزَ الشَّيْطَانِ وَلِيَرْبِطَ عَلَىٰ قُلُوبِكُمْ وَيُثَبِّتَ بِهِ الْأَقْدَامَ`,
+        en: `[Remember] when He overwhelmed you with drowsiness [giving] security from Him and sent down upon you from the sky, rain by which to purify you and remove from you the evil [suggestions] of Satan and to make steadfast your hearts and plant firmly thereby your feet.`
+      },
+      {
+        n: 12,
+        sec: `sec2`,
+        theme: `Inspiration to the angels to strengthen believers and cast terror`,
+        ar: `إِذْ يُوحِي رَبُّكَ إِلَى الْمَلَائِكَةِ أَنِّي مَعَكُمْ فَثَبِّتُوا الَّذِينَ آمَنُوا سَأُلْقِي فِي قُلُوبِ الَّذِينَ كَفَرُوا الرُّعْبَ فَاضْرِبُوا فَوْقَ الْأَعْنَاقِ وَاضْرِبُوا مِنْهُمْ كُلَّ بَنَانِ`,
+        en: `[Remember] when your Lord inspired to the angels, "I am with you, so strengthen those who have believed. I will cast terror into the hearts of those who disbelieved, so strike [them] upon the necks and strike from them every fingertip."`
+      },
+      {
+        n: 13,
+        sec: `sec2`,
+        theme: `Consequence of opposing Allah and His Messenger`,
+        ar: `ذلِكَ بِأَنَّهُمْ شَاقُوا اللَّهَ وَرَسُولَهُ ۚ وَمَنْ يُشَاقِقِ اللَّهَ وَرَسُولَهُ فَإِنَّ اللَّهَ شَدِيدُ الْعِقَابِ`,
+        en: `That is because they opposed Allah and His Messenger. And whoever opposes Allah and His Messenger - indeed, Allah is severe in penalty.`
+      },
+      {
+        n: 14,
+        sec: `sec2`,
+        theme: `Punishment of the Fire for disbelief`,
+        ar: `ذُلِكُمْ فَذُوقُوهُ وَأَنَّ لِلْكَافِرِينَ عَذَابَ النَّارِ`,
+        en: `"That [is yours], so taste it." And indeed for the disbelievers is the punishment of the Fire.`
+      },
+      {
+        n: 15,
+        sec: `sec2`,
+        theme: `Prohibition on fleeing an advancing army`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا لَقِيتُمُ الَّذِينَ كَفَرُوا زَحْفًا فَلَا تُوَلُّوهُمُ الْأَدْبَارَ`,
+        en: `O you who have believed, when you meet those who disbelieve advancing [for battle], do not turn to them your backs [in flight].`
+      },
+      {
+        n: 16,
+        sec: `sec2`,
+        theme: `Two tactical exceptions to turning back in battle`,
+        ar: `وَمَنْ يُوَلِّهِمْ يَوْمَئِذٍ دُبُرَهُ إِلَّا مُتَحَرِّفًا لِقِتَالٍ أَوْ مُتَحَيِّزًا إِلَى فِئَةٍ فَقَدْ بَاءَ بِغَضَبٍ مِنَ اللَّهِ وَمَأْوَاهُ جَهَنَّمُ وَبِئْسَ الْمَصِيرُ`,
+        en: `And whoever turns his back to them on such a day, unless swerving [as a strategy] for war or joining [another] company, has certainly returned with anger [upon him] from Allah, and his refuge is Hell - and wretched is the destination.`
+      },
+      {
+        n: 17,
+        sec: `sec2`,
+        theme: `Divine agency behind the throw and the victory`,
+        ar: `فَلَمْ تَقْتُلُوهُمْ وَلَكِنَّ اللَّهَ قَتَلَهُمْ وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَكِنَّ اللَّهَ رَمَى وَلِيُبْلِيَ الْمُؤْمِنِينَ مِنْهُ بَلَاءً حَسَنًا ۚ إِنَّ اللَّهَ سَمِيعٌ عَلِيمٌ`,
+        en: `And you did not kill them, but it was Allah who killed them. And you threw not, [O Muhammad], when you threw, but it was Allah who threw that He might test the believers with a good test. Indeed, Allah is Hearing and Knowing.`
+      },
+      {
+        n: 18,
+        sec: `sec2`,
+        theme: `Allah weakens the plot of the disbelievers`,
+        ar: `ذُلِكُمْ وَأَنَّ اللَّهَ مُوهِنَّ كَيْدِ الْكَافِرِينَ`,
+        en: `That [is so], and [also] that Allah will weaken the plot of the disbelievers.`
+      },
+      {
+        n: 19,
+        sec: `sec2`,
+        theme: `Warning to attackers: numbers will not avail against Allah`,
+        ar: `إِنْ تَسْتَفْتِحُوا فَقَدْ جَاءَكُمُ الْفَتْحُ وَإِنْ تَنْتَهُوا فَهُوَ خَيْرٌ لَكُمْ وَإِنْ تَعُودُوا نَعُدْ وَلَنْ تُغْنِي عَنْكُمْ فِئَتُكُمْ شَيْئًا وَلَوْ كَثُرَتْ وَأَنَّ اللَّهَ مَعَ الْمُؤْمِنِينَ`,
+        en: `If you [disbelievers] seek the victory - the defeat has come to you. And if you desist [from hostilities], it is best for you; but if you return [to war], We will return, and never will you be availed by your [large] company at all, even if it should increase; and [that is] because Allah is with the believers.`
+      },
+      {
+        n: 20,
+        sec: `sec3`,
+        theme: `Command to obey and not turn away while hearing`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا أَطِيعُوا اللَّهَ وَرَسُولَهُ وَلَا تَوَلَّوْا عَنْهُ وَأَنْتُمْ تَسْمَعُونَ`,
+        en: `O you who have believed, obey Allah and His Messenger and do not turn from him while you hear [his order].`
+      },
+      {
+        n: 21,
+        sec: `sec3`,
+        theme: `Against claiming to hear without acting`,
+        ar: `وَلَا تَكُونُوا كَالَّذِينَ قَالُوا سَمِعْنَا وَهُمْ لَا يَسْمَعُونَ`,
+        en: `And do not be like those who say, "We have heard," while they do not hear.`
+      },
+      {
+        n: 22,
+        sec: `sec3`,
+        theme: `Worst creatures: those who refuse to hear, speak, or reason`,
+        ar: `إِنَّ شَرَّ الدَّوَابِّ عِنْدَ اللَّهِ الصُّمُّ الْبُكْمُ الَّذِينَ لَا يَعْقِلُونَ`,
+        en: `Indeed, the worst of living creatures in the sight of Allah are the deaf and dumb who do not use reason.`
+      },
+      {
+        n: 23,
+        sec: `sec3`,
+        theme: `Goodness within determines receptivity to hearing`,
+        ar: `وَلَوْ عَلِمَ اللَّهُ فِيهِمْ خَيْرًا لَأَسْمَعَهُمْ وَلَوْ أَسْمَعَهُمْ لَتَوَلَّوْا وَهُمْ مُعْرِضُونَ`,
+        en: `Had Allah known any good in them, He would have made them hear. And if He had made them hear, they would [still] have turned away, while they were refusing.`
+      },
+      {
+        n: 24,
+        sec: `sec3`,
+        theme: `The life-giving call; Allah intervenes between person and heart`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَجِيبُوا لِلَّهِ وَلِلرَّسُولِ إِذَا دَعَاكُمْ لِمَا يُحْيِيكُمْ ۖ وَاعْلَمُوا أَنَّ اللَّهَ يَحُولُ بَيْنَ الْمَرْءِ وَقَلْبِهِ وَأَنَّهُ إِلَيْهِ تُحْشَرُونَ`,
+        en: `O you who have believed, respond to Allah and to the Messenger when he calls you to that which gives you life. And know that Allah intervenes between a man and his heart and that to Him you will be gathered.`
+      },
+      {
+        n: 25,
+        sec: `sec3`,
+        theme: `Fear a trial that strikes beyond the wrongdoers`,
+        ar: `وَاتَّقُوا فِتْنَةً لَا تُصِيبَنَّ الَّذِينَ ظَلَمُوا مِنْكُمْ خَاصَّةً ۖ وَاعْلَمُوا أَنَّ اللَّهَ شَدِيدُ الْعِقَابِ`,
+        en: `And fear a trial which will not strike those who have wronged among you exclusively, and know that Allah is severe in penalty.`
+      },
+      {
+        n: 26,
+        sec: `sec3`,
+        theme: `Gratitude for shelter and victory after past weakness`,
+        ar: `وَاذْكُرُوا إِذْ أَنْتُمْ قَلِيلٌ مُسْتَضْعَفُونَ فِي الْأَرْضِ تَخَافُونَ أَنْ يَتَخَطَّفَكُمُ النَّاسُ فَآوَاكُمْ وَأَيَّدَكُمْ بِنَصْرِهِ وَرَزَقَكُمْ مِنَ الطَّيِّبَاتِ لَعَلَّكُمْ تَشْكُرُونَ`,
+        en: `And remember when you were few and oppressed in the land, fearing that people might abduct you, but He sheltered you, supported you with His victory, and provided you with good things that you might be grateful.`
+      },
+      {
+        n: 27,
+        sec: `sec3`,
+        theme: `Prohibition of betraying Allah, the Messenger, or trusts`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَخُونُوا اللَّهَ وَالرَّسُولَ وَتَخُونُوا أَمَانَاتِكُمْ وَأَنْتُمْ تَعْلَمُونَ`,
+        en: `O you who have believed, do not betray Allah and the Messenger or betray your trusts while you know [the consequence].`
+      },
+      {
+        n: 28,
+        sec: `sec3`,
+        theme: `Wealth and children are a test compared to Allah’s reward`,
+        ar: `وَاعْلَمُوا أَنَّمَا أَمْوَالُكُمْ وَأَوْلَادُكُمْ فِتْنَةٌ وَأَنَّ اللَّهَ عِنْدَهُ أَجْرٌ عَظِيمٌ`,
+        en: `And know that your properties and your children are but a trial and that Allah has with Him a great reward.`
+      },
+      {
+        n: 29,
+        sec: `sec3`,
+        theme: `Taqwa grants a criterion (Furqan) and forgiveness`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِنْ تَتَّقُوا اللَّهَ يَجْعَلْ لَكُمْ فُرْقَانًا وَيُكَفِّرْ عَنْكُمْ سَيِّئَاتِكُمْ وَيَغْفِرْ لَكُمْ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ`,
+        en: `O you who have believed, if you fear Allah, He will grant you a criterion and will remove from you your misdeeds and forgive you. And Allah is the possessor of great bounty.`
+      },
+      {
+        n: 30,
+        sec: `sec3`,
+        theme: `Makkah’s plots against the Prophet overturned by Allah’s plan`,
+        ar: `وَإِذْ يَمْكُرُ بِكَ الَّذِينَ كَفَرُوا لِيُثْبِتُوكَ أَوْ يَقْتُلُوكَ أَوْ يُخْرِجُوكَ وَيَمْكُرُونَ وَيَمْكُرُ اللَّهُ ۖ وَاللَّهُ خَيْرُ الْمَاكِرِينَ`,
+        en: `And [remember, O Muhammad], when those who disbelieved plotted against you to restrain you or kill you or evict you [from Makkah]. But they plan, and Allah plans. And Allah is the best of planners.`
+      },
+      {
+        n: 31,
+        sec: `sec3`,
+        theme: `Dismissing recited verses as "legends of the former peoples"`,
+        ar: `وَإِذَا تُتْلَىٰ عَلَيْهِمْ آيَاتُنَا قَالُوا قَدْ سَمِعْنَا لَوْ نَشَاءُ لَقُلْنَا مِثْلَ هُذَا إِنْ هُذَا إِلَّا أَسَاطِيرُ الْأَوَّلِينَ`,
+        en: `And when Our verses are recited to them, they say, "We have heard. If we willed, we could say [something] like this. This is not but legends of the former peoples."`
+      },
+      {
+        n: 32,
+        sec: `sec3`,
+        theme: `Arrogant challenge asking for stones from the sky`,
+        ar: `وَإِذْ قَالُوا اللَّهُمَّ إِنْ كَانَ هُذَا هُوَ الْحَقَّ مِنْ عِنْدِكَ فَأَمْطِرْ عَلَيْنَا حِجَارَةً مِنَ السَّمَاءِ أَوِ ائْتِنَا بِعَذَابٍ أَلِيمٍ`,
+        en: `And [remember] when they said, "O Allah, if this should be the truth from You, then rain down upon us stones from the sky or bring us a painful punishment."`
+      },
+      {
+        n: 33,
+        sec: `sec3`,
+        theme: `Two protections from punishment: Prophet’s presence and istighfar`,
+        ar: `وَمَا كَانَ اللَّهُ لِيُعَذِّبَهُمْ وَأَنْتَ فِيهِمْ وَمَا كَانَ اللَّهُ مُعَذِّبَهُمْ وَهُمْ يَسْتَغْفِرُونَ`,
+        en: `But Allah would not punish them while you, [O Muhammad], are among them, and Allah would not punish them while they seek forgiveness.`
+      },
+      {
+        n: 34,
+        sec: `sec3`,
+        theme: `Obstructing al-Masjid al-Haram; only the righteous are its guardians`,
+        ar: `وَمَا لَهُمْ أَلَّا يُعَذِّبَهُمُ اللَّهُ وَهُمْ يَصُدُّونَ عَنِ الْمَسْجِدِ الْحَرَامِ وَمَا كَانُوا أَوْلِيَاءَهُ إِنْ أَوْلِيَاؤُهُ إِلَّا الْمُتَّقُونَ وَلُكِنَّ أَكْثَرَهُمْ لَا يَعْلَمُونَ`,
+        en: `But why should Allah not punish them while they obstruct [people] from al-Masjid al-Haram and they were not [fit to be] its guardians? Its [true] guardians are not but the righteous, but most of them do not know.`
+      },
+      {
+        n: 35,
+        sec: `sec3`,
+        theme: `Prayer at the House reduced to whistling and clapping`,
+        ar: `وَمَا كَانَ صَلَاتُهُمْ عِنْدَ الْبَيْتِ إِلَّا مُكَاءً وَتَصْدِيَةً ۚ فَذُوقُوا الْعَذَابَ بِمَا كُنْتُمْ تَكْفُرُونَ`,
+        en: `And their prayer at the House was not except whistling and handclapping. So taste the punishment for what you disbelieved.`
+      },
+      {
+        n: 36,
+        sec: `sec3`,
+        theme: `Wealth spent against Allah’s path turns to regret and defeat`,
+        ar: `إِنَّ الَّذِينَ كَفَرُوا يُنْفِقُونَ أَمْوَالَهُمْ لِيَصُدُّوا عَنْ سَبِيلِ اللَّهِ ۚ فَسَيُنْفِقُونَهَا ثُمَّ تَكُونُ عَلَيْهِمْ حَسْرَةً ثُمَّ يُغْلَبُونَ وَالَّذِينَ كَفَرُوا إِلَىٰ جَهَنَّمَ يُحْشَرُونَ`,
+        en: `Indeed, those who disbelieve spend their wealth to avert [people] from the way of Allah. So they will spend it; then it will be for them a [source of] regret; then they will be overcome. And those who have disbelieved - unto Hell they will be gathered.`
+      },
+      {
+        n: 37,
+        sec: `sec3`,
+        theme: `Separating the wicked from the good`,
+        ar: `لِيَمِيزَ اللَّهُ الْخَبِيثَ مِنَ الطَّيِّبِ وَيَجْعَلَ الْخَبِيثَ بَعْضَهُ عَلَى بَعْضٍ فَيَرْكُمَهُ جَمِيعًا فَيَجْعَلَهُ فِي جَهَنَّمَ أُولَئِكَ هُمُ الْخَاسِرُونَ`,
+        en: `[This is] so that Allah may distinguish the wicked from the good and place the wicked some of them upon others and heap them all together and put them into Hell. It is those who are the losers.`
+      },
+      {
+        n: 38,
+        sec: `sec3`,
+        theme: `Offer of pardon if hostilities cease; warning of precedent`,
+        ar: `قُلْ لِلَّذِينَ كَفَرُوا إِنْ يَنْتَهُوا يُغْفَرْ لَهُمْ مَا قَدْ سَلَفَ وَإِنْ يَعُودُوا فَقَدْ مَضَتْ سُنَّتُ الْأَوَّلِينَ`,
+        en: `Say to those who have disbelieved [that] if they cease, what has previously occurred will be forgiven for them. But if they return [to hostility] - then the precedent of the former [rebellious] peoples has already taken place.`
+      },
+      {
+        n: 39,
+        sec: `sec3`,
+        theme: `Fighting until persecution (fitnah) ends`,
+        ar: `وَقَاتِلُوهُمْ حَتَّىٰ لَا تَكُونَ فِتْنَةٌ وَيَكُونَ الدِّينُ كُلُّهُ لِلَّهِ ۚ فَإِنِ انْتَهَوْا فَإِنَّ اللَّهَ بِمَا يَعْمَلُونَ بَصِيرٌ`,
+        en: `And fight them until there is no fitnah and [until] the religion, all of it, is for Allah. And if they cease then indeed, Allah is Seeing of what they do.`
+      },
+      {
+        n: 40,
+        sec: `sec3`,
+        theme: `Allah as Protector and Helper if they turn away`,
+        ar: `وَإِنْ تَوَلَّوْا فَاعْلَمُوا أَنَّ اللَّهَ مَوْلَاكُمْ ۚ نِعْمَ الْمَوْلَىٰ وَنِعْمَ النَّصِيرُ`,
+        en: `But if they turn away - then know that Allah is your protector. Excellent is the protector, and Excellent is the helper.`
+      },
+      {
+        n: 41,
+        sec: `sec4`,
+        theme: `The 1/5 Khums rule for booty on the Day of Criterion`,
+        ar: `وَاعْلَمُوا أَنَّمَا غَنِمْتُمْ مِنْ شَيْءٍ فَأَنَّ لِلَّهِ خُمُسَهُ وَلِلرَّسُولِ وَلِذِي الْقُرْبَى وَالْيَتَامَىٰ وَالْمَسَاكِينِ وَابْنِ السَّبِيلِ إِنْ كُنْتُمْ آمَنْتُمْ بِاللَّهِ وَمَا أَنْزَلْنَا عَلَى عَبْدِنَا يَوْمَ الْفُرْقَانِ يَوْمَ الْتَقَى الْجَمْعَانِ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,
+        en: `And know that anything you obtain of war booty - then indeed, for Allah is one fifth of it and for the Messenger and for [his] near relatives and the orphans, the needy, and the [stranded] traveler, if you have believed in Allah and in that which We sent down to Our Servant on the day of criterion - the day when the two armies met. And Allah, over all things, is competent.`
+      },
+      {
+        n: 42,
+        sec: `sec4`,
+        theme: `Valley geometry at Badr fulfilling a destined encounter`,
+        ar: `إِذْ أَنْتُمْ بِالْعُدْوَةِ الدُّنْيَا وَهُمْ بِالْعُدْوَةِ الْقُصْوَى وَالرَّكْبُ أَسْفَلَ مِنْكُمْ وَلَوْ تَوَاعَدْتُمْ لَاخْتَلَفْتُمْ فِي الْمِيعَادِ وَلَكِنْ لِيَقْضِيَ اللَّهُ أَمْرًا كَانَ مَفْعُولًا لِيَهْلِكَ مَنْ هَلَكَ عَنْ بَيِّنَةٍ وَيَحْيَى مَنْ حَيَّ عَنْ بَيِّنَةٍ وَإِنَّ اللَّهَ لَسَمِيعٌ عَلِيمٌ`,
+        en: `[Remember] when you were on the near side of the valley, and they were on the farther side, and the caravan was lower [in position] than you. If you had made an appointment [to meet], you would have missed the appointment. But [it was] so that Allah might accomplish a matter already destined - that those who perished [through disbelief] would perish upon evidence and those who lived [in faith] would live upon evidence; and indeed, Allah is Hearing and Knowing.`
+      },
+      {
+        n: 43,
+        sec: `sec4`,
+        theme: `Prophetic dream showing the enemy as few to preserve morale`,
+        ar: `إِذْ يُرِيكَهُمُ اللَّهُ فِي مَنَامِكَ قَلِيلًا وَلَوْ أَرَاكَهُمْ كَثِيرًا لَفَشِلْتُمْ وَلَتَنَازَعْتُمْ فِي الْأَمْرِ وَلَكِنَّ اللَّهَ سَلَّمَ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ`,
+        en: `[Remember, O Muhammad], when Allah showed them to you in your dream as few; and if He had shown them to you as many, you [believers] would have lost courage and would have disputed in the matter [of whether to fight], but Allah saved [you from that]. Indeed, He is Knowing of that within the breasts.`
+      },
+      {
+        n: 44,
+        sec: `sec4`,
+        theme: `Mutual visual lessening on the field`,
+        ar: `وَإِذْ يُرِيكُمُوهُمْ إِذِ الْتَقَيْتُمْ فِي أَعْيُنِكُمْ قَلِيلًا وَيُقَلِّلُكُمْ فِي أَعْيُنِهِمْ لِيَقْضِيَ اللَّهُ أَمْرًا كَانَ مَفْعُولًا وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ`,
+        en: `And [remember] when He showed them to you, when you met, as few in your eyes, and He made you [appear] as few in their eyes so that Allah might accomplish a matter already destined. And to Allah are [all] matters returned.`
+      },
+      {
+        n: 45,
+        sec: `sec4`,
+        theme: `Stand firm and remember Allah much upon encounter`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا لَقِيتُمْ فِئَةً فَاثْبُتُوا وَاذْكُرُوا اللَّهَ كَثِيرًا لَعَلَّكُمْ تُفْلِحُونَ`,
+        en: `O you who have believed, when you encounter a company [from the enemy forces], stand firm and remember Allah much that you may be successful.`
+      },
+      {
+        n: 46,
+        sec: `sec4`,
+        theme: `Obey, avoid internal dispute, and be patient`,
+        ar: `وَأَطِيعُوا اللَّهَ وَرَسُولَهُ وَلَا تَنَازَعُوا فَتَفْشَلُوا وَتَذْهَبَ رِيحُكُمْ وَاصْبِرُوا إِنَّ اللَّهَ مَعَ الصَّابِرِينَ`,
+        en: `And obey Allah and His Messenger, and do not dispute and [thus] lose courage and [then] your strength would depart; and be patient. Indeed, Allah is with the patient.`
+      },
+      {
+        n: 47,
+        sec: `sec4`,
+        theme: `Do not march with arrogance and ostentation`,
+        ar: `وَلَا تَكُونُوا كَالَّذِينَ خَرَجُوا مِنْ دِيَارِهِمْ بَطَرًا وَرِئَاءَ النَّاسِ وَيَصُدُّونَ عَنْ سَبِيلِ اللَّهِ ۚ وَاللَّهُ بِمَا يَعْمَلُونَ مُحِيطٌ`,
+        en: `And do not be like those who came forth from their homes insolently and to be seen by people and avert [them] from the way of Allah. And Allah is encompassing of what they do.`
+      },
+      {
+        n: 48,
+        sec: `sec4`,
+        theme: `Satan embellishes deeds, then flees when armies sight each other`,
+        ar: `وَإِذْ زَيَّنَ لَهُمُ الشَّيْطَانُ أَعْمَالَهُمْ وَقَالَ لَا غَالِبَ لَكُمُ الْيَوْمَ مِنَ النَّاسِ وَإِنِّي جَارٌ لَكُمْ فَلَمَّا تَرَاءَتِ الْفِئَتَانِ نَكَصَ عَلَى عَقِبَيْهِ وَقَالَ إِنِّي بَرِيءٌ مِنْكُمْ إِنِّي أَرَى مَا لَا تَرَوْنَ إِنِّي أَخَافُ اللَّهَ ۚ وَاللَّهُ شَدِيدُ الْعِقَابِ`,
+        en: `And [remember] when Satan made their deeds pleasing to them and said, "No one can overcome you today from among the people, and indeed, I am your protector." But when the two armies sighted each other, he turned on his heels and said, "Indeed, I am disassociated from you. Indeed, I see what you do not see; indeed I fear Allah. And Allah is severe in penalty."`
+      },
+      {
+        n: 49,
+        sec: `sec4`,
+        theme: `Hypocrites mock Muslims’ reliance upon Allah`,
+        ar: `إِذْ يَقُولُ الْمُنَافِقُونَ وَالَّذِينَ فِي قُلُوبِهِمْ مَرَضٌ غَرَّ هُؤُلَاءِ دِينُهُمْ وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَإِنَّ اللَّهَ عَزِيزٌ حَكِيمٌ`,
+        en: `[Remember] when the hypocrites and those in whose hearts was disease said, "Their religion has deluded those [Muslims]." But whoever relies upon Allah - then indeed, Allah is Exalted in Might and Wise.`
+      },
+      {
+        n: 50,
+        sec: `sec4`,
+        theme: `Angels taking the souls of disbelievers`,
+        ar: `وَلَوْ تَرَىٰ إِذْ يَتَوَفَّى الَّذِينَ كَفَرُوا الْمَلَائِكَةُ يَضْرِبُونَ وُجُوهَهُمْ وَأَدْبَارَهُمْ وَذُوقُوا عَذَابَ الْحَرِيقِ`,
+        en: `And if you could but see when the angels take the souls of those who disbelieved... They are striking their faces and their backs and [saying], "Taste the punishment of the Burning Fire.`
+      },
+      {
+        n: 51,
+        sec: `sec4`,
+        theme: `Divine justice: Allah is never unjust to His servants`,
+        ar: `ذلِكَ بِمَا قَدَّمَتْ أَيْدِيكُمْ وَأَنَّ اللَّهَ لَيْسَ بِظَلَّامٍ لِلْعَبِيدِ`,
+        en: `That is for what your hands have put forth [of evil] and because Allah is not ever unjust to His servants."`
+      },
+      {
+        n: 52,
+        sec: `sec4`,
+        theme: `Precedent of Pharaoh’s people seized for sins`,
+        ar: `كَدَأْبِ آلِ فِرْعَوْنَ وَالَّذِينَ مِنْ قَبْلِهِمْ كَفَرُوا بِآيَاتِ اللَّهِ فَأَخَذَهُمُ اللَّهُ بِذُنُوبِهِمْ إِنَّ اللَّهَ قَوِيٌّ شَدِيدُ الْعِقَابِ`,
+        en: `[Theirs is] like the custom of the people of Pharaoh and of those before them. They disbelieved in the signs of Allah, so Allah seized them for their sins. Indeed, Allah is Powerful and severe in penalty.`
+      },
+      {
+        n: 53,
+        sec: `sec4`,
+        theme: `Favors are not changed until people change what is within themselves`,
+        ar: `ذلِكَ بِأَنَّ اللَّهَ لَمْ يَكُ مُغَيِّرًا نِعْمَةً أَنْعَمَهَا عَلَى قَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنْفُسِهِمْ وَأَنَّ اللَّهَ سَمِيعٌ عَلِيمٌ`,
+        en: `That is because Allah would not change a favor which He had bestowed upon a people until they change what is within themselves. And indeed, Allah is Hearing and Knowing.`
+      },
+      {
+        n: 54,
+        sec: `sec4`,
+        theme: `Drowning of Pharaoh’s people for denying Allah’s signs`,
+        ar: `كَدَأْبِ آلِ فِرْعَوْنَ وَالَّذِينَ مِنْ قَبْلِهِمْ كَذَّبُوا بِآيَاتِ رَبِّهِمْ فَأَهْلَكْنَاهُمْ بِذُنُوبِهِمْ وَأَغْرَقْنَا آلَ فِرْعَوْنَ وَكُلُّ كَانُوا ظَالِمِينَ`,
+        en: `[Theirs is] like the custom of the people of Pharaoh and of those before them. They denied the signs of their Lord, so We destroyed them for their sins, and We drowned the people of Pharaoh. And all [of them] were wrongdoers.`
+      },
+      {
+        n: 55,
+        sec: `sec5`,
+        theme: `Those who disbelieve and refuse faith`,
+        ar: `إِنَّ شَرَّ الدَّوَابِّ عِنْدَ اللَّهِ الَّذِينَ كَفَرُوا فَهُمْ لَا يُؤْمِنُونَ`,
+        en: `Indeed, the worst of living creatures in the sight of Allah are those who have disbelieved, and they will not [ever] believe`
+      },
+      {
+        n: 56,
+        sec: `sec5`,
+        theme: `Treaty-breakers who violate pledges repeatedly`,
+        ar: `الَّذِينَ عَاهَدْتَ مِنْهُمْ ثُمَّ يَنْقُضُونَ عَهْدَهُمْ فِي كُلِّ مَرَّةٍ وَهُمْ لَا يَتَّقُونَ`,
+        en: `The ones with whom you made a treaty but then they break their pledge every time, and they do not fear Allah.`
+      },
+      {
+        n: 57,
+        sec: `sec5`,
+        theme: `Deterring others behind chronic treaty-breakers in war`,
+        ar: `فَإِمَّا تَثْقَفَنَّهُمْ فِي الْحَرْبِ فَشَرِّدْ بِهِمْ مَنْ خَلْفَهُمْ لَعَلَّهُمْ يَذَّكَّرُونَ`,
+        en: `So if you, [O Muhammad], gain dominance over them in war, disperse by [means of] them those behind them that perhaps they will be reminded.`
+      },
+      {
+        n: 58,
+        sec: `sec5`,
+        theme: `Open renunciation on equal terms if betrayal is feared`,
+        ar: `وَإِمَّا تَخَافَنَّ مِنْ قَوْمٍ خِيَانَةً فَانْبِذْ إِلَيْهِمْ عَلَىٰ سَوَاءٍ ۚ إِنَّ اللَّهَ لَا يُحِبُّ الْخَائِنِينَ`,
+        en: `If you [have reason to] fear from a people betrayal, throw [their treaty] back to them, [putting you] on equal terms. Indeed, Allah does not like traitors.`
+      },
+      {
+        n: 59,
+        sec: `sec5`,
+        theme: `Disbelievers cannot outrun or frustrate Allah`,
+        ar: `وَلَا يَحْسَبَنَّ الَّذِينَ كَفَرُوا سَبَقُوا إِنَّهُمْ لَا يُعْجِزُونَ`,
+        en: `And let not those who disbelieve think they will escape. Indeed, they will not cause failure [to Allah].`
+      },
+      {
+        n: 60,
+        sec: `sec5`,
+        theme: `Preparedness for deterrence; full repayment of spending`,
+        ar: `وَأَعِدُّوا لَهُمْ مَا اسْتَطَعْتُمْ مِنْ قُوَّةٍ وَمِنْ رِبَاطِ الْخَيْلِ تُرْهِبُونَ بِهِ عَدُوَّ اللَّهِ وَعَدُوَّكُمْ وَآخَرِينَ مِنْ دُونِهِمْ لَا تَعْلَمُونَهُمُ اللَّهُ يَعْلَمُهُمْ وَمَا تُنْفِقُوا مِنْ شَيْءٍ فِي سَبِيلِ اللَّهِ يُوَفَّ إِلَيْكُمْ وَأَنْتُمْ لَا تُظْلَمُونَ`,
+        en: `And prepare against them whatever you are able of power and of steeds of war by which you may terrify the enemy of Allah and your enemy and others besides them whom you do not know [but] whom Allah knows. And whatever you spend in the cause of Allah will be fully repaid to you, and you will not be wronged.`
+      },
+      {
+        n: 61,
+        sec: `sec5`,
+        theme: `Mandate to incline toward peace when the enemy does`,
+        ar: `وَإِنْ جَنَحُوا لِلسَّلْمِ فَاجْنَحْ لَهَا وَتَوَكَّلْ عَلَى اللَّهِ ۚ إِنَّهُ هُوَ السَّمِيعُ الْعَلِيمُ`,
+        en: `And if they incline to peace, then incline to it [also] and rely upon Allah. Indeed, it is He who is the Hearing, the Knowing.`
+      },
+      {
+        n: 62,
+        sec: `sec5`,
+        theme: `Allah suffices if peace is offered deceitfully`,
+        ar: `وَإِنْ يُرِيدُوا أَنْ يَخْدَعُوكَ فَإِنَّ حَسْبَكَ اللَّهُ ۚ هُوَ الَّذِي أَيَّدَكَ بِنَصْرِهِ وَبِالْمُؤْمِنِينَ`,
+        en: `But if they intend to deceive you - then sufficient for you is Allah. It is He who supported you with His help and with the believers`
+      },
+      {
+        n: 63,
+        sec: `sec5`,
+        theme: `Only Allah united the believers’ hearts`,
+        ar: `وَأَلَّفَ بَيْنَ قُلُوبِهِمْ لَوْ أَنْفَقْتَ مَا فِي الْأَرْضِ جَمِيعًا مَا أَلَّفْتَ بَيْنَ قُلُوبِهِمْ وَلَكِنَّ اللَّهَ أَلَّفَ بَيْنَهُمْ إِنَّهُ عَزِيزٌ حَكِيمٌ`,
+        en: `And brought together their hearts. If you had spent all that is in the earth, you could not have brought their hearts together; but Allah brought them together. Indeed, He is Exalted in Might and Wise.`
+      },
+      {
+        n: 64,
+        sec: `sec5`,
+        theme: `Allah is sufficient for the Prophet and his followers`,
+        ar: `يَا أَيُّهَا النَّبِيُّ حَسْبُكَ اللَّهُ وَمَن اتَّبَعَكَ مِنَ الْمُؤْمِنِينَ`,
+        en: `O Prophet, sufficient for you is Allah and for whoever follows you of the believers.`
+      },
+      {
+        n: 65,
+        sec: `sec5`,
+        theme: `Initial 10:1 steadfastness ratio (20 vs. 200; 100 vs. 1,000)`,
+        ar: `يَا أَيُّهَا النَّبِيُّ حَرِّضِ الْمُؤْمِنِينَ عَلَى الْقِتَالُ إِنْ يَكُنْ مِنْكُمْ عِشْرُونَ صَابِرُونَ يَغْلِبُوا مِائَتَيْنِ وَإِنْ يَكُنْ مِنْكُمْ مِائَةٌ يَغْلِبُوا أَلْفًا مِنَ الَّذِينَ كَفَرُوا بِأَنَّهُمْ قَوْمٌ لَا يَفْقَهُونَ`,
+        en: `O Prophet, urge the believers to battle. If there are among you twenty [who are] steadfast, they will overcome two hundred. And if there are among you one hundred [who are] steadfast, they will overcome a thousand of those who have disbelieved because they are a people who do not understand.`
+      },
+      {
+        n: 66,
+        sec: `sec5`,
+        theme: `Lightened 2:1 ratio acknowledging weakness (100 vs. 200; 1,000 vs. 2,000)`,
+        ar: `الْآنَ خَفَّفَ اللَّهُ عَنْكُمْ وَعَلِمَ أَنَّ فِيكُمْ ضَعْفًا ۚ فَإِنْ يَكُنْ مِنْكُمْ مِائَةٌ صَابِرَةٌ يَغْلِبُوا مِائَتَيْنِ وَإِنْ يَكُنْ مِنْكُمْ أَلْفٌ يَغْلِبُوا أَلْفَيْنِ بِإِذْنِ اللَّهِ وَاللَّهُ مَعَ الصَّابِرِينَ`,
+        en: `Now, Allah has lightened [the hardship] for you, and He knows that among you is weakness. So if there are from you one hundred [who are] steadfast, they will overcome two hundred. And if there are among you a thousand, they will overcome two thousand by permission of Allah. And Allah is with the steadfast.`
+      },
+      {
+        n: 67,
+        sec: `sec5`,
+        theme: `Rebuke over prioritizing captives before decisive victory`,
+        ar: `مَا كَانَ لِنَبِيٍّ أَنْ يَكُونَ لَهُ أَسْرَى حَتَّى يُثْخِنَ فِي الْأَرْضِ تُرِيدُونَ عَرَضَ الدُّنْيَا وَاللَّهُ يُرِيدُ الْآخِرَةَ وَاللَّهُ عَزِيزٌ حَكِيمٌ`,
+        en: `It is not for a prophet to have captives [of war] until he inflicts a massacre [upon Allah's enemies] in the land. Some Muslims desire the commodities of this world, but Allah desires [for you] the Hereafter. And Allah is Exalted in Might and Wise.`
+      },
+      {
+        n: 68,
+        sec: `sec5`,
+        theme: `Preceding decree spared a great punishment`,
+        ar: `لَوْلَا كِتَابٌ مِنَ اللَّهِ سَبَقَ لَمَسَّكُمْ فِيمَا أَخَذْتُمْ عَذَابٌ عَظِيمٌ`,
+        en: `If not for a decree from Allah that preceded, you would have been touched for what you took by a great punishment.`
+      },
+      {
+        n: 69,
+        sec: `sec5`,
+        theme: `Permission to consume war booty as lawful and good`,
+        ar: `فَكُلُوا مِمَّا غَنِمْتُمْ حَلَالًا طَيِّبًا وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`,
+        en: `So consume what you have taken of war booty [as being] lawful and good, and fear Allah. Indeed, Allah is Forgiving and Merciful.`
+      },
+      {
+        n: 70,
+        sec: `sec5`,
+        theme: `Promise of better and forgiveness for sincere captives`,
+        ar: `يَا أَيُّهَا النَّبِيُّ قُلْ لِمَنْ فِي أَيْدِيكُمْ مِنَ الْأَسْرَى إِنْ يَعْلَمِ اللَّهُ فِي قُلُوبِكُمْ خَيْرًا يُؤْتِكُمْ خَيْرًا مِمَّا أُخِذَ مِنْكُمْ وَيَغْفِرْ لَكُمْ وَاللَّهُ غَفُورٌ رَحِيمٌ`,
+        en: `O Prophet, say to whoever is in your hands of the captives, "If Allah knows [any] good in your hearts, He will give you [something] better than what was taken from you, and He will forgive you; and Allah is Forgiving and Merciful."`
+      },
+      {
+        n: 71,
+        sec: `sec5`,
+        theme: `Warning against treachery by released captives`,
+        ar: `وَإِنْ يُرِيدُوا خِيَانَتَكَ فَقَدْ خَانُوا اللَّهَ مِنْ قَبْلُ فَأَمْكَنَ مِنْهُمْ وَاللَّهُ عَلِيمٌ حَكِيمٌ`,
+        en: `But if they intend to betray you - then they have already betrayed Allah before, and He empowered [you] over them. And Allah is Knowing and Wise.`
+      },
+      {
+        n: 72,
+        sec: `sec6`,
+        theme: `Mutual alliance of emigrants and helpers; treaty limits for non-emigrants`,
+        ar: `إِنَّ الَّذِينَ آمَنُوا وَهَاجَرُوا وَجَاهَدُوا بِأَمْوَالِهِمْ وَأَنْفُسِهِمْ فِي سَبِيلِ اللَّهِ وَالَّذِينَ آوَوْا وَنَصَرُوا أُولَئِكَ بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ ۚ وَالَّذِينَ آمَنُوا وَلَمْ يُهَاجِرُوا مَا لَكُمْ مِنْ وَلَايَتِهِمْ مِنْ شَيْءٍ حَتَّىٰ يُهَاجِرُوا وَإِنِ اسْتَنْصَرُوكُمْ فِي الدِّينِ فَعَلَيْكُمُ النَّصْرُ إِلَّا عَلَىٰ قَوْمٍ بَيْنَكُمْ وَبَيْنَهُمْ مِيثَاقٌ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ`,
+        en: `Indeed, those who have believed and emigrated and fought with their wealth and lives in the cause of Allah and those who gave shelter and aided - they are allies of one another. But those who believed and did not emigrate - for you there is no guardianship of them until they emigrate. And if they seek help of you for the religion, then you must help, except against a people between yourselves and whom is a treaty. And Allah is Seeing of what you do.`
+      },
+      {
+        n: 73,
+        sec: `sec6`,
+        theme: `Solidarity prevents fitnah and great corruption on earth`,
+        ar: `وَالَّذِينَ كَفَرُوا بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ إِلَّا تَفْعَلُوهُ تَكُنْ فِتْنَةٌ فِي الْأَرْضِ وَفَسَادٌ كَبِيرٌ`,
+        en: `And those who disbelieved are allies of one another. If you do not do so, there will be fitnah on earth and great corruption.`
+      },
+      {
+        n: 74,
+        sec: `sec6`,
+        theme: `Emigrants and helpers affirmed as true believers`,
+        ar: `وَالَّذِينَ آمَنُوا وَهَاجَرُوا وَجَاهَدُوا فِي سَبِيلِ اللَّهِ وَالَّذِينَ آوَوْا وَنَصَرُوا أُولئِكَ هُمُ الْمُؤْمِنُونَ حَقًّا لَهُمْ مَغْفِرَةٌ وَرِزْقٌ كَرِيمٌ`,
+        en: `But those who have believed and emigrated and fought in the cause of Allah and those who gave shelter and aided - it is they who are the believers, truly. For them is forgiveness and noble provision.`
+      },
+      {
+        n: 75,
+        sec: `sec6`,
+        theme: `Later emigrants belong; blood relatives hold inheritance priority`,
+        ar: `وَالَّذِينَ آمَنُوا مِنْ بَعْدُ وَهَاجَرُوا وَجَاهَدُوا مَعَكُمْ فَأُولَئِكَ مِنْكُمْ وَأُولُو الْأَرْحَامِ بَعْضُهُمْ أَوْلَىٰ بِبَعْضٍ فِي كِتَابِ اللَّهِ إِنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ`,
+        en: `And those who believed after [the initial emigration] and emigrated and fought with you - they are of you. But those of [blood] relationship are more entitled [to inheritance] in the decree of Allah. Indeed, Allah is Knowing of all things.`
+      }
+    ];
+
+    const BADR_STEPS = [
+      {
+        badge: `Stage 1 of 5`,
+        ref: `Verses 8:9–8:10`,
+        title: `1,000 reinforcing angels as glad tidings`,
+        ar: `إِذْ تَسْتَغِيثُونَ رَبَّكُمْ فَاسْتَجَابَ لَكُمْ أَنِّي مُمِدُّكُمْ بِأَلْفِ مِنَ الْمَلَائِكَةِ مُرْدِفِينَ`,
+        body: `When the outnumbered believers cried out for help, Allah answered with a thousand angels following one another. Verse 8:10 clarifies their purpose: not as a substitute for Allah’s decree, but as good tidings to reassure believers’ hearts—because victory comes solely from Allah.`
+      },
+      {
+        badge: `Stage 2 of 5`,
+        ref: `Verse 8:11`,
+        title: `Slumber of security and purifying rain`,
+        ar: `إِذْ يُغَشِّيكُمُ النُّعَاسَ أَمَنَةً مِنْهُ وَيُنَزِّلُ عَلَيْكُمْ مِنَ السَّمَاءِ مَاءً لِيُطَهِّرَكُمْ بِهِ`,
+        body: `Allah enveloped the camp in peaceful drowsiness and sent down rain from the sky for four explicit purposes: to purify them, remove Satan’s evil suggestions, bind/steady their hearts, and make their feet firm on the ground.`
+      },
+      {
+        badge: `Stage 3 of 5`,
+        ref: `Verses 8:12–8:14`,
+        title: `Strengthening believers while casting terror into opponents`,
+        ar: `إِذْ يُوحِي رَبُّكَ إِلَى الْمَلَائِكَةِ أَنِّي مَعَكُمْ فَثَبِّتُوا الَّذِينَ آمَنُوا`,
+        body: `Allah inspired the angels: “I am with you, so strengthen those who have believed.” Simultaneously, terror (al-ru‘b) was cast into the hearts of those who opposed Allah and His Messenger.`
+      },
+      {
+        badge: `Stage 4 of 5`,
+        ref: `Verses 8:15–8:16`,
+        title: `Standing firm against an advancing force`,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا لَقِيتُمُ الَّذِينَ كَفَرُوا زَحْفًا فَلَا تُوَلُّوهُمُ الْأَدْبَارَ`,
+        body: `Believers meeting an advancing army are forbidden to turn their backs in flight—except for two disciplined maneuvers: swerving as a fighting tactic or rejoining another fighting company.`
+      },
+      {
+        badge: `Stage 5 of 5`,
+        ref: `Verses 8:17–8:19`,
+        title: `Divine agency behind the throw and the victory`,
+        ar: `فَلَمْ تَقْتُلُوهُمْ وَلَكِنَّ اللَّهَ قَتَلَهُمْ وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَكِنَّ اللَّهَ رَمَى`,
+        body: `“You did not kill them, but it was Allah who killed them; and you threw not when you threw, but it was Allah who threw.” The triumph served as a good test for believers and weakened the opponents’ plot.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        verse: `8:1`,
+        prompt: `When believers asked about the bounties of war in 8:1, what immediate three duties were commanded alongside declaring bounties belong to Allah and the Messenger?`,
+        options: [
+          `Divide spoils equally on the field, build fortifications, and release all captives`,
+          `Fear Allah, amend relations between one another, and obey Allah and His Messenger`,
+          `Wait until returning to Madinah, fast three days, and donate half to travelers`,
+          `Consult tribal elders, select the fastest horses, and record all names`
+        ],
+        answer: 1,
+        explanation: `Verse 8:1 states: “So fear Allah and amend that which is between you and obey Allah and His Messenger, if you should be believers.”`
+      },
+      {
+        id: `q2`,
+        verse: `8:11`,
+        prompt: `According to 8:11, what were the effects of the rain sent down at Badr?`,
+        options: [
+          `Flooding the opposing camp’s supply wagons and extinguishing their fires`,
+          `Purifying believers, removing Satan’s whispers, steadying hearts, and firming feet`,
+          `Forcing the unarmed caravan to turn back toward the valley`,
+          `Washing away written treaties on parchment`
+        ],
+        answer: 1,
+        explanation: `8:11 explicitly lists purification, removing Satan’s evil suggestions, making hearts steadfast, and planting feet firmly.`
+      },
+      {
+        id: `q3`,
+        verse: `8:16`,
+        prompt: `Under 8:16, what are the ONLY two permitted exceptions for turning one’s back when facing an advancing enemy?`,
+        options: [
+          `Exhaustion from travel or running low on arrows`,
+          `Swerving as a combat tactic or joining another company`,
+          `Waiting for nightfall or negotiating ransom`,
+          `Protecting baggage trains or returning to Madinah`
+        ],
+        answer: 1,
+        explanation: `8:16 exempts only “swerving [as a strategy] for war” or “joining [another] company.”`
+      },
+      {
+        id: `q4`,
+        verse: `8:33`,
+        prompt: `Which two reasons are given in 8:33 for why Allah would not punish the people of Makkah at that time?`,
+        options: [
+          `Their guardianship of the Sacred Mosque and their trade caravans`,
+          `The Prophet’s presence among them and their seeking forgiveness`,
+          `A formal ten-year truce and annual charity`,
+          `Their hospitality to travelers and elders’ counsel`
+        ],
+        answer: 1,
+        explanation: `8:33 states: “Allah would not punish them while you, [O Muhammad], are among them, and Allah would not punish them while they seek forgiveness.”`
+      },
+      {
+        id: `q5`,
+        verse: `8:41`,
+        prompt: `Besides Allah and the Messenger, which four groups are named in 8:41 as recipients of the one-fifth (Khums) share?`,
+        options: [
+          `Commanders, archers, cavalry, and scribes`,
+          `Near relatives, orphans, the needy, and the stranded traveler`,
+          `Elders, judges, freed captives, and neighbors`,
+          `Emigrants only, helpers only, guards, and messengers`
+        ],
+        answer: 1,
+        explanation: `8:41 lists: “for Allah is one fifth of it and for the Messenger and for [his] near relatives and the orphans, the needy, and the [stranded] traveler.”`
+      },
+      {
+        id: `q6`,
+        verse: `8:44`,
+        prompt: `Why did Allah make each army appear few in the other’s eyes upon meeting at Badr (8:44)?`,
+        options: [
+          `Because thick desert fog obscured the valley floor`,
+          `So that Allah might accomplish a matter already destined without believers losing courage`,
+          `Because half of each army stayed behind with the caravan`,
+          `To encourage an immediate peace treaty before sunset`
+        ],
+        answer: 1,
+        explanation: `8:43–44 explain that showing them as few prevented believers from losing courage and disputing, enabling Allah to accomplish a matter already destined.`
+      },
+      {
+        id: `q7`,
+        verse: `8:53`,
+        prompt: `What foundational historical principle is stated in 8:53?`,
+        options: [
+          `Every nation’s prosperity lasts exactly forty years`,
+          `Allah does not change a favor bestowed upon a people until they change what is within themselves`,
+          `Large armies always prevail unless they lack cavalry`,
+          `Treaties are automatically void after a leader passes away`
+        ],
+        answer: 1,
+        explanation: `8:53 declares: “Allah would not change a favor which He had bestowed upon a people until they change what is within themselves.”`
+      },
+      {
+        id: `q8`,
+        verse: `8:58`,
+        prompt: `If believers have reason to fear betrayal from a people with whom they have a treaty, what does 8:58 require?`,
+        options: [
+          `Launch a surprise attack before they do`,
+          `Throw their treaty back to them openly on equal terms`,
+          `Hold their envoys as hostages until the treaty expires`,
+          `Ignore the treaty entirely without notifying them`
+        ],
+        answer: 1,
+        explanation: `8:58 commands transparency: “throw [their treaty] back to them, [putting you] on equal terms. Indeed, Allah does not like traitors.”`
+      },
+      {
+        id: `q9`,
+        verse: `8:61`,
+        prompt: `What must believers do if the opposing side inclines toward peace (8:61)?`,
+        options: [
+          `Refuse until every captive pays double ransom`,
+          `Incline to peace also and rely upon Allah`,
+          `Demand disarmament of all neighboring tribes first`,
+          `Wait one full year before responding`
+        ],
+        answer: 1,
+        explanation: `8:61 commands: “And if they incline to peace, then incline to it [also] and rely upon Allah.”`
+      },
+      {
+        id: `q10`,
+        verse: `8:72–8:75`,
+        prompt: `According to 8:72 and 8:75, what limits help to non-emigrant believers, and who holds priority in inheritance?`,
+        options: [
+          `Help is forbidden altogether; emigrants inherit everything from helpers`,
+          `Do not aid non-emigrants against a treaty partner; blood relatives hold priority in inheritance`,
+          `Help applies only in financial debt; military companions inherit equally`,
+          `Treaties do not apply to non-emigrants; neighbors inherit first`
+        ],
+        answer: 1,
+        explanation: `8:72 forbids helping non-emigrants against a people with whom you have a treaty (mithaq), and 8:75 establishes that blood relatives (ulu al-arham) are more entitled to inheritance.`
+      }
+    ];
+
+    const appState = {
+      mastered: {},
+      bookmarked: {},
+      notes: {},
+      quizAnswers: {},
+      showArabic: true,
+      activeBadrStep: 0,
+      perceptionMode: `battle`,
+      khumsUnits: 100,
+      ratioUnits: 100
+    };
+
+    function getAppApi() {
+      return window.notebookAppApi || null;
+    }
+
+    async function persistState() {
+      const api = getAppApi();
+      const statusEl = document.getElementById(`footer-status`);
+      if (api && typeof api.setAppState === `function`) {
+        try {
+          await api.setAppState({
+            mastered: appState.mastered,
+            bookmarked: appState.bookmarked,
+            notes: appState.notes,
+            quizAnswers: appState.quizAnswers,
+            showArabic: appState.showArabic,
+            activeBadrStep: appState.activeBadrStep,
+            khumsUnits: appState.khumsUnits,
+            ratioUnits: appState.ratioUnits
+          });
+          if (statusEl) statusEl.textContent = `Progress saved`;
+        } catch (err) {
+          if (statusEl) statusEl.textContent = `Local session active`;
+        }
+      }
+    }
+
+    function updateSummaryUI() {
+      const masteredCount = Object.keys(appState.mastered).filter(k => appState.mastered[k]).length;
+      const bookmarkCount = Object.keys(appState.bookmarked).filter(k => appState.bookmarked[k]).length;
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      const correctCount = QUIZ_QUESTIONS.filter(q => appState.quizAnswers[q.id] === q.answer).length;
+
+      const countEl = document.getElementById(`hero-mastered-count`);
+      const capEl = document.getElementById(`hero-mastery-caption`);
+      const barEl = document.getElementById(`mastery-progressbar`);
+      const fillEl = document.getElementById(`mastery-progress-fill`);
+      const quizEl = document.getElementById(`hero-quiz-score`);
+      const bmEl = document.getElementById(`hero-bookmark-count`);
+
+      if (countEl) countEl.textContent = `${masteredCount} / 75`;
+      if (capEl) {
+        if (masteredCount === 0) {
+          capEl.textContent = `Mark verses as mastered below as you read and reflect`;
+        } else if (masteredCount === 75) {
+          capEl.textContent = `All 75 verses of Surah Al-Anfal marked mastered`;
+        } else {
+          const pct = Math.round((masteredCount / 75) * 100);
+          capEl.textContent = `${pct}% of Surah Al-Anfal marked mastered`;
+        }
+      }
+      if (barEl) barEl.setAttribute(`aria-valuenow`, String(masteredCount));
+      if (fillEl) fillEl.style.width = `${(masteredCount / 75) * 100}%`;
+      if (quizEl) quizEl.textContent = `Recall check: ${correctCount} / ${answeredCount} correct (${answeredCount} / 10 answered)`;
+      if (bmEl) bmEl.textContent = `${bookmarkCount} bookmarked`;
+    }
+
+    function selectBadrStep(idx) {
+      if (idx < 0 || idx >= BADR_STEPS.length) return;
+      appState.activeBadrStep = idx;
+      const step = BADR_STEPS[idx];
+
+      const badge = document.getElementById(`badr-step-badge`);
+      if (badge) badge.textContent = step.badge;
+
+      for (let i = 0; i < BADR_STEPS.length; i++) {
+        const tab = document.getElementById(`badr-tab-${i}`);
+        if (tab) {
+          if (i === idx) {
+            tab.classList.add(`btn-active`);
+          } else {
+            tab.classList.remove(`btn-active`);
+          }
+        }
+      }
+
+      const stage = document.getElementById(`badr-stage`);
+      if (stage) {
+        stage.innerHTML = `
+          <div>
+            <span class="label">${step.ref}</span>
+            <h3 class="subhead" style="margin-top: var(--space-xs);">${step.title}</h3>
+          </div>
+          <p class="arabic-text" dir="rtl" lang="ar">${step.ar}</p>
+          <p class="prose" style="font-size: 0.96rem;">${step.body}</p>
+        `;
+      }
+      persistState();
+    }
+
+    function renderKhums(units) {
+      const val = Math.max(25, Math.min(1000, Number(units) || 100));
+      appState.khumsUnits = val;
+      const fourFifths = Math.round(val * 0.8 * 10) / 10;
+      const oneFifth = Math.round(val * 0.2 * 10) / 10;
+      const perCat = Math.round((oneFifth / 5) * 10) / 10;
+
+      const s80 = document.getElementById(`svg-share-80`);
+      const s20 = document.getElementById(`svg-share-20`);
+      const readout = document.getElementById(`khums-readout`);
+      if (s80) s80.textContent = `4/5 General (${fourFifths})`;
+      if (s20) s20.textContent = `1/5 (${oneFifth})`;
+      if (readout) {
+        readout.textContent = `Out of ${val} units: ${fourFifths} units general share · ${oneFifth} units Khums across the 5 named categories (${perCat} units per equal portion).`;
+      }
+
+      const segGroup = document.getElementById(`khums-segments`);
+      if (segGroup) {
+        const labels = [`Allah & Messenger`, `Near Kin`, `Orphans`, `Needy`, `Traveler`];
+        const fills = [`var(--data-1)`, `var(--data-2)`, `var(--data-3)`, `var(--data-4)`, `var(--primary)`];
+        let html = ``;
+        const w = 88;
+        const gap = 5;
+        for (let i = 0; i < 5; i++) {
+          const x = i * (w + gap);
+          html += `<rect x="${x}" y="98" width="${w}" height="24" rx="2" fill="${fills[i]}"></rect>`;
+          html += `<text x="${x + w / 2}" y="114" text-anchor="middle" fill="var(--on-primary)" font-family="var(--font-label)" font-size="11" font-weight="500">${perCat}</text>`;
+          html += `<text x="${x + w / 2}" y="138" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="10.5" font-weight="500">${labels[i]}</text>`;
+        }
+        segGroup.innerHTML = html;
+      }
+    }
+
+    function syncKhumsFromSlider(val) {
+      const numEl = document.getElementById(`khums-number`);
+      if (numEl) numEl.value = val;
+      renderKhums(val);
+      persistState();
+    }
+
+    function syncKhumsFromNumber(val) {
+      const sliderEl = document.getElementById(`khums-slider`);
+      if (sliderEl) sliderEl.value = val;
+      renderKhums(val);
+      persistState();
+    }
+
+    function togglePerceptionMode() {
+      appState.perceptionMode = appState.perceptionMode === `battle` ? `reality` : `battle`;
+      const btn = document.getElementById(`perception-toggle-btn`);
+      const belText = document.getElementById(`svg-believers-num`);
+      const enText = document.getElementById(`svg-enemy-num`);
+      const enCircle = document.getElementById(`svg-enemy-circle`);
+      const sight = document.getElementById(`svg-sightline-label`);
+      const cap = document.getElementById(`perception-caption`);
+
+      if (appState.perceptionMode === `reality`) {
+        if (btn) btn.textContent = `Show: Battlefield Perception (8:44)`;
+        if (belText) belText.textContent = `Few`;
+        if (enText) enText.textContent = `Many`;
+        if (enCircle) enCircle.setAttribute(`r`, `30`);
+        if (sight) sight.textContent = `If shown as many before contact: risk of dispute (8:43)`;
+        if (cap) cap.textContent = `Verse 8:43 notes that had Allah shown the enemy force as numerous in the Prophet’s dream, the believers would have lost courage and disputed over whether to fight. Allah spared them that division.`;
+      } else {
+        if (btn) btn.textContent = `Show: Dream & Reality Risk (8:43)`;
+        if (belText) belText.textContent = `Few`;
+        if (enText) enText.textContent = `Few`;
+        if (enCircle) enCircle.setAttribute(`r`, `22`);
+        if (sight) sight.textContent = `Mutual perception: each appeared few (8:44)`;
+        if (cap) cap.textContent = `Had the two forces tried to arrange an appointment, they would have missed it (8:42). Instead, Allah brought them together without prior scheduling and showed each side as few in the other’s eyes (8:43–44) so that believers would not lose courage and the destined criterion would unfold on clear evidence.`;
+      }
+    }
+
+    function renderRatio(units) {
+      const val = Math.max(20, Math.min(1000, Number(units) || 100));
+      appState.ratioUnits = val;
+      const overcome65 = val * 10;
+      const overcome66 = val * 2;
+
+      const t65 = document.getElementById(`ratio-65-text`);
+      const t66 = document.getElementById(`ratio-66-text`);
+      const b65 = document.getElementById(`ratio-65-bar`);
+      const b66 = document.getElementById(`ratio-66-bar`);
+
+      if (t65) t65.textContent = `${val.toLocaleString()} overcome ${overcome65.toLocaleString()}`;
+      if (t66) t66.textContent = `${val.toLocaleString()} overcome ${overcome66.toLocaleString()}`;
+      if (b65) b65.style.width = `${Math.min(100, (val / 1000) * 100)}%`;
+      if (b66) b66.style.width = `${Math.min(100, ((val * 2) / 10000) * 100)}%`;
+    }
+
+    function syncRatioFromSlider(val) {
+      const numEl = document.getElementById(`ratio-number`);
+      if (numEl) numEl.value = val;
+      renderRatio(val);
+      persistState();
+    }
+
+    function syncRatioFromNumber(val) {
+      const sliderEl = document.getElementById(`ratio-slider`);
+      if (sliderEl) sliderEl.value = val;
+      renderRatio(val);
+      persistState();
+    }
+
+    function getFilteredVerses() {
+      const searchEl = document.getElementById(`verse-search`);
+      const secEl = document.getElementById(`verse-section-select`);
+      const statusEl = document.getElementById(`verse-status-select`);
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : ``;
+      const sec = secEl ? secEl.value : `sec1`;
+      const status = statusEl ? statusEl.value : `any`;
+
+      return VERSES.filter(v => {
+        if (!query && sec !== `all` && v.sec !== sec) return false;
+        if (status === `mastered` && !appState.mastered[v.n]) return false;
+        if (status === `unmastered` && appState.mastered[v.n]) return false;
+        if (status === `bookmarked` && !appState.bookmarked[v.n]) return false;
+        if (query) {
+          const refStr = `8:${v.n}`;
+          const numStr = String(v.n);
+          const match = refStr.includes(query) ||
+                        numStr === query ||
+                        v.en.toLowerCase().includes(query) ||
+                        v.theme.toLowerCase().includes(query) ||
+                        v.ar.includes(query);
+          if (!match) return false;
+        }
+        return true;
+      });
+    }
+
+    function handleExplorerFilter() {
+      renderVerseList();
+    }
+
+    function toggleArabicVisibility() {
+      appState.showArabic = !appState.showArabic;
+      const btn = document.getElementById(`toggle-arabic-btn`);
+      if (btn) btn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleVerseMastered(n) {
+      appState.mastered[n] = !appState.mastered[n];
+      updateSummaryUI();
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleVerseBookmark(n) {
+      appState.bookmarked[n] = !appState.bookmarked[n];
+      updateSummaryUI();
+      renderVerseList();
+      persistState();
+    }
+
+    function saveVerseNote(n, text) {
+      if (text.trim()) {
+        appState.notes[n] = text;
+      } else {
+        delete appState.notes[n];
+      }
+      persistState();
+    }
+
+    function markVisibleMastered() {
+      const visible = getFilteredVerses();
+      visible.forEach(v => { appState.mastered[v.n] = true; });
+      updateSummaryUI();
+      renderVerseList();
+      persistState();
+    }
+
+    function renderVerseList() {
+      const container = document.getElementById(`verse-list-container`);
+      const countLabel = document.getElementById(`explorer-count-label`);
+      if (!container) return;
+
+      const list = getFilteredVerses();
+      if (countLabel) {
+        countLabel.textContent = `Showing ${list.length} ${list.length === 1 ? `verse` : `verses`}`;
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="panel">
+            <span class="label">No verses match your filters</span>
+            <p class="prose" style="margin-top: var(--space-xs); font-size: 0.95rem;">
+              Try clearing your search query or switching the movement filter to All 75 Verses.
+            </p>
+            <button type="button" class="btn btn-sm" style="margin-top: var(--space-md);" onclick="clearExplorerFilters()">Show all verses</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(v => {
+        const isMastered = Boolean(appState.mastered[v.n]);
+        const isBookmarked = Boolean(appState.bookmarked[v.n]);
+        const noteVal = appState.notes[v.n] || ``;
+        const arBlock = appState.showArabic
+          ? `<p class="arabic-text" dir="rtl" lang="ar">${v.ar}</p>`
+          : ``;
+
+        return `
+          <article class="verse-card ${isMastered ? `is-mastered` : ``}" id="verse-card-${v.n}">
+            <div class="verse-card-header">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm);">
+                <span class="tag tag-slate tabular">8:${v.n}</span>
+                <span class="label" style="color: var(--secondary);">${v.theme}</span>
+              </div>
+              <div class="verse-actions">
+                <button type="button" class="btn btn-sm ${isBookmarked ? `btn-active` : ``}" onclick="toggleVerseBookmark(${v.n})">
+                  ${isBookmarked ? `Bookmarked` : `Bookmark`}
+                </button>
+                <button type="button" class="btn btn-sm ${isMastered ? `btn-primary` : ``}" onclick="toggleVerseMastered(${v.n})">
+                  ${isMastered ? `Mastered` : `Mark mastered`}
+                </button>
+              </div>
+            </div>
+            ${arBlock}
+            <p class="prose" style="max-width: 72ch;">${v.en}</p>
+            <div class="control-group">
+              <label class="label" for="note-${v.n}">Personal reflection or takeaway note (8:${v.n})</label>
+              <textarea id="note-${v.n}" class="verse-note-input" rows="1" placeholder="Write a concise note for review…" onchange="saveVerseNote(${v.n}, this.value)">${escapeHtml(noteVal)}</textarea>
+            </div>
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function clearExplorerFilters() {
+      const searchEl = document.getElementById(`verse-search`);
+      const secEl = document.getElementById(`verse-section-select`);
+      const statusEl = document.getElementById(`verse-status-select`);
+      if (searchEl) searchEl.value = ``;
+      if (secEl) secEl.value = `all`;
+      if (statusEl) statusEl.value = `any`;
+      renderVerseList();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function exportStudyNotes() {
+      const api = getAppApi();
+      const lines = [`Surah Al-Anfal (Chapter 8) Study Progress Export`, `==============================================`, ``];
+      const masteredCount = Object.keys(appState.mastered).filter(k => appState.mastered[k]).length;
+      lines.push(`Mastered verses: ${masteredCount} / 75`);
+      lines.push(``);
+      VERSES.forEach(v => {
+        const m = appState.mastered[v.n] ? `[Mastered]` : `[Unmastered]`;
+        const b = appState.bookmarked[v.n] ? ` [Bookmarked]` : ``;
+        const note = appState.notes[v.n] ? `\nNote: ${appState.notes[v.n]}` : ``;
+        lines.push(`8:${v.n} ${m}${b} — ${v.theme}\n${v.en}${note}\n`);
+      });
+      const content = lines.join(`\n`);
+
+      if (api && typeof api.triggerFileDownload === `function`) {
+        api.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-anfal-study-notes.txt`
+        });
+      } else {
+        const statusEl = document.getElementById(`footer-status`);
+        if (statusEl) statusEl.textContent = `Export ready inside notebook host`;
+      }
+    }
+
+    function answerQuiz(qId, optIdx) {
+      appState.quizAnswers[qId] = optIdx;
+      updateSummaryUI();
+      renderQuiz();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+
+      container.innerHTML = QUIZ_QUESTIONS.map((q, qIndex) => {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+        const isCorrect = hasAnswered && chosen === q.answer;
+
+        const optsHtml = q.options.map((opt, idx) => {
+          let cls = `btn quiz-option`;
+          if (hasAnswered) {
+            if (idx === q.answer) cls += ` correct`;
+            else if (idx === chosen) cls += ` incorrect`;
+          }
+          return `<button type="button" class="${cls}" onclick="answerQuiz('${q.id}', ${idx})">${opt}</button>`;
+        }).join(``);
+
+        const fbHtml = hasAnswered
+          ? `<div class="feedback-box ${isCorrect ? `ok` : `bad`}">
+               <strong>${isCorrect ? `Correct` : `Review ${q.verse}`}:</strong> ${q.explanation}
+             </div>`
+          : ``;
+
+        return `
+          <div class="panel">
+            <div class="verse-card-header">
+              <span class="label">Question ${qIndex + 1} of ${QUIZ_QUESTIONS.length}</span>
+              <span class="tag tabular">${q.verse}</span>
+            </div>
+            <h3 class="subhead" style="margin-top: var(--space-xs); margin-bottom: var(--space-md); font-size: 1.12rem;">${q.prompt}</h3>
+            <div style="display: grid; gap: var(--space-sm);">
+              ${optsHtml}
+            </div>
+            <div style="margin-top: var(--space-md);">${fbHtml}</div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function handleResetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset all progress`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset all progress`;
+      appState.mastered = {};
+      appState.bookmarked = {};
+      appState.notes = {};
+      appState.quizAnswers = {};
+      updateSummaryUI();
+      renderVerseList();
+      renderQuiz();
+      persistState();
+    }
+
+    function setupScrollReveals() {
+      const els = document.querySelectorAll(`.reveal`);
+      if (!(`IntersectionObserver` in window)) {
+        els.forEach(el => el.classList.add(`visible`));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(el => obs.observe(el));
+    }
+
+    async function initApp() {
+      const api = getAppApi();
+      if (api && typeof api.getAppState === `function`) {
+        try {
+          const saved = await api.getAppState();
+          if (saved && typeof saved === `object`) {
+            if (saved.mastered) appState.mastered = saved.mastered;
+            if (saved.bookmarked) appState.bookmarked = saved.bookmarked;
+            if (saved.notes) appState.notes = saved.notes;
+            if (saved.quizAnswers) appState.quizAnswers = saved.quizAnswers;
+            if (typeof saved.showArabic === `boolean`) appState.showArabic = saved.showArabic;
+            if (typeof saved.activeBadrStep === `number`) appState.activeBadrStep = saved.activeBadrStep;
+            if (typeof saved.khumsUnits === `number`) appState.khumsUnits = saved.khumsUnits;
+            if (typeof saved.ratioUnits === `number`) appState.ratioUnits = saved.ratioUnits;
+          }
+        } catch (err) {
+          /* Graceful fallback to defaults */
+        }
+      }
+
+      const khumsSlider = document.getElementById(`khums-slider`);
+      const khumsNumber = document.getElementById(`khums-number`);
+      if (khumsSlider) khumsSlider.value = appState.khumsUnits;
+      if (khumsNumber) khumsNumber.value = appState.khumsUnits;
+
+      const ratioSlider = document.getElementById(`ratio-slider`);
+      const ratioNumber = document.getElementById(`ratio-number`);
+      if (ratioSlider) ratioSlider.value = appState.ratioUnits;
+      if (ratioNumber) ratioNumber.value = appState.ratioUnits;
+
+      const toggleArBtn = document.getElementById(`toggle-arabic-btn`);
+      if (toggleArBtn) toggleArBtn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+
+      selectBadrStep(appState.activeBadrStep);
+      renderKhums(appState.khumsUnits);
+      renderRatio(appState.ratioUnits);
+      updateSummaryUI();
+      renderVerseList();
+      renderQuiz();
+      setupScrollReveals();
+
+      if (api && typeof api.notifyAppReady === `function`) {
+        api.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

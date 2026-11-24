@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah At-Tur (Chapter 52) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-terracotta: #c98a6b;
+      --outline-emerald: #b5d6c9;
+      --outline-warm: #c4b29e;
+      --brass-rule-start: #d8c3b0;
+      --brass-rule-mid: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fbe8e6;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-rule-start), var(--brass-rule-mid), var(--brass-rule-start));
+
+      /* Shared semantic & focus tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: var(--primary);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.4rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1.025rem, 0.98rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-size: clamp(1.45rem, 1.25rem + 0.7vw, 1.85rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Hero & Typography */
+    .hero-block {
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-md);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--outline-emerald);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--outline-terracotta);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.2rem);
+      margin: 0 0 var(--space-lg);
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Riad Arch Metric Row */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--outline-terracotta);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+      margin-bottom: var(--space-xs);
+    }
+    .arch-caption {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Study Control Bar */
+    .study-bar {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .progress-cluster {
+      flex: 1 1 260px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .progress-track {
+      height: 10px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      border: var(--warm-hairline);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--outline-warm);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-secondary.is-active {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+    }
+
+    .btn-emerald {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-emerald:hover:not(:disabled) {
+      background: var(--on-tertiary-container);
+    }
+
+    /* Section Architecture */
+    .narrative-section {
+      padding-top: var(--space-xl);
+      border-top: var(--warm-hairline);
+    }
+
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    .section-kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin: 0 0 var(--space-md);
+      color: var(--on-surface);
+    }
+
+    .section-prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-lg);
+    }
+
+    .prose-note {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+
+    /* Movement Map Bar */
+    .movement-map-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .movement-strip {
+      display: grid;
+      grid-template-columns: 10fr 6fr 12fr 15fr 6fr;
+      gap: var(--space-xs);
+      margin: var(--space-md) 0;
+    }
+
+    .movement-seg {
+      min-height: 54px;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container);
+      color: var(--on-surface);
+      padding: var(--space-xs) var(--space-sm);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .movement-seg:hover {
+      background: var(--primary-container);
+      box-shadow: var(--soft-shadow);
+    }
+    .movement-seg.is-selected {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .movement-seg-num {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .movement-seg-verses {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .movement-detail-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    .movement-detail-title {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      margin: 0 0 var(--space-xs);
+    }
+
+    /* Interactive Oath Pillar Inspector */
+    .pillar-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-bottom: var(--space-xl);
+    }
+
+    .pillar-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .pillar-btn {
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .pillar-btn:hover { background: var(--surface-container-high); }
+    .pillar-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--outline-terracotta);
+      color: var(--on-primary-container);
+      font-weight: 600;
+    }
+
+    .pillar-stage {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .arabic-hero {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.75rem, 1.4rem + 1vw, 2.35rem);
+      line-height: 2;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: var(--space-sm) 0;
+    }
+
+    /* Comparison Matrix Table */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+      margin-bottom: var(--space-xl);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+
+    tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+
+    .td-dimension {
+      font-weight: 600;
+      color: var(--on-surface);
+      min-width: 140px;
+    }
+    .td-deniers { color: var(--on-primary-container); }
+    .td-righteous { color: var(--on-tertiary-container); }
+
+    .verse-ref {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+      margin-left: var(--space-xs);
+    }
+
+    /* Highlight Callout */
+    .callout-arch {
+      background: var(--primary-container);
+      border: 1px solid var(--outline-terracotta);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    .callout-arch h3 {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      margin: 0 0 var(--space-sm);
+      color: var(--on-primary-container);
+    }
+
+    /* Cross-Examination Interactive Grid (15 Am Questions) */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .am-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .am-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .am-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .am-arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      line-height: 1.8;
+      direction: rtl;
+      text-align: right;
+      color: var(--primary);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .am-rebuttal {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+
+    /* Nocturnal Devotion Cycle Diagram */
+    .devotion-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .svg-frame {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Verse Stream Cards */
+    .verse-stream-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      background: var(--tertiary-container);
+      border-color: var(--outline-emerald);
+    }
+
+    .verse-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .verse-num-badge {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .mini-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-warm);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .mini-btn:hover { background: var(--surface-container-high); }
+    .mini-btn.is-mastered-btn {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 2.05;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    .verse-english {
+      margin: 0;
+      color: var(--on-surface);
+      max-width: 68ch;
+      transition: filter var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+    }
+
+    .is-concealed {
+      filter: blur(7px);
+      user-select: none;
+      opacity: 0.55;
+    }
+
+    /* Mastery Lab: Flashcards & Quiz */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .flashcard-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .flashcard-controls-top {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-lg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .field-select, .field-textarea {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: 0.65rem 2.2rem 0.65rem 0.85rem;
+      min-height: 44px;
+      color: var(--on-surface);
+    }
+    .field-textarea {
+      padding: 0.75rem 0.95rem;
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .field-select:focus, .field-textarea:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .flashcard-stage {
+      background: var(--background);
+      border: 1px solid var(--outline-terracotta);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-xl) var(--space-lg);
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      cursor: pointer;
+    }
+
+    .flashcard-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.6rem, 1.35rem + 0.9vw, 2.25rem);
+      line-height: 2;
+      direction: rtl;
+      text-align: center;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+    }
+
+    .flashcard-english {
+      font-family: var(--font-headline);
+      font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem);
+      line-height: 1.35;
+      color: var(--on-surface);
+      max-width: 52ch;
+    }
+
+    /* Quiz Styling */
+    .quiz-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .quiz-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .quiz-q {
+      font-weight: 600;
+      margin: 0 0 var(--space-md);
+      color: var(--on-surface);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+
+    .quiz-opt {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .quiz-opt:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .quiz-opt.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-opt.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .quiz-feedback {
+      margin-top: var(--space-sm);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Movement Progress Breakdown */
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .breakdown-tile {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .status-msg {
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+
+    /* Footer */
+    .source-footer {
+      padding-top: var(--space-xl);
+      border-top: var(--warm-hairline);
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+    }
+
+    /* Scroll reveal */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .movement-detail-panel,
+      .pillar-layout,
+      .devotion-layout {
+        grid-template-columns: 1fr;
+      }
+      .movement-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .verse-card {
+        padding: var(--space-md);
+      }
+      .study-bar {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+
+    <!-- OPENING HERO & TELEMETRY -->
+    <header class="hero-block">
+      <div class="kicker-row">
+        <span class="kicker">Chapter 52 · Study &amp; Mastery Guide</span>
+        <span class="badge-emerald" id="hero-status-badge">Ready for Study</span>
+      </div>
+      <h1 class="title">Surah <em>At-Tur</em>: Oaths, Reckoning, and Unanswered Questions</h1>
+      <p class="lede">
+        A complete 49-verse companion to Chapter 52 — tracing how five cosmic and sacred oaths establish an unstoppable Day of Reckoning, contrast the fates of deniers and the righteous, dismantle every excuse through fifteen rapid-fire rhetorical questions, and close in quiet nocturnal devotion.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">&#9670; Forty-Nine Verses · Five Movements &#9670;</div>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-label">Complete Text</div>
+          <div class="arch-value">49</div>
+          <div class="arch-caption">Arabic &amp; English Verses</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Opening Oaths</div>
+          <div class="arch-value">5</div>
+          <div class="arch-caption">Earth, Scripture, Sky &amp; Sea</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Cross-Examination</div>
+          <div class="arch-value">15</div>
+          <div class="arch-caption">"Am..." Inquiries (vv. 30–43)</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Your Mastery</div>
+          <div class="arch-value" id="stat-mastered-count">0 / 49</div>
+          <div class="arch-caption" id="stat-quiz-caption">Quiz Best: 0 / 10</div>
+        </div>
+      </div>
+
+      <!-- Persistent Study Control Bar -->
+      <div class="study-bar" role="region" aria-label="Study Controls and Mastery Progress">
+        <div class="progress-cluster">
+          <div class="progress-header">
+            <span>Overall Verse Mastery</span>
+            <span id="progress-pct-label">0% (0 of 49 verses)</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="49" aria-valuenow="0" id="mastery-progressbar">
+            <div class="progress-fill" id="mastery-progress-fill"></div>
+          </div>
+        </div>
+        <div class="control-row">
+          <button type="button" class="btn btn-secondary" id="toggle-recall-en-btn" onclick="toggleGlobalRecall('en')">Conceal English</button>
+          <button type="button" class="btn btn-secondary" id="toggle-recall-ar-btn" onclick="toggleGlobalRecall('ar')">Conceal Arabic</button>
+          <a href="#mastery-lab" class="btn btn-primary">Practice &amp; Quiz</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION I: ARCHITECTURAL MAP -->
+    <section class="narrative-section reveal-item" id="section-map">
+      <div class="section-kicker">Section I · Structural Overview</div>
+      <h2 class="section-title">Five Movements Carry the Listener From <em>Cosmic Oaths</em> to Quiet Patience</h2>
+      <p class="section-prose">
+        Rather than unfolding as isolated sayings, Chapter 52 moves through five tightly proportional scenes. Select any segment on the proportional bar below to inspect its verse span, core argument, and thematic pivot, or jump directly to its annotated text.
+      </p>
+
+      <div class="movement-map-wrap">
+        <div class="kicker" style="margin-bottom: var(--space-xs);">Proportional 49-Verse Span (Click a Movement)</div>
+        <div class="movement-strip" role="tablist" aria-label="Surah At-Tur Five Movements">
+          <button type="button" class="movement-seg is-selected" data-mov="0" onclick="selectMovement(0)" role="tab" aria-selected="true">
+            <span class="movement-seg-num">I. Oaths</span>
+            <span class="movement-seg-verses">vv. 1–10 (10)</span>
+          </button>
+          <button type="button" class="movement-seg" data-mov="1" onclick="selectMovement(1)" role="tab" aria-selected="false">
+            <span class="movement-seg-num">II. Deniers</span>
+            <span class="movement-seg-verses">vv. 11–16 (6)</span>
+          </button>
+          <button type="button" class="movement-seg" data-mov="2" onclick="selectMovement(2)" role="tab" aria-selected="false">
+            <span class="movement-seg-num">III. Righteous</span>
+            <span class="movement-seg-verses">vv. 17–28 (12)</span>
+          </button>
+          <button type="button" class="movement-seg" data-mov="3" onclick="selectMovement(3)" role="tab" aria-selected="false">
+            <span class="movement-seg-num">IV. 15 Inquiries</span>
+            <span class="movement-seg-verses">vv. 29–43 (15)</span>
+          </button>
+          <button type="button" class="movement-seg" data-mov="4" onclick="selectMovement(4)" role="tab" aria-selected="false">
+            <span class="movement-seg-num">V. Steadfast</span>
+            <span class="movement-seg-verses">vv. 44–49 (6)</span>
+          </button>
+        </div>
+
+        <div class="movement-detail-panel" id="movement-detail-panel">
+          <div>
+            <div class="badge-brass" id="mov-detail-span">Verses 52:1–10 · 10 Verses</div>
+            <h3 class="movement-detail-title" id="mov-detail-title" style="margin-top: var(--space-sm);">I. Five Sacred &amp; Cosmic Oaths and the Inevitable Upheaval</h3>
+            <p class="prose-note" id="mov-detail-desc" style="margin-bottom: 0;">
+              Opens with five sweeping oaths spanning earth, inscribed revelation, sanctuary, sky, and fire-filled sea, sealing the certainty that the Lord's punishment cannot be averted when heaven sways and mountains depart.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm); align-items: flex-start;">
+            <span class="field-label" id="mov-detail-mastery">Movement Mastery: 0 / 10</span>
+            <a href="#movement-1" class="btn btn-primary" id="mov-detail-link">Read &amp; Master Section</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION II: MOVEMENT 1 (52:1-10) -->
+    <section class="narrative-section reveal-item" id="movement-1">
+      <div class="section-kicker">Movement I · Verses 52:1–10</div>
+      <h2 class="section-title">Five Oaths Anchor an <em>Unstoppable</em> Day of Upheaval</h2>
+      <p class="section-prose">
+        In Arabic rhetoric, an oath (<em>qasam</em>) summons witnesses proportional to the gravity of the statement that follows. Here, verses 1 through 6 stack five distinct oaths — moving from the Mount and an inscribed Book on spread parchment, to the frequented House, the raised heaven, and the sea filled with fire — before delivering the verdict in verses 7–8 and the physical upheaval of sky and mountains in verses 9–10.
+      </p>
+
+      <!-- Interactive Oath Pillar Inspector -->
+      <div class="pillar-layout" aria-label="Interactive Oath Pillars">
+        <div class="pillar-list" id="oath-pillar-list">
+          <button type="button" class="pillar-btn is-active" onclick="selectOathPillar(0)">
+            <span>1. The Mount</span>
+            <span class="verse-ref">52:1</span>
+          </button>
+          <button type="button" class="pillar-btn" onclick="selectOathPillar(1)">
+            <span>2. Inscribed Book &amp; Parchment</span>
+            <span class="verse-ref">52:2–3</span>
+          </button>
+          <button type="button" class="pillar-btn" onclick="selectOathPillar(2)">
+            <span>3. The Frequented House</span>
+            <span class="verse-ref">52:4</span>
+          </button>
+          <button type="button" class="pillar-btn" onclick="selectOathPillar(3)">
+            <span>4. The Heaven Raised High</span>
+            <span class="verse-ref">52:5</span>
+          </button>
+          <button type="button" class="pillar-btn" onclick="selectOathPillar(4)">
+            <span>5. The Sea Filled with Fire</span>
+            <span class="verse-ref">52:6</span>
+          </button>
+          <button type="button" class="pillar-btn" onclick="selectOathPillar(5)">
+            <span>Verdict &amp; Upheaval</span>
+            <span class="verse-ref">52:7–10</span>
+          </button>
+        </div>
+
+        <div class="pillar-stage" id="oath-pillar-stage">
+          <div class="badge-brass" id="pillar-badge">Oath I · Verse 52:1</div>
+          <div class="arabic-hero" lang="ar" dir="rtl" id="pillar-arabic">وَالطُّورِ</div>
+          <p style="font-weight: 600; margin: 0 0 var(--space-sm);" id="pillar-translation">"By the mount"</p>
+          <p class="prose-note" style="margin: 0;" id="pillar-note">
+            The surah takes its name, <em>At-Tur</em>, from this opening oath. Beginning on solid earthly ground, the oaths immediately ascend to inscribed revelation, sanctuary, sky, and sea.
+          </p>
+        </div>
+      </div>
+
+      <div class="verse-stream-header">
+        <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Annotated Verse Study: 52:1–10</h3>
+        <button type="button" class="mini-btn" onclick="markMovementMastered(0)">Mark Movement I Mastered</button>
+      </div>
+      <div class="verse-list" id="verses-mov-0"></div>
+    </section>
+
+    <!-- SECTION III: MOVEMENTS 2 & 3 (52:11-28) -->
+    <section class="narrative-section tonal-band reveal-item" id="movement-2">
+      <div class="section-kicker">Movements II &amp; III · Verses 52:11–28</div>
+      <h2 class="section-title">Mirroring Justice: <em>Amusement</em> vs. Fearful Supplication</h2>
+      <p class="section-prose">
+        Verses 11 through 28 place two destinies side by side. Notice the exact thematic symmetry: both groups are judged for "what you used to do" (52:16 and 52:19), yet the deniers who treated truth as empty amusement face a rebuke on patience, while the righteous — who once lived in watchful awe among their families — converse peacefully and praise Allah as <em>Al-Barr Ar-Rahim</em> (the Beneficent, the Merciful).
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>The Deniers (52:11–16)</th>
+              <th>The Righteous (52:17–28)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-dimension">Disposition in Worldly Life</td>
+              <td class="td-deniers">Engaged in "[empty] discourse amusing themselves" <span class="verse-ref">52:12</span></td>
+              <td class="td-righteous">Previously among their people "fearful [of displeasing Allah]" and supplicating Him <span class="verse-ref">52:26, 28</span></td>
+            </tr>
+            <tr>
+              <td class="td-dimension">Arrival &amp; Reception</td>
+              <td class="td-deniers">Thrust toward the fire of Hell with a violent thrust <span class="verse-ref">52:13</span></td>
+              <td class="td-righteous">In gardens and pleasure; told "Eat and drink in satisfaction" <span class="verse-ref">52:17, 19</span></td>
+            </tr>
+            <tr>
+              <td class="td-dimension">Dialogue &amp; Speech</td>
+              <td class="td-deniers">Angels ask: "Is this magic, or do you not see?" <span class="verse-ref">52:15</span></td>
+              <td class="td-righteous">Exchange a cup free of ill speech or sin; approach and inquire of one another <span class="verse-ref">52:23, 25</span></td>
+            </tr>
+            <tr>
+              <td class="td-dimension">Role of Patience</td>
+              <td class="td-deniers">"Be patient or impatient — it is all the same for you" <span class="verse-ref">52:16</span></td>
+              <td class="td-righteous">Protected from the Scorching Fire through Allah's favor <span class="verse-ref">52:18, 27</span></td>
+            </tr>
+            <tr>
+              <td class="td-dimension">Moral Principle</td>
+              <td class="td-deniers">"You are only being recompensed [for] what you used to do" <span class="verse-ref">52:16</span></td>
+              <td class="td-righteous">Recompensed for deeds, with faithful descendants joined to them without diminishing anyone's reward <span class="verse-ref">52:19, 21</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-arch">
+        <h3>Key Anchor Verse — Generational Grace &amp; Individual Accountability (52:21)</h3>
+        <div class="arabic-hero" lang="ar" dir="rtl" style="font-size: 1.55rem;">وَالَّذِينَ آمَنُوا وَاتَّبَعَتْهُمْ ذُرِّيَّتُهُمْ بِإِيمَانٍ أَلْحَقْنَا بِهِمْ ذُرِّيَّتَهُمْ وَمَا أَلَتْنَاهُمْ مِنْ عَمَلِهِمْ مِنْ شَيْءٍ كُلُّ امْرِئٍ بِمَا كَسَبَ رَهِينٌ</div>
+        <p style="margin: 0;">
+          "And those who believed and whose descendants followed them in faith - We will join with them their descendants, and We will not deprive them of anything of their deeds. Every person, for what he earned, is retained." Notice the twin balance: faith unites families upward in Paradise without deducting from the parents' deeds, yet moral responsibility remains strictly personal.
+        </p>
+      </div>
+
+      <div class="verse-stream-header">
+        <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Annotated Verse Study: 52:11–16 (The Deniers)</h3>
+        <button type="button" class="mini-btn" onclick="markMovementMastered(1)">Mark Movement II Mastered</button>
+      </div>
+      <div class="verse-list" id="verses-mov-1" style="margin-bottom: var(--space-xl);"></div>
+
+      <div class="verse-stream-header" id="movement-3">
+        <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Annotated Verse Study: 52:17–28 (The Righteous)</h3>
+        <button type="button" class="mini-btn" onclick="markMovementMastered(2)">Mark Movement III Mastered</button>
+      </div>
+      <div class="verse-list" id="verses-mov-2"></div>
+    </section>
+
+    <!-- SECTION IV: MOVEMENT 4 (52:29-43) -->
+    <section class="narrative-section reveal-item" id="movement-4">
+      <div class="section-kicker">Movement IV · Verses 52:29–43</div>
+      <h2 class="section-title">Fifteen Rhetorical Questions Leave <em>No Ground</em> for Denial</h2>
+      <p class="section-prose">
+        Beginning at verse 29 with the command to remind — clearing the Messenger of being a soothsayer or madman — the surah turns directly to the skeptics. Across verses 30–43, it unleashes fifteen rapid-fire interrogatives introduced by the Arabic particle <em>Am</em> ("Or…"), punctuated by direct challenges in verses 31 and 34. Filter the inquiries below by category to master the logical structure of the argument.
+      </p>
+
+      <div class="filter-row" role="group" aria-label="Filter 15 Rhetorical Inquiries">
+        <button type="button" class="btn btn-secondary is-active" data-am-filter="all" onclick="filterAmCards('all', this)">All 15 Inquiries</button>
+        <button type="button" class="btn btn-secondary" data-am-filter="prophecy" onclick="filterAmCards('prophecy', this)">Prophecy &amp; Revelation (5)</button>
+        <button type="button" class="btn btn-secondary" data-am-filter="cosmos" onclick="filterAmCards('cosmos', this)">Creation &amp; Control (5)</button>
+        <button type="button" class="btn btn-secondary" data-am-filter="unseen" onclick="filterAmCards('unseen', this)">Unseen, Theology &amp; Plots (5)</button>
+      </div>
+
+      <div class="am-grid" id="am-grid"></div>
+
+      <div class="verse-stream-header">
+        <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Annotated Verse Study: 52:29–43</h3>
+        <button type="button" class="mini-btn" onclick="markMovementMastered(3)">Mark Movement IV Mastered</button>
+      </div>
+      <div class="verse-list" id="verses-mov-3"></div>
+    </section>
+
+    <!-- SECTION V: MOVEMENT 5 (52:44-49) -->
+    <section class="narrative-section reveal-item" id="movement-5">
+      <div class="section-kicker">Movement V · Verses 52:44–49</div>
+      <h2 class="section-title">When Evidence Is Dismissed as Clouds, Turn to <em>Patient</em> Vigil</h2>
+      <p class="section-prose">
+        Verse 44 diagnoses willful blindness: even if deniers saw a piece of the sky falling, they would explain it away as "clouds heaped up." Instead of exhausting himself over their refusal, the Messenger is instructed to leave them until their Day of reckoning — and to anchor his own heart in patience under divine watch, structured around three moments of praise.
+      </p>
+
+      <div class="devotion-layout">
+        <div class="svg-frame">
+          <svg viewBox="0 0 360 300" width="100%" style="max-width: 340px;" aria-hidden="true">
+            <circle cx="180" cy="150" r="108" fill="none" stroke="var(--outline-variant)" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <circle cx="180" cy="150" r="56" fill="var(--primary-container)" stroke="var(--outline-terracotta)" stroke-width="1.5"/>
+            <text x="180" y="144" text-anchor="middle" fill="var(--on-primary-container)" font-family="Cormorant Garamond, serif" font-size="16" font-weight="600">In Our Eyes</text>
+            <text x="180" y="164" text-anchor="middle" fill="var(--primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">52:48</text>
+
+            <!-- Node 1: Top -->
+            <circle cx="180" cy="42" r="24" fill="var(--surface-container)" stroke="var(--primary)" stroke-width="2"/>
+            <text x="180" y="46" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">52:48</text>
+            <text x="180" y="12" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">When You Arise</text>
+
+            <!-- Node 2: Bottom Right -->
+            <circle cx="274" cy="204" r="24" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2"/>
+            <text x="274" y="208" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">52:49</text>
+            <text x="274" y="248" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">Part of the Night</text>
+
+            <!-- Node 3: Bottom Left -->
+            <circle cx="86" cy="204" r="24" fill="var(--surface-container)" stroke="var(--secondary)" stroke-width="2"/>
+            <text x="86" y="208" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">52:49</text>
+            <text x="86" y="248" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600">Setting of the Stars</text>
+          </svg>
+        </div>
+
+        <div>
+          <div class="badge-emerald" style="margin-bottom: var(--space-sm);">Closing Rhythm · 52:48–49</div>
+          <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0 0 var(--space-sm);">Three Anchors of Endurance</h3>
+          <ul style="margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: var(--space-sm);">
+            <li><strong>Patience under Divine Care (52:48):</strong> "Be patient for the decision of your Lord, for indeed, you are in Our eyes" — answering the futility of the deniers' patience in 52:16 with purposeful endurance.</li>
+            <li><strong>Praise Upon Rising (52:48):</strong> "And exalt [Allah] with praise of your Lord when you arise" — anchoring the start of action or waking hours.</li>
+            <li><strong>Night &amp; Dawn Vigil (52:49):</strong> "And in a part of the night exalt Him and after [the setting of] the stars" — closing the surah in quiet stillness beneath fading stars.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verse-stream-header">
+        <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Annotated Verse Study: 52:44–49</h3>
+        <button type="button" class="mini-btn" onclick="markMovementMastered(4)">Mark Movement V Mastered</button>
+      </div>
+      <div class="verse-list" id="verses-mov-4"></div>
+    </section>
+
+    <!-- SECTION VI: INTERACTIVE MASTERY LAB -->
+    <section class="narrative-section tonal-band reveal-item" id="mastery-lab">
+      <div class="section-kicker">Section VI · Active Recall &amp; Assessment</div>
+      <h2 class="section-title">Mastery Lab: <em>Flashcard Drill</em>, Quiz, and Study Notes</h2>
+      <p class="section-prose">
+        Use the active-recall flashcard deck to drill Arabic-to-English or English-to-Arabic recognition, verify comprehension with the 10-question assessment grounded directly in Chapter 52, and save personal reflections. All progress persists automatically.
+      </p>
+
+      <div class="lab-grid">
+        <!-- Flashcard Deck -->
+        <div class="flashcard-panel">
+          <div class="verse-stream-header">
+            <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">Verse Flashcard Drill</h3>
+            <span class="badge-brass" id="fc-counter">Card 1 of 49</span>
+          </div>
+
+          <div class="flashcard-controls-top">
+            <div class="field-group">
+              <label class="field-label" for="fc-scope">Study Deck Filter</label>
+              <select class="field-select" id="fc-scope" onchange="rebuildFlashcardDeck()">
+                <option value="all">All 49 Verses (52:1–49)</option>
+                <option value="unmastered">Unmastered Verses Only</option>
+                <option value="0">Movement I — Oaths &amp; Upheaval (52:1–10)</option>
+                <option value="1">Movement II — Deniers (52:11–16)</option>
+                <option value="2">Movement III — Righteous (52:17–28)</option>
+                <option value="3">Movement IV — 15 Inquiries (52:29–43)</option>
+                <option value="4">Movement V — Closing Vigil (52:44–49)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="fc-prompt-side">Prompt Face</label>
+              <select class="field-select" id="fc-prompt-side" onchange="renderFlashcard()">
+                <option value="ar">Arabic Front -> English Back</option>
+                <option value="en">English Front -> Arabic Back</option>
+              </select>
+            </div>
+            <div class="control-row">
+              <button type="button" class="btn btn-secondary" onclick="shuffleFlashcards()">Shuffle Deck</button>
+            </div>
+          </div>
+
+          <div class="flashcard-stage" id="flashcard-stage" role="button" tabindex="0" onclick="flipFlashcard()" onkeydown="handleFlashcardKey(event)" aria-label="Flashcard — click or press Enter to flip">
+            <div class="kicker" id="fc-meta-label">Verse 52:1 · Movement I</div>
+            <div id="fc-main-content" class="flashcard-arabic" lang="ar" dir="rtl">وَالطُّورِ</div>
+            <div class="prose-note" id="fc-hint" style="margin: 0; font-size: 0.875rem;">Click card to reveal translation</div>
+          </div>
+
+          <div class="control-row" style="justify-content: space-between;">
+            <div class="control-row">
+              <button type="button" class="btn btn-secondary" onclick="stepFlashcard(-1)">Previous</button>
+              <button type="button" class="btn btn-primary" onclick="flipFlashcard()">Flip Card</button>
+              <button type="button" class="btn btn-secondary" onclick="stepFlashcard(1)">Next</button>
+            </div>
+            <button type="button" class="btn btn-emerald" id="fc-master-btn" onclick="toggleCurrentFlashcardMastery()">Mark Verse Mastered</button>
+          </div>
+        </div>
+
+        <!-- 10-Question Mastery Quiz -->
+        <div class="quiz-panel">
+          <div class="verse-stream-header">
+            <div>
+              <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0;">10-Question Mastery Assessment</h3>
+              <p class="prose-note" style="margin: var(--space-xs) 0 0;">Test your grasp of oaths, parallel phrases, rhetorical questions, and closing commands.</p>
+            </div>
+            <div class="badge-emerald" id="quiz-score-badge">Score: 0 / 10</div>
+          </div>
+
+          <div class="quiz-list" id="quiz-container"></div>
+
+          <div class="control-row" style="justify-content: space-between;">
+            <span class="status-msg" id="quiz-status-msg">Select an answer on each question to record your score.</span>
+            <button type="button" class="btn btn-secondary" id="reset-quiz-btn" onclick="resetQuizInline(this)">Reset Quiz</button>
+          </div>
+        </div>
+
+        <!-- Movement Breakdown, Study Notes & Export -->
+        <div class="flashcard-panel">
+          <h3 style="font-family: var(--font-headline); font-size: var(--subhead-size); margin: 0 0 var(--space-md);">Mastery Breakdown &amp; Personal Study Notes</h3>
+
+          <div class="breakdown-grid" id="movement-breakdown-grid"></div>
+
+          <div class="field-group" style="margin-bottom: var(--space-md);">
+            <label class="field-label" for="study-notes-input">Personal Study Reflections &amp; Memorization Notes</label>
+            <textarea class="field-textarea" id="study-notes-input" placeholder="Record reflections on difficult verses, Arabic root connections, or review goals..." oninput="saveStudyNotes(this.value)"></textarea>
+          </div>
+
+          <div class="control-row" style="justify-content: space-between;">
+            <span class="status-msg" id="persistence-status">All progress saved automatically.</span>
+            <div class="control-row">
+              <button type="button" class="btn btn-secondary" id="reset-all-btn" onclick="resetAllProgressInline(this)">Reset All Progress</button>
+              <button type="button" class="btn btn-primary" onclick="exportMasteryReport()">Export Mastery Report (.txt)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <p style="margin: 0;">
+        Source: Chapter 52 (Surah At-Tur), complete Arabic text and English translation (verses 52:1–52:49) from the provided study source material. Built for self-paced reading, structural analysis, and active recall.
+      </p>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const MOVEMENTS = [
+      {
+        id: 0,
+        anchor: `#movement-1`,
+        shortName: `I. Oaths & Upheaval`,
+        span: `Verses 52:1–10 · 10 Verses`,
+        title: `I. Five Sacred & Cosmic Oaths and the Inevitable Upheaval`,
+        desc: `Opens with five sweeping oaths spanning the Mount, an inscribed Book in spread parchment, the frequented House, the raised heaven, and the sea filled with fire — sealing the certainty of the Lord's punishment when heaven sways and mountains depart.`
+      },
+      {
+        id: 1,
+        anchor: `#movement-2`,
+        shortName: `II. Fate of Deniers`,
+        span: `Verses 52:11–16 · 6 Verses`,
+        title: `II. The Confrontation & Rebuke of the Deniers`,
+        desc: `Turns to those who amused themselves in empty discourse, depicting their violent thrust toward Hellfire and the angels' rebuke: patience or impatience is now equal, as they are recompensed solely for what they did.`
+      },
+      {
+        id: 2,
+        anchor: `#movement-3`,
+        shortName: `III. Fate of Righteous`,
+        span: `Verses 52:17–28 · 12 Verses`,
+        title: `III. Gardens, Family Reunion & Gratitude of the Righteous`,
+        desc: `Paints the contrasting serenity of Paradise: reclining on lined thrones, joining faithful descendants without reducing deeds, pure conversation free of sin, and mutual remembrance of fearful supplication to the Beneficent, the Merciful.`
+      },
+      {
+        id: 3,
+        anchor: `#movement-4`,
+        shortName: `IV. 15 Rhetorical Inquiries`,
+        span: `Verses 52:29–43 · 15 Verses`,
+        title: `IV. The Cross-Examination — Fifteen "Or…" Questions`,
+        desc: `Clears the Messenger of being a soothsayer or madman, then delivers fifteen incisive "Am" ("Or…") challenges concerning poetry, fabrication, self-creation, cosmic ownership, access to the unseen, and false deities.`
+      },
+      {
+        id: 4,
+        anchor: `#movement-5`,
+        shortName: `V. Stubbornness & Vigil`,
+        span: `Verses 52:44–49 · 6 Verses`,
+        title: `V. Obstinate Denial & Nocturnal Steadfastness`,
+        desc: `Exposes stubborn rationalization — dismissing a falling sky fragment as heaped clouds — and closes by commanding patience under Allah's watchful eyes and regular praise when arising, by night, and after the setting of the stars.`
+      }
+    ];
+
+    const VERSES = [
+      { num: 1, mov: 0, ar: `وَالطُّورِ`, en: `By the mount`, tag: `Oath 1 · Earthly landmark` },
+      { num: 2, mov: 0, ar: `وَكِتَابِ مَسْطُورٍ`, en: `And [by] a Book inscribed`, tag: `Oath 2 · Written revelation` },
+      { num: 3, mov: 0, ar: `فِي رَقٌّ مَنْشُورٍ`, en: `In parchment spread open`, tag: `Oath 2 · Open scroll` },
+      { num: 4, mov: 0, ar: `وَالْبَيْتِ الْمَعْمُورِ`, en: `And [by] the frequented House`, tag: `Oath 3 · Sanctuary` },
+      { num: 5, mov: 0, ar: `وَالسَّقْفِ الْمَرْفُوعِ`, en: `And [by] the heaven raised high`, tag: `Oath 4 · Celestial canopy` },
+      { num: 6, mov: 0, ar: `وَالْبَحْرِ الْمَسْجُورِ`, en: `And [by] the sea filled [with fire],`, tag: `Oath 5 · Elemental sea` },
+      { num: 7, mov: 0, ar: `إِنَّ عَذَابَ رَبِّكَ لَوَاقِعٌ`, en: `Indeed, the punishment of your Lord will occur.`, tag: `Verdict of the oaths` },
+      { num: 8, mov: 0, ar: `مَا لَهُ مِنْ دَافِعِ`, en: `Of it there is no preventer.`, tag: `Inevitable decree` },
+      { num: 9, mov: 0, ar: `يَوْمَ تَمُورُ السَّمَاءُ مَوْرًا`, en: `On the Day the heaven will sway with circular motion`, tag: `Cosmic upheaval` },
+      { num: 10, mov: 0, ar: `وَتَسِيرُ الْجِبَالُ سَيْرًا`, en: `And the mountains will pass on, departing`, tag: `Mountains in motion` },
+      { num: 11, mov: 1, ar: `فَوَيْلٌ يَوْمَئِذٍ لِلْمُكَذِّبِينَ`, en: `Then woe, that Day, to the deniers,`, tag: `Pronouncement of woe` },
+      { num: 12, mov: 1, ar: `الَّذِينَ هُمْ فِي خَوْضٍ يَلْعَبُونَ`, en: `Who are in [empty] discourse amusing themselves.`, tag: `Prior attitude` },
+      { num: 13, mov: 1, ar: `يَوْمَ يُدَعُونَ إِلَىٰ نَارِ جَهَنَّمَ دَعا`, en: `The Day they are thrust toward the fire of Hell with a [violent] thrust, [its angels will say],`, tag: `Violent thrust` },
+      { num: 14, mov: 1, ar: `هُذِهِ النَّارُ الَّتِي كُنْتُمْ بِهَا تُكَذِّبُونَ`, en: `"This is the Fire which you used to deny.`, tag: `Angelic confrontation` },
+      { num: 15, mov: 1, ar: `أَفَسِحْرٌ هُذَا أَمْ أَنْتُمْ لَا تُبْصِرُونَ`, en: `Then is this magic, or do you not see?`, tag: `Rhetorical rebuke` },
+      { num: 16, mov: 1, ar: `اصْلَوْهَا فَاصْبِرُوا أَوْ لَا تَصْبِرُوا سَوَاءٌ عَلَيْكُمْ إِنَّمَا تُجْزَوْنَ مَا كُنْتُمْ تَعْمَلُونَ`, en: `[Enter to] burn therein; then be patient or impatient - it is all the same for you. You are only being recompensed [for] what you used to do."`, tag: `Exact recompense` },
+      { num: 17, mov: 2, ar: `إِنَّ الْمُتَّقِينَ فِي جَنَّاتٍ وَنَعِيمٍ`, en: `Indeed, the righteous will be in gardens and pleasure,`, tag: `State of the righteous` },
+      { num: 18, mov: 2, ar: `فَاكِهِينَ بِمَا آتَاهُمْ رَبُّهُمْ وَوَقَاهُمْ رَبُّهُمْ عَذَابَ الْجَحِيمِ`, en: `Enjoying what their Lord has given them, and their Lord protected them from the punishment of Hellfire.`, tag: `Divine protection` },
+      { num: 19, mov: 2, ar: `كُلُوا وَاشْرَبُوا هَنِيئًا بِمَا كُنْتُمْ تَعْمَلُونَ`, en: `[They will be told], "Eat and drink in satisfaction for what you used to do."`, tag: `Welcome of satisfaction` },
+      { num: 20, mov: 2, ar: `مُتَّكِئِينَ عَلَى سُرُرٍ مَصْفُوفَةٍ ۖ وَزَوَّجْنَاهُمْ بِحُورٍ عِينٍ`, en: `They will be reclining on thrones lined up, and We will marry them to fair women with large, [beautiful] eyes.`, tag: `Dignity & companionship` },
+      { num: 21, mov: 2, ar: `وَالَّذِينَ آمَنُوا وَاتَّبَعَتْهُمْ ذُرِّيَّتُهُمْ بِإِيمَانٍ أَلْحَقْنَا بِهِمْ ذُرِّيَّتَهُمْ وَمَا أَلَتْنَاهُمْ مِنْ عَمَلِهِمْ مِنْ شَيْءٍ كُلُّ امْرِئٍ بِمَا كَسَبَ رَهِينٌ`, en: `And those who believed and whose descendants followed them in faith - We will join with them their descendants, and We will not deprive them of anything of their deeds. Every person, for what he earned, is retained.`, tag: `Family reunion & merit` },
+      { num: 22, mov: 2, ar: `وَأَمْدَدْنَاهُمْ بِفَاكِهَةٍ وَلَحْمٍ مِمَّا يَشْتَهُونَ`, en: `And We will provide them with fruit and meat from whatever they desire.`, tag: `Abundant provision` },
+      { num: 23, mov: 2, ar: `يَتَنَازَعُونَ فِيهَا كَأْسًا لَا لَغْوٌ فِيهَا وَلَا تَأْثِيمٌ`, en: `They will exchange with one another a cup [of wine] wherein [results] no ill speech or commission of sin.`, tag: `Pure fellowship` },
+      { num: 24, mov: 2, ar: `وَيَطُوفُ عَلَيْهِمْ غِلْمَانٌ لَهُمْ كَأَنَّهُمْ لُؤْلُؤُ مَكْنُونٌ`, en: `There will circulate among them [servant] boys [especially] for them, as if they were pearls well-protected.`, tag: `Graceful service` },
+      { num: 25, mov: 2, ar: `وَأَقْبَلَ بَعْضُهُمْ عَلَىٰ بَعْضٍ يَتَسَاءَلُونَ`, en: `And they will approach one another, inquiring of each other.`, tag: `Mutual inquiry` },
+      { num: 26, mov: 2, ar: `قَالُوا إِنَّا كُنَّا قَبْلُ فِي أَهْلِنَا مُشْفِقِينَ`, en: `They will say, "Indeed, we were previously among our people fearful [of displeasing Allah].`, tag: `Memory of reverence` },
+      { num: 27, mov: 2, ar: `فَمَنَّ اللَّهُ عَلَيْنَا وَوَقَانَا عَذَابَ السَّمُومِ`, en: `So Allah conferred favor upon us and protected us from the punishment of the Scorching Fire.`, tag: `Gratitude for deliverance` },
+      { num: 28, mov: 2, ar: `إِنَّا كُنَّا مِنْ قَبْلُ نَدْعُوهُ ۖ إِنَّهُ هُوَ الْبَرُّ الرَّحِيمُ`, en: `Indeed, we used to supplicate Him before. Indeed, it is He who is the Beneficent, the Merciful."`, tag: `Al-Barr Ar-Rahim` },
+      { num: 29, mov: 3, ar: `فَذَكِّرْ فَمَا أَنْتَ بِنِعْمَتِ رَبِّكَ بِكَاهِنٍ وَلَا مَجْنُونٍ`, en: `So remind [O Muhammad], for you are not, by the favor of your Lord, a soothsayer or a madman.`, tag: `Prophetic affirmation` },
+      { num: 30, mov: 3, ar: `أَمْ يَقُولُونَ شَاعِرٌ نَتَرَبَّصُ بِهِ رَيْبَ الْمَنُونِ`, en: `Or do they say [of you], "A poet for whom we await a misfortune of time?"`, tag: `Am Inquiry 1` },
+      { num: 31, mov: 3, ar: `قُلْ تَرَبَّصُوا فَإِنِّي مَعَكُمْ مِنَ الْمُتَرَبِّصِينَ`, en: `Say, "Wait, for indeed I am, with you, among the waiters."`, tag: `Rejoinder to waiting` },
+      { num: 32, mov: 3, ar: `أَمْ تَأْمُرُهُمْ أَحْلَامُهُمْ بِهُذَا أَمْ هُمْ قَوْمٌ طَاغُونَ`, en: `Or do their minds command them to [say] this, or are they a transgressing people?`, tag: `Am Inquiries 2 & 3` },
+      { num: 33, mov: 3, ar: `أَمْ يَقُولُونَ تَقَوَّلَهُ ۚ بَلْ لَا يُؤْمِنُونَ`, en: `Or do they say, "He has made it up"? Rather, they do not believe.`, tag: `Am Inquiry 4` },
+      { num: 34, mov: 3, ar: `فَلْيَأْتُوا بِحَدِيثٍ مِثْلِهِ إِنْ كَانُوا صَادِقِينَ`, en: `Then let them produce a statement like it, if they should be truthful.`, tag: `Literary challenge` },
+      { num: 35, mov: 3, ar: `أَمْ خُلِقُوا مِنْ غَيْرِ شَيْءٍ أَمْ هُمُ الْخَالِقُونَ`, en: `Or were they created by nothing, or were they the creators [of themselves]?`, tag: `Am Inquiries 5 & 6` },
+      { num: 36, mov: 3, ar: `أَمْ خَلَقُوا السَّمَاوَاتِ وَالْأَرْضِ بَلْ لَا يُوقِنُونَ`, en: `Or did they create the heavens and the earth? Rather, they are not certain.`, tag: `Am Inquiry 7` },
+      { num: 37, mov: 3, ar: `أَمْ عِنْدَهُمْ خَزَائِنُ رَبِّكَ أَمْ هُمُ الْمُصَيْطِرُونَ`, en: `Or have they the depositories [containing the provision] of your Lord? Or are they the controllers [of them]?`, tag: `Am Inquiries 8 & 9` },
+      { num: 38, mov: 3, ar: `أَمْ لَهُمْ سُلَّمٌ يَسْتَمِعُونَ فِيهِ فَلْيَأْتِ مُسْتَمِعُهُمْ بِسُلْطَانٍ مُبِينٍ`, en: `Or have they a stairway [into the heaven] upon which they listen? Then let their listener produce a clear authority.`, tag: `Am Inquiry 10` },
+      { num: 39, mov: 3, ar: `أَمْ لَهُ الْبَنَاتُ وَلَكُمُ الْبَنُونَ`, en: `Or has He daughters while you have sons?`, tag: `Am Inquiry 11` },
+      { num: 40, mov: 3, ar: `أَمْ تَسْأَلُهُمْ أَجْرًا فَهُمْ مِنْ مَغْرَمٍ مُثْقَلُونَ`, en: `Or do you, [O Muhammad], ask of them a payment, so they are by debt burdened down?`, tag: `Am Inquiry 12` },
+      { num: 41, mov: 3, ar: `أَمْ عِنْدَهُمُ الْغَيْبُ فَهُمْ يَكْتُبُونَ`, en: `Or have they [knowledge of] the unseen, so they write [it] down?`, tag: `Am Inquiry 13` },
+      { num: 42, mov: 3, ar: `أَمْ يُرِيدُونَ كَيْدًا ۖ فَالَّذِينَ كَفَرُوا هُمُ الْمَكِيدُونَ`, en: `Or do they intend a plan? But those who disbelieve - they are the object of a plan.`, tag: `Am Inquiry 14` },
+      { num: 43, mov: 3, ar: `أَمْ لَهُمْ إِلَّهُ غَيْرُ اللَّهِ ۚ سُبْحَانَ اللَّهِ عَمَّا يُشْرِكُونَ`, en: `Or have they a deity other than Allah? Exalted is Allah above whatever they associate with Him.`, tag: `Am Inquiry 15` },
+      { num: 44, mov: 4, ar: `وَإِنْ يَرَوْا كِسْفًا مِنَ السَّمَاءِ سَاقِطًا يَقُولُوا سَحَابٌ مَرْكُومٌ`, en: `And if they were to see a fragment from the sky falling, they would say, "[It is merely] clouds heaped up."`, tag: `Willful denial` },
+      { num: 45, mov: 4, ar: `فَذَرْهُمْ حَتَّىٰ يُلَاقُوا يَوْمَهُمُ الَّذِي فِيهِ يُصْعَقُونَ`, en: `So leave them until they meet their Day in which they will be struck insensible`, tag: `Command to leave them` },
+      { num: 46, mov: 4, ar: `يَوْمَ لَا يُغْنِي عَنْهُمْ كَيْدُهُمْ شَيْئًا وَلَا هُمْ يُنْصَرُونَ`, en: `The Day their plan will not avail them at all, nor will they be helped.`, tag: `Futility of schemes` },
+      { num: 47, mov: 4, ar: `وَإِنَّ لِلَّذِينَ ظَلَمُوا عَذَابًا دُونَ ذَلِكَ وَلُكِنَّ أَكْثَرَهُمْ لَا يَعْلَمُونَ`, en: `And indeed, for those who have wronged is a punishment before that, but most of them do not know.`, tag: `Prior punishment` },
+      { num: 48, mov: 4, ar: `وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا وَسَبِّحْ بِحَمْدِ رَبِّكَ حِينَ تَقُومُ`, en: `And be patient, [O Muhammad], for the decision of your Lord, for indeed, you are in Our eyes. And exalt [Allah] with praise of your Lord when you arise.`, tag: `Patience & rising praise` },
+      { num: 49, mov: 4, ar: `وَمِنَ اللَّيْلِ فَسَبِّحْهُ وَإِدْبَارَ النُّجُومِ`, en: `And in a part of the night exalt Him and after [the setting of] the stars.`, tag: `Night & starlight vigil` }
+    ];
+
+    const OATH_PILLARS = [
+      {
+        badge: `Oath I · Verse 52:1`,
+        ar: `وَالطُّورِ`,
+        en: `"By the mount"`,
+        note: `The surah takes its title, At-Tur, from this opening oath. Beginning on solid earthly elevation, the oaths establish a sequence moving from sacred geography to written scripture and cosmic structure.`
+      },
+      {
+        badge: `Oath II · Verses 52:2–3`,
+        ar: `وَكِتَابِ مَسْطُورٍ ۝ فِي رَقٌّ مَنْشُورٍ`,
+        en: `"And [by] a Book inscribed / In parchment spread open"`,
+        note: `A single oath spanning two verses: an inscribed Book laid out clearly upon spread parchment — evoking permanence, legibility, and open testimony.`
+      },
+      {
+        badge: `Oath III · Verse 52:4`,
+        ar: `وَالْبَيْتِ الْمَعْمُورِ`,
+        en: `"And [by] the frequented House"`,
+        note: `Shifts from written parchment to a sacred dwelling continually inhabited and visited — the frequented House.`
+      },
+      {
+        badge: `Oath IV · Verse 52:5`,
+        ar: `وَالسَّقْفِ الْمَرْفُوعِ`,
+        en: `"And [by] the heaven raised high"`,
+        note: `Directs gaze upward to the lofty expanse of the sky as an overarching roof raised high.`
+      },
+      {
+        badge: `Oath V · Verse 52:6`,
+        ar: `وَالْبَحْرِ الْمَسْجُورِ`,
+        en: `"And [by] the sea filled [with fire],"`,
+        note: `The fifth and final oath pivots to elemental intensity — the sea filled with fire — preparing the ear for the impending punishment.`
+      },
+      {
+        badge: `Verdict & Upheaval · Verses 52:7–10`,
+        ar: `إِنَّ عَذَابَ رَبِّكَ لَوَاقِعٌ ۝ مَا لَهُ مِنْ دَافِعِ`,
+        en: `"Indeed, the punishment of your Lord will occur. / Of it there is no preventer."`,
+        note: `The answer to all five oaths arrives in verses 7–8 with absolute finality, immediately followed in verses 9–10 by the sky swaying in circular motion and the mountains passing away.`
+      }
+    ];
+
+    const AM_INQUIRIES = [
+      { idx: 1, v: `52:30`, cat: `prophecy`, ar: `أَمْ يَقُولُونَ شَاعِرٌ`, q: `Or do they say [of you], "A poet for whom we await a misfortune of time?"`, rebuttal: `Rejoinder in 52:31: "Wait, for indeed I am, with you, among the waiters."` },
+      { idx: 2, v: `52:32`, cat: `prophecy`, ar: `أَمْ تَأْمُرُهُمْ أَحْلَامُهُمْ`, q: `Or do their minds command them to [say] this,`, rebuttal: `Exposes the contradiction of claiming reason while rejecting clear revelation.` },
+      { idx: 3, v: `52:32`, cat: `prophecy`, ar: `أَمْ هُمْ قَوْمٌ طَاغُونَ`, q: `or are they a transgressing people?`, rebuttal: `Identifies rebellion, not intellectual rigor, as the root of their claim.` },
+      { idx: 4, v: `52:33`, cat: `prophecy`, ar: `أَمْ يَقُولُونَ تَقَوَّلَهُ`, q: `Or do they say, "He has made it up"?`, rebuttal: `Answered in 52:34: "Then let them produce a statement like it, if they should be truthful."` },
+      { idx: 5, v: `52:35`, cat: `cosmos`, ar: `أَمْ خُلِقُوا مِنْ غَيْرِ شَيْءٍ`, q: `Or were they created by nothing,`, rebuttal: `Forces recognition that existence cannot emerge from pure non-being.` },
+      { idx: 6, v: `52:35`, cat: `cosmos`, ar: `أَمْ هُمُ الْخَالِقُونَ`, q: `or were they the creators [of themselves]?`, rebuttal: `Rules out self-creation, leaving a Creator as the sole coherent explanation.` },
+      { idx: 7, v: `52:36`, cat: `cosmos`, ar: `أَمْ خَلَقُوا السَّمَاوَاتِ وَالْأَرْضِ`, q: `Or did they create the heavens and the earth?`, rebuttal: `Concludes directly: "Rather, they are not certain."` },
+      { idx: 8, v: `52:37`, cat: `cosmos`, ar: `أَمْ عِنْدَهُمْ خَزَائِنُ رَبِّكَ`, q: `Or have they the depositories [containing the provision] of your Lord?`, rebuttal: `Challenges their presumption over who holds divine provision and mercy.` },
+      { idx: 9, v: `52:37`, cat: `cosmos`, ar: `أَمْ هُمُ الْمُصَيْطِرُونَ`, q: `Or are they the controllers [of them]?`, rebuttal: `Denies human sovereignty over cosmic and spiritual dispensation.` },
+      { idx: 10, v: `52:38`, cat: `unseen`, ar: `أَمْ لَهُمْ سُلَّمٌ يَسْتَمِعُونَ فِيهِ`, q: `Or have they a stairway [into the heaven] upon which they listen?`, rebuttal: `Demands proof: "Then let their listener produce a clear authority."` },
+      { idx: 11, v: `52:39`, cat: `unseen`, ar: `أَمْ لَهُ الْبَنَاتُ وَلَكُمُ الْبَنُونَ`, q: `Or has He daughters while you have sons?`, rebuttal: `Exposes the hypocrisy of attributing to Allah what they themselves disdained.` },
+      { idx: 12, v: `52:40`, cat: `prophecy`, ar: `أَمْ تَسْأَلُهُمْ أَجْرًا`, q: `Or do you, [O Muhammad], ask of them a payment, so they are by debt burdened down?`, rebuttal: `Removes financial burden as an excuse for rejecting the message.` },
+      { idx: 13, v: `52:41`, cat: `unseen`, ar: `أَمْ عِنْدَهُمُ الْغَيْبُ`, q: `Or have they [knowledge of] the unseen, so they write [it] down?`, rebuttal: `Highlights that they possess no private transcript of unseen reality.` },
+      { idx: 14, v: `52:42`, cat: `unseen`, ar: `أَمْ يُرِيدُونَ كَيْدًا`, q: `Or do they intend a plan?`, rebuttal: `Turns the table immediately: "But those who disbelieve - they are the object of a plan."` },
+      { idx: 15, v: `52:43`, cat: `unseen`, ar: `أَمْ لَهُمْ إِلَّهُ غَيْرُ اللَّهِ`, q: `Or have they a deity other than Allah?`, rebuttal: `Culminates in glorification: "Exalted is Allah above whatever they associate with Him."` }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `1. Which five objects are invoked in the opening oaths of verses 52:1–6?`,
+        opts: [
+          `The mount, an inscribed Book in spread parchment, the frequented House, the raised heaven, and the sea filled with fire`,
+          `The dawn, ten nights, the even and odd, the departing night, and the stars`,
+          `The fig, the olive, Mount Sinai, the secure city, and the setting sun`,
+          `The sky, the blowing winds, the rain-bearing clouds, the ships, and the angels`
+        ],
+        ans: 0,
+        explain: `Verses 52:1–6 swear by the mount (52:1), an inscribed Book in parchment spread open (52:2–3), the frequented House (52:4), the heaven raised high (52:5), and the sea filled with fire (52:6).`
+      },
+      {
+        q: `2. What physical upheaval is described in verses 52:9–10 when the Day arrives?`,
+        opts: [
+          `The oceans dry up completely and the moon splits`,
+          `The heaven sways with circular motion and the mountains pass on, departing`,
+          `The earth turns to pure silver and darkness covers every horizon`,
+          `Stars fall like rain while rivers reverse their course`
+        ],
+        ans: 1,
+        explain: `Verse 52:9 states "the heaven will sway with circular motion" and 52:10 adds "And the mountains will pass on, departing."`
+      },
+      {
+        q: `3. In verse 52:16, what are the deniers told regarding patience in the Fire?`,
+        opts: [
+          `"Your patience will eventually earn you intercession"`,
+          `"Be patient or impatient - it is all the same for you. You are only being recompensed [for] what you used to do."`,
+          `"Only those who remain silent will receive reduced torment"`,
+          `"Ask your leaders whether patience can shield you today"`
+        ],
+        ans: 1,
+        explain: `Verse 52:16 delivers the stark verdict that patience and impatience make no difference, for they are recompensed solely for their deeds.`
+      },
+      {
+        q: `4. What key principle regarding family and individual deeds is taught in verse 52:21?`,
+        opts: [
+          `Parents' deeds are transferred to descendants and deducted from the parents' account`,
+          `Only prophets are reunited with their descendants in gardens`,
+          `Faithful descendants are joined to their believing ancestors without depriving anyone of their deeds, yet every person is retained for what he earned`,
+          `All descendants are automatically elevated regardless of whether they followed in faith`
+        ],
+        ans: 2,
+        explain: `Verse 52:21 specifies that descendants who "followed them in faith" are joined with them without depriving anyone of their deeds, while "Every person, for what he earned, is retained."`
+      },
+      {
+        q: `5. In verse 52:23, what distinguishes the cup exchanged by the inhabitants of Paradise?`,
+        opts: [
+          `It never empties and cools the gardens around them`,
+          `There results in it no ill speech or commission of sin`,
+          `It is poured directly from fountains beneath the thrones`,
+          `It restores youth to whoever drinks it`
+        ],
+        ans: 1,
+        explain: `Verse 52:23 states: "They will exchange with one another a cup [of wine] wherein [results] no ill speech or commission of sin."`
+      },
+      {
+        q: `6. Which two divine names close the grateful reflection of the righteous in verse 52:28?`,
+        opts: [
+          `The Sovereign, the Holy (Al-Malik Al-Quddus)`,
+          `The Mighty, the Wise (Al-Aziz Al-Hakim)`,
+          `The Beneficent, the Merciful (Al-Barr Ar-Rahim)`,
+          `The Hearing, the Seeing (As-Sami Al-Basir)`
+        ],
+        ans: 2,
+        explain: `Verse 52:28 concludes their dialogue: "Indeed, we used to supplicate Him before. Indeed, it is He who is the Beneficent, the Merciful."`
+      },
+      {
+        q: `7. When opponents accuse the Messenger of being a poet whose misfortune they await (52:30), what is he told to reply in 52:31?`,
+        opts: [
+          `"Turn away and let time decide between us"`,
+          `"Wait, for indeed I am, with you, among the waiters."`,
+          `"Bring your finest poets before the frequented House"`,
+          `"My Lord has already decreed your defeat this very night"`
+        ],
+        ans: 1,
+        explain: `Verse 52:31 instructs him: 'Say, "Wait, for indeed I am, with you, among the waiters."'`
+      },
+      {
+        q: `8. How does verse 52:34 answer the accusation that the Messenger "has made it up" (52:33)?`,
+        opts: [
+          `"Then let them produce a statement like it, if they should be truthful."`,
+          `"Ask the scholars of earlier scriptures to testify"`,
+          `"Wait until the clouds open above the mountain"`,
+          `"Count the verses and compare them with ancient proverbs"`
+        ],
+        ans: 0,
+        explain: `Verse 52:34 issues the direct challenge: "Then let them produce a statement like it, if they should be truthful."`
+      },
+      {
+        q: `9. What would the deniers say even if they saw a fragment from the sky falling (52:44)?`,
+        opts: [
+          `"This is surely the sign we requested"`,
+          `"The stars have finally lost their orbits"`,
+          `"[It is merely] clouds heaped up."`,
+          `"A trick of the eyes caused by desert heat"`
+        ],
+        ans: 2,
+        explain: `Verse 52:44 illustrates obstinate rationalization: they would dismiss a falling fragment from the sky as "[merely] clouds heaped up."`
+      },
+      {
+        q: `10. Which times of exaltation and reassurance close Surah At-Tur in verses 52:48–49?`,
+        opts: [
+          `Only at midday and before sunset, after leaving the city`,
+          `Patience ("for indeed, you are in Our eyes"), exalting Allah when arising, in a part of the night, and after the setting of the stars`,
+          `Fasting three days a month and reciting by the sea`,
+          `Standing at Mount Tur once each year at dawn`
+        ],
+        ans: 1,
+        explain: `Verses 52:48–49 command patience ("for indeed, you are in Our eyes") and exalting Allah with praise when arising, in a part of the night, and after the setting of the stars.`
+      }
+    ];
+
+    let appState = {
+      mastered: [],
+      quizAnswers: {},
+      notes: ``,
+      concealEn: false,
+      concealAr: false
+    };
+
+    let revealedIndividual = {};
+    let currentDeck = [];
+    let fcIndex = 0;
+    let fcFlipped = false;
+
+    function getMasteredSet() {
+      return new Set(Array.isArray(appState.mastered) ? appState.mastered : []);
+    }
+
+    async function persistState() {
+      const statusEl = document.getElementById(`persistence-status`);
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            mastered: Array.isArray(appState.mastered) ? appState.mastered : [],
+            quizAnswers: appState.quizAnswers || {},
+            notes: appState.notes || ``,
+            concealEn: Boolean(appState.concealEn),
+            concealAr: Boolean(appState.concealAr)
+          });
+          if (statusEl) statusEl.textContent = `Saved to study notebook.`;
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = `Could not save progress right now.`;
+      }
+    }
+
+    function renderAllVerses() {
+      const masteredSet = getMasteredSet();
+      for (let m = 0; m < 5; m++) {
+        const container = document.getElementById(`verses-mov-` + m);
+        if (!container) continue;
+        const list = VERSES.filter(function(v) { return v.mov === m; });
+        container.innerHTML = list.map(function(v) {
+          const isMastered = masteredSet.has(v.num);
+          const enHidden = appState.concealEn && !revealedIndividual[`en_` + v.num];
+          const arHidden = appState.concealAr && !revealedIndividual[`ar_` + v.num];
+          const showPeek = appState.concealEn || appState.concealAr;
+          return `
+            <article class="verse-card ${isMastered ? `is-mastered` : ``}" id="verse-card-${v.num}">
+              <div class="verse-meta-row">
+                <div>
+                  <span class="verse-num-badge">52:${v.num}</span>
+                  <span class="verse-ref">${v.tag}</span>
+                </div>
+                <div class="verse-actions">
+                  ${showPeek ? `<button type="button" class="mini-btn" onclick="toggleVersePeek(${v.num})">Peek Text</button>` : ``}
+                  <button type="button" class="mini-btn ${isMastered ? `is-mastered-btn` : ``}" onclick="toggleVerseMastery(${v.num})">
+                    ${isMastered ? `Mastered` : `Mark Mastered`}
+                  </button>
+                </div>
+              </div>
+              <div class="verse-arabic ${arHidden ? `is-concealed` : ``}" lang="ar" dir="rtl">${v.ar}</div>
+              <p class="verse-english ${enHidden ? `is-concealed` : ``}">${v.en}</p>
+            </article>
+          `;
+        }).join(``);
+      }
+    }
+
+    function updateProgressUI() {
+      const masteredSet = getMasteredSet();
+      const count = masteredSet.size;
+      const pct = Math.round((count / 49) * 100);
+
+      const statEl = document.getElementById(`stat-mastered-count`);
+      if (statEl) statEl.textContent = count + ` / 49`;
+
+      const pctEl = document.getElementById(`progress-pct-label`);
+      if (pctEl) pctEl.textContent = pct + `% (` + count + ` of 49 verses)`;
+
+      const fillEl = document.getElementById(`mastery-progress-fill`);
+      if (fillEl) fillEl.style.width = pct + `%`;
+
+      const barEl = document.getElementById(`mastery-progressbar`);
+      if (barEl) barEl.setAttribute(`aria-valuenow`, String(count));
+
+      const heroBadge = document.getElementById(`hero-status-badge`);
+      if (heroBadge) {
+        if (count === 49) heroBadge.textContent = `All 49 Verses Mastered`;
+        else if (count > 0) heroBadge.textContent = count + ` of 49 Mastered`;
+        else heroBadge.textContent = `Ready for Study`;
+      }
+
+      const enBtn = document.getElementById(`toggle-recall-en-btn`);
+      if (enBtn) {
+        enBtn.classList.toggle(`is-active`, Boolean(appState.concealEn));
+        enBtn.textContent = appState.concealEn ? `Reveal All English` : `Conceal English`;
+      }
+      const arBtn = document.getElementById(`toggle-recall-ar-btn`);
+      if (arBtn) {
+        arBtn.classList.toggle(`is-active`, Boolean(appState.concealAr));
+        arBtn.textContent = appState.concealAr ? `Reveal All Arabic` : `Conceal Arabic`;
+      }
+
+      const breakdownEl = document.getElementById(`movement-breakdown-grid`);
+      if (breakdownEl) {
+        breakdownEl.innerHTML = MOVEMENTS.map(function(mov) {
+          const total = VERSES.filter(function(v) { return v.mov === mov.id; }).length;
+          const done = VERSES.filter(function(v) { return v.mov === mov.id && masteredSet.has(v.num); }).length;
+          const movPct = Math.round((done / total) * 100);
+          return `
+            <div class="breakdown-tile">
+              <div class="field-label" style="margin-bottom: var(--space-xs);">${mov.shortName}</div>
+              <div style="font-weight: 700; font-variant-numeric: tabular-nums; margin-bottom: var(--space-xs);">${done} / ${total} verses (${movPct}%)</div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: ${movPct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join(``);
+      }
+
+      const activeSeg = document.querySelector(`.movement-seg.is-selected`);
+      if (activeSeg) {
+        const idx = Number(activeSeg.getAttribute(`data-mov`));
+        updateMovementDetailMastery(idx);
+      }
+    }
+
+    function updateMovementDetailMastery(idx) {
+      const masteredSet = getMasteredSet();
+      const total = VERSES.filter(function(v) { return v.mov === idx; }).length;
+      const done = VERSES.filter(function(v) { return v.mov === idx && masteredSet.has(v.num); }).length;
+      const el = document.getElementById(`mov-detail-mastery`);
+      if (el) el.textContent = `Movement Mastery: ` + done + ` / ` + total;
+    }
+
+    function selectMovement(idx) {
+      const mov = MOVEMENTS[idx];
+      if (!mov) return;
+      const segs = document.querySelectorAll(`.movement-seg`);
+      segs.forEach(function(seg, i) {
+        const active = i === idx;
+        seg.classList.toggle(`is-selected`, active);
+        seg.setAttribute(`aria-selected`, active ? `true` : `false`);
+      });
+
+      const spanEl = document.getElementById(`mov-detail-span`);
+      const titleEl = document.getElementById(`mov-detail-title`);
+      const descEl = document.getElementById(`mov-detail-desc`);
+      const linkEl = document.getElementById(`mov-detail-link`);
+
+      if (spanEl) spanEl.textContent = mov.span;
+      if (titleEl) titleEl.textContent = mov.title;
+      if (descEl) descEl.textContent = mov.desc;
+      if (linkEl) linkEl.setAttribute(`href`, mov.anchor);
+      updateMovementDetailMastery(idx);
+    }
+
+    function selectOathPillar(idx) {
+      const p = OATH_PILLARS[idx];
+      if (!p) return;
+      const btns = document.querySelectorAll(`.pillar-btn`);
+      btns.forEach(function(btn, i) {
+        btn.classList.toggle(`is-active`, i === idx);
+      });
+
+      const badge = document.getElementById(`pillar-badge`);
+      const ar = document.getElementById(`pillar-arabic`);
+      const tr = document.getElementById(`pillar-translation`);
+      const note = document.getElementById(`pillar-note`);
+
+      if (badge) badge.textContent = p.badge;
+      if (ar) ar.textContent = p.ar;
+      if (tr) tr.textContent = p.en;
+      if (note) note.textContent = p.note;
+    }
+
+    function renderAmCards(filter) {
+      const grid = document.getElementById(`am-grid`);
+      if (!grid) return;
+      const items = filter === `all` ? AM_INQUIRIES : AM_INQUIRIES.filter(function(item) { return item.cat === filter; });
+      grid.innerHTML = items.map(function(item) {
+        return `
+          <div class="am-card">
+            <div>
+              <div class="am-top">
+                <span class="badge-brass">Inquiry ${item.idx} · ${item.v}</span>
+              </div>
+              <div class="am-arabic" lang="ar" dir="rtl">${item.ar}</div>
+              <p style="margin: var(--space-xs) 0 0; font-weight: 600;">${item.q}</p>
+            </div>
+            <div class="am-rebuttal">${item.rebuttal}</div>
+          </div>
+        `;
+      }).join(``);
+    }
+
+    function filterAmCards(filter, btn) {
+      const buttons = document.querySelectorAll(`[data-am-filter]`);
+      buttons.forEach(function(b) { b.classList.remove(`is-active`); });
+      if (btn) btn.classList.add(`is-active`);
+      renderAmCards(filter);
+    }
+
+    function toggleVerseMastery(num) {
+      const set = getMasteredSet();
+      if (set.has(num)) set.delete(num);
+      else set.add(num);
+      appState.mastered = Array.from(set).sort(function(a, b) { return a - b; });
+      renderAllVerses();
+      updateProgressUI();
+      renderFlashcard();
+      persistState();
+    }
+
+    function markMovementMastered(movId) {
+      const set = getMasteredSet();
+      VERSES.filter(function(v) { return v.mov === movId; }).forEach(function(v) {
+        set.add(v.num);
+      });
+      appState.mastered = Array.from(set).sort(function(a, b) { return a - b; });
+      renderAllVerses();
+      updateProgressUI();
+      renderFlashcard();
+      persistState();
+    }
+
+    function toggleGlobalRecall(lang) {
+      if (lang === `en`) {
+        appState.concealEn = !appState.concealEn;
+      } else if (lang === `ar`) {
+        appState.concealAr = !appState.concealAr;
+      }
+      revealedIndividual = {};
+      renderAllVerses();
+      updateProgressUI();
+      persistState();
+    }
+
+    function toggleVersePeek(num) {
+      const enKey = `en_` + num;
+      const arKey = `ar_` + num;
+      const currentlyPeeked = Boolean(revealedIndividual[enKey] || revealedIndividual[arKey]);
+      revealedIndividual[enKey] = !currentlyPeeked;
+      revealedIndividual[arKey] = !currentlyPeeked;
+      renderAllVerses();
+    }
+
+    /* Flashcards */
+    function rebuildFlashcardDeck() {
+      const scopeEl = document.getElementById(`fc-scope`);
+      const scope = scopeEl ? scopeEl.value : `all`;
+      const masteredSet = getMasteredSet();
+      if (scope === `all`) {
+        currentDeck = VERSES.slice();
+      } else if (scope === `unmastered`) {
+        currentDeck = VERSES.filter(function(v) { return !masteredSet.has(v.num); });
+      } else {
+        const movId = Number(scope);
+        currentDeck = VERSES.filter(function(v) { return v.mov === movId; });
+      }
+      fcIndex = 0;
+      fcFlipped = false;
+      renderFlashcard();
+    }
+
+    function shuffleFlashcards() {
+      for (let i = currentDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = currentDeck[i];
+        currentDeck[i] = currentDeck[j];
+        currentDeck[j] = tmp;
+      }
+      fcIndex = 0;
+      fcFlipped = false;
+      renderFlashcard();
+    }
+
+    function renderFlashcard() {
+      const counterEl = document.getElementById(`fc-counter`);
+      const metaEl = document.getElementById(`fc-meta-label`);
+      const mainEl = document.getElementById(`fc-main-content`);
+      const hintEl = document.getElementById(`fc-hint`);
+      const masterBtn = document.getElementById(`fc-master-btn`);
+      const sideEl = document.getElementById(`fc-prompt-side`);
+      const promptSide = sideEl ? sideEl.value : `ar`;
+
+      if (!currentDeck.length) {
+        if (counterEl) counterEl.textContent = `0 of 0`;
+        if (metaEl) metaEl.textContent = `Deck Complete`;
+        if (mainEl) {
+          mainEl.className = `flashcard-english`;
+          mainEl.removeAttribute(`lang`);
+          mainEl.removeAttribute(`dir`);
+          mainEl.textContent = `Every verse in this filter is already marked mastered.`;
+        }
+        if (hintEl) hintEl.textContent = `Switch Study Deck Filter to "All 49 Verses" to review again.`;
+        if (masterBtn) masterBtn.disabled = true;
+        return;
+      }
+
+      if (fcIndex >= currentDeck.length) fcIndex = 0;
+      if (fcIndex < 0) fcIndex = currentDeck.length - 1;
+
+      const v = currentDeck[fcIndex];
+      const mov = MOVEMENTS[v.mov];
+      const masteredSet = getMasteredSet();
+      const isMastered = masteredSet.has(v.num);
+
+      if (counterEl) counterEl.textContent = `Card ` + (fcIndex + 1) + ` of ` + currentDeck.length;
+      if (metaEl) metaEl.textContent = `Verse 52:` + v.num + ` · ` + (mov ? mov.shortName : ``);
+
+      const showArabic = (promptSide === `ar` && !fcFlipped) || (promptSide === `en` && fcFlipped);
+      if (mainEl) {
+        if (showArabic) {
+          mainEl.className = `flashcard-arabic`;
+          mainEl.setAttribute(`lang`, `ar`);
+          mainEl.setAttribute(`dir`, `rtl`);
+          mainEl.textContent = v.ar;
+        } else {
+          mainEl.className = `flashcard-english`;
+          mainEl.removeAttribute(`lang`);
+          mainEl.removeAttribute(`dir`);
+          mainEl.textContent = v.en;
+        }
+      }
+
+      if (hintEl) {
+        hintEl.textContent = fcFlipped
+          ? `Showing back (` + v.tag + `) — click to flip back`
+          : `Click card to reveal ` + (promptSide === `ar` ? `English translation` : `Arabic verse`);
+      }
+
+      if (masterBtn) {
+        masterBtn.disabled = false;
+        masterBtn.textContent = isMastered ? `Mastered (Undo)` : `Mark Verse Mastered`;
+      }
+    }
+
+    function flipFlashcard() {
+      if (!currentDeck.length) return;
+      fcFlipped = !fcFlipped;
+      renderFlashcard();
+    }
+
+    function handleFlashcardKey(event) {
+      if (event.key === `Enter` || event.key === ` `) {
+        event.preventDefault();
+        flipFlashcard();
+      }
+    }
+
+    function stepFlashcard(delta) {
+      if (!currentDeck.length) return;
+      fcIndex = (fcIndex + delta + currentDeck.length) % currentDeck.length;
+      fcFlipped = false;
+      renderFlashcard();
+    }
+
+    function toggleCurrentFlashcardMastery() {
+      if (!currentDeck.length) return;
+      const v = currentDeck[fcIndex];
+      toggleVerseMastery(v.num);
+    }
+
+    /* Quiz */
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+      const answers = appState.quizAnswers || {};
+      let correctCount = 0;
+
+      container.innerHTML = QUIZ_QUESTIONS.map(function(item, qIdx) {
+        const chosen = answers[String(qIdx)];
+        const hasAnswered = chosen !== undefined && chosen !== null;
+        if (hasAnswered && Number(chosen) === item.ans) correctCount++;
+
+        const optsHtml = item.opts.map(function(opt, oIdx) {
+          let cls = `quiz-opt`;
+          if (hasAnswered) {
+            if (oIdx === item.ans) cls += ` is-correct`;
+            else if (oIdx === Number(chosen)) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${oIdx})" ${hasAnswered ? `disabled` : ``}>
+              ${opt}
+            </button>
+          `;
+        }).join(``);
+
+        return `
+          <div class="quiz-item">
+            <p class="quiz-q">${item.q}</p>
+            <div class="quiz-options">${optsHtml}</div>
+            ${hasAnswered ? `<div class="quiz-feedback"><strong>${Number(chosen) === item.ans ? `Correct.` : `Review:`}</strong> ${item.explain}</div>` : ``}
+          </div>
+        `;
+      }).join(``);
+
+      const badge = document.getElementById(`quiz-score-badge`);
+      if (badge) badge.textContent = `Score: ` + correctCount + ` / ` + QUIZ_QUESTIONS.length;
+
+      const statQuiz = document.getElementById(`stat-quiz-caption`);
+      if (statQuiz) statQuiz.textContent = `Quiz Score: ` + correctCount + ` / ` + QUIZ_QUESTIONS.length;
+
+      const answeredTotal = Object.keys(answers).length;
+      const statusMsg = document.getElementById(`quiz-status-msg`);
+      if (statusMsg) {
+        if (answeredTotal === 0) statusMsg.textContent = `Select an answer on each question to record your score.`;
+        else if (answeredTotal < QUIZ_QUESTIONS.length) statusMsg.textContent = answeredTotal + ` of ` + QUIZ_QUESTIONS.length + ` questions answered.`;
+        else statusMsg.textContent = `Assessment complete — ` + correctCount + ` out of ` + QUIZ_QUESTIONS.length + ` correct.`;
+      }
+    }
+
+    function answerQuiz(qIdx, oIdx) {
+      if (!appState.quizAnswers) appState.quizAnswers = {};
+      appState.quizAnswers[String(qIdx)] = oIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function resetQuizInline(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset quiz`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Quiz`;
+      appState.quizAnswers = {};
+      renderQuiz();
+      persistState();
+    }
+
+    function saveStudyNotes(text) {
+      appState.notes = text;
+      persistState();
+    }
+
+    function resetAllProgressInline(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset everything`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset All Progress`;
+      appState = {
+        mastered: [],
+        quizAnswers: {},
+        notes: ``,
+        concealEn: false,
+        concealAr: false
+      };
+      revealedIndividual = {};
+      const notesInput = document.getElementById(`study-notes-input`);
+      if (notesInput) notesInput.value = ``;
+      renderAllVerses();
+      updateProgressUI();
+      rebuildFlashcardDeck();
+      renderQuiz();
+      persistState();
+    }
+
+    function exportMasteryReport() {
+      const masteredSet = getMasteredSet();
+      const answers = appState.quizAnswers || {};
+      let quizCorrect = 0;
+      QUIZ_QUESTIONS.forEach(function(q, idx) {
+        if (answers[String(idx)] !== undefined && Number(answers[String(idx)]) === q.ans) quizCorrect++;
+      });
+
+      const lines = [
+        `SURAH AT-TUR (CHAPTER 52) — MASTERY REPORT`,
+        `Verses Mastered: ` + masteredSet.size + ` / 49`,
+        `Quiz Score: ` + quizCorrect + ` / ` + QUIZ_QUESTIONS.length,
+        ``,
+        `MOVEMENT BREAKDOWN:`
+      ];
+      MOVEMENTS.forEach(function(mov) {
+        const total = VERSES.filter(function(v) { return v.mov === mov.id; }).length;
+        const done = VERSES.filter(function(v) { return v.mov === mov.id && masteredSet.has(v.num); }).length;
+        lines.push(`- ` + mov.title + `: ` + done + ` / ` + total);
+      });
+      lines.push(``);
+      lines.push(`MASTERED VERSES: ` + (appState.mastered.length ? appState.mastered.map(function(n) { return `52:` + n; }).join(`, `) : `None yet`));
+      lines.push(``);
+      lines.push(`PERSONAL NOTES:`);
+      lines.push(appState.notes ? appState.notes : `(No notes recorded)`);
+
+      const report = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: report,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-at-tur-mastery-report.txt`
+        });
+      }
+    }
+
+    function initScrollReveal() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function(el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const obs = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function(el) { obs.observe(el); });
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = {
+              mastered: Array.isArray(saved.mastered) ? saved.mastered : [],
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === `object` ? saved.quizAnswers : {},
+              notes: typeof saved.notes === `string` ? saved.notes : ``,
+              concealEn: Boolean(saved.concealEn),
+              concealAr: Boolean(saved.concealAr)
+            };
+          }
+        }
+      } catch (err) {
+        /* Fallback cleanly to empty initial state */
+      }
+
+      const notesInput = document.getElementById(`study-notes-input`);
+      if (notesInput) notesInput.value = appState.notes || ``;
+
+      selectMovement(0);
+      selectOathPillar(0);
+      renderAmCards(`all`);
+      renderAllVerses();
+      updateProgressUI();
+      rebuildFlashcardDeck();
+      renderQuiz();
+      initScrollReveal();
+
+      if (window.lucide && typeof window.lucide.createIcons === `function`) {
+        window.lucide.createIcons();
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

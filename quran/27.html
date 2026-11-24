@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah An-Naml (Chapter 27) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --brass-edge: #d8c3b0;
+      --brass-mid: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-hover: #9e3d1b;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #fae8e8;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Shared semantic & focus tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.625rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.22vw, 1.09375rem);
+      --label-size: clamp(0.72rem, 0.7rem + 0.12vw, 0.78rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-bar: 4px 4px 0 0;
+      --rounded-full: 9999px;
+
+      /* Effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-edge), var(--brass-mid), var(--brass-edge));
+
+      /* Spacing scale (4pt base) */
+      --space-2xs: 0.125rem;
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .kicker-meta {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-sm) 0 var(--space-md);
+    }
+    .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.2rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.18em;
+      line-height: 1.8;
+      color: var(--on-primary-container);
+      font-weight: 600;
+      padding: 0 var(--space-xs);
+    }
+
+    .arabic-display {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+      line-height: 1.9;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      margin: 0 0 var(--space-sm);
+    }
+
+    /* Defining treatments */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--featured-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Arch cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.7rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* Courtyard Index / Study Progress Strip */
+    .courtyard-strip {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .progress-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1 1 260px;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .progress-track {
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-btn-border);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+
+    /* Section bands & cards */
+    .study-section {
+      padding-top: var(--space-lg);
+      border-top: var(--warm-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+    }
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .section-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-lg);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-btn-border);
+      background: transparent;
+      color: var(--on-surface);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-secondary.is-done {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary-border);
+      color: var(--on-tertiary-container);
+    }
+
+    /* Structural Map & Chart asymmetric split */
+    .split-asymmetric {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+
+    .svg-frame {
+      width: 100%;
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+    }
+
+    .ring-node {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out);
+    }
+    .ring-node:hover rect {
+      stroke: var(--primary);
+    }
+
+    .bookend-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .bookend-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--on-surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .bookend-btn:hover {
+      background: var(--surface-container-low);
+    }
+    .bookend-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+
+    .chart-wrap {
+      position: relative;
+      min-height: 280px;
+      width: 100%;
+    }
+
+    /* Prophetic Narrative Interactive Explorer */
+    .narrative-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .cycle-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .cycle-btn {
+      text-align: left;
+      width: 100%;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--on-surface);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      min-height: 44px;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .cycle-btn:hover {
+      box-shadow: var(--soft-shadow);
+    }
+    .cycle-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .cycle-btn-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+    .cycle-verses {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .cycle-name {
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .cycle-sub {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    .narrative-detail {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .lens-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .lens-chip {
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-btn-border);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .lens-chip.is-active {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    .verse-callout {
+      background: var(--background);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md) var(--space-lg);
+    }
+    .verse-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .act-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Comparison Table */
+    .table-scroll {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-variant-numeric: tabular-nums;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Linguistic Root Cards */
+    .lexicon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .lexicon-card {
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--on-surface);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .lexicon-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--outline);
+    }
+    .lexicon-card.is-active {
+      background: var(--primary-container);
+      border-color: var(--featured-border);
+    }
+
+    /* Amman Cosmic Matrix */
+    .amman-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .amman-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+    .amman-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* Mastery Check & Reflection Studio */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+      border-color: var(--outline);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Form Controls */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    select, textarea, input[type="text"] {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+    }
+    select {
+      padding-right: var(--space-xl);
+    }
+    select:focus, textarea:focus, input[type="text"]:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: flex-end;
+    }
+
+    .reflection-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .reflection-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .reflection-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .btn-ghost-sm {
+      background: transparent;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-full);
+      color: var(--on-surface-variant);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 36px;
+      cursor: pointer;
+    }
+    .btn-ghost-sm:hover {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+    .status-note.is-error {
+      color: var(--error);
+    }
+
+    /* Scroll reveal */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Container queries & mobile breakpoints */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 520px) {
+      .narrative-detail { padding: var(--space-md); }
+    }
+
+    @media (max-width: 860px) {
+      .split-asymmetric,
+      .narrative-layout,
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .tonal-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .courtyard-strip {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO HEADER -->
+    <header>
+      <div class="kicker">
+        <span>Chapter 27 · Qur’anic Study &amp; Mastery Guide</span>
+        <span class="kicker-meta">93 Verses · <span lang="ar" dir="rtl">سورة النمل</span></span>
+      </div>
+      <h1 class="title">Surah An-Naml: <em>Knowledge</em>, Gratitude, and the Clear Book</h1>
+      <p class="lede">
+        Named for a single ant whose cautious wisdom made a prophet-king smile in gratitude, Chapter 27 contrasts inner certainty born of humility with the moral blindness of power and pride.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Structural Overview ◆</div>
+
+      <div class="arch-grid">
+        <article class="arch-card">
+          <span class="arch-label">Scope</span>
+          <div class="arch-figure">93</div>
+          <div class="arch-caption">Verses framed by the Clear Register (<span lang="ar" dir="rtl">كتاب مبين</span>)</div>
+        </article>
+        <article class="arch-card is-featured">
+          <span class="arch-label">Central Epic</span>
+          <div class="arch-figure">27:15–44</div>
+          <div class="arch-caption">Dawud, Sulaiman, the Ant, Hoopoe &amp; Queen of Sheba</div>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Prophetic Cycles</span>
+          <div class="arch-figure">4</div>
+          <div class="arch-caption">Musa, Dawud/Sulaiman, Salih, and Lut</div>
+        </article>
+        <article class="arch-card">
+          <span class="arch-label">Cosmic Litany</span>
+          <div class="arch-figure">5</div>
+          <div class="arch-caption">“Amman” rhetorical proofs (27:60–64)</div>
+        </article>
+      </div>
+    </header>
+
+    <!-- PERSISTENT STUDY TRACKER & NAVIGATION STRIP -->
+    <section class="courtyard-strip" aria-label="Study progress and navigation">
+      <div class="progress-cluster">
+        <div class="progress-header">
+          <span class="kicker" style="color: var(--on-surface-variant);">Study Mastery Progress</span>
+          <span id="mastery-summary" class="badge-emerald">0 / 4 Pillars Studied · Quiz 0/8</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="mastery-progressbar">
+          <div class="progress-fill" id="mastery-fill"></div>
+        </div>
+      </div>
+      <nav class="quick-nav" aria-label="Section shortcuts">
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-structure')">Architecture</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-narratives')">Prophetic Cycles</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-linguistics')">Linguistic Echoes</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-cosmic')">Cosmic Proofs</button>
+        <button type="button" class="nav-pill" onclick="jumpToSection('sec-studio')">Mastery Studio</button>
+      </nav>
+    </section>
+
+    <!-- SECTION 1: STRUCTURAL ARCHITECTURE & VERBAL BOOKENDS -->
+    <section id="sec-structure" class="study-section reveal-item">
+      <div class="section-header-row">
+        <div>
+          <span class="kicker">Part I · Macro-Structure &amp; Symmetry</span>
+          <h2 class="section-title">A Chapter Framed by <em>Clear Signs</em> and Hidden Knowledge</h2>
+        </div>
+        <button type="button" class="btn-secondary" id="btn-mark-structure" onclick="toggleStudied('structure', this)">
+          <i data-lucide="check-circle-2" aria-hidden="true" width="18" height="18"></i>
+          <span>Mark Section Studied</span>
+        </button>
+      </div>
+
+      <p class="prose">
+        Surah An-Naml opens with the disconnected letters <em>Ta, Seen</em> (<span class="arabic-inline" lang="ar" dir="rtl">طس</span>) and defines the Qur’an as a <strong>clear Book</strong> (<span class="arabic-inline" lang="ar" dir="rtl">كِتَابٌ مُبِينٌ</span>, 27:1) offering guidance and good tidings to believers who possess certainty in the Hereafter (27:2–3). Immediately, it sets up an epistemic contrast: those who reject the Hereafter have their deeds made pleasing to them so they wander blindly (27:4), whereas the Prophet receives revelation from the Wise and Knowing (27:6).
+      </p>
+
+      <div class="split-asymmetric">
+        <div class="panel">
+          <h3 class="subhead">Verbal Bookends &amp; Ring Echoes Across the Surah</h3>
+          <p class="prose" style="font-size: 0.9375rem; color: var(--on-surface-variant);">
+            Select any structural echo below to trace how the opening prologue (27:1–6) and central narratives mirror the eschatological epilogue (27:65–93).
+          </p>
+
+          <svg class="svg-frame" viewBox="0 0 640 250" role="img" aria-label="Structural symmetry diagram of Surah An-Naml" style="margin-bottom: var(--space-md);">
+            <defs>
+              <marker id="brass-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--secondary)"></path>
+              </marker>
+            </defs>
+            <!-- Outer ring arcs -->
+            <path id="arc-book" d="M 65 88 C 140 16, 500 16, 575 88" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"></path>
+            <path id="arc-gather" d="M 215 162 C 280 218, 430 218, 485 162" fill="none" stroke="var(--tertiary)" stroke-width="2" opacity="0.85"></path>
+            <path id="arc-praise" d="M 165 88 C 250 42, 340 42, 420 88" fill="none" stroke="var(--secondary)" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.85"></path>
+
+            <!-- 6 Structural Blocks -->
+            <g class="ring-node" onclick="selectBookend('book')">
+              <rect x="18" y="92" width="94" height="66" rx="8" fill="var(--primary-container)" stroke="var(--featured-border)" stroke-width="1.5"></rect>
+              <text x="65" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--primary)">27:1–6</text>
+              <text x="65" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">Prologue</text>
+              <text x="65" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-surface-variant)">Kitab Mubin</text>
+            </g>
+
+            <g class="ring-node" onclick="selectBookend('certainty')">
+              <rect x="122" y="92" width="88" height="66" rx="8" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+              <text x="166" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--primary)">27:7–14</text>
+              <text x="166" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">Musa</text>
+              <text x="166" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-surface-variant)">9 Signs</text>
+            </g>
+
+            <g class="ring-node" onclick="selectBookend('gather')">
+              <rect x="220" y="92" width="114" height="66" rx="8" fill="var(--tertiary-container)" stroke="var(--tertiary-border)" stroke-width="1.5"></rect>
+              <text x="277" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--tertiary)">27:15–44</text>
+              <text x="277" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">Sulaiman</text>
+              <text x="277" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-tertiary-container)">Ant &amp; Sheba</text>
+            </g>
+
+            <g class="ring-node" onclick="selectBookend('unaware')">
+              <rect x="344" y="92" width="90" height="66" rx="8" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+              <text x="389" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--primary)">27:45–58</text>
+              <text x="389" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">Salih &amp; Lut</text>
+              <text x="389" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-surface-variant)">Warnings</text>
+            </g>
+
+            <g class="ring-node" onclick="selectBookend('praise')">
+              <rect x="444" y="92" width="84" height="66" rx="8" fill="var(--surface-container-low)" stroke="var(--outline-variant)" stroke-width="1.5"></rect>
+              <text x="486" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--secondary)">27:59–64</text>
+              <text x="486" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">5 Proofs</text>
+              <text x="486" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-surface-variant)">Amman Litany</text>
+            </g>
+
+            <g class="ring-node" onclick="selectBookend('book')">
+              <rect x="538" y="92" width="84" height="66" rx="8" fill="var(--primary-container)" stroke="var(--featured-border)" stroke-width="1.5"></rect>
+              <text x="580" y="116" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--primary)">27:65–93</text>
+              <text x="580" y="135" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="600" fill="var(--on-surface)">Epilogue</text>
+              <text x="580" y="149" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="var(--on-surface-variant)">Resurrection</text>
+            </g>
+
+            <text x="320" y="25" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--primary)">Outer Frame: Kitab Mubin (27:1 ↔ 27:75) &amp; Yaqin (27:3 ↔ 27:82)</text>
+            <text x="345" y="226" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="var(--tertiary)">Inner Echo: Yūzaʿūn (27:17 ↔ 27:83) &amp; Encompassing Knowledge (27:22 ↔ 27:84)</text>
+          </svg>
+
+          <div class="bookend-list" id="bookend-buttons">
+            <button type="button" class="bookend-btn is-active" data-bookend="book" onclick="selectBookend('book')">
+              <span><strong>Clear Book &amp; Guidance</strong> (27:1–2 ↔ 27:75–77)</span>
+              <span class="badge-terracotta">Frame</span>
+            </button>
+            <button type="button" class="bookend-btn" data-bookend="certainty" onclick="selectBookend('certainty')">
+              <span><strong>Certainty vs. Blindness</strong> (27:3–4 ↔ 27:81–82)</span>
+              <span class="badge-emerald">Epistemic</span>
+            </button>
+            <button type="button" class="bookend-btn" data-bookend="gather" onclick="selectBookend('gather')">
+              <span><strong>Marshaled Rows &amp; Encompassed Knowledge</strong> (27:17, 22 ↔ 27:83–84)</span>
+              <span class="badge-emerald">Parallel</span>
+            </button>
+            <button type="button" class="bookend-btn" data-bookend="praise" onclick="selectBookend('praise')">
+              <span><strong>Threefold Doxology: Al-Hamdulillah</strong> (27:15 ↔ 27:59 ↔ 27:93)</span>
+              <span class="badge-terracotta">Refrain</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <div class="panel" id="bookend-inspector" aria-live="polite">
+            <span class="verse-ref" id="bookend-ref">27:1–2 ↔ 27:75–77</span>
+            <h3 class="subhead" id="bookend-title">The Clear Book &amp; Register</h3>
+            <p id="bookend-body" class="prose" style="margin-bottom: var(--space-sm);"></p>
+            <div class="verse-callout">
+              <div class="arabic-display" id="bookend-ar" lang="ar" dir="rtl"></div>
+              <p id="bookend-en" style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);"></p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <span class="kicker" style="margin-bottom: var(--space-xs);">Proportional Allocation · 93 Verses</span>
+            <h3 class="subhead" style="margin-bottom: var(--space-sm);">How the Chapter Distributes Its Narrative Weight</h3>
+            <div class="chart-wrap">
+              <canvas id="structureChart" aria-label="Bar chart showing verse counts across the six sections of Surah An-Naml"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE FOUR PROPHETIC NARRATIVES -->
+    <section id="sec-narratives" class="study-section tonal-band reveal-item">
+      <div class="section-header-row">
+        <div>
+          <span class="kicker">Part II · Prophetic Narratives (27:7–58)</span>
+          <h2 class="section-title">Four Histories of <em>Signs</em>, Stewardship, and Rejection</h2>
+        </div>
+        <button type="button" class="btn-secondary" id="btn-mark-narratives" onclick="toggleStudied('narratives', this)">
+          <i data-lucide="check-circle-2" aria-hidden="true" width="18" height="18"></i>
+          <span>Mark Section Studied</span>
+        </button>
+      </div>
+
+      <p class="prose">
+        Across fifty-two verses, Surah An-Naml presents four prophetic encounters where divine signs confront human authority. Musa meets majesty in the desert before confronting Pharaoh’s willful denial; Dawud and Sulaiman model gratitude at the pinnacle of power; Salih exposes secret conspiracy; and Lut confronts moral inversion.
+      </p>
+
+      <div class="narrative-layout card-wrapper">
+        <div class="cycle-list" role="region" aria-label="Select a prophetic narrative">
+          <button type="button" class="cycle-btn is-active" data-cycle="musa" onclick="selectNarrative('musa')">
+            <div class="cycle-btn-top">
+              <span class="cycle-verses">Verses 27:7–14</span>
+              <span class="badge-emerald">9 Signs</span>
+            </div>
+            <div class="cycle-name">1. Musa at the Blessed Fire</div>
+            <div class="cycle-sub">From fear in the desert to Pharaoh’s inner conviction and outward denial</div>
+          </button>
+
+          <button type="button" class="cycle-btn" data-cycle="sulaiman" onclick="selectNarrative('sulaiman')">
+            <div class="cycle-btn-top">
+              <span class="cycle-verses">Verses 27:15–44</span>
+              <span class="badge-terracotta">Central Epic</span>
+            </div>
+            <div class="cycle-name">2. Dawud, Sulaiman &amp; Sheba</div>
+            <div class="cycle-sub">The Ant, the Hoopoe, royal diplomacy, and the glass-floored palace</div>
+          </button>
+
+          <button type="button" class="cycle-btn" data-cycle="salih" onclick="selectNarrative('salih')">
+            <div class="cycle-btn-top">
+              <span class="cycle-verses">Verses 27:45–53</span>
+              <span class="badge-emerald">9 Conspirators</span>
+            </div>
+            <div class="cycle-name">3. Salih &amp; Thamud</div>
+            <div class="cycle-sub">Superstition, a nocturnal oath of murder, and unseen divine counter-planning</div>
+          </button>
+
+          <button type="button" class="cycle-btn" data-cycle="lut" onclick="selectNarrative('lut')">
+            <div class="cycle-btn-top">
+              <span class="cycle-verses">Verses 27:54–58</span>
+              <span class="badge-emerald">Moral Sight</span>
+            </div>
+            <div class="cycle-name">4. Lut &amp; His People</div>
+            <div class="cycle-sub">Transgression “while seeing,” inverting purity, and the saving of the faithful</div>
+          </button>
+        </div>
+
+        <article class="narrative-detail" id="narrative-detail" aria-live="polite">
+          <div class="section-header-row" style="align-items: center;">
+            <div>
+              <span class="verse-ref" id="nar-ref">Verses 27:7–14</span>
+              <h3 class="subhead" id="nar-title" style="font-size: 1.65rem; margin-bottom: 0;">Musa at the Blessed Fire</h3>
+            </div>
+            <span class="badge-terracotta" id="nar-theme-tag">Inner Certainty vs. Pride</span>
+          </div>
+
+          <div class="lens-row" role="group" aria-label="Analytical perspective">
+            <button type="button" class="lens-chip is-active" data-lens="arc" onclick="selectLens('arc')">Narrative Arc</button>
+            <button type="button" class="lens-chip" data-lens="epistemic" onclick="selectLens('epistemic')">Knowledge &amp; Denial</button>
+            <button type="button" class="lens-chip" data-lens="leadership" onclick="selectLens('leadership')">Moral &amp; Leadership Lesson</button>
+          </div>
+
+          <div id="nar-lens-content"></div>
+
+          <div class="verse-callout">
+            <div class="verse-ref" id="nar-quote-ref">Key Anchor · 27:14</div>
+            <div class="arabic-display" id="nar-quote-ar" lang="ar" dir="rtl"></div>
+            <p id="nar-quote-en" style="margin: 0; font-style: italic; color: var(--on-surface);"></p>
+          </div>
+
+          <div id="nar-acts-container" style="display: none;">
+            <span class="kicker" style="margin-bottom: var(--space-sm);">Four Dramatic Acts of the Sulaiman Cycle (27:15–44)</span>
+            <div class="act-grid" id="nar-acts-grid"></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Comparative Table of Responses -->
+      <div>
+        <h3 class="subhead">Comparative Matrix: How Power Responds to Revelation</h3>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Figure / Group</th>
+                <th>Verses</th>
+                <th>Nature of Power or Gift</th>
+                <th>Epistemic Response</th>
+                <th>Ultimate Outcome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pharaoh &amp; Chiefs</strong></td>
+                <td>27:12–14</td>
+                <td>Imperial rule confronted by nine visible signs</td>
+                <td>Inner certainty (<span lang="ar" dir="rtl">استيقنتها</span>) overridden by arrogance (<span lang="ar" dir="rtl">علوا</span>)</td>
+                <td>Destruction as corrupters (27:14)</td>
+              </tr>
+              <tr>
+                <td><strong>Dawud &amp; Sulaiman</strong></td>
+                <td>27:15–19, 40</td>
+                <td>Kingdom, jinn/human/bird armies, language of birds</td>
+                <td>Immediate praise (<span lang="ar" dir="rtl">الحمد لله</span>) &amp; prayer for gratitude (<span lang="ar" dir="rtl">أوزعني</span>)</td>
+                <td>Exemplars of tested stewardship</td>
+              </tr>
+              <tr>
+                <td><strong>Queen of Sheba</strong></td>
+                <td>27:23, 29–44</td>
+                <td>Great throne, wealth, consultative council</td>
+                <td>Measured inquiry; tests motives; concedes illusion at the glass palace</td>
+                <td>Submits with Sulaiman to <em>Rabb al-ʿĀlamīn</em> (27:44)</td>
+              </tr>
+              <tr>
+                <td><strong>Nine Chiefs of Thamud</strong></td>
+                <td>27:48–52</td>
+                <td>Clannish faction sowing corruption</td>
+                <td>Superstitious blame &amp; secret plot “while they perceived not” (27:50)</td>
+                <td>Houses left desolate; believers rescued (27:52–53)</td>
+              </tr>
+              <tr>
+                <td><strong>People of Lut</strong></td>
+                <td>27:54–58</td>
+                <td>Civic majority enforcing moral inversion</td>
+                <td>Sinning “while seeing” (27:54); expelling those who stay pure</td>
+                <td>Rained upon with stones; Lut’s household saved except his wife</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: LINGUISTIC & RHETORICAL ANALYSIS -->
+    <section id="sec-linguistics" class="study-section reveal-item">
+      <div class="section-header-row">
+        <div>
+          <span class="kicker">Part III · Structural &amp; Linguistic Analysis</span>
+          <h2 class="section-title">Precision of <em>Root</em>, Wordplay, and Contrast</h2>
+        </div>
+        <button type="button" class="btn-secondary" id="btn-mark-linguistics" onclick="toggleStudied('linguistics', this)">
+          <i data-lucide="check-circle-2" aria-hidden="true" width="18" height="18"></i>
+          <span>Mark Section Studied</span>
+        </button>
+      </div>
+
+      <p class="prose">
+        Surah An-Naml weaves its moral argument directly into recurring Arabic roots. Words used for military discipline reappear in personal prayer; phrases spoken by a tiny ant reappear as ironic commentary on conspirators; and an earthly “great throne” is quietly measured against the Lord of the Great Throne.
+      </p>
+
+      <div class="lexicon-grid" id="lexicon-grid">
+        <button type="button" class="lexicon-card is-active" data-term="waza" onclick="selectTerm('waza')">
+          <span class="kicker">Root: W–Z–ʿ (<span lang="ar" dir="rtl">و ز ع</span>)</span>
+          <div class="arabic-display" style="font-size: 1.5rem; margin: 0;" lang="ar" dir="rtl">يُوزَعُونَ ↔ أَوْزِعْنِي</div>
+          <div style="font-weight: 600;">Military Restraint vs. Inner Gratitude</div>
+          <div style="font-size: 0.875rem; color: var(--on-surface-variant);">27:17 · 27:19 · 27:83</div>
+        </button>
+
+        <button type="button" class="lexicon-card" data-term="hawat" onclick="selectTerm('hawat')">
+          <span class="kicker">Root: Ḥ–W–Ṭ (<span lang="ar" dir="rtl">ح و ط</span>)</span>
+          <div class="arabic-display" style="font-size: 1.5rem; margin: 0;" lang="ar" dir="rtl">أَحَطتُ بِمَا لَمْ تُحِطْ بِهِ</div>
+          <div style="font-weight: 600;">Encompassing Knowledge</div>
+          <div style="font-size: 0.875rem; color: var(--on-surface-variant);">27:22 · 27:84</div>
+        </button>
+
+        <button type="button" class="lexicon-card" data-term="shaur" onclick="selectTerm('shaur')">
+          <span class="kicker">Phrase: Unawareness</span>
+          <div class="arabic-display" style="font-size: 1.5rem; margin: 0;" lang="ar" dir="rtl">وَهُمْ لَا يَشْعُرُونَ</div>
+          <div style="font-weight: 600;">“While They Perceive Not”</div>
+          <div style="font-size: 0.875rem; color: var(--on-surface-variant);">27:18 · 27:50 · 27:65</div>
+        </button>
+
+        <button type="button" class="lexicon-card" data-term="arsh" onclick="selectTerm('arsh')">
+          <span class="kicker">Title Contrast</span>
+          <div class="arabic-display" style="font-size: 1.5rem; margin: 0;" lang="ar" dir="rtl">عَرْشٌ عَظِيمٌ ↔ رَبُّ الْعَرْشِ الْعَظِيمِ</div>
+          <div style="font-weight: 600;">The Great Throne &amp; Its Lord</div>
+          <div style="font-size: 0.875rem; color: var(--on-surface-variant);">27:23 · 27:26 · 27:38–42</div>
+        </button>
+      </div>
+
+      <div class="panel" id="lexicon-inspector" aria-live="polite">
+        <div class="section-header-row" style="margin-bottom: var(--space-sm);">
+          <div>
+            <span class="verse-ref" id="lex-verses">Verses 27:17, 27:19, 27:83</span>
+            <h3 class="subhead" id="lex-title" style="margin-bottom: 0;">The W–Z–ʿ Echo: Marshaling Armies and Disciplining the Heart</h3>
+          </div>
+          <span class="badge-emerald" id="lex-tag">Morphological Pairing</span>
+        </div>
+        <p id="lex-analysis" class="prose" style="margin-bottom: var(--space-md);"></p>
+        <div class="act-grid" id="lex-occurrences"></div>
+      </div>
+
+      <div class="panel" style="background: var(--primary-container); border-color: var(--featured-border);">
+        <span class="kicker">Unique Textual Feature · Verse 27:30</span>
+        <h3 class="subhead" style="margin-top: var(--space-xs);">The Embedded Basmalah Inside Sulaiman’s Letter</h3>
+        <p class="prose" style="margin-bottom: 0;">
+          Chapter 27 is the only surah in the Qur’an that quotes the full <em>Basmalah</em> inside its narrative body: <span class="arabic-inline" lang="ar" dir="rtl">إِنَّهُ مِن سُلَيْمَانَ وَإِنَّهُ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span> (“Indeed, it is from Solomon, and indeed, it reads: ‘In the name of Allah, the Entirely Merciful, the Especially Merciful,’” 27:30). Notice the diplomatic humility: Sulaiman places his own name first only to identify the sender, then anchors his authority not in military supremacy, but in divine mercy—inviting Sheba to abandon arrogance (<em>allā taʿlū ʿalayya</em>, 27:31) and enter submission.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE FIVE COSMIC PROOFS & ESCHATOLOGICAL CLOSURE -->
+    <section id="sec-cosmic" class="study-section reveal-item">
+      <div class="section-header-row">
+        <div>
+          <span class="kicker">Part IV · The Amman Litany &amp; Epilogue (27:59–93)</span>
+          <h2 class="section-title">Five Questions Across <em>Heaven</em>, Earth, and Desperation</h2>
+        </div>
+        <button type="button" class="btn-secondary" id="btn-mark-cosmic" onclick="toggleStudied('cosmic', this)">
+          <i data-lucide="check-circle-2" aria-hidden="true" width="18" height="18"></i>
+          <span>Mark Section Studied</span>
+        </button>
+      </div>
+
+      <p class="prose">
+        Immediately after four historical warnings, the Surah pivots with praise and peace upon Allah’s chosen servants (27:59), then delivers five rapid-fire rhetorical questions opening with <em>Amman</em> (<span class="arabic-inline" lang="ar" dir="rtl">أَمَّن</span> — “Or who / Is He not best who…?”). Each question closes with the piercing refrain <em>A-ilāhun maʿa Allāh?</em> (“Is there a deity with Allah?”), followed by a distinct diagnosis of why human beings fail to see it.
+      </p>
+
+      <div class="amman-grid">
+        <article class="amman-card">
+          <div class="amman-card-head">
+            <span class="badge-terracotta">27:60</span>
+            <span class="kicker-meta" style="font-size: 0.78rem; font-weight: 700;">Cosmology &amp; Beauty</span>
+          </div>
+          <h3 class="subhead">Rain &amp; Joyful Gardens</h3>
+          <p style="margin: 0; font-size: 0.9375rem;">
+            Creation of heavens and earth, sending rain to grow <em>ḥadāʾiqa dhāta bahjah</em> (gardens of joyful beauty) whose trees humans could never sprout.
+          </p>
+          <div class="verse-callout" style="margin-top: auto;">
+            <div class="verse-ref">Diagnostic Closing</div>
+            <div style="font-weight: 600; font-size: 0.9rem;">“Rather, they are a people who ascribe equals [to Him].” (<em>yaʿdilūn</em>)</div>
+          </div>
+        </article>
+
+        <article class="amman-card">
+          <div class="amman-card-head">
+            <span class="badge-terracotta">27:61</span>
+            <span class="kicker-meta" style="font-size: 0.78rem; font-weight: 700;">Geology &amp; Order</span>
+          </div>
+          <h3 class="subhead">Stable Earth &amp; Two Seas</h3>
+          <p style="margin: 0; font-size: 0.9375rem;">
+            Earth set as a stable abode (<em>qarāran</em>), threaded with rivers, anchored by mountains, and divided by a barrier between two seas.
+          </p>
+          <div class="verse-callout" style="margin-top: auto;">
+            <div class="verse-ref">Diagnostic Closing</div>
+            <div style="font-weight: 600; font-size: 0.9rem;">“Rather, most of them do not know.” (<em>lā yaʿlamūn</em>)</div>
+          </div>
+        </article>
+
+        <article class="amman-card">
+          <div class="amman-card-head">
+            <span class="badge-emerald">27:62</span>
+            <span class="kicker-meta" style="font-size: 0.78rem; font-weight: 700;">Human Crisis</span>
+          </div>
+          <h3 class="subhead">Answering the Desperate</h3>
+          <p style="margin: 0; font-size: 0.9375rem;">
+            Responding to the distressed soul (<em>al-muḍṭarr</em>) when they call, lifting harm, and appointing humanity as inheritors (<em>khulafāʾ</em>) of the earth.
+          </p>
+          <div class="verse-callout" style="margin-top: auto;">
+            <div class="verse-ref">Diagnostic Closing</div>
+            <div style="font-weight: 600; font-size: 0.9rem;">“Little do you remember.” (<em>qalīlan mā tadhakkarūn</em>)</div>
+          </div>
+        </article>
+
+        <article class="amman-card">
+          <div class="amman-card-head">
+            <span class="badge-terracotta">27:63</span>
+            <span class="kicker-meta" style="font-size: 0.78rem; font-weight: 700;">Navigation &amp; Mercy</span>
+          </div>
+          <h3 class="subhead">Darknesses &amp; Glad-Tiding Winds</h3>
+          <p style="margin: 0; font-size: 0.9375rem;">
+            Guiding travelers through darknesses of land and sea, and dispatching winds as heralds (<em>bushran</em>) before His mercy.
+          </p>
+          <div class="verse-callout" style="margin-top: auto;">
+            <div class="verse-ref">Diagnostic Closing</div>
+            <div style="font-weight: 600; font-size: 0.9rem;">“High is Allah above whatever they associate with Him.”</div>
+          </div>
+        </article>
+
+        <article class="amman-card">
+          <div class="amman-card-head">
+            <span class="badge-emerald">27:64</span>
+            <span class="kicker-meta" style="font-size: 0.78rem; font-weight: 700;">Origin &amp; Return</span>
+          </div>
+          <h3 class="subhead">Originating &amp; Repeating Creation</h3>
+          <p style="margin: 0; font-size: 0.9375rem;">
+            Initiating creation then repeating it, and sustaining life from both sky and earth—ending with an epistemic demand for evidence.
+          </p>
+          <div class="verse-callout" style="margin-top: auto;">
+            <div class="verse-ref">Evidentiary Challenge</div>
+            <div style="font-weight: 600; font-size: 0.9rem;">“Produce your proof (<em>hātū burhānakum</em>), if you should be truthful.”</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel">
+        <span class="kicker">Epilogue Synthesis · Verses 27:65–93</span>
+        <h3 class="subhead" style="margin-top: var(--space-xs);">From Arrested Knowledge to Cosmic Dissolution and Personal Responsibility</h3>
+        <p class="prose" style="margin-bottom: var(--space-sm);">
+          The closing movement answers the skeptics’ dismissal of resurrection (“legends of former peoples,” 27:68) by inviting empirical travel through the land (27:69), affirming that knowledge of the Unseen belongs solely to Allah (27:65), and explaining why revelation only awakens those willing to hear (27:80–81). In the final scenes, a speaking creature from the earth testifies against lack of certainty (27:82), the Horn sounds (27:87), and mountains once presumed rigid drift past like clouds—<em>“the work of Allah, who perfected all things”</em> (27:88). The Prophet is left with a crystal-clear threefold duty (27:91–92): worship the Lord of the sacred city, be of those who submit, and recite the Qur’an—because guidance benefits the one who accepts it.
+        </p>
+      </div>
+    </section>
+
+    <div class="ornament-rule" aria-hidden="true">◆ Interactive Reflection &amp; Mastery Studio ◆</div>
+
+    <!-- SECTION 5: INTERACTIVE MASTERY CHECK & REFLECTION JOURNAL -->
+    <section id="sec-studio" class="study-section reveal-item" style="border-top: none; padding-top: 0;">
+      <div>
+        <span class="kicker">Part V · Active Recall &amp; Contemplation</span>
+        <h2 class="section-title">Mastery Check &amp; <em>Personal</em> Study Journal</h2>
+        <p class="lede" style="margin-bottom: var(--space-md);">
+          Verify your grasp of Surah An-Naml’s narrative details and linguistic threads, then record your own thematic reflections. Your progress and notes save automatically across sessions.
+        </p>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Mastery Quiz -->
+        <div class="panel">
+          <div class="section-header-row" style="margin-bottom: var(--space-md);">
+            <div>
+              <span class="kicker">Self-Assessment · 8 Questions</span>
+              <h3 class="subhead" style="margin: var(--space-xs) 0 0;">Surah An-Naml Mastery Check</h3>
+            </div>
+            <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 8</span>
+          </div>
+
+          <div id="quiz-container" style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+              <span class="verse-ref" id="quiz-q-meta" style="margin: 0;">Question 1 of 8 · Structure</span>
+              <div style="display: flex; gap: var(--space-xs);">
+                <button type="button" class="btn-ghost-sm" id="quiz-prev-btn" onclick="stepQuiz(-1)">Prev</button>
+                <button type="button" class="btn-ghost-sm" id="quiz-next-btn" onclick="stepQuiz(1)">Next</button>
+              </div>
+            </div>
+
+            <div id="quiz-question-text" style="font-weight: 600; font-size: 1.05rem;"></div>
+            <div id="quiz-options" style="display: flex; flex-direction: column; gap: var(--space-xs);"></div>
+            <div id="quiz-feedback" class="verse-callout" style="display: none;"></div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--warm-hairline);">
+            <button type="button" class="btn-secondary" id="btn-reset-quiz" onclick="resetQuiz(this)">Reset Quiz</button>
+            <span id="quiz-status-msg" class="status-note" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <!-- Personal Reflection Journal -->
+        <div class="panel">
+          <div class="section-header-row" style="margin-bottom: var(--space-md);">
+            <div>
+              <span class="kicker">Contemplative Journal</span>
+              <h3 class="subhead" style="margin: var(--space-xs) 0 0;">Guided Verse Reflections</h3>
+            </div>
+            <button type="button" class="btn-secondary" onclick="exportStudyNotes()">
+              <i data-lucide="download" aria-hidden="true" width="16" height="16"></i>
+              <span>Export Notes (.txt)</span>
+            </button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div class="field-group">
+              <label for="reflection-prompt-select" class="field-label">Select Reflection Prompt</label>
+              <select id="reflection-prompt-select" onchange="updatePromptHint()">
+                <option value="gratitude">27:19 &amp; 27:40 — Gratitude as a Test of Abundance</option>
+                <option value="humility">27:22 &amp; 27:84 — Humility Before Unseen Knowledge</option>
+                <option value="illusion">27:44 — Perceiving Reality Beyond Surface Illusion</option>
+                <option value="leadership">27:18 &amp; 27:32–34 — Protective &amp; Consultative Leadership</option>
+                <option value="desperation">27:62 — Turning to Allah in Moments of Desperation</option>
+              </select>
+            </div>
+
+            <div id="prompt-guidance-box" class="verse-callout" style="font-size: 0.9rem; color: var(--on-surface-variant);"></div>
+
+            <div class="field-group">
+              <label for="reflection-input" class="field-label">Your Reflection</label>
+              <textarea id="reflection-input" placeholder="Write a concrete takeaway or application from these verses…"></textarea>
+            </div>
+
+            <div class="form-row" style="justify-content: space-between;">
+              <button type="button" class="btn-primary" onclick="saveReflection()">Save Reflection</button>
+              <button type="button" class="btn-secondary" id="btn-reset-journal" onclick="clearReflections(this)">Clear Saved Notes</button>
+            </div>
+
+            <div id="journal-status-msg" class="status-note" aria-live="polite"></div>
+          </div>
+
+          <div id="reflection-list" class="reflection-list" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="padding-top: var(--space-lg); border-top: var(--warm-hairline); color: var(--on-surface-variant); font-size: 0.875rem;">
+      Source grounding: All verse citations, Arabic excerpts, and prophetic sequence details derive directly from Chapter 27 (<em>Surah An-Naml</em>, verses 27:1–93) in the provided source text.
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    // =========================================================================
+    // GROUNDED DATA (backtick literals throughout to avoid quote syntax bugs)
+    // =========================================================================
+    const BOOKENDS = {
+      book: {
+        ref: `27:1–2 ↔ 27:75–77`,
+        title: `The Clear Book & Register`,
+        body: `The chapter opens by naming the Qur’an “a clear Book” (Kitāb Mubīn) and “guidance and mercy/good tidings for the believers” (27:1–2). Seventy-four verses later, that exact pair returns: every concealed matter in heaven and earth is recorded in a “clear Register” (27:75), and the Qur’an itself is “guidance and mercy for the believers” (27:77).`,
+        ar: `تِلْكَ آيَاتُ الْقُرْآنِ وَكِتَابٍ مُّبِينٍ ۝ وَمَا مِنْ غَائِبَةٍ فِي السَّمَاءِ وَالْأَرْضِ إِلَّا فِي كِتَابٍ مُّبِينٍ`,
+        en: `“These are the verses of the Qur’an and a clear Book” (27:1) ↔ “There is nothing concealed within the heaven and the earth except that it is in a clear Register” (27:75).`
+      },
+      certainty: {
+        ref: `27:3–4 ↔ 27:81–82`,
+        title: `Certainty (Yaqīn) vs. Moral Blindness`,
+        body: `Believers are defined at the outset as those who are certain of the Hereafter (yūqinūn, 27:3), while deniers wander blindly with deeds made pleasing to them (27:4). At the Surah’s close, only believers truly hear and submit (27:81), and the creature from the earth speaks specifically to expose that humanity lacked certainty in Allah’s signs (lā yūqinūn, 27:82).`,
+        ar: `وَهُمْ بِالْآخِرَةِ هُمْ يُوقِنُونَ ۝ إِنَّ النَّاسَ كَانُوا بِآيَاتِنَا لَا يُوقِنُونَ`,
+        en: `“And of the Hereafter they are certain [in faith]” (27:3) ↔ “That the people were, of Our verses, not certain [in faith]” (27:82).`
+      },
+      gather: {
+        ref: `27:17, 22 ↔ 27:83–84`,
+        title: `Marshaled Rows & Unencompassed Knowledge`,
+        body: `Sulaiman’s armies of jinn, humans, and birds are marshaled in disciplined rows (yūzaʿūn, 27:17), and the hoopoe announces it has encompassed knowledge Sulaiman lacked (aḥaṭtu, 27:22). In the epilogue, deniers are likewise gathered in driven rows (yūzaʿūn, 27:83) and asked: “Did you deny My signs while you encompassed them not in knowledge?” (27:84).`,
+        ar: `فَهُمْ يُوزَعُونَ ۝ أَحَطتُ بِمَا لَمْ تُحِطْ بِهِ ۝ أَكَذَّبْتُم بِآيَاتِي وَلَمْ تُحِيطُوا بِهَا عِلْمًا`,
+        en: `From Sulaiman’s disciplined ranks and the hoopoe’s report (27:17, 22) to the Question on the Day of Gathering (27:83–84).`
+      },
+      praise: {
+        ref: `27:15 ↔ 27:59 ↔ 27:93`,
+        title: `Threefold Pillar of Al-Ḥamdulillāh`,
+        body: `Praise of Allah structures the Surah like architectural columns: Dawud and Sulaiman proclaim “Al-ḥamdulillāh” upon receiving knowledge (27:15); the Prophet is commanded to say “Al-ḥamdulillāh” right before the five cosmic proofs (27:59); and the entire chapter concludes with “Al-ḥamdulillāh” as Allah promises to show His signs until they are recognized (27:93).`,
+        ar: `وَقَالَا الْحَمْدُ لِلَّهِ ۝ قُلِ الْحَمْدُ لِلَّهِ وَسَلَامٌ عَلَىٰ عِبَادِهِ ۝ وَقُلِ الْحَمْدُ لِلَّهِ سَيُرِيكُمْ آيَاتِهِ`,
+        en: `Opening gratitude for knowledge (27:15), mid-chapter pivot (27:59), and final doxology (27:93).`
+      }
+    };
+
+    const NARRATIVES = {
+      musa: {
+        ref: `Verses 27:7–14`,
+        title: `Musa at the Blessed Fire`,
+        themeTag: `Inner Certainty vs. Haughty Denial`,
+        lenses: {
+          arc: `Seeking ordinary warmth and directions from a distant fire (27:7), Musa encounters divine majesty: a voice proclaiming “Blessed is whoever is at the fire and whoever is around it” and revealing Himself as Allah, Lord of the worlds (27:8–9). Commanded to cast his staff, Musa flees in natural human terror as it writhes like a swift serpent, then is calmed with the assurance that messengers need not fear in Allah’s presence, alongside mercy for anyone who wrongs yet replaces evil with good (27:10–11). Armed with the radiant white hand among nine signs, Musa confronts Pharaoh and his defiant court (27:12–14).`,
+          epistemic: `Verse 27:13–14 diagnoses a striking psychological split: Pharaoh’s court saw “visible signs” (āyātanā mubṣirah), yet dismissed them as “obvious magic” (siḥr mubīn). Verse 27:14 explains why—not from lack of evidence, because “their inner selves were convinced thereof” (istayqanathā anfusuhum), but out of injustice (ẓulman) and haughtiness (ʿuluwwan).`,
+          leadership: `Human fear before overwhelming responsibility does not disqualify a messenger; Allah reassures Musa and affirms divine forgiveness for past error followed by good action (27:10–11). Conversely, leadership corrupted by arrogance suppresses known truth rather than yield status.`
+        },
+        quoteRef: `Key Anchor · 27:14`,
+        quoteAr: `وَجَحَدُوا بِهَا وَاسْتَيْقَنَتْهَا أَنفُسُهُمْ ظُلْمًا وَعُلُوًّا ۚ فَانظُرْ كَيْفَ كَانَ عَاقِبَةُ الْمُفْسِدِينَ`,
+        quoteEn: `“And they rejected them, while their [inner] selves were convinced thereof, out of injustice and haughtiness. So see how was the end of the corrupters.” (27:14)`,
+        acts: []
+      },
+      sulaiman: {
+        ref: `Verses 27:15–44`,
+        title: `Dawud, Sulaiman & the Queen of Sheba`,
+        themeTag: `Knowledge, Gratitude & Sovereignty`,
+        lenses: {
+          arc: `The chapter’s longest cycle follows a prophet-king who treats vast authority—armies of jinn, humans, and birds, plus understanding animal speech—as a moral test rather than personal entitlement. Hearing an ant warn its colony to hide lest Sulaiman’s troops crush them unwittingly, Sulaiman smiles and prays for the strength to remain grateful (27:18–19). When the missing hoopoe brings verified intelligence from sun-worshipping Sheba, Sulaiman sends a brief letter opening with divine mercy (27:22–31). The Queen of Sheba exercises prudent consultation, tests Sulaiman with wealth (which he refuses), and arrives in Jerusalem—where the instant transport of her throne and a palace floored with smooth glass reveal the difference between appearance and reality, leading her to submit to the Lord of the worlds (27:32–44).`,
+          epistemic: `Every major character is tested on how they handle information. Sulaiman does not trust the hoopoe blindly (“We will see whether you were truthful,” 27:27). The Queen of Sheba does not react impulsively to threat; she consults her council and tests Sulaiman’s motives with a gift (27:32–35). When confronted with her disguised throne, she avoids both reckless certainty and denial: “It is as though it was it” (27:42). Finally, mistaking smooth glass for deep water (27:44) shatters her prior illusion and brings clarity.`,
+          leadership: `Contrast two modes of governance: the Queen’s military chiefs boast of brute force (“men of strength and great military might,” 27:33), whereas both the Queen and Sulaiman recognize higher principles—she notes how invading kings ruin cities (27:34), and he views unprecedented miracles not as personal glory, but as a trial: “This is from the favor of my Lord to test me whether I will be grateful or ungrateful” (27:40).`
+        },
+        quoteRef: `Key Anchor · 27:19`,
+        quoteAr: `فَتَبَسَّمَ ضَاحِكًا مِّن قَوْلِهَا وَقَالَ رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ`,
+        quoteEn: `“So [Solomon] smiled, amused at her speech, and said, ‘My Lord, enable me to be grateful for Your favor which You have bestowed upon me and upon my parents…’” (27:19)`,
+        acts: [
+          { tag: `27:15–16`, name: `Act I · Inherited Knowledge`, desc: `Dawud and Sulaiman receive knowledge and immediately respond with praise (Al-ḥamdulillāh).` },
+          { tag: `27:17–19`, name: `Act II · Valley of the Ants`, desc: `An ant protects its community while excusing Sulaiman’s army (“while they perceive not”); Sulaiman prays for gratitude.` },
+          { tag: `27:20–37`, name: `Act III · Hoopoe & Diplomacy`, desc: `The hoopoe reports sun-worship in Sheba; Sulaiman’s Basmalah letter meets the Queen’s wise consultation and refused gift.` },
+          { tag: `27:38–44`, name: `Act IV · Throne & Glass Palace`, desc: `One with Scripture knowledge brings the throne in a glance; the crystal floor cures Sheba’s misperception and leads to submission.` }
+        ]
+      },
+      salih: {
+        ref: `Verses 27:45–53`,
+        title: `Salih & the Nine Chiefs of Thamud`,
+        themeTag: `Conspiracy vs. Unseen Reckoning`,
+        lenses: {
+          arc: `Salih calls his people Thamud to worship Allah alone, immediately splitting the society into two conflicting factions (27:45). When he asks why they hasten punishment instead of seeking mercy, they blame him and his followers as a bad omen (27:46–47). Inside the city, nine prominent family heads (tisʿatu rahṭ) sow corruption and swear a secret oath by Allah to assassinate Salih and his family by night while feigning ignorance (27:48–49). Yet “they planned a plan, and We planned a plan, while they perceived not”—leaving their homes empty ruins while the righteous were saved (27:50–53).`,
+          epistemic: `Thamud substitutes superstition (“We consider you a bad omen”) for moral accountability; Salih redirects them to reality: “Your omen is with Allah; rather, you are a people being tested” (27:47). The conspirators assume secrecy guarantees impunity, repeating the tragic blind spot “while they perceived not” (wa hum lā yashʿurūn, 27:50).`,
+          leadership: `Corruption often organizes through elite factions (“nine family heads,” 27:48) who weaponize religion itself—swearing an oath “by Allah” to commit murder (27:49). Moral endurance rests on remembering that human plots operate within Allah’s complete awareness.`
+        },
+        quoteRef: `Key Anchor · 27:50`,
+        quoteAr: `وَمَكَرُوا مَكْرًا وَمَكَرْنَا مَكْرًا وَهُمْ لَا يَشْعُرُونَ`,
+        quoteEn: `“And they planned a plan, and We planned a plan, while they perceived not.” (27:50)`,
+        acts: []
+      },
+      lut: {
+        ref: `Verses 27:54–58`,
+        title: `Lut & His People`,
+        themeTag: `Seeing Yet Behaving Ignorantly`,
+        lenses: {
+          arc: `Lut confronts his townspeople for committing open immorality “while you are seeing” (wa antum tubṣirūn, 27:54) and acting out of willful ignorance (tajhalūn, 27:55). Their collective reply is cynical inversion: “Expel the family of Lot from your city—indeed, they are people who keep themselves pure” (27:56). Allah rescues Lut and his family, except his wife who remained behind, and sends a devastating rain of stones upon those who ignored the warning (27:57–58).`,
+          epistemic: `Lut’s diagnosis pairs visual awareness with moral ignorance: they act “while seeing” (tubṣirūn) yet are a people “behaving ignorantly” (tajhalūn). When a society turns “purity” (yataṭahharūn) into grounds for expulsion, moral language itself has been inverted.`,
+          leadership: `Accountability in Surah An-Naml is individual, never merely familial: even inside a prophet’s household, Lut’s wife shares the fate of those who stayed behind (27:57), reinforcing the closing principle that guidance and error belong to each person (27:92).`
+        },
+        quoteRef: `Key Anchor · 27:56`,
+        quoteAr: `فَمَا كَانَ جَوَابَ قَوْمِهِ إِلَّا أَن قَالُوا أَخْرِجُوا آلَ لُوطٍ مِّن قَرْيَتِكُمْ ۖ إِنَّهُمْ أُنَاسٌ يَتَطَهَّرُونَ`,
+        quoteEn: `“But the answer of his people was not except that they said, ‘Expel the family of Lot from your city. Indeed, they are people who keep themselves pure.’” (27:56)`,
+        acts: []
+      }
+    };
+
+    const LEXICON = {
+      waza: {
+        verses: `Verses 27:17, 27:19, 27:83`,
+        title: `The W–Z–ʿ Echo: Marshaling Armies and Disciplining the Heart`,
+        tag: `Morphological Pairing`,
+        analysis: `From the Arabic root w-z-ʿ (to restrain, keep in order, distribute), verse 27:17 describes Sulaiman’s vast forces of jinn, humans, and birds being held back in orderly rows (yūzaʿūn) so the front waits for the rear. Two verses later, after hearing the ant, Sulaiman asks Allah using Form IV of the very same root: awziʿnī (“restrain/inspire/enable me”) to be grateful (27:19)—seeking the same discipline over his own soul that he commands over his army. At the end of the Surah, yūzaʿūn returns in 27:83 for humanity driven in rows toward Judgement.`,
+        occurrences: [
+          { ref: `27:17`, ar: `فَهُمْ يُوزَعُونَ`, note: `Sulaiman’s soldiers are restrained and marshaled in ordered ranks.` },
+          { ref: `27:19`, ar: `رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ`, note: `Sulaiman prays to have his heart marshaled and focused onto gratitude.` },
+          { ref: `27:83`, ar: `فَوْجًا مِّمَّن يُكَذِّبُ بِآيَاتِنَا فَهُمْ يُوزَعُونَ`, note: `On the Day of Gathering, deniers from every nation are driven in rows.` }
+        ]
+      },
+      hawat: {
+        verses: `Verses 27:22, 27:84`,
+        title: `The Ḥ–W–Ṭ Echo: Encompassing Knowledge Before Acting`,
+        tag: `Epistemic Benchmark`,
+        analysis: `When the hoopoe returns from Sheba in 27:22, it tells King Sulaiman—a prophet endowed with vast knowledge—a startling truth: “I have encompassed [in knowledge] that which you have not encompassed” (aḥaṭtu bi-mā lam tuḥiṭ bihī). Sulaiman accepts correction from a small bird because truth is measured by evidence, not rank. In 27:84, Allah uses the exact same verb when interrogating deniers: “Did you deny My signs while you encompassed them not in knowledge?”`,
+        occurrences: [
+          { ref: `27:22`, ar: `أَحَطتُ بِمَا لَمْ تُحِطْ بِهِ`, note: `The hoopoe brings verified news (nabaʾ yaqīn) beyond the king’s awareness.` },
+          { ref: `27:84`, ar: `أَكَذَّبْتُم بِآيَاتِي وَلَمْ تُحِيطُوا بِهَا عِلْمًا`, note: `Deniers are indicted for rejecting signs they never investigated or encompassed.` }
+        ]
+      },
+      shaur: {
+        verses: `Verses 27:18, 27:50, 27:65`,
+        title: `“While They Perceive Not” — Charity vs. Irony`,
+        tag: `Recurring Clause`,
+        analysis: `Notice how the identical phrase wa hum lā yashʿurūn (“while they perceive not”) shifts moral register depending on context. In 27:18, the ant uses it charitably to excuse Sulaiman’s army—they might crush the ants unintentionally. In 27:50, the narrator uses it ironically for Thamud’s nine assassins—they plot in secret while completely unaware of Allah’s counter-plan. And in 27:65, human beings do not perceive (wa mā yashʿurūn) when they will be resurrected.`,
+        occurrences: [
+          { ref: `27:18`, ar: `لَا يَحْطِمَنَّكُمْ سُلَيْمَانُ وَجُنُودُهُ وَهُمْ لَا يَشْعُرُونَ`, note: `The ant assumes innocence: any harm would be unintentional.` },
+          { ref: `27:50`, ar: `وَمَكَرْنَا مَكْرًا وَهُمْ لَا يَشْعُرُونَ`, note: `Thamud’s plotters are oblivious to divine reckoning unfolding around them.` },
+          { ref: `27:65`, ar: `وَمَا يَشْعُرُونَ أَيَّانَ يُبْعَثُونَ`, note: `Creation lacks perception of the Hour’s exact arrival.` }
+        ]
+      },
+      arsh: {
+        verses: `Verses 27:23, 27:26, 27:38–42`,
+        title: `The Great Throne (ʿArsh ʿAẓīm) & Its True Lord`,
+        tag: `Theological Contrast`,
+        analysis: `The hoopoe describes the Queen of Sheba’s grandeur in 27:23 using three phrases that deliberately mirror Sulaiman’s blessings in 27:16 (“she has been given of all things”) and culminates with “and she has a great throne” (wa lahā ʿarshun ʿaẓīm). Just three verses later (27:26), the hoopoe pivots to pure monotheism, declaring Allah to be “Lord of the Great Throne” (Rabb al-ʿArsh al-ʿAẓīm). Then in 27:38–42, that prized earthly throne is transported in the blink of an eye and disguised—proving how fragile earthly magnificence is compared to divine sovereignty.`,
+        occurrences: [
+          { ref: `27:23`, ar: `وَأُوتِيَتْ مِن كُلِّ شَيْءٍ وَلَهَا عَرْشٌ عَظِيمٌ`, note: `Human splendor: Sheba’s throne as the emblem of worldly sovereignty.` },
+          { ref: `27:26`, ar: `اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ رَبُّ الْعَرْشِ الْعَظِيمِ`, note: `Absolute sovereignty: Allah as Lord of the Great Throne.` },
+          { ref: `27:41`, ar: `نَكِّرُوا لَهَا عَرْشَهَا نَنظُرْ أَتَهْتَدِي`, note: `The throne is disguised to test the Queen’s discernment and humility.` }
+        ]
+      }
+    };
+
+    const QUIZ_QUESTIONS = [
+      {
+        meta: `Question 1 of 8 · Prologue`,
+        q: `According to verses 27:13–14, why did Pharaoh and his chiefs reject Musa’s nine visible signs as “obvious magic”?`,
+        options: [
+          `Because the signs were unclear and ambiguous`,
+          `Because their inner selves were convinced, yet they rejected them out of injustice and haughtiness`,
+          `Because Musa refused to show them the white hand`,
+          `Because they never witnessed the staff become a serpent`
+        ],
+        correct: 1,
+        explanation: `Verse 27:14 states explicitly: “And they rejected them, while their [inner] selves were convinced thereof, out of injustice and haughtiness (ẓulman wa ʿuluwwan).”`
+      },
+      {
+        meta: `Question 2 of 8 · Valley of the Ants`,
+        q: `In 27:18, what assumption does the ant make about Sulaiman and his soldiers as she warns her colony?`,
+        options: [
+          `That they intend to destroy the valley deliberately`,
+          `That they are unaware and would crush the ants “while they perceive not”`,
+          `That the birds will alert Sulaiman before he arrives`,
+          `That only the jinn can hear her voice`
+        ],
+        correct: 1,
+        explanation: `The ant says: “enter your dwellings that you not be crushed by Solomon and his soldiers while they perceive not (wa hum lā yashʿurūn)” (27:18).`
+      },
+      {
+        meta: `Question 3 of 8 · Linguistic Echo`,
+        q: `Which Arabic root links the disciplined marshaling of Sulaiman’s troops (27:17) with his personal prayer for gratitude (27:19)?`,
+        options: [
+          `Ḥ–M–D (praise)`,
+          `W–Z–ʿ (yūzaʿūn ↔ awziʿnī)`,
+          `N–Ẓ–R (looking/observing)`,
+          `Ṣ–D–Q (truthfulness)`
+        ],
+        correct: 1,
+        explanation: `Yūzaʿūn (27:17, marshaled/restrained in ranks) and awziʿnī (27:19, enable/restrain my heart to be grateful) share the root w-z-ʿ.`
+      },
+      {
+        meta: `Question 4 of 8 · The Hoopoe & Sheba`,
+        q: `What phrase does the hoopoe use in 27:22 that is echoed at Judgement Day in 27:84?`,
+        options: [
+          `“I have encompassed [in knowledge] that which you have not encompassed” (aḥaṭtu / tuḥīṭū)`,
+          `“Indeed, this is evident bounty”`,
+          `“Legends of the former peoples”`,
+          `“Enter the palace”`
+        ],
+        correct: 0,
+        explanation: `In 27:22 the hoopoe brings certain news beyond the king’s scope (aḥaṭtu bi-mā lam tuḥiṭ bihī); in 27:84 deniers are questioned for rejecting signs they “encompassed not in knowledge” (lam tuḥīṭū bihā ʿilman).`
+      },
+      {
+        meta: `Question 5 of 8 · Diplomacy & Governance`,
+        q: `Why did the Queen of Sheba send a gift to Sulaiman instead of immediately deploying her army (27:33–35)?`,
+        options: [
+          `Because her council admitted they had no military strength`,
+          `Because she knew invading kings ruin cities and wanted to test how Sulaiman’s envoys responded`,
+          `Because the hoopoe commanded her to pay tribute`,
+          `Because she had already seen the glass palace`
+        ],
+        correct: 1,
+        explanation: `Although her chiefs boasted of military might (27:33), she observed that kings who enter a city ruin it and humble its honored people (27:34), so she sent a gift to test his character (27:35).`
+      },
+      {
+        meta: `Question 6 of 8 · Miracle & Stewardship`,
+        q: `How does Sulaiman react the moment the Queen’s throne settles before him in the blink of an eye (27:40)?`,
+        options: [
+          `He attributes it to his own unmatched intellect`,
+          `He calls it a favor from his Lord to test whether he will be grateful or ungrateful`,
+          `He orders the jinn to disguise it immediately before praying`,
+          `He rewards the ʿifrīt of the jinn for bringing it`
+        ],
+        correct: 1,
+        explanation: `One who had knowledge from the Scripture brought it before Sulaiman’s glance returned; Sulaiman immediately declared: “This is from the favor of my Lord to test me whether I will be grateful or ungrateful” (27:40).`
+      },
+      {
+        meta: `Question 7 of 8 · Salih & Lut`,
+        q: `What perverse justification did Lut’s people give for expelling Lut and his family (27:56)?`,
+        options: [
+          `That they brought a bad omen upon the crops`,
+          `That “they are people who keep themselves pure” (yataṭahharūn)`,
+          `That they plotted by night with nine leaders`,
+          `That they refused to pay zakah`
+        ],
+        correct: 1,
+        explanation: `In 27:56, the town’s only answer was: “Expel the family of Lot from your city. Indeed, they are people who keep themselves pure.”`
+      },
+      {
+        meta: `Question 8 of 8 · Cosmic Proofs & Epilogue`,
+        q: `Which verse of the five Amman cosmic questions directly highlights Allah answering “the desperate one when he calls upon Him” (27:62)?`,
+        options: [
+          `27:60 — Gardens of joyful beauty`,
+          `27:61 — Barrier between the two seas`,
+          `27:62 — Responding to al-muḍṭarr and making humans inheritors`,
+          `27:64 — Originating and repeating creation`
+        ],
+        correct: 2,
+        explanation: `Verse 27:62 asks: “Is He [not best] who responds to the desperate one (al-muḍṭarr) when he calls upon Him and removes evil and makes you inheritors of the earth?”`
+      }
+    ];
+
+    const PROMPT_HINTS = {
+      gratitude: `Anchor: Sulaiman smiles at the ant and prays for gratitude (27:19), then views the instant arrival of Sheba’s throne as a test of gratitude vs. ingratitude (27:40). Where in your own life is an achievement or blessing actually a test of shukr?`,
+      humility: `Anchor: A small bird corrects King Sulaiman with verified knowledge (27:22), while deniers at Judgement are questioned for rejecting what they never studied (27:84). What topic or person deserves a more patient hearing before you judge?`,
+      illusion: `Anchor: The Queen of Sheba mistakes polished glass for deep water (27:44), prompting her realization that she had wronged herself. What surface appearance in your work or outlook might be masking a deeper reality?`,
+      leadership: `Anchor: An ant protects its whole community calmly (27:18), and Sheba’s Queen refuses reckless war despite her chiefs’ bravado (27:32–34). What distinguishes protective, consultative leadership from ego-driven force?`,
+      desperation: `Anchor: Verse 27:62 reminds humanity that when all illusions collapse, only Allah answers the desperate soul (al-muḍṭarr)—yet “little do you remember.” How can gratitude stay alive after distress passes?`
+    };
+
+    // =========================================================================
+    // PERSISTED APPLICATION STATE
+    // =========================================================================
+    let appState = {
+      studiedSections: [],
+      selectedBookend: `book`,
+      selectedNarrative: `musa`,
+      selectedLens: `arc`,
+      selectedTerm: `waza`,
+      quizIndex: 0,
+      quizAnswers: {},
+      reflections: []
+    };
+
+    let structureChartInstance = null;
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Ignore transient host storage error while keeping in-memory state intact
+        }
+      }
+    }
+
+    // =========================================================================
+    // NAVIGATION & SCROLL REVEAL
+    // =========================================================================
+    function jumpToSection(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function initScrollReveal() {
+      const items = document.querySelectorAll('.reveal-item');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      items.forEach(function (el) {
+        observer.observe(el);
+      });
+    }
+
+    // =========================================================================
+    // PROGRESS TRACKING
+    // =========================================================================
+    function toggleStudied(sectionKey, btnEl) {
+      const idx = appState.studiedSections.indexOf(sectionKey);
+      if (idx === -1) {
+        appState.studiedSections.push(sectionKey);
+      } else {
+        appState.studiedSections.splice(idx, 1);
+      }
+      renderProgress();
+      persistState();
+    }
+
+    function renderProgress() {
+      const pillars = ['structure', 'narratives', 'linguistics', 'cosmic'];
+      let studiedCount = 0;
+      pillars.forEach(function (key) {
+        const btn = document.getElementById('btn-mark-' + key);
+        const isDone = appState.studiedSections.indexOf(key) !== -1;
+        if (isDone) studiedCount += 1;
+        if (btn) {
+          btn.classList.toggle('is-done', isDone);
+          const span = btn.querySelector('span');
+          if (span) {
+            span.textContent = isDone ? 'Studied' : 'Mark Section Studied';
+          }
+        }
+      });
+
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q, i) {
+        if (appState.quizAnswers[i] === q.correct) {
+          correctCount += 1;
+        }
+      });
+
+      const totalUnits = 4 + QUIZ_QUESTIONS.length;
+      const doneUnits = studiedCount + Object.keys(appState.quizAnswers).length;
+      const pct = Math.round((doneUnits / totalUnits) * 100);
+
+      const summary = document.getElementById('mastery-summary');
+      if (summary) {
+        summary.textContent = `${studiedCount} / 4 Pillars Studied · Quiz ${correctCount}/${QUIZ_QUESTIONS.length}`;
+      }
+      const fill = document.getElementById('mastery-fill');
+      if (fill) {
+        fill.style.width = `${pct}%`;
+      }
+      const bar = document.getElementById('mastery-progressbar');
+      if (bar) {
+        bar.setAttribute('aria-valuenow', String(pct));
+      }
+
+      const quizBadge = document.getElementById('quiz-score-badge');
+      if (quizBadge) {
+        quizBadge.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      }
+    }
+
+    // =========================================================================
+    // SECTION 1: BOOKENDS & STRUCTURE CHART
+    // =========================================================================
+    function selectBookend(key) {
+      if (!BOOKENDS[key]) return;
+      appState.selectedBookend = key;
+      renderBookend();
+      persistState();
+    }
+
+    function renderBookend() {
+      const data = BOOKENDS[appState.selectedBookend] || BOOKENDS.book;
+      const buttons = document.querySelectorAll('#bookend-buttons .bookend-btn');
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.bookend === appState.selectedBookend);
+      });
+
+      const refEl = document.getElementById('bookend-ref');
+      const titleEl = document.getElementById('bookend-title');
+      const bodyEl = document.getElementById('bookend-body');
+      const arEl = document.getElementById('bookend-ar');
+      const enEl = document.getElementById('bookend-en');
+
+      if (refEl) refEl.textContent = data.ref;
+      if (titleEl) titleEl.textContent = data.title;
+      if (bodyEl) bodyEl.textContent = data.body;
+      if (arEl) arEl.textContent = data.ar;
+      if (enEl) enEl.textContent = data.en;
+    }
+
+    function initStructureChart() {
+      const canvas = document.getElementById('structureChart');
+      if (!canvas || typeof Chart === 'undefined') return;
+
+      const styles = getComputedStyle(document.documentElement);
+      const cPrimary = styles.getPropertyValue('--data-1').trim();
+      const cEmerald = styles.getPropertyValue('--data-2').trim();
+      const cBrass = styles.getPropertyValue('--data-3').trim();
+      const cRose = styles.getPropertyValue('--data-4').trim();
+      const cContext = styles.getPropertyValue('--data-context').trim();
+      const cText = styles.getPropertyValue('--on-surface').trim();
+      const cMuted = styles.getPropertyValue('--on-surface-variant').trim();
+      const cGrid = styles.getPropertyValue('--outline-variant').trim();
+
+      if (structureChartInstance) {
+        structureChartInstance.destroy();
+      }
+
+      structureChartInstance = new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: [
+            `Prologue (27:1–6)`,
+            `Musa & Pharaoh (27:7–14)`,
+            `Dawud, Sulaiman & Sheba (27:15–44)`,
+            `Salih & Lut (27:45–58)`,
+            `5 Cosmic Proofs (27:59–64)`,
+            `Epilogue & Reckoning (27:65–93)`
+          ],
+          datasets: [{
+            label: `Verses`,
+            data: [6, 8, 30, 14, 6, 29],
+            backgroundColor: [cBrass, cContext, cPrimary, cRose, cEmerald, cBrass],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (ctx) {
+                  const val = ctx.parsed.x;
+                  const pct = Math.round((val / 93) * 100);
+                  return `${val} verses (${pct}% of Surah)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 34,
+              grid: { color: cGrid },
+              ticks: {
+                color: cMuted,
+                font: { family: 'Plus Jakarta Sans, sans-serif', size: 11 }
+              },
+              title: {
+                display: true,
+                text: `Verse Count (Total = 93)`,
+                color: cMuted,
+                font: { family: 'Plus Jakarta Sans, sans-serif', size: 11, weight: '600' }
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: cText,
+                font: { family: 'Plus Jakarta Sans, sans-serif', size: 12, weight: '600' }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // SECTION 2: PROPHETIC NARRATIVES EXPLORER
+    // =========================================================================
+    function selectNarrative(key) {
+      if (!NARRATIVES[key]) return;
+      appState.selectedNarrative = key;
+      renderNarrative();
+      persistState();
+    }
+
+    function selectLens(lensKey) {
+      appState.selectedLens = lensKey;
+      renderNarrative();
+      persistState();
+    }
+
+    function renderNarrative() {
+      const data = NARRATIVES[appState.selectedNarrative] || NARRATIVES.musa;
+      const lens = data.lenses[appState.selectedLens] ? appState.selectedLens : 'arc';
+
+      document.querySelectorAll('.cycle-btn').forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.cycle === appState.selectedNarrative);
+      });
+      document.querySelectorAll('.lens-chip').forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.lens === lens);
+      });
+
+      const refEl = document.getElementById('nar-ref');
+      const titleEl = document.getElementById('nar-title');
+      const tagEl = document.getElementById('nar-theme-tag');
+      const contentEl = document.getElementById('nar-lens-content');
+      const qRefEl = document.getElementById('nar-quote-ref');
+      const qArEl = document.getElementById('nar-quote-ar');
+      const qEnEl = document.getElementById('nar-quote-en');
+      const actsWrap = document.getElementById('nar-acts-container');
+      const actsGrid = document.getElementById('nar-acts-grid');
+
+      if (refEl) refEl.textContent = data.ref;
+      if (titleEl) titleEl.textContent = data.title;
+      if (tagEl) tagEl.textContent = data.themeTag;
+      if (contentEl) {
+        contentEl.innerHTML = `<p class="prose" style="margin: 0;">${data.lenses[lens]}</p>`;
+      }
+      if (qRefEl) qRefEl.textContent = data.quoteRef;
+      if (qArEl) qArEl.textContent = data.quoteAr;
+      if (qEnEl) qEnEl.textContent = data.quoteEn;
+
+      if (actsWrap && actsGrid) {
+        if (data.acts && data.acts.length > 0) {
+          actsWrap.style.display = 'block';
+          actsGrid.innerHTML = data.acts.map(function (act) {
+            return `
+              <div class="act-card">
+                <span class="verse-ref" style="margin: 0;">${act.tag}</span>
+                <strong style="font-size: 0.96rem;">${act.name}</strong>
+                <p style="margin: 0; font-size: 0.875rem; color: var(--on-surface-variant);">${act.desc}</p>
+              </div>
+            `;
+          }).join('');
+        } else {
+          actsWrap.style.display = 'none';
+          actsGrid.innerHTML = '';
+        }
+      }
+    }
+
+    // =========================================================================
+    // SECTION 3: LINGUISTIC ECHOES INSPECTOR
+    // =========================================================================
+    function selectTerm(key) {
+      if (!LEXICON[key]) return;
+      appState.selectedTerm = key;
+      renderTerm();
+      persistState();
+    }
+
+    function renderTerm() {
+      const data = LEXICON[appState.selectedTerm] || LEXICON.waza;
+      document.querySelectorAll('.lexicon-card').forEach(function (card) {
+        card.classList.toggle('is-active', card.dataset.term === appState.selectedTerm);
+      });
+
+      const vEl = document.getElementById('lex-verses');
+      const tEl = document.getElementById('lex-title');
+      const tagEl = document.getElementById('lex-tag');
+      const aEl = document.getElementById('lex-analysis');
+      const occEl = document.getElementById('lex-occurrences');
+
+      if (vEl) vEl.textContent = data.verses;
+      if (tEl) tEl.textContent = data.title;
+      if (tagEl) tagEl.textContent = data.tag;
+      if (aEl) aEl.textContent = data.analysis;
+      if (occEl) {
+        occEl.innerHTML = data.occurrences.map(function (item) {
+          return `
+            <div class="act-card">
+              <span class="verse-ref" style="margin: 0;">Verse ${item.ref}</span>
+              <div class="arabic-display" style="font-size: 1.25rem; margin: 0;" lang="ar" dir="rtl">${item.ar}</div>
+              <p style="margin: 0; font-size: 0.875rem; color: var(--on-surface-variant);">${item.note}</p>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    // =========================================================================
+    // SECTION 5: MASTERY QUIZ
+    // =========================================================================
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next < 0 || next >= QUIZ_QUESTIONS.length) return;
+      appState.quizIndex = next;
+      renderQuiz();
+      persistState();
+    }
+
+    function selectQuizOption(optIdx) {
+      const qIdx = appState.quizIndex;
+      if (typeof appState.quizAnswers[qIdx] === 'number') return;
+      appState.quizAnswers[qIdx] = optIdx;
+      renderQuiz();
+      renderProgress();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx];
+      if (!q) return;
+
+      const metaEl = document.getElementById('quiz-q-meta');
+      const qTextEl = document.getElementById('quiz-question-text');
+      const optsEl = document.getElementById('quiz-options');
+      const fbEl = document.getElementById('quiz-feedback');
+      const prevBtn = document.getElementById('quiz-prev-btn');
+      const nextBtn = document.getElementById('quiz-next-btn');
+
+      if (metaEl) metaEl.textContent = q.meta;
+      if (qTextEl) qTextEl.textContent = q.q;
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+
+      const chosen = appState.quizAnswers[idx];
+      const hasAnswered = typeof chosen === 'number';
+
+      if (optsEl) {
+        optsEl.innerHTML = q.options.map(function (optText, i) {
+          let cls = 'quiz-option';
+          if (hasAnswered) {
+            if (i === q.correct) cls += ' is-correct';
+            else if (i === chosen) cls += ' is-wrong';
+          }
+          return `<button type="button" class="${cls}" ${hasAnswered ? 'disabled' : ''} onclick="selectQuizOption(${i})">${optText}</button>`;
+        }).join('');
+      }
+
+      if (fbEl) {
+        if (hasAnswered) {
+          fbEl.style.display = 'block';
+          const isRight = chosen === q.correct;
+          fbEl.innerHTML = `<div class="verse-ref">${isRight ? 'Correct' : 'Review Note'}</div><p style="margin: 0; font-size: 0.9375rem;">${q.explanation}</p>`;
+        } else {
+          fbEl.style.display = 'none';
+          fbEl.innerHTML = '';
+        }
+      }
+    }
+
+    function resetQuiz(btn) {
+      const msg = document.getElementById('quiz-status-msg');
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to reset quiz';
+        if (msg) {
+          msg.textContent = 'Confirm reset to clear all 8 answers.';
+          msg.classList.remove('is-error');
+        }
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Reset Quiz';
+      }
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      if (msg) msg.textContent = 'Quiz answers cleared.';
+      renderQuiz();
+      renderProgress();
+      persistState();
+    }
+
+    // =========================================================================
+    // SECTION 5: GUIDED REFLECTION JOURNAL & EXPORT
+    // =========================================================================
+    function updatePromptHint() {
+      const sel = document.getElementById('reflection-prompt-select');
+      const box = document.getElementById('prompt-guidance-box');
+      if (!sel || !box) return;
+      box.textContent = PROMPT_HINTS[sel.value] || PROMPT_HINTS.gratitude;
+    }
+
+    function saveReflection() {
+      const sel = document.getElementById('reflection-prompt-select');
+      const input = document.getElementById('reflection-input');
+      const status = document.getElementById('journal-status-msg');
+      if (!sel || !input) return;
+
+      const text = input.value.trim();
+      if (text.length < 8) {
+        if (status) {
+          status.textContent = 'Please write at least a brief sentence (8+ characters) before saving.';
+          status.classList.add('is-error');
+        }
+        return;
+      }
+
+      const labelText = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].text : sel.value;
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      appState.reflections.unshift({
+        id: String(Date.now()),
+        promptKey: sel.value,
+        promptTitle: labelText,
+        text: text,
+        date: dateStr
+      });
+
+      input.value = '';
+      if (status) {
+        status.textContent = 'Reflection saved to your study journal.';
+        status.classList.remove('is-error');
+      }
+      renderReflections();
+      persistState();
+    }
+
+    function deleteReflection(id) {
+      appState.reflections = appState.reflections.filter(function (entry) {
+        return entry.id !== id;
+      });
+      renderReflections();
+      persistState();
+    }
+
+    function clearReflections(btn) {
+      const status = document.getElementById('journal-status-msg');
+      if (appState.reflections.length === 0) {
+        if (status) {
+          status.textContent = 'No saved reflections to clear.';
+          status.classList.remove('is-error');
+        }
+        return;
+      }
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to clear';
+        if (status) {
+          status.textContent = 'Confirm to delete all saved reflections.';
+          status.classList.remove('is-error');
+        }
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Clear Saved Notes';
+      }
+      appState.reflections = [];
+      if (status) {
+        status.textContent = 'All reflections cleared.';
+        status.classList.remove('is-error');
+      }
+      renderReflections();
+      persistState();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderReflections() {
+      const list = document.getElementById('reflection-list');
+      if (!list) return;
+
+      if (!appState.reflections || appState.reflections.length === 0) {
+        list.innerHTML = `
+          <div class="reflection-item" style="background: var(--surface-container-low); border-style: dashed;">
+            <strong style="font-size: 0.9375rem;">No reflections recorded yet</strong>
+            <p style="margin: 0; font-size: 0.875rem; color: var(--on-surface-variant);">
+              Choose a verse prompt above and record a short reflection to build your personal Surah An-Naml study log.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = appState.reflections.map(function (entry) {
+        return `
+          <article class="reflection-item">
+            <div class="reflection-meta">
+              <span class="verse-ref" style="margin: 0;">${escapeHtml(entry.promptTitle)} · ${escapeHtml(entry.date)}</span>
+              <button type="button" class="btn-ghost-sm" onclick="deleteReflection('${escapeHtml(entry.id)}')">Remove</button>
+            </div>
+            <p style="margin: 0; font-size: 0.9375rem; white-space: pre-wrap;">${escapeHtml(entry.text)}</p>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function exportStudyNotes() {
+      const status = document.getElementById('journal-status-msg');
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach(function (q, i) {
+        if (appState.quizAnswers[i] === q.correct) correctCount += 1;
+      });
+
+      const lines = [
+        `SURAH AN-NAML (CHAPTER 27) — STUDY & MASTERY NOTES`,
+        `==================================================`,
+        `Pillars Studied: ${appState.studiedSections.length} / 4 (${appState.studiedSections.join(', ') || 'None yet'})`,
+        `Mastery Quiz Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `PERSONAL REFLECTIONS (${appState.reflections.length}):`,
+        `--------------------------------------------------`
+      ];
+
+      if (appState.reflections.length === 0) {
+        lines.push(`No reflections written yet.`);
+      } else {
+        appState.reflections.forEach(function (r, idx) {
+          lines.push(`${idx + 1}. [${r.date}] ${r.promptTitle}`);
+          lines.push(`   ${r.text}`);
+          lines.push(``);
+        });
+      }
+
+      const content = lines.join('\n');
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-an-naml-study-notes.txt'
+        });
+        if (status) {
+          status.textContent = 'Exported surah-an-naml-study-notes.txt.';
+          status.classList.remove('is-error');
+        }
+      } else {
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'surah-an-naml-study-notes.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        if (status) {
+          status.textContent = 'Downloaded surah-an-naml-study-notes.txt.';
+          status.classList.remove('is-error');
+        }
+      }
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            appState = Object.assign({}, appState, saved);
+            if (!Array.isArray(appState.studiedSections)) appState.studiedSections = [];
+            if (!Array.isArray(appState.reflections)) appState.reflections = [];
+            if (!appState.quizAnswers || typeof appState.quizAnswers !== 'object') appState.quizAnswers = {};
+          }
+        } catch (err) {
+          // Proceed with default empty state
+        }
+      }
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      updatePromptHint();
+      renderBookend();
+      renderNarrative();
+      renderTerm();
+      renderQuiz();
+      renderReflections();
+      renderProgress();
+      initStructureChart();
+      initScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

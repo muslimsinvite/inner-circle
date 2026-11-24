@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Ash-Shu'ara (Chapter 26) — Interactive Study Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta style) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-featured: #c98a6b;
+      --outline-tertiary: #b5d6c9;
+      --outline-button: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+      --error-container: #f9e3e3;
+
+      /* Semantic & Focus */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-bar: 4px 4px 0 0;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--outline-variant), var(--data-3), var(--outline-variant));
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.45rem, 1.5rem + 4vw, 4.35rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.9vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.65vw, 1.55rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+      --label-size: clamp(0.6875rem, 0.68rem + 0.1vw, 0.75rem);
+      --figure-size: clamp(1.9rem, 1.5rem + 1.5vw, 2.6rem);
+      --arabic-lg: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+      --arabic-md: clamp(1.125rem, 1.02rem + 0.4vw, 1.35rem);
+
+      /* Spacing scale (4pt base) */
+      --space-2xs: 0.125rem;
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    button, input, select, textarea { font-family: inherit; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography helpers */
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-md) 0 var(--space-md);
+      max-width: 18ch;
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      margin: 0 0 var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 var(--space-md);
+      max-width: 30ch;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .prose-muted {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+
+    .label-caps {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    /* Arabic text treatment */
+    .arabic-verse {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-lg);
+      line-height: 1.95;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: 0;
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-md);
+      line-height: 1.85;
+      color: var(--on-surface);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Brass diamond divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--outline-tertiary);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--outline-featured);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .btn-primary:active { transform: translateY(1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--outline-button);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-secondary.is-active {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--outline-tertiary);
+    }
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Riad arch metric cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+      transform: translateY(-2px);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .arch-card .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-card .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--figure-size);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+    .arch-card .arch-caption {
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: var(--tertiary);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* Quick Study Bar & Jump Nav */
+    .study-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .progress-cluster {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex: 1 1 280px;
+    }
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      min-width: 110px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .jump-link:hover {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+
+    /* Section tonal bands & panels */
+    .band-plaster {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+    .panel-leaf {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: Structural Proportion Map */
+    .architecture-shell {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .ribbon-container {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .ribbon-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--space-2xs);
+      width: 100%;
+      min-height: 64px;
+      align-items: stretch;
+    }
+    .ribbon-seg {
+      border: 1px solid var(--background);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-xs);
+      min-height: 64px;
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+    }
+    .ribbon-seg:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .ribbon-seg.is-selected {
+      outline: 2px solid var(--on-surface);
+      outline-offset: 2px;
+      transform: translateY(-2px);
+    }
+    .seg-frame { background: var(--data-2); }
+    .seg-long { background: var(--data-1); }
+    .seg-short { background: var(--data-3); color: var(--on-surface); }
+    .seg-closing { background: var(--data-4); }
+
+    .ribbon-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .architecture-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .verse-bar-chart {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr) 48px;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.8125rem;
+    }
+    .bar-label {
+      font-weight: 600;
+      color: var(--on-surface);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bar-track {
+      height: 14px;
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: var(--rounded);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .bar-num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    /* Section 2: Prophetic Cycles Interactive Explorer */
+    .prophet-selector {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .prophet-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2xs);
+      min-height: 68px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      text-align: left;
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  border-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .prophet-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .prophet-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .prophet-btn.is-active .prophet-meta {
+      color: var(--primary-container);
+    }
+    .prophet-btn .prophet-name {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.1;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .prophet-btn .prophet-meta {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cycle-workspace {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .cycle-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .cycle-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .dialogue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .dialogue-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .dialogue-step-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .verse-callout {
+      background: var(--primary-container);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .verse-quote-en {
+      font-family: var(--font-headline);
+      font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    /* Tables */
+    .table-scroll {
+      overflow-x: auto;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    thead {
+      background: var(--surface-container);
+    }
+    th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      white-space: nowrap;
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--primary-container); }
+    .td-num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Deep Dive Spotlights */
+    .spotlight-split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .step-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .step-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      gap: var(--space-2xs);
+    }
+    .step-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    /* Section 3: Recurring Refrain Explorer */
+    .refrain-hero-quote {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-featured);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+    }
+    .refrain-hero-quote .arabic-verse {
+      text-align: center;
+      margin-bottom: var(--space-md);
+      color: var(--on-primary-container);
+    }
+    .refrain-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .refrain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .refrain-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      box-shadow: var(--soft-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .refrain-card.is-command {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+
+    /* Section 4: Revelation, Poets & Core Lessons */
+    .trio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .poet-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .pillar-btn {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      min-height: 44px;
+      color: var(--on-surface);
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .pillar-btn:hover {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .pillar-btn.is-active {
+      background: var(--tertiary-container);
+      border-color: var(--outline-tertiary);
+    }
+
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Form Controls */
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .field-textarea {
+      width: 100%;
+      min-height: 92px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      resize: vertical;
+      transition: border-color var(--dur-short) var(--ease-out);
+    }
+    .field-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    /* Section 5: Quiz & Journal */
+    .quiz-shell {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      text-align: left;
+      cursor: pointer;
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+      transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      font-size: 0.9375rem;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border-left: 3px solid var(--tertiary);
+      color: var(--on-surface);
+    }
+
+    .journal-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .journal-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+    }
+
+    /* Scroll reveal */
+    .reveal-block {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-block.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 780px) {
+      .architecture-detail {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .band-plaster, .cycle-workspace, .refrain-hero-quote {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .ribbon-seg {
+        font-size: 0.65rem;
+        padding: var(--space-2xs);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-block {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- HERO -->
+    <header>
+      <div class="kicker-row">
+        <span>Chapter 26 · Surah Ash-Shu'ara</span>
+        <span>227 Verses · 8 Twin Refrains</span>
+      </div>
+      <h1 class="title">Surah Ash-Shu'ara: The Architecture of <em>Testimony</em></h1>
+      <p class="lede">
+        A structural and spiritual study of the Qur'an's 26th chapter — tracing how seven prophetic confrontations, an eightfold refrain pairing Might with Mercy, and a closing meditation on revelation and poetry turn prophetic grief into steadfast trust.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">&#9670; Study Overview &#9670;</div>
+
+      <section class="arch-grid" aria-label="Chapter structural highlights">
+        <article class="arch-card">
+          <div class="arch-label">Total Verses</div>
+          <div class="arch-figure">227</div>
+          <p class="arch-caption">9 opening · 182 historical · 36 closing</p>
+        </article>
+        <article class="arch-card is-featured">
+          <div class="arch-label">Prophetic Cycles</div>
+          <div class="arch-figure">7</div>
+          <p class="arch-caption">Moses, Abraham, Noah, Hud, Salih, Lot, Shu'ayb</p>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Refrain Anchors</div>
+          <div class="arch-figure">8 + 1</div>
+          <p class="arch-caption">8 twin refrains + 1 personal command (26:217)</p>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Namesake Climax</div>
+          <div class="arch-figure">26:224–227</div>
+          <p class="arch-caption">4 conditions redeeming faithful poetry</p>
+        </article>
+      </section>
+
+      <div class="study-bar" style="margin-top: var(--space-lg);" aria-label="Study progress and navigation">
+        <div class="progress-cluster">
+          <span class="label-caps">Study Progress</span>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="study-progress-bar">
+            <div class="progress-fill" id="study-progress-fill"></div>
+          </div>
+          <span id="study-progress-text" style="font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums;">0 / 7 cycles reviewed</span>
+        </div>
+        <nav class="jump-links" aria-label="Section navigation">
+          <a class="jump-link" href="#architecture">Architecture</a>
+          <a class="jump-link" href="#cycles">7 Prophetic Cycles</a>
+          <a class="jump-link" href="#refrains">Twin Refrains</a>
+          <a class="jump-link" href="#revelation-poetry">Revelation &amp; Poets</a>
+          <a class="jump-link" href="#mastery-journal">Check &amp; Notes</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- SECTION 1: NARRATIVE ARCHITECTURE -->
+    <section id="architecture" class="band-plaster reveal-block">
+      <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+        <span>Section I · Structural Architecture</span>
+        <span class="badge-emerald">Verses 26:1–227</span>
+      </div>
+      <h2 class="section-heading">Nine opening verses pose a crisis of grief; 182 verses answer it across seven <em>histories</em>.</h2>
+      <p class="prose">
+        Surah Ash-Shu'ara opens directly with the Prophet Muhammad's emotional weight: <q>Perhaps, [O Muhammad], you would kill yourself with grief that they will not be believers</q> (26:3). Allah assures him that compelling belief through an overwhelming sky-miracle was always within reach (26:4), yet faith is meant to grow from reflective recognition — such as looking at the earth and <q>how much We have produced therein from every noble kind</q> (26:7).
+      </p>
+      <p class="prose-muted">
+        From that botanical sign emerges the chapter's first refrain (26:8–9), launching a three-act architecture: two sprawling courtroom and theological dramas (Moses and Abraham), five tightly compressed 16–19 verse communal warnings (Noah, Hud, Salih, Lot, Shu'ayb), and a 36-verse closing frame applying every lesson back to the Qur'an, moral responsibility, and principled speech.
+      </p>
+
+      <div class="architecture-shell">
+        <div class="ribbon-container">
+          <div class="label-caps" style="margin-bottom: var(--space-sm);">Interactive 227-Verse Proportional Map — Select any span to inspect</div>
+          <div class="ribbon-track" id="architecture-ribbon" role="group" aria-label="Proportional verse spans of Surah Ash-Shu'ara"></div>
+          <div class="ribbon-legend">
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--data-2);"></span> Opening Frame (9v)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--data-1);"></span> Extended Dramas (Moses 59v, Abraham 36v)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--data-3);"></span> Compressed Cycles (Noah–Shu'ayb, 16–19v)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background: var(--data-4);"></span> Closing Revelation &amp; Poets (36v)</span>
+          </div>
+        </div>
+
+        <div class="architecture-detail">
+          <div id="arch-inspector">
+            <span class="badge-terracotta" id="arch-span-badge">26:1–9 · 9 Verses</span>
+            <h3 class="subhead" id="arch-title" style="margin-top: var(--space-sm);">Opening Frame: Consolation &amp; Signs in Creation</h3>
+            <p class="prose-muted" id="arch-summary"></p>
+            <div class="verse-callout">
+              <p class="arabic-verse" lang="ar" dir="rtl" id="arch-arabic"></p>
+              <p class="verse-quote-en" id="arch-quote"></p>
+              <span class="label-caps" id="arch-ref"></span>
+            </div>
+          </div>
+          <div class="panel-leaf">
+            <div class="label-caps" style="margin-bottom: var(--space-sm);">Verse Count by Narrative Act</div>
+            <div class="verse-bar-chart" id="verse-bar-chart"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE SEVEN PROPHETIC CYCLES -->
+    <section id="cycles" class="reveal-block">
+      <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+        <span>Section II · Prophetic Cycles &amp; Dialogues</span>
+        <span class="badge-emerald">Verses 26:10–191</span>
+      </div>
+      <h2 class="section-heading">Seven confrontations expose why communities reject <em>truth</em> — even when signs stand before them.</h2>
+      <p class="prose">
+        Select any prophet below to trace how the dialogue unfolds: the messenger's opening claim, the audience's counter-excuse (tyranny, ancestral habit, class snobbery, architectural hubris, or economic fraud), and the decisive turning point.
+      </p>
+
+      <div class="prophet-selector" id="prophet-selector" role="group" aria-label="Select a prophetic cycle"></div>
+
+      <article class="cycle-workspace" id="cycle-workspace" aria-live="polite">
+        <div class="cycle-header">
+          <div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-xs);">
+              <span class="badge-terracotta" id="cycle-verses-badge"></span>
+              <span class="badge-emerald" id="cycle-sin-badge"></span>
+            </div>
+            <h3 class="section-heading" id="cycle-title" style="margin: var(--space-xs) 0;"></h3>
+            <p class="prose-muted" id="cycle-subtitle" style="margin-bottom: 0;"></p>
+          </div>
+          <div class="cycle-actions">
+            <button type="button" class="btn btn-secondary" id="btn-bookmark-cycle" onclick="toggleBookmarkCurrent()">Bookmark Key Verse</button>
+            <button type="button" class="btn btn-primary" id="btn-complete-cycle" onclick="toggleCycleStudied()">Mark Cycle Studied</button>
+          </div>
+        </div>
+
+        <div class="dialogue-grid">
+          <div class="dialogue-card">
+            <span class="dialogue-step-tag">1. Prophetic Opening</span>
+            <p class="prose" id="cycle-opening" style="margin: 0;"></p>
+          </div>
+          <div class="dialogue-card">
+            <span class="dialogue-step-tag">2. Human Objection &amp; Excuse</span>
+            <p class="prose" id="cycle-objection" style="margin: 0;"></p>
+          </div>
+          <div class="dialogue-card">
+            <span class="dialogue-step-tag">3. Turning Point &amp; Verdict</span>
+            <p class="prose" id="cycle-verdict" style="margin: 0;"></p>
+          </div>
+        </div>
+
+        <div class="verse-callout">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <span class="label-caps" id="cycle-verse-ref"></span>
+            <span style="font-size: 0.8125rem; color: var(--on-surface-variant); font-weight: 600;" id="cycle-formula-note"></span>
+          </div>
+          <p class="arabic-verse" lang="ar" dir="rtl" id="cycle-arabic"></p>
+          <p class="verse-quote-en" id="cycle-english"></p>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="cycle-note-input" id="cycle-note-label">Personal Reflection Note for This Cycle</label>
+          <textarea class="field-textarea" id="cycle-note-input" oninput="saveCurrentCycleNote(this.value)" placeholder="Write a reflection or cross-reference for this prophetic narrative…"></textarea>
+          <div class="status-note" id="note-save-status"></div>
+        </div>
+      </article>
+
+      <!-- Comparative Matrix -->
+      <div style="margin-top: var(--space-2xl);">
+        <h3 class="subhead">Comparative Anatomy Across All Seven Cycles</h3>
+        <p class="prose-muted">
+          Notice the shift between the first two expansive dramas and the five compressed cycles (26:105–191). Each of the five shorter narratives begins with <q>[Nation] denied the messengers</q> — emphasizing that rejecting one prophet rejects the entire prophetic message — and repeats a nearly identical five-verse opening plea before naming that society's defining moral failure.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Prophet &amp; People</th>
+                <th>Verses</th>
+                <th>Relational Opening</th>
+                <th>Core Moral Pathology</th>
+                <th>Accusation Hurled</th>
+                <th>Accountability &amp; Rescue</th>
+              </tr>
+            </thead>
+            <tbody id="comparative-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Extended Dialogue Spotlights -->
+      <div class="spotlight-split" style="margin-top: var(--space-2xl);">
+        <article class="panel-leaf">
+          <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+            <span>Spotlight · Moses &amp; Pharaoh</span>
+            <span>26:18–51</span>
+          </div>
+          <h3 class="subhead">From Wages and Palace Loyalty to Prostration</h3>
+          <p class="prose-muted">
+            Moses's dialogue exposes political arrogance in four escalating turns, culminating in the magicians' instant moral reversal once truth devours illusion.
+          </p>
+          <ol class="step-list">
+            <li class="step-item">
+              <div class="step-item-head"><span>1. Three Human Fears Answered</span><span class="td-num">26:12–15</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Moses confesses fear of denial, constricted speech, and execution; Allah pairs him with Aaron and promises: <q>indeed, We are with you, listening.</q></span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>2. Deflecting Gratitude With Justice</span><span class="td-num">26:18–22</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Pharaoh cites raising Moses as a child; Moses asks how palace privilege counts as a favor while enslaving an entire nation.</span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>3. Defining the Lord of the Worlds</span><span class="td-num">26:23–29</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Moses answers <q>What is the Lord of the worlds?</q> across cosmos, ancestry, and East-to-West sovereignty; Pharaoh responds with mockery and prison threats.</span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>4. The Magicians' Transformation</span><span class="td-num">26:41–51</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Men who entered bargaining for cash (<q>Is there indeed for us a reward?</q>) end defying crucifixion: <q>No harm. Indeed, to our Lord we will return.</q></span>
+            </li>
+          </ol>
+        </article>
+
+        <article class="panel-leaf">
+          <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+            <span>Spotlight · Abraham's Theology</span>
+            <span>26:78–89</span>
+          </div>
+          <h3 class="subhead">Six Intimate Acts &amp; The Sound Heart (<span class="arabic-inline" lang="ar" dir="rtl">قَلْبٍ سَلِيمٍ</span>)</h3>
+          <p class="prose-muted">
+            After showing that idols neither hear, benefit, nor harm (26:72–73), Abraham grounds worship not in abstract power alone, but in personal sustenance, healing, and ultimate forgiveness.
+          </p>
+          <ol class="step-list">
+            <li class="step-item">
+              <div class="step-item-head"><span>Created &amp; Guided</span><span class="td-num">26:78</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Origin and direction both flow directly from the Creator.</span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>Fed, Given Drink &amp; Healed</span><span class="td-num">26:79–80</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Notice the grammar of humility: Abraham says <q>when <em>I</em> am ill, it is <em>He</em> who cures me</q> — attributing illness to human frailty and healing to Allah.</span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>Death, Resurrection &amp; Pardon</span><span class="td-num">26:81–82</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);">Hope rests on mercy on the Day of Recompense, followed by six prayers for wisdom, righteous company, honorable legacy, and Paradise (26:83–87).</span>
+            </li>
+            <li class="step-item">
+              <div class="step-item-head"><span>The Sole Currency on Judgment Day</span><span class="td-num">26:88–89</span></div>
+              <span style="font-size: 0.9rem; color: var(--on-surface-variant);"><q>The Day when there will not benefit [anyone] wealth or children, But only one who comes to Allah with a sound heart.</q></span>
+            </li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3: RECURRING REFRAIN OF MIGHT AND MERCY -->
+    <section id="refrains" class="band-plaster reveal-block">
+      <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+        <span>Section III · Recurring Refrain</span>
+        <span class="badge-emerald">Al-'Azeez Ar-Raheem</span>
+      </div>
+      <h2 class="section-heading">Eight times the refrain pairs <em>Might</em> with <em>Mercy</em> — until it becomes a direct command.</h2>
+      <p class="prose">
+        Like pillars pacing a colonnade, two twin verses close the opening natural sign and every single prophetic cycle. Yet the surah's deepest turn arrives in 26:217: the refrain stops describing history in the third person and addresses the Messenger directly as a rule for living.
+      </p>
+
+      <div class="refrain-hero-quote" style="margin-bottom: var(--space-lg);">
+        <p class="arabic-verse" lang="ar" dir="rtl">
+          إِنَّ فِي ذَلِكَ لَآيَةً ۖ وَمَا كَانَ أَكْثَرُهُمْ مُؤْمِنِينَ ۝ وَإِنَّ رَبَّكَ لَهُوَ الْعَزِيزُ الرَّحِيمُ
+        </p>
+        <p class="verse-quote-en" style="margin-bottom: var(--space-sm);">
+          “Indeed in that is a sign, but most of them were not to be believers. And indeed, your Lord — He is the Exalted in Might, the Merciful.”
+        </p>
+        <span class="label-caps">Repeated at 26:8–9 · 67–68 · 103–104 · 121–122 · 139–140 · 158–159 · 174–175 · 190–191</span>
+      </div>
+
+      <div class="refrain-filter-row" style="margin-bottom: var(--space-md);" role="group" aria-label="Filter refrain occurrences">
+        <span class="label-caps">Filter by Type:</span>
+        <button type="button" class="btn btn-secondary is-active" id="filter-all" onclick="filterRefrains('all')">All 9 Anchors</button>
+        <button type="button" class="btn btn-secondary" id="filter-nature" onclick="filterRefrains('nature')">Creation &amp; Eschatology (2)</button>
+        <button type="button" class="btn btn-secondary" id="filter-history" onclick="filterRefrains('history')">Prophetic Deliverance (6)</button>
+        <button type="button" class="btn btn-secondary" id="filter-command" onclick="filterRefrains('command')">Personal Command (26:217)</button>
+      </div>
+
+      <div class="refrain-grid" id="refrain-grid"></div>
+
+      <div class="panel-leaf" style="margin-top: var(--space-lg);">
+        <h3 class="subhead">Why <em>Al-'Azeez</em> (Exalted in Might) and <em>Ar-Raheem</em> (Merciful) Always Stand Together</h3>
+        <p class="prose" style="margin-bottom: 0;">
+          Power without mercy turns into Pharaonic tyranny; mercy without power cannot rescue the oppressed from drowning or stoning. By closing every cycle with <strong>Al-'Azeez Ar-Raheem</strong>, Surah Ash-Shu'ara reminds believers that the Lord who parts seas and dismantles arrogant fortresses is simultaneously the One who sends warners beforehand so no city is destroyed unjustly (26:208–209), forgives repentant magicians (26:51), and receives anyone returning with a sound heart (26:89).
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: REVELATION, THE POETS & CORE LESSONS -->
+    <section id="revelation-poetry" class="reveal-block">
+      <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+        <span>Section IV · Closing Frame &amp; Spiritual Lessons</span>
+        <span class="badge-emerald">Verses 26:192–227</span>
+      </div>
+      <h2 class="section-heading">Why the chapter is named <em>The Poets</em>: distinguishing revealed truth from wandering words.</h2>
+      <p class="prose">
+        In the closing 36 verses, all seven historical threads converge on the Qur'an itself. The surah answers the charge that revelation comes from devils or mere poetic imagination by contrasting three sources of speech, then articulating four ethical anchors that elevate poetry itself into service of truth.
+      </p>
+
+      <div class="trio-grid" style="margin-bottom: var(--space-xl);">
+        <article class="panel-leaf" style="border-top: 3px solid var(--tertiary);">
+          <span class="badge-emerald">26:192–199 · 210–212</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Divine Revelation</h3>
+          <p class="prose-muted" style="margin-bottom: var(--space-sm);">
+            Brought down by the Trustworthy Spirit (<span class="arabic-inline" lang="ar" dir="rtl">الرُّوحُ الْأَمِينُ</span>) directly onto the Prophet's heart in clear Arabic (<span class="arabic-inline" lang="ar" dir="rtl">بِلِسَانٍ عَرَبِيٍّ مُبِينٍ</span>). Recognized in earlier scriptures; completely inaccessible to devils, who are barred from hearing it.
+          </p>
+        </article>
+
+        <article class="panel-leaf" style="border-top: 3px solid var(--error);">
+          <span class="badge-terracotta">26:221–223</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Devils &amp; Sinful Liars</h3>
+          <p class="prose-muted" style="margin-bottom: var(--space-sm);">
+            If devils descend at all, they descend upon <q>every sinful liar</q> (<span class="arabic-inline" lang="ar" dir="rtl">كُلِّ أَفَّاكٍ أَثِيمٍ</span>) who passes along eavesdropped fragments mixed with falsehood — the polar opposite of a trustworthy messenger asking no wage.
+          </p>
+        </article>
+
+        <article class="panel-leaf" style="border-top: 3px solid var(--primary);">
+          <span class="badge-terracotta">26:224–226</span>
+          <h3 class="subhead" style="margin-top: var(--space-sm);">Unanchored Poets</h3>
+          <p class="prose-muted" style="margin-bottom: var(--space-sm);">
+            Followed by deviators, roaming aimlessly <q>in every valley</q> (<span class="arabic-inline" lang="ar" dir="rtl">فِي كُلِّ وَادٍ يَهِيمُونَ</span>) and saying what they do not practice — speech severed from moral accountability and lived action.
+          </p>
+        </article>
+      </div>
+
+      <!-- Interactive 4-Pillar Exception Explorer (26:227) -->
+      <div class="panel-leaf" style="margin-bottom: var(--space-xl);">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+          <div>
+            <span class="label-caps">Verse 26:227 · The Four-Part Exception</span>
+            <h3 class="subhead" style="margin: var(--space-xs) 0 0;">What Transforms Poetry and Creative Speech Into Moral Witness</h3>
+          </div>
+          <span class="badge-emerald">Select a Pillar to Inspect</span>
+        </div>
+
+        <p class="arabic-verse" lang="ar" dir="rtl" style="margin-bottom: var(--space-md); padding: var(--space-md); background: var(--background); border-radius: var(--rounded); border: var(--warm-hairline);">
+          إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَذَكَرُوا اللَّهَ كَثِيرًا وَانْتَصَرُوا مِنْ بَعْدِ مَا ظُلِمُوا ۗ وَسَيَعْلَمُ الَّذِينَ ظَلَمُوا أَيَّ مُنْقَلَبٍ يَنْقَلِبُونَ
+        </p>
+
+        <div class="poet-pillars" id="poet-pillars" role="group" aria-label="Four conditions of righteous poetry in 26:227"></div>
+        <div class="verse-callout" id="poet-pillar-detail" style="margin-top: var(--space-md);"></div>
+      </div>
+
+      <!-- Five Core Spiritual Lessons -->
+      <h3 class="subhead">Five Core Spiritual Lessons Woven Through Chapter 26</h3>
+      <div class="lessons-grid">
+        <article class="panel-leaf">
+          <span class="label-caps">1 · Grief to Reliance (26:3, 217)</span>
+          <h4 class="subhead" style="font-size: 1.25rem; margin-top: var(--space-xs);">Convey Truth; Release Outcomes</h4>
+          <p class="prose-muted" style="margin: 0;">A messenger is responsible for clarity and compassion, not forcing hearts. Healing comes from relying on <em>Al-'Azeez Ar-Raheem</em>.</p>
+        </article>
+        <article class="panel-leaf">
+          <span class="label-caps">2 · The Sound Heart (26:88–89)</span>
+          <h4 class="subhead" style="font-size: 1.25rem; margin-top: var(--space-xs);">Wealth &amp; Lineage Do Not Save</h4>
+          <p class="prose-muted" style="margin: 0;">On Judgment Day, worldly status collapses. Only a <em>qalb saleem</em> — a heart free of idolatry, arrogance, and malice — endures.</p>
+        </article>
+        <article class="panel-leaf">
+          <span class="label-caps">3 · Dignity of the Humble (26:111–114, 215)</span>
+          <h4 class="subhead" style="font-size: 1.25rem; margin-top: var(--space-xs);">Lower Your Wing to Believers</h4>
+          <p class="prose-muted" style="margin: 0;">Noah refuses to dismiss poor believers to please elites; Muhammad is commanded to show tender humility toward every follower.</p>
+        </article>
+        <article class="panel-leaf">
+          <span class="label-caps">4 · Unseen Companionship (26:15, 218–220)</span>
+          <h4 class="subhead" style="font-size: 1.25rem; margin-top: var(--space-xs);">Watched in Night Prayer</h4>
+          <p class="prose-muted" style="margin: 0;">As Allah reassured Moses (<q>We are with you, listening</q>), He assures the Prophet that He sees him standing alone and moving among those who prostrate.</p>
+        </article>
+        <article class="panel-leaf">
+          <span class="label-caps">5 · Moral Unity of Life (26:181–183, 226)</span>
+          <h4 class="subhead" style="font-size: 1.25rem; margin-top: var(--space-xs);">Worship Requires Justice &amp; Integrity</h4>
+          <p class="prose-muted" style="margin: 0;">From fair market scales in Madyan to matching words with righteous deeds in 26:227, true faith refuses to split ritual from ethics.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: MASTERY CHECK & PERSONAL STUDY JOURNAL -->
+    <section id="mastery-journal" class="band-plaster reveal-block">
+      <div class="kicker-row" style="margin-bottom: var(--space-xs);">
+        <span>Section V · Interactive Review &amp; Notes</span>
+        <span class="badge-emerald" id="quiz-score-badge">0 / 5 Answered</span>
+      </div>
+      <h2 class="section-heading">Test your grasp of Surah Ash-Shu'ara and collect your <em>bookmarked</em> verses.</h2>
+
+      <div class="quiz-shell">
+        <div id="quiz-container" style="display: grid; gap: var(--space-md);"></div>
+
+        <article class="panel-leaf">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+            <div>
+              <span class="label-caps">Saved Across Sessions</span>
+              <h3 class="subhead" style="margin: var(--space-xs) 0 0;">Study Journal &amp; Bookmarked Cycles</h3>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+              <button type="button" class="btn btn-primary" onclick="exportStudyNotes()">Export Study Notes</button>
+              <button type="button" class="btn btn-secondary" id="btn-reset-progress" onclick="resetStudyProgress(this)">Reset Progress</button>
+            </div>
+          </div>
+          <div id="journal-summary" class="journal-list"></div>
+          <div class="status-note" id="export-status" style="margin-top: var(--space-sm);"></div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span><strong>Source Basis:</strong> Qur'an Chapter 26 — Surah Ash-Shu'ara (The Poets), verses 26:1–227 (Arabic text and English translation provided in study context).</span>
+      <span><strong>Persistence:</strong> Review progress, bookmarked verses, quiz answers, and reflection notes save automatically in your notebook workspace.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const ARCH_SEGMENTS = [
+      {
+        id: `opening`,
+        shortLabel: `Open`,
+        title: `Opening Frame: Consolation & Creation's Sign`,
+        verses: `26:1–9`,
+        count: 9,
+        groupClass: `seg-frame`,
+        barColor: `var(--data-2)`,
+        summary: `Opens with the disconnected letters Ta-Seen-Meem (26:1) and immediately consoles the Prophet over his deep grief at people's disbelief (26:3). Points to the earth's diverse, noble vegetation (26:7) before introducing the first twin refrain (26:8–9).`,
+        arabic: `لَعَلَّكَ بَاخِعٌ نَفْسَكَ أَلَّا يَكُونُوا مُؤْمِنِينَ ۝ أَوَلَمْ يَرَوْا إِلَى الْأَرْضِ كَمْ أَنْبَتْنَا فِيهَا مِنْ كُلِّ زَوْجٍ كَرِيمٍ`,
+        quote: `Perhaps, [O Muhammad], you would kill yourself with grief that they will not be believers… Did they not look at the earth — how much We have produced therein from every noble kind?`,
+        ref: `26:3 & 26:7`
+      },
+      {
+        id: `moses`,
+        shortLabel: `Moses (59v)`,
+        title: `Cycle 1: Moses & Aaron vs. Pharaoh`,
+        verses: `26:10–68`,
+        count: 59,
+        groupClass: `seg-long`,
+        barColor: `var(--data-1)`,
+        summary: `The longest cycle in the surah: Moses's call and three human fears, the theological courtroom debate over "Lord of the worlds," the magicians' dramatic prostration despite threats of crucifixion, and the parting of the sea.`,
+        arabic: `قَالَ كَلَّا ۖ إِنَّ مَعِيَ رَبِّي سَيَهْدِينِ ۝ فَأَوْحَيْنَا إِلَىٰ مُوسَىٰ أَنِ اضْرِبْ بِعَصَاكَ الْبَحْرَ`,
+        quote: `[Moses] said, "No! Indeed, with me is my Lord; He will guide me." Then We inspired to Moses, "Strike with your staff the sea," and it parted…`,
+        ref: `26:62–63`
+      },
+      {
+        id: `abraham`,
+        shortLabel: `Abraham (36v)`,
+        title: `Cycle 2: Abraham, Idols & The Sound Heart`,
+        verses: `26:69–104`,
+        count: 36,
+        groupClass: `seg-long`,
+        barColor: `var(--data-1)`,
+        summary: `Shifts from political tyranny to ancestral blind imitation. Abraham questions lifeless idols, paints a sixfold portrait of Allah's care, prays for a "sound heart" (qalb saleem), and reveals the regret of idolaters in the Hereafter.`,
+        arabic: `يَوْمَ لَا يَنْفَعُ مَالٌ وَلَا بَنُونَ ۝ إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ`,
+        quote: `The Day when there will not benefit [anyone] wealth or children, But only one who comes to Allah with a sound heart.`,
+        ref: `26:88–89`
+      },
+      {
+        id: `noah`,
+        shortLabel: `Noah`,
+        title: `Cycle 3: Noah & Class Arrogance`,
+        verses: `26:105–122`,
+        count: 18,
+        groupClass: `seg-short`,
+        barColor: `var(--data-3)`,
+        summary: `Inaugurates the five-part compressed prophetic pattern. Noah's elite detractors scorn his humble followers ("the lowest class"), and Noah refuses to drive believers away before deliverance in the laden ship.`,
+        arabic: `قَالُوا أَنُؤْمِنُ لَكَ وَاتَّبَعَكَ الْأَرْذَلُونَ ۝ قَالَ وَمَا عِلْمِي بِمَا كَانُوا يَعْمَلُونَ ۝ وَمَا أَنَا بِطَارِدِ الْمُؤْمِنِينَ`,
+        quote: `They said, "Should we believe you while you are followed by the lowest [class of people]?" … [Noah] said, "And I am not one to drive away the believers."`,
+        ref: `26:111–114`
+      },
+      {
+        id: `hud`,
+        shortLabel: `Hud`,
+        title: `Cycle 4: Hud & The Hubris of 'Aad`,
+        verses: `26:123–140`,
+        count: 18,
+        groupClass: `seg-short`,
+        barColor: `var(--data-3)`,
+        summary: `Confronts monumental vanity and violent power: 'Aad builds vain landmarks on every ridge and fortresses as though immortal, striking as tyrants while mocking Hud's counsel as mere ancient custom.`,
+        arabic: `أَتَبْنُونَ بِكُلِّ رِيعٍ آيَةً تَعْبَثُونَ ۝ وَتَتَّخِذُونَ مَصَانِعَ لَعَلَّكُمْ تَخْلُدُونَ ۝ وَإِذَا بَطَشْتُمْ بَطَشْتُمْ جَبَّارِينَ`,
+        quote: `Do you construct on every elevation a sign, amusing yourselves, And take for yourselves palaces and fortresses that you might abide eternally? And when you strike, you strike as tyrants.`,
+        ref: `26:128–130`
+      },
+      {
+        id: `salih`,
+        shortLabel: `Salih`,
+        title: `Cycle 5: Salih, Thamud & The She-Camel`,
+        verses: `26:141–159`,
+        count: 19,
+        groupClass: `seg-short`,
+        barColor: `var(--data-3)`,
+        summary: `Challenges false security amid gardens, springs, palms, and mountain-carved homes. Accused of being bewitched and "but a man like ourselves," Salih presents the she-camel's shared drinking schedule, which they brutally violate.`,
+        arabic: `قَالَ هُذِهِ نَاقَةٌ لَهَا شِرْبٌ وَلَكُمْ شِرْبُ يَوْمٍ مَعْلُومٍ ۝ وَلَا تَمَسُّوهَا بِسُوءٍ`,
+        quote: `He said, "This is a she-camel. For her is a [time of] drink, and for you is a [time of] drink, [each] on a known day. And do not touch her with harm…"`,
+        ref: `26:155–156`
+      },
+      {
+        id: `lot`,
+        shortLabel: `Lot`,
+        title: `Cycle 6: Lot & Moral Transgression`,
+        verses: `26:160–175`,
+        count: 16,
+        groupClass: `seg-short`,
+        barColor: `var(--data-3)`,
+        summary: `Lot confronts his people for violating created bounds; they threaten him with eviction. He detests their deed, prays for rescue, and is saved with his family (except an old woman who lingered) before stones rain down.`,
+        arabic: `قَالَ إِنِّي لِعَمَلِكُمْ مِنَ الْقَالِينَ ۝ رَبِّ نَجِّنِي وَأَهْلِي مِمَّا يَعْمَلُونَ`,
+        quote: `He said, "Indeed, I am, toward your deed, of those who detest [it]. My Lord, save me and my family from [the consequence of] what they do."`,
+        ref: `26:168–169`
+      },
+      {
+        id: `shuayb`,
+        shortLabel: `Shu'ayb`,
+        title: `Cycle 7: Shu'ayb & Economic Justice`,
+        verses: `26:176–191`,
+        count: 16,
+        groupClass: `seg-short`,
+        barColor: `var(--data-3)`,
+        summary: `Addresses the Companions of the Thicket on marketplace honesty: full measure, straight scales, and never defrauding people of their due. Accused of magic and falsehood, they challenge him to drop sky fragments — and face the Day of the Black Cloud.`,
+        arabic: `أَوْفُوا الْكَيْلَ وَلَا تَكُونُوا مِنَ الْمُخْسِرِينَ ۝ وَزِنُوا بِالْقِسْطَاسِ الْمُسْتَقِيمِ`,
+        quote: `Give full measure and do not be of those who cause loss. And weigh with an even balance. And do not deprive people of their due…`,
+        ref: `26:181–183`
+      },
+      {
+        id: `closing`,
+        shortLabel: `Close (36v)`,
+        title: `Closing Frame: Revelation, Spiritual Care & The Poets`,
+        verses: `26:192–227`,
+        count: 36,
+        groupClass: `seg-closing`,
+        barColor: `var(--data-4)`,
+        summary: `Establishes the Qur'an as revelation from the Lord of the worlds via the Trustworthy Spirit, absolves it of demonic origin, commands Muhammad to warn kin, lower his wing to believers, rely on Al-'Azeez Ar-Raheem, and contrasts wandering poets with faithful ones.`,
+        arabic: `وَإِنَّهُ لَتَنْزِيلُ رَبِّ الْعَالَمِينَ ۝ نَزَلَ بِهِ الرُّوحُ الْأَمِينُ ۝ عَلَى قَلْبِكَ لِتَكُونَ مِنَ الْمُنْذِرِينَ`,
+        quote: `And indeed, the Qur'an is the revelation of the Lord of the worlds. The Trustworthy Spirit has brought it down upon your heart, [O Muhammad] — that you may be of the warners.`,
+        ref: `26:192–194`
+      }
+    ];
+
+    const PROPHET_CYCLES = [
+      {
+        id: `moses`,
+        name: `Moses`,
+        people: `Pharaoh & Chiefs`,
+        verses: `26:10–68`,
+        verseCount: `59 verses`,
+        sinTag: `Tyranny & Enslavement`,
+        salutation: `Divine mission with Aaron (26:10–17)`,
+        accusation: `Ingratitude; "mad"; "learned magician"`,
+        outcome: `Magicians believe; Israel rescued; Pharaoh drowned`,
+        opening: `Called directly by Allah to confront the wrongdoing people of Pharaoh. Moses candidly voices three fears — denial, non-fluent speech, and a past homicide claim — and is strengthened with Aaron and the assurance: "We are with you, listening" (26:15).`,
+        objection: `Pharaoh attempts emotional leverage ("Did we not raise you among us as a child?"), dismisses "Lord of the worlds" as madness, threatens imprisonment, and frames Moses's miracles as a magical plot to seize the land (26:18–35).`,
+        verdict: `Moses's staff devours the magicians' illusions, turning Pharaoh's hired experts into fearless believers who accept amputation and crucifixion rather than abandon faith. At the sea, Moses trusts Allah ("He will guide me"), the waters tower like mountains, and Pharaoh's host drowns (26:45–66).`,
+        arabic: `فَأُلْقِيَ السَّحَرَةُ سَاجِدِينَ ۝ قَالُوا آمَنَّا بِرَبِّ الْعَالَمِينَ ۝ رَبِّ مُوسَى وَهَارُونَ`,
+        english: `So the magicians fell down in prostration [to Allah]. They said, "We have believed in the Lord of the worlds, The Lord of Moses and Aaron."`,
+        ref: `26:46–48`,
+        formulaNote: `Extended 4-scene courtroom & exodus drama`
+      },
+      {
+        id: `abraham`,
+        name: `Abraham`,
+        people: `His Father & People`,
+        verses: `26:69–104`,
+        verseCount: `36 verses`,
+        sinTag: `Idolatry & Blind Custom`,
+        salutation: `Father & people (26:70)`,
+        accusation: `Unquestioned ancestral imitation ("we found our fathers")`,
+        outcome: `Six prayers; portrait of Day of Judgment & Sound Heart`,
+        opening: `Asks a disarmingly simple Socratic question: "What do you worship? Do they hear you when you supplicate? Or do they benefit you, or do they harm?" (26:70–73).`,
+        objection: `Unable to defend the idols' power, his people retreat entirely to tradition: "But we found our fathers doing thus" (26:74).`,
+        verdict: `Abraham breaks with their idols and describes the living Lord who creates, guides, feeds, heals, gives death and life, and pardons. He prays for a "sound heart" (26:89), and the scene flashes forward to Hellfire where followers and false idols blame one another in vain (26:90–102).`,
+        arabic: `يَوْمَ لَا يَنْفَعُ مَالٌ وَلَا بَنُونَ ۝ إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ`,
+        english: `The Day when there will not benefit [anyone] wealth or children, But only one who comes to Allah with a sound heart.`,
+        ref: `26:88–89`,
+        formulaNote: `Extended theological & eschatological dialogue`
+      },
+      {
+        id: `noah`,
+        name: `Noah`,
+        people: `People of Noah`,
+        verses: `26:105–122`,
+        verseCount: `18 verses`,
+        sinTag: `Class Snobbery & Threat`,
+        salutation: `"Their brother Noah" (26:106)`,
+        accusation: `Followed by "the lowest class"; threat of stoning`,
+        outcome: `Rescued in the laden ship; deniers drowned`,
+        opening: `Establishes the surah's recurring five-verse call: "Will you not fear Allah? Indeed, I am to you a trustworthy messenger. So fear Allah and obey me. And I do not ask you for it any payment…" (26:106–110).`,
+        objection: `Elites refuse faith on social grounds — "Should we believe you while you are followed by the lowest [class of people]?" (26:111) — and threaten stoning unless he desists (26:116).`,
+        verdict: `Noah refuses to expel sincere believers ("Their account is only upon my Lord") and appeals to Allah for decisive judgment. He and the believers are saved in the laden ship while the rest drown (26:112–120).`,
+        arabic: `إِنْ حِسَابُهُمْ إِلَّا عَلَىٰ رَبِّي لَوْ تَشْعُرُونَ ۝ وَمَا أَنَا بِطَارِدِ الْمُؤْمِنِينَ`,
+        english: `Their account is only upon my Lord, if you [could] perceive. And I am not one to drive away the believers.`,
+        ref: `26:113–114`,
+        formulaNote: `1st compressed cycle · "their brother" formula`
+      },
+      {
+        id: `hud`,
+        name: `Hud`,
+        people: `People of 'Aad`,
+        verses: `26:123–140`,
+        verseCount: `18 verses`,
+        sinTag: `Monumental Hubris & Tyranny`,
+        salutation: `"Their brother Hud" (26:124)`,
+        accusation: `Dismissed as irrelevant ("all the same to us")`,
+        outcome: `Destroyed for denying blessings and striking as tyrants`,
+        opening: `Repeats the identical "trustworthy messenger / no wage" formula (26:124–127), then diagnoses 'Aad's obsession with vanity monuments and fortresses built as if they could live forever (26:128–129).`,
+        objection: `With cold indifference they reply: "It is all the same to us whether you advise or are not of the advisors. This is not but the custom of the former peoples, And we are not to be punished" (26:136–138).`,
+        verdict: `Ingratitude toward the Giver of livestock, children, gardens, and springs — paired with brutal tyranny ("when you strike, you strike as tyrants") — ends in total destruction (26:130–139).`,
+        arabic: `وَإِذَا بَطَشْتُمْ بَطَشْتُمْ جَبَّارِينَ ۝ فَاتَّقُوا اللَّهَ وَأَطِيعُون`,
+        english: `And when you strike, you strike as tyrants. So fear Allah and obey me.`,
+        ref: `26:130–131`,
+        formulaNote: `2nd compressed cycle · "their brother" formula`
+      },
+      {
+        id: `salih`,
+        name: `Salih`,
+        people: `People of Thamud`,
+        verses: `26:141–159`,
+        verseCount: `19 verses`,
+        sinTag: `False Security & Transgression`,
+        salutation: `"Their brother Salih" (26:142)`,
+        accusation: `"Affected by magic"; "a man like ourselves"`,
+        outcome: `Hamstrung the she-camel; seized by punishment`,
+        opening: `Opens with the five-verse formula (26:142–145), then asks whether they expect to remain forever secure in gardens, palm groves, and rock-carved homes, warning them not to obey corrupting transgressors (26:146–152).`,
+        objection: `They dismiss Salih as bewitched and ordinary ("a man like ourselves") and demand a physical sign if he is truthful (26:153–154).`,
+        verdict: `Salih gives the she-camel with strict alternating water rights ("do not touch her with harm"). Defying the sign, they hamstring her, feel belated regret, and are seized by punishment (26:155–158).`,
+        arabic: `فَعَقَرُوهَا فَأَصْبَحُوا نَادِمِينَ ۝ فَأَخَذَهُمُ الْعَذَابُ`,
+        english: `But they hamstrung her and so became regretful. And the punishment seized them.`,
+        ref: `26:157–158`,
+        formulaNote: `3rd compressed cycle · miracle sign tested`
+      },
+      {
+        id: `lot`,
+        name: `Lot`,
+        people: `People of Lot`,
+        verses: `26:160–175`,
+        verseCount: `16 verses`,
+        sinTag: `Moral Transgression`,
+        salutation: `"Their brother Lot" (26:161)`,
+        accusation: `Threatened with expulsion ("of those evicted")`,
+        outcome: `Family saved (except one elder woman); rain of stones`,
+        opening: `Follows the five-verse trustworthy messenger formula (26:161–164), then directly confronts his people for transgressing natural, divinely created boundaries in desire (26:165–166).`,
+        objection: `Rather than engaging his moral critique, they issue an ultimatum: "If you do not desist, O Lot, you will surely be of those evicted" (26:167).`,
+        verdict: `Lot declares firm moral dissociation ("Indeed, I am, toward your deed, of those who detest [it]") and prays for deliverance. He and his family are rescued — except an old woman who remained behind — before a rain of stones destroys the city (26:168–173).`,
+        arabic: `قَالَ إِنِّي لِعَمَلِكُمْ مِنَ الْقَالِينَ ۝ رَبِّ نَجِّنِي وَأَهْلِي مِمَّا يَعْمَلُونَ`,
+        english: `He said, "Indeed, I am, toward your deed, of those who detest [it]. My Lord, save me and my family from [the consequence of] what they do."`,
+        ref: `26:168–169`,
+        formulaNote: `4th compressed cycle · shortest alongside Shu'ayb`
+      },
+      {
+        id: `shuayb`,
+        name: `Shu'ayb`,
+        people: `Companions of the Thicket`,
+        verses: `26:176–191`,
+        verseCount: `16 verses`,
+        sinTag: `Commercial Fraud & Cheating`,
+        salutation: `"When Shu'ayb said to them" (no "brother")`,
+        accusation: `"Affected by magic"; "among the liars"; sky dare`,
+        outcome: `Seized by Day of the Black Cloud (Yawm al-Zullah)`,
+        opening: `Repeats the trustworthy messenger / no-payment formula (26:177–180), then delivers an uncompromising economic ethic: give full measure, weigh with an even balance, and stop defrauding people (26:181–184).`,
+        objection: `Echoing Thamud word for word ("affected by magic", "a man like ourselves"), they accuse him of lying and taunt him: "cause to fall upon us fragments of the sky" (26:185–187).`,
+        verdict: `Shu'ayb leaves judgment to Allah ("My Lord is most knowing of what you do"), and the punishment of the Day of the Black Cloud seizes them (26:188–189).`,
+        arabic: `أَوْفُوا الْكَيْلَ وَلَا تَكُونُوا مِنَ الْمُخْسِرِينَ ۝ وَزِنُوا بِالْقِسْطَاسِ الْمُسْتَقِيمِ ۝ وَلَا تَبْخَسُوا النَّاسَ أَشْيَاءَهُمْ`,
+        english: `Give full measure and do not be of those who cause loss. And weigh with an even balance. And do not deprive people of their due…`,
+        ref: `26:181–183`,
+        formulaNote: `5th compressed cycle · omits "their brother"`
+      }
+    ];
+
+    const REFRAIN_ANCHORS = [
+      {
+        num: 1,
+        type: `nature`,
+        verses: `26:8–9`,
+        context: `Earth's Noble Vegetation`,
+        sign: `Looking at the earth producing pairs of every noble botanical kind (26:7) — quiet, daily proof of creative power and mercy.`,
+        role: `Establishes the refrain before any historical story begins.`
+      },
+      {
+        num: 2,
+        type: `history`,
+        verses: `26:67–68`,
+        context: `Exodus & Parted Sea`,
+        sign: `Saving Moses and the Children of Israel while drowning Pharaoh's pursuing army after the sea towers like mountains (26:63–66).`,
+        role: `Closes Cycle 1 (Moses): Might drowns tyranny; Mercy rescues the oppressed.`
+      },
+      {
+        num: 3,
+        type: `nature`,
+        verses: `26:103–104`,
+        context: `Abraham & Eschatological Reckoning`,
+        sign: `Abraham's rational dismantling of idol worship, prayer for a sound heart, and the Day when idols fail their devotees (26:70–102).`,
+        role: `Closes Cycle 2 (Abraham): A sign in moral reasoning and ultimate accountability.`
+      },
+      {
+        num: 4,
+        type: `history`,
+        verses: `26:121–122`,
+        context: `Noah & The Laden Ship`,
+        sign: `Saving Noah and his socially scorned followers inside the ship while drowning the arrogant deniers (26:119–120).`,
+        role: `Closes Cycle 3 (Noah): Might vindicates dignity over class snobbery.`
+      },
+      {
+        num: 5,
+        type: `history`,
+        verses: `26:139–140`,
+        context: `'Aad's Fortresses Destroyed`,
+        sign: `Collapse of a civilization that built monuments for immortality and struck the weak as tyrants (26:128–139).`,
+        role: `Closes Cycle 4 (Hud): Earthly architecture cannot outlast arrogance.`
+      },
+      {
+        num: 6,
+        type: `history`,
+        verses: `26:158–159`,
+        context: `Thamud & The She-Camel`,
+        sign: `Punishment seizing those who violated a clear shared-water covenant by hamstringing the miracle she-camel (26:155–158).`,
+        role: `Closes Cycle 5 (Salih): Regret after rejecting clear warning comes too late.`
+      },
+      {
+        num: 7,
+        type: `history`,
+        verses: `26:174–175`,
+        context: `Lot's Rescue & Rain of Stones`,
+        sign: `Deliverance of Lot and his family (save one who lingered) while stones destroy the transgressing city (26:170–173).`,
+        role: `Closes Cycle 6 (Lot): Mercy preserves the steadfast; Might sweeps away corruption.`
+      },
+      {
+        num: 8,
+        type: `history`,
+        verses: `26:190–191`,
+        context: `Shu'ayb & The Black Cloud`,
+        sign: `The punishment of the Day of the Black Cloud seizing those who cheated scales and mocked warnings (26:181–189).`,
+        role: `Closes Cycle 7 (Shu'ayb): Economic exploitation invites divine reckoning.`
+      },
+      {
+        num: 9,
+        type: `command`,
+        verses: `26:217`,
+        context: `Direct Command to the Prophet`,
+        sign: `Shifts from narrative refrain ("Indeed, your Lord IS…") to personal spiritual action: "And rely upon the Exalted in Might, the Merciful" (26:217).`,
+        role: `Culminating pivot: What sustained all seven prophets now sustains Muhammad in prayer and leadership.`
+      }
+    ];
+
+    const POET_PILLARS = [
+      {
+        id: `believe`,
+        label: `1. Believe`,
+        arabic: `إِلَّا الَّذِينَ آمَنُوا`,
+        title: `Anchored in Faith (Iman)`,
+        detail: `Speech begins with reality rather than whim. Instead of roaming aimlessly through every valley of vanity or flattery, faithful poets orient their words toward the Lord of the worlds.`
+      },
+      {
+        id: `deeds`,
+        label: `2. Righteous Deeds`,
+        arabic: `وَعَمِلُوا الصَّالِحَاتِ`,
+        title: `Closing the Say–Do Gap`,
+        detail: `Verse 26:226 indicts wandering poets because "they say what they do not do." Righteous action restores integrity so beauty of language never masks emptiness of life.`
+      },
+      {
+        id: `remembrance`,
+        label: `3. Remember Allah Often`,
+        arabic: `وَذَكَرُوا اللَّهَ كَثِيرًا`,
+        title: `Frequent Remembrance (Dhikr)`,
+        detail: `Constant mindfulness of Allah prevents ego, exaggeration, and partisanship from hijacking creative talent, keeping language humble and luminous.`
+      },
+      {
+        id: `defend`,
+        label: `4. Defend After Wrong`,
+        arabic: `وَانْتَصَرُوا مِنْ بَعْدِ مَا ظُلِمُوا`,
+        title: `Moral Defense Against Injustice`,
+        detail: `Art and poetry are not banned from public struggle — they are explicitly honored when used to defend truth and the wronged rather than initiating abuse.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: `q1`,
+        prompt: `How many times does the full twin refrain ("Indeed in that is a sign… And indeed, your Lord — He is the Exalted in Might, the Merciful") appear in Surah Ash-Shu'ara?`,
+        options: [
+          `7 times — once after each prophet`,
+          `8 times — once after the earth-sign (26:8–9) and once after each of the 7 prophetic cycles`,
+          `9 times — including 26:217 as a full twin refrain`
+        ],
+        correct: 1,
+        explanation: `The full twin refrain appears 8 times (26:8–9, 67–68, 103–104, 121–122, 139–140, 158–159, 174–175, 190–191). Verse 26:217 echoes the divine names Al-'Azeez Ar-Raheem as a direct command to rely on Allah.`
+      },
+      {
+        id: `q2`,
+        prompt: `In Abraham's closing prayer (26:88–89), what alone benefits a person on the Day when neither wealth nor children avail?`,
+        options: [
+          `Coming to Allah with a sound heart (qalb saleem)`,
+          `Possessing honorable ancestry among later generations`,
+          `Having skilled intercessors and devoted companions`
+        ],
+        correct: 0,
+        explanation: `Verses 26:88–89 state: "The Day when there will not benefit [anyone] wealth or children, But only one who comes to Allah with a sound heart."`
+      },
+      {
+        id: `q3`,
+        prompt: `Which detail distinguishes Shu'ayb's opening narrative formula (26:177) from those of Noah, Hud, Salih, and Lot?`,
+        options: [
+          `Shu'ayb asks his people for a modest wage`,
+          `The text introduces him simply as "When Shu'ayb said to them" rather than "their brother"`,
+          `Shu'ayb does not mention fearing Allah and obeying him`
+        ],
+        correct: 1,
+        explanation: `Noah (26:106), Hud (26:124), Salih (26:142), and Lot (26:161) are each introduced as "their brother," whereas 26:177 reads simply "When Shu'ayb said to them" (addressing the Companions of the Thicket).`
+      },
+      {
+        id: `q4`,
+        prompt: `What core ethical corruption did Shu'ayb specifically confront among the Companions of the Thicket (26:181–183)?`,
+        options: [
+          `Carving mountain dwellings and hoarding palm harvests`,
+          `Enslaving travelers passing through the valley`,
+          `Giving short measure, uneven weighing, and depriving people of their due`
+        ],
+        correct: 2,
+        explanation: `Shu'ayb commanded economic justice: "Give full measure and do not be of those who cause loss. And weigh with an even balance. And do not deprive people of their due" (26:181–183).`
+      },
+      {
+        id: `q5`,
+        prompt: `Which four qualities in verse 26:227 exempt faithful poets from the critique of roaming in every valley and saying what they do not do?`,
+        options: [
+          `Fasting, charity, solitude, and silence`,
+          `Believing, doing righteous deeds, remembering Allah often, and defending themselves after being wronged`,
+          `Memorizing former scriptures, mastering Arabic meter, avoiding politics, and praising rulers`
+        ],
+        correct: 1,
+        explanation: `Verse 26:227 names exactly four conditions: believing, doing righteous deeds, remembering Allah often, and defending themselves/truth after being wronged.`
+      }
+    ];
+
+    let appState = {
+      selectedArchId: `opening`,
+      selectedProphetId: `moses`,
+      refrainFilter: `all`,
+      selectedPillarId: `believe`,
+      studiedCycles: [],
+      bookmarkedCycles: [],
+      notesByCycle: {},
+      quizAnswers: {}
+    };
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Graceful fallback if host rejects transient write
+        }
+      }
+    }
+
+    function renderArchitecture() {
+      const ribbon = document.getElementById(`architecture-ribbon`);
+      const chart = document.getElementById(`verse-bar-chart`);
+      if (!ribbon || !chart) return;
+
+      const total = 227;
+      ribbon.innerHTML = ARCH_SEGMENTS.map(seg => {
+        const pct = ((seg.count / total) * 100).toFixed(2);
+        const activeClass = seg.id === appState.selectedArchId ? `is-selected` : ``;
+        return `<button type="button" class="ribbon-seg ${seg.groupClass} ${activeClass}" style="flex: ${seg.count} 1 0%; min-width: 28px;" onclick="selectArchSegment('${seg.id}')" title="${seg.title} (${seg.verses})">
+          <span>${seg.shortLabel}</span>
+          <span style="opacity: 0.85; font-size: 0.6875rem;">${pct}%</span>
+        </button>`;
+      }).join(``);
+
+      const maxCount = 59;
+      chart.innerHTML = ARCH_SEGMENTS.map(seg => {
+        const barPct = Math.round((seg.count / maxCount) * 100);
+        return `<div class="bar-row">
+          <span class="bar-label">${seg.shortLabel.replace(/ \(.*\)/, ``)}</span>
+          <div class="bar-track"><div class="bar-fill" style="width: ${barPct}%; background: ${seg.barColor};"></div></div>
+          <span class="bar-num">${seg.count}v</span>
+        </div>`;
+      }).join(``);
+
+      const active = ARCH_SEGMENTS.find(s => s.id === appState.selectedArchId) || ARCH_SEGMENTS[0];
+      const badge = document.getElementById(`arch-span-badge`);
+      const title = document.getElementById(`arch-title`);
+      const summary = document.getElementById(`arch-summary`);
+      const arabic = document.getElementById(`arch-arabic`);
+      const quote = document.getElementById(`arch-quote`);
+      const ref = document.getElementById(`arch-ref`);
+
+      if (badge) badge.textContent = `${active.verses} · ${active.count} Verses`;
+      if (title) title.textContent = active.title;
+      if (summary) summary.textContent = active.summary;
+      if (arabic) arabic.textContent = active.arabic;
+      if (quote) quote.textContent = `“${active.quote}”`;
+      if (ref) ref.textContent = `Surah Ash-Shu'ara ${active.ref}`;
+    }
+
+    function selectArchSegment(id) {
+      appState.selectedArchId = id;
+      renderArchitecture();
+      persistState();
+    }
+
+    function renderProphetExplorer() {
+      const selector = document.getElementById(`prophet-selector`);
+      if (!selector) return;
+
+      selector.innerHTML = PROPHET_CYCLES.map(c => {
+        const isActive = c.id === appState.selectedProphetId ? `is-active` : ``;
+        const isStudied = appState.studiedCycles.includes(c.id);
+        const checkMark = isStudied ? `<span aria-label="Reviewed" style="font-size: 0.85rem;">&#10003;</span>` : ``;
+        return `<button type="button" class="prophet-btn ${isActive}" onclick="selectProphetCycle('${c.id}')">
+          <span class="prophet-name"><span>${c.name}</span>${checkMark}</span>
+          <span class="prophet-meta">${c.verses} · ${c.verseCount}</span>
+        </button>`;
+      }).join(``);
+
+      const cycle = PROPHET_CYCLES.find(c => c.id === appState.selectedProphetId) || PROPHET_CYCLES[0];
+      const vBadge = document.getElementById(`cycle-verses-badge`);
+      const sBadge = document.getElementById(`cycle-sin-badge`);
+      const title = document.getElementById(`cycle-title`);
+      const subtitle = document.getElementById(`cycle-subtitle`);
+      const opening = document.getElementById(`cycle-opening`);
+      const objection = document.getElementById(`cycle-objection`);
+      const verdict = document.getElementById(`cycle-verdict`);
+      const vRef = document.getElementById(`cycle-verse-ref`);
+      const fNote = document.getElementById(`cycle-formula-note`);
+      const arabic = document.getElementById(`cycle-arabic`);
+      const english = document.getElementById(`cycle-english`);
+      const noteLabel = document.getElementById(`cycle-note-label`);
+      const noteInput = document.getElementById(`cycle-note-input`);
+      const btnBookmark = document.getElementById(`btn-bookmark-cycle`);
+      const btnComplete = document.getElementById(`btn-complete-cycle`);
+
+      if (vBadge) vBadge.textContent = `${cycle.verses} · ${cycle.verseCount}`;
+      if (sBadge) sBadge.textContent = cycle.sinTag;
+      if (title) title.textContent = `${cycle.name} & ${cycle.people}`;
+      if (subtitle) subtitle.textContent = `Opening: ${cycle.salutation} — Accusation: ${cycle.accusation}`;
+      if (opening) opening.textContent = cycle.opening;
+      if (objection) objection.textContent = cycle.objection;
+      if (verdict) verdict.textContent = cycle.verdict;
+      if (vRef) vRef.textContent = `Anchor Passage · ${cycle.ref}`;
+      if (fNote) fNote.textContent = cycle.formulaNote;
+      if (arabic) arabic.textContent = cycle.arabic;
+      if (english) english.textContent = `“${cycle.english}”`;
+      if (noteLabel) noteLabel.textContent = `Personal Reflection Note — ${cycle.name} (${cycle.verses})`;
+      if (noteInput) noteInput.value = appState.notesByCycle[cycle.id] || ``;
+
+      const isBookmarked = appState.bookmarkedCycles.includes(cycle.id);
+      if (btnBookmark) {
+        btnBookmark.textContent = isBookmarked ? `Bookmarked in Journal` : `Bookmark Key Verse`;
+        btnBookmark.classList.toggle(`is-active`, isBookmarked);
+      }
+
+      const isStudied = appState.studiedCycles.includes(cycle.id);
+      if (btnComplete) {
+        btnComplete.textContent = isStudied ? `Cycle Studied (Click to Undo)` : `Mark Cycle Studied`;
+      }
+    }
+
+    function selectProphetCycle(id) {
+      appState.selectedProphetId = id;
+      const status = document.getElementById(`note-save-status`);
+      if (status) status.textContent = ``;
+      renderProphetExplorer();
+      persistState();
+    }
+
+    function toggleCycleStudied() {
+      const id = appState.selectedProphetId;
+      const idx = appState.studiedCycles.indexOf(id);
+      if (idx === -1) {
+        appState.studiedCycles.push(id);
+      } else {
+        appState.studiedCycles.splice(idx, 1);
+      }
+      renderProphetExplorer();
+      renderProgressAndJournal();
+      persistState();
+    }
+
+    function toggleBookmarkCurrent() {
+      const id = appState.selectedProphetId;
+      const idx = appState.bookmarkedCycles.indexOf(id);
+      if (idx === -1) {
+        appState.bookmarkedCycles.push(id);
+      } else {
+        appState.bookmarkedCycles.splice(idx, 1);
+      }
+      renderProphetExplorer();
+      renderProgressAndJournal();
+      persistState();
+    }
+
+    function saveCurrentCycleNote(val) {
+      const id = appState.selectedProphetId;
+      appState.notesByCycle[id] = val;
+      const status = document.getElementById(`note-save-status`);
+      if (status) status.textContent = val.trim() ? `Saved to study journal.` : ``;
+      renderProgressAndJournal();
+      persistState();
+    }
+
+    function renderComparativeTable() {
+      const tbody = document.getElementById(`comparative-table-body`);
+      if (!tbody) return;
+      tbody.innerHTML = PROPHET_CYCLES.map(c => `<tr>
+        <td><strong>${c.name}</strong><br><span style="font-size: 0.8125rem; color: var(--on-surface-variant);">${c.people}</span></td>
+        <td class="td-num">${c.verses}</td>
+        <td>${c.salutation}</td>
+        <td>${c.sinTag}</td>
+        <td>${c.accusation}</td>
+        <td>${c.outcome}</td>
+      </tr>`).join(``);
+    }
+
+    function renderRefrains() {
+      const grid = document.getElementById(`refrain-grid`);
+      if (!grid) return;
+
+      const filterBtns = [`all`, `nature`, `history`, `command`];
+      filterBtns.forEach(f => {
+        const b = document.getElementById(`filter-${f}`);
+        if (b) b.classList.toggle(`is-active`, appState.refrainFilter === f);
+      });
+
+      const items = appState.refrainFilter === `all`
+        ? REFRAIN_ANCHORS
+        : REFRAIN_ANCHORS.filter(r => r.type === appState.refrainFilter);
+
+      grid.innerHTML = items.map(r => {
+        const cmdClass = r.type === `command` ? `is-command` : ``;
+        const label = r.type === `command` ? `Direct Command` : `Refrain #${r.num}`;
+        return `<article class="refrain-card ${cmdClass}">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs);">
+            <span class="label-caps">${label}</span>
+            <span class="badge-emerald">${r.verses}</span>
+          </div>
+          <h3 class="subhead" style="margin: var(--space-xs) 0 0;">${r.context}</h3>
+          <p class="prose" style="font-size: 0.9375rem; margin: 0;">${r.sign}</p>
+          <p style="font-size: 0.8125rem; font-weight: 600; color: var(--tertiary); margin: auto 0 0;">${r.role}</p>
+        </article>`;
+      }).join(``);
+    }
+
+    function filterRefrains(type) {
+      appState.refrainFilter = type;
+      renderRefrains();
+      persistState();
+    }
+
+    function renderPoetPillars() {
+      const wrap = document.getElementById(`poet-pillars`);
+      const detail = document.getElementById(`poet-pillar-detail`);
+      if (!wrap || !detail) return;
+
+      wrap.innerHTML = POET_PILLARS.map(p => {
+        const activeClass = p.id === appState.selectedPillarId ? `is-active` : ``;
+        return `<button type="button" class="pillar-btn ${activeClass}" onclick="selectPoetPillar('${p.id}')">
+          <span class="label-caps" style="color: var(--primary);">${p.label}</span>
+          <span class="arabic-inline" lang="ar" dir="rtl" style="font-weight: 600;">${p.arabic}</span>
+          <span style="font-weight: 600; font-size: 0.9375rem;">${p.title}</span>
+        </button>`;
+      }).join(``);
+
+      const active = POET_PILLARS.find(p => p.id === appState.selectedPillarId) || POET_PILLARS[0];
+      detail.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+          <span class="label-caps">${active.label} · 26:227</span>
+          <span class="arabic-inline" lang="ar" dir="rtl">${active.arabic}</span>
+        </div>
+        <h4 class="subhead" style="margin: var(--space-xs) 0 0;">${active.title}</h4>
+        <p class="prose" style="margin: 0;">${active.detail}</p>
+      `;
+    }
+
+    function selectPoetPillar(id) {
+      appState.selectedPillarId = id;
+      renderPoetPillars();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      const scoreBadge = document.getElementById(`quiz-score-badge`);
+      if (!container) return;
+
+      let answeredCount = 0;
+      let correctCount = 0;
+
+      container.innerHTML = QUIZ_QUESTIONS.map((q, qIndex) => {
+        const chosen = appState.quizAnswers[q.id];
+        const hasAnswered = typeof chosen === `number`;
+        if (hasAnswered) {
+          answeredCount += 1;
+          if (chosen === q.correct) correctCount += 1;
+        }
+
+        const optionsHtml = q.options.map((opt, optIdx) => {
+          let cls = ``;
+          if (hasAnswered) {
+            if (optIdx === q.correct) cls = `is-correct`;
+            else if (optIdx === chosen) cls = `is-wrong`;
+          }
+          return `<button type="button" class="quiz-option ${cls}" onclick="answerQuiz('${q.id}', ${optIdx})">
+            <span style="font-weight: 700; min-width: 1.4em;">${String.fromCharCode(65 + optIdx)}.</span>
+            <span>${opt}</span>
+          </button>`;
+        }).join(``);
+
+        const feedbackHtml = hasAnswered
+          ? `<div class="quiz-feedback"><strong>${chosen === q.correct ? `Correct.` : `Review:`}</strong> ${q.explanation}</div>`
+          : ``;
+
+        return `<article class="quiz-card">
+          <div class="label-caps">Question ${qIndex + 1} of ${QUIZ_QUESTIONS.length}</div>
+          <h3 class="subhead" style="margin: 0;">${q.prompt}</h3>
+          <div class="quiz-options">${optionsHtml}</div>
+          ${feedbackHtml}
+        </article>`;
+      }).join(``);
+
+      if (scoreBadge) {
+        scoreBadge.textContent = `${correctCount} / ${QUIZ_QUESTIONS.length} Correct (${answeredCount} Answered)`;
+      }
+    }
+
+    function answerQuiz(qId, optIdx) {
+      appState.quizAnswers[qId] = optIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function renderProgressAndJournal() {
+      const studiedCount = appState.studiedCycles.length;
+      const pct = Math.round((studiedCount / PROPHET_CYCLES.length) * 100);
+      const fill = document.getElementById(`study-progress-fill`);
+      const bar = document.getElementById(`study-progress-bar`);
+      const txt = document.getElementById(`study-progress-text`);
+
+      if (fill) fill.style.width = `${pct}%`;
+      if (bar) bar.setAttribute(`aria-valuenow`, String(pct));
+      if (txt) txt.textContent = `${studiedCount} / ${PROPHET_CYCLES.length} cycles reviewed`;
+
+      const journal = document.getElementById(`journal-summary`);
+      if (!journal) return;
+
+      const items = PROPHET_CYCLES.filter(c =>
+        appState.bookmarkedCycles.includes(c.id) ||
+        (appState.notesByCycle[c.id] && appState.notesByCycle[c.id].trim().length > 0) ||
+        appState.studiedCycles.includes(c.id)
+      );
+
+      if (items.length === 0) {
+        journal.innerHTML = `<div class="journal-item">
+          <div>
+            <strong>Your study journal is ready.</strong>
+            <p class="prose-muted" style="margin: var(--space-xs) 0 0;">Mark a prophetic cycle as studied, bookmark a key verse, or type a personal reflection in Section II to gather your notes here.</p>
+          </div>
+          <a class="btn btn-secondary" href="#cycles">Explore the 7 Cycles</a>
+        </div>`;
+        return;
+      }
+
+      journal.innerHTML = items.map(c => {
+        const studied = appState.studiedCycles.includes(c.id);
+        const bookmarked = appState.bookmarkedCycles.includes(c.id);
+        const note = (appState.notesByCycle[c.id] || ``).trim();
+        const tags = [
+          studied ? `<span class="badge-emerald">Studied</span>` : ``,
+          bookmarked ? `<span class="badge-terracotta">Bookmarked · ${c.ref}</span>` : ``
+        ].filter(Boolean).join(` `);
+
+        return `<div class="journal-item">
+          <div style="flex: 1 1 320px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-xs);">
+              <strong>${c.name} (${c.verses})</strong>
+              ${tags}
+            </div>
+            ${bookmarked ? `<p style="margin: var(--space-xs) 0; font-style: italic; color: var(--on-surface);">“${c.english}”</p>` : ``}
+            ${note ? `<p style="margin: var(--space-xs) 0 0; color: var(--on-surface-variant);"><strong>Note:</strong> ${escapeHtml(note)}</p>` : ``}
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="jumpToCycle('${c.id}')">Open Cycle</button>
+        </div>`;
+      }).join(``);
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`)
+        .replace(/'/g, `&#39;`);
+    }
+
+    function jumpToCycle(id) {
+      appState.selectedProphetId = id;
+      renderProphetExplorer();
+      persistState();
+      const target = document.getElementById(`cycles`);
+      if (target) target.scrollIntoView({ behavior: `smooth` });
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        `SURAH ASH-SHU'ARA (CHAPTER 26) — STUDY NOTES`,
+        `Reviewed Cycles: ${appState.studiedCycles.length} / ${PROPHET_CYCLES.length}`,
+        ``
+      ];
+      PROPHET_CYCLES.forEach(c => {
+        const studied = appState.studiedCycles.includes(c.id) ? `[Studied]` : `[Unreviewed]`;
+        const bookmarked = appState.bookmarkedCycles.includes(c.id);
+        const note = (appState.notesByCycle[c.id] || ``).trim();
+        lines.push(`${c.name} (${c.verses}) ${studied}`);
+        if (bookmarked) lines.push(`  Bookmarked (${c.ref}): "${c.english}"`);
+        if (note) lines.push(`  Reflection: ${note}`);
+        lines.push(``);
+      });
+
+      const content = lines.join(`\n`);
+      const status = document.getElementById(`export-status`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-26-ash-shuara-notes.txt`
+        });
+        if (status) status.textContent = `Downloaded surah-26-ash-shuara-notes.txt.`;
+      } else if (status) {
+        status.textContent = `Study notes prepared for export.`;
+      }
+    }
+
+    function resetStudyProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Progress`;
+      appState = {
+        selectedArchId: `opening`,
+        selectedProphetId: `moses`,
+        refrainFilter: `all`,
+        selectedPillarId: `believe`,
+        studiedCycles: [],
+        bookmarkedCycles: [],
+        notesByCycle: {},
+        quizAnswers: {}
+      };
+      const status = document.getElementById(`export-status`);
+      if (status) status.textContent = `Study progress cleared.`;
+      renderAll();
+      persistState();
+    }
+
+    function setupScrollReveal() {
+      const blocks = document.querySelectorAll(`.reveal-block`);
+      if (!(`IntersectionObserver` in window)) {
+        blocks.forEach(el => el.classList.add(`is-visible`));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      blocks.forEach(el => obs.observe(el));
+    }
+
+    function renderAll() {
+      renderArchitecture();
+      renderProphetExplorer();
+      renderComparativeTable();
+      renderRefrains();
+      renderPoetPillars();
+      renderQuiz();
+      renderProgressAndJournal();
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = {
+              selectedArchId: saved.selectedArchId || `opening`,
+              selectedProphetId: saved.selectedProphetId || `moses`,
+              refrainFilter: saved.refrainFilter || `all`,
+              selectedPillarId: saved.selectedPillarId || `believe`,
+              studiedCycles: Array.isArray(saved.studiedCycles) ? saved.studiedCycles : [],
+              bookmarkedCycles: Array.isArray(saved.bookmarkedCycles) ? saved.bookmarkedCycles : [],
+              notesByCycle: saved.notesByCycle && typeof saved.notesByCycle === `object` ? saved.notesByCycle : {},
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === `object` ? saved.quizAnswers : {}
+            };
+          }
+        } catch (err) {
+          // Proceed with defaults if state retrieval fails
+        }
+      }
+
+      renderAll();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

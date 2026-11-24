@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Adh-Dhariyat (Chapter 51) — Interactive Study Guide &amp; Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --outline-featured: #c98a6b;
+      --outline-tertiary: #b5d6c9;
+      --outline-secondary-btn: #c4b29e;
+      --outline-error: #e3b3b3;
+
+      /* Accents */
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --error-container: #fae8e8;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #8f6524;
+      --data-4: #8c3838;
+      --data-5: #57483f;
+      --data-context: #a39384;
+
+      /* Semantic & Focus */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem);
+      --body-size: clamp(1.03125rem, 0.98rem + 0.25vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+      --arabic-display-size: clamp(1.625rem, 1.35rem + 1vw, 2.25rem);
+      --arabic-verse-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.08);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--outline-variant), var(--secondary), var(--outline-variant));
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg) var(--space-lg) var(--space-3xl);
+      max-width: 1160px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.22;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+      line-height: 1.65;
+    }
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-verse-size);
+      line-height: 1.95;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      margin: 0;
+      direction: rtl;
+      text-align: right;
+    }
+    .arabic-hero {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-display-size);
+      line-height: 1.85;
+      letter-spacing: 0;
+      color: var(--primary);
+      margin: 0 0 var(--space-xs);
+      direction: rtl;
+      text-align: left;
+    }
+
+    /* Ornamental Brass Rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Hero Section */
+    .hero-block {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-md);
+    }
+
+    /* Arch Metric Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .arch-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Study Progress & Quick Navigation Strip */
+    .study-bar {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .study-bar-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-full);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .nav-pill:hover {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--outline-tertiary);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--outline-featured);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background: var(--on-primary-container);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--outline-secondary-btn);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--primary);
+    }
+    .btn-emerald {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--outline-tertiary);
+    }
+    .btn-emerald:hover {
+      background: var(--tertiary);
+      color: var(--on-primary);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.875rem;
+    }
+
+    /* Section & Band Containers */
+    .module-section {
+      padding: var(--space-xl);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .module-section.is-tinted {
+      background: var(--surface-container);
+    }
+    .module-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    /* Layout Split Grids */
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-md);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    /* Interactive Switcher Tabs (within modules, not page-level) */
+    .selector-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .selector-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: var(--warm-hairline);
+      background: var(--background);
+      color: var(--on-surface-variant);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .selector-btn:hover {
+      border-color: var(--primary);
+      color: var(--on-surface);
+    }
+    .selector-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Spotlight / Verse Display Card */
+    .spotlight-panel {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .spotlight-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .verse-translation {
+      font-family: var(--font-headline);
+      font-size: clamp(1.1875rem, 1.08rem + 0.4vw, 1.375rem);
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: var(--space-sm) 0;
+      line-height: 1.45;
+    }
+    .reflection-note {
+      color: var(--on-surface-variant);
+      font-size: 0.96875rem;
+      margin: var(--space-sm) 0 0;
+    }
+
+    /* Comparison Table */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.96875rem;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    .tabular-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Cosmic & Self Interactive SVG Schematic */
+    .schematic-box {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .schematic-svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+    }
+    .svg-ring {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out), stroke-width var(--dur-short) var(--ease-out);
+    }
+    .svg-ring:hover { opacity: 0.88; }
+
+    /* Thematic Ribbon (All 60 verses visual map) */
+    .verse-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+      gap: var(--space-xs);
+      margin-block: var(--space-md);
+    }
+    .ribbon-cell {
+      min-height: 36px;
+      border-radius: var(--rounded);
+      border: var(--warm-hairline);
+      background: var(--background);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+    }
+    .ribbon-cell:hover { transform: translateY(-2px); }
+    .ribbon-cell.theme-oaths { background: var(--primary-container); border-color: var(--outline-featured); color: var(--on-primary-container); }
+    .ribbon-cell.theme-hereafter { background: var(--tertiary-container); border-color: var(--outline-tertiary); color: var(--on-tertiary-container); }
+    .ribbon-cell.theme-ibrahim { background: var(--surface-container-high); border-color: var(--outline); color: var(--on-surface); }
+    .ribbon-cell.theme-nations { background: var(--error-container); border-color: var(--outline-error); color: var(--error); }
+    .ribbon-cell.theme-purpose { background: var(--surface-container); border-color: var(--secondary); color: var(--secondary); }
+    .ribbon-cell.is-dimmed { opacity: 0.28; }
+    .ribbon-cell.is-selected { outline: 2px solid var(--on-surface); outline-offset: 1px; }
+
+    /* Form Controls */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-lg);
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .input-control, .select-control {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.96875rem;
+      width: 100%;
+    }
+    .select-control {
+      padding-right: var(--space-xl);
+    }
+    .input-control:focus, .select-control:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    /* Verse Explorer List */
+    .verse-list {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      transition: border-color var(--dur-micro) var(--ease-out);
+    }
+    .verse-card.is-bookmarked {
+      border-color: var(--outline-featured);
+      background: var(--primary-container);
+    }
+    .verse-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .verse-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Glossary Cards */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .glossary-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .glossary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .glossary-term {
+      font-family: var(--font-headline);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .glossary-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.375rem;
+      color: var(--primary);
+      direction: rtl;
+    }
+
+    /* Quiz Module */
+    .quiz-item {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--primary-container);
+      border-color: var(--outline-featured);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      color: var(--on-tertiary-container);
+      font-weight: 600;
+    }
+    .quiz-option.is-incorrect {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.9375rem;
+    }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-left: 3px solid var(--tertiary);
+    }
+    .quiz-feedback.is-incorrect {
+      background: var(--error-container);
+      color: var(--error);
+      border-left: 3px solid var(--error);
+    }
+
+    /* Empty state */
+    .empty-state {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      color: var(--on-surface-variant);
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Container query adaptation for spotlight cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 520px) {
+      .verse-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Responsive mobile */
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .module-section {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+
+    <!-- HERO & ARCHITECTURAL OVERVIEW -->
+    <header class="hero-block">
+      <div class="kicker">
+        <span>Quranic Study Guide &amp; Explorer</span>
+        <span>Chapter 51 · Surah Adh-Dhariyat</span>
+      </div>
+      <p class="arabic-hero" dir="rtl" lang="ar">سُورَةُ الذَّارِيَاتِ</p>
+      <h1 class="title">Surah Adh-Dhariyat: Signs, Provision, and Human <em>Purpose</em></h1>
+      <p class="lede">
+        Across sixty tightly woven verses, Chapter 51 of the Qur'an moves from the swirling winds of the atmosphere to the courtyard of Abraham, across the ruins of four rebellious nations, into the expanding architecture of heaven and the human soul—culminating in a single declaration of why creation exists.
+      </p>
+
+      <div class="ornament-rule">◆ Five Structural Movements · 60 Verses ◆</div>
+
+      <div class="arch-grid">
+        <div class="arch-card is-featured">
+          <div class="arch-label">Central Thesis</div>
+          <div class="arch-value">51:56</div>
+          <div class="arch-caption">Creation's Purpose: Worship</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Opening Oaths</div>
+          <div class="arch-value">4 + 1</div>
+          <div class="arch-caption">Winds, Clouds, Ships, Angels &amp; Heaven</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Prophetic Parables</div>
+          <div class="arch-value">5</div>
+          <div class="arch-caption">Ibrahim, Lut, Musa, 'Ad, Thamud &amp; Nuh</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Total Verses</div>
+          <div class="arch-value">60</div>
+          <div class="arch-caption">Five Interlocking Themes</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PERSISTENT STUDY PROGRESS & QUICK JUMP STRIP -->
+    <section class="study-bar" aria-label="Study progress and section navigation">
+      <div class="study-bar-top">
+        <div>
+          <span class="badge-emerald" id="progress-badge">0 of 5 Modules Studied</span>
+          <span class="badge-brass" id="bookmark-badge">0 Bookmarked Verses</span>
+        </div>
+        <div class="nav-pills">
+          <a class="nav-pill" href="#module-1">1. Oaths &amp; Overview</a>
+          <a class="nav-pill" href="#module-2">2. Ibrahim &amp; Lut</a>
+          <a class="nav-pill" href="#module-3">3. Past Nations</a>
+          <a class="nav-pill" href="#module-4">4. Cosmic &amp; Inner Signs</a>
+          <a class="nav-pill" href="#module-5">5. Purpose &amp; Sustenance</a>
+          <a class="nav-pill" href="#thematic-map">Thematic Map</a>
+          <a class="nav-pill" href="#verse-explorer">Verse Explorer</a>
+          <a class="nav-pill" href="#glossary">Glossary</a>
+          <a class="nav-pill" href="#quiz">Knowledge Check</a>
+        </div>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="study-progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- MODULE 1: SURAH OVERVIEW & ARCHITECTURE -->
+    <section id="module-1" class="module-section reveal-section">
+      <div class="kicker">
+        <span>Module 01 · Verses 51:1–23</span>
+        <span>Revelation Context &amp; Opening Oaths</span>
+      </div>
+      <h2 class="section-heading">1. Atmospheric Oaths Testify That the Promised Reckoning Is <em>Certain</em></h2>
+      <p class="prose">
+        Surah Adh-Dhariyat opens with a rapid, rhythmic sequence of oaths drawn from observable forces of movement, nourishment, and order. Addressing an audience caught in <em>"differing speech"</em> (51:8) and skeptical confusion over the Day of Recompense (51:12), the opening links everyday physical sustenance—winds dispersing dust, rain-laden clouds, smoothly gliding vessels, and angels apportioning decrees—to the certainty of moral accountability.
+      </p>
+
+      <div class="split-grid">
+        <div>
+          <h3 class="subhead">Explore the Opening Oaths (51:1–7)</h3>
+          <p class="prose">Select each oath to examine its imagery and how it builds toward the sworn truth in verses 5–6.</p>
+          <div class="selector-row" role="group" aria-label="Opening oath selector">
+            <button type="button" class="selector-btn is-active" onclick="selectOath(0, this)">51:1 Winds</button>
+            <button type="button" class="selector-btn" onclick="selectOath(1, this)">51:2 Clouds</button>
+            <button type="button" class="selector-btn" onclick="selectOath(2, this)">51:3 Ships</button>
+            <button type="button" class="selector-btn" onclick="selectOath(3, this)">51:4 Angels</button>
+            <button type="button" class="selector-btn" onclick="selectOath(4, this)">51:7 Pathways</button>
+          </div>
+          <div class="spotlight-panel" id="oath-spotlight"></div>
+        </div>
+
+        <div>
+          <h3 class="subhead">Structural Arc of the 60 Verses</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Span</th>
+                  <th>Movement</th>
+                  <th>Core Anchor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tabular-num">51:1–14</td>
+                  <td>Atmospheric Oaths &amp; Denial</td>
+                  <td>Recompense is certain; falsifiers dwell in heedless confusion.</td>
+                </tr>
+                <tr>
+                  <td class="tabular-num">51:15–23</td>
+                  <td>Traits of the Righteous &amp; Signs</td>
+                  <td>Night prayer, pre-dawn forgiveness, charity, and signs in earth &amp; self.</td>
+                </tr>
+                <tr>
+                  <td class="tabular-num">51:24–37</td>
+                  <td>Guests of Ibrahim &amp; Lut</td>
+                  <td>Swift hospitality, promise of a learned son, deliverance of one household.</td>
+                </tr>
+                <tr>
+                  <td class="tabular-num">51:38–46</td>
+                  <td>Four Historical Reckonings</td>
+                  <td>Pharaoh, 'Ad, Thamud, and Nuh's people as living warnings.</td>
+                </tr>
+                <tr>
+                  <td class="tabular-num">51:47–60</td>
+                  <td>Cosmos, Purpose &amp; Sustenance</td>
+                  <td>Expanding heaven, pairs, flight to Allah, worship (51:56), Al-Razzaq.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subhead" style="margin-top: var(--space-lg);">Two Divergent Destinies (51:10–19)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>The Falsifiers (51:10–14)</th>
+              <th>The Righteous / Muhsinin (51:15–19)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Inner State</strong></td>
+              <td>Caught in a flood of confusion (<em>ghamrah</em>) and heedlessness (51:11).</td>
+              <td>Certain in faith (<em>muqinin</em>, 51:20) and persistent doers of good (<em>muhsinin</em>, 51:16).</td>
+            </tr>
+            <tr>
+              <td><strong>Night &amp; Dawn</strong></td>
+              <td>Mockingly impatient: <em>"When is the Day of Recompense?"</em> (51:12).</td>
+              <td>Sleep little of the night (51:17); seek forgiveness in the hours before dawn (51:18).</td>
+            </tr>
+            <tr>
+              <td><strong>Wealth &amp; Society</strong></td>
+              <td>Bound to differing speech and delusion away from the Qur'an (51:8–9).</td>
+              <td>Recognize a rightful share in their wealth for the petitioner and the deprived (51:19).</td>
+            </tr>
+            <tr>
+              <td><strong>Recompense</strong></td>
+              <td>Tormented over the Fire: <em>"Taste your torment"</em> (51:13–14).</td>
+              <td>Among gardens and springs, accepting what their Lord grants them (51:15–16).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="module-footer">
+        <span class="reflection-note">Key insight: Sustenance (<em>rizq</em>) and recompense (<em>din</em>) belong to the same ordered cosmos established in verses 1–7 and sworn again in verse 23.</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mod-1" onclick="toggleModuleComplete(1)">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Mark Module 1 Studied</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MODULE 2: HOSPITALITY & MISSION OF IBRAHIM -->
+    <section id="module-2" class="module-section is-tinted reveal-section">
+      <div class="kicker">
+        <span>Module 02 · Verses 51:24–37</span>
+        <span>Prophetic Etiquette &amp; Divine Decree</span>
+      </div>
+      <h2 class="section-heading">2. Ibrahim's Honored Guests: Swift Generosity, Glad Tidings, and <em>Deliverance</em></h2>
+      <p class="prose">
+        Immediately after swearing by the Lord of heaven and earth that His promise is as real as human speech (51:23), the Surah shifts to a narrative exemplar: Abraham receiving unknown travelers. The scene models silent, dignified hospitality before revealing its dual angelic mission—blessing Abraham's aging household with a learned son, and executing judgment upon a corrupt city where only one Muslim household remained.
+      </p>
+
+      <div class="selector-row" role="group" aria-label="Ibrahim narrative beats">
+        <button type="button" class="selector-btn is-active" onclick="selectIbrahimBeat(0, this)">Beat I · 51:24–27 Hospitality</button>
+        <button type="button" class="selector-btn" onclick="selectIbrahimBeat(1, this)">Beat II · 51:28–30 Glad Tidings</button>
+        <button type="button" class="selector-btn" onclick="selectIbrahimBeat(2, this)">Beat III · 51:31–34 The Mission</button>
+        <button type="button" class="selector-btn" onclick="selectIbrahimBeat(3, this)">Beat IV · 51:35–37 Deliverance</button>
+      </div>
+
+      <div class="spotlight-panel" id="ibrahim-spotlight"></div>
+
+      <div class="card-grid">
+        <div class="spotlight-panel">
+          <div class="arch-label">Prophetic Adab (Etiquette)</div>
+          <h3 class="subhead">Quiet Action Before Questions</h3>
+          <p class="reflection-note">Abraham first responds with <em>Salam</em>, quietly goes to his family (<em>faragha ila ahlihi</em>) without burdening his guests, brings a generous roasted calf, and invites them gently: <em>"Will you not eat?"</em> (51:25–27).</p>
+        </div>
+        <div class="spotlight-panel">
+          <div class="arch-label">Mercy &amp; Wisdom</div>
+          <h3 class="subhead">A Learned Son Beyond Human Means</h3>
+          <p class="reflection-note">When his wife cries out in astonishment—<em>"A barren old woman!"</em>—the messengers anchor the miracle in two Divine Names: <em>Al-Hakim</em> (the Wise) and <em>Al-'Alim</em> (the Knowing) (51:29–30).</p>
+        </div>
+        <div class="spotlight-panel">
+          <div class="arch-label">Moral Precision</div>
+          <h3 class="subhead">A Single Household Saved</h3>
+          <p class="reflection-note">Before the marked clay stones descend upon the transgressors, every believer is brought out—revealing only a single house of Muslims (51:35–36), leaving a standing warning sign (51:37).</p>
+        </div>
+      </div>
+
+      <div class="module-footer">
+        <span class="reflection-note">Notice the contrast: Ibrahim honors strangers with life-giving food, while the neighboring cities reject moral bounds and face marked stones.</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mod-2" onclick="toggleModuleComplete(2)">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Mark Module 2 Studied</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MODULE 3: HISTORICAL PARABLES & WARNINGS -->
+    <section id="module-3" class="module-section reveal-section">
+      <div class="kicker">
+        <span>Module 03 · Verses 51:38–46</span>
+        <span>Historical Reckonings</span>
+      </div>
+      <h2 class="section-heading">3. Four Historical Warnings: When Power Rejects Clear <em>Authority</em></h2>
+      <p class="prose">
+        Moving swiftly from Lut's cities, verses 51:38–46 compress four historical civilizations into nine tightly structured verses. Whether confronting imperial strength (Pharaoh), monumental builders ('Ad), defiant communities granted respite (Thamud), or the earliest rebellious generation (the people of Nuh), each narrative isolates the same pattern: clear warning, arrogant refusal, and sudden, inescapable reckoning.
+      </p>
+
+      <div class="selector-row" role="group" aria-label="Historical nations selector">
+        <button type="button" class="selector-btn is-active" onclick="selectNation(0, this)">Musa &amp; Pharaoh (51:38–40)</button>
+        <button type="button" class="selector-btn" onclick="selectNation(1, this)">People of 'Ad (51:41–42)</button>
+        <button type="button" class="selector-btn" onclick="selectNation(2, this)">Thamud (51:43–45)</button>
+        <button type="button" class="selector-btn" onclick="selectNation(3, this)">People of Nuh (51:46)</button>
+      </div>
+
+      <div class="spotlight-panel" id="nation-spotlight"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Community</th>
+              <th>Verses</th>
+              <th>Sign / Respite Given</th>
+              <th>Response</th>
+              <th>Instrument of Reckoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pharaoh &amp; Forces</strong></td>
+              <td class="tabular-num">51:38–40</td>
+              <td>Musa sent with clear authority (<em>sultan mubin</em>)</td>
+              <td>Turned away with his supporters; called Musa a magician or madman</td>
+              <td>Cast into the sea (<em>al-yamm</em>), blameworthy (<em>mulim</em>)</td>
+            </tr>
+            <tr>
+              <td><strong>'Ad</strong></td>
+              <td class="tabular-num">51:41–42</td>
+              <td>A moral sign preserved in their history</td>
+              <td>Persistent denial of divine warning</td>
+              <td>The barren wind (<em>ar-rih al-'aqim</em>), turning everything to disintegrated ruins</td>
+            </tr>
+            <tr>
+              <td><strong>Thamud</strong></td>
+              <td class="tabular-num">51:43–45</td>
+              <td>Told, <em>"Enjoy yourselves for a time"</em></td>
+              <td>Insolent toward the command of their Lord</td>
+              <td>Seized by the thunderbolt (<em>as-sa'iqah</em>) while watching; unable to rise or defend</td>
+            </tr>
+            <tr>
+              <td><strong>People of Nuh</strong></td>
+              <td class="tabular-num">51:46</td>
+              <td>Earliest prophetic warning</td>
+              <td>Defiantly disobedient (<em>qawman fasiqin</em>)</td>
+              <td>Destroyed prior to all three later nations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="module-footer">
+        <span class="reflection-note">The phrase <em>"A magician or a madman"</em> spoken by Pharaoh (51:39) is later cited in 51:52 as the timeless refrain of every rejecting generation.</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mod-3" onclick="toggleModuleComplete(3)">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Mark Module 3 Studied</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MODULE 4: COSMIC SIGNS & THE HUMAN SELF -->
+    <section id="module-4" class="module-section is-tinted reveal-section">
+      <div class="kicker">
+        <span>Module 04 · Verses 51:20–23 &amp; 51:47–51</span>
+        <span>Horizons &amp; the Inner Self</span>
+      </div>
+      <h2 class="section-heading">4. The Expanding Heaven, Paired Creation, and Signs <em>Within</em> Yourselves</h2>
+      <p class="prose">
+        Surah Adh-Dhariyat binds cosmic architecture to inward self-knowledge. Earlier, verse 51:20–21 paired signs on earth with the piercing question: <em>"And in yourselves. Then will you not see?"</em> After the historical ruins of verses 38–46, the Surah pans back up to the cosmos: the heaven constructed with strength and continually expanded (51:47), the earth spread out as a cradle (51:48), and every created thing formed in pairs (51:49)—leading directly to the urgent call: <em>"So flee to Allah"</em> (51:50).
+      </p>
+
+      <div class="split-grid">
+        <div class="schematic-box">
+          <div class="arch-label" style="margin-bottom: var(--space-sm);">Interactive Cosmos-to-Self Diagram (Click Any Layer)</div>
+          <svg class="schematic-svg" viewBox="0 0 360 360" role="img" aria-label="Interactive concentric diagram linking heaven expansion, earth, paired creation, the human self, and fleeing to Allah">
+            <circle cx="180" cy="180" r="162" fill="var(--surface-container-low)" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6 4" class="svg-ring" onclick="selectCosmicLayer(0)" />
+            <text x="180" y="38" text-anchor="middle" fill="var(--on-surface)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">1. EXPANDING HEAVEN (51:47)</text>
+
+            <circle cx="180" cy="180" r="126" fill="var(--tertiary-container)" stroke="var(--tertiary)" stroke-width="2" class="svg-ring" onclick="selectCosmicLayer(1)" />
+            <text x="180" y="74" text-anchor="middle" fill="var(--on-tertiary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">2. SPREAD EARTH (51:48 &amp; 51:20)</text>
+
+            <circle cx="180" cy="180" r="92" fill="var(--primary-container)" stroke="var(--outline-featured)" stroke-width="2" class="svg-ring" onclick="selectCosmicLayer(2)" />
+            <text x="180" y="110" text-anchor="middle" fill="var(--on-primary-container)" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700">3. PAIRS IN ALL THINGS (51:49)</text>
+
+            <circle cx="180" cy="180" r="58" fill="var(--background)" stroke="var(--secondary)" stroke-width="2" class="svg-ring" onclick="selectCosmicLayer(3)" />
+            <text x="180" y="148" text-anchor="middle" fill="var(--secondary)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700">4. IN YOURSELVES</text>
+            <text x="180" y="162" text-anchor="middle" fill="var(--on-surface-variant)" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600">(51:21)</text>
+
+            <circle cx="180" cy="196" r="24" fill="var(--primary)" class="svg-ring" onclick="selectCosmicLayer(4)" />
+            <text x="180" y="200" text-anchor="middle" fill="var(--on-primary)" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700">51:50</text>
+          </svg>
+          <div class="selector-row" style="margin-top: var(--space-md); margin-bottom: 0; justify-content: center;">
+            <button type="button" class="selector-btn is-active" onclick="selectCosmicLayer(0, this)">51:47 Heaven</button>
+            <button type="button" class="selector-btn" onclick="selectCosmicLayer(1, this)">51:48 Earth</button>
+            <button type="button" class="selector-btn" onclick="selectCosmicLayer(2, this)">51:49 Pairs</button>
+            <button type="button" class="selector-btn" onclick="selectCosmicLayer(3, this)">51:21 Self</button>
+            <button type="button" class="selector-btn" onclick="selectCosmicLayer(4, this)">51:50 Flee</button>
+          </div>
+        </div>
+
+        <div class="spotlight-panel" id="cosmic-spotlight"></div>
+      </div>
+
+      <div class="module-footer">
+        <span class="reflection-note">Fleeing <em>to</em> Allah (51:50) rather than fleeing away from peril encapsulates the shift from material awe to conscious devotion.</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mod-4" onclick="toggleModuleComplete(4)">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Mark Module 4 Studied</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MODULE 5: CORE PURPOSE & SUSTENANCE -->
+    <section id="module-5" class="module-section reveal-section">
+      <div class="kicker">
+        <span>Module 05 · Verses 51:50–60</span>
+        <span>Creation's Purpose &amp; Divine Self-Sufficiency</span>
+      </div>
+      <h2 class="section-heading">5. Created for Worship, Sustained by the <em>All-Providing</em></h2>
+      <p class="prose">
+        After advising the Prophet not to blame himself over persistent rejection and affirming that <em>"the reminder benefits the believers"</em> (51:54–55), the Surah reaches its theological summit in verses 56–58. Creation does not serve an empty or needy deity; rather, worship aligns jinn and humanity with the One who needs no provision and alone grants sustenance with unshakeable strength.
+      </p>
+
+      <div class="spotlight-panel" style="border-color: var(--outline-featured); background: var(--primary-container);">
+        <div class="spotlight-meta">
+          <span class="badge-brass">51:56–58 · The Culminating Declaration</span>
+          <span class="tabular-num">3 Verses</span>
+        </div>
+        <p class="arabic-text" dir="rtl" lang="ar">
+          وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ ۝ مَا أُرِيدُ مِنْهُمْ مِنْ رِزْقٍ وَمَا أُرِيدُ أَنْ يُطْعِمُونَ ۝ إِنَّ اللَّهَ هُوَ الرَّزَّاقُ ذُو الْقُوَّةِ الْمَتِينُ
+        </p>
+        <p class="verse-translation">
+          "And I did not create the jinn and mankind except to worship Me. I do not want from them any provision, nor do I want them to feed Me. Indeed, it is Allah who is the [continual] Provider, the firm possessor of strength."
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <div class="spotlight-panel">
+          <div class="arch-label">Human Purpose · 51:56</div>
+          <h3 class="subhead">Singularity of Devotion</h3>
+          <p class="reflection-note">Following the prohibition of any equal deity (51:51), verse 51:56 establishes purposeful worship (<em>'ibadah</em>) as the unifying telos of both jinn and humankind.</p>
+        </div>
+        <div class="spotlight-panel">
+          <div class="arch-label">Divine Transcendence · 51:57</div>
+          <h3 class="subhead">Inversion of Ancient Myth</h3>
+          <p class="reflection-note">Unlike pagan notions of offerings feeding gods, Allah explicitly negates any dependence on human provision or nourishment.</p>
+        </div>
+        <div class="spotlight-panel">
+          <div class="arch-label">Provision &amp; Justice · 51:58–60</div>
+          <h3 class="subhead">Ar-Razzaq &amp; Final Warning</h3>
+          <p class="reflection-note">Linking back to 51:22 (<em>"In the heaven is your provision"</em>), verse 51:58 names Allah <em>Ar-Razzaq</em> and <em>Dhu al-Quwwah al-Matin</em>, before closing with the due portion (<em>dhanub</em>) of wrongdoers (51:59–60).</p>
+        </div>
+      </div>
+
+      <div class="module-footer">
+        <span class="reflection-note">Notice the ring composition: the Surah begins with physical channels of sustenance (winds, rain-clouds, ships) and ends with <em>Ar-Razzaq</em>, the Source of all sustenance.</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mod-5" onclick="toggleModuleComplete(5)">
+          <i data-lucide="check-circle" aria-hidden="true"></i>
+          <span>Mark Module 5 Studied</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE THEMATIC ANALYSIS -->
+    <section id="thematic-map" class="module-section is-tinted reveal-section">
+      <div class="kicker">
+        <span>Thematic Analysis</span>
+        <span>All 60 Verses Mapped</span>
+      </div>
+      <h2 class="section-heading">6. How Five Interlocking Themes Weave Through <em>Adh-Dhariyat</em></h2>
+      <p class="prose">
+        Filter by theme below to inspect where each motif appears across the 60-verse ribbon, or click any verse number on the ribbon to read its Arabic text, translation, and thematic linkage.
+      </p>
+
+      <div class="selector-row" role="group" aria-label="Theme filter">
+        <button type="button" class="selector-btn is-active" onclick="filterThemeMap('all', this)">All Themes (60 Verses)</button>
+        <button type="button" class="selector-btn" onclick="filterThemeMap('oaths', this)">Cosmic Oaths &amp; Signs</button>
+        <button type="button" class="selector-btn" onclick="filterThemeMap('hereafter', this)">Recompense &amp; Ethics</button>
+        <button type="button" class="selector-btn" onclick="filterThemeMap('ibrahim', this)">Ibrahim &amp; Lut</button>
+        <button type="button" class="selector-btn" onclick="filterThemeMap('nations', this)">Past Nations</button>
+        <button type="button" class="selector-btn" onclick="filterThemeMap('purpose', this)">Tawhid, Purpose &amp; Sustenance</button>
+      </div>
+
+      <div class="verse-ribbon" id="verse-ribbon" aria-label="Interactive 60-verse thematic map"></div>
+
+      <div class="split-grid">
+        <div class="spotlight-panel" id="theme-summary-panel"></div>
+        <div class="spotlight-panel" id="ribbon-verse-detail"></div>
+      </div>
+    </section>
+
+    <!-- COMPLETE VERSE / SECTION EXPLORER -->
+    <section id="verse-explorer" class="module-section reveal-section">
+      <div class="kicker">
+        <span>Complete Text &amp; Commentary</span>
+        <span>51:1 – 51:60</span>
+      </div>
+      <h2 class="section-heading">7. Interactive Verse-by-Verse <em>Explorer</em></h2>
+      <p class="prose">
+        Browse every verse of Surah Adh-Dhariyat with its Arabic script, translation, and study reflection. Filter by section, search keywords, view bookmarked verses, or toggle commentary notes.
+      </p>
+
+      <div class="controls-grid">
+        <div class="field-group">
+          <label class="field-label" for="explorer-section">Section Filter</label>
+          <select id="explorer-section" class="select-control" onchange="renderVerseExplorer()">
+            <option value="m1">1. Oaths, Accountability &amp; Signs (51:1–23)</option>
+            <option value="m2">2. Honored Guests of Ibrahim &amp; Lut (51:24–37)</option>
+            <option value="m3">3. Historical Warnings: Musa, 'Ad, Thamud, Nuh (51:38–46)</option>
+            <option value="m4">4. Expanding Cosmos &amp; Fleeing to Allah (51:47–55)</option>
+            <option value="m5">5. Purpose of Creation &amp; Al-Razzaq (51:56–60)</option>
+            <option value="bookmarked">Bookmarked Verses Only</option>
+            <option value="all">All 60 Verses (51:1–60)</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="explorer-search">Search Arabic or English</label>
+          <input type="search" id="explorer-search" class="input-control" placeholder="e.g., worship, provision, wind, calf…" oninput="renderVerseExplorer()">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="explorer-notes-toggle">Study Reflections</label>
+          <button type="button" id="explorer-notes-toggle" class="btn btn-secondary" onclick="toggleReflectionsDisplay()">
+            <span>Hide Reflections</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="explorer-count" class="arch-label" style="margin-bottom: var(--space-sm);"></div>
+      <div class="verse-list card-wrapper" id="verse-list"></div>
+    </section>
+
+    <!-- SEARCHABLE & FILTERABLE GLOSSARY -->
+    <section id="glossary" class="module-section is-tinted reveal-section">
+      <div class="kicker">
+        <span>Key Vocabulary</span>
+        <span>Quranic Terms in Chapter 51</span>
+      </div>
+      <h2 class="section-heading">8. Searchable Lexicon &amp; Key <em>Terms</em></h2>
+      <p class="prose">
+        Explore key Arabic expressions appearing in Surah Adh-Dhariyat, organized by domain.
+      </p>
+
+      <div class="controls-grid">
+        <div class="field-group">
+          <label class="field-label" for="glossary-search">Search Term or Meaning</label>
+          <input type="search" id="glossary-search" class="input-control" placeholder="Search Arabic, transliteration, or verse…" oninput="renderGlossary()">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="glossary-category">Domain Filter</label>
+          <select id="glossary-category" class="select-control" onchange="renderGlossary()">
+            <option value="all">All Domains</option>
+            <option value="Cosmic & Signs">Cosmic &amp; Signs</option>
+            <option value="Ethics & Worship">Ethics &amp; Worship</option>
+            <option value="Historical & Legal">Historical &amp; Legal</option>
+            <option value="Divine Names">Divine Names</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="glossary-grid" id="glossary-grid"></div>
+    </section>
+
+    <!-- COMPREHENSIVE KNOWLEDGE CHECK QUIZ -->
+    <section id="quiz" class="module-section reveal-section">
+      <div class="kicker">
+        <span>Knowledge Check</span>
+        <span>Instant Feedback</span>
+      </div>
+      <h2 class="section-heading">9. Comprehensive Surah Mastery <em>Quiz</em></h2>
+      <p class="prose">
+        Test your recall of Surah Adh-Dhariyat's structure, narratives, historical warnings, and theological themes. Select an answer to receive immediate verse-anchored feedback.
+      </p>
+
+      <div class="study-bar" style="margin-bottom: var(--space-lg); background: var(--background);">
+        <div class="study-bar-top">
+          <div>
+            <span class="badge-emerald" id="quiz-score-badge">Score: 0 / 10</span>
+            <span class="reflection-note" id="quiz-status-note" style="display: inline-block; margin-left: var(--space-sm);">Answer any question below to begin.</span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="quiz-reset-btn" onclick="resetQuiz(this)">Reset Quiz</button>
+        </div>
+      </div>
+
+      <div id="quiz-container"></div>
+    </section>
+
+    <!-- SOURCE ATTRIBUTION & EXPORT FOOTER -->
+    <footer class="source-footer">
+      <div>
+        <strong>Source Grounding:</strong> All 60 Arabic verses, English translations, and thematic structures are derived directly from the provided source text of Surah Adh-Dhariyat (Qur'an 51:1–60).
+      </div>
+      <div>
+        <button type="button" class="btn btn-emerald btn-sm" onclick="exportStudySummary()">
+          <i data-lucide="download" aria-hidden="true"></i>
+          <span>Export Study Summary (.txt)</span>
+        </button>
+      </div>
+    </footer>
+
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const VERSES = [
+      { n: 1, mod: 'm1', theme: 'oaths', ar: `وَالدَّارِيَاتِ ذَرْوًا`, en: `By those [winds] scattering [dust] dispersing`, note: `Opening oath on winds that lift and disperse dust and seeds across the earth, initiating a sequence of dynamic natural forces.` },
+      { n: 2, mod: 'm1', theme: 'oaths', ar: `فَالْحَامِلَاتِ وِقْرًا`, en: `And those [clouds] carrying a load [of water]`, note: `Rain-bearing clouds carrying immense weight across the sky, signaling sustenance and effortless divine governance.` },
+      { n: 3, mod: 'm1', theme: 'oaths', ar: `فَالْجَارِيَاتِ يُسْرًا`, en: `And those [ships] sailing with ease`, note: `Vessels gliding smoothly upon the waters, linking wind currents to human travel and trade.` },
+      { n: 4, mod: 'm1', theme: 'oaths', ar: `فَالْمُقَسِّمَاتِ أَمْرًا`, en: `And those [angels] apportioning [each] matter,`, note: `Angelic agents distributing rain, sustenance, and decrees by divine command.` },
+      { n: 5, mod: 'm1', theme: 'hereafter', ar: `إِنَّمَا تُوعَدُونَ لَصَادِقٌ`, en: `Indeed, what you are promised is true.`, note: `First answer to the oaths: every promised reality—resurrection, recompense, and ultimate justice—is true.` },
+      { n: 6, mod: 'm1', theme: 'hereafter', ar: `وَإِنَّ الدِّينَ لَوَاقِعٌ`, en: `And indeed, the recompense is to occur.`, note: `The Day of Recompense (al-din) is not hypothetical; it is certain to unfold.` },
+      { n: 7, mod: 'm1', theme: 'oaths', ar: `وَالسَّمَاءِ ذَاتِ الْحُبُكِ`, en: `By the heaven containing pathways,`, note: `An oath by the structured, woven pathways (hubuk) of the heavens—celestial orbits and order.` },
+      { n: 8, mod: 'm1', theme: 'hereafter', ar: `إِنَّكُمْ لَفِي قَوْلٍ مُخْتَلِفِ`, en: `Indeed, you are in differing speech.`, note: `Contrasts celestial harmony (51:7) with the fractured, contradictory claims of skeptics regarding revelation.` },
+      { n: 9, mod: 'm1', theme: 'hereafter', ar: `يُؤْفَكُ عَنْهُ مَنْ أُفِكَ`, en: `Deluded away from the Qur'an is he who is deluded.`, note: `Turning away from clear guidance stems from willful self-delusion.` },
+      { n: 10, mod: 'm1', theme: 'hereafter', ar: `قُتِلَ الْخَرَّاصُونَ`, en: `Destroyed are the falsifiers`, note: `A stern denunciation of those who speak by baseless conjecture (kharrasun) rather than truth.` },
+      { n: 11, mod: 'm1', theme: 'hereafter', ar: `الَّذِينَ هُمْ فِي غَمْرَةٍ سَاهُونَ`, en: `Who are within a flood [of confusion] and heedless.`, note: `Describes spiritual blindness as being submerged in overwhelming confusion (ghamrah) and unmindful of accountability.` },
+      { n: 12, mod: 'm1', theme: 'hereafter', ar: `يَسْأَلُونَ أَيَّانَ يَوْمُ الدِّينِ`, en: `They ask, "When is the Day of Recompense?"`, note: `A mocking question posed in disbelief rather than sincere inquiry.` },
+      { n: 13, mod: 'm1', theme: 'hereafter', ar: `يَوْمَ هُمْ عَلَى النَّارِ يُفْتَنُونَ`, en: `[It is] the Day they will be tormented over the Fire`, note: `Direct answer to "When?": it is the very Day their denial turns into direct trial over the Fire.` },
+      { n: 14, mod: 'm1', theme: 'hereafter', ar: `ذُوقُوا فِتْنَتَكُمْ هُذَا الَّذِي كُنْتُمْ بِهِ تَسْتَعْجِلُونَ`, en: `[And will be told], "Taste your torment. This is that for which you were impatient."`, note: `Echoed at the Surah's close (51:59), warning against impatiently challenging divine justice.` },
+      { n: 15, mod: 'm1', theme: 'hereafter', ar: `إِنَّ الْمُتَّقِينَ فِي جَنَّاتٍ وَعُيُونٍ`, en: `Indeed, the righteous will be among gardens and springs,`, note: `Immediate aesthetic and spiritual contrast: gardens and flowing springs for the God-conscious (muttaqin).` },
+      { n: 16, mod: 'm1', theme: 'hereafter', ar: `آخِذِينَ مَا آتَاهُمْ رَبُّهُمْ إِنَّهُمْ كَانُوا قَبْلَ ذُلِكَ مُحْسِنِينَ`, en: `Accepting what their Lord has given them. Indeed, they were before that doers of good.`, note: `Their bliss stems from their prior excellence in character and worship (ihsan).` },
+      { n: 17, mod: 'm1', theme: 'hereafter', ar: `كَانُوا قَلِيلًا مِنَ اللَّيْلِ مَا يَهْجَعُونَ`, en: `They used to sleep but little of the night,`, note: `First habit of the muhsinin: dedicating quiet night hours to wakeful devotion and prayer.` },
+      { n: 18, mod: 'm1', theme: 'hereafter', ar: `وَبِالْأَسْحَارِ هُمْ يَسْتَغْفِرُونَ`, en: `And in the hours before dawn they would ask forgiveness,`, note: `Second habit: even after night devotion, they end the pre-dawn hours (ashar) in humility, seeking forgiveness.` },
+      { n: 19, mod: 'm1', theme: 'hereafter', ar: `وَفِي أَمْوَالِهِمْ حَقٌّ لِلسَّائِلِ وَالْمَحْرُومِ`, en: `And from their properties was [given] the right of the [needy] petitioner and the deprived.`, note: `Third habit: social compassion—viewing aid to both those who ask and those too dignified to ask as a rightful obligation.` },
+      { n: 20, mod: 'm1', theme: 'oaths', ar: `وَفِي الْأَرْضِ آيَاتٌ لِلْمُوقِنِينَ`, en: `And on the earth are signs for the certain [in faith]`, note: `Nature and earth serve as readable evidence for hearts open to certainty.` },
+      { n: 21, mod: 'm1', theme: 'oaths', ar: `وَفِي أَنْفُسِكُمْ أَفَلَا تُبْصِرُونَ`, en: `And in yourselves. Then will you not see?`, note: `Turns reflection inward: human anatomy, speech, conscience, and life itself carry unmistakable signs.` },
+      { n: 22, mod: 'm1', theme: 'oaths', ar: `وَفِي السَّمَاءِ رِزْقُكُمْ وَمَا تُوعَدُونَ`, en: `And in the heaven is your provision and whatever you are promised.`, note: `Both earthly livelihood (via rain and decree) and promised reward descend from heaven's command.` },
+      { n: 23, mod: 'm1', theme: 'oaths', ar: `فَوَرَبِّ السَّمَاءِ وَالْأَرْضِ إِنَّهُ لَحَقٌّ مِثْلَ مَا أَنَّكُمْ تَنْطِقُونَ`, en: `Then by the Lord of the heaven and earth, indeed, it is truth - just as [sure as] it is that you are speaking.`, note: `Climactic oath of certainty: revelation's promise is as undeniable as the fact of one's own speech.` },
+      { n: 24, mod: 'm2', theme: 'ibrahim', ar: `هَلْ أَتَاكَ حَدِيثُ ضَيْفِ إِبْرَاهِيمَ الْمُكْرَمِينَ`, en: `Has there reached you the story of the honored guests of Abraham? -`, note: `Introduces Abraham's angelic visitors, described as honored both by Allah and by Abraham's exemplary hospitality.` },
+      { n: 25, mod: 'm2', theme: 'ibrahim', ar: `إِذْ دَخَلُوا عَلَيْهِ فَقَالُوا سَلَامًا ۖ قَالَ سَلَامٌ قَوْمٌ مُنْكَرُونَ`, en: `When they entered upon him and said, "[We greet you with] peace." He answered, "[And upon you] peace, [you are] a people unknown.`, note: `Immediate greeting of peace even toward unfamiliar strangers—hospitality precedes interrogation.` },
+      { n: 26, mod: 'm2', theme: 'ibrahim', ar: `فَرَاغَ إِلَىٰ أَهْلِهِ فَجَاءَ بِعِجْلٍ سَمِينٍ`, en: `Then he went to his family and came with a fat [roasted] calf`, note: `Quiet, swift service (faragha) without making the guests feel awkward or waiting.` },
+      { n: 27, mod: 'm2', theme: 'ibrahim', ar: `فَقَرَّبَهُ إِلَيْهِمْ قَالَ أَلَا تَأْكُلُونَ`, en: `And placed it near them; he said, "Will you not eat?"`, note: `Bringing the food directly before them and offering a gentle, unassuming invitation.` },
+      { n: 28, mod: 'm2', theme: 'ibrahim', ar: `فَأَوْجَسَ مِنْهُمْ خِيفَةً ۖ قَالُوا لَا تَخَفْ ۖ وَبَشِّرُوهُ بِغُلَامٍ عَلِيمٍ`, en: `And he felt from them apprehension. They said, "Fear not," and gave him good tidings of a learned boy.`, note: `Refusal to eat signaled a non-human or hostile intent; the angels reassure him and announce a son endowed with knowledge.` },
+      { n: 29, mod: 'm2', theme: 'ibrahim', ar: `فَأَقْبَلَتِ امْرَأَتُهُ فِي صَرَّةٍ فَصَكَّتْ وَجْهَهَا وَقَالَتْ عَجُوزٌ عَقِيمٌ`, en: `And his wife approached with a cry [of alarm] and struck her face and said, "[I am] a barren old woman!"`, note: `Sarah's natural human astonishment at receiving news of childbirth in advanced age and lifelong barrenness.` },
+      { n: 30, mod: 'm2', theme: 'ibrahim', ar: `قَالُوا كَذَلِكِ قَالَ رَبُّكِ ۖ إِنَّهُ هُوَ الْحَكِيمُ الْعَلِيمُ`, en: `They said, "Thus has said your Lord; indeed, He is the Wise, the Knowing."`, note: `Divine decree operates beyond ordinary biological limits through perfect wisdom and omniscience.` },
+      { n: 31, mod: 'm2', theme: 'ibrahim', ar: `قَالَ فَمَا خَطْبُكُمْ أَيُّهَا الْمُرْسَلُونَ`, en: `[Abraham] said, "Then what is your business [here], O messengers?"`, note: `Once reassured, Abraham inquires about their broader mission.` },
+      { n: 32, mod: 'm2', theme: 'ibrahim', ar: `قَالُوا إِنَّا أُرْسِلْنَا إِلَىٰ قَوْمٍ مُجْرِمِينَ`, en: `They said, "Indeed, we have been sent to a people of criminals`, note: `Identifies the people of Lut as persistent wrongdoers beyond reform.` },
+      { n: 33, mod: 'm2', theme: 'ibrahim', ar: `لِنُرْسِلَ عَلَيْهِمْ حِجَارَةً مِنْ طِينٍ`, en: `To send down upon them stones of clay,`, note: `Baked clay stones as the appointed instrument of judgment.` },
+      { n: 34, mod: 'm2', theme: 'ibrahim', ar: `مُسَوَّمَةً عِنْدَ رَبِّكَ لِلْمُسْرِفِينَ`, en: `Marked in the presence of your Lord for the transgressors."`, note: `Each stone is specifically designated (musawwamah) for those who exceeded all moral bounds (musrifin).` },
+      { n: 35, mod: 'm2', theme: 'ibrahim', ar: `فَأَخْرَجْنَا مَنْ كَانَ فِيهَا مِنَ الْمُؤْمِنِينَ`, en: `So We brought out whoever was in the cities of the believers.`, note: `Divine justice always separates and rescues the believing faithful before judgment falls.` },
+      { n: 36, mod: 'm2', theme: 'ibrahim', ar: `فَمَا وَجَدْنَا فِيهَا غَيْرَ بَيْتٍ مِنَ الْمُسْلِمِينَ`, en: `And We found not within them other than a [single] house of Muslims.`, note: `Underscores both the isolation of Lut's household and the equivalence of true faith and submission (islam).` },
+      { n: 37, mod: 'm2', theme: 'ibrahim', ar: `وَتَرَكْنَا فِيهَا آيَةً لِلَّذِينَ يَخَافُونَ الْعَذَابَ الْأَلِيمَ`, en: `And We left therein a sign for those who fear the painful punishment.`, note: `The ruined landscape remains a moral lesson for future generations who heed consequences.` },
+      { n: 38, mod: 'm3', theme: 'nations', ar: `وَفِي مُوسَىٰ إِذْ أَرْسَلْنَاهُ إِلَى فِرْعَوْنَ بِسُلْطَانٍ مُبِينٍ`, en: `And in Moses [was a sign], when We sent him to Pharaoh with clear authority.`, note: `Transitions to Moses confronting Pharaoh armed with unmistakable signs and proof (sultan mubin).` },
+      { n: 39, mod: 'm3', theme: 'nations', ar: `فَتَوَلَّىٰ بِرُكْنِهِ وَقَالَ سَاحِرٌ أَوْ مَجْنُونٌ`, en: `But he turned away with his supporters and said, "A magician or a madman."`, note: `Pharaoh leans on his political/military pillar (ruknihi) and dismisses revelation with the classic dual slander.` },
+      { n: 40, mod: 'm3', theme: 'nations', ar: `فَأَخَذْنَاهُ وَجُنُودَهُ فَنَبَذْنَاهُمْ فِي الْيَمِّ وَهُوَ مُلِيمٌ`, en: `So We took him and his soldiers and cast them into the sea, and he was blameworthy.`, note: `Total power is effortlessly cast into the sea (al-yamm); Pharaoh alone bears moral culpability (mulim).` },
+      { n: 41, mod: 'm3', theme: 'nations', ar: `وَفِي عَادٍ إِذْ أَرْسَلْنَا عَلَيْهِمُ الرِّيحَ الْعَقِيمَ`, en: `And in 'Aad [was a sign], when We sent against them the barren wind.`, note: `Unlike the fertile scattering winds of 51:1, 'Ad received a sterile, destructive gale carrying neither rain nor pollination.` },
+      { n: 42, mod: 'm3', theme: 'nations', ar: `مَا تَذَرُ مِنْ شَيْءٍ أَتَتْ عَلَيْهِ إِلَّا جَعَلَتْهُ كَالرَّمِيمِ`, en: `It left nothing of what it came upon but that it made it like disintegrated ruins.`, note: `Reduces proud monuments and bodies alike to crumbled dust (ramim).` },
+      { n: 43, mod: 'm3', theme: 'nations', ar: `وَفِي ثَمُودَ إِذْ قِيلَ لَهُمْ تَمَتَّعُوا حَتَّى حِينٍ`, en: `And in Thamud, when it was said to them, "Enjoy yourselves for a time."`, note: `Thamud were given a measured respite—yet mistook patience for immunity.` },
+      { n: 44, mod: 'm3', theme: 'nations', ar: `فَعَتَوْا عَنْ أَمْرِ رَبِّهِمْ فَأَخَذَتْهُمُ الصَّاعِقَةُ وَهُمْ يَنْظُرُونَ`, en: `But they were insolent toward the command of their Lord, so the thunderbolt seized them while they were looking on.`, note: `Overwhelmed in broad awareness by a sudden thunderous blast (as-sa'iqah).` },
+      { n: 45, mod: 'm3', theme: 'nations', ar: `فَمَا اسْتَطَاعُوا مِنْ قِيَامٍ وَمَا كَانُوا مُنْتَصِرِينَ`, en: `And they were unable to arise, nor could they defend themselves.`, note: `Total helplessness—neither able to stand nor able to summon allies.` },
+      { n: 46, mod: 'm3', theme: 'nations', ar: `وَقَوْمَ نُوحٍ مِنْ قَبْلُ ۖ إِنَّهُمْ كَانُوا قَوْمًا فَاسِقِينَ`, en: `And [We destroyed] the people of Noah before; indeed, they were a people defiantly disobedient.`, note: `Closes the historical sequence by reaching back to Noah's rebellious generation.` },
+      { n: 47, mod: 'm4', theme: 'oaths', ar: `وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ`, en: `And the heaven We constructed with strength, and indeed, We are [its] expander.`, note: `Returns from history's ruins to cosmic majesty: the sky built with power (bi-aydin) and continually expanded (musi'un).` },
+      { n: 48, mod: 'm4', theme: 'oaths', ar: `وَالْأَرْضَ فَرَشْنَاهَا فَنِعْمَ الْمَاهِدُونَ`, en: `And the earth We have spread out, and excellent is the preparer.`, note: `The earth smoothed and prepared like a welcoming bed for human habitation.` },
+      { n: 49, mod: 'm4', theme: 'oaths', ar: `وَمِنْ كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ لَعَلَّكُمْ تَذَكَّرُونَ`, en: `And of all things We created two mates; perhaps you will remember.`, note: `Dualities and pairings throughout creation—night/day, male/female, earth/sky—pointing toward the single, unpaired Creator.` },
+      { n: 50, mod: 'm4', theme: 'purpose', ar: `فَفِرُّوا إِلَى اللَّهِ إِنِّي لَكُمْ مِنْهُ نَذِيرٌ مُبِينٌ`, en: `So flee to Allah. Indeed, I am to you from Him a clear warner.`, note: `A striking imperative: unlike earthly danger where one flees away, safety from divine wrath lies in fleeing toward Allah.` },
+      { n: 51, mod: 'm4', theme: 'purpose', ar: `وَلَا تَجْعَلُوا مَعَ اللَّهِ إِلَهًا آخَرُ إِنِّي لَكُمْ مِنْهُ نَذِيرٌ مُبِينٌ`, en: `And do not make [as equal] with Allah another deity. Indeed, I am to you from Him a clear warner.`, note: `Establishes pure monotheism (Tawhid) as the first requirement of fleeing to Allah.` },
+      { n: 52, mod: 'm4', theme: 'nations', ar: `كَذلِكَ مَا أَتَى الَّذِينَ مِنْ قَبْلِهِمْ مِنْ رَسُولٍ إِلَّا قَالُوا سَاحِرٌ أَوْ مَجْنُونٌ`, en: `Similarly, there came not to those before them any messenger except that they said, "A magician or a madman."`, note: `Consoles the Prophet by showing that slander against messengers is an age-old pattern, echoing Pharaoh in 51:39.` },
+      { n: 53, mod: 'm4', theme: 'nations', ar: `أَتَوَاصَوْا بِهِ ۚ بَلْ هُمْ قَوْمٌ طَاغُونَ`, en: `Did they suggest it to them? Rather, they [themselves] are a transgressing people.`, note: `Rhetorical question: generations separated by centuries did not bequeath a script; shared arrogance produces the same excuses.` },
+      { n: 54, mod: 'm4', theme: 'purpose', ar: `فَتَوَلَّ عَنْهُمْ فَمَا أَنْتَ بِمَلُومٍ`, en: `So leave them, [O Muhammad], for you are not to be blamed.`, note: `Relieves the messenger of burden after clear delivery of the message.` },
+      { n: 55, mod: 'm4', theme: 'purpose', ar: `وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنْفَعُ الْمُؤْمِنِينَ`, en: `And remind, for indeed, the reminder benefits the believers.`, note: `Even when opponents turn away, continual reminding nourishes and strengthens believers.` },
+      { n: 56, mod: 'm5', theme: 'purpose', ar: `وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ`, en: `And I did not create the jinn and mankind except to worship Me.`, note: `The philosophical centerpiece of the Surah: purposeful, loving servitude to the Creator defines human and jinn existence.` },
+      { n: 57, mod: 'm5', theme: 'purpose', ar: `مَا أُرِيدُ مِنْهُمْ مِنْ رِزْقٍ وَمَا أُرِيدُ أَنْ يُطْعِمُونَ`, en: `I do not want from them any provision, nor do I want them to feed Me.`, note: `Worship benefits the worshiper, not God—who is completely free of need or sustenance.` },
+      { n: 58, mod: 'm5', theme: 'purpose', ar: `إِنَّ اللَّهَ هُوَ الرَّزَّاقُ ذُو الْقُوَّةِ الْمَتِينُ`, en: `Indeed, it is Allah who is the [continual] Provider, the firm possessor of strength.`, note: `Unites provision (Ar-Razzaq) and power (Dhu al-Quwwah al-Matin), closing the theme introduced in 51:1–4 and 51:22.` },
+      { n: 59, mod: 'm5', theme: 'hereafter', ar: `فَإِنَّ لِلَّذِينَ ظَلَمُوا ذَنُوبًا مِثْلَ ذَنُوبِ أَصْحَابِهِمْ فَلَا يَسْتَعْجِلُونَ`, en: `And indeed, for those who have wronged is a portion [of punishment] like the portion of their predecessors, so let them not impatiently urge Me.`, note: `Uses the vivid word dhanub (a drawn bucket/portion) for the measured share of consequence awaiting wrongdoers.` },
+      { n: 60, mod: 'm5', theme: 'hereafter', ar: `فَوَيْلٌ لِلَّذِينَ كَفَرُوا مِنْ يَوْمِهِمُ الَّذِي يُوعَدُونَ`, en: `And woe to those who have disbelieved from their Day which they are promised.`, note: `Final warning returning full circle to "what you are promised" (51:5) and "the Day of Recompense" (51:12).` }
+    ];
+
+    const OATHS_DATA = [
+      {
+        badge: `51:1 · Wind Power`,
+        ar: `وَالدَّارِيَاتِ ذَرْوًا`,
+        en: `By those [winds] scattering [dust] dispersing`,
+        note: `Winds lift particles, scatter seeds, and stir atmospheric circulation. Just as unseen winds reshape landscapes, unseen divine decrees govern history and resurrection.`
+      },
+      {
+        badge: `51:2 · Moisture & Burden`,
+        ar: `فَالْحَامِلَاتِ وِقْرًا`,
+        en: `And those [clouds] carrying a load [of water]`,
+        note: `Clouds hold vast tons of water suspended effortlessly above the earth—a natural image of both provision (rizq) and power held in balance.`
+      },
+      {
+        badge: `51:3 · Buoyancy & Motion`,
+        ar: `فَالْجَارِيَاتِ يُسْرًا`,
+        en: `And those [ships] sailing with ease`,
+        note: `Heavy vessels glide smoothly across oceans through physical laws established for human benefit, connecting cosmic order to daily livelihood.`
+      },
+      {
+        badge: `51:4 · Apportionment`,
+        ar: `فَالْمُقَسِّمَاتِ أَمْرًا`,
+        en: `And those [angels] apportioning [each] matter,`,
+        note: `Culminates the four-part chain: angels distributing rain, sustenance, and divine commands—proving that nothing in existence unfolds randomly.`
+      },
+      {
+        badge: `51:7 · Cosmic Pathways`,
+        ar: `وَالسَّمَاءِ ذَاتِ الْحُبُكِ`,
+        en: `By the heaven containing pathways,`,
+        note: `After declaring in 51:5–6 that the promise and recompense are certain, 51:7 swears by the finely woven paths of heaven to contrast cosmic harmony with human "differing speech" (51:8).`
+      }
+    ];
+
+    const IBRAHIM_BEATS = [
+      {
+        badge: `Beat I · 51:24–27 · Unstinting Hospitality`,
+        ar: `إِذْ دَخَلُوا عَلَيْهِ فَقَالُوا سَلَامًا ۖ قَالَ سَلَامٌ قَوْمٌ مُنْكَرُونَ ۝ فَرَاغَ إِلَىٰ أَهْلِهِ فَجَاءَ بِعِجْلٍ سَمِينٍ ۝ فَقَرَّبَهُ إِلَيْهِمْ قَالَ أَلَا تَأْكُلُونَ`,
+        en: `When they entered upon him and said, "[We greet you with] peace." He answered, "[And upon you] peace, [you are] a people unknown. Then he went to his family and came with a fat [roasted] calf and placed it near them; he said, "Will you not eat?"`,
+        note: `Abraham models three rules of generous hospitality: welcoming strangers with peace before asking their names, preparing the finest meal quietly so guests feel no burden, and gently inviting them to eat.`
+      },
+      {
+        badge: `Beat II · 51:28–30 · Apprehension & Glad Tidings`,
+        ar: `فَأَوْجَسَ مِنْهُمْ خِيفَةً ۖ قَالُوا لَا تَخَفْ ۖ وَبَشِّرُوهُ بِغُلَامٍ عَلِيمٍ ۝ فَأَقْبَلَتِ امْرَأَتُهُ فِي صَرَّةٍ فَصَكَّتْ وَجْهَهَا وَقَالَتْ عَجُوزٌ عَقِيمٌ`,
+        en: `And he felt from them apprehension. They said, "Fear not," and gave him good tidings of a learned boy. And his wife approached with a cry [of alarm] and struck her face and said, "[I am] a barren old woman!"`,
+        note: `When guests refrain from touching food in ancient custom, it signals danger. The angels immediately calm his fear and deliver joy: a learned son (ghulam 'alim), affirmed by "He is the Wise, the Knowing" (51:30).`
+      },
+      {
+        badge: `Beat III · 51:31–34 · The Mission Against Transgressors`,
+        ar: `قَالَ فَمَا خَطْبُكُمْ أَيُّهَا الْمُرْسَلُونَ ۝ قَالُوا إِنَّا أُرْسِلْنَا إِلَىٰ قَوْمٍ مُجْرِمِينَ ۝ لِنُرْسِلَ عَلَيْهِمْ حِجَارَةً مِنْ طِينٍ ۝ مُسَوَّمَةً عِنْدَ رَبِّكَ لِلْمُسْرِفِينَ`,
+        en: `[Abraham] said, "Then what is your business [here], O messengers?" They said, "Indeed, we have been sent to a people of criminals to send down upon them stones of clay, marked in the presence of your Lord for the transgressors."`,
+        note: `Notice the exactitude of justice: the clay stones are explicitly marked (musawwamah) for the transgressors (musrifin)—nothing is indiscriminate.`
+      },
+      {
+        badge: `Beat IV · 51:35–37 · Rescue of One Household`,
+        ar: `فَأَخْرَجْنَا مَنْ كَانَ فِيهَا مِنَ الْمُؤْمِنِينَ ۝ فَمَا وَجَدْنَا فِيهَا غَيْرَ بَيْتٍ مِنَ الْمُسْلِمِينَ ۝ وَتَرَكْنَا فِيهَا آيَةً لِلَّذِينَ يَخَافُونَ الْعَذَابَ الْأَلِيمَ`,
+        en: `So We brought out whoever was in the cities of the believers. And We found not within them other than a [single] house of Muslims. And We left therein a sign for those who fear the painful punishment.`,
+        note: `Faith and submission protect the faithful minority—even when only a single household remains—while leaving behind a lasting sign (ayah) for those who take heed.`
+      }
+    ];
+
+    const NATIONS_DATA = [
+      {
+        badge: `51:38–40 · Musa & Pharaoh`,
+        ar: `وَفِي مُوسَىٰ إِذْ أَرْسَلْنَاهُ إِلَى فِرْعَوْنَ بِسُلْطَانٍ مُبِينٍ ۝ فَتَوَلَّىٰ بِرُكْنِهِ وَقَالَ سَاحِرٌ أَوْ مَجْنُونٌ ۝ فَأَخَذْنَاهُ وَجُنُودَهُ فَنَبَذْنَاهُمْ فِي الْيَمِّ وَهُوَ مُلِيمٌ`,
+        en: `And in Moses [was a sign], when We sent him to Pharaoh with clear authority. But he turned away with his supporters and said, "A magician or a madman." So We took him and his soldiers and cast them into the sea, and he was blameworthy.`,
+        note: `Pharaoh relies on his army and court (bi-ruknihi) and dismisses clear proof with slander. His forces are cast into the sea (al-yamm), and the closing word mulim underlines that his ruin was self-inflicted.`
+      },
+      {
+        badge: `51:41–42 · People of 'Ad`,
+        ar: `وَفِي عَادٍ إِذْ أَرْسَلْنَا عَلَيْهِمُ الرِّيحَ الْعَقِيمَ ۝ مَا تَذَرُ مِنْ شَيْءٍ أَتَتْ عَلَيْهِ إِلَّا جَعَلَتْهُ كَالرَّمِيمِ`,
+        en: `And in 'Aad [was a sign], when We sent against them the barren wind. It left nothing of what it came upon but that it made it like disintegrated ruins.`,
+        note: `A sharp contrast with 51:1–2: winds normally carry rain and life, but against 'Ad came ar-rih al-'aqim (the barren wind), reducing all they built to pulverized decay (ar-ramim).`
+      },
+      {
+        badge: `51:43–45 · People of Thamud`,
+        ar: `وَفِي ثَمُودَ إِذْ قِيلَ لَهُمْ تَمَتَّعُوا حَتَّى حِينٍ ۝ فَعَتَوْا عَنْ أَمْرِ رَبِّهِمْ فَأَخَذَتْهُمُ الصَّاعِقَةُ وَهُمْ يَنْظُرُونَ`,
+        en: `And in Thamud, when it was said to them, "Enjoy yourselves for a time." But they were insolent toward the command of their Lord, so the thunderbolt seized them while they were looking on.`,
+        note: `Thamud were granted a temporary respite—a mercy meant for reflection—but grew insolent. The thunderbolt (as-sa'iqah) struck in full daylight, leaving them unable to stand or resist (51:45).`
+      },
+      {
+        badge: `51:46 · People of Nuh`,
+        ar: `وَقَوْمَ نُوحٍ مِنْ قَبْلُ ۖ إِنَّهُمْ كَانُوا قَوْمًا فَاسِقِينَ`,
+        en: `And [We destroyed] the people of Noah before; indeed, they were a people defiantly disobedient.`,
+        note: `Concluding the sequence by looking back to the earliest moral crisis: persistent defiance (fisq) against prophetic warning.`
+      }
+    ];
+
+    const COSMIC_LAYERS = [
+      {
+        badge: `Layer 1 · 51:47 · The Expanding Heaven`,
+        ar: `وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ`,
+        en: `And the heaven We constructed with strength, and indeed, We are [its] expander.`,
+        note: `Highlights both vast structural power (bi-aydin) and continuous cosmic expansion (la-musi'un), demonstrating capability over resurrection and creation alike.`
+      },
+      {
+        badge: `Layer 2 · 51:48 & 51:20 · The Spread Earth`,
+        ar: `وَالْأَرْضَ فَرَشْنَاهَا فَنِعْمَ الْمَاهِدُونَ`,
+        en: `And the earth We have spread out, and excellent is the preparer.`,
+        note: `Connects directly to 51:20 ("And on the earth are signs for the certain"): the earth is crafted like a nurturing cradle (mahd) sustaining life and offering empirical signs.`
+      },
+      {
+        badge: `Layer 3 · 51:49 · Pairs in All Creation`,
+        ar: `وَمِنْ كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ لَعَلَّكُمْ تَذَكَّرُونَ`,
+        en: `And of all things We created two mates; perhaps you will remember.`,
+        note: `Complementarity and pairing characterize created reality—night and day, positive and negative, male and female—reminding observers that only Allah is One without counterpart.`
+      },
+      {
+        badge: `Layer 4 · 51:21 · Signs Within Yourselves`,
+        ar: `وَفِي أَنْفُسِكُمْ أَفَلَا تُبْصِرُونَ`,
+        en: `And in yourselves. Then will you not see?`,
+        note: `Turns the gaze inward: human consciousness, speech (51:23), growth, and moral discernment mirror the Creator's wisdom closer than the farthest star.`
+      },
+      {
+        badge: `Layer 5 · 51:50–51 · Flee to Allah`,
+        ar: `فَفِرُّوا إِلَى اللَّهِ إِنِّي لَكُمْ مِنْهُ نَذِيرٌ مُبِينٌ`,
+        en: `So flee to Allah. Indeed, I am to you from Him a clear warner.`,
+        note: `Every external and internal sign converges on one existential response: fleeing from heedlessness and false gods (51:51) into the refuge of Allah.`
+      }
+    ];
+
+    const THEME_META = {
+      all: {
+        title: `Complete 60-Verse Architecture`,
+        span: `51:1 – 51:60`,
+        desc: `Surah Adh-Dhariyat alternates between cosmic testimony, human accountability, prophetic narrative, historical warning, and theological purpose. Click any numbered square in the ribbon to inspect that verse.`
+      },
+      oaths: {
+        title: `Cosmic Oaths & Natural Signs`,
+        span: `51:1–4, 51:7, 51:20–23, 51:47–49`,
+        desc: `Winds, rain-laden clouds, ships, apportioning angels, celestial pathways, earth, human interiority, cosmic expansion, and paired creation all witness to divine truth and provision.`
+      },
+      hereafter: {
+        title: `Recompense & Traits of the Righteous`,
+        span: `51:5–6, 51:8–19, 51:59–60`,
+        desc: `Contrasts confused deniers impatiently mocking the Day of Recompense with the muhsinin who pray by night, seek forgiveness before dawn, and share wealth with the needy.`
+      },
+      ibrahim: {
+        title: `Ibrahim's Hospitality & Lut's Deliverance`,
+        span: `51:24–37`,
+        desc: `Demonstrates noble prophetic hospitality, the miraculous promise of a learned son to aged parents, and exact moral justice sparing a single Muslim household.`
+      },
+      nations: {
+        title: `Historical Warnings & Recurrent Denial`,
+        span: `51:38–46, 51:52–53`,
+        desc: `Tracks Pharaoh, 'Ad, Thamud, and Nuh's people—highlighting how arrogant societies repeat the same accusation ("magician or madman") across centuries.`
+      },
+      purpose: {
+        title: `Tawhid, Creation's Purpose & Al-Razzaq`,
+        span: `51:50–51, 51:54–58`,
+        desc: `Calls humanity to flee to Allah alone, sustains the believer through reminder (dhikra), and declares that worship—not divine need—is the purpose of jinn and humankind.`
+      }
+    };
+
+    const GLOSSARY_TERMS = [
+      { term: `Adh-Dhariyat`, ar: `الذَّارِيَات / الدَّارِيَات`, ref: `51:1`, cat: `Cosmic & Signs`, def: `Winds that scatter and disperse dust or seeds across the earth, opening the Surah's four-part oath.` },
+      { term: `Al-Hamilat Wiqra`, ar: `الْحَامِلَاتِ وِقْرًا`, ref: `51:2`, cat: `Cosmic & Signs`, def: `Rain clouds bearing a heavy load of water, symbolizing both cosmic balance and provision.` },
+      { term: `Al-Muqassimat Amra`, ar: `الْمُقَسِّمَاتِ أَمْرًا`, ref: `51:4`, cat: `Cosmic & Signs`, def: `Angels appointed to apportion sustenance, rain, and divine commands across creation.` },
+      { term: `Yawm Ad-Din`, ar: `يَوْمُ الدِّينِ`, ref: `51:6, 51:12`, cat: `Historical & Legal`, def: `The Day of Recompense and moral accounting, declared certain to occur.` },
+      { term: `Dhat Al-Hubuk`, ar: `ذَاتِ الْحُبُكِ`, ref: `51:7`, cat: `Cosmic & Signs`, def: `Heaven endowed with structured, woven pathways and celestial tracks.` },
+      { term: `Al-Kharrasun`, ar: `الْخَرَّاصُونَ`, ref: `51:10`, cat: `Historical & Legal`, def: `Conjecturers and falsifiers who fabricate claims without knowledge.` },
+      { term: `Ghamrah`, ar: `غَمْرَة`, ref: `51:11`, cat: `Ethics & Worship`, def: `A deep flood of confusion and heedlessness that overwhelms the spiritually negligent.` },
+      { term: `Al-Muhsinin`, ar: `الْمُحْسِنِينَ`, ref: `51:16`, cat: `Ethics & Worship`, def: `Doers of excellence and good—characterized by night vigil, pre-dawn repentance, and charity.` },
+      { term: `Al-Ashar`, ar: `الْأَسْحَار`, ref: `51:18`, cat: `Ethics & Worship`, def: `The quiet hours just before dawn when the righteous ask Allah for forgiveness.` },
+      { term: `As-Sa'il wa Al-Mahrum`, ar: `السَّائِلِ وَالْمَحْرُومِ`, ref: `51:19`, cat: `Ethics & Worship`, def: `Both the needy petitioner who asks for help and the deprived person who refrains from asking.` },
+      { term: `Al-Muqinin`, ar: `الْمُوقِنِينَ`, ref: `51:20`, cat: `Ethics & Worship`, def: `People of deep certainty in faith who read signs across the earth and within themselves.` },
+      { term: `Ghulam 'Alim`, ar: `غُلَامٍ عَلِيمٍ`, ref: `51:28`, cat: `Historical & Legal`, def: `A learned boy promised to Abraham and his barren aged wife as glad tidings from the angels.` },
+      { term: `Al-Hakim Al-'Alim`, ar: `الْحَكِيمُ الْعَلِيمُ`, ref: `51:30`, cat: `Divine Names`, def: `The Wise, the Knowing—invoked to explain how divine promise transcends biological limits.` },
+      { term: `Musawwamah`, ar: `مُسَوَّمَةً`, ref: `51:34`, cat: `Historical & Legal`, def: `Explicitly marked clay stones designated in the presence of the Lord for transgressors (musrifin).` },
+      { term: `Sultan Mubin`, ar: `سُلْطَانٍ مُبِينٍ`, ref: `51:38`, cat: `Historical & Legal`, def: `Clear, compelling authority and unmistakable prophetic proof brought by Moses to Pharaoh.` },
+      { term: `Ar-Rih Al-'Aqim`, ar: `الرِّيحَ الْعَقِيمَ`, ref: `51:41`, cat: `Cosmic & Signs`, def: `The barren, destructive wind sent upon 'Ad—carrying no rain or fertility, leaving disintegrated ruins (ramim).` },
+      { term: `As-Sa'iqah`, ar: `الصَّاعِقَةُ`, ref: `51:44`, cat: `Cosmic & Signs`, def: `The sudden thunderbolt that seized Thamud while they looked on.` },
+      { term: `La-Musi'un`, ar: `لَمُوسِعُونَ`, ref: `51:47`, cat: `Cosmic & Signs`, def: `The continual expander of the heavens, constructed with strength (bi-aydin).` },
+      { term: `Zawjayn`, ar: `زَوْجَيْنِ`, ref: `51:49`, cat: `Cosmic & Signs`, def: `Two mates or complementary pairs created in all things so humanity may remember the Creator's oneness.` },
+      { term: `Fa-Firru ila Allah`, ar: `فَفِرُّوا إِلَى اللَّهِ`, ref: `51:50`, cat: `Ethics & Worship`, def: `"So flee to Allah"—seeking ultimate refuge in devotion and monotheism rather than fleeing away.` },
+      { term: `Adh-Dhikra`, ar: `الذِّكْرَىٰ`, ref: `51:55`, cat: `Ethics & Worship`, def: `The reminder—continuous prophetic counsel that benefits and revives the hearts of believers.` },
+      { term: `Li-Ya'budun`, ar: `لِيَعْبُدُونِ`, ref: `51:56`, cat: `Ethics & Worship`, def: `"Except to worship Me"—the stated purpose for the creation of both jinn and mankind.` },
+      { term: `Ar-Razzaq`, ar: `الرَّزَّاقُ`, ref: `51:58`, cat: `Divine Names`, def: `The Continual Provider—needs no sustenance from creation, yet sustains all things.` },
+      { term: `Dhu al-Quwwah al-Matin`, ar: `ذُو الْقُوَّةِ الْمَتِينُ`, ref: `51:58`, cat: `Divine Names`, def: `The Firm Possessor of Strength—unshakeable power paired with ceaseless generosity.` },
+      { term: `Dhanub`, ar: `ذَنُوبًا`, ref: `51:59`, cat: `Historical & Legal`, def: `Literally a drawn bucket or allotted portion—here meaning the due share of punishment awaiting wrongdoers.` }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `Which sequence accurately reflects the first four oaths opening Surah Adh-Dhariyat (51:1–4)?`,
+        options: [
+          `Sun, moon, stars, and night`,
+          `Scattering winds, water-laden clouds, sailing ships, and apportioning angels`,
+          `Mountains, rivers, olive trees, and dawn`,
+          `Pen, tablet, thunder, and lightning`
+        ],
+        correct: 1,
+        explanation: `Verses 51:1–4 swear by scattering winds, clouds carrying water, ships sailing with ease, and angels apportioning each matter.`
+      },
+      {
+        q: `According to 51:17–19, which combination describes the worldly habits of the righteous (al-muhsinin)?`,
+        options: [
+          `Fasting continuously and isolating themselves in caves`,
+          `Accumulating wealth without speaking to strangers`,
+          `Sleeping little of the night, seeking forgiveness before dawn, and giving a rightful share to the petitioner and deprived`,
+          `Debating skeptics about when the Day of Recompense will arrive`
+        ],
+        correct: 2,
+        explanation: `Verses 51:17–19 highlight night prayer, pre-dawn istighfar (bi al-ashar), and recognizing the right of as-sa'il and al-mahrum in one's wealth.`
+      },
+      {
+        q: `Where does verse 51:21 urge the listener to look immediately after mentioning signs on the earth (51:20)?`,
+        options: [
+          `Inside the ruins of Thamud`,
+          `Within yourselves ("wa fi anfusikum afala tubsirun")`,
+          `Across the sailing vessels at sea`,
+          `Toward the gates of the city`
+        ],
+        correct: 1,
+        explanation: `Verse 51:21 asks: "And in yourselves. Then will you not see?"—joining outward earthly signs with inward human reflection.`
+      },
+      {
+        q: `In 51:26–28, how did Abraham's guests respond to his hospitality, and why did he feel apprehension?`,
+        options: [
+          `They demanded gold before sitting down`,
+          `They refused the fat roasted calf he brought near them, causing him apprehension until they said "Fear not"`,
+          `They immediately announced the destruction of his own family`,
+          `They asked him to travel with them to Pharaoh's palace`
+        ],
+        correct: 1,
+        explanation: `Abraham swiftly brought a fat roasted calf (51:26–27); when they did not eat, he felt apprehension (51:28), prompting them to reassure him and give tidings of a learned boy.`
+      },
+      {
+        q: `When Abraham's wife reacted with astonishment ("A barren old woman!"), which two Divine Names did the angels invoke in 51:30?`,
+        options: [
+          `The Creator, the Sustainer`,
+          `The Wise (Al-Hakim), the Knowing (Al-'Alim)`,
+          `The Forgiving, the Merciful`,
+          `The King, the Holy`
+        ],
+        correct: 1,
+        explanation: `Verse 51:30 records their reply: "Thus has said your Lord; indeed, He is the Wise, the Knowing."`
+      },
+      {
+        q: `In the account of Lot's cities (51:35–36), how many faithful households were found inside before the marked clay stones fell?`,
+        options: [
+          `Twelve tribes of believers`,
+          `Only a single house of Muslims`,
+          `Half of the city's population`,
+          `None at all`
+        ],
+        correct: 1,
+        explanation: `Verse 51:36 states: "And We found not within them other than a [single] house of Muslims."`
+      },
+      {
+        q: `Which specific instrument of destruction was sent against the people of 'Ad in 51:41–42?`,
+        options: [
+          `A sudden thunderbolt while they looked on`,
+          `Being cast into the sea`,
+          `The barren wind (ar-rih al-'aqim) leaving disintegrated ruins`,
+          `Stones of marked clay`
+        ],
+        correct: 2,
+        explanation: `Verses 51:41–42 specify "the barren wind" sent against 'Ad, turning everything it met into disintegrated ruins (ka-ar-ramim). (Thamud faced the thunderbolt; Pharaoh was cast into the sea.)`
+      },
+      {
+        q: `What repeated accusation made by Pharaoh in 51:39 is cited again in 51:52 as the pattern of past nations toward every messenger?`,
+        options: [
+          `"A poet or a dreamer"`,
+          `"A magician or a madman"`,
+          `"A king or a conqueror"`,
+          `"A liar or a thief"`
+        ],
+        correct: 1,
+        explanation: `Both Pharaoh (51:39) and earlier rejecting communities (51:52) dismissed messengers by saying: "A magician or a madman."`
+      },
+      {
+        q: `According to 51:47–49, what three cosmic realities invite remembrance right before the command "So flee to Allah" (51:50)?`,
+        options: [
+          `The expanding heaven, the spread-out earth, and two mates/pairs created in all things`,
+          `The seven seas, the iron mountains, and the lunar calendar`,
+          `The winds of winter, the harvest of grain, and the walls of cities`,
+          `The angels of mercy, the trumpet, and the bridge`
+        ],
+        correct: 0,
+        explanation: `Verses 51:47–49 describe the heaven built with strength and expanded, the earth spread out, and pairs created in all things—followed directly by "So flee to Allah" (51:50).`
+      },
+      {
+        q: `How do verses 51:56–58 resolve the relationship between human worship and provision (rizq)?`,
+        options: [
+          `Human beings must feed and sustain Allah through ritual offerings`,
+          `Jinn and mankind were created solely to worship Allah, who desires no provision from them because He alone is Ar-Razzaq, Dhu al-Quwwah al-Matin`,
+          `Provision is independent of divine power and depends only on human labor`,
+          `Only angels are required to worship, while humans seek material wealth`
+        ],
+        correct: 1,
+        explanation: `Verses 51:56–58 explicitly declare worship as the purpose of creating jinn and mankind while affirming Allah needs no provision from them—He is the Continual Provider, firm possessor of strength.`
+      }
+    ];
+
+    let appState = {
+      completedModules: [],
+      bookmarkedVerses: [],
+      quizAnswers: {},
+      selectedRibbonVerse: 1,
+      activeTheme: 'all',
+      showReflections: true
+    };
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+          await window.notebookAppApi.setAppState(appState);
+        }
+      } catch (err) {
+        console.warn('State persistence skipped:', err);
+      }
+    }
+
+    function updateProgressUI() {
+      const modCount = appState.completedModules.length;
+      const badge = document.getElementById('progress-badge');
+      const fill = document.getElementById('study-progress-fill');
+      const bmBadge = document.getElementById('bookmark-badge');
+
+      if (badge) badge.textContent = `${modCount} of 5 Modules Studied`;
+      if (fill) fill.style.width = `${(modCount / 5) * 100}%`;
+      if (bmBadge) bmBadge.textContent = `${appState.bookmarkedVerses.length} Bookmarked Verses`;
+
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById(`btn-mod-${i}`);
+        if (!btn) continue;
+        const done = appState.completedModules.includes(i);
+        btn.classList.toggle('btn-emerald', done);
+        btn.classList.toggle('btn-secondary', !done);
+        const span = btn.querySelector('span');
+        if (span) span.textContent = done ? `Module ${i} Studied` : `Mark Module ${i} Studied`;
+      }
+    }
+
+    function toggleModuleComplete(modNum) {
+      const idx = appState.completedModules.indexOf(modNum);
+      if (idx === -1) {
+        appState.completedModules.push(modNum);
+      } else {
+        appState.completedModules.splice(idx, 1);
+      }
+      updateProgressUI();
+      persistState();
+    }
+
+    function setActiveButtonInRow(btnElement) {
+      if (!btnElement || !btnElement.parentElement) return;
+      const siblings = btnElement.parentElement.querySelectorAll('.selector-btn');
+      siblings.forEach((b) => b.classList.remove('is-active'));
+      btnElement.classList.add('is-active');
+    }
+
+    function renderSpotlight(targetId, item) {
+      const el = document.getElementById(targetId);
+      if (!el || !item) return;
+      el.innerHTML = `
+        <div class="spotlight-meta">
+          <span class="badge-brass">${item.badge}</span>
+        </div>
+        <p class="arabic-text" dir="rtl" lang="ar">${item.ar}</p>
+        <p class="verse-translation">"${item.en}"</p>
+        <p class="reflection-note">${item.note}</p>
+      `;
+    }
+
+    function selectOath(index, btn) {
+      if (btn) setActiveButtonInRow(btn);
+      renderSpotlight('oath-spotlight', OATHS_DATA[index]);
+    }
+
+    function selectIbrahimBeat(index, btn) {
+      if (btn) setActiveButtonInRow(btn);
+      renderSpotlight('ibrahim-spotlight', IBRAHIM_BEATS[index]);
+    }
+
+    function selectNation(index, btn) {
+      if (btn) setActiveButtonInRow(btn);
+      renderSpotlight('nation-spotlight', NATIONS_DATA[index]);
+    }
+
+    function selectCosmicLayer(index, btn) {
+      if (btn) {
+        setActiveButtonInRow(btn);
+      } else {
+        const container = document.querySelector('#module-4 .selector-row');
+        if (container) {
+          const btns = container.querySelectorAll('.selector-btn');
+          btns.forEach((b, i) => b.classList.toggle('is-active', i === index));
+        }
+      }
+      renderSpotlight('cosmic-spotlight', COSMIC_LAYERS[index]);
+    }
+
+    function renderThemeMap() {
+      const ribbon = document.getElementById('verse-ribbon');
+      const summaryEl = document.getElementById('theme-summary-panel');
+      if (!ribbon || !summaryEl) return;
+
+      const active = appState.activeTheme;
+      const meta = THEME_META[active] || THEME_META.all;
+      const matchingCount = active === 'all' ? 60 : VERSES.filter((v) => v.theme === active).length;
+
+      summaryEl.innerHTML = `
+        <div class="spotlight-meta">
+          <span class="badge-emerald">${matchingCount} Verses Highlighted</span>
+          <span class="tabular-num">${meta.span}</span>
+        </div>
+        <h3 class="subhead">${meta.title}</h3>
+        <p class="reflection-note">${meta.desc}</p>
+      `;
+
+      ribbon.innerHTML = VERSES.map((v) => {
+        const dimmed = active !== 'all' && v.theme !== active ? 'is-dimmed' : '';
+        const selected = appState.selectedRibbonVerse === v.n ? 'is-selected' : '';
+        return `<button type="button" class="ribbon-cell theme-${v.theme} ${dimmed} ${selected}" onclick="selectRibbonVerse(${v.n})" title="Verse 51:${v.n}">${v.n}</button>`;
+      }).join('');
+
+      const v = VERSES.find((item) => item.n === appState.selectedRibbonVerse) || VERSES[0];
+      const detailEl = document.getElementById('ribbon-verse-detail');
+      if (detailEl && v) {
+        detailEl.innerHTML = `
+          <div class="spotlight-meta">
+            <span class="badge-brass">Verse 51:${v.n}</span>
+            <span class="arch-label">${THEME_META[v.theme] ? THEME_META[v.theme].title : ''}</span>
+          </div>
+          <p class="arabic-text" dir="rtl" lang="ar">${v.ar}</p>
+          <p class="verse-translation">${v.en}</p>
+          <p class="reflection-note">${v.note}</p>
+        `;
+      }
+    }
+
+    function filterThemeMap(theme, btn) {
+      if (btn) setActiveButtonInRow(btn);
+      appState.activeTheme = theme;
+      if (theme !== 'all') {
+        const firstMatch = VERSES.find((v) => v.theme === theme);
+        if (firstMatch) appState.selectedRibbonVerse = firstMatch.n;
+      }
+      renderThemeMap();
+      persistState();
+    }
+
+    function selectRibbonVerse(verseNum) {
+      appState.selectedRibbonVerse = verseNum;
+      renderThemeMap();
+      persistState();
+    }
+
+    function toggleBookmark(verseNum) {
+      const idx = appState.bookmarkedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.bookmarkedVerses.push(verseNum);
+      } else {
+        appState.bookmarkedVerses.splice(idx, 1);
+      }
+      updateProgressUI();
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function toggleReflectionsDisplay() {
+      appState.showReflections = !appState.showReflections;
+      const btn = document.getElementById('explorer-notes-toggle');
+      if (btn) {
+        const span = btn.querySelector('span');
+        if (span) span.textContent = appState.showReflections ? 'Hide Reflections' : 'Show Reflections';
+      }
+      renderVerseExplorer();
+      persistState();
+    }
+
+    function renderVerseExplorer() {
+      const sectionEl = document.getElementById('explorer-section');
+      const searchEl = document.getElementById('explorer-search');
+      const listEl = document.getElementById('verse-list');
+      const countEl = document.getElementById('explorer-count');
+      if (!sectionEl || !searchEl || !listEl || !countEl) return;
+
+      const secVal = sectionEl.value;
+      const query = searchEl.value.trim().toLowerCase();
+
+      const filtered = VERSES.filter((v) => {
+        if (secVal === 'bookmarked' && !appState.bookmarkedVerses.includes(v.n)) return false;
+        if (secVal !== 'all' && secVal !== 'bookmarked' && v.mod !== secVal) return false;
+        if (!query) return true;
+        return (
+          v.en.toLowerCase().includes(query) ||
+          v.note.toLowerCase().includes(query) ||
+          v.ar.includes(query) ||
+          `51:${v.n}`.includes(query)
+        );
+      });
+
+      countEl.textContent = `Showing ${filtered.length} of 60 Verses`;
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="empty-state">
+            <p><strong>No verses match this filter.</strong></p>
+            <p>Try clearing your search or switching to "All 60 Verses".</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map((v) => {
+        const isBm = appState.bookmarkedVerses.includes(v.n);
+        const bmClass = isBm ? 'is-bookmarked' : '';
+        const bmLabel = isBm ? 'Bookmarked' : 'Bookmark';
+        const noteHtml = appState.showReflections ? `<p class="reflection-note">${v.note}</p>` : '';
+        return `
+          <article class="verse-card ${bmClass}">
+            <div class="verse-header">
+              <div class="verse-actions">
+                <span class="badge-brass">51:${v.n}</span>
+                <span class="arch-label">${THEME_META[v.theme] ? THEME_META[v.theme].title : ''}</span>
+              </div>
+              <button type="button" class="btn btn-sm ${isBm ? 'btn-emerald' : 'btn-secondary'}" onclick="toggleBookmark(${v.n})">
+                <span>${bmLabel}</span>
+              </button>
+            </div>
+            <p class="arabic-text" dir="rtl" lang="ar">${v.ar}</p>
+            <p class="verse-translation">${v.en}</p>
+            ${noteHtml}
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderGlossary() {
+      const searchEl = document.getElementById('glossary-search');
+      const catEl = document.getElementById('glossary-category');
+      const gridEl = document.getElementById('glossary-grid');
+      if (!searchEl || !catEl || !gridEl) return;
+
+      const query = searchEl.value.trim().toLowerCase();
+      const cat = catEl.value;
+
+      const items = GLOSSARY_TERMS.filter((g) => {
+        if (cat !== 'all' && g.cat !== cat) return false;
+        if (!query) return true;
+        return (
+          g.term.toLowerCase().includes(query) ||
+          g.def.toLowerCase().includes(query) ||
+          g.ar.includes(query) ||
+          g.ref.toLowerCase().includes(query)
+        );
+      });
+
+      if (items.length === 0) {
+        gridEl.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <p><strong>No glossary terms match your query.</strong></p>
+            <p>Reset the domain filter or try another keyword.</p>
+          </div>
+        `;
+        return;
+      }
+
+      gridEl.innerHTML = items.map((g) => `
+        <article class="glossary-card">
+          <div class="glossary-top">
+            <span class="glossary-term">${g.term}</span>
+            <span class="glossary-ar" dir="rtl" lang="ar">${g.ar}</span>
+          </div>
+          <div class="verse-actions" style="margin-block: var(--space-xs);">
+            <span class="badge-emerald">${g.cat}</span>
+            <span class="tabular-num">${g.ref}</span>
+          </div>
+          <p class="reflection-note" style="margin-top: 0;">${g.def}</p>
+        </article>
+      `).join('');
+    }
+
+    function answerQuiz(qIdx, optIdx) {
+      appState.quizAnswers[qIdx] = optIdx;
+      renderQuiz();
+      persistState();
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to confirm reset';
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Reset Quiz';
+      }
+      appState.quizAnswers = {};
+      renderQuiz();
+      persistState();
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById('quiz-container');
+      const scoreBadge = document.getElementById('quiz-score-badge');
+      const statusNote = document.getElementById('quiz-status-note');
+      if (!container || !scoreBadge || !statusNote) return;
+
+      let answeredCount = 0;
+      let correctCount = 0;
+
+      container.innerHTML = QUIZ_QUESTIONS.map((item, qIdx) => {
+        const chosen = appState.quizAnswers[qIdx];
+        const hasChosen = typeof chosen === 'number';
+        if (hasChosen) {
+          answeredCount++;
+          if (chosen === item.correct) correctCount++;
+        }
+
+        const optionsHtml = item.options.map((opt, oIdx) => {
+          let cls = 'quiz-option';
+          if (hasChosen) {
+            if (oIdx === item.correct) cls += ' is-correct';
+            else if (oIdx === chosen) cls += ' is-incorrect';
+          }
+          const letter = ['A', 'B', 'C', 'D'][oIdx];
+          return `
+            <button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${oIdx})">
+              <span class="tabular-num">${letter}.</span>
+              <span>${opt}</span>
+            </button>
+          `;
+        }).join('');
+
+        let feedbackHtml = '';
+        if (hasChosen) {
+          const isRight = chosen === item.correct;
+          feedbackHtml = `
+            <div class="quiz-feedback ${isRight ? 'is-correct' : 'is-incorrect'}">
+              <strong>${isRight ? 'Correct.' : 'Review:'}</strong> ${item.explanation}
+            </div>
+          `;
+        }
+
+        return `
+          <article class="quiz-item">
+            <div class="arch-label">Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</div>
+            <h3 class="subhead" style="margin-bottom: var(--space-xs);">${item.q}</h3>
+            <div class="quiz-options">${optionsHtml}</div>
+            ${feedbackHtml}
+          </article>
+        `;
+      }).join('');
+
+      scoreBadge.textContent = `Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      if (answeredCount === 0) {
+        statusNote.textContent = `Answer any question below to begin.`;
+      } else if (answeredCount < QUIZ_QUESTIONS.length) {
+        statusNote.textContent = `${answeredCount} of ${QUIZ_QUESTIONS.length} answered so far.`;
+      } else {
+        statusNote.textContent = `Quiz complete — ${correctCount} out of ${QUIZ_QUESTIONS.length} mastered.`;
+      }
+    }
+
+    function exportStudySummary() {
+      const bmList = appState.bookmarkedVerses.length
+        ? appState.bookmarkedVerses.slice().sort((a, b) => a - b).map((n) => `51:${n}`).join(', ')
+        : 'None';
+      const correctCount = QUIZ_QUESTIONS.reduce((acc, q, idx) => (
+        appState.quizAnswers[idx] === q.correct ? acc + 1 : acc
+      ), 0);
+
+      const summary = [
+        `SURAH ADH-DHARIYAT (CHAPTER 51) — STUDY SUMMARY`,
+        `===============================================`,
+        `Modules Studied: ${appState.completedModules.length} of 5 (${appState.completedModules.join(', ') || 'None'})`,
+        `Bookmarked Verses: ${bmList}`,
+        `Knowledge Check Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `Core Verse (51:56-58):`,
+        `"And I did not create the jinn and mankind except to worship Me. I do not want from them any provision, nor do I want them to feed Me. Indeed, it is Allah who is the [continual] Provider, the firm possessor of strength."`
+      ].join('\n');
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: summary,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-51-adh-dhariyat-study-summary.txt'
+        });
+      }
+    }
+
+    function initScrollReveal() {
+      const targets = document.querySelectorAll('.reveal-section');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      targets.forEach((el) => observer.observe(el));
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            appState = {
+              completedModules: Array.isArray(saved.completedModules) ? saved.completedModules : [],
+              bookmarkedVerses: Array.isArray(saved.bookmarkedVerses) ? saved.bookmarkedVerses : [],
+              quizAnswers: saved.quizAnswers && typeof saved.quizAnswers === 'object' ? saved.quizAnswers : {},
+              selectedRibbonVerse: typeof saved.selectedRibbonVerse === 'number' ? saved.selectedRibbonVerse : 1,
+              activeTheme: typeof saved.activeTheme === 'string' ? saved.activeTheme : 'all',
+              showReflections: typeof saved.showReflections === 'boolean' ? saved.showReflections : true
+            };
+          }
+        }
+      } catch (err) {
+        console.warn('Could not load saved state:', err);
+      }
+
+      const notesBtn = document.getElementById('explorer-notes-toggle');
+      if (notesBtn) {
+        const span = notesBtn.querySelector('span');
+        if (span) span.textContent = appState.showReflections ? 'Hide Reflections' : 'Show Reflections';
+      }
+
+      selectOath(0);
+      selectIbrahimBeat(0);
+      selectNation(0);
+      selectCosmicLayer(0);
+      renderThemeMap();
+      renderVerseExplorer();
+      renderGlossary();
+      renderQuiz();
+      updateProgressUI();
+      initScrollReveal();
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

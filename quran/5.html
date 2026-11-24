@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="kiln">
+<title>Surah Al-Ma’idah — Covenants, Criterion, and Accountability (Chapter 5)</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+
+  /* 1. Kiln palette & surface tokens */
+  --background: #f4f1ea;
+  --surface-container-low: #ebe6db;
+  --surface-container: #e3ddd0;
+  --surface-container-high: #d9d1c2;
+
+  --on-surface: #1c1b18;
+  --on-surface-variant: #5e5a51;
+
+  --outline: #1c1b18;
+  --outline-variant: #d2cbbd;
+
+  --primary: #1c1b18;
+  --on-primary: #f4f1ea;
+  --primary-container: #ebe6db;
+  --on-primary-container: #1c1b18;
+  --secondary: #4a5d46;
+  --tertiary: #9e3b2b;
+  --error: #9e2a22;
+  --on-error: #f4f1ea;
+
+  --data-1: #4a5d46;
+  --data-2: #9e3b2b;
+  --data-3: #1c1b18;
+  --data-4: #8a6f48;
+  --data-context: #c7bfb0;
+
+  --font-headline: 'Shippori Mincho', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-label: 'Geist Mono', monospace;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+
+  --rounded: 0.125rem;
+  --rounded-lg: 0.125rem;
+  --rounded-full: 0.125rem;
+
+  --rule-sumi-left: 2px solid var(--outline);
+  --rule-moss-left: 2px solid var(--secondary);
+  --rule-cinnabar-left: 2px solid var(--tertiary);
+  --rule-sumi: 1px solid var(--outline);
+  --rule-linen: 1px solid var(--outline-variant);
+  --label-tracking: 0.14em;
+
+  /* 2. Shared semantic, scale, spacing, and motion tokens */
+  --positive: #3e5b3f;
+  --warning: #8a6f48;
+  --focus: #1c1b18;
+
+  --display-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.25rem);
+  --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+  --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4375rem);
+  --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --label-size: 0.75rem;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5.5rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+/* Base reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+header { position: static !important; }
+button, input, select, textarea { font-family: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.page-grid {
+  display: grid;
+  gap: var(--space-2xl);
+  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+  max-width: 1160px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.page-grid * { min-width: 0; }
+
+/* Typography voices */
+.display {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--display-size);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+  margin: 0;
+}
+
+.section-heading {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--headline-size);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+  margin: 0;
+}
+
+.subhead-moss {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--subhead-size);
+  line-height: 1.35;
+  color: var(--secondary);
+  margin: var(--space-xs) 0 0;
+}
+
+.label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--label-size);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  color: var(--on-surface-variant);
+}
+
+.prose {
+  max-width: 66ch;
+  color: var(--on-surface);
+  margin: 0;
+}
+.prose + .prose { margin-top: var(--space-md); }
+
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  unicode-bidi: isolate;
+  line-height: 1.95;
+  font-weight: 400;
+  color: var(--on-surface);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Header & Cinnabar Hanko Seal */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-xl);
+  align-items: start;
+  padding-bottom: var(--space-xl);
+  border-bottom: var(--rule-sumi);
+}
+
+.masthead-kicker {
+  color: var(--secondary);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.masthead-lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 62ch;
+  color: var(--on-surface);
+  margin: var(--space-lg) 0 0;
+}
+
+.seal-stamp {
+  border: 1px solid var(--tertiary);
+  color: var(--tertiary);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding: 0.5rem 0.375rem;
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  line-height: 1.3;
+  user-select: none;
+}
+
+/* Section navigation strip (anchors in scroll flow) */
+.toc-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  padding: var(--space-md) 0;
+  border-bottom: var(--rule-linen);
+}
+
+.toc-link {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  padding: var(--space-xs) 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.toc-link:hover {
+  color: var(--on-surface);
+  border-bottom-color: var(--outline);
+}
+
+/* Washi Cards & Key Figures */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.washi-card {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.washi-card .value {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.35rem);
+  line-height: 1.15;
+  color: var(--on-surface);
+  font-variant-numeric: lining-nums tabular-nums;
+  margin: var(--space-xs) 0;
+}
+
+.washi-card .note {
+  color: var(--secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* Mastery Tracker Strip */
+.mastery-bar {
+  background: var(--surface-container-low);
+  border-left: var(--rule-moss-left);
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-md) var(--space-xl);
+  align-items: center;
+}
+
+.mastery-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-xl);
+  align-items: baseline;
+}
+
+.mastery-stat {
+  display: inline-flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+
+.mastery-stat strong {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--outline-variant);
+  border-radius: var(--rounded);
+  margin-top: var(--space-sm);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--secondary);
+  transition: width var(--dur-short) var(--ease-out);
+}
+
+.mastery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  border: var(--rule-sumi);
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn-primary:hover { background: var(--secondary); border-color: var(--secondary); }
+
+.btn-secondary {
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  border-color: var(--outline-variant);
+}
+.btn-secondary:hover { background: var(--surface-container-high); border-color: var(--outline); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--on-surface-variant);
+  border: 1px solid var(--outline-variant);
+}
+.btn-ghost:hover { color: var(--on-surface); border-color: var(--outline); background: var(--surface-container-low); }
+
+.btn[aria-pressed="true"],
+.btn.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1875rem 0.5rem;
+  border-radius: var(--rounded);
+  border: var(--rule-linen);
+  background: var(--surface-container-low);
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+}
+
+.tag-cinnabar {
+  color: var(--tertiary);
+  border-color: var(--tertiary);
+  background: transparent;
+}
+
+/* Sections */
+.narrative-section {
+  padding-top: var(--space-2xl);
+  border-top: var(--rule-linen);
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.section-header {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* Section 1: Structural Map */
+.arc-bar {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: 2px;
+  background: var(--outline-variant);
+  border: var(--rule-sumi);
+  border-radius: var(--rounded);
+  padding: 2px;
+}
+
+.arc-segment {
+  background: var(--surface-container-low);
+  border: none;
+  padding: var(--space-sm) var(--space-xs);
+  min-height: 68px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  color: var(--on-surface);
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.arc-segment:hover { background: var(--surface-container-high); }
+.arc-segment.is-active {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.arc-segment.is-active .arc-range,
+.arc-segment.is-active .arc-num { color: var(--on-primary); }
+.arc-segment.is-mastered:not(.is-active) {
+  background: var(--surface-container);
+  border-bottom: 2px solid var(--secondary);
+}
+
+.arc-num {
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  color: var(--secondary);
+}
+.arc-range {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.movement-inspector {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.inspector-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+  border-bottom: var(--rule-linen);
+  padding-bottom: var(--space-md);
+}
+
+.inspector-arabic {
+  font-size: 1.5rem;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--background);
+  border-left: var(--rule-moss-left);
+}
+
+/* Section 2: Law & Expiation Matrix */
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.rulings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.ruling-card {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+  display: grid;
+  gap: var(--space-xs);
+  align-content: start;
+}
+
+.ruling-card.is-prohibited { border-left: var(--rule-cinnabar-left); }
+.ruling-card.is-lawful { border-left: var(--rule-moss-left); }
+
+.ruling-title {
+  font-family: var(--font-headline);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.expiation-box {
+  background: var(--surface-container-low);
+  border-left: var(--rule-moss-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.field-group {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.select-input, .text-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 2.25rem 0.625rem 0.75rem;
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  background: var(--background);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+}
+.text-input { padding-right: 0.75rem; }
+.select-input:focus, .text-input:focus { border-color: var(--outline); }
+
+.expiation-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.tier-step {
+  background: var(--background);
+  border-top: var(--rule-sumi);
+  padding: var(--space-md);
+}
+
+/* Section 3: Prophetic Dramas Stepper */
+.story-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.story-stage {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.beat-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.beat-btn {
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  background: var(--background);
+  color: var(--on-surface-variant);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.beat-btn:hover { background: var(--surface-container-high); color: var(--on-surface); }
+.beat-btn.is-active { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+
+.beat-quote-ar {
+  font-size: 1.55rem;
+  background: var(--background);
+  padding: var(--space-md);
+  border-left: var(--rule-moss-left);
+}
+
+/* Section 4: Scripture & Key Concepts Table */
+.mono-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mono-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9375rem;
+}
+
+.mono-table th {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  color: var(--on-surface-variant);
+  padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
+  border-top: var(--rule-sumi);
+  border-bottom: var(--rule-sumi);
+}
+
+.mono-table td {
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
+  border-bottom: var(--rule-linen);
+  vertical-align: top;
+}
+
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+.term-card {
+  background: var(--surface-container-low);
+  border-left: var(--rule-moss-left);
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+/* Section 5: Complete 120-Verse Bilingual Reader */
+.reader-controls {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: var(--space-md);
+  align-items: end;
+}
+
+.verse-list {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.verse-entry {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.verse-entry.is-bookmarked {
+  border-left: var(--rule-cinnabar-left);
+}
+
+.verse-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  border-bottom: var(--rule-linen);
+  padding-bottom: var(--space-sm);
+}
+
+.verse-meta-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.verse-ref {
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.verse-ar {
+  font-size: 1.55rem;
+  padding: var(--space-sm) 0;
+  color: var(--on-surface);
+}
+
+.verse-en {
+  margin: 0;
+  color: var(--on-surface);
+  line-height: 1.7;
+  max-width: 72ch;
+}
+
+.verse-note-area {
+  margin-top: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: var(--rule-linen);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.pagination-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+/* Section 6: Mastery Quiz & Flashcards */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.quiz-card, .flashcard-panel {
+  background: var(--surface-container-low);
+  border-left: var(--rule-sumi-left);
+  border-radius: var(--rounded);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.option-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.option-btn {
+  text-align: left;
+  padding: var(--space-md);
+  min-height: 44px;
+  border: var(--rule-linen);
+  border-radius: var(--rounded);
+  background: var(--background);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.option-btn:hover:not(:disabled) {
+  background: var(--surface-container-high);
+  border-color: var(--outline);
+}
+.option-btn.is-correct {
+  background: var(--surface-container);
+  border-left: 3px solid var(--positive);
+  border-color: var(--positive);
+}
+.option-btn.is-wrong {
+  background: var(--background);
+  border-left: 3px solid var(--error);
+  border-color: var(--error);
+}
+
+.feedback-note {
+  padding: var(--space-md);
+  background: var(--background);
+  border-left: var(--rule-moss-left);
+  font-size: 0.9375rem;
+}
+
+.flashcard-face {
+  background: var(--background);
+  border-top: var(--rule-sumi);
+  padding: var(--space-lg);
+  min-height: 190px;
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-md);
+}
+
+.inline-status {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  color: var(--secondary);
+  min-height: 1.25em;
+}
+
+/* Footer */
+.page-footer {
+  border-top: var(--rule-sumi);
+  padding-top: var(--space-lg);
+  display: grid;
+  gap: var(--space-xs);
+  color: var(--on-surface-variant);
+  font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .split-layout, .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+  .arc-bar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page-grid {
+    padding: var(--space-md);
+    gap: var(--space-xl);
+  }
+  .masthead {
+    grid-template-columns: 1fr;
+  }
+  .seal-stamp {
+    writing-mode: horizontal-tb;
+    justify-self: start;
+  }
+  .mastery-bar {
+    grid-template-columns: 1fr;
+  }
+  .arc-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<main class="page-grid">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div>
+      <span class="label masthead-kicker">Qur’an · Chapter 05 · Al-Ma’idah</span>
+      <h1 class="display">Surah Al-Ma’idah</h1>
+      <p class="subhead-moss">The Table Spread — Covenants, Criterion, and Moral Accountability</p>
+      <p class="masthead-lede">
+        Opening with an imperative to honor every binding agreement (5:1) and closing in the courtroom of Resurrection where truthfulness alone profits the truthful (5:119), Chapter 5 binds ritual purity, dietary boundaries, social justice, and interfaith theology into a single moral architecture.
+      </p>
+    </div>
+    <div class="seal-stamp" aria-label="Chapter 5, 120 Verses">CH. 05 · 120 AYAT</div>
+  </header>
+
+  <!-- SCROLL LANDMARKS -->
+  <nav class="toc-strip" aria-label="Chapter sections">
+    <a class="toc-link" href="#sec-architecture">01 · Architecture</a>
+    <a class="toc-link" href="#sec-law">02 · Law &amp; Expiation</a>
+    <a class="toc-link" href="#sec-stories">03 · Prophetic Dramas</a>
+    <a class="toc-link" href="#sec-criterion">04 · Criterion &amp; Lexicon</a>
+    <a class="toc-link" href="#sec-reader">05 · Full 120-Verse Text</a>
+    <a class="toc-link" href="#sec-mastery">06 · Mastery Check</a>
+  </nav>
+
+  <!-- KEY FIGURES -->
+  <section aria-label="Chapter overview metrics">
+    <div class="kpi-grid">
+      <article class="washi-card">
+        <div class="label">Total Scope</div>
+        <div class="value">120 Verses</div>
+        <div class="note">Organized across 11 thematic movements from 5:1 to 5:120</div>
+      </article>
+      <article class="washi-card">
+        <div class="label">Direct Believer Calls</div>
+        <div class="value">16 Calls</div>
+        <div class="note">“O you who have believed” opens 16 distinct legislative and ethical charges</div>
+      </article>
+      <article class="washi-card">
+        <div class="label">Perfection Milestone</div>
+        <div class="value">Verse 5:3</div>
+        <div class="note">“This day I have perfected for you your religion and completed My favor”</div>
+      </article>
+      <article class="washi-card">
+        <div class="label">Namesake Episode</div>
+        <div class="value">5:112–115</div>
+        <div class="note">The Table Spread (Al-Ma’idah) sent down at the prayer of Jesus</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PERSISTENT MASTERY TRACKER -->
+  <section class="mastery-bar" aria-label="Study progress tracker">
+    <div>
+      <div class="label">Your Study Ledger</div>
+      <div class="mastery-metrics">
+        <span class="mastery-stat"><strong id="stat-movements">0 / 11</strong> <span class="label">Movements Mastered</span></span>
+        <span class="mastery-stat"><strong id="stat-bookmarks">0</strong> <span class="label">Verses Bookmarked</span></span>
+        <span class="mastery-stat"><strong id="stat-quiz">0 / 12</strong> <span class="label">Quiz Correct</span></span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="mastery-progress-fill"></div>
+      </div>
+      <div class="inline-status" id="ledger-status" role="status">First visit — select movements, bookmark verses, or answer questions below to save progress.</div>
+    </div>
+    <div class="mastery-actions">
+      <button type="button" class="btn btn-secondary" onclick="exportStudyNotes()">Export Notes</button>
+      <button type="button" class="btn btn-ghost" id="btn-reset-progress" onclick="resetProgress(this)">Reset Ledger</button>
+    </div>
+  </section>
+
+  <!-- SECTION 1: STRUCTURAL ARCHITECTURE -->
+  <section id="sec-architecture" class="narrative-section">
+    <div class="section-header">
+      <span class="label">01 · Structural Spine</span>
+      <h2 class="section-heading">Eleven Movements Bound by One Covenant</h2>
+      <p class="subhead-moss">From earthly contracts (5:1) to the cosmic testimony of messengers (5:109–120)</p>
+    </div>
+
+    <p class="prose">
+      Surah Al-Ma’idah does not separate law from narrative or theology from civic ethics. It opens by demanding fidelity to <em>‘uqud</em> (contracts and obligations—toward God, fellow humans, and sacred space) and steadily tests how earlier communities kept or broke their covenants, before culminating in a final scene where Jesus and the messengers testify truthfully before God.
+    </p>
+
+    <div>
+      <div class="label" style="margin-bottom: var(--space-xs);">Select any movement below to inspect its structure and mark it mastered</div>
+      <div class="arc-bar" id="arc-bar" role="tablist" aria-label="Eleven movements of Surah Al-Ma’idah"></div>
+    </div>
+
+    <div class="movement-inspector" id="movement-inspector">
+      <div class="inspector-header">
+        <div>
+          <span class="label" id="insp-range">Movement 01 · Verses 5:1–5:5</span>
+          <h3 class="section-heading" id="insp-title" style="font-size: var(--subhead-size); margin-top: var(--space-xs);"></h3>
+        </div>
+        <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" id="insp-master-btn" onclick="toggleMovementMastered()">Mark Mastered</button>
+          <button type="button" class="btn btn-primary" onclick="jumpToMovementInReader()">Read Verses</button>
+        </div>
+      </div>
+      <div class="arabic-text inspector-arabic" dir="rtl" lang="ar" id="insp-arabic"></div>
+      <p class="prose" id="insp-summary"></p>
+      <div id="insp-tags" style="display:flex; flex-wrap:wrap; gap:var(--space-xs);"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: LAW, BOUNDARIES & EXPIATION -->
+  <section id="sec-law" class="narrative-section">
+    <div class="section-header">
+      <span class="label">02 · Legislation &amp; Mercy</span>
+      <h2 class="section-heading">Law That Protects Life While Leaving Doors to Return</h2>
+      <p class="subhead-moss">Dietary boundaries, ritual purity, civic deterrence, and the logic of Kaffarah (expiation)</p>
+    </div>
+
+    <div class="split-layout">
+      <div>
+        <p class="prose">
+          A defining signature of Surah Al-Ma’idah is that nearly every strict prohibition or penalty is immediately paired with an explicit relief clause for necessity or sincere repentance. Severe hunger excuses prohibited meat (5:3); illness or lack of water shifts ablution to clean earth (5:6); and penalties for severe crimes and theft are followed directly by verses affirming that repentance and reform invite divine forgiveness (5:34, 5:39).
+        </p>
+        <p class="prose" style="margin-top: var(--space-md);">
+          Even justice itself is insulated from tribal bias: <em>“Do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness”</em> (5:8).
+        </p>
+      </div>
+
+      <div class="expiation-box">
+        <div class="label">Interactive Exception &amp; Kaffarah Explorer</div>
+        <div class="field-group">
+          <label for="expiation-select" class="label" style="color: var(--on-surface);">Choose a legal scenario from Chapter 5</label>
+          <select id="expiation-select" class="select-input" onchange="renderExpiation(this.value)">
+            <option value="oath">Breaking a deliberate oath (5:89)</option>
+            <option value="hunt">Intentionally killing land game in Ihram (5:95)</option>
+            <option value="wudu">Unable to use or find water for prayer (5:6)</option>
+            <option value="hunger">Forced by severe hunger toward prohibited food (5:3)</option>
+            <option value="crime">Repentance before arrest or after theft (5:34, 5:39)</option>
+          </select>
+        </div>
+        <div id="expiation-output"></div>
+      </div>
+    </div>
+
+    <div style="display:grid; gap:var(--space-md);">
+      <div class="filter-row" role="group" aria-label="Filter legal rulings">
+        <button type="button" class="btn btn-secondary is-active" id="law-btn-all" onclick="filterLawCards('all', this)">All Rulings</button>
+        <button type="button" class="btn btn-secondary" id="law-btn-diet" onclick="filterLawCards('diet', this)">Diet &amp; Hunting</button>
+        <button type="button" class="btn btn-secondary" id="law-btn-worship" onclick="filterLawCards('worship', this)">Worship &amp; Oaths</button>
+        <button type="button" class="btn btn-secondary" id="law-btn-civic" onclick="filterLawCards('civic', this)">Justice &amp; Society</button>
+      </div>
+      <div class="rulings-grid" id="rulings-grid"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: THREE PROPHETIC DRAMAS -->
+  <section id="sec-stories" class="narrative-section">
+    <div class="section-header">
+      <span class="label">03 · Prophetic Narratives</span>
+      <h2 class="section-heading">Three Dramas That Anchor the Surah’s Ethics</h2>
+      <p class="subhead-moss">Step through each narrative beat-by-beat alongside its exact verses</p>
+    </div>
+
+    <p class="prose">
+      Surah Al-Ma’idah deploys three tightly focused prophetic narratives to illustrate moral courage, the tragedy of envy, and pure devotion without excess. Each story builds to an unmistakable ethical principle.
+    </p>
+
+    <div class="story-layout">
+      <div class="filter-row" role="group" aria-label="Select prophetic narrative">
+        <button type="button" class="btn btn-secondary is-active" id="story-tab-adam" onclick="selectStory('adam', this)">I. Sons of Adam (5:27–32)</button>
+        <button type="button" class="btn btn-secondary" id="story-tab-moses" onclick="selectStory('moses', this)">II. Moses &amp; the Holy Land (5:20–26)</button>
+        <button type="button" class="btn btn-secondary" id="story-tab-jesus" onclick="selectStory('jesus', this)">III. Jesus &amp; Al-Ma’idah (5:109–120)</button>
+      </div>
+
+      <article class="story-stage" id="story-stage">
+        <div class="beat-dots" id="beat-dots" role="tablist" aria-label="Narrative beats"></div>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--space-sm); align-items:baseline;">
+          <span class="label" id="beat-ref"></span>
+          <span class="tag" id="beat-theme"></span>
+        </div>
+        <h3 class="section-heading" id="beat-title" style="font-size: var(--subhead-size);"></h3>
+        <div class="arabic-text beat-quote-ar" dir="rtl" lang="ar" id="beat-arabic"></div>
+        <p class="prose" id="beat-english" style="font-style: italic; color: var(--on-surface-variant);"></p>
+        <p class="prose" id="beat-insight"></p>
+        <div style="display:flex; justify-content:space-between; gap:var(--space-sm); padding-top:var(--space-sm); border-top:var(--rule-linen);">
+          <button type="button" class="btn btn-ghost" id="beat-prev" onclick="stepStory(-1)">Previous Beat</button>
+          <button type="button" class="btn btn-primary" id="beat-next" onclick="stepStory(1)">Next Beat</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 4: REVELATION, CRITERION & LEXICON -->
+  <section id="sec-criterion" class="narrative-section">
+    <div class="section-header">
+      <span class="label">04 · Criterion &amp; Interfaith Clarity</span>
+      <h2 class="section-heading">Torah, Gospel, and the Qur’an as Guardian Criterion</h2>
+      <p class="subhead-moss">How Chapter 5 positions prior scripture, critiques doctrinal excess, and honors humility</p>
+    </div>
+
+    <div class="mono-table-wrap">
+      <table class="mono-table">
+        <thead>
+          <tr>
+            <th>Scripture / Concept</th>
+            <th>Key Verses</th>
+            <th>Core Description in Surah Al-Ma’idah</th>
+            <th>Moral Obligation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>The Torah</strong></td>
+            <td><code>5:43–45</code></td>
+            <td>Contains “guidance and light” (<em>hudan wa nur</em>) and Allah’s judgment; prophets, rabbis, and scholars judged by it.</td>
+            <td>Do not fear people or sell verses for a small price; forgoing <em>qisas</em> in charity is expiation.</td>
+          </tr>
+          <tr>
+            <td><strong>The Gospel (Injil)</strong></td>
+            <td><code>5:46–47</code></td>
+            <td>Given to Jesus confirming the Torah; contains “guidance and light” and instruction for the righteous.</td>
+            <td>People of the Gospel must judge by what Allah revealed therein and avoid excess (5:77).</td>
+          </tr>
+          <tr>
+            <td><strong>The Qur’an (Muhaymin)</strong></td>
+            <td><code>5:15–16, 48–50</code></td>
+            <td>Revealed in truth confirming prior scripture and serving as a guardian criterion (<em>muhaymin</em>) over it.</td>
+            <td>Judge strictly by revelation, not desires; “race to all that is good” (5:48).</td>
+          </tr>
+          <tr>
+            <td><strong>Universal Criterion</strong></td>
+            <td><code>5:69, 82–85</code></td>
+            <td>Believers, Jews, Sabeans, or Christians who believe in Allah, the Last Day, and do righteousness need not fear.</td>
+            <td>Recognizes priests and monks free of arrogance whose eyes overflow with tears upon hearing truth (5:83).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom: var(--space-sm);">Essential Arabic Vocabulary of Surah Al-Ma’idah</div>
+      <div class="terms-grid" id="terms-grid"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: COMPLETE 120-VERSE BILINGUAL READER -->
+  <section id="sec-reader" class="narrative-section">
+    <div class="section-header">
+      <span class="label">05 · Complete Primary Text</span>
+      <h2 class="section-heading">Read, Filter, and Annotate All 120 Verses</h2>
+      <p class="subhead-moss">Full Arabic and English text from the source manuscript with theme filters and personal notes</p>
+    </div>
+
+    <div class="reader-controls">
+      <div class="field-group">
+        <label for="reader-movement" class="label" style="color: var(--on-surface);">Movement</label>
+        <select id="reader-movement" class="select-input" onchange="applyReaderFilters()">
+          <option value="all">All 11 Movements (120 Verses)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label for="reader-call" class="label" style="color: var(--on-surface);">Address / Theme Filter</label>
+        <select id="reader-call" class="select-input" onchange="applyReaderFilters()">
+          <option value="all">All Verses</option>
+          <option value="believers">“O you who have believed” (16)</option>
+          <option value="scripture">“O People of the Scripture” (5)</option>
+          <option value="messenger">“O Messenger” (2)</option>
+          <option value="bookmarked">Bookmarked Only</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label for="reader-search" class="label" style="color: var(--on-surface);">Search Verse # or Keyword</label>
+        <input id="reader-search" type="text" class="text-input" placeholder="e.g. 5:32, crow, justice, table" oninput="applyReaderFilters()">
+      </div>
+      <div class="field-group">
+        <button type="button" class="btn btn-secondary" id="toggle-arabic-btn" onclick="toggleArabicDisplay()">Hide Arabic</button>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+      <span class="label" id="reader-count-label">Showing verses 1–12 of 120</span>
+      <button type="button" class="btn btn-ghost" onclick="clearReaderFilters()">Clear Filters</button>
+    </div>
+
+    <div class="verse-list" id="verse-list"></div>
+
+    <div class="pagination-bar" id="pagination-bar">
+      <button type="button" class="btn btn-secondary" id="page-prev" onclick="changeReaderPage(-1)">Previous Page</button>
+      <span class="label" id="page-indicator">Page 1 of 10</span>
+      <button type="button" class="btn btn-secondary" id="page-next" onclick="changeReaderPage(1)">Next Page</button>
+    </div>
+  </section>
+
+  <!-- SECTION 6: MASTERY QUIZ & FLASHCARD SYNTHESIS -->
+  <section id="sec-mastery" class="narrative-section">
+    <div class="section-header">
+      <span class="label">06 · Active Recall</span>
+      <h2 class="section-heading">Test Your Mastery of Surah Al-Ma’idah</h2>
+      <p class="subhead-moss">Twelve source-verified questions and verse recall flashcards</p>
+    </div>
+
+    <div class="quiz-grid">
+      <div class="quiz-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+          <span class="label" id="quiz-progress-label">Question 1 of 12</span>
+          <span class="tag" id="quiz-topic-tag">Structure</span>
+        </div>
+        <h3 class="section-heading" id="quiz-question" style="font-size: var(--subhead-size);"></h3>
+        <div class="option-list" id="quiz-options"></div>
+        <div class="feedback-note" id="quiz-feedback" style="display:none;"></div>
+        <div style="display:flex; justify-content:space-between; gap:var(--space-sm); padding-top:var(--space-xs);">
+          <button type="button" class="btn btn-ghost" onclick="prevQuizQuestion()">Previous</button>
+          <button type="button" class="btn btn-primary" onclick="nextQuizQuestion()">Next Question</button>
+        </div>
+      </div>
+
+      <div class="flashcard-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="label">Verse Recall Flashcards</span>
+          <span class="label" id="card-counter">1 / 10</span>
+        </div>
+        <div class="flashcard-face" id="flashcard-face">
+          <div>
+            <span class="tag" id="card-tag">Prompt</span>
+            <h3 class="section-heading" id="card-prompt" style="font-size: var(--subhead-size); margin-top:var(--space-sm);"></h3>
+          </div>
+          <div id="card-answer-block" style="display:none; border-top:var(--rule-linen); padding-top:var(--space-md);">
+            <div class="arabic-text" dir="rtl" lang="ar" id="card-ar" style="font-size:1.25rem; margin-bottom:var(--space-xs);"></div>
+            <div class="prose" id="card-ans" style="font-size:0.9375rem;"></div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--space-sm);">
+          <button type="button" class="btn btn-secondary" id="card-flip-btn" onclick="flipFlashcard()">Reveal Answer</button>
+          <div style="display:flex; gap:var(--space-xs);">
+            <button type="button" class="btn btn-ghost" onclick="stepFlashcard(-1)">Prev</button>
+            <button type="button" class="btn btn-primary" onclick="stepFlashcard(1)">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <div><strong>Source Basis:</strong> All Arabic verses, English translations, structural divisions, and thematic notes are grounded strictly in the provided Chapter 5 (Surah Al-Ma’idah, 5:1–5:120) source text.</div>
+    <div>Study progress, bookmarked verses, and personal notes persist automatically within this notebook session.</div>
+  </footer>
+
+</main>
+
+<api-shim></api-shim>
+<script>
+const MOVEMENTS = [
+  {
+    id: `m1`, num: `01`, range: `5:1–5:5`, start: 1, end: 5,
+    title: `Contracts, Sacred Rites & Lawful Sustenance`,
+    arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ`,
+    summary: `Opens with the foundational imperative to fulfill all contracts (5:1), forbids violating the rites of pilgrimage and urges cooperation in righteousness rather than aggression (5:2). Lists prohibited foods and divining practices while proclaiming the perfection of religion (5:3), then clarifies hunting with trained animals (5:4) and mutual food and chaste marriage with the People of the Scripture (5:5).`,
+    tags: [`Covenants`, `Ihram`, `Dietary Law`, `Perfection of Faith (5:3)`]
+  },
+  {
+    id: `m2`, num: `02`, range: `5:6–5:11`, start: 6, end: 11,
+    title: `Purification, Covenant Memory & Impartial Justice`,
+    arabic: `كُونُوا قَوَّامِينَ لِلَّهِ شُهَدَاءَ بِالْقِسْطِ`,
+    summary: `Prescribes ablution (wudu), full purification after janabah, and dry ablution (tayammum) so worship brings ease rather than hardship (5:6). Recalls the pledge “We hear and we obey” (5:7), commands standing firm for Allah as witnesses in justice even when hatred tempts bias (5:8), contrasts promised reward with denial (5:9–10), and recalls divine protection from aggression (5:11).`,
+    tags: [`Wudu & Tayammum`, `Obedience`, `Justice (Qist)`, `Reliance`]
+  },
+  {
+    id: `m3`, num: `03`, range: `5:12–5:19`, start: 12, end: 19,
+    title: `Prior Covenants & the Coming of a Clear Light`,
+    arabic: `قَدْ جَاءَكُمْ مِنَ اللَّهِ نُورٌ وَكِتَابٌ مُبِينٌ`,
+    summary: `Recounts Allah’s covenant with the Children of Israel under twelve leaders (5:12), how breaking it led to hardened hearts and distortion of words—yet urges pardoning them (5:13). Notes the covenant with Christians and resulting sectarian enmity (5:14), announces the Messenger as a clear light guiding to paths of peace (5:15–16), refutes equating Christ with Allah or claiming exclusive divine favor (5:17–18), and reminds that the Messenger came after an interval of prophets (5:19).`,
+    tags: [`Twelve Leaders`, `People of the Scripture`, `Paths of Peace`, `Divine Dominion`]
+  },
+  {
+    id: `m4`, num: `04`, range: `5:20–5:26`, start: 20, end: 26,
+    title: `Moses & the Refusal at the Holy Land`,
+    arabic: `ادْخُلُوا الْأَرْضَ الْمُقَدَّسَةَ الَّتِي كَتَبَ اللَّهُ لَكُمْ`,
+    summary: `Moses reminds his people of Allah’s favors and commands them to enter the Holy Land (5:20–21). Fearing a tyrannical people inside, they refuse (5:22), ignoring two God-fearing men who urge trust in Allah (5:23), and tell Moses, “Go, you and your Lord, and fight” (5:24). Moses asks to be parted from the disobedient, and the land is forbidden to them for forty years of wandering (5:25–26).`,
+    tags: [`Prophet Moses`, `Holy Land`, `Reliance vs Fear`, `40 Years Wandering`]
+  },
+  {
+    id: `m5`, num: `05`, range: `5:27–5:32`, start: 27, end: 32,
+    title: `The Sons of Adam & the Sanctity of Life`,
+    arabic: `مَنْ قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا`,
+    summary: `Recounts the offerings of Adam’s two sons: accepted from the righteous, rejected from the other, who vows murder (5:27). The righteous brother refuses to lift a hand to kill (5:28–29). Driven by his lower self, the jealous brother murders him, then learns burial from a crow sent by Allah and feels regret (5:30–31). Establishes the universal decree: slaying one innocent soul is like slaying all humanity, and saving one is like saving all humanity (5:32).`,
+    tags: [`Sons of Adam`, `Non-Retaliation`, `The Crow`, `Sanctity of Life (5:32)`]
+  },
+  {
+    id: `m6`, num: `06`, range: `5:33–5:40`, start: 33, end: 40,
+    title: `Public Security, Theft & Openness to Repentance`,
+    arabic: `فَمَنْ تَابَ مِنْ بَعْدِ ظُلْمِهِ وَأَصْلَحَ فَإِنَّ اللَّهَ يَتُوبُ عَلَيْهِ`,
+    summary: `Specifies severe deterrent penalties for armed corruption in the land while explicitly sparing those who repent before apprehension (5:33–34). Exhorts believers to seek nearness (wasilah) to Allah (5:35), warns no earthly ransom suffices on Judgment Day (5:36–37), and pairs the deterrent penalty for theft with forgiveness for whoever repents and reforms (5:38–40).`,
+    tags: [`Public Order`, `Wasilah`, `Deterrence`, `Repentance`]
+  },
+  {
+    id: `m7`, num: `07`, range: `5:41–5:50`, start: 41, end: 50,
+    title: `Torah, Gospel & the Qur’an as Guardian Criterion`,
+    arabic: `وَأَنْزَلْنَا إِلَيْكَ الْكِتَابَ بِالْحَقِّ مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ الْكِتَابِ وَمُهَيْمِنًا عَلَيْهِ`,
+    summary: `Consoles the Prophet regarding insincere arbitration seekers (5:41–43). Affirms the Torah as guidance and light containing qisas with charity as expiation (5:44–45), and the Gospel confirming the Torah (5:46–47). Establishes the Qur’an as confirming and guardian criterion (muhaymin) over prior books, explaining distinct laws (shir‘ah and minhaj) as a test to “race to all that is good” while rejecting the judgment of ignorance (5:48–50).`,
+    tags: [`Torah & Gospel`, `Qisas`, `Muhaymin (5:48)`, `Race to Good`]
+  },
+  {
+    id: `m8`, num: `08`, range: `5:51–5:66`, start: 51, end: 66,
+    title: `Allegiance, Integrity & Moral Courage`,
+    arabic: `يَأْتِي اللَّهُ بِقَوْمٍ يُحِبُّهُمْ وَيُحِبُّونَهُ`,
+    summary: `Warns against opportunistic alliances driven by fear of misfortune (5:51–53). Promises that if any turn back, Allah will bring a community He loves and who love Him—humble toward believers, firm and unafraid of blame (5:54)—defining true allegiance with Allah, His Messenger, and praying, charitable believers (5:55–56). Addresses mockery of prayer, hypocrisy, scholarly silence on sin, and blasphemy, while noting a moderate community among People of the Scripture (5:57–66).`,
+    tags: [`Wilayah`, `Divine Love (5:54)`, `Scholarly Duty`, `Moderate Community`]
+  },
+  {
+    id: `m9`, num: `09`, range: `5:67–5:86`, start: 67, end: 86,
+    title: `Delivering the Message, Christology & Tearful Humility`,
+    arabic: `تَرَىٰ أَعْيُنَهُمْ تَفِيضُ مِنَ الدَّمْعِ مِمَّا عَرَفُوا مِنَ الْحَقِّ`,
+    summary: `Charges the Messenger to proclaim everything revealed under Allah’s protection (5:67). Affirms universal moral accountability across faiths for those who truly believe and do good (5:68–71). Clarifies Jesus’s strict monotheism, refutes trinity and excess in religion, and notes Jesus and Mary ate food (5:72–77). Rebukes failure to forbid wrongdoing (5:78–81) and praises humble priests and monks whose eyes overflow with tears upon recognizing truth (5:82–86).`,
+    tags: [`Protection (5:67)`, `Universal Righteousness (5:69)`, `Christology`, `Humility (5:82–85)`]
+  },
+  {
+    id: `m10`, num: `10`, range: `5:87–5:108`, start: 87, end: 108,
+    title: `Moderation, Oaths, Pilgrimage & Deathbed Witness`,
+    arabic: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تُحَرِّمُوا طَيِّبَاتِ مَا أَحَلَّ اللَّهُ لَكُمْ`,
+    summary: `Forbids prohibiting lawful good things (5:87–88) and defines expiation for deliberate oaths (5:89). Prohibits intoxicants, gambling, stone altars, and divining arrows as Satan’s divisive tools (5:90–93). Sets rules and expiation for land vs. sea game in ihram (5:94–96), honors the Ka‘bah (5:97–100), discourages needless questions and pagan superstitions (5:101–104), emphasizes personal responsibility (5:105), and codifies deathbed bequest testimony (5:106–108).`,
+    tags: [`Moderation`, `Oath Expiation`, `Intoxicants & Gambling`, `Will Testimony`]
+  },
+  {
+    id: `m11`, num: `11`, range: `5:109–5:120`, start: 109, end: 120,
+    title: `The Gathering of Messengers & the Table Spread`,
+    arabic: `أَنْزِلْ عَلَيْنَا مَائِدَةً مِنَ السَّمَاءِ تَكُونُ لَنَا عِيدًا`,
+    summary: `Opens on Judgment Day when Allah questions the assembled messengers (5:109) and recounts His miracles granted to Jesus by His leave and the disciples’ submission (5:110–111). Relates the disciples’ request for a heavenly Table Spread (Al-Ma’idah), Jesus’s festival prayer, and Allah’s solemn stipulation (5:112–115). Records Jesus’s clear testimony disavowing worship of himself or his mother (5:116–118), culminating in the triumph of the truthful and Allah’s absolute sovereignty (5:119–120).`,
+    tags: [`Day of Judgment`, `Miracles of Jesus`, `Al-Ma’idah`, `Final Sovereignty`]
+  }
+];
+
+const LAW_CARDS = [
+  { cat: `diet`, status: `lawful`, verse: `5:1, 5:4–5, 5:87–88`, title: `Lawful Good Foods & Mutual Hospitality`, detail: `Grazing livestock, game caught by trained animals (when Allah’s name is invoked), all wholesome foods (tayyibat), and the lawful food of People of the Scripture are permitted. Believers are commanded not to forbid what Allah made lawful.` },
+  { cat: `diet`, status: `prohibited`, verse: `5:3`, title: `Prohibited Animals & Unlawful Slaughter`, detail: `Dead animals (carrion), blood, swine flesh, animals dedicated to other than Allah, strangled, beaten, fallen, gored, predator-eaten (unless slaughtered alive), and sacrificed on stone altars. Excused only under severe hunger without inclination to sin.` },
+  { cat: `diet`, status: `mixed`, verse: `5:1–2, 5:94–96`, title: `Land vs. Sea Game During Ihram`, detail: `Land game is strictly forbidden while in ihram—even when within reach of hands and spears as a test—whereas sea game and its food remain lawful for residents and travelers. Hunting resumes after exiting ihram.` },
+  { cat: `worship`, status: `lawful`, verse: `5:6`, title: `Wudu, Ghusl & Tayammum`, detail: `Prayer requires washing face and forearms to elbows, wiping the head, and washing feet to ankles; full purification if in janabah. Illness, travel, or lack of water activates tayammum (clean earth on face and hands) so religion creates ease, not hardship.` },
+  { cat: `worship`, status: `prohibited`, verse: `5:90–93`, title: `Intoxicants, Gambling & Divination`, detail: `Intoxicants (khamr), gambling (maysir), sacrificing on stone altars (ansab), and divining arrows (azlam) are condemned as defilement from Satan’s work designed to spark enmity and avert hearts from prayer and remembrance.` },
+  { cat: `worship`, status: `mixed`, verse: `5:89`, title: `Meaningless vs. Binding Oaths`, detail: `Allah does not hold believers to unconsidered, meaningless oaths (laghw), but breaking a deliberate, binding oath requires a structured expiation (kaffarah): feeding or clothing ten needy people, freeing a slave, or fasting three days.` },
+  { cat: `civic`, status: `lawful`, verse: `5:2, 5:8, 5:42`, title: `Principled Justice Beyond Hostility`, detail: `Hatred of an enemy—even one who obstructed the Sacred House—must never provoke transgression (5:2) or unfair judgment (5:8). Believers must stand persistently firm as witnesses in justice (qist) and cooperate strictly in righteousness and piety.` },
+  { cat: `civic`, status: `mixed`, verse: `5:32–39, 5:45`, title: `Sanctity of Life, Deterrence & Repentance`, detail: `Unjust killing equates to slaying all humanity (5:32). Armed corruption (5:33) and theft (5:38) carry stern public deterrents, while legal retribution (qisas, 5:45) elevates charity/pardon as expiation. Repentance before capture (5:34) or after theft with reform (5:39) opens divine mercy.` },
+  { cat: `civic`, status: `lawful`, verse: `5:106–108`, title: `Deathbed Bequest Testimony`, detail: `When death approaches while traveling, two just witnesses from the community—or two outsiders if necessary—witness the bequest, detained after prayer to swear truthfully by Allah if doubted, with cross-swearing safeguards against perjury.` }
+];
+
+const EXPIATIONS = {
+  oath: {
+    verse: `5:89`,
+    summary: `Unintentional slips in speech (laghw) carry no blame, but breaking an intentional oath requires sequential expiation:`,
+    tiers: [
+      { step: `Option A · Feed 10 Needy`, text: `Provide food to ten needy people from the average standard with which you feed your own family.` },
+      { step: `Option B · Clothe 10 Needy`, text: `Provide suitable clothing for ten needy individuals.` },
+      { step: `Option C · Free a Slave`, text: `Liberate a captive person as an act of social emancipation.` },
+      { step: `Fallback · Fast 3 Days`, text: `Only for one who cannot afford any of the three material options above.` }
+    ]
+  },
+  hunt: {
+    verse: `5:95`,
+    summary: `Killing land game intentionally while in the state of ihram triggers restitution judged by two upright witnesses:`,
+    tiers: [
+      { step: `Option A · Equivalent Livestock`, text: `An equivalent domestic animal judged by two just men, delivered as an offering (hady) to the Ka‘bah.` },
+      { step: `Option B · Feed the Needy`, text: `An expiation feeding needy people proportional to the value of the animal.` },
+      { step: `Option C · Equivalent Fasting`, text: `Fasting the equivalent number of days so the offender tastes the consequence of the violation.` }
+    ]
+  },
+  wudu: {
+    verse: `5:6`,
+    summary: `Purification before prayer adapts immediately when water is absent or harmful to use:`,
+    tiers: [
+      { step: `Standard · Wudu / Ghusl`, text: `Wash face, forearms to elbows, wipe head, wash feet to ankles (or full bath in state of janabah).` },
+      { step: `Relief · Tayammum`, text: `If ill, traveling, or unable to find water after relieving oneself or marital contact, strike clean earth and wipe face and hands.` }
+    ]
+  },
+  hunger: {
+    verse: `5:3`,
+    summary: `All dietary prohibitions in 5:3 suspend under life-preserving necessity without rebellious intent:`,
+    tiers: [
+      { step: `Condition · Severe Hunger`, text: `Forced by genuine starvation (makhmassah) with no unlawful desire or transgression.` },
+      { step: `Ruling · Forgiveness`, text: `“Then indeed, Allah is Forgiving and Merciful” (5:3)—preserving human life takes priority.` }
+    ]
+  },
+  crime: {
+    verse: `5:34, 5:39`,
+    summary: `Even the harshest civic penalties in Surah Al-Ma’idah incorporate explicit pathways to mercy:`,
+    tiers: [
+      { step: `Armed Corruption (5:34)`, text: `Penalties of 5:33 are lifted for those who repent voluntarily before authorities apprehend them.` },
+      { step: `Theft & Reform (5:39)`, text: `Whoever repents after wrongdoing and genuinely reforms (aslaha)—Allah turns to them in forgiveness.` }
+    ]
+  }
+};
+
+const STORIES = {
+  adam: {
+    name: `The Two Sons of Adam (5:27–32)`,
+    beats: [
+      {
+        ref: `Verse 5:27`, theme: `Sincerity of Acceptance`,
+        title: `Two Offerings, One Accepted`,
+        ar: `إِذْ قَرَّبَا قُرْبَانًا فَتُقُبِّلَ مِنْ أَحَدِهِمَا وَلَمْ يُتَقَبَّلْ مِنَ الْآخَرِ قَالَ لَأَقْتُلَنَّكَ ۖ قَالَ إِنَّمَا يَتَقَبَّلُ اللَّهُ مِنَ الْمُتَّقِينَ`,
+        en: `“When they both offered a sacrifice, and it was accepted from one of them but was not accepted from the other. Said the latter, ‘I will surely kill you.’ Said the former, ‘Indeed, Allah only accepts from the righteous.’”`,
+        insight: `The conflict begins not with material scarcity, but with spiritual envy. The righteous brother diagnoses the root cause immediately: acceptance depends on taqwa (mindful righteousness), not ritual form.`
+      },
+      {
+        ref: `Verses 5:28–29`, theme: `Moral Restraint`,
+        title: `Refusal to Return Murder for Murder`,
+        ar: `لَئِنْ بَسَطْتَ إِلَيَّ يَدَكَ لِتَقْتُلَنِي مَا أَنَا بِبَاسِطٍ يَدِيَ إِلَيْكَ لِأَقْتُلَكَ ۖ إِنِّي أَخَافُ اللَّهَ رَبَّ الْعَالَمِينَ`,
+        en: `“If you should raise your hand against me to kill me—I shall not raise my hand against you to kill you. Indeed, I fear Allah, Lord of the worlds.”`,
+        insight: `Rather than escalating violence, the targeted brother anchors his restraint in fear of the Lord of all worlds, leaving the aggressor to carry the full moral weight of his choice.`
+      },
+      {
+        ref: `Verses 5:30–31`, theme: `The Crow & Regret`,
+        title: `The First Murder & the Lesson of Burial`,
+        ar: `فَبَعَثَ اللَّهُ غُرَابًا يَبْحَثُ فِي الْأَرْضِ لِيُرِيَهُ كَيْفَ يُوَارِي سَوْءَةَ أَخِيهِ`,
+        en: `“Then Allah sent a crow searching in the ground to show him how to hide the disgrace of his brother. He said, ‘O woe to me! Have I failed to be like this crow and hide the body of my brother?’ And he became of the regretful.”`,
+        insight: `After his lower self (nafs) entices him to murder and makes him among the losers, helplessness confronts him: even a crow knows how to honor a fallen body. Yet regret alone does not undo the crime.`
+      },
+      {
+        ref: `Verse 5:32`, theme: `Universal Decree`,
+        title: `One Soul Equals All Humanity`,
+        ar: `مَنْ قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا`,
+        en: `“Because of that, We decreed upon the Children of Israel that whoever kills a soul unless for a soul or for corruption in the land—it is as if he had slain mankind entirely. And whoever saves one—it is as if he had saved mankind entirely.”`,
+        insight: `From the first fratricide flows one of Scripture’s most famous moral axioms: every human life carries infinite, indivisible worth.`
+      }
+    ]
+  },
+  moses: {
+    name: `Moses & the Holy Land (5:20–26)`,
+    beats: [
+      {
+        ref: `Verses 5:20–21`, theme: `Gratitude & Command`,
+        title: `Remembering Favor & Entering the Land`,
+        ar: `يَا قَوْمِ ادْخُلُوا الْأَرْضَ الْمُقَدَّسَةَ الَّتِي كَتَبَ اللَّهُ لَكُمْ وَلَا تَرْتَدُّوا عَلَى أَدْبَارِكُمْ`,
+        en: `“O my people, enter the Holy Land which Allah has assigned to you and do not turn back and thus become losers.”`,
+        insight: `Moses frames courage as gratitude: Allah had already raised prophets among them, freed them into sovereignty, and given them unmatched favor. Turning back forfeits both promise and purpose.`
+      },
+      {
+        ref: `Verses 5:22–23`, theme: `Fear vs. Trust`,
+        title: `Tyrannical Strength vs. Two Faithful Voices`,
+        ar: `قَالَ رَجُلَانِ مِنَ الَّذِينَ يَخَافُونَ أَنْعَمَ اللَّهُ عَلَيْهِمَا ادْخُلُوا عَلَيْهِمُ الْبَابَ فَإِذَا دَخَلْتُمُوهُ فَإِنَّكُمْ غَالِبُونَ`,
+        en: `“Said two men from those who feared [to disobey] upon whom Allah had bestowed favor, ‘Enter upon them through the gate, for when you have entered it, you will be predominant. And upon Allah rely, if you should be believers.’”`,
+        insight: `The majority see only the formidable size of the inhabitants (jabbarin); two God-fearing individuals see that decisive initiative paired with reliance on Allah (tawakkul) unlocks victory.`
+      },
+      {
+        ref: `Verses 5:24–26`, theme: `Consequence of Defiance`,
+        title: `“Go, You and Your Lord” & Forty Years`,
+        ar: `قَالَ فَإِنَّهَا مُحَرَّمَةٌ عَلَيْهِمْ أَرْبَعِينَ سَنَةً يَتِيهُونَ فِي الْأَرْضِ`,
+        en: `“[Allah] said, ‘Then indeed, it is forbidden to them for forty years in which they will wander throughout the land. So do not grieve over the defiantly disobedient people.’”`,
+        insight: `Refusing moral effort while expecting God to fight alone breaks the covenant of trust. Moses asks separation from the disobedient, and a generation forfeits entry into the promised land.`
+      }
+    ]
+  },
+  jesus: {
+    name: `Jesus & the Table Spread (5:109–120)`,
+    beats: [
+      {
+        ref: `Verses 5:109–111`, theme: `Miracles by Permission`,
+        title: `Prophetic Favors & the Disciples’ Pledge`,
+        ar: `وَإِذْ تَخْلُقُ مِنَ الطِّينِ كَهَيْئَةِ الطَّيْرِ بِإِذْنِي فَتَنْفُخُ فِيهَا فَتَكُونُ طَيْرًا بِإِذْنِي`,
+        en: `“And when you designed from clay like the form of a bird with My permission, then you breathed into it, and it became a bird with My permission... And [remember] when I inspired to the disciples, ‘Believe in Me and in My messenger Jesus.’ They said, ‘We have believed, so bear witness that indeed we are Muslims.’”`,
+        insight: `Four times in verse 110, Allah repeats “by My permission” (bi-idhni): every extraordinary miracle—speaking in the cradle, breathing life into clay, healing the blind and leper, raising the dead—belongs solely to Allah’s will.`
+      },
+      {
+        ref: `Verses 5:112–115`, theme: `Al-Ma’idah (The Table)`,
+        title: `The Heavenly Table & Jesus’s Festival Prayer`,
+        ar: `قَالَ عِيسَى ابْنُ مَرْيَمَ اللَّهُمَّ رَبَّنَا أَنْزِلْ عَلَيْنَا مَائِدَةً مِنَ السَّمَاءِ تَكُونُ لَنَا عِيدًا لِأَوَّلِنَا وَآخِرِنَا وَآيَةً مِنْكَ`,
+        en: `“Said Jesus, the son of Mary, ‘O Allah, our Lord, send down to us a table spread with food from the heaven to be for us a festival for the first of us and the last of us and a sign from You. And provide for us, and You are the best of providers.’”`,
+        insight: `When the disciples ask for a heavenly table to reassure their hearts and witness truth, Jesus turns their curiosity into reverent prayer—seeking a lasting festival (‘id) and sign—while Allah warns against subsequent disbelief after witnessing such clarity.`
+      },
+      {
+        ref: `Verses 5:116–118`, theme: `Exoneration on Judgment Day`,
+        title: `Jesus Disavows Divinity`,
+        ar: `مَا قُلْتُ لَهُمْ إِلَّا مَا أَمَرْتَنِي بِهِ أَنِ اعْبُدُوا اللَّهَ رَبِّي وَرَبَّكُمْ`,
+        en: `“I said not to them except what You commanded me—to worship Allah, my Lord and your Lord... If You should punish them—indeed they are Your servants; but if You forgive them—indeed it is You who is the Exalted in Might, the Wise.”`,
+        insight: `In one of the Qur’an’s most moving dialogues, Jesus refuses to claim even a sliver of unseen knowledge (“You know what is within myself, and I do not know what is within Yourself”) and submits humanity’s fate to divine wisdom and mercy.`
+      },
+      {
+        ref: `Verses 5:119–120`, theme: `Triumph of Truth`,
+        title: `The Day Truthfulness Profits the Truthful`,
+        ar: `قَالَ اللَّهُ هُذَا يَوْمُ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ`,
+        en: `“Allah will say, ‘This is the Day when the truthful will benefit from their truthfulness.’ For them are gardens beneath which rivers flow, wherein they will abide forever, Allah being pleased with them, and they with Him.”`,
+        insight: `The Surah closes its circle: covenants honored with sincerity in 5:1 become everlasting truthfulness in 5:119 under the absolute sovereignty of Allah (5:120).`
+      }
+    ]
+  }
+};
+
+const KEY_TERMS = [
+  { term: `Al-‘Uqud (الْعُقُود)`, ref: `5:1`, def: `Binding contracts, pledges, and covenants—encompassing divine obligations, sacred pilgrimage laws, and human agreements.` },
+  { term: `Al-Ma’idah (الْمَائِدَة)`, ref: `5:112–114`, def: `A table spread with food sent from heaven as a sign, nourishment, and recurring festival (‘id) in response to Jesus’s supplication.` },
+  { term: `Al-Qist (الْقِسْط)`, ref: `5:8, 5:42`, def: `Equitable, unwavering justice that resists personal bias or hostility toward adversaries.` },
+  { term: `Muhaymin (مُهَيْمِنًا)`, ref: `5:48`, def: `Guardian, criterion, and trustworthy arbiter—how the Qur’an stands in relation to earlier revealed scriptures.` },
+  { term: `Shir‘ah & Minhaj (شِرْعَةً وَمِنْهَاجًا)`, ref: `5:48`, def: `A prescribed legal path and open methodology tailored to communities to test them and inspire racing toward good.` },
+  { term: `Kaffarah (كَفَّارَة)`, ref: `5:45, 5:89, 5:95`, def: `Moral and material expiation—charity, feeding the needy, clothing, freeing captives, or fasting—that repairs broken vows or forfeits retaliation.` },
+  { term: `Al-Wasilah (الْوَسِيلَة)`, ref: `5:35`, def: `The means of nearness to Allah sought through mindfulness, obedience, and striving in His path.` },
+  { term: `Siddiqah (صِدِّيقَة)`, ref: `5:75`, def: `Steadfast supporter and confirmer of truth—the title given directly to Mary, mother of Jesus.` }
+];
+
+/* Complete 120 verses of Surah Al-Ma'idah from the provided source text */
+const VERSES = [
+  { v: 1, m: `m1`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ أُحِلَّتْ لَكُمْ بَهِيمَةُ الْأَنْعَامِ إِلَّا مَا يُتْلَى عَلَيْكُمْ غَيْرَ مُحِلِّي الصَّيْدِ وَأَنْتُمْ حُرُمٌ إِنَّ اللَّهَ يَحْكُمُ مَا يُرِيدُ`, en: `O you who have believed, fulfill [all] contracts. Lawful for you are the animals of grazing livestock except for that which is recited to you [in this Qur'an] - hunting not being permitted while you are in the state of ihram. Indeed, Allah ordains what He intends.` },
+  { v: 2, m: `m1`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تُحِلُّوا شَعَائِرَ اللَّهِ وَلَا الشَّهْرَ الْحَرَامَ وَلَا الْهَدْيَ وَلَا الْقَلَائِدَ وَلَا آمِّينَ الْبَيْتَ الْحَرَامَ يَبْتَغُونَ فَضْلًا مِنْ رَبِّهِمْ وَرِضْوَانًا وَإِذَا حَلَلْتُمْ فَاصْطَادُوا وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ أَنْ صَدُّوكُمْ عَنِ الْمَسْجِدِ الْحَرَامِ أَنْ تَعْتَدُوا وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ وَاتَّقُوا اللَّهَ ۖ إِنَّ اللَّهَ شَدِيدُ الْعِقَابِ`, en: `O you who have believed, do not violate the rites of Allah or [the sanctity of] the sacred month or [neglect the marking of] the sacrificial animals and garlanding [them] or [violate the safety of] those coming to the Sacred House seeking bounty from their Lord and [His] approval. But when you come out of ihram, then [you may] hunt. And do not let the hatred of a people for having obstructed you from al-Masjid al-Haram lead you to transgress. And cooperate in righteousness and piety, but do not cooperate in sin and aggression. And fear Allah; indeed, Allah is severe in penalty.` },
+  { v: 3, m: `m1`, calls: [], ar: `حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ وَالدَّمُ وَلَحْمُ الْخِنْزِيرِ وَمَا أُهِلَّ لِغَيْرِ اللَّهِ بِهِ وَالْمُنْخَنِقَةُ وَالْمَوْقُوذَةُ وَالْمُتَرَدِّيَةُ وَالنَّطِيحَةُ وَمَا أَكَلَ السَّبُعُ إِلَّا مَا ذَكَّيْتُمْ وَمَا ذُبِحَ عَلَى النُّصْبِ وَأَنْ تَسْتَقْسِمُوا بِالْأَزْلَامِ ذُلِكُمْ فِسْقٌ الْيَوْمَ يَئِسَ الَّذِينَ كَفَرُوا مِنْ دِينِكُمْ فَلَا تَخْشَوْهُمْ وَاخْشَوْنِ الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي وَرَضِيتُ لَكُمُ الْإِسْلَامَ دِينًا ۚ فَمَنِ اضْطُرَّ فِي مَخْمَصَةٍ غَيْرَ مُتَجَانِفِ لِإِثْمِ فَإِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`, en: `Prohibited to you are dead animals, blood, the flesh of swine, and that which has been dedicated to other than Allah, and [those animals] killed by strangling or by a violent blow or by a head-long fall or by the goring of horns, and those from which a wild animal has eaten, except what you [are able to] slaughter [before its death], and those which are sacrificed on stone altars, and [prohibited is] that you seek decision through divining arrows. That is grave disobedience. This day those who disbelieve have despaired of [defeating] your religion; so fear them not, but fear Me. This day I have perfected for you your religion and completed My favor upon you and have approved for you Islam as religion. But whoever is forced by severe hunger with no inclination to sin - then indeed, Allah is Forgiving and Merciful.` },
+  { v: 4, m: `m1`, calls: [], ar: `يَسْأَلُونَكَ مَاذَا أُحِلَّ لَهُمْ قُلْ أُحِلَّ لَكُمُ الطَّيِّبَاتُ وَمَا عَلَّمْتُمْ مِنَ الْجَوَارِحِ مُكَلِّبِينَ تُعَلِّمُونَهُنَّ مِمَّا عَلَّمَكُمُ اللَّهُ ۖ فَكُلُوا مِمَّا أَمْسَكْنَ عَلَيْكُمْ وَاذْكُرُوا اسْمَ اللَّهِ عَلَيْهِ وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ`, en: `They ask you, [O Muhammad], what has been made lawful for them. Say, "Lawful for you are [all] good foods and [game caught by] what you have trained of hunting animals which you train as Allah has taught you. So eat of what they catch for you, and mention the name of Allah upon it, and fear Allah." Indeed, Allah is swift in account.` },
+  { v: 5, m: `m1`, calls: [], ar: `الْيَوْمَ أُحِلَّ لَكُمُ الطَّيِّبَاتُ ۖ وَطَعَامُ الَّذِينَ أُوتُوا الْكِتَابَ حِلٌّ لَكُمْ وَطَعَامُكُمْ حِلٌّ لَهُمْ وَالْمُحْصَنَاتُ مِنَ الْمُؤْمِنَاتِ وَالْمُحْصَنَاتُ مِنَ الَّذِينَ أُوتُوا الْكِتَابَ مِنْ قَبْلِكُمْ إِذَا آتَيْتُمُوهُنَّ أُجُورَهُنَّ مُحْصِنِينَ غَيْرَ مُسَافِحِينَ وَلَا مُتَّخِذِي أَخْدَانٍ وَمَنْ يَكْفُرْ بِالْإِيمَانِ فَقَدْ حَبِطَ عَمَلُهُ وَهُوَ فِي الْآخِرَةِ مِنَ الْخَاسِرِينَ`, en: `This day [all] good foods have been made lawful, and the food of those who were given the Scripture is lawful for you and your food is lawful for them. And [lawful in marriage are] chaste women from among the believers and chaste women from among those who were given the Scripture before you, when you have given them their due compensation, desiring chastity, not unlawful sexual intercourse or taking [secret] lovers. And whoever denies the faith - his work has become worthless, and he, in the Hereafter, will be among the losers.` },
+  { v: 6, m: `m2`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ وَإِنْ كُنْتُمْ جُنُبًا فَاطَّهَّرُوا وَإِنْ كُنْتُمْ مَرْضَى أَوْ عَلَى سَفَرٍ أَوْ جَاءَ أَحَدٌ مِنْكُمْ مِنَ الْغَائِطِ أَوْ لَامَسْتُمُ النِّسَاءَ فَلَمْ تَجِدُوا مَاءً فَتَيَمَّمُوا صَعِيدًا طَيِّبًا فَامْسَحُوا بِوُجُوهِكُمْ وَأَيْدِيكُمْ مِنْهُ مَا يُرِيدُ اللَّهُ لِيَجْعَلَ عَلَيْكُمْ مِنْ حَرَجٍ وَلَكِنْ يُرِيدُ لِيُطَهِّرَكُمْ وَلِيُتِمَّ نِعْمَتَهُ عَلَيْكُمْ لَعَلَّكُمْ تَشْكُرُونَ`, en: `O you who have believed, when you rise to [perform] prayer, wash your faces and your forearms to the elbows and wipe over your heads and wash your feet to the ankles. And if you are in a state of janabah, then purify yourselves. But if you are ill or on a journey or one of you comes from the place of relieving himself or you have contacted women and do not find water, then seek clean earth and wipe over your faces and hands with it. Allah does not intend to make difficulty for you, but He intends to purify you and complete His favor upon you that you may be grateful.` },
+  { v: 7, m: `m2`, calls: [], ar: `وَاذْكُرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ وَمِيثَاقَهُ الَّذِي وَاثَقَكُمْ بِهِ إِذْ قُلْتُمْ سَمِعْنَا وَأَطَعْنَا ۖ وَاتَّقُوا اللَّهَ إِنَّ اللَّهَ عَلِيمٌ بِذَاتِ الصُّدُورِ`, en: `And remember the favor of Allah upon you and His covenant with which He bound you when you said, "We hear and we obey"; and fear Allah. Indeed, Allah is Knowing of that within the breasts.` },
+  { v: 8, m: `m2`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا كُونُوا قَوَّامِينَ لِلَّهِ شُهَدَاءَ بِالْقِسْطِ ۖ وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰ أَلَّا تَعْدِلُوا اعْدِلُوا هُوَ أَقْرَبُ لِلتَّقْوَى وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ خَبِيرٌ بِمَا تَعْمَلُونَ`, en: `O you who have believed, be persistently standing firm for Allah, witnesses in justice, and do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness. And fear Allah; indeed, Allah is Acquainted with what you do.` },
+  { v: 9, m: `m2`, calls: [], ar: `وَعَدَ اللَّهُ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ لَهُمْ مَغْفِرَةٌ وَأَجْرٌ عَظِيمٌ`, en: `Allah has promised those who believe and do righteous deeds [that] for them there is forgiveness and great reward.` },
+  { v: 10, m: `m2`, calls: [], ar: `وَالَّذِينَ كَفَرُوا وَكَذَّبُوا بِآيَاتِنَا أُولُئِكَ أَصْحَابُ الْجَحِيمِ`, en: `But those who disbelieve and deny Our signs - those are the companions of Hellfire.` },
+  { v: 11, m: `m2`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ هَمَّ قَوْمٌ أَنْ يَبْسُطُوا إِلَيْكُمْ أَيْدِيَهُمْ فَكَفَّ أَيْدِيَهُمْ عَنْكُمْ ۖ وَاتَّقُوا اللَّهَ ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ`, en: `O you who have believed, remember the favor of Allah upon you when a people determined to extend their hands [in aggression] against you, but He withheld their hands from you; and fear Allah. And upon Allah let the believers rely.` },
+  { v: 12, m: `m3`, calls: [], ar: `وَلَقَدْ أَخَذَ اللَّهُ مِيثَاقَ بَنِي إِسْرَائِيلَ وَبَعَثْنَا مِنْهُمُ اثْنَيْ عَشَرَ نَقِيبًا ۖ وَقَالَ اللَّهُ إِنِّي مَعَكُمْ لَئِنْ أَقَمْتُمُ الصَّلَاةَ وَآتَيْتُمُ الزَّكَاةَ وَآمَنْتُمْ بِرُسُلِي وَعَزَّرْتُمُوهُمْ وَأَقْرَضْتُمُ اللَّهَ قَرْضًا حَسَنًا لَأُكَفِّرَنَّ عَنْكُمْ سَيِّئَاتِكُمْ وَلَأُدْخِلَنَّكُمْ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ فَمَنْ كَفَرَ بَعْدَ ذُلِكَ مِنْكُمْ فَقَدْ ضَلَّ سَوَاءَ السَّبِيلِ`, en: `And Allah had already taken a covenant from the Children of Israel, and We delegated from among them twelve leaders. And Allah said, "I am with you. If you establish prayer and give zakah and believe in My messengers and support them and loan Allah a goodly loan, I will surely remove from you your misdeeds and admit you to gardens beneath which rivers flow. But whoever of you disbelieves after that has certainly strayed from the soundness of the way."` },
+  { v: 13, m: `m3`, calls: [], ar: `فَبِمَا نَقْضِهِمْ مِيثَاقَهُمْ لَعَنَّاهُمْ وَجَعَلْنَا قُلُوبَهُمْ قَاسِيَةً ۖ يُحَرِّفُونَ الْكَلِمَ عَنْ مَوَاضِعِهِ وَنَسُوا حَظًّا مِمَّا ذُكِّرُوا بِهِ ۚ وَلَا تَزَالُ تَطَّلِعُ عَلَىٰ خَائِنَةٍ مِنْهُمْ إِلَّا قَلِيلًا مِنْهُمْ ۖ فَاعْفُ عَنْهُمْ وَاصْفَحْ إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ`, en: `So for their breaking of the covenant We cursed them and made their hearts hard. They distort words from their [proper] usages and have forgotten a portion of that of which they were reminded. And you will still observe deceit among them, except a few of them. But pardon them and overlook [their misdeeds]. Indeed, Allah loves the doers of good.` },
+  { v: 14, m: `m3`, calls: [], ar: `وَمِنَ الَّذِينَ قَالُوا إِنَّا نَصَارَىٰ أَخَذْنَا مِيثَاقَهُمْ فَنَسُوا حَظًّا مِمَّا ذُكِّرُوا بِهِ فَأَغْرَيْنَا بَيْنَهُمُ الْعَدَاوَةَ وَالْبَغْضَاءَ إِلَىٰ يَوْمِ الْقِيَامَةِ ۚ وَسَوْفَ يُنَبِّئُهُمُ اللَّهُ بِمَا كَانُوا يَصْنَعُونَ`, en: `And from those who say, "We are Christians" We took their covenant; but they forgot a portion of that of which they were reminded. So We caused among them animosity and hatred until the Day of Resurrection. And Allah is going to inform them about what they used to do.` },
+  { v: 15, m: `m3`, calls: [`scripture`], ar: `يَا أَهْلَ الْكِتَابِ قَدْ جَاءَكُمْ رَسُولُنَا يُبَيِّنُ لَكُمْ كَثِيرًا مِمَّا كُنْتُمْ تُخْفُونَ مِنَ الْكِتَابِ وَيَعْفُو عَنْ كَثِيرٍ قَدْ جَاءَكُمْ مِنَ اللَّهِ نُورٌ وَكِتَابٌ مُبِينٌ`, en: `O People of the Scripture, there has come to you Our Messenger making clear to you much of what you used to conceal of the Scripture and overlooking much. There has come to you from Allah a light and a clear Book.` },
+  { v: 16, m: `m3`, calls: [], ar: `يَهْدِي بِهِ اللَّهُ مَن اتَّبَعَ رِضْوَانَهُ سُبُلَ السَّلَامِ وَيُخْرِجُهُمْ مِنَ الظُّلُمَاتِ إِلَى النُّورِ بِإِذْنِهِ وَيَهْدِيهِمْ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ`, en: `By which Allah guides those who pursue His pleasure to the ways of peace and brings them out from darknesses into the light, by His permission, and guides them to a straight path.` },
+  { v: 17, m: `m3`, calls: [], ar: `لَقَدْ كَفَرَ الَّذِينَ قَالُوا إِنَّ اللَّهَ هُوَ الْمَسِيحُ ابْنُ مَرْيَمَ قُلْ فَمَنْ يَمْلِكُ مِنَ اللَّهِ شَيْئًا إِنْ أَرَادَ أَنْ يُهْلِكَ الْمَسِيحَ ابْنَ مَرْيَمَ وَأُمَّهُ وَمَنْ فِي الْأَرْضِ جَمِيعًا وَلِلَّهِ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَا بَيْنَهُمَا يَخْلُقُ مَا يَشَاءُ ۚ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`, en: `They have certainly disbelieved who say that Allah is Christ, the son of Mary. Say, "Then who could prevent Allah at all if He had intended to destroy Christ, the son of Mary, or his mother or everyone on the earth?" And to Allah belongs the dominion of the heavens and the earth and whatever is between them. He creates what He wills, and Allah is over all things competent.` },
+  { v: 18, m: `m3`, calls: [], ar: `وَقَالَتِ الْيَهُودُ وَالنَّصَارَىٰ نَحْنُ أَبْنَاءُ اللَّهِ وَأَحِبَّاؤُهُ ۚ قُلْ فَلِمَ يُعَذِّبُكُمْ بِذُنُوبِكُمْ بَلْ أَنْتُمْ بَشَرٌ مِمَّنْ خَلَقَ يَغْفِرُ لِمَنْ يَشَاءُ وَيُعَذِّبُ مَنْ يَشَاءُ ۚ وَلِلَّهِ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَا بَيْنَهُمَا ۖ وَإِلَيْهِ الْمَصِيرُ`, en: `But the Jews and the Christians say, "We are the children of Allah and His beloved." Say, "Then why does He punish you for your sins?" Rather, you are human beings from among those He has created. He forgives whom He wills, and He punishes whom He wills. And to Allah belongs the dominion of the heavens and the earth and whatever is between them, and to Him is the [final] destination.` },
+  { v: 19, m: `m3`, calls: [`scripture`], ar: `يَا أَهْلَ الْكِتَابِ قَدْ جَاءَكُمْ رَسُولُنَا يُبَيِّنُ لَكُمْ عَلَىٰ فَتْرَةٍ مِنَ الرُّسُلِ أَنْ تَقُولُوا مَا جَاءَنَا مِنْ بَشِيرٍ وَلَا نَذِيرٍ فَقَدْ جَاءَكُمْ بَشِيرٌ وَنَذِيرٌ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`, en: `O People of the Scripture, there has come to you Our Messenger to make clear to you [the religion] after a period [of suspension] of messengers, lest you say, "There came not to us any bringer of good tidings or a warner." But there has come to you a bringer of good tidings and a warner. And Allah is over all things competent.` },
+  { v: 20, m: `m4`, calls: [], ar: `وَإِذْ قَالَ مُوسَىٰ لِقَوْمِهِ يَا قَوْمِ اذْكُرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ إِذْ جَعَلَ فِيكُمْ أَنْبِيَاءَ وَجَعَلَكُمْ مُلُوكًا وَآتَاكُمْ مَا لَمْ يُؤْتِ أَحَدًا مِنَ الْعَالَمِينَ`, en: `And [mention, O Muhammad], when Moses said to his people, "O my people, remember the favor of Allah upon you when He appointed among you prophets and made you possessors and gave you that which He had not given anyone among the worlds."` },
+  { v: 21, m: `m4`, calls: [], ar: `يَا قَوْمِ ادْخُلُوا الْأَرْضِ الْمُقَدَّسَةَ الَّتِي كَتَبَ اللَّهُ لَكُمْ وَلَا تَرْتَدُّوا عَلَى أَدْبَارِكُمْ فَتَنْقَلِبُوا خَاسِرِينَ`, en: `O my people, enter the Holy Land which Allah has assigned to you and do not turn back [from fighting in Allah's cause] and [thus] become losers.` },
+  { v: 22, m: `m4`, calls: [], ar: `قَالُوا يَا مُوسَىٰ إِنَّ فِيهَا قَوْمًا جَبَّارِينَ وَإِنَّا لَنْ نَدْخُلَهَا حَتَّى يَخْرُجُوا مِنْهَا فَإِنْ يَخْرُجُوا مِنْهَا فَإِنَّا دَاخِلُونَ`, en: `They said, "O Moses, indeed within it is a people of tyrannical strength, and indeed, we will never enter it until they leave it; but if they leave it, then we will enter."` },
+  { v: 23, m: `m4`, calls: [], ar: `قَالَ رَجُلَانِ مِنَ الَّذِينَ يَخَافُونَ أَنْعَمَ اللَّهُ عَلَيْهِمَا ادْخُلُوا عَلَيْهِمُ الْبَابَ فَإِذَا دَخَلْتُمُوهُ فَإِنَّكُمْ غَالِبُونَ وَعَلَى اللَّهِ فَتَوَكَّلُوا إِنْ كُنْتُمْ مُؤْمِنِينَ`, en: `Said two men from those who feared [to disobey] upon whom Allah had bestowed favor, "Enter upon them through the gate, for when you have entered it, you will be predominant. And upon Allah rely, if you should be believers."` },
+  { v: 24, m: `m4`, calls: [], ar: `قَالُوا يَا مُوسَىٰ إِنَّا لَنْ نَدْخُلَهَا أَبَدًا مَا دَامُوا فِيهَا فَاذْهَبْ أَنْتَ وَرَبُّكَ فَقَاتِلَا إِنَّا هَاهُنَا قَاعِدُونَ`, en: `They said, "O Moses, indeed we will not enter it, ever, as long as they are within it; so go, you and your Lord, and fight. Indeed, we are remaining right here."` },
+  { v: 25, m: `m4`, calls: [], ar: `قَالَ رَبِّ إِنِّي لَا أَمْلِكُ إِلَّا نَفْسِي وَأَخِي فَافْرُقْ بَيْنَنَا وَبَيْنَ الْقَوْمِ الْفَاسِقِينَ`, en: `[Moses] said, "My Lord, indeed I do not possess except myself and my brother, so part us from the defiantly disobedient people."` },
+  { v: 26, m: `m4`, calls: [], ar: `قَالَ فَإِنَّهَا مُحَرَّمَةٌ عَلَيْهِمْ أَرْبَعِينَ سَنَةً يَتِيهُونَ فِي الْأَرْضِ فَلَا تَأْسَ عَلَى الْقَوْمِ الْفَاسِقِينَ`, en: `[Allah] said, "Then indeed, it is forbidden to them for forty years [in which] they will wander throughout the land. So do not grieve over the defiantly disobedient people."` },
+  { v: 27, m: `m5`, calls: [], ar: `وَاتْلُ عَلَيْهِمْ نَبَأَ ابْنَيْ آدَمَ بِالْحَقِّ إِذْ قَرَّبَا قُرْبَانًا فَتُقُبِّلَ مِنْ أَحَدِهِمَا وَلَمْ يُتَقَبَّلْ مِنَ الْآخَرِ قَالَ لَأَقْتُلَنَّكَ ۖ قَالَ إِنَّمَا يَتَقَبَّلُ اللَّهُ مِنَ الْمُتَّقِينَ`, en: `And recite to them the story of Adam's two sons, in truth, when they both offered a sacrifice [to Allah], and it was accepted from one of them but was not accepted from the other. Said [the latter], "I will surely kill you." Said [the former], "Indeed, Allah only accepts from the righteous [who fear Him]."` },
+  { v: 28, m: `m5`, calls: [], ar: `لَئِنْ بَسَطْتَ إِلَيَّ يَدَكَ لِتَقْتُلَنِي مَا أَنَا بِبَاسِطٍ يَدِيَ إِلَيْكَ لِأَقْتُلَكَ ۖ إِنِّي أَخَافُ اللَّهَ رَبَّ الْعَالَمِينَ`, en: `If you should raise your hand against me to kill me - I shall not raise my hand against you to kill you. Indeed, I fear Allah, Lord of the worlds.` },
+  { v: 29, m: `m5`, calls: [], ar: `إِنِّي أُرِيدُ أَنْ تَبُوءَ بِإِثْمِي وَإِثْمِكَ فَتَكُونَ مِنْ أَصْحَابِ النَّارِ وَذُلِكَ جَزَاءُ الظَّالِمِينَ`, en: `Indeed I want you to obtain [thereby] my sin and your sin so you will be among the companions of the Fire. And that is the recompense of wrongdoers.` },
+  { v: 30, m: `m5`, calls: [], ar: `فَطَوَّعَتْ لَهُ نَفْسُهُ قَتْلَ أَخِيهِ فَقَتَلَهُ فَأَصْبَحَ مِنَ الْخَاسِرِينَ`, en: `And his soul permitted to him the murder of his brother, so he killed him and became among the losers.` },
+  { v: 31, m: `m5`, calls: [], ar: `فَبَعَثَ اللَّهُ غُرَابًا يَبْحَثُ فِي الْأَرْضِ لِيُرِيَهُ كَيْفَ يُوَارِي سَوْءَةَ أَخِيهِ ۚ قَالَ يَا وَيْلَتَا أَعَجَزْتُ أَنْ أَكُونَ مِثْلَ هُذَا الْغُرَابِ فَأُوَارِيَ سَوْءَةَ أَخِي فَأَصْبَحَ مِنَ النَّادِمِينَ`, en: `Then Allah sent a crow searching in the ground to show him how to hide the disgrace of his brother. He said, "O woe to me! Have I failed to be like this crow and hide the body of my brother?" And he became of the regretful.` },
+  { v: 32, m: `m5`, calls: [], ar: `مِنْ أَجْلٍ ذُلِكَ كَتَبْنَا عَلَىٰ بَنِي إِسْرَائِيلَ أَنَّهُ مَنْ قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا وَلَقَدْ جَاءَتْهُمْ رُسُلُنَا بِالْبَيِّنَاتِ ثُمَّ إِنَّ كَثِيرًا مِنْهُمْ بَعْدَ ذَلِكَ فِي الْأَرْضِ لَمُسْرِفُونَ`, en: `Because of that, We decreed upon the Children of Israel that whoever kills a soul unless for a soul or for corruption [done] in the land it is as if he had slain mankind entirely. And whoever saves one - it is as if he had saved mankind entirely. And our messengers had certainly come to them with clear proofs. Then indeed many of them, [even] after that, throughout the land, were transgressors.` },
+  { v: 33, m: `m6`, calls: [], ar: `إِنَّمَا جَزَاءُ الَّذِينَ يُحَارِبُونَ اللَّهَ وَرَسُولَهُ وَيَسْعَوْنَ فِي الْأَرْضِ فَسَادًا أَنْ يُقَتَّلُوا أَوْ يُصَلَّبُوا أَوْ تُقَطَّعَ أَيْدِيهِمْ وَأَرْجُلُهُمْ مِنْ خِلَافٍ أَوْ يُنْفَوْا مِنَ الْأَرْضِ ذُلِكَ لَهُمْ خِزْيٌ فِي الدُّنْيَا وَلَهُمْ فِي الْآخِرَةِ عَذَابٌ عَظِيمٌ`, en: `Indeed, the penalty for those who wage war against Allah and His Messenger and strive upon earth [to cause] corruption is none but that they be killed or crucified or that their hands and feet be cut off from opposite sides or that they be exiled from the land. That is for them a disgrace in this world; and for them in the Hereafter is a great punishment,` },
+  { v: 34, m: `m6`, calls: [], ar: `إِلَّا الَّذِينَ تَابُوا مِنْ قَبْلِ أَنْ تَقْدِرُوا عَلَيْهِمْ فَاعْلَمُوا أَنَّ اللَّهَ غَفُورٌ رَحِيمٌ`, en: `Except for those who return [repenting] before you apprehend them. And know that Allah is Forgiving and Merciful.` },
+  { v: 35, m: `m6`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَابْتَغُوا إِلَيْهِ الْوَسِيلَةَ وَجَاهِدُوا فِي سَبِيلِهِ لَعَلَّكُمْ تُفْلِحُونَ`, en: `O you who have believed, fear Allah and seek the means [of nearness] to Him and strive in His cause that you may succeed.` },
+  { v: 36, m: `m6`, calls: [], ar: `إِنَّ الَّذِينَ كَفَرُوا لَوْ أَنَّ لَهُمْ مَا فِي الْأَرْضِ جَمِيعًا وَمِثْلَهُ مَعَهُ لِيَفْتَدُوا بِهِ مِنْ عَذَابِ يَوْمِ الْقِيَامَةِ مَا تُقُبِّلَ مِنْهُمْ وَلَهُمْ عَذَابٌ أَلِيمٌ`, en: `Indeed, those who disbelieve - if they should have all that is in the earth and the like of it with it by which to ransom themselves from the punishment of the Day of Resurrection, it will not be accepted from them, and for them is a painful punishment.` },
+  { v: 37, m: `m6`, calls: [], ar: `يُرِيدُونَ أَنْ يَخْرُجُوا مِنَ النَّارِ وَمَا هُمْ بِخَارِجِينَ مِنْهَا وَلَهُمْ عَذَابٌ مُقِيمٌ`, en: `They will wish to get out of the Fire, but never are they to emerge therefrom, and for them is an enduring punishment.` },
+  { v: 38, m: `m6`, calls: [], ar: `وَالسَّارِقُ وَالسَّارِقَةُ فَاقْطَعُوا أَيْدِيَهُمَا جَزَاءً بِمَا كَسَبَا نَكَالًا مِنَ اللَّهِ وَاللَّهُ عَزِيزٌ حَكِيمٌ`, en: `[As for] the thief, the male and the female, amputate their hands in recompense for what they committed as a deterrent [punishment] from Allah. And Allah is Exalted in Might and Wise.` },
+  { v: 39, m: `m6`, calls: [], ar: `فَمَنْ تَابَ مِنْ بَعْدِ ظُلْمِهِ وَأَصْلَحَ فَإِنَّ اللَّهَ يَتُوبُ عَلَيْهِ إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`, en: `But whoever repents after his wrongdoing and reforms, indeed, Allah will turn to him in forgiveness. Indeed, Allah is Forgiving and Merciful.` },
+  { v: 40, m: `m6`, calls: [], ar: `أَلَمْ تَعْلَمْ أَنَّ اللَّهَ لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ يُعَذِّبُ مَنْ يَشَاءُ وَيَغْفِرُ لِمَنْ يَشَاءُ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`, en: `Do you not know that to Allah belongs the dominion of the heavens and the earth? He punishes whom He wills and forgives whom He wills, and Allah is over all things competent.` },
+  { v: 41, m: `m7`, calls: [`messenger`], ar: `يَا أَيُّهَا الرَّسُولُ لَا يَحْزُنُكَ الَّذِينَ يُسَارِعُونَ فِي الْكُفْرِ مِنَ الَّذِينَ قَالُوا آمَنَّا بِأَفْوَاهِهِمْ وَلَمْ تُؤْمِنْ قُلُوبُهُمْ وَمِنَ الَّذِينَ هَادُوا سَمَّاعُونَ لِلْكَذِبِ سَمَّاعُونَ لِقَوْمٍ آخَرِينَ لَمْ يَأْتُوكَ ۖ يُحَرِّفُونَ الْكَلِمَ مِنْ بَعْدِ مَوَاضِعِهِ يَقُولُونَ إِنْ أُوتِيتُمْ هُذَا فَخُذُوهُ وَإِنْ لَمْ تُؤْتَوْهُ فَاحْذَرُوا وَمَنْ يُرِدِ اللَّهُ فِتْنَتَهُ فَلَنْ تَمْلِكَ لَهُ مِنَ اللَّهِ شَيْئًا ۚ أُولَئِكَ الَّذِينَ لَمْ يُرِدِ اللَّهُ أَنْ يُطَهِّرَ قُلُوبَهُمْ لَهُمْ فِي الدُّنْيَا خِزْيٌ وَلَهُمْ فِي الْآخِرَةِ عَذَابٌ عَظِيمٌ`, en: `O Messenger, let them not grieve you who hasten into disbelief of those who say, "We believe" with their mouths, but their hearts believe not, and from among the Jews. [They are] avid listeners to falsehood, listening to another people who have not come to you. They distort words beyond their [proper] usages, saying "If you are given this, take it; but if you are not given it, then beware." But he for whom Allah intends fitnah - never will you possess [power to do] for him a thing against Allah. Those are the ones for whom Allah does not intend to purify their hearts. For them in this world is disgrace, and for them in the Hereafter is a great punishment.` },
+  { v: 42, m: `m7`, calls: [], ar: `سَمَّاعُونَ لِلْكَذِبِ أَكَّالُونَ لِلسُّحْتِ ۚ فَإِنْ جَاءُوكَ فَاحْكُمْ بَيْنَهُمْ أَوْ أَعْرِضْ عَنْهُمْ وَإِنْ تُعْرِضْ عَنْهُمْ فَلَنْ يَضُرُّوكَ شَيْئًا وَإِنْ حَكَمْتَ فَاحْكُمْ بَيْنَهُمْ بِالْقِسْطِ ۚ إِنَّ اللَّهَ يُحِبُّ الْمُقْسِطِينَ`, en: `[They are] avid listeners to falsehood, devourers of [what is] unlawful. So if they come to you, [O Muhammad], judge between them or turn away from them. And if you turn away from them never will they harm you at all. And if you judge, judge between them with justice. Indeed, Allah loves those who act justly.` },
+  { v: 43, m: `m7`, calls: [], ar: `وَكَيْفَ يُحَكِّمُونَكَ وَعِنْدَهُمُ التَّوْرَاةُ فِيهَا حُكْمُ اللَّهِ ثُمَّ يَتَوَلَّوْنَ مِنْ بَعْدِ ذُلِكَ ۚ وَمَا أُولَئِكَ بِالْمُؤْمِنِينَ`, en: `But how is it that they come to you for judgement while they have the Torah, in which is the judgement of Allah? Then they turn away, [even] after that; but those are not [in fact] believers.` },
+  { v: 44, m: `m7`, calls: [], ar: `إِنَّا أَنْزَلْنَا التَّوْرَاةَ فِيهَا هُدًى وَنُورٌ يَحْكُمُ بِهَا النَّبِيُّونَ الَّذِينَ أَسْلَمُوا لِلَّذِينَ هَادُوا وَالرَّبَّانِيُّونَ وَالْأَحْبَارُ بِمَا اسْتُحْفِظُوا مِنْ كِتَابِ اللَّهِ وَكَانُوا عَلَيْهِ شُهَدَاءَ ۚ فَلَا تَخْشَوُا النَّاسَ وَاخْشَوْنِ وَلَا تَشْتَرُوا بِآيَاتِي ثَمَنًا قَلِيلًا وَمَنْ لَمْ يَحْكُمْ بِمَا أَنْزَلَ اللَّهُ فَأُولَئِكَ هُمُ الْكَافِرُونَ`, en: `Indeed, We sent down the Torah, in which was guidance and light. The prophets who submitted [to Allah] judged by it for the Jews, as did the rabbis and scholars by that with which they were entrusted of the Scripture of Allah, and they were witnesses thereto. So do not fear the people but fear Me, and do not exchange My verses for a small price. And whoever does not judge by what Allah has revealed - then it is those who are the disbelievers.` },
+  { v: 45, m: `m7`, calls: [], ar: `وَكَتَبْنَا عَلَيْهِمْ فِيهَا أَنَّ النَّفْسَ بِالنَّفْسِ وَالْعَيْنَ بِالْعَيْنِ وَالْأَنْفَ بِالْأَنْفِ وَالْأُذُنَ بِالْأُذُنِ وَالسِّنَّ بِالسِّنِّ وَالْجُرُوحَ قِصَاصِ فَمَنْ تَصَدَّقَ بِهِ فَهُوَ كَفَّارَةٌ لَهُ ۚ وَمَنْ لَمْ يَحْكُمْ بِمَا أَنْزَلَ اللَّهُ فَأُولَئِكَ هُمُ الظَّالِمُونَ`, en: `And We ordained for them therein a life for a life, an eye for an eye, a nose for a nose, an ear for an ear, a tooth for a tooth, and for wounds is legal retribution. But whoever gives [up his right as] charity, it is an expiation for him. And whoever does not judge by what Allah has revealed - then it is those who are the wrongdoers.` },
+  { v: 46, m: `m7`, calls: [], ar: `وَقَفَّيْنَا عَلَىٰ آثَارِهِمْ بِعِيسَى ابْنِ مَرْيَمَ مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ التَّوْرَاةِ ۖ وَآتَيْنَاهُ الْإِنْجِيلَ فِيهِ هُدًى وَنُورٌ وَمُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ التَّوْرَاةِ وَهُدًى وَمَوْعِظَةً لِلْمُتَّقِينَ`, en: `And We sent, following in their footsteps, Jesus, the son of Mary, confirming that which came before him in the Torah; and We gave him the Gospel, in which was guidance and light and confirming that which preceded it of the Torah as guidance and instruction for the righteous.` },
+  { v: 47, m: `m7`, calls: [], ar: `وَلْيَحْكُمْ أَهْلُ الْإِنْجِيلِ بِمَا أَنْزَلَ اللَّهُ فِيهِ وَمَنْ لَمْ يَحْكُمْ بِمَا أَنْزَلَ اللَّهُ فَأُولَئِكَ هُمُ الْفَاسِقُونَ`, en: `And let the People of the Gospel judge by what Allah has revealed therein. And whoever does not judge by what Allah has revealed - then it is those who are the defiantly disobedient.` },
+  { v: 48, m: `m7`, calls: [], ar: `وَأَنْزَلْنَا إِلَيْكَ الْكِتَابَ بِالْحَقِّ مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ الْكِتَابِ وَمُهَيْمِنًا عَلَيْهِ ۖ فَاحْكُمْ بَيْنَهُمْ بِمَا أَنْزَلَ اللَّهُ وَلَا تَتَّبِعْ أَهْوَاءَهُمْ عَمَّا جَاءَكَ مِنَ الْحَقِّ لِكُلٍّ جَعَلْنَا مِنْكُمْ شِرْعَةً وَمِنْهَاجًا ۚ وَلَوْ شَاءَ اللَّهُ لَجَعَلَكُمْ أُمَّةً وَاحِدَةً وَلَكِنْ لِيَبْلُوَكُمْ فِي مَا آتَاكُمْ فَاسْتَبِقُوا الْخَيْرَاتِ إِلَى اللَّهِ مَرْجِعُكُمْ جَمِيعًا فَيُنَبِّئُكُمْ بِمَا كُنْتُمْ فِيهِ تَخْتَلِفُونَ`, en: `And We have revealed to you, [O Muhammad], the Book in truth, confirming that which preceded it of the Scripture and as a criterion over it. So judge between them by what Allah has revealed and do not follow their inclinations away from what has come to you of the truth. To each of you We prescribed a law and a method. Had Allah willed, He would have made you one nation [united in religion], but [He intended] to test you in what He has given you; so race to [all that is] good. To Allah is your return all together, and He will [then] inform you concerning that over which you used to differ.` },
+  { v: 49, m: `m7`, calls: [], ar: `وَأَنِ احْكُمْ بَيْنَهُمْ بِمَا أَنْزَلَ اللَّهُ وَلَا تَتَّبِعْ أَهْوَاءَهُمْ وَاحْذَرْهُمْ أَنْ يَفْتِنُوكَ عَنْ بَعْضِ مَا أَنْزَلَ اللَّهُ إِلَيْكَ ۖ فَإِنْ تَوَلَّوْا فَاعْلَمْ أَنَّمَا يُرِيدُ اللَّهُ أَنْ يُصِيبَهُمْ بِبَعْضِ ذُنُوبِهِمْ وَإِنَّ كَثِيرًا مِنَ النَّاسِ لَفَاسِقُونَ`, en: `And judge, [O Muhammad], between them by what Allah has revealed and do not follow their inclinations and beware of them, lest they tempt you away from some of what Allah has revealed to you. And if they turn away - then know that Allah only intends to afflict them with some of their [own] sins. And indeed, many among the people are defiantly disobedient.` },
+  { v: 50, m: `m7`, calls: [], ar: `أَفَحُكْمَ الْجَاهِلِيَّةِ يَبْغُونَ وَمَنْ أَحْسَنُ مِنَ اللَّهِ حُكْمًا لِقَوْمٍ يُوقِنُونَ`, en: `Then is it the judgement of [the time of] ignorance they desire? But who is better than Allah in judgement for a people who are certain [in faith].` },
+  { v: 51, m: `m8`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَّخِذُوا الْيَهُودَ وَالنَّصَارَىٰ أَوْلِيَاءَ بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ ۚ وَمَنْ يَتَوَلَّهُمْ مِنْكُمْ فَإِنَّهُ مِنْهُمْ إِنَّ اللَّهَ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ`, en: `O you who have believed, do not take the Jews and the Christians as allies. They are [in fact] allies of one another. And whoever is an ally to them among you - then indeed, he is [one] of them. Indeed, Allah guides not the wrongdoing people.` },
+  { v: 52, m: `m8`, calls: [], ar: `فَتَرَى الَّذِينَ فِي قُلُوبِهِمْ مَرَضٌ يُسَارِعُونَ فِيهِمْ يَقُولُونَ نَخْشَىٰ أَنْ تُصِيبَنَا دَائِرَةٌ فَعَسَى اللَّهُ أَنْ يَأْتِيَ بِالْفَتْحِ أَوْ أَمْرٍ مِنْ عِنْدِهِ فَيُصْبِحُوا عَلَىٰ مَا أَسَرُّوا فِي أَنْفُسِهِمْ نَادِمِينَ`, en: `So you see those in whose hearts is disease hastening into [association with] them, saying, "We are afraid a misfortune may strike us." But perhaps Allah will bring conquest or a decision from Him, and they will become, over what they have been concealing within themselves, regretful.` },
+  { v: 53, m: `m8`, calls: [], ar: `وَيَقُولُ الَّذِينَ آمَنُوا أَهُؤُلَاءِ الَّذِينَ أَقْسَمُوا بِاللَّهِ جَهْدَ أَيْمَانِهِمْ إِنَّهُمْ لَمَعَكُمْ حَبِطَتْ أَعْمَالُهُمْ فَأَصْبَحُوا خَاسِرِينَ`, en: `And those who believe will say, "Are these the ones who swore by Allah their strongest oaths that indeed they were with you?" Their deeds have become worthless, and they have become losers.` },
+  { v: 54, m: `m8`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا مَنْ يَرْتَدَّ مِنْكُمْ عَنْ دِينِهِ فَسَوْفَ يَأْتِي اللَّهُ بِقَوْمٍ يُحِبُّهُمْ وَيُحِبُّونَهُ أَذِلَّةٍ عَلَى الْمُؤْمِنِينَ أَعِزَّةٍ عَلَى الْكَافِرِينَ يُجَاهِدُونَ فِي سَبِيلِ اللَّهِ وَلَا يَخَافُونَ لَوْمَةَ لائِمٍ ذُلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ ۚ وَاللَّهُ وَاسِعٌ عَلِيمٌ`, en: `O you who have believed, whoever of you should revert from his religion - Allah will bring forth [in place of them] a people He will love and who will love Him [who are] humble toward the believers, powerful against the disbelievers; they strive in the cause of Allah and do not fear the blame of a critic. That is the favor of Allah; He bestows it upon whom He wills. And Allah is all-Encompassing and Knowing.` },
+  { v: 55, m: `m8`, calls: [], ar: `إِنَّمَا وَلِيُّكُمُ اللَّهُ وَرَسُولُهُ وَالَّذِينَ آمَنُوا الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَيُؤْتُونَ الزَّكَاةَ وَهُمْ رَاكِعُونَ`, en: `Your ally is none but Allah and [therefore] His Messenger and those who have believed - those who establish prayer and give zakah, and they bow [in worship].` },
+  { v: 56, m: `m8`, calls: [], ar: `وَمَنْ يَتَوَلَّ اللَّهَ وَرَسُولَهُ وَالَّذِينَ آمَنُوا فَإِنَّ حِزْبَ اللَّهِ هُمُ الْغَالِبُونَ`, en: `And whoever is an ally of Allah and His Messenger and those who have believed - indeed, the party of Allah - they will be the predominant.` },
+  { v: 57, m: `m8`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَّخِذُوا الَّذِينَ اتَّخَذُوا دِينَكُمْ هُزُوًا وَلَعِبًا مِنَ الَّذِينَ أُوتُوا الْكِتَابَ مِنْ قَبْلِكُمْ وَالْكُفَّارَ أَوْلِيَاءَ وَاتَّقُوا اللَّهَ إِنْ كُنْتُمْ مُؤْمِنِينَ`, en: `O you who have believed, take not those who have taken your religion in ridicule and amusement among the ones who were given the Scripture before you nor the disbelievers as allies. And fear Allah, if you should [truly] be believers.` },
+  { v: 58, m: `m8`, calls: [], ar: `وَإِذَا نَادَيْتُمْ إِلَى الصَّلَاةِ اتَّخَذُوهَا هُزُوًا وَلَعِبًا ذَلِكَ بِأَنَّهُمْ قَوْمٌ لَا يَعْقِلُونَ`, en: `And when you call to prayer, they take it in ridicule and amusement. That is because they are a people who do not use reason.` },
+  { v: 59, m: `m8`, calls: [`scripture`], ar: `قُلْ يَا أَهْلَ الْكِتَابِ هَلْ تَنْقِمُونَ مِنَّا إِلَّا أَنْ آمَنَّا بِاللَّهِ وَمَا أُنْزِلَ إِلَيْنَا وَمَا أُنْزِلَ مِنْ قَبْلُ وَأَنَّ أَكْثَرَكُمْ فَاسِقُونَ`, en: `Say, "O People of the Scripture, do you resent us except [for the fact] that we have believed in Allah and what was revealed to us and what was revealed before and because most of you are defiantly disobedient?"` },
+  { v: 60, m: `m8`, calls: [], ar: `قُلْ هَلْ أُنَبِّئُكُمْ بِشَرٌ مِنْ ذَلِكَ مَثُوبَةً عِنْدَ اللَّهِ مَنْ لَعَنَهُ اللَّهُ وَغَضِبَ عَلَيْهِ وَجَعَلَ مِنْهُمُ الْقِرَدَةَ وَالْخَنَازِيرَ وَعَبَدَ الطَّاغُوتَ أُولَئِكَ شَرٌّ مَكَانًا وَأَضَلُّ عَنْ سَوَاءِ السَّبِيلِ`, en: `Say, "Shall I inform you of [what is] worse than that as penalty from Allah? [It is that of] those whom Allah has cursed and with whom He became angry and made of them apes and pigs and slaves of Taghut. Those are worse in position and further astray from the sound way."` },
+  { v: 61, m: `m8`, calls: [], ar: `وَإِذَا جَاءُوكُمْ قَالُوا آمَنَّا وَقَدْ دَخَلُوا بِالْكُفْرِ وَهُمْ قَدْ خَرَجُوا بِهِ ۚ وَاللَّهُ أَعْلَمُ بِمَا كَانُوا يَكْتُمُونَ`, en: `And when they come to you, they say, "We believe." But they have entered with disbelief [in their hearts], and they have certainly left with it. And Allah is most knowing of what they were concealing.` },
+  { v: 62, m: `m8`, calls: [], ar: `وَتَرَىٰ كَثِيرًا مِنْهُمْ يُسَارِعُونَ فِي الْإِثْمِ وَالْعُدْوَانِ وَأَكْلِهِمُ السُّحْتَ لَبِئْسَ مَا كَانُوا يَعْمَلُونَ`, en: `And you see many of them hastening into sin and aggression and the devouring of [what is] unlawful. How wretched is what they have been doing.` },
+  { v: 63, m: `m8`, calls: [], ar: `لَوْلَا يَنْهَاهُمُ الرَّبَّانِيُّونَ وَالْأَحْبَارُ عَنْ قَوْلِهِمُ الْإِثْمَ وَأَكْلِهِمُ السُّحْتَ لَبِئْسَ مَا كَانُوا يَصْنَعُونَ`, en: `Why do the rabbis and religious scholars not forbid them from saying what is sinful and devouring what is unlawful? How wretched is what they have been practicing.` },
+  { v: 64, m: `m8`, calls: [], ar: `وَقَالَتِ الْيَهُودُ يَدُ اللَّهِ مَغْلُولَةٌ غُلَّتْ أَيْدِيهِمْ وَلُعِنُوا بِمَا قَالُوا بَلْ يَدَاهُ مَبْسُوطَتَانِ يُنْفِقُ كَيْفَ يَشَاءُ ۚ وَلَيَزِيدَنَّ كَثِيرًا مِنْهُمْ مَا أُنْزِلَ إِلَيْكَ مِنْ رَبِّكَ طُغْيَانًا وَكُفْرًا وَأَلْقَيْنَا بَيْنَهُمُ الْعَدَاوَةَ وَالْبَغْضَاءَ إِلَى يَوْمِ الْقِيَامَةِ كُلَّمَا أَوْقَدُوا نَارًا لِلْحَرْبِ أَطْفَأَهَا اللَّهُ وَيَسْعَوْنَ فِي الْأَرْضِ فَسَادًا وَاللَّهُ لَا يُحِبُّ الْمُفْسِدِينَ`, en: `And the Jews say, "The hand of Allah is chained." Chained are their hands, and cursed are they for what they say. Rather, both His hands are extended; He spends however He wills. And that which has been revealed to you from your Lord will surely increase many of them in transgression and disbelief. And We have cast among them animosity and hatred until the Day of Resurrection. Every time they kindled the fire of war [against you], Allah extinguished it. And they strive throughout the land [causing] corruption, and Allah does not like corrupters.` },
+  { v: 65, m: `m8`, calls: [], ar: `وَلَوْ أَنَّ أَهْلَ الْكِتَابِ آمَنُوا وَاتَّقَوْا لَكَفَّرْنَا عَنْهُمْ سَيِّئَاتِهِمْ وَلَأَدْخَلْنَاهُمْ جَنَّاتِ النَّعِيمِ`, en: `And if only the People of the Scripture had believed and feared Allah, We would have removed from them their misdeeds and admitted them to Gardens of Pleasure.` },
+  { v: 66, m: `m8`, calls: [], ar: `وَلَوْ أَنَّهُمْ أَقَامُوا التَّوْرَاةَ وَالْإِنْجِيلَ وَمَا أُنْزِلَ إِلَيْهِمْ مِنْ رَبِّهِمْ لَأَكَلُوا مِنْ فَوْقِهِمْ وَمِنْ تَحْتِ أَرْجُلِهِمْ مِنْهُمْ أُمَّةٌ مُقْتَصِدَةٌ وَكَثِيرٌ مِنْهُمْ سَاءَ مَا يَعْمَلُونَ`, en: `And if only they upheld [the law of] the Torah, the Gospel, and what has been revealed to them from their Lord, they would have consumed [provision] from above them and from beneath their feet. Among them are a moderate community, but many of them - evil is that which they do.` },
+  { v: 67, m: `m9`, calls: [`messenger`], ar: `يَا أَيُّهَا الرَّسُولُ بَلِّغْ مَا أُنْزِلَ إِلَيْكَ مِنْ رَبِّكَ ۖ وَإِنْ لَمْ تَفْعَلْ فَمَا بَلَّغْتَ رِسَالَتَهُ ۚ وَاللَّهُ يَعْصِمُكَ مِنَ النَّاسِ إِنَّ اللَّهَ لَا يَهْدِي الْقَوْمَ الْكَافِرِينَ`, en: `O Messenger, announce that which has been revealed to you from your Lord, and if you do not, then you have not conveyed His message. And Allah will protect you from the people. Indeed, Allah does not guide the disbelieving people.` },
+  { v: 68, m: `m9`, calls: [`scripture`], ar: `قُلْ يَا أَهْلَ الْكِتَابِ لَسْتُمْ عَلَى شَيْءٍ حَتَّى تُقِيمُوا التَّوْرَاةَ وَالْإِنْجِيلَ وَمَا أُنْزِلَ إِلَيْكُمْ مِنْ رَبِّكُمْ وَلَيَزِيدَنَّ كَثِيرًا مِنْهُمْ مَا أُنْزِلَ إِلَيْكَ مِنْ رَبِّكَ طُغْيَانًا وَكُفْرًا ۖ فَلَا تَأْسَ عَلَى الْقَوْمِ الْكَافِرِينَ`, en: `Say, "O People of the Scripture, you are [standing] on nothing until you uphold [the law of] the Torah, the Gospel, and what has been revealed to you from your Lord." And that which has been revealed to you from your Lord will surely increase many of them in transgression and disbelief. So do not grieve over the disbelieving people.` },
+  { v: 69, m: `m9`, calls: [], ar: `إِنَّ الَّذِينَ آمَنُوا وَالَّذِينَ هَادُوا وَالصَّابِئُونَ وَالنَّصَارَى مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَعَمِلَ صَالِحًا فَلَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ`, en: `Indeed, those who have believed [in Prophet Muhammad] and those [before Him] who were Jews or Sabeans or Christians - those [among them] who believed in Allah and the Last Day and did righteousness - no fear will there be concerning them, nor will they grieve.` },
+  { v: 70, m: `m9`, calls: [], ar: `لَقَدْ أَخَذْنَا مِيثَاقَ بَنِي إِسْرَائِيلَ وَأَرْسَلْنَا إِلَيْهِمْ رُسُلًا كُلَّمَا جَاءَهُمْ رَسُولٌ بِمَا لَا تَهْوَىٰ أَنْفُسُهُمْ فَرِيقًا كَذَّبُوا وَفَرِيقًا يَقْتُلُونَ`, en: `We had already taken the covenant of the Children of Israel and had sent to them messengers. Whenever there came to them a messenger with what their souls did not desire, a party [of messengers] they denied, and another party they killed.` },
+  { v: 71, m: `m9`, calls: [], ar: `وَحَسِبُوا أَلَّا تَكُونَ فِتْنَةٌ فَعَمُوا وَصَمُّوا ثُمَّ تَابَ اللَّهُ عَلَيْهِمْ ثُمَّ عَمُوا وَصَمُّوا كَثِيرٌ مِنْهُمْ وَاللَّهُ بَصِيرٌ بِمَا يَعْمَلُونَ`, en: `And they thought there would be no [resulting] punishment, so they became blind and deaf. Then Allah turned to them in forgiveness; then [again] many of them became blind and deaf. And Allah is Seeing of what they do.` },
+  { v: 72, m: `m9`, calls: [], ar: `لَقَدْ كَفَرَ الَّذِينَ قَالُوا إِنَّ اللَّهَ هُوَ الْمَسِيحُ ابْنُ مَرْيَمَ وَقَالَ الْمَسِيحُ يَا بَنِي إِسْرَائِيلَ اعْبُدُوا اللَّهَ رَبِّي وَرَبَّكُمْ ۖ إِنَّهُ مَنْ يُشْرِكْ بِاللَّهِ فَقَدْ حَرَّمَ اللَّهُ عَلَيْهِ الْجَنَّةَ وَمَأْوَاهُ النَّارُ وَمَا لِلظَّالِمِينَ مِنْ أَنْصَارٍ`, en: `They have certainly disbelieved who say, "Allah is the Messiah, the son of Mary" while the Messiah has said, "O Children of Israel, worship Allah, my Lord and your Lord." Indeed, he who associates others with Allah - Allah has forbidden him Paradise, and his refuge is the Fire. And there are not for the wrongdoers any helpers.` },
+  { v: 73, m: `m9`, calls: [], ar: `لَقَدْ كَفَرَ الَّذِينَ قَالُوا إِنَّ اللَّهَ ثَالِثُ ثَلَاثَةٍ ۖ وَمَا مِنْ إِلَهِ إِلَّا إِلَّهُ وَاحِدٌ وَإِنْ لَمْ يَنْتَهُوا عَمَّا يَقُولُونَ لَيَمَسَّنَّ الَّذِينَ كَفَرُوا مِنْهُمْ عَذَابٌ أَلِيمٌ`, en: `They have certainly disbelieved who say, "Allah is the third of three." And there is no god except one God. And if they do not desist from what they are saying, there will surely afflict the disbelievers among them a painful punishment.` },
+  { v: 74, m: `m9`, calls: [], ar: `أَفَلَا يَتُوبُونَ إِلَى اللَّهِ وَيَسْتَغْفِرُونَهُ ۚ وَاللَّهُ غَفُورٌ رَحِيمٌ`, en: `So will they not repent to Allah and seek His forgiveness? And Allah is Forgiving and Merciful.` },
+  { v: 75, m: `m9`, calls: [], ar: `مَا الْمَسِيحُ ابْنُ مَرْيَمَ إِلَّا رَسُولٌ قَدْ خَلَتْ مِنْ قَبْلِهِ الرُّسُلُ وَأُمُّهُ صِدِّيقَةٌ ۖ كَانَا يَأْكُلَانِ الطَّعَامَ انْظُرْ كَيْفَ نُبَيِّنُ لَهُمُ الْآيَاتِ ثُمَّ انْظُرْ أَنَّىٰ يُؤْفَكُونَ`, en: `The Messiah, son of Mary, was not but a messenger; [other] messengers have passed on before him. And his mother was a supporter of truth. They both used to eat food. Look how We make clear to them the signs; then look how they are deluded.` },
+  { v: 76, m: `m9`, calls: [], ar: `قُلْ أَتَعْبُدُونَ مِنْ دُونِ اللَّهِ مَا لَا يَمْلِكُ لَكُمْ ضَرًّا وَلَا نَفْعًا وَاللَّهُ هُوَ السَّمِيعُ الْعَلِيمُ`, en: `Say, "Do you worship besides Allah that which holds for you no [power of] harm or benefit while it is Allah who is the Hearing, the Knowing?"` },
+  { v: 77, m: `m9`, calls: [`scripture`], ar: `قُلْ يَا أَهْلَ الْكِتَابِ لَا تَغْلُوا فِي دِينِكُمْ غَيْرَ الْحَقِّ وَلَا تَتَّبِعُوا أَهْوَاءَ قَوْمٍ قَدْ ضَلُّوا مِنْ قَبْلُ وَأَضَلُّوا كَثِيرًا وَضَلُّوا عَنْ سَوَاءِ السَّبِيلِ`, en: `Say, "O People of the Scripture, do not exceed limits in your religion beyond the truth and do not follow the inclinations of a people who had gone astray before and misled many and have strayed from the soundness of the way."` },
+  { v: 78, m: `m9`, calls: [], ar: `لُعِنَ الَّذِينَ كَفَرُوا مِنْ بَنِي إِسْرَائِيلَ عَلَىٰ لِسَانِ دَاوُودَ وَعِيسَى ابْنِ مَرْيَمَ ذُلِكَ بِمَا عَصَوْا وَكَانُوا يَعْتَدُونَ`, en: `Cursed were those who disbelieved among the Children of Israel by the tongue of David and of Jesus, the son of Mary. That was because they disobeyed and [habitually] transgressed.` },
+  { v: 79, m: `m9`, calls: [], ar: `كَانُوا لَا يَتَنَاهَوْنَ عَنْ مُنْكَرٍ فَعَلُوهُ ۚ لَبِئْسَ مَا كَانُوا يَفْعَلُونَ`, en: `They used not to prevent one another from wrongdoing that they did. How wretched was that which they were doing.` },
+  { v: 80, m: `m9`, calls: [], ar: `تَرَىٰ كَثِيرًا مِنْهُمْ يَتَوَلَّوْنَ الَّذِينَ كَفَرُوا لَبِئْسَ مَا قَدَّمَتْ لَهُمْ أَنْفُسُهُمْ أَنْ سَخِطَ اللَّهُ عَلَيْهِمْ وَفِي الْعَذَابِ هُمْ خَالِدُونَ`, en: `You see many of them becoming allies of those who disbelieved. How wretched is that which they have put forth for themselves in that Allah has become angry with them, and in the punishment they will abide eternally.` },
+  { v: 81, m: `m9`, calls: [], ar: `وَلَوْ كَانُوا يُؤْمِنُونَ بِاللَّهِ وَالنَّبِيِّ وَمَا أُنْزِلَ إِلَيْهِ مَا اتَّخَذُوهُمْ أَوْلِيَاءَ وَلَكِنَّ كَثِيرًا مِنْهُمْ فَاسِقُونَ`, en: `And if they had believed in Allah and the Prophet and in what was revealed to him, they would not have taken them as allies; but many of them are defiantly disobedient.` },
+  { v: 82, m: `m9`, calls: [], ar: `لَتَجِدَنَّ أَشَدَّ النَّاسِ عَدَاوَةً لِلَّذِينَ آمَنُوا الْيَهُودَ وَالَّذِينَ أَشْرَكُوا وَلَتَجِدَنَّ أَقْرَبَهُمْ مَوَدَّةً لِلَّذِينَ آمَنُوا الَّذِينَ قَالُوا إِنَّا نَصَارَىٰ ۚ ذُلِكَ بِأَنَّ مِنْهُمْ قِسِّيسِينَ وَرُهْبَانًا وَأَنَّهُمْ لَا يَسْتَكْبِرُونَ`, en: `You will surely find the most intense of the people in animosity toward the believers [to be] the Jews and those who associate others with Allah; and you will find the nearest of them in affection to the believers those who say, "We are Christians." That is because among them are priests and monks and because they are not arrogant.` },
+  { v: 83, m: `m9`, calls: [], ar: `وَإِذَا سَمِعُوا مَا أُنْزِلَ إِلَى الرَّسُولِ تَرَىٰ أَعْيُنَهُمْ تَفِيضُ مِنَ الدَّمْعِ مِمَّا عَرَفُوا مِنَ الْحَقِّ ۖ يَقُولُونَ رَبَّنَا آمَنَّا فَاكْتُبْنَا مَعَ الشَّاهِدِينَ`, en: `And when they hear what has been revealed to the Messenger, you see their eyes overflowing with tears because of what they have recognized of the truth. They say, "Our Lord, we have believed, so register us among the witnesses."` },
+  { v: 84, m: `m9`, calls: [], ar: `وَمَا لَنَا لَا نُؤْمِنُ بِاللَّهِ وَمَا جَاءَنَا مِنَ الْحَقِّ وَنَطْمَعُ أَنْ يُدْخِلَنَا رَبُّنَا مَعَ الْقَوْمِ الصَّالِحِينَ`, en: `And why should we not believe in Allah and what has come to us of the truth? And we aspire that our Lord will admit us [to Paradise] with the righteous people.` },
+  { v: 85, m: `m9`, calls: [], ar: `فَأَثَابَهُمُ اللَّهُ بِمَا قَالُوا جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا ۚ وَذُلِكَ جَزَاءُ الْمُحْسِنِينَ`, en: `So Allah rewarded them for what they said with gardens [in Paradise] beneath which rivers flow, wherein they abide eternally. And that is the reward of doers of good.` },
+  { v: 86, m: `m9`, calls: [], ar: `وَالَّذِينَ كَفَرُوا وَكَذَّبُوا بِآيَاتِنَا أُولَئِكَ أَصْحَابُ الْجَحِيمِ`, en: `But those who disbelieved and denied Our signs - they are the companions of Hellfire.` },
+  { v: 87, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تُحَرِّمُوا طَيِّبَاتِ مَا أَحَلَّ اللَّهُ لَكُمْ وَلَا تَعْتَدُوا إِنَّ اللَّهَ لَا يُحِبُّ الْمُعْتَدِينَ`, en: `O you who have believed, do not prohibit the good things which Allah has made lawful to you and do not transgress. Indeed, Allah does not like transgressors.` },
+  { v: 88, m: `m10`, calls: [], ar: `وَكُلُوا مِمَّا رَزَقَكُمُ اللَّهُ حَلَالًا طَيِّبًا وَاتَّقُوا اللَّهَ الَّذِي أَنْتُمْ بِهِ مُؤْمِنُونَ`, en: `And eat of what Allah has provided for you [which is] lawful and good. And fear Allah, in whom you are believers.` },
+  { v: 89, m: `m10`, calls: [], ar: `لَا يُؤَاخِذُكُمُ اللَّهُ بِاللَّغْوِ فِي أَيْمَانِكُمْ وَلَكِنْ يُؤَاخِذُكُمْ بِمَا عَقَدْتُمُ الْأَيْمَانَ ۖ فَكَفَّارَتُهُ إِطْعَامُ عَشَرَةِ مَسَاكِينَ مِنْ أَوْسَطِ مَا تُطْعِمُونَ أَهْلِيكُمْ أَوْ كِسْوَتُهُمْ أَوْ تَحْرِيرُ رَقَبَةٍ ۖ فَمَنْ لَمْ يَجِدْ فَصِيَامُ ثَلَاثَةِ أَيَّامٍ ذُلِكَ كَفَّارَةُ أَيْمَانِكُمْ إِذَا حَلَفْتُمْ وَاحْفَظُوا أَيْمَانَكُمْ كَذَلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَشْكُرُونَ`, en: `Allah will not impose blame upon you for what is meaningless in your oaths, but He will impose blame upon you for [breaking] what you intended of oaths. So its expiation is the feeding of ten needy people from the average of that which you feed your [own] families or clothing them or the freeing of a slave. But whoever cannot find [or afford it] - then a fast of three days [is required]. That is the expiation for oaths when you have sworn. But guard your oaths. Thus does Allah make clear to you His verses that you may be grateful.` },
+  { v: 90, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا إِنَّمَا الْخَمْرُ وَالْمَيْسِرُ وَالْأَنْصَابُ وَالْأَزْلَامُ رِجْسٌ مِنْ عَمَلِ الشَّيْطَانِ فَاجْتَنِبُوهُ لَعَلَّكُمْ تُفْلِحُونَ`, en: `O you who have believed, indeed, intoxicants, gambling, [sacrificing on] stone altars [to other than Allah], and divining arrows are but defilement from the work of Satan, so avoid it that you may be successful.` },
+  { v: 91, m: `m10`, calls: [], ar: `إِنَّمَا يُرِيدُ الشَّيْطَانُ أَنْ يُوقِعَ بَيْنَكُمُ الْعَدَاوَةَ وَالْبَغْضَاءَ فِي الْخَمْرِ وَالْمَيْسِرِ وَيَصُدَّكُمْ عَنْ ذِكْرِ اللَّهِ وَعَنِ الصَّلَاةِ ۖ فَهَلْ أَنْتُمْ مُنْتَهُونَ`, en: `Satan only wants to cause between you animosity and hatred through intoxicants and gambling and to avert you from the remembrance of Allah and from prayer. So will you not desist?` },
+  { v: 92, m: `m10`, calls: [], ar: `وَأَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَاحْذَرُوا فَإِنْ تَوَلَّيْتُمْ فَاعْلَمُوا أَنَّمَا عَلَىٰ رَسُولِنَا الْبَلَاغُ الْمُبِينُ`, en: `And obey Allah and obey the Messenger and beware. And if you turn away - then know that upon Our Messenger is only [the responsibility for] clear notification.` },
+  { v: 93, m: `m10`, calls: [], ar: `لَيْسَ عَلَى الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ جُنَاحٌ فِيمَا طَعِمُوا إِذَا مَا اتَّقَوْا وَآمَنُوا وَعَمِلُوا الصَّالِحَاتِ ثُمَّ اتَّقَوْا وَآمَنُوا ثُمَّ اتَّقَوْا وَأَحْسَنُوا وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ`, en: `There is not upon those who believe and do righteousness [any] blame concerning what they have eaten [in the past] if they [now] fear Allah and believe and do righteous deeds, and then fear Allah and believe, and then fear Allah and do good; and Allah loves the doers of good.` },
+  { v: 94, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَيَبْلُوَنَّكُمُ اللَّهُ بِشَيْءٍ مِنَ الصَّيْدِ تَنَالُهُ أَيْدِيكُمْ وَرِمَاحُكُمْ لِيَعْلَمَ اللَّهُ مَنْ يَخَافُهُ بِالْغَيْبِ ۚ فَمَنِ اعْتَدَىٰ بَعْدَ ذَلِكَ فَلَهُ عَذَابٌ أَلِيمٌ`, en: `O you who have believed, Allah will surely test you through something of the game that your hands and spears [can] reach, that Allah may make evident those who fear Him unseen. And whoever transgresses after that - for him is a painful punishment.` },
+  { v: 95, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَقْتُلُوا الصَّيْدَ وَأَنْتُمْ حُرُمٌ وَمَنْ قَتَلَهُ مِنْكُمْ مُتَعَمِّدًا فَجَزَاءً مِثْلُ مَا قَتَلَ مِنَ النَّعَمِ يَحْكُمُ بِهِ ذَوَا عَدْلٍ مِنْكُمْ هَدْيًا بَالِغَ الْكَعْبَةِ أَوْ كَفَّارَةٌ طَعَامُ مَسَاكِينَ أَوْ عَدْلُ ذُلِكَ صِيَامًا لِيَذُوقَ وَبَالَ أَمْرِهِ عَفَا اللَّهُ عَمَّا سَلَفَ ۚ وَمَنْ عَادَ فَيَنْتَقِمُ اللَّهُ مِنْهُ وَاللَّهُ عَزِيزٌ ذُو انْتِقَامٍ`, en: `O you who have believed, do not kill game while you are in the state of ihram. And whoever of you kills it intentionally - the penalty is an equivalent from sacrificial animals to what he killed, as judged by two just men among you as an offering [to Allah] delivered to the Ka'bah, or an expiation: the feeding of needy people or the equivalent of that in fasting, that he may taste the consequence of his deed. Allah has pardoned what is past; but whoever returns [to violation], then Allah will take retribution from him. And Allah is Exalted in Might and Owner of Retribution.` },
+  { v: 96, m: `m10`, calls: [], ar: `أُحِلَّ لَكُمْ صَيْدُ الْبَحْرِ وَطَعَامُهُ مَتَاعًا لَكُمْ وَلِلسَّيَّارَةِ وَحُرِّمَ عَلَيْكُمْ صَيْدُ الْبَرِّ مَا دُمْتُمْ حُرُمًا وَاتَّقُوا اللَّهَ الَّذِي إِلَيْهِ تُحْشَرُونَ`, en: `Lawful to you is game from the sea and its food as provision for you and the travelers, but forbidden to you is game from the land as long as you are in the state of ihram. And fear Allah to whom you will be gathered.` },
+  { v: 97, m: `m10`, calls: [], ar: `جَعَلَ اللَّهُ الْكَعْبَةَ الْبَيْتَ الْحَرَامَ قِيَامًا لِلنَّاسِ وَالشَّهْرَ الْحَرَامَ وَالْهَدْيَ وَالْقَلَائِدَ ذلِكَ لِتَعْلَمُوا أَنَّ اللَّهَ يَعْلَمُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ وَأَنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ`, en: `Allah has made the Ka'bah, the Sacred House, standing for the people and [has sanctified] the sacred months and the sacrificial animals and the garlands [by which they are identified]. That is so you may know that Allah knows what is in the heavens and what is in the earth and that Allah is Knowing of all things.` },
+  { v: 98, m: `m10`, calls: [], ar: `اعْلَمُوا أَنَّ اللَّهَ شَدِيدُ الْعِقَابِ وَأَنَّ اللَّهَ غَفُورٌ رَحِيمٌ`, en: `Know that Allah is severe in penalty and that Allah is Forgiving and Merciful.` },
+  { v: 99, m: `m10`, calls: [], ar: `مَا عَلَى الرَّسُولِ إِلَّا الْبَلَاغُ وَاللَّهُ يَعْلَمُ مَا تُبْدُونَ وَمَا تَكْتُمُونَ`, en: `Not upon the Messenger is [responsibility] except [for] notification. And Allah knows whatever you reveal and whatever you conceal.` },
+  { v: 100, m: `m10`, calls: [], ar: `قُلْ لَا يَسْتَوِي الْخَبِيثُ وَالطَّيِّبُ وَلَوْ أَعْجَبَكَ كَثْرَةُ الْخَبِيثِ ۚ فَاتَّقُوا اللَّهَ يَا أُولِي الْأَلْبَابِ لَعَلَّكُمْ تُفْلِحُونَ`, en: `Say, "Not equal are the evil and the good, although the abundance of evil might impress you." So fear Allah, O you of understanding, that you may be successful.` },
+  { v: 101, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَسْأَلُوا عَنْ أَشْيَاءَ إِنْ تُبْدَ لَكُمْ تَسُؤْكُمْ وَإِنْ تَسْأَلُوا عَنْهَا حِينَ يُنَزَّلُ الْقُرْآنُ تُبْدَ لَكُمْ عَفَا اللَّهُ عَنْهَا وَاللَّهُ غَفُورٌ حَلِيمٌ`, en: `O you who have believed, do not ask about things which, if they are shown to you, will distress you. But if you ask about them while the Qur'an is being revealed, they will be shown to you. Allah has pardoned that which is past; and Allah is Forgiving and Forbearing.` },
+  { v: 102, m: `m10`, calls: [], ar: `قَدْ سَأَلَهَا قَوْمٌ مِنْ قَبْلِكُمْ ثُمَّ أَصْبَحُوا بِهَا كَافِرِينَ`, en: `A people asked such [questions] before you; then they became thereby disbelievers.` },
+  { v: 103, m: `m10`, calls: [], ar: `مَا جَعَلَ اللَّهُ مِنْ بَحِيرَةٍ وَلَا سَائِبَةٍ وَلَا وَصِيلَةٍ وَلَا حَامٍ وَلَكِنَّ الَّذِينَ كَفَرُوا يَفْتَرُونَ عَلَى اللَّهِ الْكَذِبَ وَأَكْثَرُهُمْ لَا يَعْقِلُونَ`, en: `Allah has not appointed [such innovations as] bahirah or sa'ibah or wasilah or ham. But those who disbelieve invent falsehood about Allah, and most of them do not reason.` },
+  { v: 104, m: `m10`, calls: [], ar: `وَإِذَا قِيلَ لَهُمْ تَعَالَوْا إِلَىٰ مَا أَنْزَلَ اللَّهُ وَإِلَى الرَّسُولِ قَالُوا حَسْبُنَا مَا وَجَدْنَا عَلَيْهِ آبَاءَنَا أَوَلَوْ كَانَ آبَاؤُهُمْ لَا يَعْلَمُونَ شَيْئًا وَلَا يَهْتَدُونَ`, en: `And when it is said to them, "Come to what Allah has revealed and to the Messenger," they say, "Sufficient for us is that upon which we found our fathers." Even though their fathers knew nothing, nor were they guided?` },
+  { v: 105, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا عَلَيْكُمْ أَنْفُسَكُمْ لَا يَضُرُّكُمْ مَنْ ضَلَّ إِذَا اهْتَدَيْتُمْ إِلَى اللَّهِ مَرْجِعُكُمْ جَمِيعًا فَيُنَبِّئُكُمْ بِمَا كُنْتُمْ تَعْمَلُونَ`, en: `O you who have believed, upon you is [responsibility for] yourselves. Those who have gone astray will not harm you when you have been guided. To Allah is your return all together; then He will inform you of what you used to do.` },
+  { v: 106, m: `m10`, calls: [`believers`], ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا شَهَادَةُ بَيْنِكُمْ إِذَا حَضَرَ أَحَدَكُمُ الْمَوْتُ حِينَ الْوَصِيَّةِ اثْنَانِ ذَوَا عَدْلٍ مِنْكُمْ أَوْ آخَرَانِ مِنْ غَيْرِكُمْ إِنْ أَنْتُمْ ضَرَبْتُمْ فِي الْأَرْضِ فَأَصَابَتْكُمْ مُصِيبَةُ الْمَوْتِ تَحْبِسُونَهُمَا مِنْ بَعْدِ الصَّلَاةِ فَيُقْسِمَانِ بِاللَّهِ إِن ارْتَبْتُمْ لَا نَشْتَرِي بِهِ ثَمَنًا وَلَوْ كَانَ ذَا قُرْبَى وَلَا نَكْتُمُ شَهَادَةَ اللَّهِ إِنَّا إِذًا لَمِنَ الْآثِمِينَ`, en: `O you who have believed, testimony [should be taken] among you when death approaches one of you at the time of bequest - [that of] two just men from among you or two others from outside if you are traveling through the land and the disaster of death should strike you. Detain them after the prayer and let them both swear by Allah if you doubt [their testimony, saying], "We will not exchange our oath for a price, even if he should be a near relative, and we will not withhold the testimony of Allah. Indeed, we would then be of the sinful."` },
+  { v: 107, m: `m10`, calls: [], ar: `فَإِنْ عُثِرَ عَلَىٰ أَنَّهُمَا اسْتَحَقَّا إِثْمًا فَآخَرَانِ يَقُومَانِ مَقَامَهُمَا مِنَ الَّذِينَ اسْتَحَقَّ عَلَيْهِمُ الْأَوْلَيَانِ فَيُقْسِمَانِ بِاللَّهِ لَشَهَادَتُنَا أَحَقُّ مِنْ شَهَادَتِهِمَا وَمَا اعْتَدَيْنَا إِنَّا إِذًا لَمِنَ الظَّالِمِينَ`, en: `But if it is found that those two were guilty of perjury, let two others stand in their place [who are] foremost [in claim] from those who have a lawful right. And let them swear by Allah, "Our testimony is truer than their testimony, and we have not transgressed. Indeed, we would then be of the wrongdoers."` },
+  { v: 108, m: `m10`, calls: [], ar: `ذُلِكَ أَدْنَى أَنْ يَأْتُوا بِالشَّهَادَةِ عَلَى وَجْهِهَا أَوْ يَخَافُوا أَنْ تُرَدَّ أَيْمَانٌ بَعْدَ أَيْمَانِهِمْ وَاتَّقُوا اللَّهَ وَاسْمَعُوا وَاللَّهُ لَا يَهْدِي الْقَوْمَ الْفَاسِقِينَ`, en: `That is more likely that they will give testimony according to its [true] objective, or [at least] they would fear that [other] oaths might be taken after their oaths. And fear Allah and listen; and Allah does not guide the defiantly disobedient people.` },
+  { v: 109, m: `m11`, calls: [], ar: `يَوْمَ يَجْمَعُ اللَّهُ الرُّسُلَ فَيَقُولُ مَاذَا أُجِبْتُمْ قَالُوا لَا عِلْمَ لَنَا ۖ إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ`, en: `[Be warned of] the Day when Allah will assemble the messengers and say, "What was the response you received?" They will say, "We have no knowledge. Indeed, it is You who is Knower of the unseen."` },
+  { v: 110, m: `m11`, calls: [], ar: `إِذْ قَالَ اللَّهُ يَا عِيسَى ابْنَ مَرْيَمَ اذْكُرْ نِعْمَتِي عَلَيْكَ وَعَلَى وَالِدَتِكَ إِذْ أَيَّدْتُكَ بِرُوحِ الْقُدُسِ تُكَلِّمُ النَّاسَ فِي الْمَهْدِ وَكَهْلًا وَإِذْ عَلَّمْتُكَ الْكِتَابَ وَالْحِكْمَةَ وَالتَّوْرَاةَ وَالْإِنْجِيلَ وَإِذْ تَخْلُقُ مِنَ الطِّينِ كَهَيْئَةِ الطَّيْرِ بِإِذْنِي فَتَنْفُخُ فِيهَا فَتَكُونُ طَيْرًا بِإِذْنِي وَتُبْرِئُ الْأَكْمَهَ وَالْأَبْرَصَ بِإِذْنِي وَإِذْ تُخْرِجُ الْمَوْتَى بِإِذْنِي وَإِذْ كَفَفْتُ بَنِي إِسْرَائِيلَ عَنْكَ إِذْ جِئْتَهُمْ بِالْبَيِّنَاتِ فَقَالَ الَّذِينَ كَفَرُوا مِنْهُمْ إِنْ هُذَا إِلَّا سِحْرٌ مُبِينٌ`, en: `[The Day] when Allah will say, "O Jesus, Son of Mary, remember My favor upon you and upon your mother when I supported you with the Pure Spirit and you spoke to the people in the cradle and in maturity; and [remember] when I taught you writing and wisdom and the Torah and the Gospel; and when you designed from clay [what was] like the form of a bird with My permission, then you breathed into it, and it became a bird with My permission; and you healed the blind and the leper with My permission; and when you brought forth the dead with My permission; and when I restrained the Children of Israel from [killing] you when you came to them with clear proofs and those who disbelieved among them said, 'This is not but obvious magic.'"` },
+  { v: 111, m: `m11`, calls: [], ar: `وَإِذْ أَوْحَيْتُ إِلَى الْحَوَارِيِّينَ أَنْ آمِنُوا بِي وَبِرَسُولِي قَالُوا آمَنَّا وَاشْهَدْ بِأَنَّنَا مُسْلِمُونَ`, en: `And [remember] when I inspired to the disciples, "Believe in Me and in My messenger Jesus." They said, "We have believed, so bear witness that indeed we are Muslims [in submission to Allah]."` },
+  { v: 112, m: `m11`, calls: [], ar: `إِذْ قَالَ الْحَوَارِيُّونَ يَا عِيسَى ابْنَ مَرْيَمَ هَلْ يَسْتَطِيعُ رَبُّكَ أَنْ يُنَزِّلَ عَلَيْنَا مَائِدَةً مِنَ السَّمَاءِ قَالَ اتَّقُوا اللَّهَ إِنْ كُنْتُمْ مُؤْمِنِينَ`, en: `[And remember] when the disciples said, "O Jesus, Son of Mary, can your Lord send down to us a table [spread with food] from the heaven?" [Jesus] said, "Fear Allah, if you should be believers."` },
+  { v: 113, m: `m11`, calls: [], ar: `قَالُوا نُرِيدُ أَنْ نَأْكُلَ مِنْهَا وَتَطْمَئِنَّ قُلُوبُنَا وَنَعْلَمَ أَنْ قَدْ صَدَقْتَنَا وَنَكُونَ عَلَيْهَا مِنَ الشَّاهِدِينَ`, en: `They said, "We wish to eat from it and let our hearts be reassured and know that you have been truthful to us and be among its witnesses."` },
+  { v: 114, m: `m11`, calls: [], ar: `قَالَ عِيسَى ابْنُ مَرْيَمَ اللَّهُمَّ رَبَّنَا أَنْزِلْ عَلَيْنَا مَائِدَةً مِنَ السَّمَاءِ تَكُونُ لَنَا عِيدًا لِأَوَّلِنَا وَآخِرِنَا وَآيَةً مِنْكَ ۖ وَارْزُقْنَا وَأَنْتَ خَيْرُ الرَّازِقِينَ`, en: `Said Jesus, the son of Mary, "O Allah, our Lord, send down to us a table [spread with food] from the heaven to be for us a festival for the first of us and the last of us and a sign from You. And provide for us, and You are the best of providers."` },
+  { v: 115, m: `m11`, calls: [], ar: `قَالَ اللَّهُ إِنِّي مُنَزِّلُهَا عَلَيْكُمْ فَمَنْ يَكْفُرْ بَعْدُ مِنْكُمْ فَإِنِّي أُعَذِّبُهُ عَذَابًا لَا أُعَذِّبُهُ أَحَدًا مِنَ الْعَالَمِينَ`, en: `Allah said, "Indeed, I will send it down to you, but whoever disbelieves afterwards from among you - then indeed will I punish him with a punishment by which I have not punished anyone among the worlds."` },
+  { v: 116, m: `m11`, calls: [], ar: `وَإِذْ قَالَ اللَّهُ يَا عِيسَى ابْنَ مَرْيَمَ أَأَنْتَ قُلْتَ لِلنَّاسِ اتَّخِذُونِي وَأُمِّيَ إِلَهَيْنِ مِنْ دُونِ اللَّهِ ۖ قَالَ سُبْحَانَكَ مَا يَكُونُ لِي أَنْ أَقُولَ مَا لَيْسَ لِي بِحَقِّ إِنْ كُنْتُ قُلْتُهُ فَقَدْ عَلِمْتَهُ ۚ تَعْلَمُ مَا فِي نَفْسِي وَلَا أَعْلَمُ مَا فِي نَفْسِكَ ۚ إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ`, en: `And [beware the Day] when Allah will say, "O Jesus, Son of Mary, did you say to the people, 'Take me and my mother as deities besides Allah?'" He will say, "Exalted are You! It was not for me to say that to which I have no right. If I had said it, You would have known it. You know what is within myself, and I do not know what is within Yourself. Indeed, it is You who is Knower of the unseen."` },
+  { v: 117, m: `m11`, calls: [], ar: `مَا قُلْتُ لَهُمْ إِلَّا مَا أَمَرْتَنِي بِهِ أَنِ اعْبُدُوا اللَّهَ رَبِّي وَرَبَّكُمْ وَكُنْتُ عَلَيْهِمْ شَهِيدًا مَا دُمْتُ فِيهِمْ ۖ فَلَمَّا تَوَفَّيْتَنِي كُنْتَ أَنْتَ الرَّقِيبَ عَلَيْهِمْ وَأَنْتَ عَلَىٰ كُلِّ شَيْءٍ شَهِيدٌ`, en: `I said not to them except what You commanded me - to worship Allah, my Lord and your Lord. And I was a witness over them as long as I was among them; but when You took me up, You were the Observer over them, and You are, over all things, Witness.` },
+  { v: 118, m: `m11`, calls: [], ar: `إِنْ تُعَذِّبْهُمْ فَإِنَّهُمْ عِبَادُكَ ۖ وَإِنْ تَغْفِرْ لَهُمْ فَإِنَّكَ أَنْتَ الْعَزِيزُ الْحَكِيمُ`, en: `If You should punish them - indeed they are Your servants; but if You forgive them - indeed it is You who is the Exalted in Might, the Wise.` },
+  { v: 119, m: `m11`, calls: [], ar: `قَالَ اللَّهُ هُذَا يَوْمُ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ لَهُمْ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ ذُلِكَ الْفَوْزُ الْعَظِيمُ`, en: `Allah will say, "This is the Day when the truthful will benefit from their truthfulness." For them are gardens [in Paradise] beneath which rivers flow, wherein they will abide forever, Allah being pleased with them, and they with Him. That is the great attainment.` },
+  { v: 120, m: `m11`, calls: [], ar: `لِلَّهِ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَا فِيهِنَّ ۚ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ`, en: `To Allah belongs the dominion of the heavens and the earth and whatever is within them. And He is over all things competent.` }
+];
+
+const QUIZ_QUESTIONS = [
+  {
+    topic: `Opening Imperative`,
+    q: `What foundational command opens Surah Al-Ma’idah in verse 5:1?`,
+    options: [
+      `Establish the five daily prayers before sunset`,
+      `Fulfill all contracts and obligations (‘uqud)`,
+      `Migrate immediately from Makkah to Madinah`,
+      `Write down every financial loan with witnesses`
+    ],
+    answer: 1,
+    explain: `Verse 5:1 opens directly with “O you who have believed, fulfill [all] contracts” (awfu bil-‘uqud), setting covenant fidelity as the theme of the entire chapter.`
+  },
+  {
+    topic: `Milestone Verse`,
+    q: `Which verse contains the declaration: “This day I have perfected for you your religion and completed My favor upon you”?`,
+    options: [`5:1`, `5:3`, `5:48`, `5:119`],
+    answer: 1,
+    explain: `Verse 5:3 embeds this landmark announcement right after detailing prohibited foods and divining practices, assuring believers not to fear disbelievers.`
+  },
+  {
+    topic: `Justice & Ethics`,
+    q: `According to 5:8, what must never prevent believers from acting with justice (qist)?`,
+    options: [
+      `Lack of written testimony`,
+      `The hatred or hostility of a people`,
+      `Being on a long journey`,
+      `Disagreement among scholars`
+    ],
+    answer: 1,
+    explain: `Verse 5:8 warns: “Do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness (taqwa).”`
+  },
+  {
+    topic: `Worship & Relief`,
+    q: `In 5:6, what does Allah state is His intention behind prescribing wudu and tayammum (clean earth)?`,
+    options: [
+      `To test physical endurance during winter`,
+      `Not to make difficulty, but to purify you and complete His favor`,
+      `To replace fasting during travel`,
+      `To restrict prayer exclusively to mosques`
+    ],
+    answer: 1,
+    explain: `Verse 5:6 explains: “Allah does not intend to make difficulty for you, but He intends to purify you and complete His favor upon you that you may be grateful.”`
+  },
+  {
+    topic: `Prophetic History`,
+    q: `Why were the Children of Israel barred from entering the Holy Land for forty years in 5:26?`,
+    options: [
+      `They built a golden calf in the desert`,
+      `They refused to enter out of fear of a tyrannical people, telling Moses “go, you and your Lord, and fight”`,
+      `They hunted game while in the state of ihram`,
+      `They rejected the twelve leaders chosen by Moses`
+    ],
+    answer: 1,
+    explain: `In 5:22–24 they refused despite encouragement from Moses and two God-fearing men, resulting in forty years of wandering (5:26).`
+  },
+  {
+    topic: `Sanctity of Life`,
+    q: `After recounting the murder of one of Adam’s sons, what lesson did a crow teach the killer in 5:31?`,
+    options: [
+      `How to offer a lawful animal sacrifice`,
+      `How to bury and conceal his brother’s body in the earth`,
+      `How to cross the wilderness safely`,
+      `How to ask his father for forgiveness`
+    ],
+    answer: 1,
+    explain: `Allah sent a crow scratching the ground to show him how to hide his brother’s corpse, sparking remorse (5:31) before the universal sanctity-of-life decree in 5:32.`
+  },
+  {
+    topic: `Civic Mercy`,
+    q: `What condition in 5:34 lifts the severe earthly penalties listed in 5:33 for waging war and corruption?`,
+    options: [
+      `Paying double ransom in gold`,
+      `Repenting before authorities apprehend them`,
+      `Bringing two outside witnesses`,
+      `Fasting for sixty consecutive days`
+    ],
+    answer: 1,
+    explain: `Verse 5:34 explicitly exempts “those who return [repenting] before you apprehend them. And know that Allah is Forgiving and Merciful.”`
+  },
+  {
+    topic: `Scripture & Criterion`,
+    q: `In 5:48, why did Allah prescribe distinct laws (shir‘ah) and methods (minhaj) rather than making humanity one uniform community?`,
+    options: [
+      `To permanently divide nations against one another`,
+      `To test them in what He has given them, urging them to “race to all that is good”`,
+      `To conceal earlier revelations from later generations`,
+      `To abolish the Torah’s principle of justice`
+    ],
+    answer: 1,
+    explain: `Verse 5:48 states that Allah intended “to test you in what He has given you; so race to [all that is] good. To Allah is your return all together.”`
+  },
+  {
+    topic: `Interfaith Nuance`,
+    q: `In 5:82–83, why are sincere Christians described as nearest in affection to the believers?`,
+    options: [
+      `Because they lived exclusively in Madinah`,
+      `Because among them are priests and monks who are not arrogant, and their eyes overflow with tears upon recognizing truth`,
+      `Because they shared the same dietary restrictions`,
+      `Because they fought alongside Moses in Sinai`
+    ],
+    answer: 1,
+    explain: `Verses 5:82–83 highlight humility—priests and monks who are free of arrogance and weep upon hearing the revelation.`
+  },
+  {
+    topic: `Oath Expiation`,
+    q: `What is the fallback expiation for breaking a deliberate oath in 5:89 if one cannot afford to feed ten needy people, clothe them, or free a slave?`,
+    options: [
+      `Giving half of one’s harvest`,
+      `Fasting for three days`,
+      `Performing an extra pilgrimage`,
+      `Making a public apology after prayer`
+    ],
+    answer: 1,
+    explain: `Verse 5:89 mandates feeding ten needy people, clothing them, or freeing a slave—and “whoever cannot find [or afford it] - then a fast of three days.”`
+  },
+  {
+    topic: `Pilgrimage Rules`,
+    q: `While in the state of ihram (5:96), which category of hunting remains lawful?`,
+    options: [
+      `Birds caught by trained falcons`,
+      `Game from the sea and its food`,
+      `Desert gazelles outside the sanctuary`,
+      `No game of any kind is permitted`
+    ],
+    answer: 1,
+    explain: `Verse 5:96 states clearly: “Lawful to you is game from the sea and its food as provision for you and the travelers, but forbidden to you is game from the land as long as you are in the state of ihram.”`
+  },
+  {
+    topic: `The Table Spread`,
+    q: `Why did Jesus pray for the Table Spread (Al-Ma’idah) to descend from heaven in 5:114?`,
+    options: [
+      `To prove his own divinity over Moses`,
+      `To be a festival (‘id) for the first and last of them, a sign from Allah, and lawful provision`,
+      `To replace the fasting of the disciples`,
+      `To end a forty-year drought in Jerusalem`
+    ],
+    answer: 1,
+    explain: `Jesus prays in 5:114: “send down to us a table from the heaven to be for us a festival for the first of us and the last of us and a sign from You. And provide for us, and You are the best of providers.”`
+  }
+];
+
+const FLASHCARDS = [
+  { tag: `5:1`, prompt: `What is the opening command of Surah Al-Ma’idah?`, ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ`, ans: `“O you who have believed, fulfill [all] contracts.” (5:1)` },
+  { tag: `5:2`, prompt: `How does 5:2 define the boundary of collective cooperation?`, ar: `وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَى وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ`, ans: `“Cooperate in righteousness and piety, but do not cooperate in sin and aggression.” (5:2)` },
+  { tag: `5:8`, prompt: `What standard of testimony does 5:8 set even toward enemies?`, ar: `وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰ أَلَّا تَعْدِلُوا اعْدِلُوا هُوَ أَقْرَبُ لِلتَّقْوَى`, ans: `“Do not let the hatred of a people prevent you from being just. Be just; that is nearer to righteousness.” (5:8)` },
+  { tag: `5:32`, prompt: `State the universal rule on human life decreed after the story of Adam’s sons.`, ar: `مَنْ قَتَلَ نَفْسًا بِغَيْرِ نَفْسٍ أَوْ فَسَادٍ فِي الْأَرْضِ فَكَأَنَّمَا قَتَلَ النَّاسَ جَمِيعًا`, ans: `Slaying one innocent soul is as if slaying mankind entirely; saving one is as if saving mankind entirely. (5:32)` },
+  { tag: `5:48`, prompt: `What two roles does the Qur’an hold toward earlier scriptures in 5:48?`, ar: `مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ مِنَ الْكِتَابِ وَمُهَيْمِنًا عَلَيْهِ`, ans: `Confirming (musaddiqan) what preceded it and standing as a guardian criterion (muhayminan) over it. (5:48)` },
+  { tag: `5:54`, prompt: `What traits define the people Allah loves in 5:54?`, ar: `يُحِبُّهُمْ وَيُحِبُّونَهُ أَذِلَّةٍ عَلَى الْمُؤْمِنِينَ أَعِزَّةٍ عَلَى الْكَافِرِينَ`, ans: `Humble toward believers, powerful against disbelievers, striving in Allah’s cause, and unafraid of any critic’s blame. (5:54)` },
+  { tag: `5:75`, prompt: `What title does 5:75 give to Mary, mother of Jesus, and what human proof does it cite?`, ar: `مَا الْمَسِيحُ ابْنُ مَرْيَمَ إِلَّا رَسُولٌ قَدْ خَلَتْ مِنْ قَبْلِهِ الرُّسُلُ وَأُمُّهُ صِدِّيقَةٌ ۖ كَانَا يَأْكُلَانِ الطَّعَامَ`, ans: `She is called Siddiqah (supporter of truth), and both she and the Messiah ate earthly food. (5:75)` },
+  { tag: `5:91`, prompt: `According to 5:91, what two harms does Satan seek through intoxicants and gambling?`, ar: `أَنْ يُوقِعَ بَيْنَكُمُ الْعَدَاوَةَ وَالْبَغْضَاءَ ... وَيَصُدَّكُمْ عَنْ ذِكْرِ اللَّهِ وَعَنِ الصَّلَاةِ`, ans: `To sow animosity and hatred among people and avert them from remembering Allah and prayer. (5:91)` },
+  { tag: `5:105`, prompt: `What principle of individual accountability appears in 5:105?`, ar: `عَلَيْكُمْ أَنْفُسَكُمْ لَا يَضُرُّكُمْ مَنْ ضَلَّ إِذَا اهْتَدَيْتُمْ`, ans: `“Upon you is [responsibility for] yourselves. Those who have gone astray will not harm you when you have been guided.” (5:105)` },
+  { tag: `5:119`, prompt: `What benefits humanity on the Day of Resurrection in the closing scene (5:119)?`, ar: `هُذَا يَوْمُ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ`, ans: `“This is the Day when the truthful will benefit from their truthfulness.” (5:119)` }
+];
+
+/* Application state (persisted via notebookAppApi) */
+let appState = {
+  activeMovementId: `m1`,
+  masteredMovements: [],
+  bookmarks: [],
+  notes: {},
+  quizAnswers: {},
+  currentQuizIdx: 0,
+  currentCardIdx: 0,
+  showArabic: true
+};
+
+let currentStoryKey = `adam`;
+let currentBeatIdx = 0;
+let filteredVerses = VERSES.slice();
+let currentReaderPage = 1;
+const PAGE_SIZE = 10;
+
+async function saveState() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+    try {
+      await window.notebookAppApi.setAppState(appState);
+    } catch (e) {
+      /* fail gracefully inside preview */
+    }
+  }
+  updateMasteryLedger();
+}
+
+function updateMasteryLedger() {
+  const mCount = appState.masteredMovements.length;
+  const bCount = appState.bookmarks.length;
+  const qCorrect = QUIZ_QUESTIONS.reduce((acc, q, idx) => {
+    return acc + (appState.quizAnswers[idx] === q.answer ? 1 : 0);
+  }, 0);
+
+  const elM = document.getElementById(`stat-movements`);
+  const elB = document.getElementById(`stat-bookmarks`);
+  const elQ = document.getElementById(`stat-quiz`);
+  const elFill = document.getElementById(`mastery-progress-fill`);
+  const elStatus = document.getElementById(`ledger-status`);
+
+  if (elM) elM.textContent = `${mCount} / ${MOVEMENTS.length}`;
+  if (elB) elB.textContent = `${bCount}`;
+  if (elQ) elQ.textContent = `${qCorrect} / ${QUIZ_QUESTIONS.length}`;
+
+  const totalScore = Math.round(((mCount / MOVEMENTS.length) * 50) + ((qCorrect / QUIZ_QUESTIONS.length) * 50));
+  if (elFill) elFill.style.width = `${totalScore}%`;
+
+  if (elStatus) {
+    if (mCount === 0 && bCount === 0 && Object.keys(appState.quizAnswers).length === 0) {
+      elStatus.textContent = `First visit — select movements, bookmark verses, or answer questions below to save progress.`;
+    } else {
+      elStatus.textContent = `Overall mastery: ${totalScore}% · Progress synced automatically.`;
+    }
+  }
+}
+
+/* Section 1: Architecture Map */
+function renderArcBar() {
+  const bar = document.getElementById(`arc-bar`);
+  if (!bar) return;
+  bar.innerHTML = MOVEMENTS.map(m => {
+    const isActive = m.id === appState.activeMovementId ? `is-active` : ``;
+    const isMastered = appState.masteredMovements.includes(m.id) ? `is-mastered` : ``;
+    return `<button type="button" class="arc-segment ${isActive} ${isMastered}" role="tab" aria-selected="${m.id === appState.activeMovementId}" onclick="selectMovement('${m.id}')">
+      <span class="arc-num">MVT ${m.num}</span>
+      <span class="arc-range">${m.range}</span>
+    </button>`;
+  }).join(``);
+  renderMovementInspector();
+}
+
+function selectMovement(id) {
+  appState.activeMovementId = id;
+  renderArcBar();
+  saveState();
+}
+
+function renderMovementInspector() {
+  const m = MOVEMENTS.find(item => item.id === appState.activeMovementId) || MOVEMENTS[0];
+  const rEl = document.getElementById(`insp-range`);
+  const tEl = document.getElementById(`insp-title`);
+  const aEl = document.getElementById(`insp-arabic`);
+  const sEl = document.getElementById(`insp-summary`);
+  const tagsEl = document.getElementById(`insp-tags`);
+  const btnEl = document.getElementById(`insp-master-btn`);
+
+  if (rEl) rEl.textContent = `Movement ${m.num} · Verses ${m.range}`;
+  if (tEl) tEl.textContent = m.title;
+  if (aEl) aEl.textContent = m.arabic;
+  if (sEl) sEl.textContent = m.summary;
+  if (tagsEl) {
+    tagsEl.innerHTML = m.tags.map(tag => `<span class="tag">${tag}</span>`).join(``);
+  }
+  if (btnEl) {
+    const mastered = appState.masteredMovements.includes(m.id);
+    btnEl.textContent = mastered ? `Mastered` : `Mark Mastered`;
+    btnEl.setAttribute(`aria-pressed`, mastered ? `true` : `false`);
+  }
+}
+
+function toggleMovementMastered() {
+  const id = appState.activeMovementId;
+  const idx = appState.masteredMovements.indexOf(id);
+  if (idx === -1) {
+    appState.masteredMovements.push(id);
+  } else {
+    appState.masteredMovements.splice(idx, 1);
+  }
+  renderArcBar();
+  saveState();
+}
+
+function jumpToMovementInReader() {
+  const movSel = document.getElementById(`reader-movement`);
+  const callSel = document.getElementById(`reader-call`);
+  const searchEl = document.getElementById(`reader-search`);
+  if (movSel) movSel.value = appState.activeMovementId;
+  if (callSel) callSel.value = `all`;
+  if (searchEl) searchEl.value = ``;
+  applyReaderFilters();
+  const readerSec = document.getElementById(`sec-reader`);
+  if (readerSec) readerSec.scrollIntoView({ behavior: `smooth` });
+}
+
+/* Section 2: Law & Expiation */
+function renderExpiation(key) {
+  const data = EXPIATIONS[key] || EXPIATIONS.oath;
+  const out = document.getElementById(`expiation-output`);
+  if (!out) return;
+  out.innerHTML = `
+    <div style="margin-bottom:var(--space-sm);">
+      <span class="tag tag-cinnabar">Verse ${data.verse}</span>
+      <p class="prose" style="margin-top:var(--space-xs); font-size:0.9375rem;">${data.summary}</p>
+    </div>
+    <div class="expiation-tiers">
+      ${data.tiers.map(t => `<div class="tier-step">
+        <div class="label" style="color:var(--secondary); margin-bottom:var(--space-xs);">${t.step}</div>
+        <div style="font-size:0.9375rem; line-height:1.5;">${t.text}</div>
+      </div>`).join(``)}
+    </div>
+  `;
+}
+
+function filterLawCards(category, btnEl) {
+  const buttons = document.querySelectorAll(`[id^="law-btn-"]`);
+  buttons.forEach(b => b.classList.remove(`is-active`));
+  if (btnEl) btnEl.classList.add(`is-active`);
+
+  const grid = document.getElementById(`rulings-grid`);
+  if (!grid) return;
+  const items = category === `all` ? LAW_CARDS : LAW_CARDS.filter(c => c.cat === category);
+  grid.innerHTML = items.map(c => {
+    const cls = c.status === `prohibited` ? `is-prohibited` : (c.status === `lawful` ? `is-lawful` : ``);
+    const badge = c.status === `prohibited` ? `Prohibition` : (c.status === `lawful` ? `Permitted / Duty` : `Conditional / Expiation`);
+    return `<article class="ruling-card ${cls}">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-xs);">
+        <span class="label">Verses ${c.verse}</span>
+        <span class="tag">${badge}</span>
+      </div>
+      <h3 class="ruling-title">${c.title}</h3>
+      <p class="prose" style="font-size:0.9375rem;">${c.detail}</p>
+    </article>`;
+  }).join(``);
+}
+
+/* Section 3: Prophetic Dramas Stepper */
+function selectStory(key, btnEl) {
+  currentStoryKey = key;
+  currentBeatIdx = 0;
+  const tabs = document.querySelectorAll(`[id^="story-tab-"]`);
+  tabs.forEach(t => t.classList.remove(`is-active`));
+  if (btnEl) btnEl.classList.add(`is-active`);
+  renderStoryBeat();
+}
+
+function setStoryBeat(idx) {
+  currentBeatIdx = idx;
+  renderStoryBeat();
+}
+
+function stepStory(delta) {
+  const story = STORIES[currentStoryKey];
+  if (!story) return;
+  const next = currentBeatIdx + delta;
+  if (next >= 0 && next < story.beats.length) {
+    currentBeatIdx = next;
+    renderStoryBeat();
+  }
+}
+
+function renderStoryBeat() {
+  const story = STORIES[currentStoryKey];
+  if (!story) return;
+  const beat = story.beats[currentBeatIdx];
+
+  const dotsEl = document.getElementById(`beat-dots`);
+  if (dotsEl) {
+    dotsEl.innerHTML = story.beats.map((b, i) => `
+      <button type="button" class="beat-btn ${i === currentBeatIdx ? `is-active` : ``}" onclick="setStoryBeat(${i})">
+        Beat ${i + 1} · ${b.ref}
+      </button>
+    `).join(``);
+  }
+
+  const refEl = document.getElementById(`beat-ref`);
+  const themeEl = document.getElementById(`beat-theme`);
+  const titleEl = document.getElementById(`beat-title`);
+  const arEl = document.getElementById(`beat-arabic`);
+  const enEl = document.getElementById(`beat-english`);
+  const insEl = document.getElementById(`beat-insight`);
+  const prevBtn = document.getElementById(`beat-prev`);
+  const nextBtn = document.getElementById(`beat-next`);
+
+  if (refEl) refEl.textContent = `${story.name} · ${beat.ref}`;
+  if (themeEl) themeEl.textContent = beat.theme;
+  if (titleEl) titleEl.textContent = beat.title;
+  if (arEl) arEl.textContent = beat.ar;
+  if (enEl) enEl.textContent = beat.en;
+  if (insEl) insEl.textContent = beat.insight;
+
+  if (prevBtn) prevBtn.disabled = currentBeatIdx === 0;
+  if (nextBtn) nextBtn.disabled = currentBeatIdx === story.beats.length - 1;
+}
+
+/* Section 4: Key Terms */
+function renderTermsGrid() {
+  const grid = document.getElementById(`terms-grid`);
+  if (!grid) return;
+  grid.innerHTML = KEY_TERMS.map(t => `
+    <article class="term-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="label">Surah 5</span>
+        <span class="tag">${t.ref}</span>
+      </div>
+      <h3 class="ruling-title">${t.term}</h3>
+      <p class="prose" style="font-size:0.9375rem;">${t.def}</p>
+    </article>
+  `).join(``);
+}
+
+/* Section 5: Complete 120-Verse Reader */
+function populateMovementSelect() {
+  const sel = document.getElementById(`reader-movement`);
+  if (!sel) return;
+  MOVEMENTS.forEach(m => {
+    const opt = document.createElement(`option`);
+    opt.value = m.id;
+    opt.textContent = `${m.num}. ${m.title} (${m.range})`;
+    sel.appendChild(opt);
+  });
+}
+
+function applyReaderFilters() {
+  const movVal = (document.getElementById(`reader-movement`) || {}).value || `all`;
+  const callVal = (document.getElementById(`reader-call`) || {}).value || `all`;
+  const qVal = ((document.getElementById(`reader-search`) || {}).value || ``).trim().toLowerCase();
+
+  filteredVerses = VERSES.filter(item => {
+    if (movVal !== `all` && item.m !== movVal) return false;
+    if (callVal === `bookmarked` && !appState.bookmarks.includes(item.v)) return false;
+    if (callVal !== `all` && callVal !== `bookmarked` && !item.calls.includes(callVal)) return false;
+    if (qVal) {
+      const refStr = `5:${item.v}`;
+      const matchRef = refStr.includes(qVal) || String(item.v) === qVal;
+      const matchEn = item.en.toLowerCase().includes(qVal);
+      const matchAr = item.ar.includes(qVal);
+      if (!matchRef && !matchEn && !matchAr) return false;
+    }
+    return true;
+  });
+
+  currentReaderPage = 1;
+  renderReaderList();
+}
+
+function clearReaderFilters() {
+  const movSel = document.getElementById(`reader-movement`);
+  const callSel = document.getElementById(`reader-call`);
+  const searchEl = document.getElementById(`reader-search`);
+  if (movSel) movSel.value = `all`;
+  if (callSel) callSel.value = `all`;
+  if (searchEl) searchEl.value = ``;
+  applyReaderFilters();
+}
+
+function toggleArabicDisplay() {
+  appState.showArabic = !appState.showArabic;
+  const btn = document.getElementById(`toggle-arabic-btn`);
+  if (btn) btn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+  renderReaderList();
+  saveState();
+}
+
+function changeReaderPage(delta) {
+  const totalPages = Math.max(1, Math.ceil(filteredVerses.length / PAGE_SIZE));
+  const next = currentReaderPage + delta;
+  if (next >= 1 && next <= totalPages) {
+    currentReaderPage = next;
+    renderReaderList();
+  }
+}
+
+function toggleBookmark(vNum) {
+  const idx = appState.bookmarks.indexOf(vNum);
+  if (idx === -1) {
+    appState.bookmarks.push(vNum);
+  } else {
+    appState.bookmarks.splice(idx, 1);
+  }
+  renderReaderList();
+  saveState();
+}
+
+function saveVerseNote(vNum, value) {
+  const trimmed = value.trim();
+  if (trimmed) {
+    appState.notes[vNum] = value;
+  } else {
+    delete appState.notes[vNum];
+  }
+  saveState();
+}
+
+function renderReaderList() {
+  const listEl = document.getElementById(`verse-list`);
+  const countLabel = document.getElementById(`reader-count-label`);
+  const pageInd = document.getElementById(`page-indicator`);
+  const prevBtn = document.getElementById(`page-prev`);
+  const nextBtn = document.getElementById(`page-next`);
+  if (!listEl) return;
+
+  const total = filteredVerses.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (currentReaderPage > totalPages) currentReaderPage = totalPages;
+
+  const startIdx = (currentReaderPage - 1) * PAGE_SIZE;
+  const slice = filteredVerses.slice(startIdx, startIdx + PAGE_SIZE);
+
+  if (countLabel) {
+    if (total === 0) {
+      countLabel.textContent = `No verses match your current filter.`;
+    } else {
+      countLabel.textContent = `Showing ${startIdx + 1}–${startIdx + slice.length} of ${total} matching verses`;
+    }
+  }
+  if (pageInd) pageInd.textContent = `Page ${currentReaderPage} of ${totalPages}`;
+  if (prevBtn) prevBtn.disabled = currentReaderPage <= 1;
+  if (nextBtn) nextBtn.disabled = currentReaderPage >= totalPages;
+
+  if (slice.length === 0) {
+    listEl.innerHTML = `<div class="washi-card">
+      <div class="label">Empty View</div>
+      <p class="prose" style="margin-top:var(--space-xs);">No verses match that combination of movement, address filter, or search term. Clear filters to return to all 120 verses.</p>
+    </div>`;
+    return;
+  }
+
+  listEl.innerHTML = slice.map(item => {
+    const mov = MOVEMENTS.find(m => m.id === item.m);
+    const isBm = appState.bookmarks.includes(item.v);
+    const noteVal = appState.notes[item.v] || ``;
+    const callTags = item.calls.map(c => {
+      if (c === `believers`) return `<span class="tag">O You Who Have Believed</span>`;
+      if (c === `scripture`) return `<span class="tag">O People of the Scripture</span>`;
+      if (c === `messenger`) return `<span class="tag">O Messenger</span>`;
+      return ``;
+    }).join(``);
+
+    return `<article class="verse-entry ${isBm ? `is-bookmarked` : ``}">
+      <div class="verse-meta">
+        <div class="verse-meta-left">
+          <span class="verse-ref">Verse 5:${item.v}</span>
+          <span class="tag">${mov ? `Movement ${mov.num}` : ``}</span>
+          ${callTags}
+        </div>
+        <button type="button" class="btn btn-ghost" style="min-height:36px; padding:0 var(--space-sm);" aria-pressed="${isBm}" onclick="toggleBookmark(${item.v})">
+          ${isBm ? `Bookmarked` : `Bookmark`}
+        </button>
+      </div>
+      ${appState.showArabic ? `<div class="arabic-text verse-ar" dir="rtl" lang="ar">${item.ar}</div>` : ``}
+      <p class="verse-en">${item.en}</p>
+      <div class="verse-note-area">
+        <label for="note-v-${item.v}" class="label">Personal Reflection / Study Note (5:${item.v})</label>
+        <input id="note-v-${item.v}" type="text" class="text-input" placeholder="Record a takeaway or cross-reference…" value="${noteVal.replace(/"/g, `&quot;`)}" onchange="saveVerseNote(${item.v}, this.value)">
+      </div>
+    </article>`;
+  }).join(``);
+}
+
+/* Section 6: Mastery Quiz & Flashcards */
+function renderQuiz() {
+  const idx = appState.currentQuizIdx;
+  const q = QUIZ_QUESTIONS[idx];
+  const progEl = document.getElementById(`quiz-progress-label`);
+  const tagEl = document.getElementById(`quiz-topic-tag`);
+  const qEl = document.getElementById(`quiz-question`);
+  const optEl = document.getElementById(`quiz-options`);
+  const fbEl = document.getElementById(`quiz-feedback`);
+
+  if (!q) return;
+  if (progEl) progEl.textContent = `Question ${idx + 1} of ${QUIZ_QUESTIONS.length}`;
+  if (tagEl) tagEl.textContent = q.topic;
+  if (qEl) qEl.textContent = q.q;
+
+  const chosen = appState.quizAnswers[idx];
+  const answered = chosen !== undefined;
+
+  if (optEl) {
+    optEl.innerHTML = q.options.map((opt, i) => {
+      let cls = `option-btn`;
+      if (answered) {
+        if (i === q.answer) cls += ` is-correct`;
+        else if (i === chosen) cls += ` is-wrong`;
+      }
+      return `<button type="button" class="${cls}" onclick="answerQuiz(${i})">${opt}</button>`;
+    }).join(``);
+  }
+
+  if (fbEl) {
+    if (answered) {
+      fbEl.style.display = `block`;
+      const isRight = chosen === q.answer;
+      fbEl.innerHTML = `<strong>${isRight ? `Correct.` : `Not quite.`}</strong> ${q.explain}`;
+    } else {
+      fbEl.style.display = `none`;
+    }
+  }
+}
+
+function answerQuiz(optIdx) {
+  appState.quizAnswers[appState.currentQuizIdx] = optIdx;
+  renderQuiz();
+  saveState();
+}
+
+function nextQuizQuestion() {
+  appState.currentQuizIdx = (appState.currentQuizIdx + 1) % QUIZ_QUESTIONS.length;
+  renderQuiz();
+  saveState();
+}
+
+function prevQuizQuestion() {
+  appState.currentQuizIdx = (appState.currentQuizIdx - 1 + QUIZ_QUESTIONS.length) % QUIZ_QUESTIONS.length;
+  renderQuiz();
+  saveState();
+}
+
+function renderFlashcard() {
+  const idx = appState.currentCardIdx;
+  const card = FLASHCARDS[idx];
+  const cntEl = document.getElementById(`card-counter`);
+  const tagEl = document.getElementById(`card-tag`);
+  const promptEl = document.getElementById(`card-prompt`);
+  const ansBlock = document.getElementById(`card-answer-block`);
+  const arEl = document.getElementById(`card-ar`);
+  const ansEl = document.getElementById(`card-ans`);
+  const flipBtn = document.getElementById(`card-flip-btn`);
+
+  if (!card) return;
+  if (cntEl) cntEl.textContent = `${idx + 1} / ${FLASHCARDS.length}`;
+  if (tagEl) tagEl.textContent = `Reference ${card.tag}`;
+  if (promptEl) promptEl.textContent = card.prompt;
+  if (arEl) arEl.textContent = card.ar;
+  if (ansEl) ansEl.textContent = card.ans;
+  if (ansBlock) ansBlock.style.display = `none`;
+  if (flipBtn) flipBtn.textContent = `Reveal Answer`;
+}
+
+function flipFlashcard() {
+  const ansBlock = document.getElementById(`card-answer-block`);
+  const flipBtn = document.getElementById(`card-flip-btn`);
+  if (!ansBlock) return;
+  const hidden = ansBlock.style.display === `none`;
+  ansBlock.style.display = hidden ? `block` : `none`;
+  if (flipBtn) flipBtn.textContent = hidden ? `Hide Answer` : `Reveal Answer`;
+}
+
+function stepFlashcard(delta) {
+  appState.currentCardIdx = (appState.currentCardIdx + delta + FLASHCARDS.length) % FLASHCARDS.length;
+  renderFlashcard();
+  saveState();
+}
+
+/* Export & Two-step Inline Reset */
+function exportStudyNotes() {
+  const lines = [
+    `SURAH AL-MA'IDAH (CHAPTER 5) — STUDY LEDGER`,
+    `==========================================`,
+    `Mastered Movements (${appState.masteredMovements.length}/${MOVEMENTS.length}): ${appState.masteredMovements.join(`, `) || `None yet`}`,
+    ``,
+    `Bookmarked Verses (${appState.bookmarks.length}):`
+  ];
+  appState.bookmarks.slice().sort((a, b) => a - b).forEach(vNum => {
+    const verse = VERSES.find(x => x.v === vNum);
+    if (verse) lines.push(`- 5:${vNum}: ${verse.en}`);
+  });
+  lines.push(``, `Personal Verse Notes:`);
+  Object.keys(appState.notes).sort((a, b) => Number(a) - Number(b)).forEach(vNum => {
+    lines.push(`- 5:${vNum}: ${appState.notes[vNum]}`);
+  });
+
+  const content = lines.join(`\n`);
+  if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+    window.notebookAppApi.triggerFileDownload({
+      content: content,
+      contentType: `text/plain`,
+      encoding: `UTF-8`,
+      filename: `surah-al-maidah-notes.txt`
+    });
+  }
+  const elStatus = document.getElementById(`ledger-status`);
+  if (elStatus) elStatus.textContent = `Study ledger exported as surah-al-maidah-notes.txt.`;
+}
+
+function resetProgress(btn) {
+  if (btn && btn.dataset.armed !== `true`) {
+    btn.dataset.armed = `true`;
+    btn.textContent = `Confirm Reset`;
+    const elStatus = document.getElementById(`ledger-status`);
+    if (elStatus) elStatus.textContent = `Click "Confirm Reset" again to clear mastered movements, bookmarks, notes, and quiz answers.`;
+    return;
+  }
+  if (btn) {
+    btn.dataset.armed = `false`;
+    btn.textContent = `Reset Ledger`;
+  }
+  appState = {
+    activeMovementId: `m1`,
+    masteredMovements: [],
+    bookmarks: [],
+    notes: {},
+    quizAnswers: {},
+    currentQuizIdx: 0,
+    currentCardIdx: 0,
+    showArabic: true
+  };
+  const toggleBtn = document.getElementById(`toggle-arabic-btn`);
+  if (toggleBtn) toggleBtn.textContent = `Hide Arabic`;
+  renderArcBar();
+  renderReaderList();
+  renderQuiz();
+  renderFlashcard();
+  saveState();
+}
+
+/* Initialization */
+async function initApp() {
+  populateMovementSelect();
+
+  if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+    try {
+      const saved = await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === `object`) {
+        appState = Object.assign({}, appState, saved);
+      }
+    } catch (e) {
+      /* fallback to clean defaults */
+    }
+  }
+
+  const toggleBtn = document.getElementById(`toggle-arabic-btn`);
+  if (toggleBtn) toggleBtn.textContent = appState.showArabic ? `Hide Arabic` : `Show Arabic`;
+
+  renderArcBar();
+  renderExpiation(`oath`);
+  filterLawCards(`all`, document.getElementById(`law-btn-all`));
+  renderStoryBeat();
+  renderTermsGrid();
+  applyReaderFilters();
+  renderQuiz();
+  renderFlashcard();
+  updateMasteryLedger();
+
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener(`DOMContentLoaded`, initApp);
+</script>
+</body>
+</html>

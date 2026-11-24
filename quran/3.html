@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="artifact-type" content="narrative">
+<meta name="design-style" content="haven">
+<title>Surah Ali 'Imran (Chapter 3) — Interactive Mastery Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+
+  /* 1. Haven palette & tokens */
+  --background: #f5f6f5;
+  --surface-container-low: #ffffff;
+  --surface-container: #e3ebe2;
+  --surface-container-high: #dbe2dd;
+
+  --on-surface: #23272a;
+  --on-surface-variant: #5c6468;
+
+  --outline: #c9d0cc;
+  --outline-variant: #dde2df;
+
+  --primary: #3c5a6e;
+  --on-primary: #ffffff;
+  --primary-container: #e2e9ee;
+  --on-primary-container: #2a4152;
+  --secondary: #4f6b53;
+  --tertiary: #5f7c63;
+  --error: #a63d32;
+  --on-error: #ffffff;
+
+  --data-1: #3c5a6e;
+  --data-2: #5f7c63;
+  --data-3: #a8694a;
+  --data-4: #8a7a68;
+  --data-context: #c3cac6;
+
+  --font-headline: 'Outfit', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --font-label: 'Outfit', sans-serif;
+  --font-arabic: 'Amiri', serif;
+
+  --rounded: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-full: 9999px;
+
+  --hairline: 1px solid var(--outline-variant);
+  --hairline-control: 1px solid var(--outline);
+  --elevation: none;
+
+  /* 3. Shared semantic, focus, scale, spacing & motion tokens */
+  --positive: #3f6a49;
+  --positive-container: #e3ebe2;
+  --warning: #8f6324;
+  --warning-container: #f4ece0;
+  --error-container: #f6e4e2;
+  --focus: var(--primary);
+
+  --display-size: clamp(2.35rem, 1.4rem + 3.4vw, 3.75rem);
+  --headline-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
+  --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4rem);
+  --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --label-size: 0.8125rem;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5.5rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+}
+
+/* Base reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+header { position: static !important; }
+button, input, select, textarea { font-family: inherit; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xl);
+  padding: var(--space-lg);
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.page-grid * { min-width: 0; }
+
+/* Typography */
+.headline {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--on-surface);
+  margin: 0;
+}
+.headline strong { font-weight: 600; }
+.display-title { font-size: var(--display-size); max-width: 22ch; }
+.section-title { font-size: var(--headline-size); }
+.subhead {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: var(--subhead-size);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--on-surface);
+}
+.label {
+  font-family: var(--font-label);
+  font-size: var(--label-size);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  color: var(--on-surface-variant);
+}
+.caption-sage {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--secondary);
+  margin-top: var(--space-xs);
+  font-size: 0.95rem;
+}
+.prose { max-width: 66ch; margin: 0; }
+.prose + .prose { margin-top: var(--space-md); }
+
+/* Hairline sections */
+.section + .section {
+  border-top: var(--hairline);
+  padding-top: var(--space-2xl);
+}
+
+/* Panels */
+.panel {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--elevation);
+  padding: var(--space-lg);
+}
+.panel-compact {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-md) var(--space-lg);
+}
+.panel-sage {
+  background: var(--surface-container);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-md) var(--space-lg);
+}
+
+/* Top bar & quick jump nav */
+.hero-header {
+  padding-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.hero-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+}
+.jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  border-bottom: var(--hairline);
+  padding-bottom: var(--space-sm);
+}
+.jump-link {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  padding: var(--space-xs) 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.jump-link:hover { color: var(--primary); }
+.jump-link.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* KPI grid (asymmetric) */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: var(--space-md);
+}
+.kpi-value {
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.35rem);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--on-surface);
+  margin: var(--space-xs) 0 0;
+  line-height: 1.1;
+}
+
+/* Progress ribbon */
+.mastery-bar-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+.progress-track {
+  flex: 1 1 240px;
+  height: 8px;
+  background: var(--outline-variant);
+  border-radius: var(--rounded-full);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  border-radius: var(--rounded-full);
+  transition: width var(--dur-long) var(--ease-out);
+}
+
+/* Tags & buttons */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--surface-container);
+  color: var(--secondary);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--rounded-full);
+  border: none;
+}
+.tag-slate {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--rounded);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  border: var(--hairline-control);
+  background: transparent;
+  color: var(--on-surface);
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.btn:hover { background: var(--surface-container-high); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background: var(--on-primary-container);
+  border-color: var(--on-primary-container);
+}
+.btn-sm {
+  min-height: 36px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+}
+.btn.is-selected {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  border-color: var(--primary);
+}
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* Structural Map (Act Breakdown) */
+.act-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+.act-seg {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--surface-container-low);
+  cursor: pointer;
+  text-align: left;
+  min-height: 92px;
+  transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.act-seg:hover { background: var(--surface-container-high); }
+.act-seg.is-active {
+  background: var(--primary-container);
+  border-color: var(--primary);
+}
+.act-seg-bar {
+  height: 5px;
+  border-radius: var(--rounded-full);
+  background: var(--data-1);
+  margin-bottom: var(--space-xs);
+}
+.act-seg[data-act="1"] .act-seg-bar,
+.act-seg[data-act="3"] .act-seg-bar,
+.act-seg[data-act="6"] .act-seg-bar { background: var(--data-2); }
+.act-seg[data-act="4"] .act-seg-bar { background: var(--data-3); }
+.act-seg[data-act="5"] .act-seg-bar { background: var(--data-4); }
+
+/* Asymmetric 2-col layout */
+.split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-lg);
+}
+
+/* Arabic Verse Styling */
+.arabic-text {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+  line-height: 2.05;
+  direction: rtl;
+  text-align: right;
+  color: var(--on-surface);
+  letter-spacing: 0;
+  margin: 0;
+}
+.arabic-inline {
+  font-family: var(--font-arabic);
+  font-size: 1.25em;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+/* Interactive Concept Explorers */
+.concept-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.comparison-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-md);
+}
+.lineage-svg-wrap {
+  width: 100%;
+  overflow-x: auto;
+  padding: var(--space-sm) 0;
+}
+.lineage-node { cursor: pointer; }
+.lineage-node rect {
+  transition: fill var(--dur-micro) var(--ease-out), stroke var(--dur-micro) var(--ease-out);
+}
+
+/* Table */
+.table-wrap { overflow-x: auto; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.data-table th {
+  text-align: left;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--label-size);
+  color: var(--on-surface-variant);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--hairline-control);
+}
+.data-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--hairline);
+  vertical-align: top;
+}
+.data-table tbody tr:hover { background: var(--surface-container-high); }
+.num-col { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Controls row */
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: end;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1 1 200px;
+}
+.input-control, .select-control {
+  height: 44px;
+  padding: 0 var(--space-md);
+  background: var(--surface-container-low);
+  border: var(--hairline-control);
+  border-radius: var(--rounded);
+  color: var(--on-surface);
+  font-size: 0.9375rem;
+}
+.select-control { padding-right: 2.25rem; }
+.input-control:focus, .select-control:focus {
+  border-color: var(--primary);
+}
+
+/* Verse list */
+.verse-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.verse-card {
+  background: var(--surface-container-low);
+  border: var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.verse-card.is-bookmarked {
+  border-color: var(--primary);
+  background: var(--primary-container);
+}
+.verse-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.verse-num {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary);
+}
+
+/* Quiz & Flashcard */
+.quiz-options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+.quiz-opt {
+  text-align: left;
+  justify-content: flex-start;
+  height: auto;
+  padding: var(--space-md);
+  line-height: 1.45;
+}
+.quiz-opt.is-correct {
+  background: var(--positive-container);
+  border-color: var(--positive);
+  color: var(--on-surface);
+}
+.quiz-opt.is-wrong {
+  background: var(--error-container);
+  border-color: var(--error);
+  color: var(--on-surface);
+}
+.feedback-box {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--rounded);
+  border: var(--hairline);
+  background: var(--background);
+}
+
+/* Dua card deck */
+.dua-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+  gap: var(--space-md);
+}
+
+/* Inline status text */
+.status-note {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .split-grid { grid-template-columns: minmax(0, 1fr); }
+  .act-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .page-grid { padding: var(--space-md); gap: var(--space-lg); }
+  .act-strip { grid-template-columns: minmax(0, 1fr); }
+  .panel { padding: var(--space-md); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<main class="page-grid">
+
+  <!-- HERO & NAVIGATION -->
+  <header class="hero-header">
+    <div class="hero-meta-row">
+      <span class="label">Quranic Study Monograph · Chapter 3 (Al-Madinah)</span>
+      <span class="tag" id="save-status-pill">Progress saved locally</span>
+    </div>
+
+    <div>
+      <h1 class="headline display-title">Mastering <strong>Surah Ali 'Imran</strong></h1>
+      <p class="caption-sage prose">The Family of 'Imran — 200 verses balancing doctrinal clarity, Abrahamic continuity, and resilience after trial.</p>
+    </div>
+
+    <nav class="jump-nav" aria-label="Chapter sections">
+      <a href="#blueprint" class="jump-link is-active">1. Chapter Blueprint</a>
+      <a href="#concepts" class="jump-link">2. Core Themes &amp; Diagrams</a>
+      <a href="#supplications" class="jump-link">3. Supplication Vault</a>
+      <a href="#explorer" class="jump-link">4. Complete 200-Verse Reader</a>
+      <a href="#mastery" class="jump-link">5. Mastery Quiz &amp; Recall</a>
+    </nav>
+
+    <!-- Headline KPIs -->
+    <div class="kpi-grid">
+      <div class="panel-compact">
+        <div class="label">Total verses</div>
+        <div class="kpi-value">200</div>
+        <div class="caption-sage">3:1 Alif, Lam, Meem to 3:200</div>
+      </div>
+      <div class="panel-compact">
+        <div class="label">Structural halves</div>
+        <div class="kpi-value">120 + 80</div>
+        <div class="caption-sage">Dialogue (1–120) · Uhud (121–200)</div>
+      </div>
+      <div class="panel-compact">
+        <div class="label">Acts mastered</div>
+        <div class="kpi-value" id="kpi-acts-mastered">0 / 7</div>
+        <div class="caption-sage">Check off each thematic act</div>
+      </div>
+      <div class="panel-compact">
+        <div class="label">Bookmarked verses</div>
+        <div class="kpi-value" id="kpi-bookmarks">0</div>
+        <div class="caption-sage">Saved for focused review</div>
+      </div>
+    </div>
+
+    <!-- Overall Mastery Progress -->
+    <div class="panel-compact mastery-bar-wrap">
+      <div>
+        <div class="subhead" id="progress-headline">Start your guided study</div>
+        <div class="status-note" id="progress-sub">Mark thematic acts complete, bookmark key verses, and test yourself in the 10-question mastery quiz.</div>
+      </div>
+      <div class="progress-track" aria-label="Overall mastery progress">
+        <div class="progress-fill" id="overall-progress-fill"></div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-sm" onclick="exportStudyNotes()">
+          <i data-lucide="download" width="16" height="16"></i>
+          Export Notes
+        </button>
+        <button type="button" class="btn btn-sm" id="reset-progress-btn" onclick="handleResetProgress(this)">
+          Reset Progress
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: CHAPTER BLUEPRINT -->
+  <section id="blueprint" class="section">
+    <div style="display:flex; flex-direction:column; gap:var(--space-md);">
+      <h2 class="headline section-title"><strong>Seven acts</strong> move from cosmic revelation to disciplined endurance</h2>
+      <p class="prose">Surah Ali 'Imran opens by grounding scripture in Allah's absolute sovereignty (<span class="num-col">3:1–9</span>), unfolds the chosen prophetic household of 'Imran (<span class="num-col">3:33–63</span>), calls the People of the Scripture to a shared monotheistic word (<span class="num-col">3:64–120</span>), and then turns directly to the community's lived test at the Battle of Uhud (<span class="num-col">3:121–200</span>). Select any act below to inspect its arc and mark it mastered.</p>
+
+      <!-- Interactive 7-Act Proportional Blueprint -->
+      <div class="act-strip" id="act-strip" role="tablist" aria-label="Seven thematic acts of Surah Ali 'Imran"></div>
+
+      <!-- Active Act Detail Panel -->
+      <div class="split-grid" style="margin-top:var(--space-sm);">
+        <div class="panel" id="act-detail-panel">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+            <span class="tag tag-slate" id="act-detail-range">Verses 3:1–32</span>
+            <span class="label" id="act-detail-count">32 verses</span>
+          </div>
+          <h3 class="subhead" id="act-detail-title">Act I: Revelation, Precision &amp; Sovereignty</h3>
+          <p class="prose" id="act-detail-summary" style="margin-top:var(--space-sm);"></p>
+          <div style="margin-top:var(--space-md);">
+            <div class="label" style="margin-bottom:var(--space-xs);">Key anchor verses in this act</div>
+            <ul id="act-detail-anchors" style="margin:0; padding-left:1.25rem; display:flex; flex-direction:column; gap:var(--space-xs);"></ul>
+          </div>
+          <div class="btn-row" style="margin-top:var(--space-lg);">
+            <button type="button" class="btn btn-primary" id="toggle-act-mastery-btn" onclick="toggleCurrentActMastery()">
+              Mark Act Mastered
+            </button>
+            <button type="button" class="btn" onclick="jumpToActVerses()">
+              Read Verses in Explorer
+            </button>
+          </div>
+        </div>
+
+        <!-- Structural Comparison Card -->
+        <div class="panel-sage">
+          <div class="label">How the two halves mirror each other</div>
+          <h3 class="subhead" style="margin-top:var(--space-xs);">Creed tested by history</h3>
+          <p class="prose" style="margin-top:var(--space-sm);">The first 120 verses address intellectual and theological steadfastness — how to read revelation without distortion (<span class="num-col">3:7</span>) and honor the prophets without excess (<span class="num-col">3:79–80</span>).</p>
+          <p class="prose">The final 80 verses (<span class="num-col">3:121–200</span>) test those exact principles under pressure on the battlefield of Uhud: obedience over booty (<span class="num-col">3:152</span>), patience over grief (<span class="num-col">3:139</span>), and anchoring action in remembrance of Allah (<span class="num-col">3:190–200</span>).</p>
+          <div style="margin-top:var(--space-md); padding-top:var(--space-md); border-top:var(--hairline);">
+            <div class="label">Opening vs. Closing Bookend</div>
+            <p style="margin:var(--space-xs) 0 0; font-size:0.9375rem;"><strong>3:7–8:</strong> People of understanding (<em>Ulul-Albab</em>) ask Allah not to let hearts deviate.<br><strong>3:190–200:</strong> <em>Ulul-Albab</em> reflect on creation and end with four commands to succeed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CORE THEMES & DIAGRAMS -->
+  <section id="concepts" class="section">
+    <div style="display:flex; flex-direction:column; gap:var(--space-lg);">
+      <div>
+        <h2 class="headline section-title">Four <strong>conceptual pillars</strong> unlock the entire chapter</h2>
+        <p class="prose" style="margin-top:var(--space-sm);">Rather than reading Surah Ali 'Imran as isolated episodes, trace four recurring structures across the chapter: hermeneutics (<span class="num-col">3:7</span>), prophetic lineage (<span class="num-col">3:33–61</span>), the Badr–Uhud contrast (<span class="num-col">3:13, 3:121–168</span>), and the closing mandate (<span class="num-col">3:200</span>).</p>
+      </div>
+
+      <!-- Pillar A: Muhkamat vs Mutashabihat -->
+      <div class="panel">
+        <div class="label">Pillar 1 · Hermeneutics of Scripture (3:7–8)</div>
+        <h3 class="subhead" style="margin-top:var(--space-xs);">How the heart responds to precise vs. unspecific verses</h3>
+        <div class="comparison-cols" style="margin-top:var(--space-md);">
+          <div class="panel-compact" style="background:var(--background);">
+            <div class="tag" style="background:var(--warning-container); color:var(--warning);">Hearts with deviation (zaygh)</div>
+            <p style="margin:var(--space-sm) 0 0;">Pursue the unspecific (<em>Mutashabihat</em>) verses selectively, seeking discord (<em>fitnah</em>) and forcing personal interpretations that detach from the clear foundation.</p>
+          </div>
+          <div class="panel-compact" style="background:var(--surface-container);">
+            <div class="tag">Firm in knowledge (Ar-Rasikhun fil-'Ilm)</div>
+            <p style="margin:var(--space-sm) 0 0;">Anchor on the precise foundational verses (<em>Muhkamat — Umm al-Kitab</em>), affirm "All of it is from our Lord," and pray for steadfastness in <span class="num-col">3:8</span>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar B: Interactive Lineage of the House of 'Imran -->
+      <div class="panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:var(--space-sm);">
+          <div>
+            <div class="label">Pillar 2 · Prophetic Continuity (3:33–61)</div>
+            <h3 class="subhead" style="margin-top:var(--space-xs);">The Chosen Lineages &amp; the Family of 'Imran</h3>
+          </div>
+          <span class="status-note">Select any node to inspect its verses and miracles</span>
+        </div>
+
+        <div class="lineage-svg-wrap">
+          <svg viewBox="0 0 820 190" width="820" height="190" style="max-width:100%; height:auto; display:block;" role="img" aria-label="Interactive lineage map from Adam to Jesus in Surah Ali Imran">
+            <!-- Connecting lines -->
+            <line x1="115" y1="54" x2="175" y2="54" stroke="var(--outline)" stroke-width="1.5"/>
+            <line x1="275" y1="54" x2="335" y2="54" stroke="var(--outline)" stroke-width="1.5"/>
+            <line x1="435" y1="54" x2="495" y2="54" stroke="var(--outline)" stroke-width="1.5"/>
+            <path d="M545 84 L545 110 L420 110 L420 124" fill="none" stroke="var(--outline)" stroke-width="1.5"/>
+            <path d="M545 84 L545 110 L655 110 L655 124" fill="none" stroke="var(--outline)" stroke-width="1.5"/>
+            <line x1="490" y1="152" x2="585" y2="152" stroke="var(--outline)" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Nodes -->
+            <g class="lineage-node" onclick="selectLineage('adam')">
+              <rect id="node-adam" x="15" y="24" width="100" height="60" rx="6" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+              <text x="65" y="49" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Adam &amp; Noah</text>
+              <text x="65" y="68" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:33, 3:59</text>
+            </g>
+            <g class="lineage-node" onclick="selectLineage('abraham')">
+              <rect id="node-abraham" x="175" y="24" width="100" height="60" rx="6" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+              <text x="225" y="49" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Abraham</text>
+              <text x="225" y="68" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:33, 3:67, 3:95</text>
+            </g>
+            <g class="lineage-node" onclick="selectLineage('imran')">
+              <rect id="node-imran" x="335" y="24" width="100" height="60" rx="6" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+              <text x="385" y="49" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Family of 'Imran</text>
+              <text x="385" y="68" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:33–36</text>
+            </g>
+            <g class="lineage-node" onclick="selectLineage('mary')">
+              <rect id="node-mary" x="495" y="24" width="110" height="60" rx="6" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2"/>
+              <text x="550" y="49" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Mary (Maryam)</text>
+              <text x="550" y="68" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:36–37, 3:42–47</text>
+            </g>
+            <g class="lineage-node" onclick="selectLineage('zechariah')">
+              <rect id="node-zechariah" x="350" y="124" width="140" height="56" rx="6" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+              <text x="420" y="147" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Zechariah &amp; John</text>
+              <text x="420" y="166" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:37–41</text>
+            </g>
+            <g class="lineage-node" onclick="selectLineage('jesus')">
+              <rect id="node-jesus" x="585" y="124" width="145" height="56" rx="6" fill="var(--surface-container-low)" stroke="var(--outline)" stroke-width="1.5"/>
+              <text x="657" y="147" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">Jesus (Messiah)</text>
+              <text x="657" y="166" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="var(--on-surface-variant)">3:45–59</text>
+            </g>
+          </svg>
+        </div>
+
+        <div id="lineage-detail-box" class="panel-compact" style="background:var(--background); margin-top:var(--space-sm);"></div>
+      </div>
+
+      <!-- Pillar C: Badr vs Uhud Comparison -->
+      <div class="panel">
+        <div class="label">Pillar 3 · Lessons from Two Battles (3:13 &amp; 3:121–175)</div>
+        <h3 class="subhead" style="margin-top:var(--space-xs);">Why Badr brought victory and Uhud brought purification</h3>
+        <div class="table-wrap" style="margin-top:var(--space-md);">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Battle of Badr (<span class="num-col">3:13, 3:123–125</span>)</th>
+                <th>Battle of Uhud (<span class="num-col">3:121–122, 3:152–174</span>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Condition of believers</strong></td>
+                <td>Few in number and weak (<span class="num-col">3:123</span>), relying fully on Allah.</td>
+                <td>Two parties nearly lost courage (<span class="num-col">3:122</span>); later disputed the Prophet's command (<span class="num-col">3:152</span>).</td>
+              </tr>
+              <tr>
+                <td><strong>Divine support &amp; sign</strong></td>
+                <td>Opposing army saw believers as twice their size (<span class="num-col">3:13</span>); reinforcement of 3,000 then 5,000 marked angels (<span class="num-col">3:124–125</span>).</td>
+                <td>Initial success by Allah's permission, followed by reversal to test hearts and separate true believers from hypocrites (<span class="num-col">3:152, 3:166–167</span>).</td>
+              </tr>
+              <tr>
+                <td><strong>Emotional aftermath</strong></td>
+                <td>Gratitude and reassurance of heart (<span class="num-col">3:123, 3:126</span>).</td>
+                <td>Distress upon distress (<span class="num-col">3:153</span>), then soothing drowsiness sent as security (<span class="num-col">3:154</span>) and forgiveness (<span class="num-col">3:155</span>).</td>
+              </tr>
+              <tr>
+                <td><strong>Core moral takeaway</strong></td>
+                <td>Victory comes solely from Allah, the Exalted in Might, the Wise (<span class="num-col">3:126</span>).</td>
+                <td>Ask "From where is this?" — "It is from yourselves" (<span class="num-col">3:165</span>); respond to wounds with trust: <em>Hasbunallahu wa ni'mal-wakil</em> (<span class="num-col">3:172–173</span>).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pillar D: Closing Four Imperatives (3:200) -->
+      <div class="panel-sage">
+        <div class="label">Pillar 4 · The Closing Blueprint (3:200)</div>
+        <h3 class="subhead" style="margin-top:var(--space-xs);">Four sequential imperatives for success</h3>
+        <div class="kpi-grid" style="margin-top:var(--space-md);">
+          <div class="panel-compact">
+            <div class="label">1. Isbiru</div>
+            <div class="subhead" style="margin-top:var(--space-xs);">Persevere</div>
+            <div class="status-note">Internal patience amid hardship and personal trial.</div>
+          </div>
+          <div class="panel-compact">
+            <div class="label">2. Sabiru</div>
+            <div class="subhead" style="margin-top:var(--space-xs);">Endure</div>
+            <div class="status-note">Outlast opposition and compete in steadfastness.</div>
+          </div>
+          <div class="panel-compact">
+            <div class="label">3. Rabitu</div>
+            <div class="subhead" style="margin-top:var(--space-xs);">Remain stationed</div>
+            <div class="status-note">Hold your post collectively and guard the community.</div>
+          </div>
+          <div class="panel-compact">
+            <div class="label">4. Wattaqullah</div>
+            <div class="subhead" style="margin-top:var(--space-xs);">Fear Allah</div>
+            <div class="status-note">Root every effort in God-consciousness so you succeed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SUPPLICATION VAULT -->
+  <section id="supplications" class="section">
+    <div style="display:flex; flex-direction:column; gap:var(--space-md);">
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:var(--space-md);">
+        <div>
+          <h2 class="headline section-title"><strong>Supplications</strong> woven through the chapter</h2>
+          <p class="prose" style="margin-top:var(--space-xs);">Surah Ali 'Imran preserves some of the most memorable <em>Rabbana</em> prayers in the Qur'an — spoken by scholars, Mary's mother, Zechariah, Jesus's disciples, martyrs, and reflective believers.</p>
+        </div>
+        <span class="tag" id="dua-reviewed-count">0 / 7 reviewed</span>
+      </div>
+
+      <div class="dua-grid" id="dua-grid"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: COMPLETE 200-VERSE READER -->
+  <section id="explorer" class="section">
+    <div style="display:flex; flex-direction:column; gap:var(--space-md);">
+      <h2 class="headline section-title">Complete <strong>200-verse</strong> bilingual reader &amp; search</h2>
+      <p class="prose">Every single verse of Surah Ali 'Imran (<span class="num-col">3:1</span> to <span class="num-col">3:200</span>) in Arabic and English translation. Filter by thematic act, topic, or search by keyword or verse number, and bookmark verses to build your personal study list.</p>
+
+      <div class="panel">
+        <div class="controls-row">
+          <div class="field-group">
+            <label for="verse-search" class="label">Search verses or enter number (e.g. 3:190, Mary, patience)</label>
+            <input type="text" id="verse-search" class="input-control" placeholder="Search English text or verse #..." oninput="applyVerseFilters()">
+          </div>
+          <div class="field-group" style="max-width:16rem;">
+            <label for="act-filter" class="label">Filter by thematic act</label>
+            <select id="act-filter" class="select-control" onchange="applyVerseFilters()">
+              <option value="all">All 7 Acts (200 verses)</option>
+              <option value="0">Act I: Revelation &amp; Sovereignty (3:1–32)</option>
+              <option value="1">Act II: Family of 'Imran &amp; Jesus (3:33–63)</option>
+              <option value="2">Act III: Common Word &amp; Makkah (3:64–99)</option>
+              <option value="3">Act IV: Unity &amp; Moral Mandate (3:100–120)</option>
+              <option value="4">Act V: Badr &amp; Uhud Tested (3:121–158)</option>
+              <option value="5">Act VI: Martyrs &amp; Distinction (3:159–189)</option>
+              <option value="6">Act VII: Cosmic Signs &amp; Mandate (3:190–200)</option>
+            </select>
+          </div>
+          <div class="field-group" style="max-width:13.5rem;">
+            <label for="topic-filter" class="label">Filter by topic</label>
+            <select id="topic-filter" class="select-control" onchange="applyVerseFilters()">
+              <option value="all">All topics</option>
+              <option value="supplication">Supplications (Du'a)</option>
+              <option value="scripture">Revelation &amp; Scripture</option>
+              <option value="prophets">Mary, Zechariah &amp; Prophets</option>
+              <option value="battle">Badr &amp; Uhud</option>
+              <option value="ethics">Ethics, Spending &amp; Unity</option>
+              <option value="bookmarked">Bookmarked only</option>
+            </select>
+          </div>
+          <div>
+            <button type="button" class="btn" onclick="clearVerseFilters()">Clear filters</button>
+          </div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-top:var(--space-md); padding-top:var(--space-sm); border-top:var(--hairline);">
+          <span class="status-note" id="verse-result-count">Showing 200 of 200 verses</span>
+          <div class="btn-row">
+            <button type="button" class="btn btn-sm" id="toggle-arabic-btn" onclick="toggleArabicDisplay()">Hide Arabic</button>
+            <button type="button" class="btn btn-sm" id="show-all-btn" onclick="toggleShowAllVerses()">Show all matching</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list"></div>
+      <div style="display:flex; justify-content:center;" id="load-more-wrap">
+        <button type="button" class="btn" id="load-more-btn" onclick="loadMoreVerses()">Show 25 more verses</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MASTERY QUIZ & FLASHCARDS -->
+  <section id="mastery" class="section">
+    <div style="display:flex; flex-direction:column; gap:var(--space-lg);">
+      <div>
+        <h2 class="headline section-title">Test your <strong>mastery</strong> of Surah Ali 'Imran</h2>
+        <p class="prose" style="margin-top:var(--space-xs);">Verify your grasp of exact verses, historical lessons, and Arabic terms with a 10-question assessment and active-recall flashcards.</p>
+      </div>
+
+      <div class="split-grid">
+        <!-- Quiz Panel -->
+        <div class="panel">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="label" id="quiz-progress-label">Question 1 of 10</span>
+            <span class="tag" id="quiz-score-tag">Score: 0 / 10</span>
+          </div>
+          <h3 class="subhead" id="quiz-question" style="margin-top:var(--space-sm);"></h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="feedback-box" id="quiz-feedback" style="display:none;"></div>
+          <div class="btn-row" style="margin-top:var(--space-md); justify-content:space-between;">
+            <button type="button" class="btn btn-sm" onclick="prevQuizQuestion()" id="quiz-prev-btn">Previous</button>
+            <div class="btn-row">
+              <button type="button" class="btn btn-sm" onclick="resetQuiz()">Restart Quiz</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="nextQuizQuestion()" id="quiz-next-btn">Next Question</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flashcard Recall Panel -->
+        <div class="panel">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <span class="label" id="fc-counter">Concept Card 1 of 8</span>
+            <span class="tag tag-slate" id="fc-mastered-tag">0 / 8 mastered</span>
+          </div>
+          <div style="margin-top:var(--space-md); min-height:12rem; display:flex; flex-direction:column; justify-content:center; padding:var(--space-md); background:var(--background); border-radius:var(--rounded); border:var(--hairline);">
+            <div class="label" id="fc-side-label">Prompt</div>
+            <div class="subhead" id="fc-front" style="margin-top:var(--space-xs);"></div>
+            <div id="fc-back" style="display:none; margin-top:var(--space-md); padding-top:var(--space-md); border-top:var(--hairline);"></div>
+          </div>
+          <div class="btn-row" style="margin-top:var(--space-md); justify-content:space-between;">
+            <button type="button" class="btn btn-sm" onclick="flipFlashcard()" id="fc-flip-btn">Reveal Answer</button>
+            <div class="btn-row">
+              <button type="button" class="btn btn-sm" onclick="toggleFlashcardMastered()" id="fc-master-btn">Mark Mastered</button>
+              <button type="button" class="btn btn-sm" onclick="nextFlashcard()">Next Card</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SOURCE ATTRIBUTION -->
+  <footer class="section" style="padding-bottom:var(--space-2xl);">
+    <p class="status-note">Source grounding: All Arabic verse text, English translations, and thematic structures are derived directly from the provided Chapter 3 (Surah Ali 'Imran, verses 3:1–3:200) source manuscript.</p>
+  </footer>
+
+</main>
+
+<api-shim></api-shim>
+
+<script>
+const ACTS = [
+  {
+    id: 0,
+    short: `Act I · 3:1–32`,
+    title: `Act I: Revelation, Precision & Sovereignty`,
+    range: `Verses 3:1–32`,
+    count: 32,
+    summary: `Opens with the disconnected letters (Alif, Lam, Meem) and Allah's self-subsisting majesty, confirms the Torah, Gospel, and Furqan, distinguishes precise foundational verses (Muhkamat) from unspecific ones (Mutashabihat), contrasts transient worldly desires against eternal gardens, and culminates in the Sovereignty Prayer (3:26–27) and obedience to Allah and His Messenger.`,
+    anchors: [
+      `3:2 — Allah, the Ever-Living, Sustainer of existence.`,
+      `3:7 — Muhkamat (foundation of the Book) vs. Mutashabihat.`,
+      `3:14 — Love of worldly desires vs. Allah's best return.`,
+      `3:26–27 — Owner of Sovereignty: night into day, living from dead.`
+    ]
+  },
+  {
+    id: 1,
+    short: `Act II · 3:33–63`,
+    title: `Act II: The House of 'Imran, Zechariah & Jesus`,
+    range: `Verses 3:33–63`,
+    count: 31,
+    summary: `Traces the chosen prophetic lineages culminating in the family of 'Imran: Hannah's consecration of Mary, Zechariah finding miraculous provision in her sanctuary, his prayer for John, the annunciation of Jesus, his miracles by Allah's permission, the disciples' pledge, and the decisive likeness of Jesus to Adam (3:59) before the Mubahala challenge (3:61).`,
+    anchors: [
+      `3:33 — Allah chose Adam, Noah, Abraham's family, and 'Imran's family.`,
+      `3:37 — Mary nurtured with unceasing provision in the prayer chamber.`,
+      `3:49 — Jesus's miracles: clay bird, healing blind and leper, raising dead by Allah's permission.`,
+      `3:59 — Example of Jesus to Allah is like that of Adam, created from dust.`
+    ]
+  },
+  {
+    id: 2,
+    short: `Act III · 3:64–99`,
+    title: `Act III: Common Word & Abrahamic Continuity`,
+    range: `Verses 3:64–99`,
+    count: 36,
+    summary: `Extends a clear call to the People of the Scripture to unite upon pure monotheism (3:64), establishes Abraham as a sincere monotheist preceding both Torah and Gospel (3:67), addresses integrity in trusts and scripture, recalls the covenant of all prophets (3:81), defines true righteousness as giving what one loves (3:92), and honors the first House of worship at Makkah (3:96–97).`,
+    anchors: [
+      `3:64 — Come to a word equitable between us and you: worship Allah alone.`,
+      `3:67 — Abraham was neither Jew nor Christian, but a hanif Muslim.`,
+      `3:81 — The Covenant of the Prophets to believe in and support the confirming messenger.`,
+      `3:92 — Never attain righteousness until you spend from what you love.`
+    ]
+  },
+  {
+    id: 3,
+    short: `Act IV · 3:100–120`,
+    title: `Act IV: Unity on Allah's Rope & Moral Mandate`,
+    range: `Verses 3:100–120`,
+    count: 21,
+    summary: `Commands believers to hold together firmly to the rope of Allah and remember how He united former enemies into brothers (3:103), defines the mission of the best community as enjoining right and forbidding wrong (3:104, 3:110), and distinguishes fair-minded People of the Scripture who recite Allah's verses in the night (3:113–115).`,
+    anchors: [
+      `3:103 — Hold firmly to the rope of Allah all together and do not divide.`,
+      `3:104 & 3:110 — Enjoining what is right, forbidding what is wrong, and believing in Allah.`,
+      `3:113–114 — Upright community among People of the Scripture standing in night prayer.`
+    ]
+  },
+  {
+    id: 4,
+    short: `Act V · 3:121–158`,
+    title: `Act V: Badr, Uhud & the Anatomy of Testing`,
+    range: `Verses 3:121–158`,
+    count: 38,
+    summary: `Revisits the morning of Uhud alongside the precedent of Badr (3:123–126), prohibits doubled usury and sketches the traits of the forgiving (3:130–136), clarifies that Muhammad is a messenger like those before him (3:144), diagnoses the disobedience and retreat at Uhud (3:152–153), and highlights divine drowsiness as reassurance (3:154).`,
+    anchors: [
+      `3:125 — Reinforcement with 5,000 marked angels if patient and God-conscious.`,
+      `3:134 — Spending in ease and hardship, restraining anger, pardoning people.`,
+      `3:144 — Muhammad is not but a messenger; messengers passed before him.`,
+      `3:152–154 — Falling into dispute over the command, followed by distress and calming drowsiness.`
+    ]
+  },
+  {
+    id: 5,
+    short: `Act VI · 3:159–189`,
+    title: `Act VI: Prophetic Mercy, Martyrs & Moral Distinction`,
+    range: `Verses 3:159–189`,
+    count: 31,
+    summary: `Commends the Prophet's mercy and consultation (shura, 3:159), affirms that setbacks came "from yourselves" to expose hypocrisy (3:165–167), reveals that martyrs are alive and rejoicing with their Lord (3:169–171), records the fearless declaration "Sufficient for us is Allah" (3:173), and reminds every soul that it will taste death and face testing in wealth and self (3:185–186).`,
+    anchors: [
+      `3:159 — By mercy from Allah you were lenient; pardon and consult them.`,
+      `3:169–170 — Never think of those killed in Allah's cause as dead; they are alive receiving provision.`,
+      `3:173 — "Sufficient for us is Allah, and He is the best Disposer of affairs."`,
+      `3:185–186 — Every soul tastes death; you will surely be tested in possessions and selves.`
+    ]
+  },
+  {
+    id: 6,
+    short: `Act VII · 3:190–200`,
+    title: `Act VII: Cosmic Reflection & Closing Mandate`,
+    range: `Verses 3:190–200`,
+    count: 11,
+    summary: `Closes the surah by turning the gaze upward to the creation of heavens and earth and the alternation of night and day (3:190), sets forth the five-verse prayer of those who remember Allah standing, sitting, and lying down (3:191–194), proclaims equal divine reward for men and women (3:195), and leaves believers with four final imperatives for success (3:200).`,
+    anchors: [
+      `3:190–191 — Signs for people of understanding who reflect on creation.`,
+      `3:195 — Never will I allow to be lost the work of any worker, male or female.`,
+      `3:200 — Persevere, endure, remain stationed, and fear Allah to succeed.`
+    ]
+  }
+];
+
+const LINEAGE_DATA = {
+  adam: {
+    title: `Adam & Noah (3:33, 3:59)`,
+    text: `Allah chose Adam and Noah above the worlds (3:33). Later, 3:59 draws the direct structural parallel: Adam was created from dust by the divine decree "Be, and it is" (kun fayakun), proving that Jesus's birth without a human father is equally effortless for Allah.`
+  },
+  abraham: {
+    title: `Family of Abraham (3:33, 3:65–68, 3:95–97)`,
+    text: `Abraham stands as the pure monotheistic ancestor (hanif muslim) who preceded both the Torah and the Gospel (3:65–67). His standing place (Maqam Ibrahim) remains a clear sign in the first House of worship established at Makkah (3:96–97).`
+  },
+  imran: {
+    title: `Family of 'Imran (3:33–36)`,
+    text: `The chapter takes its name from this household. In 3:35–36, the wife of 'Imran pledges her unborn child solely to Allah's service, names her Mary, and seeks refuge in Allah for her and her descendants from the expelled Satan.`
+  },
+  mary: {
+    title: `Mary / Maryam (3:36–37, 3:42–47)`,
+    text: `Accepted by Allah with good acceptance and placed in Zechariah's care, Mary received unceasing provision directly in the prayer chamber (3:37). Angels announced she was chosen and purified above the women of the worlds (3:42) to bear a Word from Allah (3:45).`
+  },
+  zechariah: {
+    title: `Zechariah & John / Yahya (3:37–41)`,
+    text: `Moved by the miraculous sustenance beside Mary, aged Zechariah prayed for righteous offspring (3:38). Angels answered him while he stood praying in the chamber, giving glad tidings of John — honorable, chaste, a prophet confirming a Word from Allah — with a three-day sign of silence except by gesture (3:39–41).`
+  },
+  jesus: {
+    title: `Jesus, the Messiah, Son of Mary (3:45–59)`,
+    text: `Taught writing, wisdom, the Torah, and the Gospel (3:48), Jesus spoke from the cradle and in maturity (3:46). By Allah's permission he shaped clay into a bird, healed the blind and leper, and raised the dead (3:49). Supported by his loyal disciples (3:52–53), he was raised and purified by Allah (3:55).`
+  }
+};
+
+const DUAS = [
+  {
+    id: `dua-3-8`,
+    ref: `3:8–9`,
+    speaker: `Those firm in knowledge`,
+    arabic: `رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ ۝ رَبَّنَا إِنَّكَ جَامِعُ النَّاسِ لِيَوْمٍ لَا رَيْبَ فِيهِ ۚ إِنَّ اللَّهَ لَا يُخْلِفُ الْمِيعَادَ`,
+    english: `"Our Lord, let not our hearts deviate after You have guided us and grant us from Yourself mercy. Indeed, You are the Bestower. Our Lord, surely You will gather the people for a Day about which there is no doubt. Indeed, Allah does not fail in His promise."`
+  },
+  {
+    id: `dua-3-16`,
+    ref: `3:16`,
+    speaker: `The God-conscious (Muttaqin)`,
+    arabic: `رَبَّنَا إِنَّنَا آمَنَّا فَاغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ النَّارِ`,
+    english: `"Our Lord, indeed we have believed, so forgive us our sins and protect us from the punishment of the Fire."`
+  },
+  {
+    id: `dua-3-26`,
+    ref: `3:26–27`,
+    speaker: `Proclamation of Sovereignty`,
+    arabic: `قُلِ اللَّهُمَّ مَالِكَ الْمُلْكِ تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ۖ بِيَدِكَ الْخَيْرُ ۖ إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,
+    english: `"O Allah, Owner of Sovereignty, You give sovereignty to whom You will and You take sovereignty away from whom You will. You honor whom You will and You humble whom You will. In Your hand is all good. Indeed, You are over all things competent."`
+  },
+  {
+    id: `dua-3-38`,
+    ref: `3:38`,
+    speaker: `Prophet Zechariah`,
+    arabic: `رَبِّ هَبْ لِي مِنْ لَدُنْكَ ذُرِّيَّةً طَيِّبَةً ۖ إِنَّكَ سَمِيعُ الدُّعَاءِ`,
+    english: `"My Lord, grant me from Yourself a good offspring. Indeed, You are the Hearer of supplication."`
+  },
+  {
+    id: `dua-3-53`,
+    ref: `3:53`,
+    speaker: `The Disciples of Jesus`,
+    arabic: `رَبَّنَا آمَنَّا بِمَا أَنْزَلْتَ وَاتَّبَعْنَا الرَّسُولَ فَاكْتُبْنَا مَعَ الشَّاهِدِينَ`,
+    english: `"Our Lord, we have believed in what You revealed and have followed the messenger Jesus, so register us among the witnesses to truth."`
+  },
+  {
+    id: `dua-3-147`,
+    ref: `3:147`,
+    speaker: `Steadfast scholars with past prophets`,
+    arabic: `رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ`,
+    english: `"Our Lord, forgive us our sins and the excess committed in our affairs and plant firmly our feet and give us victory over the disbelieving people."`
+  },
+  {
+    id: `dua-3-191`,
+    ref: `3:191–194`,
+    speaker: `People of Understanding (Ulul-Albab)`,
+    arabic: `رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ ۝ رَبَّنَا إِنَّنَا سَمِعْنَا مُنَادِيًا يُنَادِي لِلْإِيمَانِ أَنْ آمِنُوا بِرَبِّكُمْ فَآمَنَّا ۚ رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّئَاتِنَا وَتَوَفَّنَا مَعَ الْأَبْرَارِ`,
+    english: `"Our Lord, You did not create this aimlessly; exalted are You; then protect us from the punishment of the Fire... Our Lord, forgive us our sins, remove our misdeeds, cause us to die with the righteous, and do not disgrace us on the Day of Resurrection."`
+  }
+];
+
+const QUIZ = [
+  {
+    q: `In 3:7, how does the Qur'an describe the clear, precise verses (Muhkamat) of the Book?`,
+    opts: [
+      `They are reserved exclusively for angels`,
+      `They are the foundation of the Book (Umm al-Kitab)`,
+      `They are open to arbitrary reinterpretation`,
+      `They apply only to the Battle of Badr`
+    ],
+    ans: 1,
+    exp: `Verse 3:7 states that precise verses are "the foundation of the Book" (hunna Umm al-Kitab), whereas those with deviation in their hearts chase unspecific verses seeking discord.`
+  },
+  {
+    q: `What astonished Prophet Zechariah whenever he entered Mary's prayer chamber (3:37)?`,
+    opts: [
+      `A scroll written in gold`,
+      `Provision already present with her, directly from Allah`,
+      `A spring of water inside the stone wall`,
+      `Crowds of scholars debating the Torah`
+    ],
+    ans: 1,
+    exp: `In 3:37, every time Zechariah entered the prayer chamber he found provision with her; she explained, "It is from Allah. Indeed, Allah provides for whom He wills without account."`
+  },
+  {
+    q: `What sign was given to Zechariah after he received tidings of John (3:41)?`,
+    opts: [
+      `He would fast for forty mornings`,
+      `He would not be able to speak to people for three days except by gesture`,
+      `His staff would blossom overnight`,
+      `Rain would fall upon the sanctuary`
+    ],
+    ans: 1,
+    exp: `Verse 3:41 specifies his sign: unable to speak to people for three days except by gesture, while remembering his Lord much and exalting Him evening and morning.`
+  },
+  {
+    q: `To what earlier prophet does 3:59 compare the creation of Jesus?`,
+    opts: [
+      `Noah`,
+      `Abraham`,
+      `Adam, created from dust and brought into being by "Be"`,
+      `Moses`
+    ],
+    ans: 2,
+    exp: `Verse 3:59 states: "Indeed, the example of Jesus to Allah is like that of Adam. He created him from dust; then He said to him, 'Be,' and he was."`
+  },
+  {
+    q: `According to 3:92, what is required before believers attain true righteousness (al-birr)?`,
+    opts: [
+      `Travelling across seven lands`,
+      `Spending in the way of Allah from that which they love`,
+      `Giving away only surplus coins`,
+      `Memorizing every genealogy`
+    ],
+    ans: 1,
+    exp: `Verse 3:92 declares: "Never will you attain the good [reward] until you spend [in the way of Allah] from that which you love."`
+  },
+  {
+    q: `Which sanctuary does 3:96 identify as the very first House of worship established for mankind?`,
+    opts: [
+      `The temple in Jerusalem`,
+      `The sanctuary at Bakkah (Makkah)`,
+      `The prayer chamber of Zechariah`,
+      `Mount Sinai`
+    ],
+    ans: 1,
+    exp: `Verse 3:96 identifies the House at Makkah (Bakkah) as the first House established for mankind — blessed, containing the standing place of Abraham, and a place of safety.`
+  },
+  {
+    q: `What central metaphor does 3:103 use to command collective unity among believers?`,
+    opts: [
+      `Build a fortress of iron`,
+      `Hold firmly to the rope of Allah all together and do not become divided`,
+      `Walk silently in single file`,
+      `Wear matching armor`
+    ],
+    ans: 1,
+    exp: `Verse 3:103 commands: "And hold firmly to the rope of Allah all together and do not become divided," reminding them how Allah united their formerly hostile hearts.`
+  },
+  {
+    q: `How many marked angels does 3:125 promise if believers remain patient, God-conscious, and the enemy attacks in rage?`,
+    opts: [
+      `One thousand`,
+      `Three thousand`,
+      `Five thousand angels having marks of distinction`,
+      `Ten thousand`
+    ],
+    ans: 2,
+    exp: `After mentioning 3,000 angels in 3:124, verse 3:125 promises reinforcement with 5,000 angels having marks of distinction if they remain patient and conscious of Allah.`
+  },
+  {
+    q: `Which verse famously reassured the community after rumors of the Prophet's death at Uhud (3:144)?`,
+    opts: [
+      `"Muhammad is not but a messenger. Other messengers have passed on before him."`,
+      `"No messenger shall ever taste hardship in battle."`,
+      `"Lay down your arms until morning."`,
+      `"The mountains themselves will fight for you."`
+    ],
+    ans: 0,
+    exp: `Verse 3:144 reminds believers that faith is anchored in Allah, not the mortal lifespan of His messenger: "So if he was to die or be killed, would you turn back on your heels?"`
+  },
+  {
+    q: `What four imperatives close Surah Ali 'Imran in verse 3:200?`,
+    opts: [
+      `Speak, travel, trade, and rest`,
+      `Persevere, endure, remain stationed, and fear Allah`,
+      `Fast, migrate, build, and celebrate`,
+      `Debate, write, memorize, and retire`
+    ],
+    ans: 1,
+    exp: `Verse 3:200 concludes the entire chapter: "O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful."`
+  }
+];
+
+const FLASHCARDS = [
+  {
+    front: `What is the difference between Muhkamat and Mutashabihat in 3:7?`,
+    back: `<strong>Muhkamat</strong> are clear, precise verses forming the foundation of the Book (Umm al-Kitab). <strong>Mutashabihat</strong> are unspecific verses whose true interpretation is known to Allah alone.`
+  },
+  {
+    front: `What is "the common word" (Kalimatun Sawa') invited in 3:64?`,
+    back: `That we worship none except Allah, associate nothing with Him, and do not take one another as lords instead of Allah.`
+  },
+  {
+    front: `What was the Covenant of the Prophets in 3:81?`,
+    back: `Every prophet given Scripture and wisdom pledged that when a messenger arrives confirming what is with them, they must believe in him and support him.`
+  },
+  {
+    front: `What caused the sudden reversal at the Battle of Uhud according to 3:152?`,
+    back: `Believers lost courage, fell into dispute over the Prophet's order, and disobeyed after seeing the victory they loved — some desiring this world and some the Hereafter.`
+  },
+  {
+    front: `What soothing gift did Allah send down right after the distress of Uhud (3:154)?`,
+    back: `<strong>Amanatan nu'asa</strong> — security in the form of a calming drowsiness that overcame the sincere believers.`
+  },
+  {
+    front: `How should believers respond to frightening rumors that enemies have gathered against them (3:173)?`,
+    back: `It increases them in faith and they say: <em>"Hasbunallahu wa ni'mal-wakil"</em> — "Sufficient for us is Allah, and He is the best Disposer of affairs."`
+  },
+  {
+    front: `How does 3:195 affirm equality of spiritual effort?`,
+    back: `"Never will I allow to be lost the work of any worker among you, whether male or female; you are of one another."`
+  },
+  {
+    front: `Who are Ulul-Albab (those of understanding) in 3:190–191?`,
+    back: `Those who remember Allah standing, sitting, and lying on their sides, and reflect deeply on the creation of heavens, earth, night, and day.`
+  }
+];
+
+// All 200 verses: [num, actIdx, tags, arabic, english]
+const VERSES = [
+[1,0,[`scripture`],`الم`,`Alif, Lam, Meem.`],
+[2,0,[`scripture`],`اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ`,`Allah - there is no deity except Him, the Ever-Living, the Sustainer of existence.`],
+[3,0,[`scripture`],`نَزَّلَ عَلَيْكَ الْكِتَابَ بِالْحَقِّ مُصَدِّقًا لِمَا بَيْنَ يَدَيْهِ وَأَنْزَلَ التَّوْرَاةَ وَالْإِنْجِيلَ`,`He has sent down upon you, [O Muhammad], the Book in truth, confirming what was before it. And He revealed the Torah and the Gospel.`],
+[4,0,[`scripture`],`مِنْ قَبْلُ هُدًى لِلنَّاسِ وَأَنْزَلَ الْفُرْقَانَ ۗ إِنَّ الَّذِينَ كَفَرُوا بِآيَاتِ اللَّهِ لَهُمْ عَذَابٌ شَدِيدٌ ۗ وَاللَّهُ عَزِيزٌ ذُو انْتِقَامٍ`,`Before, as guidance for the people. And He revealed the Qur'an. Indeed, those who disbelieve in the verses of Allah will have a severe punishment, and Allah is exalted in Might, the Owner of Retribution.`],
+[5,0,[`scripture`],`إِنَّ اللَّهَ لَا يَخْفَىٰ عَلَيْهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ`,`Indeed, from Allah nothing is hidden in the earth nor in the heaven.`],
+[6,0,[`scripture`],`هُوَ الَّذِي يُصَوِّرُكُمْ فِي الْأَرْحَامِ كَيْفَ يَشَاءُ ۚ لَا إِلَٰهَ إِلَّا هُوَ الْعَزِيزُ الْحَكِيمُ`,`It is He who forms you in the wombs however He wills. There is no deity except Him, the Exalted in Might, the Wise.`],
+[7,0,[`scripture`],`هُوَ الَّذِي أَنْزَلَ عَلَيْكَ الْكِتَابَ مِنْهُ آيَاتٌ مُحْكَمَاتٌ هُنَّ أُمُّ الْكِتَابِ وَأُخَرُ مُتَشَابِهَاتٌ ۖ فَأَمَّا الَّذِينَ فِي قُلُوبِهِمْ زَيْغٌ فَيَتَّبِعُونَ مَا تَشَابَهَ مِنْهُ ابْتِغَاءَ الْفِتْنَةِ وَابْتِغَاءَ تَأْوِيلِهِ ۗ وَمَا يَعْلَمُ تَأْوِيلَهُ إِلَّا اللَّهُ ۗ وَالرَّاسِخُونَ فِي الْعِلْمِ يَقُولُونَ آمَنَّا بِهِ كُلٌّ مِنْ عِنْدِ رَبِّنَا ۗ وَمَا يَذَّكَّرُ إِلَّا أُولُو الْأَلْبَابِ`,`It is He who has sent down to you, [O Muhammad], the Book; in it are verses [that are] precise they are the foundation of the Book - and others unspecific. As for those in whose hearts is deviation [from truth], they will follow that of it which is unspecific, seeking discord and seeking an interpretation [suitable to them]. And no one knows its [true] interpretation except Allah. But those firm in knowledge say, "We believe in it. All [of it] is from our Lord." And no one will be reminded except those of understanding.`],
+[8,0,[`supplication`,`scripture`],`رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً ۚ إِنَّكَ أَنْتَ الْوَهَّابُ`,`[Who say], "Our Lord, let not our hearts deviate after You have guided us and grant us from Yourself mercy. Indeed, You are the Bestower.`],
+[9,0,[`supplication`],`رَبَّنَا إِنَّكَ جَامِعُ النَّاسِ لِيَوْمٍ لَا رَيْبَ فِيهِ ۚ إِنَّ اللَّهَ لَا يُخْلِفُ الْمِيعَادَ`,`Our Lord, surely You will gather the people for a Day about which there is no doubt. Indeed, Allah does not fail in His promise."`],
+[10,0,[`ethics`],`إِنَّ الَّذِينَ كَفَرُوا لَنْ تُغْنِيَ عَنْهُمْ أَمْوَالُهُمْ وَلَا أَوْلَادُهُمْ مِنَ اللَّهِ شَيْئًا ۖ وَأُولَٰئِكَ هُمْ وَقُودُ النَّارِ`,`Indeed, those who disbelieve - never will their wealth or their children avail them against Allah at all. And it is they who are fuel for the Fire.`],
+[11,0,[`scripture`],`كَدَأْبِ آلِ فِرْعَوْنَ وَالَّذِينَ مِنْ قَبْلِهِمْ ۚ كَذَّبُوا بِآيَاتِنَا فَأَخَذَهُمُ اللَّهُ بِذُنُوبِهِمْ ۗ وَاللَّهُ شَدِيدُ الْعِقَابِ`,`[Theirs is] like the custom of the people of Pharaoh and those before them. They denied Our signs, so Allah seized them for their sins. And Allah is severe in penalty.`],
+[12,0,[`battle`],`قُلْ لِلَّذِينَ كَفَرُوا سَتُغْلَبُونَ وَتُحْشَرُونَ إِلَىٰ جَهَنَّمَ ۚ وَبِئْسَ الْمِهَادُ`,`Say to those who disbelieve, "You will be overcome and gathered together to Hell, and wretched is the resting place."`],
+[13,0,[`battle`],`قَدْ كَانَ لَكُمْ آيَةٌ فِي فِئَتَيْنِ الْتَقَتَا ۖ فِئَةٌ تُقَاتِلُ فِي سَبِيلِ اللَّهِ وَأُخْرَىٰ كَافِرَةٌ يَرَوْنَهُمْ مِثْلَيْهِمْ رَأْيَ الْعَيْنِ ۚ وَاللَّهُ يُؤَيِّدُ بِنَصْرِهِ مَنْ يَشَاءُ ۗ إِنَّ فِي ذَٰلِكَ لَعِبْرَةً لِأُولِي الْأَبْصَارِ`,`Already there has been for you a sign in the two armies which met - one fighting in the cause of Allah and another of disbelievers. They saw them [to be] twice their [own] number by [their] eyesight. But Allah supports with His victory whom He wills. Indeed in that is a lesson for those of vision.`],
+[14,0,[`ethics`],`زُيِّنَ لِلنَّاسِ حُبُّ الشَّهَوَاتِ مِنَ النِّسَاءِ وَالْبَنِينَ وَالْقَنَاطِيرِ الْمُقَنْطَرَةِ مِنَ الذَّهَبِ وَالْفِضَّةِ وَالْخَيْلِ الْمُسَوَّمَةِ وَالْأَنْعَامِ وَالْحَرْثِ ۗ ذَٰلِكَ مَتَاعُ الْحَيَاةِ الدُّنْيَا ۖ وَاللَّهُ عِنْدَهُ حُسْنُ الْمَآبِ`,`Beautified for people is the love of that which they desire - of women and sons, heaped-up sums of gold and silver, fine branded horses, and cattle and tilled land. That is the enjoyment of worldly life, but Allah has with Him the best return.`],
+[15,0,[`ethics`],`قُلْ أَؤُنَبِّئُكُمْ بِخَيْرٍ مِنْ ذَٰلِكُمْ ۚ لِلَّذِينَ اتَّقَوْا عِنْدَ رَبِّهِمْ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا وَأَزْوَاجٌ مُطَهَّرَةٌ وَرِضْوَانٌ مِنَ اللَّهِ ۗ وَاللَّهُ بَصِيرٌ بِالْعِبَادِ`,`Say, "Shall I inform you of [something] better than that? For those who fear Allah will be gardens in the presence of their Lord beneath which rivers flow, wherein they abide eternally, and purified spouses and approval from Allah. And Allah is Seeing of [His] servants -`],
+[16,0,[`supplication`],`الَّذِينَ يَقُولُونَ رَبَّنَا إِنَّنَا آمَنَّا فَاغْفِرْ لَنَا ذُنُوبَنَا وَقِنَا عَذَابَ النَّارِ`,`Those who say, "Our Lord, indeed we have believed, so forgive us our sins and protect us from the punishment of the Fire,"`],
+[17,0,[`ethics`],`الصَّابِرِينَ وَالصَّادِقِينَ وَالْقَانِتِينَ وَالْمُنْفِقِينَ وَالْمُسْتَغْفِرِينَ بِالْأَسْحَارِ`,`The patient, the true, the obedient, those who spend [in the way of Allah], and those who seek forgiveness before dawn.`],
+[18,0,[`scripture`],`شَهِدَ اللَّهُ أَنَّهُ لَا إِلَٰهَ إِلَّا هُوَ وَالْمَلَائِكَةُ وَأُولُو الْعِلْمِ قَائِمًا بِالْقِسْطِ ۚ لَا إِلَٰهَ إِلَّا هُوَ الْعَزِيزُ الْحَكِيمُ`,`Allah witnesses that there is no deity except Him, and [so do] the angels and those of knowledge [that He is] maintaining [creation] in justice. There is no deity except Him, the Exalted in Might, the Wise.`],
+[19,0,[`scripture`],`إِنَّ الدِّينَ عِنْدَ اللَّهِ الْإِسْلَامُ ۗ وَمَا اخْتَلَفَ الَّذِينَ أُوتُوا الْكِتَابَ إِلَّا مِنْ بَعْدِ مَا جَاءَهُمُ الْعِلْمُ بَغْيًا بَيْنَهُمْ ۗ وَمَنْ يَكْفُرْ بِآيَاتِ اللَّهِ فَإِنَّ اللَّهَ سَرِيعُ الْحِسَابِ`,`Indeed, the religion in the sight of Allah is Islam. And those who were given the Scripture did not differ except after knowledge had come to them - out of jealous animosity between themselves. And whoever disbelieves in the verses of Allah, then indeed, Allah is swift in [taking] account.`],
+[20,0,[`scripture`],`فَإِنْ حَاجُّوكَ فَقُلْ أَسْلَمْتُ وَجْهِيَ لِلَّهِ وَمَنِ اتَّبَعَنِ ۗ وَقُلْ لِلَّذِينَ أُوتُوا الْكِتَابَ وَالْأُمِّيِّينَ أَأَسْلَمْتُمْ ۚ فَإِنْ أَسْلَمُوا فَقَدِ اهْتَدَوْا ۖ وَإِنْ تَوَلَّوْا فَإِنَّمَا عَلَيْكَ الْبَلَاغُ ۗ وَاللَّهُ بَصِيرٌ بِالْعِبَادِ`,`So if they argue with you, say, "I have submitted myself to Allah [in Islam], and [so have] those who follow me." And say to those who were given the Scripture and [to] the unlearned, "Have you submitted yourselves?" And if they submit [in Islam], they are rightly guided; but if they turn away - then upon you is only the [duty of] notification. And Allah is Seeing of [His] servants.`],
+[21,0,[`prophets`],`إِنَّ الَّذِينَ يَكْفُرُونَ بِآيَاتِ اللَّهِ وَيَقْتُلُونَ النَّبِيِّينَ بِغَيْرِ حَقٍّ وَيَقْتُلُونَ الَّذِينَ يَأْمُرُونَ بِالْقِسْطِ مِنَ النَّاسِ فَبَشِّرْهُمْ بِعَذَابٍ أَلِيمٍ`,`Those who disbelieve in the signs of Allah and kill the prophets without right and kill those who order justice from among the people - give them tidings of a painful punishment.`],
+[22,0,[`ethics`],`أُولَٰئِكَ الَّذِينَ حَبِطَتْ أَعْمَالُهُمْ فِي الدُّنْيَا وَالْآخِرَةِ وَمَا لَهُمْ مِنْ نَاصِرِينَ`,`They are the ones whose deeds have become worthless in this world and the Hereafter, and for them there will be no helpers.`],
+[23,0,[`scripture`],`أَلَمْ تَرَ إِلَى الَّذِينَ أُوتُوا نَصِيبًا مِنَ الْكِتَابِ يُدْعَوْنَ إِلَىٰ كِتَابِ اللَّهِ لِيَحْكُمَ بَيْنَهُمْ ثُمَّ يَتَوَلَّىٰ فَرِيقٌ مِنْهُمْ وَهُمْ مُعْرِضُونَ`,`Do you not consider, [O Muhammad], those who were given a portion of the Scripture? They are invited to the Scripture of Allah that it should arbitrate between them; then a party of them turns away, and they are refusing.`],
+[24,0,[`scripture`],`ذَٰلِكَ بِأَنَّهُمْ قَالُوا لَنْ تَمَسَّنَا النَّارُ إِلَّا أَيَّامًا مَعْدُودَاتٍ ۖ وَغَرَّهُمْ فِي دِينِهِمْ مَا كَانُوا يَفْتَرُونَ`,`That is because they say, "Never will the Fire touch us except for [a few] numbered days," and [because] they were deluded in their religion by what they were inventing.`],
+[25,0,[`ethics`],`فَكَيْفَ إِذَا جَمَعْنَاهُمْ لِيَوْمٍ لَا رَيْبَ فِيهِ وَوُفِّيَتْ كُلُّ نَفْسٍ مَا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ`,`So how will it be when We assemble them for a Day about which there is no doubt? And each soul will be compensated [in full for] what it earned, and they will not be wronged.`],
+[26,0,[`supplication`],`قُلِ اللَّهُمَّ مَالِكَ الْمُلْكِ تُؤْتِي الْمُلْكَ مَنْ تَشَاءُ وَتَنْزِعُ الْمُلْكَ مِمَّنْ تَشَاءُ وَتُعِزُّ مَنْ تَشَاءُ وَتُذِلُّ مَنْ تَشَاءُ ۖ بِيَدِكَ الْخَيْرُ ۖ إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,`Say, "O Allah, Owner of Sovereignty, You give sovereignty to whom You will and You take sovereignty away from whom You will. You honor whom You will and You humble whom You will. In Your hand is [all] good. Indeed, You are over all things competent.`],
+[27,0,[`supplication`],`تُولِجُ اللَّيْلَ فِي النَّهَارِ وَتُولِجُ النَّهَارَ فِي اللَّيْلِ ۖ وَتُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَتُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ ۖ وَتَرْزُقُ مَنْ تَشَاءُ بِغَيْرِ حِسَابٍ`,`You cause the night to enter the day, and You cause the day to enter the night; and You bring the living out of the dead, and You bring the dead out of the living. And You give provision to whom You will without account."`],
+[28,0,[`ethics`],`لَا يَتَّخِذِ الْمُؤْمِنُونَ الْكَافِرِينَ أَوْلِيَاءَ مِنْ دُونِ الْمُؤْمِنِينَ ۖ وَمَنْ يَفْعَلْ ذَٰلِكَ فَلَيْسَ مِنَ اللَّهِ فِي شَيْءٍ إِلَّا أَنْ تَتَّقُوا مِنْهُمْ تُقَاةً ۗ وَيُحَذِّرُكُمُ اللَّهُ نَفْسَهُ ۗ وَإِلَى اللَّهِ الْمَصِيرُ`,`Let not believers take disbelievers as allies rather than believers. And whoever [of you] does that has nothing with Allah, except when taking precaution against them in prudence. And Allah warns you of Himself, and to Allah is the [final] destination.`],
+[29,0,[`ethics`],`قُلْ إِنْ تُخْفُوا مَا فِي صُدُورِكُمْ أَوْ تُبْدُوهُ يَعْلَمْهُ اللَّهُ ۗ وَيَعْلَمُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,`Say, "Whether you conceal what is in your breasts or reveal it, Allah knows it. And He knows that which is in the heavens and that which is on the earth. And Allah is over all things competent.`],
+[30,0,[`ethics`],`يَوْمَ تَجِدُ كُلُّ نَفْسٍ مَا عَمِلَتْ مِنْ خَيْرٍ مُحْضَرًا وَمَا عَمِلَتْ مِنْ سُوءٍ تَوَدُّ لَوْ أَنَّ بَيْنَهَا وَبَيْنَهُ أَمَدًا بَعِيدًا ۗ وَيُحَذِّرُكُمُ اللَّهُ نَفْسَهُ ۗ وَاللَّهُ رَءُوفٌ بِالْعِبَادِ`,`The Day every soul will find what it has done of good present [before it] and what it has done of evil, it will wish that between itself and that [evil] was a great distance. And Allah warns you of Himself, and Allah is Kind to [His] servants."`],
+[31,0,[`ethics`],`قُلْ إِنْ كُنْتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي يُحْبِبْكُمُ اللَّهُ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ ۗ وَاللَّهُ غَفُورٌ رَحِيمٌ`,`Say, [O Muhammad], "If you should love Allah, then follow me, [so] Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful."`],
+[32,0,[`ethics`],`قُلْ أَطِيعُوا اللَّهَ وَالرَّسُولَ ۖ فَإِنْ تَوَلَّوْا فَإِنَّ اللَّهَ لَا يُحِبُّ الْكَافِرِينَ`,`Say, "Obey Allah and the Messenger." But if they turn away - then indeed, Allah does not like the disbelievers.`],
+[33,1,[`prophets`],`إِنَّ اللَّهَ اصْطَفَىٰ آدَمَ وَنُوحًا وَآلَ إِبْرَاهِيمَ وَآلَ عِمْرَانَ عَلَى الْعَالَمِينَ`,`Indeed, Allah chose Adam and Noah and the family of Abraham and the family of 'Imran over the worlds`],
+[34,1,[`prophets`],`ذُرِّيَّةً بَعْضُهَا مِنْ بَعْضٍ ۗ وَاللَّهُ سَمِيعٌ عَلِيمٌ`,`Descendants, some of them from others. And Allah is Hearing and Knowing.`],
+[35,1,[`prophets`,`supplication`],`إِذْ قَالَتِ امْرَأَتُ عِمْرَانَ رَبِّ إِنِّي نَذَرْتُ لَكَ مَا فِي بَطْنِي مُحَرَّرًا فَتَقَبَّلْ مِنِّي ۖ إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ`,`[Mention, O Muhammad], when the wife of 'Imran said, "My Lord, indeed I have pledged to You what is in my womb, consecrated [for Your service], so accept this from me. Indeed, You are the Hearing, the Knowing."`],
+[36,1,[`prophets`],`فَلَمَّا وَضَعَتْهَا قَالَتْ رَبِّ إِنِّي وَضَعْتُهَا أُنْثَىٰ وَاللَّهُ أَعْلَمُ بِمَا وَضَعَتْ وَلَيْسَ الذَّكَرُ كَالْأُنْثَىٰ ۖ وَإِنِّي سَمَّيْتُهَا مَرْيَمَ وَإِنِّي أُعِيذُهَا بِكَ وَذُرِّيَّتَهَا مِنَ الشَّيْطَانِ الرَّجِيمِ`,`But when she delivered her, she said, "My Lord, I have delivered a female." And Allah was most knowing of what she delivered, "And the male is not like the female. And I have named her Mary, and I seek refuge for her in You and [for] her descendants from Satan, the expelled [from the mercy of Allah]."`],
+[37,1,[`prophets`],`فَتَقَبَّلَهَا رَبُّهَا بِقَبُولٍ حَسَنٍ وَأَنْبَتَهَا نَبَاتًا حَسَنًا وَكَفَّلَهَا زَكَرِيَّا ۖ كُلَّمَا دَخَلَ عَلَيْهَا زَكَرِيَّا الْمِحْرَابَ وَجَدَ عِنْدَهَا رِزْقًا ۖ قَالَ يَا مَرْيَمُ أَنَّىٰ لَكِ هَٰذَا ۖ قَالَتْ هُوَ مِنْ عِنْدِ اللَّهِ ۖ إِنَّ اللَّهَ يَرْزُقُ مَنْ يَشَاءُ بِغَيْرِ حِسَابٍ`,`So her Lord accepted her with good acceptance and caused her to grow in a good manner and put her in the care of Zechariah. Every time Zechariah entered upon her in the prayer chamber, he found with her provision. He said, "O Mary, from where is this [coming] to you?" She said, "It is from Allah. Indeed, Allah provides for whom He wills without account."`],
+[38,1,[`prophets`,`supplication`],`هُنَالِكَ دَعَا زَكَرِيَّا رَبَّهُ ۖ قَالَ رَبِّ هَبْ لِي مِنْ لَدُنْكَ ذُرِّيَّةً طَيِّبَةً ۖ إِنَّكَ سَمِيعُ الدُّعَاءِ`,`At that, Zechariah called upon his Lord, saying, "My Lord, grant me from Yourself a good offspring. Indeed, You are the Hearer of supplication."`],
+[39,1,[`prophets`],`فَنَادَتْهُ الْمَلَائِكَةُ وَهُوَ قَائِمٌ يُصَلِّي فِي الْمِحْرَابِ أَنَّ اللَّهَ يُبَشِّرُكَ بِيَحْيَىٰ مُصَدِّقًا بِكَلِمَةٍ مِنَ اللَّهِ وَسَيِّدًا وَحَصُورًا وَنَبِيًّا مِنَ الصَّالِحِينَ`,`So the angels called him while he was standing in prayer in the chamber, "Indeed, Allah gives you good tidings of John, confirming a word from Allah and [who will be] honorable, abstaining [from women], and a prophet from among the righteous."`],
+[40,1,[`prophets`],`قَالَ رَبِّ أَنَّىٰ يَكُونُ لِي غُلَامٌ وَقَدْ بَلَغَنِيَ الْكِبَرُ وَامْرَأَتِي عَاقِرٌ ۖ قَالَ كَذَٰلِكَ اللَّهُ يَفْعَلُ مَا يَشَاءُ`,`He said, "My Lord, how will I have a boy when I have reached old age and my wife is barren?" The angel said, "Such is Allah; He does what He wills."`],
+[41,1,[`prophets`],`قَالَ رَبِّ اجْعَلْ لِي آيَةً ۖ قَالَ آيَتُكَ أَلَّا تُكَلِّمَ النَّاسَ ثَلَاثَةَ أَيَّامٍ إِلَّا رَمْزًا ۗ وَاذْكُرْ رَبَّكَ كَثِيرًا وَسَبِّحْ بِالْعَشِيِّ وَالْإِبْكَارِ`,`He said, "My Lord, make for me a sign." He Said, "Your sign is that you will not [be able to] speak to the people for three days except by gesture. And remember your Lord much and exalt [Him with praise] in the evening and the morning."`],
+[42,1,[`prophets`],`وَإِذْ قَالَتِ الْمَلَائِكَةُ يَا مَرْيَمُ إِنَّ اللَّهَ اصْطَفَاكِ وَطَهَّرَكِ وَاصْطَفَاكِ عَلَىٰ نِسَاءِ الْعَالَمِينَ`,`And [mention] when the angels said, "O Mary, indeed Allah has chosen you and purified you and chosen you above the women of the worlds.`],
+[43,1,[`prophets`],`يَا مَرْيَمُ اقْنُتِي لِرَبِّكِ وَاسْجُدِي وَارْكَعِي مَعَ الرَّاكِعِينَ`,`O Mary, be devoutly obedient to your Lord and prostrate and bow with those who bow [in prayer]."`],
+[44,1,[`prophets`,`scripture`],`ذَٰلِكَ مِنْ أَنْبَاءِ الْغَيْبِ نُوحِيهِ إِلَيْكَ ۚ وَمَا كُنْتَ لَدَيْهِمْ إِذْ يُلْقُونَ أَقْلَامَهُمْ أَيُّهُمْ يَكْفُلُ مَرْيَمَ وَمَا كُنْتَ لَدَيْهِمْ إِذْ يَخْتَصِمُونَ`,`That is from the news of the unseen which We reveal to you, [O Muhammad]. And you were not with them when they cast their pens as to which of them should be responsible for Mary. Nor were you with them when they disputed.`],
+[45,1,[`prophets`],`إِذْ قَالَتِ الْمَلَائِكَةُ يَا مَرْيَمُ إِنَّ اللَّهَ يُبَشِّرُكِ بِكَلِمَةٍ مِنْهُ اسْمُهُ الْمَسِيحُ عِيسَى ابْنُ مَرْيَمَ وَجِيهًا فِي الدُّنْيَا وَالْآخِرَةِ وَمِنَ الْمُقَرَّبِينَ`,`[And mention] when the angels said, "O Mary, indeed Allah gives you good tidings of a word from Him, whose name will be the Messiah, Jesus, the son of Mary - distinguished in this world and the Hereafter and among those brought near [to Allah].`],
+[46,1,[`prophets`],`وَيُكَلِّمُ النَّاسَ فِي الْمَهْدِ وَكَهْلًا وَمِنَ الصَّالِحِينَ`,`He will speak to the people in the cradle and in maturity and will be of the righteous."`],
+[47,1,[`prophets`],`قَالَتْ رَبِّ أَنَّىٰ يَكُونُ لِي وَلَدٌ وَلَمْ يَمْسَسْنِي بَشَرٌ ۖ قَالَ كَذَٰلِكِ اللَّهُ يَخْلُقُ مَا يَشَاءُ ۚ إِذَا قَضَىٰ أَمْرًا فَإِنَّمَا يَقُولُ لَهُ كُنْ فَيَكُونُ`,`She said, "My Lord, how will I have a child when no man has touched me?" [The angel] said, "Such is Allah; He creates what He wills. When He decrees a matter, He only says to it, 'Be,' and it is.`],
+[48,1,[`prophets`],`وَيُعَلِّمُهُ الْكِتَابَ وَالْحِكْمَةَ وَالتَّوْرَاةَ وَالْإِنْجِيلَ`,`And He will teach him writing and wisdom and the Torah and the Gospel`],
+[49,1,[`prophets`],`وَرَسُولًا إِلَىٰ بَنِي إِسْرَائِيلَ أَنِّي قَدْ جِئْتُكُمْ بِآيَةٍ مِنْ رَبِّكُمْ ۖ أَنِّي أَخْلُقُ لَكُمْ مِنَ الطِّينِ كَهَيْئَةِ الطَّيْرِ فَأَنْفُخُ فِيهِ فَيَكُونُ طَيْرًا بِإِذْنِ اللَّهِ ۖ وَأُبْرِئُ الْأَكْمَهَ وَالْأَبْرَصَ وَأُحْيِي الْمَوْتَىٰ بِإِذْنِ اللَّهِ ۖ وَأُنَبِّئُكُمْ بِمَا تَأْكُلُونَ وَمَا تَدَّخِرُونَ فِي بُيُوتِكُمْ ۚ إِنَّ فِي ذَٰلِكَ لَآيَةً لَكُمْ إِنْ كُنْتُمْ مُؤْمِنِينَ`,`And [make him] a messenger to the Children of Israel, [who will say], 'Indeed I have come to you with a sign from your Lord in that I design for you from clay [that which is] like the form of a bird, then I breathe into it and it becomes a bird by permission of Allah. And I cure the blind and the leper, and I give life to the dead - by permission of Allah. And I inform you of what you eat and what you store in your houses. Indeed in that is a sign for you, if you are believers.`],
+[50,1,[`prophets`],`وَمُصَدِّقًا لِمَا بَيْنَ يَدَيَّ مِنَ التَّوْرَاةِ وَلِأُحِلَّ لَكُمْ بَعْضَ الَّذِي حُرِّمَ عَلَيْكُمْ ۚ وَجِئْتُكُمْ بِآيَةٍ مِنْ رَبِّكُمْ فَاتَّقُوا اللَّهَ وَأَطِيعُونِ`,`And [I have come] confirming what was before me of the Torah and to make lawful for you some of what was forbidden to you. And I have come to you with a sign from your Lord, so fear Allah and obey me.`],
+[51,1,[`prophets`],`إِنَّ اللَّهَ رَبِّي وَرَبُّكُمْ فَاعْبُدُوهُ ۗ هَٰذَا صِرَاطٌ مُسْتَقِيمٌ`,`Indeed, Allah is my Lord and your Lord, so worship Him. That is the straight path."`],
+[52,1,[`prophets`],`فَلَمَّا أَحَسَّ عِيسَىٰ مِنْهُمُ الْكُفْرَ قَالَ مَنْ أَنْصَارِي إِلَى اللَّهِ ۖ قَالَ الْحَوَارِيُّونَ نَحْنُ أَنْصَارُ اللَّهِ آمَنَّا بِاللَّهِ وَاشْهَدْ بِأَنَّا مُسْلِمُونَ`,`But when Jesus felt [persistence in] disbelief from them, he said, "Who are my supporters for [the cause of] Allah?" The disciples said, "We are supporters for Allah. We have believed in Allah and testify that we are Muslims [submitting to Him].`],
+[53,1,[`prophets`,`supplication`],`رَبَّنَا آمَنَّا بِمَا أَنْزَلْتَ وَاتَّبَعْنَا الرَّسُولَ فَاكْتُبْنَا مَعَ الشَّاهِدِينَ`,`Our Lord, we have believed in what You revealed and have followed the messenger Jesus, so register us among the witnesses [to truth]."`],
+[54,1,[`prophets`],`وَمَكَرُوا وَمَكَرَ اللَّهُ ۖ وَاللَّهُ خَيْرُ الْمَاكِرِينَ`,`And the disbelievers planned, but Allah planned. And Allah is the best of planners.`],
+[55,1,[`prophets`],`إِذْ قَالَ اللَّهُ يَا عِيسَىٰ إِنِّي مُتَوَفِّيكَ وَرَافِعُكَ إِلَيَّ وَمُطَهِّرُكَ مِنَ الَّذِينَ كَفَرُوا وَجَاعِلُ الَّذِينَ اتَّبَعُوكَ فَوْقَ الَّذِينَ كَفَرُوا إِلَىٰ يَوْمِ الْقِيَامَةِ ۖ ثُمَّ إِلَيَّ مَرْجِعُكُمْ فَأَحْكُمُ بَيْنَكُمْ فِيمَا كُنْتُمْ فِيهِ تَخْتَلِفُونَ`,`[Mention] when Allah said, "O Jesus, indeed I will take you and raise you to Myself and purify you from those who disbelieve and make those who follow you [in submission to Allah alone] superior to those who disbelieve until the Day of Resurrection. Then to Me is your return, and I will judge between you concerning that in which you used to differ.`],
+[56,1,[`prophets`],`فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ عَذَابًا شَدِيدًا فِي الدُّنْيَا وَالْآخِرَةِ وَمَا لَهُمْ مِنْ نَاصِرِينَ`,`And as for those who disbelieved, I will punish them with a severe punishment in this world and the Hereafter, and they will have no helpers."`],
+[57,1,[`ethics`],`وَأَمَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَيُوَفِّيهِمْ أُجُورَهُمْ ۗ وَاللَّهُ لَا يُحِبُّ الظَّالِمِينَ`,`But as for those who believed and did righteous deeds, He will give them in full their rewards, and Allah does not like the wrongdoers.`],
+[58,1,[`scripture`],`ذَٰلِكَ نَتْلُوهُ عَلَيْكَ مِنَ الْآيَاتِ وَالذِّكْرِ الْحَكِيمِ`,`This is what We recite to you, [O Muhammad], of [Our] verses and the precise [and wise] message.`],
+[59,1,[`prophets`],`إِنَّ مَثَلَ عِيسَىٰ عِنْدَ اللَّهِ كَمَثَلِ آدَمَ ۖ خَلَقَهُ مِنْ تُرَابٍ ثُمَّ قَالَ لَهُ كُنْ فَيَكُونُ`,`Indeed, the example of Jesus to Allah is like that of Adam. He created Him from dust; then He said to him, "Be," and he was.`],
+[60,1,[`scripture`],`الْحَقُّ مِنْ رَبِّكَ فَلَا تَكُنْ مِنَ الْمُمْتَرِينَ`,`The truth is from your Lord, so do not be among the doubters.`],
+[61,1,[`prophets`],`فَمَنْ حَاجَّكَ فِيهِ مِنْ بَعْدِ مَا جَاءَكَ مِنَ الْعِلْمِ فَقُلْ تَعَالَوْا نَدْعُ أَبْنَاءَنَا وَأَبْنَاءَكُمْ وَنِسَاءَنَا وَنِسَاءَكُمْ وَأَنْفُسَنَا وَأَنْفُسَكُمْ ثُمَّ نَبْتَهِلْ فَنَجْعَلْ لَعْنَتَ اللَّهِ عَلَى الْكَاذِبِينَ`,`Then whoever argues with you about it after [this] knowledge has come to you - say, "Come, let us call our sons and your sons, our women and your women, ourselves and yourselves, then supplicate earnestly [together] and invoke the curse of Allah upon the liars [among us]."`],
+[62,1,[`scripture`],`إِنَّ هَٰذَا لَهُوَ الْقَصَصُ الْحَقُّ ۚ وَمَا مِنْ إِلَٰهٍ إِلَّا اللَّهُ ۚ وَإِنَّ اللَّهَ لَهُوَ الْعَزِيزُ الْحَكِيمُ`,`Indeed, this is the true narration. And there is no deity except Allah. And indeed, Allah is the Exalted in Might, the Wise.`],
+[63,1,[`scripture`],`فَإِنْ تَوَلَّوْا فَإِنَّ اللَّهَ عَلِيمٌ بِالْمُفْسِدِينَ`,`But if they turn away, then indeed - Allah is Knowing of the corrupters.`],
+[64,2,[`scripture`],`قُلْ يَا أَهْلَ الْكِتَابِ تَعَالَوْا إِلَىٰ كَلِمَةٍ سَوَاءٍ بَيْنَنَا وَبَيْنَكُمْ أَلَّا نَعْبُدَ إِلَّا اللَّهَ وَلَا نُشْرِكَ بِهِ شَيْئًا وَلَا يَتَّخِذَ بَعْضُنَا بَعْضًا أَرْبَابًا مِنْ دُونِ اللَّهِ ۚ فَإِنْ تَوَلَّوْا فَقُولُوا اشْهَدُوا بِأَنَّا مُسْلِمُونَ`,`Say, "O People of the Scripture, come to a word that is equitable between us and you - that we will not worship except Allah and not associate anything with Him and not take one another as lords instead of Allah." But if they turn away, then say, "Bear witness that we are Muslims [submitting to Him]."`],
+[65,2,[`prophets`,`scripture`],`يَا أَهْلَ الْكِتَابِ لِمَ تُحَاجُّونَ فِي إِبْرَاهِيمَ وَمَا أُنْزِلَتِ التَّوْرَاةُ وَالْإِنْجِيلُ إِلَّا مِنْ بَعْدِهِ ۚ أَفَلَا تَعْقِلُونَ`,`O People of the Scripture, why do you argue about Abraham while the Torah and the Gospel were not revealed until after him? Then will you not reason?`],
+[66,2,[`scripture`],`هَا أَنْتُمْ هَٰؤُلَاءِ حَاجَجْتُمْ فِيمَا لَكُمْ بِهِ عِلْمٌ فَلِمَ تُحَاجُّونَ فِيمَا لَيْسَ لَكُمْ بِهِ عِلْمٌ ۚ وَاللَّهُ يَعْلَمُ وَأَنْتُمْ لَا تَعْلَمُونَ`,`Here you are those who have argued about that of which you have [some] knowledge, but why do you argue about that of which you have no knowledge? And Allah knows, while you know not.`],
+[67,2,[`prophets`],`مَا كَانَ إِبْرَاهِيمُ يَهُودِيًّا وَلَا نَصْرَانِيًّا وَلَٰكِنْ كَانَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ`,`Abraham was neither a Jew nor a Christian, but he was one inclining toward truth, a Muslim [submitting to Allah]. And he was not of the polytheists.`],
+[68,2,[`prophets`],`إِنَّ أَوْلَى النَّاسِ بِإِبْرَاهِيمَ لَلَّذِينَ اتَّبَعُوهُ وَهَٰذَا النَّبِيُّ وَالَّذِينَ آمَنُوا ۗ وَاللَّهُ وَلِيُّ الْمُؤْمِنِينَ`,`Indeed, the most worthy of Abraham among the people are those who followed him [in submission to Allah] and this prophet, and those who believe [in his message]. And Allah is the ally of the believers.`],
+[69,2,[`scripture`],`وَدَّتْ طَائِفَةٌ مِنْ أَهْلِ الْكِتَابِ لَوْ يُضِلُّونَكُمْ وَمَا يُضِلُّونَ إِلَّا أَنْفُسَهُمْ وَمَا يَشْعُرُونَ`,`A faction of the people of the Scripture wish they could mislead you. But they do not mislead except themselves, and they perceive [it] not.`],
+[70,2,[`scripture`],`يَا أَهْلَ الْكِتَابِ لِمَ تَكْفُرُونَ بِآيَاتِ اللَّهِ وَأَنْتُمْ تَشْهَدُونَ`,`O People of the Scripture, why do you disbelieve in the verses of Allah while you witness [to their truth]?`],
+[71,2,[`scripture`],`يَا أَهْلَ الْكِتَابِ لِمَ تَلْبِسُونَ الْحَقَّ بِالْبَاطِلِ وَتَكْتُمُونَ الْحَقَّ وَأَنْتُمْ تَعْلَمُونَ`,`O People of the Scripture, why do you confuse the truth with falsehood and conceal the truth while you know [it]?`],
+[72,2,[`scripture`],`وَقَالَتْ طَائِفَةٌ مِنْ أَهْلِ الْكِتَابِ آمِنُوا بِالَّذِي أُنْزِلَ عَلَى الَّذِينَ آمَنُوا وَجْهَ النَّهَارِ وَاكْفُرُوا آخِرَهُ لَعَلَّهُمْ يَرْجِعُونَ`,`And a faction of the People of the Scripture say [to each other], "Believe in that which was revealed to the believers at the beginning of the day and reject it at its end that perhaps they will abandon their religion,`],
+[73,2,[`scripture`],`وَلَا تُؤْمِنُوا إِلَّا لِمَنْ تَبِعَ دِينَكُمْ قُلْ إِنَّ الْهُدَىٰ هُدَى اللَّهِ أَنْ يُؤْتَىٰ أَحَدٌ مِثْلَ مَا أُوتِيتُمْ أَوْ يُحَاجُّوكُمْ عِنْدَ رَبِّكُمْ ۗ قُلْ إِنَّ الْفَضْلَ بِيَدِ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ ۗ وَاللَّهُ وَاسِعٌ عَلِيمٌ`,`And do not trust except those who follow your religion." Say, "Indeed, the [true] guidance is the guidance of Allah. [Do you fear] lest someone be given [knowledge] like you were given or that they would [thereby] argue with you before your Lord?" Say, "Indeed, [all] bounty is in the hand of Allah - He grants it to whom He wills. And Allah is all-Encompassing and Wise."`],
+[74,2,[`scripture`],`يَخْتَصُّ بِرَحْمَتِهِ مَنْ يَشَاءُ ۗ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ`,`He selects for His mercy whom He wills. And Allah is the possessor of great bounty.`],
+[75,2,[`ethics`],`وَمِنْ أَهْلِ الْكِتَابِ مَنْ إِنْ تَأْمَنْهُ بِقِنْطَارٍ يُؤَدِّهِ إِلَيْكَ وَمِنْهُمْ مَنْ إِنْ تَأْمَنْهُ بِدِينَارٍ لَا يُؤَدِّهِ إِلَيْكَ إِلَّا مَا دُمْتَ عَلَيْهِ قَائِمًا ۗ ذَٰلِكَ بِأَنَّهُمْ قَالُوا لَيْسَ عَلَيْنَا فِي الْأُمِّيِّينَ سَبِيلٌ وَيَقُولُونَ عَلَى اللَّهِ الْكَذِبَ وَهُمْ يَعْلَمُونَ`,`And among the People of the Scripture is he who, if you entrust him with a great amount [of wealth], he will return it to you. And among them is he who, if you entrust him with a [single] silver coin, he will not return it to you unless you are constantly standing over him [demanding it]. That is because they say, "There is no blame upon us concerning the unlearned." And they speak untruth about Allah while they know [it].`],
+[76,2,[`ethics`],`بَلَىٰ مَنْ أَوْفَىٰ بِعَهْدِهِ وَاتَّقَىٰ فَإِنَّ اللَّهَ يُحِبُّ الْمُتَّقِينَ`,`But yes, whoever fulfills his commitment and fears Allah - then indeed, Allah loves those who fear Him.`],
+[77,2,[`ethics`],`إِنَّ الَّذِينَ يَشْتَرُونَ بِعَهْدِ اللَّهِ وَأَيْمَانِهِمْ ثَمَنًا قَلِيلًا أُولَٰئِكَ لَا خَلَاقَ لَهُمْ فِي الْآخِرَةِ وَلَا يُكَلِّمُهُمُ اللَّهُ وَلَا يَنْظُرُ إِلَيْهِمْ يَوْمَ الْقِيَامَةِ وَلَا يُزَكِّيهِمْ وَلَهُمْ عَذَابٌ أَلِيمٌ`,`Indeed, those who exchange the covenant of Allah and their [own] oaths for a small price will have no share in the Hereafter, and Allah will not speak to them or look at them on the Day of Resurrection, nor will He purify them; and they will have a painful punishment.`],
+[78,2,[`scripture`],`وَإِنَّ مِنْهُمْ لَفَرِيقًا يَلْوُونَ أَلْسِنَتَهُمْ بِالْكِتَابِ لِتَحْسَبُوهُ مِنَ الْكِتَابِ وَمَا هُوَ مِنَ الْكِتَابِ وَيَقُولُونَ هُوَ مِنْ عِنْدِ اللَّهِ وَمَا هُوَ مِنْ عِنْدِ اللَّهِ وَيَقُولُونَ عَلَى اللَّهِ الْكَذِبَ وَهُمْ يَعْلَمُونَ`,`And indeed, there is among them a party who alter the Scripture with their tongues so you may think it is from the Scripture, but it is not from the Scripture. And they say, "This is from Allah," but it is not from Allah. And they speak untruth about Allah while they know.`],
+[79,2,[`prophets`],`مَا كَانَ لِبَشَرٍ أَنْ يُؤْتِيَهُ اللَّهُ الْكِتَابَ وَالْحُكْمَ وَالنُّبُوَّةَ ثُمَّ يَقُولَ لِلنَّاسِ كُونُوا عِبَادًا لِي مِنْ دُونِ اللَّهِ وَلَٰكِنْ كُونُوا رَبَّانِيِّينَ بِمَا كُنْتُمْ تُعَلِّمُونَ الْكِتَابَ وَبِمَا كُنْتُمْ تَدْرُسُونَ`,`It is not for a human [prophet] that Allah should give him the Scripture and authority and prophethood and then he would say to the people, "Be servants to me rather than Allah," but [instead, he would say], "Be pious scholars of the Lord because of what you have taught of the Scripture and because of what you have studied."`],
+[80,2,[`prophets`],`وَلَا يَأْمُرَكُمْ أَنْ تَتَّخِذُوا الْمَلَائِكَةَ وَالنَّبِيِّينَ أَرْبَابًا ۗ أَيَأْمُرُكُمْ بِالْكُفْرِ بَعْدَ إِذْ أَنْتُمْ مُسْلِمُونَ`,`Nor could he order you to take the angels and prophets as lords. Would he order you to disbelief after you had been Muslims?`],
+[81,2,[`prophets`],`وَإِذْ أَخَذَ اللَّهُ مِيثَاقَ النَّبِيِّينَ لَمَا آتَيْتُكُمْ مِنْ كِتَابٍ وَحِكْمَةٍ ثُمَّ جَاءَكُمْ رَسُولٌ مُصَدِّقٌ لِمَا مَعَكُمْ لَتُؤْمِنُنَّ بِهِ وَلَتَنْصُرُنَّهُ ۚ قَالَ أَأَقْرَرْتُمْ وَأَخَذْتُمْ عَلَىٰ ذَٰلِكُمْ إِصْرِي ۖ قَالُوا أَقْرَرْنَا ۚ قَالَ فَاشْهَدُوا وَأَنَا مَعَكُمْ مِنَ الشَّاهِدِينَ`,`And [recall, O People of the Scripture], when Allah took the covenant of the prophets, [saying], "Whatever I give you of the Scripture and wisdom and then there comes to you a messenger confirming what is with you, you [must] believe in him and support him." [Allah] said, "Have you acknowledged and taken upon that My commitment?" They said, "We have acknowledged it." He said, "Then bear witness, and I am with you among the witnesses."`],
+[82,2,[`prophets`],`فَمَنْ تَوَلَّىٰ بَعْدَ ذَٰلِكَ فَأُولَٰئِكَ هُمُ الْفَاسِقُونَ`,`And whoever turned away after that they were the defiantly disobedient.`],
+[83,2,[`scripture`],`أَفَغَيْرَ دِينِ اللَّهِ يَبْغُونَ وَلَهُ أَسْلَمَ مَنْ فِي السَّمَاوَاتِ وَالْأَرْضِ طَوْعًا وَكَرْهًا وَإِلَيْهِ يُرْجَعُونَ`,`So is it other than the religion of Allah they desire, while to Him have submitted [all] those within the heavens and earth, willingly or by compulsion, and to Him they will be returned?`],
+[84,2,[`prophets`],`قُلْ آمَنَّا بِاللَّهِ وَمَا أُنْزِلَ عَلَيْنَا وَمَا أُنْزِلَ عَلَىٰ إِبْرَاهِيمَ وَإِسْمَاعِيلَ وَإِسْحَاقَ وَيَعْقُوبَ وَالْأَسْبَاطِ وَمَا أُوتِيَ مُوسَىٰ وَعِيسَىٰ وَالنَّبِيُّونَ مِنْ رَبِّهِمْ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْهُمْ وَنَحْنُ لَهُ مُسْلِمُونَ`,`Say, "We have believed in Allah and in what was revealed to us and what was revealed to Abraham, Ishmael, Isaac, Jacob, and the Descendants, and in what was given to Moses and Jesus and to the prophets from their Lord. We make no distinction between any of them, and we are Muslims [submitting] to Him."`],
+[85,2,[`scripture`],`وَمَنْ يَبْتَغِ غَيْرَ الْإِسْلَامِ دِينًا فَلَنْ يُقْبَلَ مِنْهُ وَهُوَ فِي الْآخِرَةِ مِنَ الْخَاسِرِينَ`,`And whoever desires other than Islam as religion - never will it be accepted from him, and he, in the Hereafter, will be among the losers.`],
+[86,2,[`ethics`],`كَيْفَ يَهْدِي اللَّهُ قَوْمًا كَفَرُوا بَعْدَ إِيمَانِهِمْ وَشَهِدُوا أَنَّ الرَّسُولَ حَقٌّ وَجَاءَهُمُ الْبَيِّنَاتُ ۚ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ`,`How shall Allah guide a people who disbelieved after their belief and had witnessed that the Messenger is true and clear signs had come to them? And Allah does not guide the wrongdoing people.`],
+[87,2,[`ethics`],`أُولَٰئِكَ جَزَاؤُهُمْ أَنَّ عَلَيْهِمْ لَعْنَةَ اللَّهِ وَالْمَلَائِكَةِ وَالنَّاسِ أَجْمَعِينَ`,`Those - their recompense will be that upon them is the curse of Allah and the angels and the people, all together,`],
+[88,2,[`ethics`],`خَالِدِينَ فِيهَا لَا يُخَفَّفُ عَنْهُمُ الْعَذَابُ وَلَا هُمْ يُنْظَرُونَ`,`Abiding eternally therein. The punishment will not be lightened for them, nor will they be reprieved.`],
+[89,2,[`ethics`],`إِلَّا الَّذِينَ تَابُوا مِنْ بَعْدِ ذَٰلِكَ وَأَصْلَحُوا فَإِنَّ اللَّهَ غَفُورٌ رَحِيمٌ`,`Except for those who repent after that and correct themselves. For indeed, Allah is Forgiving and Merciful.`],
+[90,2,[`ethics`],`إِنَّ الَّذِينَ كَفَرُوا بَعْدَ إِيمَانِهِمْ ثُمَّ ازْدَادُوا كُفْرًا لَنْ تُقْبَلَ تَوْبَتُهُمْ وَأُولَٰئِكَ هُمُ الضَّالُّونَ`,`Indeed, those who reject the message after their belief and then increase in disbelief never will their [claimed] repentance be accepted, and they are the ones astray.`],
+[91,2,[`ethics`],`إِنَّ الَّذِينَ كَفَرُوا وَمَاتُوا وَهُمْ كُفَّارٌ فَلَنْ يُقْبَلَ مِنْ أَحَدِهِمْ مِلْءُ الْأَرْضِ ذَهَبًا وَلَوِ افْتَدَىٰ بِهِ ۗ أُولَٰئِكَ لَهُمْ عَذَابٌ أَلِيمٌ وَمَا لَهُمْ مِنْ نَاصِرِينَ`,`Indeed, those who disbelieve and die while they are disbelievers never would the [whole] capacity of the earth in gold be accepted from one of them if he would [seek to] ransom himself with it. For those there will be a painful punishment, and they will have no helpers.`],
+[92,2,[`ethics`],`لَنْ تَنَالُوا الْبِرَّ حَتَّىٰ تُنْفِقُوا مِمَّا تُحِبُّونَ ۚ وَمَا تُنْفِقُوا مِنْ شَيْءٍ فَإِنَّ اللَّهَ بِهِ عَلِيمٌ`,`Never will you attain the good [reward] until you spend [in the way of Allah] from that which you love. And whatever you spend - indeed, Allah is Knowing of it.`],
+[93,2,[`scripture`],`كُلُّ الطَّعَامِ كَانَ حِلًّا لِبَنِي إِسْرَائِيلَ إِلَّا مَا حَرَّمَ إِسْرَائِيلُ عَلَىٰ نَفْسِهِ مِنْ قَبْلِ أَنْ تُنَزَّلَ التَّوْرَاةُ ۗ قُلْ فَأْتُوا بِالتَّوْرَاةِ فَاتْلُوهَا إِنْ كُنْتُمْ صَادِقِينَ`,`All food was lawful to the Children of Israel except what Israel had made unlawful to himself before the Torah was revealed. Say, [O Muhammad], "So bring the Torah and recite it, if you should be truthful."`],
+[94,2,[`scripture`],`فَمَنِ افْتَرَىٰ عَلَى اللَّهِ الْكَذِبَ مِنْ بَعْدِ ذَٰلِكَ فَأُولَٰئِكَ هُمُ الظَّالِمُونَ`,`And whoever invents about Allah untruth after that - then those are [truly] the wrongdoers.`],
+[95,2,[`prophets`],`قُلْ صَدَقَ اللَّهُ ۗ فَاتَّبِعُوا مِلَّةَ إِبْرَاهِيمَ حَنِيفًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ`,`Say, "Allah has told the truth. So follow the religion of Abraham, inclining toward truth; and he was not of the polytheists."`],
+[96,2,[`prophets`],`إِنَّ أَوَّلَ بَيْتٍ وُضِعَ لِلنَّاسِ لَلَّذِي بِبَكَّةَ مُبَارَكًا وَهُدًى لِلْعَالَمِينَ`,`Indeed, the first House [of worship] established for mankind was that at Makkah - blessed and a guidance for the worlds.`],
+[97,2,[`ethics`],`فِيهِ آيَاتٌ بَيِّنَاتٌ مَقَامُ إِبْرَاهِيمَ ۖ وَمَنْ دَخَلَهُ كَانَ آمِنًا ۗ وَلِلَّهِ عَلَى النَّاسِ حِجُّ الْبَيْتِ مَنِ اسْتَطَاعَ إِلَيْهِ سَبِيلًا ۚ وَمَنْ كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ عَنِ الْعَالَمِينَ`,`In it are clear signs [such as] the standing place of Abraham. And whoever enters it shall be safe. And [due] to Allah from the people is a pilgrimage to the House - for whoever is able to find thereto a way. But whoever disbelieves - then indeed, Allah is free from need of the worlds.`],
+[98,2,[`scripture`],`قُلْ يَا أَهْلَ الْكِتَابِ لِمَ تَكْفُرُونَ بِآيَاتِ اللَّهِ وَاللَّهُ شَهِيدٌ عَلَىٰ مَا تَعْمَلُونَ`,`Say, "O People of the Scripture, why do you disbelieve in the verses of Allah while Allah is Witness over what you do?"`],
+[99,2,[`scripture`],`قُلْ يَا أَهْلَ الْكِتَابِ لِمَ تَصُدُّونَ عَنْ سَبِيلِ اللَّهِ مَنْ آمَنَ تَبْغُونَهَا عِوَجًا وَأَنْتُمْ شُهَدَاءُ ۗ وَمَا اللَّهُ بِغَافِلٍ عَمَّا تَعْمَلُونَ`,`Say, "O People of the Scripture, why do you avert from the way of Allah those who believe, seeking to make it [seem] deviant, while you are witnesses [to the truth]? And Allah is not unaware of what you do."`],
+[100,3,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا إِنْ تُطِيعُوا فَرِيقًا مِنَ الَّذِينَ أُوتُوا الْكِتَابَ يَرُدُّوكُمْ بَعْدَ إِيمَانِكُمْ كَافِرِينَ`,`O you who have believed, if you obey a party of those who were given the Scripture, they would turn you back, after your belief, [to being] unbelievers.`],
+[101,3,[`scripture`],`وَكَيْفَ تَكْفُرُونَ وَأَنْتُمْ تُتْلَىٰ عَلَيْكُمْ آيَاتُ اللَّهِ وَفِيكُمْ رَسُولُهُ ۗ وَمَنْ يَعْتَصِمْ بِاللَّهِ فَقَدْ هُدِيَ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ`,`And how could you disbelieve while to you are being recited the verses of Allah and among you is His Messenger? And whoever holds firmly to Allah has [indeed] been guided to a straight path.`],
+[102,3,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ حَقَّ تُقَاتِهِ وَلَا تَمُوتُنَّ إِلَّا وَأَنْتُمْ مُسْلِمُونَ`,`O you who have believed, fear Allah as He should be feared and do not die except as Muslims [in submission to Him].`],
+[103,3,[`ethics`],`وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنْتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُمْ بِنِعْمَتِهِ إِخْوَانًا وَكُنْتُمْ عَلَىٰ شَفَا حُفْرَةٍ مِنَ النَّارِ فَأَنْقَذَكُمْ مِنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَهْتَدُونَ`,`And hold firmly to the rope of Allah all together and do not become divided. And remember the favor of Allah upon you - when you were enemies and He brought your hearts together and you became, by His favor, brothers. And you were on the edge of a pit of the Fire, and He saved you from it. Thus does Allah make clear to you His verses that you may be guided.`],
+[104,3,[`ethics`],`وَلْتَكُنْ مِنْكُمْ أُمَّةٌ يَدْعُونَ إِلَى الْخَيْرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنْكَرِ ۚ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ`,`And let there be [arising] from you a nation inviting to [all that is] good, enjoining what is right and forbidding what is wrong, and those will be the successful.`],
+[105,3,[`ethics`],`وَلَا تَكُونُوا كَالَّذِينَ تَفَرَّقُوا وَاخْتَلَفُوا مِنْ بَعْدِ مَا جَاءَهُمُ الْبَيِّنَاتُ ۚ وَأُولَٰئِكَ لَهُمْ عَذَابٌ عَظِيمٌ`,`And do not be like the ones who became divided and differed after the clear proofs had come to them. And those will have a great punishment.`],
+[106,3,[`ethics`],`يَوْمَ تَبْيَضُّ وُجُوهٌ وَتَسْوَدُّ وُجُوهٌ ۚ فَأَمَّا الَّذِينَ اسْوَدَّتْ وُجُوهُهُمْ أَكَفَرْتُمْ بَعْدَ إِيمَانِكُمْ فَذُوقُوا الْعَذَابَ بِمَا كُنْتُمْ تَكْفُرُونَ`,`On the Day [some] faces will turn white and [some] faces will turn black. As for those whose faces turn black, [to them it will be said], "Did you disbelieve after your belief? Then taste the punishment for what you used to reject."`],
+[107,3,[`ethics`],`وَأَمَّا الَّذِينَ ابْيَضَّتْ وُجُوهُهُمْ فَفِي رَحْمَةِ اللَّهِ هُمْ فِيهَا خَالِدُونَ`,`But as for those whose faces will turn white, [they will be] within the mercy of Allah. They will abide therein eternally.`],
+[108,3,[`scripture`],`تِلْكَ آيَاتُ اللَّهِ نَتْلُوهَا عَلَيْكَ بِالْحَقِّ ۗ وَمَا اللَّهُ يُرِيدُ ظُلْمًا لِلْعَالَمِينَ`,`These are the verses of Allah. We recite them to you, [O Muhammad], in truth; and Allah wants no injustice to the worlds.`],
+[109,3,[`scripture`],`وَلِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۚ وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ`,`To Allah belongs whatever is in the heavens and whatever is on the earth. And to Allah will [all] matters be returned.`],
+[110,3,[`ethics`],`كُنْتُمْ خَيْرَ أُمَّةٍ أُخْرِجَتْ لِلنَّاسِ تَأْمُرُونَ بِالْمَعْرُوفِ وَتَنْهَوْنَ عَنِ الْمُنْكَرِ وَتُؤْمِنُونَ بِاللَّهِ ۗ وَلَوْ آمَنَ أَهْلُ الْكِتَابِ لَكَانَ خَيْرًا لَهُمْ ۚ مِنْهُمُ الْمُؤْمِنُونَ وَأَكْثَرُهُمُ الْفَاسِقُونَ`,`You are the best nation produced [as an example] for mankind. You enjoin what is right and forbid what is wrong and believe in Allah. If only the People of the Scripture had believed, it would have been better for them. Among them are believers, but most of them are defiantly disobedient.`],
+[111,3,[`battle`],`لَنْ يَضُرُّوكُمْ إِلَّا أَذًى ۖ وَإِنْ يُقَاتِلُوكُمْ يُوَلُّوكُمُ الْأَدْبَارَ ثُمَّ لَا يُنْصَرُونَ`,`They will not harm you except for [some] annoyance. And if they fight you, they will show you their backs; then they will not be aided.`],
+[112,3,[`scripture`],`ضُرِبَتْ عَلَيْهِمُ الذِّلَّةُ أَيْنَ مَا ثُقِفُوا إِلَّا بِحَبْلٍ مِنَ اللَّهِ وَحَبْلٍ مِنَ النَّاسِ وَبَاءُوا بِغَضَبٍ مِنَ اللَّهِ وَضُرِبَتْ عَلَيْهِمُ الْمَسْكَنَةُ ۚ ذَٰلِكَ بِأَنَّهُمْ كَانُوا يَكْفُرُونَ بِآيَاتِ اللَّهِ وَيَقْتُلُونَ الْأَنْبِيَاءَ بِغَيْرِ حَقٍّ ۚ ذَٰلِكَ بِمَا عَصَوْا وَكَانُوا يَعْتَدُونَ`,`They have been put under humiliation [by Allah] wherever they are overtaken, except for a covenant from Allah and a rope from the Muslims. And they have drawn upon themselves anger from Allah and have been put under destitution. That is because they disbelieved in the verses of Allah and killed the prophets without right. That is because they disobeyed and [habitually] transgressed.`],
+[113,3,[`scripture`],`لَيْسُوا سَوَاءً ۗ مِنْ أَهْلِ الْكِتَابِ أُمَّةٌ قَائِمَةٌ يَتْلُونَ آيَاتِ اللَّهِ آنَاءَ اللَّيْلِ وَهُمْ يَسْجُدُونَ`,`They are not [all] the same; among the People of the Scripture is a community standing [in obedience], reciting the verses of Allah during periods of the night and prostrating [in prayer].`],
+[114,3,[`ethics`],`يُؤْمِنُونَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَيَأْمُرُونَ بِالْمَعْرُوفِ وَيَنْهَوْنَ عَنِ الْمُنْكَرِ وَيُسَارِعُونَ فِي الْخَيْرَاتِ وَأُولَٰئِكَ مِنَ الصَّالِحِينَ`,`They believe in Allah and the Last Day, and they enjoin what is right and forbid what is wrong and hasten to good deeds. And those are among the righteous.`],
+[115,3,[`ethics`],`وَمَا يَفْعَلُوا مِنْ خَيْرٍ فَلَنْ يُكْفَرُوهُ ۗ وَاللَّهُ عَلِيمٌ بِالْمُتَّقِينَ`,`And whatever good they do - never will it be removed from them. And Allah is Knowing of the righteous.`],
+[116,3,[`ethics`],`إِنَّ الَّذِينَ كَفَرُوا لَنْ تُغْنِيَ عَنْهُمْ أَمْوَالُهُمْ وَلَا أَوْلَادُهُمْ مِنَ اللَّهِ شَيْئًا ۖ وَأُولَٰئِكَ أَصْحَابُ النَّارِ ۖ هُمْ فِيهَا خَالِدُونَ`,`Indeed, those who disbelieve never will their wealth or their children avail them against Allah at all, and those are the companions of the Fire; they will abide therein eternally.`],
+[117,3,[`ethics`],`مَثَلُ مَا يُنْفِقُونَ فِي هَٰذِهِ الْحَيَاةِ الدُّنْيَا كَمَثَلِ رِيحٍ فِيهَا صِرٌّ أَصَابَتْ حَرْثَ قَوْمٍ ظَلَمُوا أَنْفُسَهُمْ فَأَهْلَكَتْهُ ۚ وَمَا ظَلَمَهُمُ اللَّهُ وَلَٰكِنْ أَنْفُسَهُمْ يَظْلِمُونَ`,`The example of what they spend in this worldly life is like that of a wind containing frost which strikes the harvest of a people who have wronged themselves and destroys it. And Allah has not wronged them, but they wrong themselves.`],
+[118,3,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَّخِذُوا بِطَانَةً مِنْ دُونِكُمْ لَا يَأْلُونَكُمْ خَبَالًا وَدُّوا مَا عَنِتُّمْ قَدْ بَدَتِ الْبَغْضَاءُ مِنْ أَفْوَاهِهِمْ وَمَا تُخْفِي صُدُورُهُمْ أَكْبَرُ ۚ قَدْ بَيَّنَّا لَكُمُ الْآيَاتِ ۖ إِنْ كُنْتُمْ تَعْقِلُونَ`,`O you who have believed, do not take as intimates those other than yourselves, for they will not spare you [any] ruin. They wish you would have hardship. Hatred has already appeared from their mouths, and what their breasts conceal is greater. We have certainly made clear to you the signs, if you will use reason.`],
+[119,3,[`ethics`],`هَا أَنْتُمْ أُولَاءِ تُحِبُّونَهُمْ وَلَا يُحِبُّونَكُمْ وَتُؤْمِنُونَ بِالْكِتَابِ كُلِّهِ وَإِذَا لَقُوكُمْ قَالُوا آمَنَّا وَإِذَا خَلَوْا عَضُّوا عَلَيْكُمُ الْأَنَامِلَ مِنَ الْغَيْظِ ۚ قُلْ مُوتُوا بِغَيْظِكُمْ ۗ إِنَّ اللَّهَ عَلِيمٌ بِذَاتِ الصُّدُورِ`,`Here you are loving them but they are not loving you, while you believe in the Scripture - all of it. And when they meet you, they say, "We believe." But when they are alone, they bite their fingertips at you in rage. Say, "Die in your rage. Indeed, Allah is Knowing of that within the breasts."`],
+[120,3,[`ethics`],`إِنْ تَمْسَسْكُمْ حَسَنَةٌ تَسُؤْهُمْ وَإِنْ تُصِبْكُمْ سَيِّئَةٌ يَفْرَحُوا بِهَا ۖ وَإِنْ تَصْبِرُوا وَتَتَّقُوا لَا يَضُرُّكُمْ كَيْدُهُمْ شَيْئًا ۗ إِنَّ اللَّهَ بِمَا يَعْمَلُونَ مُحِيطٌ`,`If good touches you, it distresses them; but if harm strikes you, they rejoice at it. And if you are patient and fear Allah, their plot will not harm you at all. Indeed, Allah is encompassing of what they do.`],
+[121,4,[`battle`],`وَإِذْ غَدَوْتَ مِنْ أَهْلِكَ تُبَوِّئُ الْمُؤْمِنِينَ مَقَاعِدَ لِلْقِتَالِ ۗ وَاللَّهُ سَمِيعٌ عَلِيمٌ`,`And [remember] when you, [O Muhammad], left your family in the morning to post the believers at their stations for the battle [of Uhud] - and Allah is Hearing and Knowing -`],
+[122,4,[`battle`],`إِذْ هَمَّتْ طَائِفَتَانِ مِنْكُمْ أَنْ تَفْشَلَا وَاللَّهُ وَلِيُّهُمَا ۗ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ`,`When two parties among you were about to lose courage, but Allah was their ally; and upon Allah the believers should rely.`],
+[123,4,[`battle`],`وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ وَأَنْتُمْ أَذِلَّةٌ ۖ فَاتَّقُوا اللَّهَ لَعَلَّكُمْ تَشْكُرُونَ`,`And already had Allah given you victory at [the battle of] Badr while you were few in number. Then fear Allah; perhaps you will be grateful.`],
+[124,4,[`battle`],`إِذْ تَقُولُ لِلْمُؤْمِنِينَ أَلَنْ يَكْفِيَكُمْ أَنْ يُمِدَّكُمْ رَبُّكُمْ بِثَلَاثَةِ آلَافٍ مِنَ الْمَلَائِكَةِ مُنْزَلِينَ`,`[Remember] when you said to the believers, "Is it not sufficient for you that your Lord should reinforce you with three thousand angels sent down?`],
+[125,4,[`battle`],`بَلَىٰ ۚ إِنْ تَصْبِرُوا وَتَتَّقُوا وَيَأْتُوكُمْ مِنْ فَوْرِهِمْ هَٰذَا يُمْدِدْكُمْ رَبُّكُمْ بِخَمْسَةِ آلَافٍ مِنَ الْمَلَائِكَةِ مُسَوِّمِينَ`,`Yes, if you remain patient and conscious of Allah and the enemy come upon you [attacking] in rage, your Lord will reinforce you with five thousand angels having marks [of distinction]"`],
+[126,4,[`battle`],`وَمَا جَعَلَهُ اللَّهُ إِلَّا بُشْرَىٰ لَكُمْ وَلِتَطْمَئِنَّ قُلُوبُكُمْ بِهِ ۗ وَمَا النَّصْرُ إِلَّا مِنْ عِنْدِ اللَّهِ الْعَزِيزِ الْحَكِيمِ`,`And Allah made it not except as [a sign of] good tidings for you and to reassure your hearts thereby. And victory is not except from Allah, the Exalted in Might, the Wise -`],
+[127,4,[`battle`],`لِيَقْطَعَ طَرَفًا مِنَ الَّذِينَ كَفَرُوا أَوْ يَكْبِتَهُمْ فَيَنْقَلِبُوا خَائِبِينَ`,`That He might cut down a section of the disbelievers or suppress them so that they turn back disappointed.`],
+[128,4,[`battle`],`لَيْسَ لَكَ مِنَ الْأَمْرِ شَيْءٌ أَوْ يَتُوبَ عَلَيْهِمْ أَوْ يُعَذِّبَهُمْ فَإِنَّهُمْ ظَالِمُونَ`,`Not for you, [O Muhammad, but for Allah], is the decision whether He should [cut them down] or forgive them or punish them, for indeed, they are wrongdoers.`],
+[129,4,[`ethics`],`وَلِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۚ يَغْفِرُ لِمَنْ يَشَاءُ وَيُعَذِّبُ مَنْ يَشَاءُ ۚ وَاللَّهُ غَفُورٌ رَحِيمٌ`,`And to Allah belongs whatever is in the heavens and whatever is on the earth. He forgives whom He wills and punishes whom He wills. And Allah is Forgiving and Merciful.`],
+[130,4,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَأْكُلُوا الرِّبَا أَضْعَافًا مُضَاعَفَةً ۖ وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ`,`O you who have believed, do not consume usury, doubled and multiplied, but fear Allah that you may be successful.`],
+[131,4,[`ethics`],`وَاتَّقُوا النَّارَ الَّتِي أُعِدَّتْ لِلْكَافِرِينَ`,`And fear the Fire, which has been prepared for the disbelievers.`],
+[132,4,[`ethics`],`وَأَطِيعُوا اللَّهَ وَالرَّسُولَ لَعَلَّكُمْ تُرْحَمُونَ`,`And obey Allah and the Messenger that you may obtain mercy.`],
+[133,4,[`ethics`],`وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِنْ رَبِّكُمْ وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ أُعِدَّتْ لِلْمُتَّقِينَ`,`And hasten to forgiveness from your Lord and a garden as wide as the heavens and earth, prepared for the righteous`],
+[134,4,[`ethics`],`الَّذِينَ يُنْفِقُونَ فِي السَّرَّاءِ وَالضَّرَّاءِ وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ`,`Who spend [in the cause of Allah] during ease and hardship and who restrain anger and who pardon the people - and Allah loves the doers of good;`],
+[135,4,[`ethics`],`وَالَّذِينَ إِذَا فَعَلُوا فَاحِشَةً أَوْ ظَلَمُوا أَنْفُسَهُمْ ذَكَرُوا اللَّهَ فَاسْتَغْفَرُوا لِذُنُوبِهِمْ وَمَنْ يَغْفِرُ الذُّنُوبَ إِلَّا اللَّهُ وَلَمْ يُصِرُّوا عَلَىٰ مَا فَعَلُوا وَهُمْ يَعْلَمُونَ`,`And those who, when they commit an immorality or wrong themselves [by transgression], remember Allah and seek forgiveness for their sins - and who can forgive sins except Allah? - and [who] do not persist in what they have done while they know.`],
+[136,4,[`ethics`],`أُولَٰئِكَ جَزَاؤُهُمْ مَغْفِرَةٌ مِنْ رَبِّهِمْ وَجَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا ۚ وَنِعْمَ أَجْرُ الْعَامِلِينَ`,`Those - their reward is forgiveness from their Lord and gardens beneath which rivers flow [in Paradise], wherein they will abide eternally; and excellent is the reward of the [righteous] workers.`],
+[137,4,[`scripture`],`قَدْ خَلَتْ مِنْ قَبْلِكُمْ سُنَنٌ فَسِيرُوا فِي الْأَرْضِ فَانْظُرُوا كَيْفَ كَانَ عَاقِبَةُ الْمُكَذِّبِينَ`,`Similar situations [as yours] have passed on before you, so proceed throughout the earth and observe how was the end of those who denied.`],
+[138,4,[`scripture`],`هَٰذَا بَيَانٌ لِلنَّاسِ وَهُدًى وَمَوْعِظَةٌ لِلْمُتَّقِينَ`,`This [Qur'an] is a clear statement to [all] the people and a guidance and instruction for those conscious of Allah.`],
+[139,4,[`battle`],`وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنْتُمُ الْأَعْلَوْنَ إِنْ كُنْتُمْ مُؤْمِنِينَ`,`So do not weaken and do not grieve, and you will be superior if you are [true] believers.`],
+[140,4,[`battle`],`إِنْ يَمْسَسْكُمْ قَرْحٌ فَقَدْ مَسَّ الْقَوْمَ قَرْحٌ مِثْلُهُ ۚ وَتِلْكَ الْأَيَّامُ نُدَاوِلُهَا بَيْنَ النَّاسِ وَلِيَعْلَمَ اللَّهُ الَّذِينَ آمَنُوا وَيَتَّخِذَ مِنْكُمْ شُهَدَاءَ ۗ وَاللَّهُ لَا يُحِبُّ الظَّالِمِينَ`,`If a wound should touch you - there has already touched the [opposing] people a wound similar to it. And these days [of varying conditions] We alternate among the people so that Allah may make evident those who believe and [may] take to Himself from among you martyrs - and Allah does not like the wrongdoers -`],
+[141,4,[`battle`],`وَلِيُمَحِّصَ اللَّهُ الَّذِينَ آمَنُوا وَيَمْحَقَ الْكَافِرِينَ`,`And that Allah may purify the believers [through trials] and destroy the disbelievers.`],
+[142,4,[`battle`],`أَمْ حَسِبْتُمْ أَنْ تَدْخُلُوا الْجَنَّةَ وَلَمَّا يَعْلَمِ اللَّهُ الَّذِينَ جَاهَدُوا مِنْكُمْ وَيَعْلَمَ الصَّابِرِينَ`,`Or do you think that you will enter Paradise while Allah has not yet made evident those of you who fight in His cause and made evident those who are steadfast?`],
+[143,4,[`battle`],`وَلَقَدْ كُنْتُمْ تَمَنَّوْنَ الْمَوْتَ مِنْ قَبْلِ أَنْ تَلْقَوْهُ فَقَدْ رَأَيْتُمُوهُ وَأَنْتُمْ تَنْظُرُونَ`,`And you had certainly wished for martyrdom before you encountered it, and you have [now] seen it [before you] while you were looking on.`],
+[144,4,[`battle`,`prophets`],`وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ قَدْ خَلَتْ مِنْ قَبْلِهِ الرُّسُلُ ۚ أَفَإِنْ مَاتَ أَوْ قُتِلَ انْقَلَبْتُمْ عَلَىٰ أَعْقَابِكُمْ ۚ وَمَنْ يَنْقَلِبْ عَلَىٰ عَقِبَيْهِ فَلَنْ يَضُرَّ اللَّهَ شَيْئًا ۗ وَسَيَجْزِي اللَّهُ الشَّاكِرِينَ`,`Muhammad is not but a messenger. [Other] messengers have passed on before him. So if he was to die or be killed, would you turn back on your heels [to unbelief]? And he who turns back on his heels will never harm Allah at all; but Allah will reward the grateful.`],
+[145,4,[`battle`],`وَمَا كَانَ لِنَفْسٍ أَنْ تَمُوتَ إِلَّا بِإِذْنِ اللَّهِ كِتَابًا مُؤَجَّلًا ۗ وَمَنْ يُرِدْ ثَوَابَ الدُّنْيَا نُؤْتِهِ مِنْهَا وَمَنْ يُرِدْ ثَوَابَ الْآخِرَةِ نُؤْتِهِ مِنْهَا ۚ وَسَنَجْزِي الشَّاكِرِينَ`,`And it is not [possible] for one to die except by permission of Allah at a decree determined. And whoever desires the reward of this world - We will give him thereof; and whoever desires the reward of the Hereafter - We will give him thereof. And we will reward the grateful.`],
+[146,4,[`battle`],`وَكَأَيِّنْ مِنْ نَبِيٍّ قَاتَلَ مَعَهُ رِبِّيُّونَ كَثِيرٌ فَمَا وَهَنُوا لِمَا أَصَابَهُمْ فِي سَبِيلِ اللَّهِ وَمَا ضَعُفُوا وَمَا اسْتَكَانُوا ۗ وَاللَّهُ يُحِبُّ الصَّابِرِينَ`,`And how many a prophet [fought and] with him fought many religious scholars. But they never lost assurance due to what afflicted them in the cause of Allah, nor did they weaken or submit. And Allah loves the steadfast.`],
+[147,4,[`supplication`,`battle`],`وَمَا كَانَ قَوْلَهُمْ إِلَّا أَنْ قَالُوا رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ`,`And their words were not but that they said, "Our Lord, forgive us our sins and the excess [committed] in our affairs and plant firmly our feet and give us victory over the disbelieving people."`],
+[148,4,[`battle`],`فَآتَاهُمُ اللَّهُ ثَوَابَ الدُّنْيَا وَحُسْنَ ثَوَابِ الْآخِرَةِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ`,`So Allah gave them the reward of this world and the good reward of the Hereafter. And Allah loves the doers of good.`],
+[149,4,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا إِنْ تُطِيعُوا الَّذِينَ كَفَرُوا يَرُدُّوكُمْ عَلَىٰ أَعْقَابِكُمْ فَتَنْقَلِبُوا خَاسِرِينَ`,`O you who have believed, if you obey those who disbelieve, they will turn you back on your heels, and you will [then] become losers.`],
+[150,4,[`ethics`],`بَلِ اللَّهُ مَوْلَاكُمْ ۖ وَهُوَ خَيْرُ النَّاصِرِينَ`,`But Allah is your protector, and He is the best of helpers.`],
+[151,4,[`battle`],`سَنُلْقِي فِي قُلُوبِ الَّذِينَ كَفَرُوا الرُّعْبَ بِمَا أَشْرَكُوا بِاللَّهِ مَا لَمْ يُنَزِّلْ بِهِ سُلْطَانًا ۖ وَمَأْوَاهُمُ النَّارُ ۚ وَبِئْسَ مَثْوَى الظَّالِمِينَ`,`We will cast terror into the hearts of those who disbelieve for what they have associated with Allah of which He had not sent down [any] authority. And their refuge will be the Fire, and wretched is the residence of the wrongdoers.`],
+[152,4,[`battle`],`وَلَقَدْ صَدَقَكُمُ اللَّهُ وَعْدَهُ إِذْ تَحُسُّونَهُمْ بِإِذْنِهِ ۖ حَتَّىٰ إِذَا فَشِلْتُمْ وَتَنَازَعْتُمْ فِي الْأَمْرِ وَعَصَيْتُمْ مِنْ بَعْدِ مَا أَرَاكُمْ مَا تُحِبُّونَ ۚ مِنْكُمْ مَنْ يُرِيدُ الدُّنْيَا وَمِنْكُمْ مَنْ يُرِيدُ الْآخِرَةَ ۚ ثُمَّ صَرَفَكُمْ عَنْهُمْ لِيَبْتَلِيَكُمْ ۖ وَلَقَدْ عَفَا عَنْكُمْ ۗ وَاللَّهُ ذُو فَضْلٍ عَلَى الْمُؤْمِنِينَ`,`And Allah had certainly fulfilled His promise to you when you were killing the enemy by His permission until [the time] when you lost courage and fell to disputing about the order [given by the Prophet] and disobeyed after He had shown you that which you love. Among you are some who desire this world, and among you are some who desire the Hereafter. Then he turned you back from them [defeated] that He might test you. And He has already forgiven you, and Allah is the possessor of bounty for the believers.`],
+[153,4,[`battle`],`إِذْ تُصْعِدُونَ وَلَا تَلْوُونَ عَلَىٰ أَحَدٍ وَالرَّسُولُ يَدْعُوكُمْ فِي أُخْرَاكُمْ فَأَثَابَكُمْ غَمًّا بِغَمٍّ لِكَيْلَا تَحْزَنُوا عَلَىٰ مَا فَاتَكُمْ وَلَا مَا أَصَابَكُمْ ۗ وَاللَّهُ خَبِيرٌ بِمَا تَعْمَلُونَ`,`[Remember] when you [fled and] climbed [the mountain] without looking aside at anyone while the Messenger was calling you from behind. So Allah repaid you with distress upon distress so you would not grieve for that which had escaped you [of victory and spoils of war] or [for] that which had befallen you [of injury and death]. And Allah is [fully] Acquainted with what you do.`],
+[154,4,[`battle`],`ثُمَّ أَنْزَلَ عَلَيْكُمْ مِنْ بَعْدِ الْغَمِّ أَمَنَةً نُعَاسًا يَغْشَىٰ طَائِفَةً مِنْكُمْ ۖ وَطَائِفَةٌ قَدْ أَهَمَّتْهُمْ أَنْفُسُهُمْ يَظُنُّونَ بِاللَّهِ غَيْرَ الْحَقِّ ظَنَّ الْجَاهِلِيَّةِ ۖ يَقُولُونَ هَلْ لَنَا مِنَ الْأَمْرِ مِنْ شَيْءٍ ۗ قُلْ إِنَّ الْأَمْرَ كُلَّهُ لِلَّهِ ۗ يُخْفُونَ فِي أَنْفُسِهِمْ مَا لَا يُبْدُونَ لَكَ ۖ يَقُولُونَ لَوْ كَانَ لَنَا مِنَ الْأَمْرِ شَيْءٌ مَا قُتِلْنَا هَاهُنَا ۗ قُلْ لَوْ كُنْتُمْ فِي بُيُوتِكُمْ لَبَرَزَ الَّذِينَ كُتِبَ عَلَيْهِمُ الْقَتْلُ إِلَىٰ مَضَاجِعِهِمْ ۖ وَلِيَبْتَلِيَ اللَّهُ مَا فِي صُدُورِكُمْ وَلِيُمَحِّصَ مَا فِي قُلُوبِكُمْ ۗ وَاللَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ`,`Then after distress, He sent down upon you security [in the form of] drowsiness, overcoming a faction of you, while another faction worried about themselves, thinking of Allah other than the truth - the thought of ignorance, saying, "Is there anything for us [to have done] in this matter?" Say, "Indeed, the matter belongs completely to Allah." They conceal within themselves what they will not reveal to you. They say, "If there was anything we could have done in the matter, some of us would not have been killed right here." Say, "Even if you had been inside your houses, those decreed to be killed would have come out to their death beds." [It was] so that Allah might test what is in your breasts and purify what is in your hearts. And Allah is Knowing of that within the breasts.`],
+[155,4,[`battle`],`إِنَّ الَّذِينَ تَوَلَّوْا مِنْكُمْ يَوْمَ الْتَقَى الْجَمْعَانِ إِنَّمَا اسْتَزَلَّهُمُ الشَّيْطَانُ بِبَعْضِ مَا كَسَبُوا ۖ وَلَقَدْ عَفَا اللَّهُ عَنْهُمْ ۗ إِنَّ اللَّهَ غَفُورٌ حَلِيمٌ`,`Indeed, those of you who turned back on the day the two armies met, it was Satan who caused them to slip because of some [blame] they had earned. But Allah has already forgiven them. Indeed, Allah is Forgiving and Forbearing.`],
+[156,4,[`battle`],`يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَكُونُوا كَالَّذِينَ كَفَرُوا وَقَالُوا لِإِخْوَانِهِمْ إِذَا ضَرَبُوا فِي الْأَرْضِ أَوْ كَانُوا غُزًّى لَوْ كَانُوا عِنْدَنَا مَا مَاتُوا وَمَا قُتِلُوا لِيَجْعَلَ اللَّهُ ذَٰلِكَ حَسْرَةً فِي قُلُوبِهِمْ ۗ وَاللَّهُ يُحْيِي وَيُمِيتُ ۗ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ`,`O you who have believed, do not be like those who disbelieved and said about their brothers when they traveled through the land or went out to fight, "If they had been with us, they would not have died or have been killed," so Allah makes that [misconception] a regret within their hearts. And it is Allah who gives life and causes death, and Allah is Seeing of what you do.`],
+[157,4,[`battle`],`وَلَئِنْ قُتِلْتُمْ فِي سَبِيلِ اللَّهِ أَوْ مُتُّمْ لَمَغْفِرَةٌ مِنَ اللَّهِ وَرَحْمَةٌ خَيْرٌ مِمَّا يَجْمَعُونَ`,`And if you are killed in the cause of Allah or die - then forgiveness from Allah and mercy are better than whatever they accumulate [in this world].`],
+[158,4,[`battle`],`وَلَئِنْ مُتُّمْ أَوْ قُتِلْتُمْ لَإِلَى اللَّهِ تُحْشَرُونَ`,`And whether you die or are killed, unto Allah you will be gathered.`],
+[159,5,[`ethics`],`فَبِمَا رَحْمَةٍ مِنَ اللَّهِ لِنْتَ لَهُمْ ۖ وَلَوْ كُنْتَ فَظًّا غَلِيظَ الْقَلْبِ لَانْفَضُّوا مِنْ حَوْلِكَ ۖ فَاعْفُ عَنْهُمْ وَاسْتَغْفِرْ لَهُمْ وَشَاوِرْهُمْ فِي الْأَمْرِ ۖ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ ۚ إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ`,`So by mercy from Allah, [O Muhammad], you were lenient with them. And if you had been rude [in speech] and harsh in heart, they would have disbanded from about you. So pardon them and ask forgiveness for them and consult them in the matter. And when you have decided, then rely upon Allah. Indeed, Allah loves those who rely [upon Him].`],
+[160,5,[`ethics`],`إِنْ يَنْصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ ۖ وَإِنْ يَخْذُلْكُمْ فَمَنْ ذَا الَّذِي يَنْصُرُكُمْ مِنْ بَعْدِهِ ۗ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ`,`If Allah should aid you, no one can overcome you; but if He should forsake you, who is there that can aid you after Him? And upon Allah let the believers rely.`],
+[161,5,[`ethics`],`وَمَا كَانَ لِنَبِيٍّ أَنْ يَغُلَّ ۚ وَمَنْ يَغْلُلْ يَأْتِ بِمَا غَلَّ يَوْمَ الْقِيَامَةِ ۚ ثُمَّ تُوَفَّىٰ كُلُّ نَفْسٍ مَا كَسَبَتْ وَهُمْ لَا يُظْلَمُونَ`,`It is not [attributable] to any prophet that he would act unfaithfully [in regard to war booty]. And whoever betrays, [taking unlawfully], will come with what he took on the Day of Resurrection. Then will every soul be [fully] compensated for what it earned, and they will not be wronged.`],
+[162,5,[`ethics`],`أَفَمَنِ اتَّبَعَ رِضْوَانَ اللَّهِ كَمَنْ بَاءَ بِسَخَطٍ مِنَ اللَّهِ وَمَأْوَاهُ جَهَنَّمُ ۚ وَبِئْسَ الْمَصِيرُ`,`So is one who pursues the pleasure of Allah like one who brings upon himself the anger of Allah and whose refuge is Hell? And wretched is the destination.`],
+[163,5,[`ethics`],`هُمْ دَرَجَاتٌ عِنْدَ اللَّهِ ۗ وَاللَّهُ بَصِيرٌ بِمَا يَعْمَلُونَ`,`They are [varying] degrees in the sight of Allah, and Allah is Seeing of whatever they do.`],
+[164,5,[`scripture`],`لَقَدْ مَنَّ اللَّهُ عَلَى الْمُؤْمِنِينَ إِذْ بَعَثَ فِيهِمْ رَسُولًا مِنْ أَنْفُسِهِمْ يَتْلُو عَلَيْهِمْ آيَاتِهِ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ الْكِتَابَ وَالْحِكْمَةَ وَإِنْ كَانُوا مِنْ قَبْلُ لَفِي ضَلَالٍ مُبِينٍ`,`Certainly did Allah confer [great] favor upon the believers when He sent among them a Messenger from themselves, reciting to them His verses and purifying them and teaching them the Book and wisdom, although they had been before in manifest error.`],
+[165,5,[`battle`],`أَوَلَمَّا أَصَابَتْكُمْ مُصِيبَةٌ قَدْ أَصَبْتُمْ مِثْلَيْهَا قُلْتُمْ أَنَّىٰ هَٰذَا ۖ قُلْ هُوَ مِنْ عِنْدِ أَنْفُسِكُمْ ۗ إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,`Why [is it that] when a [single] disaster struck you [on the day of Uhud], although you had struck [the enemy in the battle of Badr] with one twice as great, you said, "From where is this?" Say, "It is from yourselves." Indeed, Allah is over all things competent.`],
+[166,5,[`battle`],`وَمَا أَصَابَكُمْ يَوْمَ الْتَقَى الْجَمْعَانِ فَبِإِذْنِ اللَّهِ وَلِيَعْلَمَ الْمُؤْمِنِينَ`,`And what struck you on the day the two armies met was by permission of Allah that He might make evident the [true] believers.`],
+[167,5,[`battle`],`وَلِيَعْلَمَ الَّذِينَ نَافَقُوا ۚ وَقِيلَ لَهُمْ تَعَالَوْا قَاتِلُوا فِي سَبِيلِ اللَّهِ أَوِ ادْفَعُوا ۖ قَالُوا لَوْ نَعْلَمُ قِتَالًا لَاتَّبَعْنَاكُمْ ۗ هُمْ لِلْكُفْرِ يَوْمَئِذٍ أَقْرَبُ مِنْهُمْ لِلْإِيمَانِ ۚ يَقُولُونَ بِأَفْوَاهِهِمْ مَا لَيْسَ فِي قُلُوبِهِمْ ۗ وَاللَّهُ أَعْلَمُ بِمَا يَكْتُمُونَ`,`And that He might make evident those who are hypocrites. For it was said to them, "Come, fight in the way of Allah or [at least] defend." They said, "If we had known [there would be] fighting, we would have followed you." They were nearer to disbelief that day than to faith, saying with their mouths what was not in their hearts. And Allah is most Knowing of what they conceal -`],
+[168,5,[`battle`],`الَّذِينَ قَالُوا لِإِخْوَانِهِمْ وَقَعَدُوا لَوْ أَطَاعُونَا مَا قُتِلُوا ۗ قُلْ فَادْرَءُوا عَنْ أَنْفُسِكُمُ الْمَوْتَ إِنْ كُنْتُمْ صَادِقِينَ`,`Those who said about their brothers while sitting [at home], "If they had obeyed us, they would not have been killed." Say, "Then prevent death from yourselves, if you should be truthful."`],
+[169,5,[`battle`],`وَلَا تَحْسَبَنَّ الَّذِينَ قُتِلُوا فِي سَبِيلِ اللَّهِ أَمْوَاتًا ۚ بَلْ أَحْيَاءٌ عِنْدَ رَبِّهِمْ يُرْزَقُونَ`,`And never think of those who have been killed in the cause of Allah as dead. Rather, they are alive with their Lord, receiving provision,`],
+[170,5,[`battle`],`فَرِحِينَ بِمَا آتَاهُمُ اللَّهُ مِنْ فَضْلِهِ وَيَسْتَبْشِرُونَ بِالَّذِينَ لَمْ يَلْحَقُوا بِهِمْ مِنْ خَلْفِهِمْ أَلَّا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ`,`Rejoicing in what Allah has bestowed upon them of His bounty, and they receive good tidings about those [to be martyred] after them who have not yet joined them - that there will be no fear concerning them, nor will they grieve.`],
+[171,5,[`battle`],`يَسْتَبْشِرُونَ بِنِعْمَةٍ مِنَ اللَّهِ وَفَضْلٍ وَأَنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُؤْمِنِينَ`,`They receive good tidings of favor from Allah and bounty and [of the fact] that Allah does not allow the reward of believers to be lost`],
+[172,5,[`battle`],`الَّذِينَ اسْتَجَابُوا لِلَّهِ وَالرَّسُولِ مِنْ بَعْدِ مَا أَصَابَهُمُ الْقَرْحُ ۚ لِلَّذِينَ أَحْسَنُوا مِنْهُمْ وَاتَّقَوْا أَجْرٌ عَظِيمٌ`,`Those [believers] who responded to Allah and the Messenger after injury had struck them. For those who did good among them and feared Allah is a great reward`],
+[173,5,[`supplication`,`battle`],`الَّذِينَ قَالَ لَهُمُ النَّاسُ إِنَّ النَّاسَ قَدْ جَمَعُوا لَكُمْ فَاخْشَوْهُمْ فَزَادَهُمْ إِيمَانًا وَقَالُوا حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ`,`Those to whom hypocrites said, "Indeed, the people have gathered against you, so fear them." But it [merely] increased them in faith, and they said, "Sufficient for us is Allah, and [He is] the best Disposer of affairs."`],
+[174,5,[`battle`],`فَانْقَلَبُوا بِنِعْمَةٍ مِنَ اللَّهِ وَفَضْلٍ لَمْ يَمْسَسْهُمْ سُوءٌ وَاتَّبَعُوا رِضْوَانَ اللَّهِ ۗ وَاللَّهُ ذُو فَضْلٍ عَظِيمٍ`,`So they returned with favor from Allah and bounty, no harm having touched them. And they pursued the pleasure of Allah, and Allah is the possessor of great bounty.`],
+[175,5,[`ethics`],`إِنَّمَا ذَٰلِكُمُ الشَّيْطَانُ يُخَوِّفُ أَوْلِيَاءَهُ فَلَا تَخَافُوهُمْ وَخَافُونِ إِنْ كُنْتُمْ مُؤْمِنِينَ`,`That is only Satan who frightens [you] of his supporters. So fear them not, but fear Me, if you are [indeed] believers.`],
+[176,5,[`ethics`],`وَلَا يَحْزُنْكَ الَّذِينَ يُسَارِعُونَ فِي الْكُفْرِ ۚ إِنَّهُمْ لَنْ يَضُرُّوا اللَّهَ شَيْئًا ۗ يُرِيدُ اللَّهُ أَلَّا يَجْعَلَ لَهُمْ حَظًّا فِي الْآخِرَةِ ۖ وَلَهُمْ عَذَابٌ عَظِيمٌ`,`And do not be grieved, [O Muhammad], by those who hasten into disbelief. Indeed, they will never harm Allah at all. Allah intends that He should give them no share in the Hereafter, and for them is a great punishment.`],
+[177,5,[`ethics`],`إِنَّ الَّذِينَ اشْتَرَوُا الْكُفْرَ بِالْإِيمَانِ لَنْ يَضُرُّوا اللَّهَ شَيْئًا وَلَهُمْ عَذَابٌ أَلِيمٌ`,`Indeed, those who purchase disbelief [in exchange] for faith never will they harm Allah at all, and for them is a painful punishment.`],
+[178,5,[`ethics`],`وَلَا يَحْسَبَنَّ الَّذِينَ كَفَرُوا أَنَّمَا نُمْلِي لَهُمْ خَيْرٌ لِأَنْفُسِهِمْ ۚ إِنَّمَا نُمْلِي لَهُمْ لِيَزْدَادُوا إِثْمًا ۚ وَلَهُمْ عَذَابٌ مُهِينٌ`,`And let not those who disbelieve ever think that [because] We extend their time [of enjoyment] it is better for them. We only extend it for them so that they may increase in sin, and for them is a humiliating punishment.`],
+[179,5,[`prophets`],`مَا كَانَ اللَّهُ لِيَذَرَ الْمُؤْمِنِينَ عَلَىٰ مَا أَنْتُمْ عَلَيْهِ حَتَّىٰ يَمِيزَ الْخَبِيثَ مِنَ الطَّيِّبِ ۗ وَمَا كَانَ اللَّهُ لِيُطْلِعَكُمْ عَلَى الْغَيْبِ وَلَٰكِنَّ اللَّهَ يَجْتَبِي مِنْ رُسُلِهِ مَنْ يَشَاءُ ۖ فَآمِنُوا بِاللَّهِ وَرُسُلِهِ ۚ وَإِنْ تُؤْمِنُوا وَتَتَّقُوا فَلَكُمْ أَجْرٌ عَظِيمٌ`,`Allah would not leave the believers in that [state] you are in [presently] until He separates the evil from the good. Nor would Allah reveal to you the unseen. But [instead], Allah chooses of His messengers whom He wills, so believe in Allah and His messengers. And if you believe and fear Him, then for you is a great reward.`],
+[180,5,[`ethics`],`وَلَا يَحْسَبَنَّ الَّذِينَ يَبْخَلُونَ بِمَا آتَاهُمُ اللَّهُ مِنْ فَضْلِهِ هُوَ خَيْرًا لَهُمْ ۖ بَلْ هُوَ شَرٌّ لَهُمْ ۖ سَيُطَوَّقُونَ مَا بَخِلُوا بِهِ يَوْمَ الْقِيَامَةِ ۗ وَلِلَّهِ مِيرَاثُ السَّمَاوَاتِ وَالْأَرْضِ ۗ وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ`,`And let not those who [greedily] withhold what Allah has given them of His bounty ever think that it is better for them. Rather, it is worse for them. Their necks will be encircled by what they withheld on the Day of Resurrection. And to Allah belongs the heritage of the heavens and the earth. And Allah, with what you do, is [fully] Acquainted.`],
+[181,5,[`scripture`],`لَقَدْ سَمِعَ اللَّهُ قَوْلَ الَّذِينَ قَالُوا إِنَّ اللَّهَ فَقِيرٌ وَنَحْنُ أَغْنِيَاءُ ۘ سَنَكْتُبُ مَا قَالُوا وَقَتْلَهُمُ الْأَنْبِيَاءَ بِغَيْرِ حَقٍّ وَنَقُولُ ذُوقُوا عَذَابَ الْحَرِيقِ`,`Allah has certainly heard the statement of those [Jews] who said, "Indeed, Allah is poor, while we are rich." We will record what they said and their killing of the prophets without right and will say, "Taste the punishment of the Burning Fire.`],
+[182,5,[`ethics`],`ذَٰلِكَ بِمَا قَدَّمَتْ أَيْدِيكُمْ وَأَنَّ اللَّهَ لَيْسَ بِظَلَّامٍ لِلْعَبِيدِ`,`That is for what your hands have put forth and because Allah is not ever unjust to [His] servants."`],
+[183,5,[`prophets`],`الَّذِينَ قَالُوا إِنَّ اللَّهَ عَهِدَ إِلَيْنَا أَلَّا نُؤْمِنَ لِرَسُولٍ حَتَّىٰ يَأْتِيَنَا بِقُرْبَانٍ تَأْكُلُهُ النَّارُ ۗ قُلْ قَدْ جَاءَكُمْ رُسُلٌ مِنْ قَبْلِي بِالْبَيِّنَاتِ وَبِالَّذِي قُلْتُمْ فَلِمَ قَتَلْتُمُوهُمْ إِنْ كُنْتُمْ صَادِقِينَ`,`[They are] those who said, "Indeed, Allah has taken our promise not to believe any messenger until he brings us an offering which fire [from heaven] will consume." Say, "There have already come to you messengers before me with clear proofs and [even] that of which you speak. So why did you kill them, if you should be truthful?"`],
+[184,5,[`scripture`],`فَإِنْ كَذَّبُوكَ فَقَدْ كُذِّبَ رُسُلٌ مِنْ قَبْلِكَ جَاءُوا بِالْبَيِّنَاتِ وَالزُّبُرِ وَالْكِتَابِ الْمُنِيرِ`,`Then if they deny you, [O Muhammad] - so were messengers denied before you, who brought clear proofs and written ordinances and the enlightening Scripture.`],
+[185,5,[`ethics`],`كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ ۖ فَمَنْ زُحْزِحَ عَنِ النَّارِ وَأُدْخِلَ الْجَنَّةَ فَقَدْ فَازَ ۗ وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ`,`Every soul will taste death, and you will only be given your [full] compensation on the Day of Resurrection. So he who is drawn away from the Fire and admitted to Paradise has attained [his desire]. And what is the life of this world except the enjoyment of delusion.`],
+[186,5,[`ethics`],`لَتُبْلَوُنَّ فِي أَمْوَالِكُمْ وَأَنْفُسِكُمْ وَلَتَسْمَعُنَّ مِنَ الَّذِينَ أُوتُوا الْكِتَابَ مِنْ قَبْلِكُمْ وَمِنَ الَّذِينَ أَشْرَكُوا أَذًى كَثِيرًا ۚ وَإِنْ تَصْبِرُوا وَتَتَّقُوا فَإِنَّ ذَٰلِكَ مِنْ عَزْمِ الْأُمُورِ`,`You will surely be tested in your possessions and in yourselves. And you will surely hear from those who were given the Scripture before you and from those who associate others with Allah much abuse. But if you are patient and fear Allah - indeed, that is of the matters [worthy] of determination.`],
+[187,5,[`scripture`],`وَإِذْ أَخَذَ اللَّهُ مِيثَاقَ الَّذِينَ أُوتُوا الْكِتَابَ لَتُبَيِّنُنَّهُ لِلنَّاسِ وَلَا تَكْتُمُونَهُ فَنَبَذُوهُ وَرَاءَ ظُهُورِهِمْ وَاشْتَرَوْا بِهِ ثَمَنًا قَلِيلًا ۖ فَبِئْسَ مَا يَشْتَرُونَ`,`And [mention, O Muhammad], when Allah took a covenant from those who were given the Scripture, [saying], "You must make it clear to the people and not conceal it." But they threw it away behind their backs and exchanged it for a small price. And wretched is that which they purchased.`],
+[188,5,[`ethics`],`لَا تَحْسَبَنَّ الَّذِينَ يَفْرَحُونَ بِمَا أَتَوْا وَيُحِبُّونَ أَنْ يُحْمَدُوا بِمَا لَمْ يَفْعَلُوا فَلَا تَحْسَبَنَّهُمْ بِمَفَازَةٍ مِنَ الْعَذَابِ ۖ وَلَهُمْ عَذَابٌ أَلِيمٌ`,`And never think that those who rejoice in what they have perpetrated and like to be praised for what they did not do - never think them [to be] in safety from the punishment, and for them is a painful punishment.`],
+[189,5,[`scripture`],`وَلِلَّهِ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ ۗ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ`,`And to Allah belongs the dominion of the heavens and the earth, and Allah is over all things competent.`],
+[190,6,[`scripture`],`إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لِأُولِي الْأَلْبَابِ`,`Indeed, in the creation of the heavens and the earth and the alternation of the night and the day are signs for those of understanding.`],
+[191,6,[`supplication`],`الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَامًا وَقُعُودًا وَعَلَىٰ جُنُوبِهِمْ وَيَتَفَكَّرُونَ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ رَبَّنَا مَا خَلَقْتَ هَٰذَا بَاطِلًا سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ`,`Who remember Allah while standing or sitting or [lying] on their sides and give thought to the creation of the heavens and the earth, [saying], "Our Lord, You did not create this aimlessly; exalted are You [above such a thing]; then protect us from the punishment of the Fire.`],
+[192,6,[`supplication`],`رَبَّنَا إِنَّكَ مَنْ تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ ۖ وَمَا لِلظَّالِمِينَ مِنْ أَنْصَارٍ`,`Our Lord, indeed whoever You admit to the Fire - You have disgraced him, and for the wrongdoers there are no helpers.`],
+[193,6,[`supplication`],`رَبَّنَا إِنَّنَا سَمِعْنَا مُنَادِيًا يُنَادِي لِلْإِيمَانِ أَنْ آمِنُوا بِرَبِّكُمْ فَآمَنَّا ۚ رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّئَاتِنَا وَتَوَفَّنَا مَعَ الْأَبْرَارِ`,`Our Lord, indeed we have heard a caller calling to faith, [saying], 'Believe in your Lord,' and we have believed. Our Lord, so forgive us our sins and remove from us our misdeeds and cause us to die with the righteous.`],
+[194,6,[`supplication`],`رَبَّنَا وَآتِنَا مَا وَعَدْتَنَا عَلَىٰ رُسُلِكَ وَلَا تُخْزِنَا يَوْمَ الْقِيَامَةِ ۗ إِنَّكَ لَا تُخْلِفُ الْمِيعَادَ`,`Our Lord, and grant us what You promised us through Your messengers and do not disgrace us on the Day of Resurrection. Indeed, You do not fail in [Your] promise."`],
+[195,6,[`ethics`],`فَاسْتَجَابَ لَهُمْ رَبُّهُمْ أَنِّي لَا أُضِيعُ عَمَلَ عَامِلٍ مِنْكُمْ مِنْ ذَكَرٍ أَوْ أُنْثَىٰ ۖ بَعْضُكُمْ مِنْ بَعْضٍ ۖ فَالَّذِينَ هَاجَرُوا وَأُخْرِجُوا مِنْ دِيَارِهِمْ وَأُوذُوا فِي سَبِيلِي وَقَاتَلُوا وَقُتِلُوا لَأُكَفِّرَنَّ عَنْهُمْ سَيِّئَاتِهِمْ وَلَأُدْخِلَنَّهُمْ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ ثَوَابًا مِنْ عِنْدِ اللَّهِ ۗ وَاللَّهُ عِنْدَهُ حُسْنُ الثَّوَابِ`,`And their Lord responded to them, "Never will I allow to be lost the work of [any] worker among you, whether male or female; you are of one another. So those who emigrated or were evicted from their homes or were harmed in My cause or fought or were killed - I will surely remove from them their misdeeds, and I will surely admit them to gardens beneath which rivers flow as reward from Allah, and Allah has with Him the best reward."`],
+[196,6,[`ethics`],`لَا يَغُرَّنَّكَ تَقَلُّبُ الَّذِينَ كَفَرُوا فِي الْبِلَادِ`,`Be not deceived by the [uninhibited] movement of the disbelievers throughout the land.`],
+[197,6,[`ethics`],`مَتَاعٌ قَلِيلٌ ثُمَّ مَأْوَاهُمْ جَهَنَّمُ ۚ وَبِئْسَ الْمِهَادُ`,`[It is but] a small enjoyment; then their [final] refuge is Hell, and wretched is the resting place.`],
+[198,6,[`ethics`],`لَٰكِنِ الَّذِينَ اتَّقَوْا رَبَّهُمْ لَهُمْ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا نُزُلًا مِنْ عِنْدِ اللَّهِ ۗ وَمَا عِنْدَ اللَّهِ خَيْرٌ لِلْأَبْرَارِ`,`But those who feared their Lord will have gardens beneath which rivers flow, abiding eternally therein, as accommodation from Allah. And that which is with Allah is best for the righteous.`],
+[199,6,[`scripture`],`وَإِنَّ مِنْ أَهْلِ الْكِتَابِ لَمَنْ يُؤْمِنُ بِاللَّهِ وَمَا أُنْزِلَ إِلَيْكُمْ وَمَا أُنْزِلَ إِلَيْهِمْ خَاشِعِينَ لِلَّهِ لَا يَشْتَرُونَ بِآيَاتِ اللَّهِ ثَمَنًا قَلِيلًا ۗ أُولَٰئِكَ لَهُمْ أَجْرُهُمْ عِنْدَ رَبِّهِمْ ۗ إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ`,`And indeed, among the People of the Scripture are those who believe in Allah and what was revealed to you and what was revealed to them, [being] humbly submissive to Allah. They do not exchange the verses of Allah for a small price. Those will have their reward with their Lord. Indeed, Allah is swift in account.`],
+[200,6,[`ethics`],`يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ`,`O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful.`]
+];
+
+let appState = {
+  activeAct: 0,
+  masteredActs: [],
+  bookmarks: [],
+  reviewedDuas: [],
+  quizAnswers: {},
+  quizIdx: 0,
+  fcIdx: 0,
+  fcMastered: [],
+  showArabic: true
+};
+
+let filteredVerses = VERSES.slice();
+let visibleLimit = 25;
+let fcFlipped = false;
+
+function persistState() {
+  if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+    window.notebookAppApi.setAppState(appState).catch(function() {});
+  }
+}
+
+function renderAll() {
+  renderActStrip();
+  renderActDetail();
+  renderDuas();
+  applyVerseFilters();
+  renderQuiz();
+  renderFlashcard();
+  updateProgressUI();
+}
+
+function updateProgressUI() {
+  const actCount = appState.masteredActs.length;
+  const kpiActs = document.getElementById('kpi-acts-mastered');
+  if (kpiActs) kpiActs.textContent = actCount + ' / 7';
+
+  const kpiBookmarks = document.getElementById('kpi-bookmarks');
+  if (kpiBookmarks) kpiBookmarks.textContent = String(appState.bookmarks.length);
+
+  const duaTag = document.getElementById('dua-reviewed-count');
+  if (duaTag) duaTag.textContent = appState.reviewedDuas.length + ' / ' + DUAS.length + ' reviewed';
+
+  let correct = 0;
+  QUIZ.forEach(function(item, idx) {
+    if (appState.quizAnswers[idx] === item.ans) correct++;
+  });
+  const scoreTag = document.getElementById('quiz-score-tag');
+  if (scoreTag) scoreTag.textContent = 'Score: ' + correct + ' / ' + QUIZ.length;
+
+  const fcTag = document.getElementById('fc-mastered-tag');
+  if (fcTag) fcTag.textContent = appState.fcMastered.length + ' / ' + FLASHCARDS.length + ' mastered';
+
+  // Overall progress: 7 acts + 10 quiz questions + 8 flashcards = 25 milestones
+  const done = actCount + Object.keys(appState.quizAnswers).length + appState.fcMastered.length;
+  const pct = Math.min(100, Math.round((done / 25) * 100));
+  const fill = document.getElementById('overall-progress-fill');
+  if (fill) fill.style.width = pct + '%';
+
+  const progHead = document.getElementById('progress-headline');
+  const progSub = document.getElementById('progress-sub');
+  if (progHead && progSub) {
+    if (done === 0) {
+      progHead.textContent = `Start your guided study`;
+      progSub.textContent = `Mark thematic acts complete, bookmark key verses, and test yourself in the 10-question mastery quiz.`;
+    } else {
+      progHead.textContent = pct + `% chapter mastery achieved`;
+      progSub.textContent = actCount + ` of 7 acts mastered · ` + Object.keys(appState.quizAnswers).length + ` of 10 quiz questions answered · ` + appState.fcMastered.length + ` of 8 concept cards mastered.`;
+    }
+  }
+}
+
+function renderActStrip() {
+  const strip = document.getElementById('act-strip');
+  if (!strip) return;
+  strip.innerHTML = ACTS.map(function(act) {
+    const active = appState.activeAct === act.id ? ' is-active' : '';
+    const mastered = appState.masteredActs.indexOf(act.id) !== -1;
+    const widthPct = Math.max(28, Math.round((act.count / 38) * 100));
+    return `<button type="button" class="act-seg${active}" data-act="${act.id}" onclick="selectAct(${act.id})">
+      <div>
+        <div class="act-seg-bar" style="width:${widthPct}%"></div>
+        <div class="label" style="color:var(--on-surface); font-weight:600;">${act.short}</div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:var(--space-xs);">
+        <span class="status-note">${act.count} vv.</span>
+        ${mastered ? '<span class="tag" style="padding:var(--space-xs) var(--space-sm);">Done</span>' : ''}
+      </div>
+    </button>`;
+  }).join('');
+}
+
+function renderActDetail() {
+  const act = ACTS[appState.activeAct] || ACTS[0];
+  const rEl = document.getElementById('act-detail-range');
+  const cEl = document.getElementById('act-detail-count');
+  const tEl = document.getElementById('act-detail-title');
+  const sEl = document.getElementById('act-detail-summary');
+  const aEl = document.getElementById('act-detail-anchors');
+  const bEl = document.getElementById('toggle-act-mastery-btn');
+  if (rEl) rEl.textContent = act.range;
+  if (cEl) cEl.textContent = act.count + ' verses';
+  if (tEl) tEl.textContent = act.title;
+  if (sEl) sEl.textContent = act.summary;
+  if (aEl) {
+    aEl.innerHTML = act.anchors.map(function(txt) {
+      return `<li>${txt}</li>`;
+    }).join('');
+  }
+  if (bEl) {
+    const done = appState.masteredActs.indexOf(act.id) !== -1;
+    bEl.textContent = done ? 'Act Mastered (Undo)' : 'Mark Act Mastered';
+    bEl.className = done ? 'btn' : 'btn btn-primary';
+  }
+}
+
+function selectAct(id) {
+  appState.activeAct = id;
+  renderActStrip();
+  renderActDetail();
+  persistState();
+}
+
+function toggleCurrentActMastery() {
+  const id = appState.activeAct;
+  const idx = appState.masteredActs.indexOf(id);
+  if (idx === -1) {
+    appState.masteredActs.push(id);
+  } else {
+    appState.masteredActs.splice(idx, 1);
+  }
+  renderActStrip();
+  renderActDetail();
+  updateProgressUI();
+  persistState();
+}
+
+function jumpToActVerses() {
+  const actSelect = document.getElementById('act-filter');
+  if (actSelect) {
+    actSelect.value = String(appState.activeAct);
+    applyVerseFilters();
+  }
+  const explorer = document.getElementById('explorer');
+  if (explorer) explorer.scrollIntoView({ behavior: 'smooth' });
+}
+
+function selectLineage(key) {
+  const keys = ['adam', 'abraham', 'imran', 'mary', 'zechariah', 'jesus'];
+  keys.forEach(function(k) {
+    const rect = document.getElementById('node-' + k);
+    if (!rect) return;
+    if (k === key) {
+      rect.setAttribute('fill', 'var(--primary-container)');
+      rect.setAttribute('stroke', 'var(--primary)');
+      rect.setAttribute('stroke-width', '2');
+    } else {
+      rect.setAttribute('fill', 'var(--surface-container-low)');
+      rect.setAttribute('stroke', 'var(--outline)');
+      rect.setAttribute('stroke-width', '1.5');
+    }
+  });
+  const box = document.getElementById('lineage-detail-box');
+  const info = LINEAGE_DATA[key];
+  if (box && info) {
+    box.innerHTML = `<div class="subhead">${info.title}</div><p class="prose" style="margin-top:var(--space-xs);">${info.text}</p>`;
+  }
+}
+
+function renderDuas() {
+  const grid = document.getElementById('dua-grid');
+  if (!grid) return;
+  grid.innerHTML = DUAS.map(function(d) {
+    const reviewed = appState.reviewedDuas.indexOf(d.id) !== -1;
+    return `<article class="panel" style="${reviewed ? 'border-color:var(--secondary);' : ''}">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+        <span class="tag tag-slate">Verse ${d.ref}</span>
+        <span class="label">${d.speaker}</span>
+      </div>
+      <p class="arabic-text" style="margin-top:var(--space-md);">${d.arabic}</p>
+      <p style="margin:var(--space-sm) 0 0;">${d.english}</p>
+      <div style="margin-top:var(--space-md); display:flex; justify-content:flex-end;">
+        <button type="button" class="btn btn-sm ${reviewed ? 'is-selected' : ''}" onclick="toggleDuaReviewed('${d.id}')">
+          ${reviewed ? 'Reviewed' : 'Mark Reviewed'}
+        </button>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function toggleDuaReviewed(id) {
+  const idx = appState.reviewedDuas.indexOf(id);
+  if (idx === -1) appState.reviewedDuas.push(id);
+  else appState.reviewedDuas.splice(idx, 1);
+  renderDuas();
+  updateProgressUI();
+  persistState();
+}
+
+function applyVerseFilters() {
+  const qEl = document.getElementById('verse-search');
+  const aEl = document.getElementById('act-filter');
+  const tEl = document.getElementById('topic-filter');
+  const query = qEl ? qEl.value.trim().toLowerCase() : '';
+  const actVal = aEl ? aEl.value : 'all';
+  const topicVal = tEl ? tEl.value : 'all';
+
+  filteredVerses = VERSES.filter(function(v) {
+    const num = v[0];
+    const actIdx = v[1];
+    const tags = v[2];
+    const ar = v[3];
+    const en = v[4];
+    if (actVal !== 'all' && String(actIdx) !== actVal) return false;
+    if (topicVal === 'bookmarked' && appState.bookmarks.indexOf(num) === -1) return false;
+    if (topicVal !== 'all' && topicVal !== 'bookmarked' && tags.indexOf(topicVal) === -1) return false;
+    if (query) {
+      const refStr = '3:' + num;
+      const matchRef = refStr === query || String(num) === query;
+      const matchEn = en.toLowerCase().indexOf(query) !== -1;
+      const matchAr = ar.indexOf(query) !== -1;
+      if (!matchRef && !matchEn && !matchAr) return false;
+    }
+    return true;
+  });
+
+  visibleLimit = 25;
+  renderVerseList();
+}
+
+function clearVerseFilters() {
+  const qEl = document.getElementById('verse-search');
+  const aEl = document.getElementById('act-filter');
+  const tEl = document.getElementById('topic-filter');
+  if (qEl) qEl.value = '';
+  if (aEl) aEl.value = 'all';
+  if (tEl) tEl.value = 'all';
+  applyVerseFilters();
+}
+
+function toggleArabicDisplay() {
+  appState.showArabic = !appState.showArabic;
+  const btn = document.getElementById('toggle-arabic-btn');
+  if (btn) btn.textContent = appState.showArabic ? 'Hide Arabic' : 'Show Arabic';
+  renderVerseList();
+  persistState();
+}
+
+function toggleShowAllVerses() {
+  visibleLimit = filteredVerses.length;
+  renderVerseList();
+}
+
+function loadMoreVerses() {
+  visibleLimit += 25;
+  renderVerseList();
+}
+
+function renderVerseList() {
+  const list = document.getElementById('verse-list');
+  const countEl = document.getElementById('verse-result-count');
+  const moreWrap = document.getElementById('load-more-wrap');
+  const arBtn = document.getElementById('toggle-arabic-btn');
+  if (arBtn) arBtn.textContent = appState.showArabic ? 'Hide Arabic' : 'Show Arabic';
+
+  if (countEl) {
+    countEl.textContent = `Showing ` + Math.min(visibleLimit, filteredVerses.length) + ` of ` + filteredVerses.length + ` matching verses (200 total)`;
+  }
+
+  if (!list) return;
+  if (filteredVerses.length === 0) {
+    list.innerHTML = `<div class="panel">
+      <div class="subhead">No matching verses found</div>
+      <p class="status-note" style="margin-top:var(--space-xs);">Your current search or filter returned 0 verses. Clear filters to return to all 200 verses of Surah Ali 'Imran.</p>
+      <button type="button" class="btn btn-sm" style="margin-top:var(--space-sm);" onclick="clearVerseFilters()">Reset filters</button>
+    </div>`;
+    if (moreWrap) moreWrap.style.display = 'none';
+    return;
+  }
+
+  const slice = filteredVerses.slice(0, visibleLimit);
+  list.innerHTML = slice.map(function(v) {
+    const num = v[0];
+    const act = ACTS[v[1]];
+    const tags = v[2];
+    const ar = v[3];
+    const en = v[4];
+    const bookmarked = appState.bookmarks.indexOf(num) !== -1;
+    return `<article class="verse-card${bookmarked ? ' is-bookmarked' : ''}">
+      <div class="verse-head">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-sm);">
+          <span class="verse-num">3:${num}</span>
+          <span class="tag">${act.short}</span>
+          ${tags.map(function(t) { return `<span class="label">${t}</span>`; }).join(' · ')}
+        </div>
+        <button type="button" class="btn btn-sm ${bookmarked ? 'is-selected' : ''}" onclick="toggleBookmark(${num})">
+          ${bookmarked ? 'Bookmarked' : 'Bookmark'}
+        </button>
+      </div>
+      ${appState.showArabic ? `<p class="arabic-text">${ar}</p>` : ''}
+      <p style="margin:0; max-width:70ch;">${en}</p>
+    </article>`;
+  }).join('');
+
+  if (moreWrap) {
+    moreWrap.style.display = visibleLimit < filteredVerses.length ? 'flex' : 'none';
+  }
+}
+
+function toggleBookmark(num) {
+  const idx = appState.bookmarks.indexOf(num);
+  if (idx === -1) appState.bookmarks.push(num);
+  else appState.bookmarks.splice(idx, 1);
+  renderVerseList();
+  updateProgressUI();
+  persistState();
+}
+
+function renderQuiz() {
+  const qObj = QUIZ[appState.quizIdx] || QUIZ[0];
+  const progEl = document.getElementById('quiz-progress-label');
+  const qEl = document.getElementById('quiz-question');
+  const optsEl = document.getElementById('quiz-options');
+  const fbEl = document.getElementById('quiz-feedback');
+  const prevBtn = document.getElementById('quiz-prev-btn');
+  const nextBtn = document.getElementById('quiz-next-btn');
+
+  if (progEl) progEl.textContent = `Question ` + (appState.quizIdx + 1) + ` of ` + QUIZ.length;
+  if (qEl) qEl.textContent = qObj.q;
+
+  const chosen = appState.quizAnswers[appState.quizIdx];
+  if (optsEl) {
+    optsEl.innerHTML = qObj.opts.map(function(opt, idx) {
+      let cls = 'btn quiz-opt';
+      if (chosen !== undefined) {
+        if (idx === qObj.ans) cls += ' is-correct';
+        else if (idx === chosen) cls += ' is-wrong';
+      }
+      return `<button type="button" class="${cls}" onclick="answerQuiz(${idx})">${opt}</button>`;
+    }).join('');
+  }
+
+  if (fbEl) {
+    if (chosen !== undefined) {
+      const right = chosen === qObj.ans;
+      fbEl.style.display = 'block';
+      fbEl.innerHTML = `<strong>${right ? 'Correct.' : 'Review:'}</strong> ${qObj.exp}`;
+    } else {
+      fbEl.style.display = 'none';
+    }
+  }
+  if (prevBtn) prevBtn.disabled = appState.quizIdx === 0;
+  if (nextBtn) nextBtn.disabled = appState.quizIdx === QUIZ.length - 1;
+}
+
+function answerQuiz(choiceIdx) {
+  appState.quizAnswers[appState.quizIdx] = choiceIdx;
+  renderQuiz();
+  updateProgressUI();
+  persistState();
+}
+
+function nextQuizQuestion() {
+  if (appState.quizIdx < QUIZ.length - 1) {
+    appState.quizIdx++;
+    renderQuiz();
+    persistState();
+  }
+}
+
+function prevQuizQuestion() {
+  if (appState.quizIdx > 0) {
+    appState.quizIdx--;
+    renderQuiz();
+    persistState();
+  }
+}
+
+function resetQuiz() {
+  appState.quizAnswers = {};
+  appState.quizIdx = 0;
+  renderQuiz();
+  updateProgressUI();
+  persistState();
+}
+
+function renderFlashcard() {
+  const card = FLASHCARDS[appState.fcIdx] || FLASHCARDS[0];
+  const counterEl = document.getElementById('fc-counter');
+  const frontEl = document.getElementById('fc-front');
+  const backEl = document.getElementById('fc-back');
+  const flipBtn = document.getElementById('fc-flip-btn');
+  const masterBtn = document.getElementById('fc-master-btn');
+
+  if (counterEl) counterEl.textContent = `Concept Card ` + (appState.fcIdx + 1) + ` of ` + FLASHCARDS.length;
+  if (frontEl) frontEl.textContent = card.front;
+  if (backEl) {
+    backEl.innerHTML = card.back;
+    backEl.style.display = fcFlipped ? 'block' : 'none';
+  }
+  if (flipBtn) flipBtn.textContent = fcFlipped ? 'Hide Answer' : 'Reveal Answer';
+  const mastered = appState.fcMastered.indexOf(appState.fcIdx) !== -1;
+  if (masterBtn) {
+    masterBtn.textContent = mastered ? 'Mastered' : 'Mark Mastered';
+    masterBtn.className = mastered ? 'btn btn-sm is-selected' : 'btn btn-sm';
+  }
+}
+
+function flipFlashcard() {
+  fcFlipped = !fcFlipped;
+  renderFlashcard();
+}
+
+function nextFlashcard() {
+  appState.fcIdx = (appState.fcIdx + 1) % FLASHCARDS.length;
+  fcFlipped = false;
+  renderFlashcard();
+  persistState();
+}
+
+function toggleFlashcardMastered() {
+  const idx = appState.fcMastered.indexOf(appState.fcIdx);
+  if (idx === -1) appState.fcMastered.push(appState.fcIdx);
+  else appState.fcMastered.splice(idx, 1);
+  renderFlashcard();
+  updateProgressUI();
+  persistState();
+}
+
+function handleResetProgress(btn) {
+  if (btn.dataset.armed !== 'true') {
+    btn.dataset.armed = 'true';
+    btn.textContent = 'Click again to confirm reset';
+    return;
+  }
+  btn.dataset.armed = 'false';
+  btn.textContent = 'Reset Progress';
+  appState = {
+    activeAct: 0,
+    masteredActs: [],
+    bookmarks: [],
+    reviewedDuas: [],
+    quizAnswers: {},
+    quizIdx: 0,
+    fcIdx: 0,
+    fcMastered: [],
+    showArabic: true
+  };
+  fcFlipped = false;
+  renderAll();
+  persistState();
+}
+
+function exportStudyNotes() {
+  const lines = [
+    `SURAH ALI 'IMRAN (CHAPTER 3) — STUDY NOTES`,
+    `Acts mastered: ` + appState.masteredActs.length + ` / 7`,
+    `Bookmarked verses (` + appState.bookmarks.length + `):`
+  ];
+  appState.bookmarks.slice().sort(function(a, b) { return a - b; }).forEach(function(num) {
+    const v = VERSES[num - 1];
+    if (v) lines.push(`- 3:` + num + `: ` + v[4]);
+  });
+  const text = lines.join('\n');
+  if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+    window.notebookAppApi.triggerFileDownload({
+      content: text,
+      contentType: 'text/plain',
+      encoding: 'UTF-8',
+      filename: 'surah-ali-imran-notes.txt'
+    });
+  }
+}
+
+async function initApp() {
+  try {
+    if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+      const saved = await window.notebookAppApi.getAppState();
+      if (saved && typeof saved === 'object') {
+        appState = Object.assign(appState, saved);
+      }
+    }
+  } catch (e) {
+    // Fallback cleanly to default state
+  }
+
+  selectLineage('mary');
+  renderAll();
+
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+  if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+    window.notebookAppApi.notifyAppReady();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>

@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Al-Hadid (Chapter 57) — Interactive Study &amp; Mastery Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-border: #c4b29e;
+      --brass-edge: #d8c3b0;
+      --brass-mid: #b5893e;
+      --error-container: #f8e3e1;
+      --error-border: #dfb3af;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Semantic */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-label: 'Plus Jakarta Sans', sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-edge), var(--brass-mid), var(--brass-edge));
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1160px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+    }
+    .title em, .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .hero-lede {
+      font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg) 0;
+    }
+
+    .section-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .section-lede {
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg) 0;
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+
+    /* Brass diamond ornamental rule */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Zellige emerald badge */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out),
+                  color var(--dur-short) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+      box-shadow: var(--soft-shadow-raised);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--secondary-border);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container-low);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn-tertiary {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--tertiary-border);
+    }
+    .btn-tertiary:hover:not(:disabled) {
+      background-color: var(--surface-container);
+    }
+
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      font-size: 0.8125rem;
+    }
+
+    /* Riad arch metric cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-caption {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Quick action toolbar */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .status-note {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.5em;
+    }
+
+    /* Tonal plaster bands */
+    .plaster-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section 1: 6-Movement Structural Map */
+    .movement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .movement-arch {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .movement-arch:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .movement-arch.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    .movement-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .movement-progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .movement-progress-fill {
+      height: 100%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Architectural Ring Diagram container */
+    .schematic-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    .schematic-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Section 2: Interactive Concept Explorers */
+    .explorer-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .explorer-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .compass-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .concept-tile {
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .concept-tile:hover {
+      box-shadow: var(--soft-shadow);
+    }
+    .concept-tile.is-selected {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .arabic-term {
+      font-family: var(--font-arabic);
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: var(--primary);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .stepper-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .stage-pill {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--secondary-border);
+      background: var(--background);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out);
+    }
+    .stage-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .triad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    /* Section 3: Verse-by-Verse Study Reader */
+    .reader-controls {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-lg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .field-input, .field-select, .field-textarea {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+      transition: box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .field-select {
+      padding-right: var(--space-xl);
+    }
+    .field-textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      cursor: pointer;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .verse-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      background: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+
+    .verse-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+
+    .verse-id-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-num {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--primary);
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+      line-height: 2.1;
+      text-align: right;
+      direction: rtl;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .verse-english {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+      max-width: 72ch;
+    }
+
+    .verse-insight {
+      background: var(--background);
+      border-left: 3px solid var(--tertiary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-md);
+    }
+
+    .verse-note-box {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    /* Section 4: Flashcards */
+    .flashcard-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .flashcard-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .flashcard-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Section 5: Quiz */
+    .quiz-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+      margin: var(--space-md) 0;
+    }
+
+    .quiz-option {
+      width: 100%;
+      min-height: 44px;
+      text-align: left;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      font-size: 0.96875rem;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .quiz-option.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      box-shadow: 0 0 0 2px var(--tertiary);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      color: var(--error);
+      box-shadow: 0 0 0 2px var(--error);
+    }
+
+    .quiz-feedback {
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      margin-top: var(--space-md);
+      font-size: 0.9375rem;
+    }
+    .quiz-feedback.is-positive {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+    }
+    .quiz-feedback.is-negative {
+      background: var(--error-container);
+      color: var(--error);
+      border: 1px solid var(--error-border);
+    }
+
+    /* Comparison table */
+    .study-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--rounded-lg);
+      border: var(--warm-hairline);
+      background: var(--surface-container-low);
+    }
+    .study-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    .study-table thead {
+      background: var(--surface-container);
+    }
+    .study-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    .study-table td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+    }
+    .study-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Reveal animation */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+
+    .site-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Container query example for explorer cards */
+    .card-wrapper { container-type: inline-size; }
+    @container (min-width: 560px) {
+      .flashcard-split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--space-lg);
+        align-items: center;
+      }
+    }
+    @container (max-width: 559px) {
+      .flashcard-split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-md);
+      }
+    }
+
+    @media (max-width: 780px) {
+      .explorer-split {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .plaster-band, .quiz-panel, .flashcard-card {
+        padding: var(--space-md);
+      }
+      .compass-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Mastery Dashboard -->
+    <header class="hero-block">
+      <div class="kicker-row">
+        <span>Surah Al-Hadid · Chapter 57</span>
+        <span>29 Verses · Six Thematic Movements</span>
+      </div>
+      <h1 class="title">The Architecture of <em>Light</em> &amp; Iron</h1>
+      <p class="hero-lede">
+        Surah Al-Hadid opens with every creature in the heavens and earth exalting Allah (57:1) and closes with all bounty resting in His hand (57:29). Between those two cosmic poles, the chapter weaves inner devotion, charitable stewardship, the separation of light from delusion, and the triad of Scripture, Justice, and Iron.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Chapter 57 Study &amp; Mastery Guide ◆</div>
+
+      <section aria-label="Mastery progress summary" class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-label">Chapter Scope</div>
+          <div class="arch-value">29</div>
+          <div class="arch-caption">Verses 57:1 to 57:29</div>
+        </div>
+        <div class="arch-card is-featured">
+          <div class="arch-label">Verses Mastered</div>
+          <div class="arch-value" id="stat-verses-mastered">0 / 29</div>
+          <div class="arch-caption" id="stat-verses-pct">0% reviewed</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Key Terms</div>
+          <div class="arch-value" id="stat-terms-mastered">0 / 8</div>
+          <div class="arch-caption">Core Arabic concepts</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-label">Mastery Check</div>
+          <div class="arch-value" id="stat-quiz-score">— / 10</div>
+          <div class="arch-caption" id="stat-quiz-caption">Ready when you are</div>
+        </div>
+      </section>
+
+      <div class="hero-actions">
+        <nav class="action-group" aria-label="Section shortcuts">
+          <a class="btn btn-primary btn-sm" href="#section-reader">
+            <i data-lucide="book-open" width="16" height="16" aria-hidden="true"></i>
+            Study All 29 Verses
+          </a>
+          <a class="btn btn-secondary btn-sm" href="#section-concepts">
+            Explore Key Mechanics
+          </a>
+          <a class="btn btn-secondary btn-sm" href="#section-flashcards">
+            Review Flashcards
+          </a>
+          <a class="btn btn-secondary btn-sm" href="#section-quiz">
+            Take Mastery Quiz
+          </a>
+        </nav>
+        <div class="action-group">
+          <button type="button" class="btn btn-tertiary btn-sm" onclick="exportStudySummary()">
+            <i data-lucide="download" width="16" height="16" aria-hidden="true"></i>
+            Export Study Log
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-progress" onclick="handleResetProgress(this)">
+            <i data-lucide="rotate-ccw" width="16" height="16" aria-hidden="true"></i>
+            Reset Progress
+          </button>
+        </div>
+      </div>
+      <div class="status-note" id="global-status-note" role="status" aria-live="polite"></div>
+    </header>
+
+    <!-- Section 1: Structural Map of the 6 Movements -->
+    <section id="section-movements" class="reveal-section">
+      <div class="kicker-row">
+        <span>Part I · Structural Overview</span>
+        <span>Ring Symmetry &amp; Progression</span>
+      </div>
+      <h2 class="section-title">Six Movements Connect <em>Cosmic Majesty</em> to Earthly Justice</h2>
+      <p class="section-lede">
+        Rather than treating faith, charity, inner humility, and civic justice as separate topics, Surah Al-Hadid builds them in sequence. Select any movement below to inspect its arc and filter the verse reader directly to that passage.
+      </p>
+
+      <div class="schematic-wrap">
+        <svg class="schematic-svg" viewBox="0 0 960 190" role="img" aria-label="Diagram showing the six thematic movements of Surah Al-Hadid from verses 1-6 to 26-29">
+          <line x1="60" y1="88" x2="900" y2="88" stroke="var(--outline-variant)" stroke-width="2" />
+          <path d="M 90 42 C 260 6, 700 6, 870 42" fill="none" stroke="var(--brass-mid)" stroke-width="1.5" stroke-dasharray="5 4" />
+          <text x="480" y="18" text-anchor="middle" fill="var(--secondary)" font-family="var(--font-label)" font-size="11" font-weight="700" letter-spacing="1.5">RING FRAME: EXALTATION &amp; DOMINION (57:1–6) ↔ DIVINE BOUNTY (57:26–29)</text>
+
+          <g id="svg-nodes"></g>
+        </svg>
+      </div>
+
+      <div class="movement-grid" id="movement-cards"></div>
+    </section>
+
+    <!-- Section 2: Interactive Concept Explorers -->
+    <section id="section-concepts" class="plaster-band reveal-section">
+      <div class="kicker-row">
+        <span>Part II · Core Conceptual Mechanics</span>
+        <span>Interactive Study Explorers</span>
+      </div>
+      <h2 class="section-title">Three Conceptual Engines Inside the Chapter</h2>
+      <p class="section-lede">
+        Before reading all 29 verses sequentially, step through the chapter’s three signature frameworks: the four-fold naming of Allah (57:3–4), the rain-and-debris parable of worldly life (57:20–23), and the triad of Scripture, Balance, and Iron (57:25).
+      </p>
+
+      <div class="explorer-stack">
+        <!-- Explorer A: 57:3-4 -->
+        <article class="panel-card">
+          <div class="kicker-row">
+            <span>57:3–4 · Divine Omniscience &amp; Nearness</span>
+            <span class="badge-emerald">Movement I</span>
+          </div>
+          <h3 class="subhead">The Four All-Encompassing Names &amp; Six-Fold Knowledge</h3>
+          <p class="section-lede">
+            Verse 57:3 pairs four complementary attributes into a complete horizon of time and space, while 57:4 maps Allah’s knowledge across every vertical movement between heaven and earth—culminating in personal presence: “He is with you wherever you are.”
+          </p>
+
+          <div class="explorer-split">
+            <div>
+              <div class="compass-grid" id="names-compass"></div>
+            </div>
+            <div class="panel-card" id="name-detail-panel">
+              <div class="kicker-row">
+                <span id="detail-name-ref">Verse 57:3</span>
+                <span class="badge-terracotta" id="detail-name-axis">Time Horizon</span>
+              </div>
+              <div class="arabic-term" id="detail-name-ar">هُوَ الْأَوَّلُ</div>
+              <h4 class="subhead" id="detail-name-en">Al-Awwal — The First</h4>
+              <p id="detail-name-desc">
+                Select any of the four Names on the left to examine how 57:3 frames Allah’s absolute priority, permanence, transcendence, and intimate nearness—followed immediately by 57:4’s six observations of earth, heaven, and human action.
+              </p>
+              <div class="study-table-wrap">
+                <table class="study-table">
+                  <thead>
+                    <tr>
+                      <th>57:4 Direction</th>
+                      <th>What Allah Knows</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Downward (Earth)</td>
+                      <td>What penetrates into the earth &amp; emerges from it</td>
+                    </tr>
+                    <tr>
+                      <td>Vertical (Heaven)</td>
+                      <td>What descends from heaven &amp; ascends therein</td>
+                    </tr>
+                    <tr>
+                      <td>Human Presence</td>
+                      <td>He is with you wherever you are; Seeing what you do</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Explorer B: 57:20-23 -->
+        <article class="panel-card">
+          <div class="kicker-row">
+            <span>57:20–23 · Transient World vs. Enduring Race</span>
+            <span class="badge-emerald">Movement IV &amp; V</span>
+          </div>
+          <h3 class="subhead">From Rain-Fed Bloom to Scattered Debris: The Parable of Worldly Life</h3>
+          <p class="section-lede">
+            Verse 57:20 diagnoses five escalating attachments of worldly life and illustrates them with a single seasonal cycle. Step through the four stages of the parable to see how it anchors the command to race toward forgiveness (57:21) and remain steady in loss or gain (57:22–23).
+          </p>
+
+          <div class="stepper-row" id="parable-stepper" role="group" aria-label="Stages of the worldly life parable in 57:20"></div>
+
+          <div class="explorer-split">
+            <div class="panel-card" id="parable-stage-view">
+              <div class="kicker-row">
+                <span id="parable-stage-kicker">Stage 1 of 4</span>
+                <span class="badge-terracotta" id="parable-stage-verse">57:20</span>
+              </div>
+              <div class="arabic-term" id="parable-stage-ar">غَيْثٍ أَعْجَبَ الْكُفَّارَ نَبَاتُهُ</div>
+              <h4 class="subhead" id="parable-stage-title">Rain &amp; Vigorous Green Growth</h4>
+              <p id="parable-stage-body"></p>
+            </div>
+
+            <div class="study-table-wrap">
+              <table class="study-table">
+                <thead>
+                  <tr>
+                    <th>57:20 Fivefold Anatomy</th>
+                    <th>57:21–23 Counter-Discipline</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. Amusement &amp; Diversion</strong> (<em>La‘ib wa Lahw</em>)</td>
+                    <td><strong>Race</strong> (<em>Sabiqu</em>) toward forgiveness &amp; a Garden wide as heaven and earth (57:21)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. Adornment &amp; Boasting</strong> (<em>Zinah wa Tafakhur</em>)</td>
+                    <td><strong>Do not exult in pride</strong> over what He has given you (57:23)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. Rivalry in Wealth &amp; Children</strong> (<em>Takathur</em>)</td>
+                    <td><strong>Do not despair</strong> over what eluded you; all events rest in a register (57:22–23)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        <!-- Explorer C: 57:25 Triad -->
+        <article class="panel-card">
+          <div class="kicker-row">
+            <span>57:25 · The Chapter’s Namesake Verse</span>
+            <span class="badge-emerald">Movement V</span>
+          </div>
+          <h3 class="subhead">Three Instruments Sent Down: Scripture, Balance, and Iron</h3>
+          <p class="section-lede">
+            Verse 57:25 gives the chapter its title, <em>Al-Hadid</em> (Iron). Notice the progression: revelation defines truth, the balance measures equity, and iron provides material capability and protection so people establish justice (<em>al-qist</em>).
+          </p>
+
+          <div class="triad-grid" id="triad-cards"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Complete Verse-by-Verse Study Reader -->
+    <section id="section-reader" class="reveal-section">
+      <div class="kicker-row">
+        <span>Part III · Complete Primary Text</span>
+        <span>Interactive Verse Reader &amp; Study Log</span>
+      </div>
+      <h2 class="section-title">Read, Annotate &amp; Master All <em>Twenty-Nine</em> Verses</h2>
+      <p class="section-lede">
+        Work through Surah Al-Hadid verse by verse. Mark verses as mastered once you can summarize their core message, bookmark key passages for review, or record personal reflections—your progress saves automatically.
+      </p>
+
+      <div class="reader-controls">
+        <div class="field-group">
+          <label class="field-label" for="filter-movement">Filter by Movement</label>
+          <select id="filter-movement" class="field-select" onchange="applyReaderFilters()">
+            <option value="all">All 6 Movements (29 Verses)</option>
+            <option value="1">I. Cosmic Sovereignty (57:1–6)</option>
+            <option value="2">II. Covenant &amp; Goodly Loan (57:7–11)</option>
+            <option value="3">III. Light &amp; The Dividing Wall (57:12–15)</option>
+            <option value="4">IV. Heart Revival &amp; Worldly Parable (57:16–21)</option>
+            <option value="5">V. Decree, Justice &amp; Iron (57:22–25)</option>
+            <option value="6">VI. Prophetic Lineage &amp; Double Mercy (57:26–29)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="filter-status">Filter by Mastery Status</label>
+          <select id="filter-status" class="field-select" onchange="applyReaderFilters()">
+            <option value="all">All Verses</option>
+            <option value="unmastered">Unmastered Only</option>
+            <option value="mastered">Mastered Only</option>
+            <option value="bookmarked">Bookmarked Only</option>
+            <option value="noted">With Personal Notes</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="search-verses">Search Verses (English or Arabic)</label>
+          <input id="search-verses" type="search" class="field-input" placeholder="e.g., iron, light, loan, covenant…" oninput="applyReaderFilters()">
+        </div>
+      </div>
+
+      <div class="toggle-row">
+        <label class="checkbox-label">
+          <input type="checkbox" id="toggle-arabic" checked onchange="toggleReaderOption('showArabic', this.checked)">
+          Show Arabic Script
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="toggle-insights" checked onchange="toggleReaderOption('showInsights', this.checked)">
+          Show Thematic Study Notes
+        </label>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-mark-visible" onclick="markVisibleMastered()">
+          Mark Filtered Verses Mastered
+        </button>
+      </div>
+
+      <div id="reader-count-bar" class="kicker-row">
+        <span id="reader-showing-label">Showing 29 of 29 verses</span>
+        <span id="reader-mastered-label">0 mastered in view</span>
+      </div>
+
+      <div class="verse-list" id="verse-list"></div>
+    </section>
+
+    <!-- Section 4: Key Vocabulary & Concept Flashcards -->
+    <section id="section-flashcards" class="plaster-band reveal-section">
+      <div class="kicker-row">
+        <span>Part IV · Active Recall</span>
+        <span>Eight Core Concepts</span>
+      </div>
+      <h2 class="section-title">Master the <em>Vocabulary</em> of Surah Al-Hadid</h2>
+      <p class="section-lede">
+        Test your recall of eight signature Arabic terms and expressions drawn directly from Chapter 57. Reveal the meaning and verse citation, then mark whether you have mastered the concept or need another pass.
+      </p>
+
+      <div class="card-wrapper flashcard-stage">
+        <div class="flashcard-card" id="flashcard-card">
+          <div class="kicker-row">
+            <span id="fc-counter">Card 1 of 8</span>
+            <span class="badge-emerald" id="fc-status-badge">Needs Review</span>
+          </div>
+
+          <div class="flashcard-split">
+            <div>
+              <div class="arabic-term" id="fc-arabic">الْحَدِيد</div>
+              <h3 class="section-title" id="fc-term">Al-Hadid</h3>
+              <p class="arch-caption" id="fc-ref">Verse 57:25</p>
+            </div>
+            <div id="fc-answer-panel">
+              <p id="fc-prompt-hint">Click “Reveal Meaning” below to check your recall before viewing the definition.</p>
+            </div>
+          </div>
+
+          <div class="flashcard-controls">
+            <div class="action-group">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="prevFlashcard()">Previous</button>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-flip-card" onclick="toggleFlashcardAnswer()">Reveal Meaning</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="nextFlashcard()">Next</button>
+            </div>
+            <div class="action-group">
+              <button type="button" class="btn btn-tertiary btn-sm" id="btn-fc-master" onclick="toggleTermMastered()">Mark Term Mastered</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 10-Question Mastery Check -->
+    <section id="section-quiz" class="reveal-section">
+      <div class="kicker-row">
+        <span>Part V · Mastery Verification</span>
+        <span>Ten Grounded Questions</span>
+      </div>
+      <h2 class="section-title">Check Your Comprehension Across All <em>Six</em> Movements</h2>
+      <p class="section-lede">
+        Each question tests an exact verse, contrast, or parable from Surah Al-Hadid. Answer all ten to verify mastery—your score and answer history are saved with your study log.
+      </p>
+
+      <div class="quiz-panel">
+        <div class="kicker-row">
+          <span id="quiz-progress-label">Question 1 of 10</span>
+          <span class="badge-terracotta" id="quiz-score-pill">Score: 0 / 10</span>
+        </div>
+
+        <h3 class="subhead" id="quiz-question-text"></h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div id="quiz-feedback" class="quiz-feedback" hidden></div>
+
+        <div class="hero-actions">
+          <div class="action-group">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-quiz-prev" onclick="prevQuizQuestion()">Previous Question</button>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-quiz-next" onclick="nextQuizQuestion()">Next Question</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-quiz-reset" onclick="resetQuiz(this)">Retake Quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span><strong>Source Basis:</strong> Surah Al-Hadid (Quran Chapter 57, verses 1–29), Arabic text and English translation from the supplied study document.</span>
+      <span>Progress and notes persist automatically inside your notebook session.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    const MOVEMENTS = [
+      {
+        id: 1,
+        roman: `I`,
+        range: `57:1–6`,
+        title: `Cosmic Sovereignty & Presence`,
+        summary: `All creation exalts Allah; His dominion, life-giving power, four-fold eternal Names, six-day creation, and intimate knowledge of every inward secret.`,
+        verses: [1, 2, 3, 4, 5, 6]
+      },
+      {
+        id: 2,
+        roman: `II`,
+        range: `57:7–11`,
+        title: `Faith, Covenant & Goodly Loan`,
+        summary: `Belief as a covenant; guidance from darkness into light; stewardship of wealth before and after victory; lending Allah a goodly loan multiplied in reward.`,
+        verses: [7, 8, 9, 10, 11]
+      },
+      {
+        id: 3,
+        roman: `III`,
+        range: `57:12–15`,
+        title: `The Day of Light & The Dividing Wall`,
+        summary: `Believers walking by their light toward eternal gardens, while hypocrites are separated by a wall with mercy inside and torment outside.`,
+        verses: [12, 13, 14, 15]
+      },
+      {
+        id: 4,
+        roman: `IV`,
+        range: `57:16–21`,
+        title: `Heart Revival & Worldly Delusion`,
+        summary: `Call to soften hardened hearts like rain reviving dead earth; charity multiplied; the five-part reality of worldly life and the call to race toward Paradise.`,
+        verses: [16, 17, 18, 19, 20, 21]
+      },
+      {
+        id: 5,
+        roman: `V`,
+        range: `57:22–25`,
+        title: `Decree, Justice & Iron`,
+        summary: `Pre-written decree guarding the heart against despair or arrogance; sending Messengers with Scripture, the Balance for justice, and Iron of might and benefit.`,
+        verses: [22, 23, 24, 25]
+      },
+      {
+        id: 6,
+        roman: `VI`,
+        range: `57:26–29`,
+        title: `Prophetic Lineage & Double Mercy`,
+        summary: `Noah, Abraham, and Jesus; compassion vs. innovated monasticism; a double portion of mercy and walking light; all bounty resting solely in Allah’s hand.`,
+        verses: [26, 27, 28, 29]
+      }
+    ];
+
+    const VERSES = [
+      {
+        n: 1,
+        m: 1,
+        ar: `سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ وَهُوَ الْعَزِيزُ الْحَكِيمُ`,
+        en: `Whatever is in the heavens and earth exalts Allah, and He is the Exalted in Might, the Wise.`,
+        insight: `Opens the chapter in the past-tense universal chorus of glorification (Sabbaha), pairing power (Al-Aziz) with wisdom (Al-Hakim).`
+      },
+      {
+        n: 2,
+        m: 1,
+        ar: `لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ يُحْيِي وَيُمِيتُ ۖ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ`,
+        en: `His is the dominion of the heavens and earth. He gives life and causes death, and He is over all things competent.`,
+        insight: `Establishes total ownership (mulk) before asking humans in 57:7 to spend from what belongs to Allah.`
+      },
+      {
+        n: 3,
+        m: 1,
+        ar: `هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ`,
+        en: `He is the First and the Last, the Ascendant and the Intimate, and He is, of all things, Knowing.`,
+        insight: `Encompasses all time (First and Last) and all space and inwardness (Ascendant above all, Intimate with all).`
+      },
+      {
+        n: 4,
+        m: 1,
+        ar: `هُوَ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ اسْتَوَى عَلَى الْعَرْشِ يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا وَمَا يَنْزِلُ مِنَ السَّمَاءِ وَمَا يَعْرُجُ فِيهَا وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ`,
+        en: `It is He who created the heavens and earth in six days and then established Himself above the Throne. He knows what penetrates into the earth and what emerges from it and what descends from the heaven and what ascends therein; and He is with you wherever you are. And Allah, of what you do, is Seeing.`,
+        insight: `Combines majestic transcendence above the Throne with unmistakable closeness: "He is with you wherever you are."`
+      },
+      {
+        n: 5,
+        m: 1,
+        ar: `لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ`,
+        en: `His is the dominion of the heavens and earth. And to Allah are returned [all] matters.`,
+        insight: `Repeats the dominion refrain of 57:2 and adds final accountability—every affair returns to Him.`
+      },
+      {
+        n: 6,
+        m: 1,
+        ar: `يُولِجُ اللَّيْلَ فِي النَّهَارِ وَيُولِجُ النَّهَارَ فِي اللَّيْلِ وَهُوَ عَلِيمٌ بِذَاتِ الصُّدُورِ`,
+        en: `He causes the night to enter the day and causes the day to enter the night, and he is Knowing of that within the breasts.`,
+        insight: `Links the visible rhythm of alternating light and darkness to unseen knowledge of what lies inside human hearts.`
+      },
+      {
+        n: 7,
+        m: 2,
+        ar: `آمِنُوا بِاللَّهِ وَرَسُولِهِ وَأَنْفِقُوا مِمَّا جَعَلَكُمْ مُسْتَخْلَفِينَ فِيهِ ۖ فَالَّذِينَ آمَنُوا مِنْكُمْ وَأَنْفَقُوا لَهُمْ أَجْرٌ كَبِيرٌ`,
+        en: `Believe in Allah and His Messenger and spend out of that in which He has made you successors. For those who have believed among you and spent, there will be a great reward.`,
+        insight: `Transitions from theology to action: wealth is not absolute ownership; humans are temporary trustees (mustakhlafin).`
+      },
+      {
+        n: 8,
+        m: 2,
+        ar: `وَمَا لَكُمْ لَا تُؤْمِنُونَ بِاللَّهِ وَالرَّسُولُ يَدْعُوكُمْ لِتُؤْمِنُوا بِرَبِّكُمْ وَقَدْ أَخَذَ مِيثَاقَكُمْ إِنْ كُنْتُمْ مُؤْمِنِينَ`,
+        en: `And why do you not believe in Allah while the Messenger invites you to believe in your Lord and He has taken your covenant, if you should [truly] be believers?`,
+        insight: `Appeals to conscience via two realities: the active invitation of the Messenger and the prior covenant taken by Allah.`
+      },
+      {
+        n: 9,
+        m: 2,
+        ar: `هُوَ الَّذِي يُنَزِّلُ عَلَىٰ عَبْدِهِ آيَاتٍ بَيِّنَاتٍ لِيُخْرِجَكُمْ مِنَ الظُّلُمَاتِ إِلَى النُّورِ وَإِنَّ اللَّهَ بِكُمْ لَرَءُوفٌ رَحِيمٌ`,
+        en: `It is He who sends down upon His Servant [Muhammad] verses of clear evidence that He may bring you out from darknesses into the light. And indeed, Allah is to you Kind and Merciful.`,
+        insight: `Introduces the chapter’s core light motif: revelation leads from plural darknesses (zulumat) into singular light (nur).`
+      },
+      {
+        n: 10,
+        m: 2,
+        ar: `وَمَا لَكُمْ أَلَّا تُنْفِقُوا فِي سَبِيلِ اللَّهِ وَلِلَّهِ مِيرَاثُ السَّمَاوَاتِ وَالْأَرْضِ لَا يَسْتَوِي مِنْكُمْ مَنْ أَنْفَقَ مِنْ قَبْلِ الْفَتْحِ وَقَاتَلَ أُولُئِكَ أَعْظَمُ دَرَجَةً مِنَ الَّذِينَ أَنْفَقُوا مِنْ بَعْدُ وَقَاتَلُوا وَكُلًّا وَعَدَ اللَّهُ الْحُسْنَىٰ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ خَبِيرٌ`,
+        en: `And why do you not spend in the cause of Allah while to Allah belongs the heritage of the heavens and the earth? Not equal among you are those who spent before the conquest [of Makkah] and fought [and those who did so after it]. Those are greater in degree than they who spent afterwards and fought. But to all Allah has promised the best [reward]. And Allah, with what you do, is Acquainted.`,
+        insight: `Distinguishes sacrifice made when victory was uncertain (before Al-Fath) from support given after victory, while promising good to both.`
+      },
+      {
+        n: 11,
+        m: 2,
+        ar: `مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا فَيُضَاعِفَهُ لَهُ وَلَهُ أَجْرٌ كَرِيمٌ`,
+        en: `Who is it that would loan Allah a goodly loan so He will multiply it for him and he will have a noble reward?`,
+        insight: `Frames selfless giving as a "goodly loan" (qard hasan) to the Owner of the universe—multiplied and crowned with noble reward.`
+      },
+      {
+        n: 12,
+        m: 3,
+        ar: `يَوْمَ تَرَى الْمُؤْمِنِينَ وَالْمُؤْمِنَاتِ يَسْعَىٰ نُورُهُمْ بَيْنَ أَيْدِيهِمْ وَبِأَيْمَانِهِمْ بُشْرَاكُمُ الْيَوْمَ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا ذَٰلِكَ هُوَ الْفَوْزُ الْعَظِيمُ`,
+        en: `On the Day you see the believing men and believing women, their light proceeding before them and on their right, [it will be said], "Your good tidings today are [of] gardens beneath which rivers flow, wherein you will abide eternally." That is what is the great attainment.`,
+        insight: `Notice the explicit pairing of believing men and women; the inner light cultivated through revelation (57:9) becomes visible light ahead and on their right.`
+      },
+      {
+        n: 13,
+        m: 3,
+        ar: `يَوْمَ يَقُولُ الْمُنَافِقُونَ وَالْمُنَافِقَاتُ لِلَّذِينَ آمَنُوا انْظُرُونَا نَقْتَبِسْ مِنْ نُورِكُمْ قِيلَ ارْجِعُوا وَرَاءَكُمْ فَالْتَمِسُوا نُورًا فَضُرِبَ بَيْنَهُمْ بِسُورٍ لَهُ بَابٌ بَاطِنُهُ فِيهِ الرَّحْمَةُ وَظَاهِرُهُ مِنْ قِبَلِهِ الْعَذَابُ`,
+        en: `On the [same] Day the hypocrite men and hypocrite women will say to those who believed, "Wait for us that we may acquire some of your light." It will be said, "Go back behind you and seek light." And a wall will be placed between them with a door, its interior containing mercy, but on the outside of it is torment.`,
+        insight: `Light cannot be borrowed on the Last Day. A single dividing wall with a door separates mercy within from torment outside.`
+      },
+      {
+        n: 14,
+        m: 3,
+        ar: `يُنَادُونَهُمْ أَلَمْ نَكُنْ مَعَكُمْ ۖ قَالُوا بَلَىٰ وَلَٰكِنَّكُمْ فَتَنْتُمْ أَنْفُسَكُمْ وَتَرَبَّصْتُمْ وَارْتَبْتُمْ وَغَرَّتْكُمُ الْأَمَانِيُّ حَتَّى جَاءَ أَمْرُ اللَّهِ وَغَرَّكُمْ بِاللَّهِ الْغَرُورُ`,
+        en: `The hypocrites will call to the believers, "Were we not with you?" They will say, "Yes, but you afflicted yourselves and awaited [misfortune for us] and doubted, and wishful thinking deluded you until there came the command of Allah. And the Deceiver deceived you concerning Allah."`,
+        insight: `Lists four spiritual traps of hypocrisy: self-affliction, waiting for believers to fail, lingering doubt, and wishful thinking (amaniyy).`
+      },
+      {
+        n: 15,
+        m: 3,
+        ar: `فَالْيَوْمَ لَا يُؤْخَذُ مِنْكُمْ فِدْيَةٌ وَلَا مِنَ الَّذِينَ كَفَرُوا مَأْوَاكُمُ النَّارُ هِيَ مَوْلَاكُمْ وَبِئْسَ الْمَصِيرُ`,
+        en: `So today no ransom will be taken from you or from those who disbelieved. Your refuge is the Fire. It is most worthy of you, and wretched is the destination.`,
+        insight: `Closes the judgment scene: neither wealth nor ransom avails once the door of the wall is shut.`
+      },
+      {
+        n: 16,
+        m: 4,
+        ar: `أَلَمْ يَأْنِ لِلَّذِينَ آمَنُوا أَنْ تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ اللَّهِ وَمَا نَزَلَ مِنَ الْحَقِّ وَلَا يَكُونُوا كَالَّذِينَ أُوتُوا الْكِتَابَ مِنْ قَبْلُ فَطَالَ عَلَيْهِمُ الْأَمَدُ فَقَسَتْ قُلُوبُهُمْ ۖ وَكَثِيرٌ مِنْهُمْ فَاسِقُونَ`,
+        en: `Has the time not come for those who have believed that their hearts should become humbly submissive at the remembrance of Allah and what has come down of the truth? And let them not be like those who were given the Scripture before, and a long period passed over them, so their hearts hardened; and many of them are defiantly disobedient.`,
+        insight: `A turning point in the surah: warns believers against spiritual complacency over time, which hardens hearts even among scripture-bearing communities.`
+      },
+      {
+        n: 17,
+        m: 4,
+        ar: `اعْلَمُوا أَنَّ اللَّهَ يُحْيِي الْأَرْضَ بَعْدَ مَوْتِهَا ۚ قَدْ بَيَّنَّا لَكُمُ الْآيَاتِ لَعَلَّكُمْ تَعْقِلُونَ`,
+        en: `Know that Allah gives life to the earth after its lifelessness. We have made clear to you the signs; perhaps you will understand.`,
+        insight: `Placed directly after the warning of hardened hearts (57:16): just as rain revives barren soil, remembrance and truth revive dry hearts.`
+      },
+      {
+        n: 18,
+        m: 4,
+        ar: `إِنَّ الْمُصَّدِّقِينَ وَالْمُصَّدِّقَاتِ وَأَقْرَضُوا اللَّهَ قَرْضًا حَسَنًا يُضَاعَفُ لَهُمْ وَلَهُمْ أَجْرٌ كَرِيمٌ`,
+        en: `Indeed, the men who practice charity and the women who practice charity and [they who] have loaned Allah a goodly loan - it will be multiplied for them, and they will have a noble reward.`,
+        insight: `Reiterates the "goodly loan" of 57:11, explicitly honoring both charitable men and charitable women.`
+      },
+      {
+        n: 19,
+        m: 4,
+        ar: `وَالَّذِينَ آمَنُوا بِاللَّهِ وَرُسُلِهِ أُولَئِكَ هُمُ الصِّدِّيقُونَ وَالشُّهَدَاءُ عِنْدَ رَبِّهِمْ لَهُمْ أَجْرُهُمْ وَنُورُهُمْ وَالَّذِينَ كَفَرُوا وَكَذَّبُوا بِآيَاتِنَا أُولَئِكَ أَصْحَابُ الْجَحِيمِ`,
+        en: `And those who have believed in Allah and His messengers - those are [in the ranks of] the supporters of truth and the martyrs, with their Lord. For them is their reward and their light. But those who have disbelieved and denied Our verses - those are the companions of Hellfire.`,
+        insight: `Pairs unwavering faith in Allah and His messengers with two lofty ranks—siddiqun (supporters of truth) and shuhada (witnesses/martyrs)—receiving both reward and light.`
+      },
+      {
+        n: 20,
+        m: 4,
+        ar: `اعْلَمُوا أَنَّمَا الْحَيَاةُ الدُّنْيَا لَعِبٌ وَلَهْوٌ وَزِينَةٌ وَتَفَاخُرٌ بَيْنَكُمْ وَتَكَاثُرٌ فِي الْأَمْوَالِ وَالْأَوْلَادِ كَمَثَلِ غَيْثٍ أَعْجَبَ الْكُفَّارَ نَبَاتُهُ ثُمَّ يَهِيجُ فَتَرَاهُ مُصْفَرًّا ثُمَّ يَكُونُ حُطَامًا ۖ وَفِي الْآخِرَةِ عَذَابٌ شَدِيدٌ وَمَغْفِرَةٌ مِنَ اللَّهِ وَرِضْوَانٌ ۚ وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ`,
+        en: `Know that the life of this world is but amusement and diversion and adornment and boasting to one another and competition in increase of wealth and children - like the example of a rain whose [resulting] plant growth pleases the tillers; then it dries and you see it turned yellow; then it becomes [scattered] debris. And in the Hereafter is severe punishment and forgiveness from Allah and approval. And what is the worldly life except the enjoyment of delusion.`,
+        insight: `Diagrams the arc of worldly life through five pursuits and the four-stage parable of rain-grown plants turning to yellow chaff and debris (hutam).`
+      },
+      {
+        n: 21,
+        m: 4,
+        ar: `سَابِقُوا إِلَىٰ مَغْفِرَةٍ مِنْ رَبِّكُمْ وَجَنَّةٍ عَرْضُهَا كَعَرْضِ السَّمَاءِ وَالْأَرْضِ أُعِدَّتْ لِلَّذِينَ آمَنُوا بِاللَّهِ وَرُسُلِهِ ۚ ذَلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ ۚ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ`,
+        en: `Race toward forgiveness from your Lord and a Garden whose width is like the width of the heavens and earth, prepared for those who believed in Allah and His messengers. That is the bounty of Allah which He gives to whom He wills, and Allah is the possessor of great bounty.`,
+        insight: `Redirects competitive energy away from wealth and boasting (57:20) into a race (sabiqu) toward forgiveness and an expanse as wide as heaven and earth.`
+      },
+      {
+        n: 22,
+        m: 5,
+        ar: `مَا أَصَابَ مِنْ مُصِيبَةٍ فِي الْأَرْضِ وَلَا فِي أَنْفُسِكُمْ إِلَّا فِي كِتَابٍ مِنْ قَبْلِ أَنْ نَبْرَأَهَا ۚ إِنَّ ذَلِكَ عَلَى اللَّهِ يَسِيرٌ`,
+        en: `No disaster strikes upon the earth or among yourselves except that it is in a register before We bring it into being - indeed that, for Allah, is easy -`,
+        insight: `Anchors psychological resilience in Allah’s prior knowledge and register—nothing happens randomly outside His awareness.`
+      },
+      {
+        n: 23,
+        m: 5,
+        ar: `لِكَيْلَا تَأْسَوْا عَلَىٰ مَا فَاتَكُمْ وَلَا تَفْرَحُوا بِمَا آتَاكُمْ وَاللَّهُ لَا يُحِبُّ كُلَّ مُخْتَالٍ فَخُورٍ`,
+        en: `In order that you not despair over what has eluded you and not exult [in pride] over what He has given you. And Allah does not like everyone self-deluded and boastful -`,
+        insight: `States the ethical fruit of understanding decree (57:22): emotional balance that avoids both crushing despair at loss and arrogance at gain.`
+      },
+      {
+        n: 24,
+        m: 5,
+        ar: `الَّذِينَ يَبْخَلُونَ وَيَأْمُرُونَ النَّاسَ بِالْبُخْلِ وَمَنْ يَتَوَلَّ فَإِنَّ اللَّهَ هُوَ الْغَنِيُّ الْحَمِيدُ`,
+        en: `[Those] who are stingy and enjoin upon people stinginess. And whoever turns away - then indeed, Allah is the Free of need, the Praiseworthy.`,
+        insight: `Connects boastful pride (57:23) with stinginess (bukhl)—reminding people that Allah is Al-Ghani (Free of need).`
+      },
+      {
+        n: 25,
+        m: 5,
+        ar: `لَقَدْ أَرْسَلْنَا رُسُلَنَا بِالْبَيِّنَاتِ وَأَنْزَلْنَا مَعَهُمُ الْكِتَابَ وَالْمِيزَانَ لِيَقُومَ النَّاسُ بِالْقِسْطِ ۖ وَأَنْزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ وَلِيَعْلَمَ اللَّهُ مَنْ يَنْصُرُهُ وَرُسُلَهُ بِالْغَيْبِ ۚ إِنَّ اللَّهَ قَوِيٌّ عَزِيزٌ`,
+        en: `We have already sent Our messengers with clear evidences and sent down with them the Scripture and the balance that the people may maintain [their affairs] in justice. And We sent down iron, wherein is great military might and benefits for the people, and so that Allah may make evident those who support Him and His messengers unseen. Indeed, Allah is Powerful and Exalted in Might.`,
+        insight: `The namesake verse (Al-Hadid): justice requires Scripture (guidance), the Balance (equity), and Iron (strength and civilizational utility).`
+      },
+      {
+        n: 26,
+        m: 6,
+        ar: `وَلَقَدْ أَرْسَلْنَا نُوحًا وَإِبْرَاهِيمَ وَجَعَلْنَا فِي ذُرِّيَّتِهِمَا النُّبُوَّةَ وَالْكِتَابَ ۖ فَمِنْهُمْ مُهْتَدٍ وَكَثِيرٌ مِنْهُمْ فَاسِقُونَ`,
+        en: `And We have already sent Noah and Abraham and placed in their descendants prophethood and scripture; and among them is he who is guided, but many of them are defiantly disobedient.`,
+        insight: `Situates the message within the ancient prophetic chain of Noah and Abraham, noting that guidance always calls for personal response.`
+      },
+      {
+        n: 27,
+        m: 6,
+        ar: `ثُمَّ قَفَّيْنَا عَلَىٰ آثَارِهِمْ بِرُسُلِنَا وَقَفَّيْنَا بِعِيسَى ابْنِ مَرْيَمَ وَآتَيْنَاهُ الْإِنْجِيلَ وَجَعَلْنَا فِي قُلُوبِ الَّذِينَ اتَّبَعُوهُ رَأْفَةً وَرَحْمَةً وَرَهْبَانِيَّةً ابْتَدَعُوهَا مَا كَتَبْنَاهَا عَلَيْهِمْ إِلَّا ابْتِغَاءَ رِضْوَانِ اللَّهِ فَمَا رَعَوْهَا حَقَّ رِعَايَتِهَا ۖ فَآتَيْنَا الَّذِينَ آمَنُوا مِنْهُمْ أَجْرَهُمْ وَكَثِيرٌ مِنْهُمْ فَاسِقُونَ`,
+        en: `Then We sent following their footsteps Our messengers and followed [them] with Jesus, the son of Mary, and gave him the Gospel. And We placed in the hearts of those who followed him compassion and mercy and monasticism, which they innovated; We did not prescribe it for them except [that they did so] seeking the approval of Allah. But they did not observe it with due observance. So We gave the ones who believed among them their reward, but many of them are defiantly disobedient.`,
+        insight: `Distinguishes God-given compassion and mercy from self-imposed monasticism (rahbaniyyah), while still rewarding sincere believers among Jesus’ followers.`
+      },
+      {
+        n: 28,
+        m: 6,
+        ar: `يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَآمِنُوا بِرَسُولِهِ يُؤْتِكُمْ كِفْلَيْنِ مِنْ رَحْمَتِهِ وَيَجْعَلْ لَكُمْ نُورًا تَمْشُونَ بِهِ وَيَغْفِرْ لَكُمْ ۚ وَاللَّهُ غَفُورٌ رَحِيمٌ`,
+        en: `O you who have believed, fear Allah and believe in His Messenger; He will [then] give you a double portion of His mercy and make for you a light by which you will walk and forgive you; and Allah is Forgiving and Merciful.`,
+        insight: `Unites the earlier themes of mercy and light: faith and mindfulness yield a double share (kiflayn) of mercy and a guiding light in this life and the next.`
+      },
+      {
+        n: 29,
+        m: 6,
+        ar: `لِئَلَّا يَعْلَمَ أَهْلُ الْكِتَابِ أَلَّا يَقْدِرُونَ عَلَى شَيْءٍ مِنْ فَضْلِ اللَّهِ وَأَنَّ الْفَضْلَ بِيَدِ اللَّهِ يُؤْتِيهِ مَنْ يَشَاءُ ۚ وَاللَّهُ ذُو الْفَضْلِ الْعَظِيمِ`,
+        en: `[This is] so that the People of the Scripture may know that they are not able [to obtain] anything from the bounty of Allah and that [all] bounty is in the hand of Allah; He gives it to whom He wills. And Allah is the possessor of great bounty.`,
+        insight: `Closes the chapter by confirming that divine bounty (al-fadl) cannot be monopolized; it lies solely in Allah’s hand.`
+      }
+    ];
+
+    const DIVINE_NAMES = [
+      {
+        id: `awwal`,
+        ar: `الْأَوَّلُ`,
+        en: `Al-Awwal — The First`,
+        axis: `Time · Beginning`,
+        desc: `Nothing existed before Him. Recognizing Allah as Al-Awwal grounds the believer’s trust in the prior covenant (57:8) and the pre-written register of all events (57:22).`
+      },
+      {
+        id: `akhir`,
+        ar: `الْآخِرُ`,
+        en: `Al-Akhir — The Last`,
+        axis: `Time · Eternity`,
+        desc: `He remains after everything perishable fades—mirroring 57:5 ("to Allah are returned all matters") and 57:10 ("to Allah belongs the heritage of the heavens and the earth").`
+      },
+      {
+        id: `zahir`,
+        ar: `الظَّاهِرُ`,
+        en: `Az-Zahir — The Ascendant`,
+        axis: `Space · Transcendence`,
+        desc: `Above all creation in majesty and clear evidence, corresponding to His establishment above the Throne (57:4) and the clear verses sent down (57:9).`
+      },
+      {
+        id: `batin`,
+        ar: `الْبَاطِنُ`,
+        en: `Al-Batin — The Intimate`,
+        axis: `Space · Inwardness`,
+        desc: `All-aware of every hidden reality—matching 57:4 ("with you wherever you are") and 57:6 ("Knowing of that within the breasts").`
+      }
+    ];
+
+    const PARABLE_STAGES = [
+      {
+        id: 1,
+        label: `1. Rain & Growth`,
+        ar: `كَمَثَلِ غَيْثٍ أَعْجَبَ الْكُفَّارَ نَبَاتُهُ`,
+        title: `Abundant Rain & Lush Vegetation`,
+        body: `Like a timely rain whose sudden, vibrant plant growth delights the tillers—just as worldly wealth, adornment, and status appear dazzling and permanent at their peak.`
+      },
+      {
+        id: 2,
+        label: `2. Drying Out`,
+        ar: `ثُمَّ يَهِيجُ`,
+        title: `Loss of Moisture & Vigour`,
+        body: `Then the lush growth dries and withers ("yahiju"). What seemed self-sustaining reveals its dependence on brief external conditions.`
+      },
+      {
+        id: 3,
+        label: `3. Turning Yellow`,
+        ar: `فَتَرَاهُ مُصْفَرًّا`,
+        title: `Fading Color & Decline`,
+        body: `You watch its green vitality turn pale yellow ("musfarran")—the unmistakable sign that diversion, adornment, and rivalry are short-lived.`
+      },
+      {
+        id: 4,
+        label: `4. Scattered Debris`,
+        ar: `ثُمَّ يَكُونُ حُطَامًا`,
+        title: `Crumbled Chaff ("Hutam")`,
+        body: `Finally it breaks apart into dry, scattered debris. Against this fleeting cycle ("enjoyment of delusion"), 57:21 calls believers to race toward forgiveness and an eternal Garden.`
+      }
+    ];
+
+    const TRIAD_PILLARS = [
+      {
+        badge: `Revelation`,
+        ar: `الْكِتَابَ`,
+        title: `Al-Kitab — The Scripture`,
+        body: `Sent down with clear evidences (al-bayyinat) to illuminate truth and distinguish right from falsehood (57:9, 57:25).`
+      },
+      {
+        badge: `Equity`,
+        ar: `الْمِيزَانَ`,
+        title: `Al-Mizan — The Balance`,
+        body: `The moral and social standard of fairness so that human communities may maintain their affairs in justice (al-qist).`
+      },
+      {
+        badge: `Capability`,
+        ar: `الْحَدِيدَ`,
+        title: `Al-Hadid — Iron`,
+        body: `Sent down with great military might (ba'sun shadid) to deter injustice and broad everyday benefits (manafi') for human civilization.`
+      }
+    ];
+
+    const FLASHCARDS = [
+      {
+        id: `al-hadid`,
+        ar: `الْحَدِيد`,
+        term: `Al-Hadid`,
+        ref: `Verse 57:25`,
+        meaning: `Iron — the namesake of Chapter 57, described as "sent down" containing both great military might and diverse practical benefits for humanity so justice can be upheld.`
+      },
+      {
+        id: `mustakhlafin`,
+        ar: `مُسْتَخْلَفِينَ`,
+        term: `Mustakhlafin`,
+        ref: `Verse 57:7`,
+        meaning: `Successors / Trustees — humans entrusted temporarily with wealth and resources owned by Allah, called to spend responsibly from what was placed in their care.`
+      },
+      {
+        id: `qard-hasan`,
+        ar: `قَرْضًا حَسَنًا`,
+        term: `Qard Hasan`,
+        ref: `Verses 57:11 & 57:18`,
+        meaning: `A Goodly Loan — sincere, selfless charity given for Allah’s sake, which He promises to multiply abundantly and reward nobly.`
+      },
+      {
+        id: `an-nur`,
+        ar: `النُّور`,
+        term: `An-Nur`,
+        ref: `Verses 57:9, 57:12, 57:13, 57:19, 57:28`,
+        meaning: `The Light — guidance brought by clear verses out of darknesses, becoming a visible light proceeding before and on the right of believers on the Day of Judgment.`
+      },
+      {
+        id: `alam-yani`,
+        ar: `أَلَمْ يَأْنِ`,
+        term: `Alam Ya'ni`,
+        ref: `Verse 57:16`,
+        meaning: `"Has the time not come?" — the penetrating question urging believers’ hearts to soften humbly at Allah’s remembrance before prolonged neglect hardens them.`
+      },
+      {
+        id: `hutam`,
+        ar: `حُطَامًا`,
+        term: `Hutam`,
+        ref: `Verse 57:20`,
+        meaning: `Crumbled, scattered debris — the final state of rain-grown plants after drying and yellowing, illustrating the fleeting nature of worldly pride and accumulation.`
+      },
+      {
+        id: `al-mizan`,
+        ar: `الْمِيزَان`,
+        term: `Al-Mizan`,
+        ref: `Verse 57:25`,
+        meaning: `The Balance — sent down alongside Scripture so people establish and maintain their affairs in justice (al-qist).`
+      },
+      {
+        id: `kiflayn`,
+        ar: `كِفْلَيْنِ`,
+        term: `Kiflayn`,
+        ref: `Verse 57:28`,
+        meaning: `A Double Portion — the twofold share of Allah’s mercy promised to believers who fear Him and believe in His Messenger, accompanied by a walking light and forgiveness.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `According to 57:4, what does Allah’s knowledge encompass in relation to the heavens and the earth?`,
+        options: [
+          `Only what happens openly in the heavens above the Throne`,
+          `What penetrates and emerges from earth, what descends and ascends in heaven, and every human action wherever you are`,
+          `Only the alternation of night and day across seasons`,
+          `Only the actions of messengers and angels`
+        ],
+        answer: 1,
+        explanation: `Verse 57:4 explicitly names four directional movements—penetrating/emerging from earth and descending/ascending in heaven—and affirms, "He is with you wherever you are."`
+      },
+      {
+        q: `In 57:7, on what basis are believers urged to spend?`,
+        options: [
+          `Out of wealth in which Allah has made them successors (trustees)`,
+          `Only after they have accumulated surplus inheritance`,
+          `Exclusively in equal amounts regardless of circumstance`,
+          `To secure worldly prestige among rival tribes`
+        ],
+        answer: 0,
+        explanation: `Verse 57:7 commands: "Believe in Allah and His Messenger and spend out of that in which He has made you successors (mustakhlafin)."`
+      },
+      {
+        q: `How does 57:10 compare those who spent and fought before the conquest of Makkah with those who did so afterward?`,
+        options: [
+          `Both groups hold the exact same degree in every respect`,
+          `Only those before the conquest are promised a reward`,
+          `Those before the conquest are greater in degree, though Allah has promised the best reward to all`,
+          `Those after the conquest hold a greater degree due to larger numbers`
+        ],
+        answer: 2,
+        explanation: `Verse 57:10 states they are not equal—those before the conquest are greater in degree, yet "to all Allah has promised the best [reward]."`
+      },
+      {
+        q: `On the Day described in 57:12–13, where is the light of the believing men and women, and what happens when hypocrites ask to borrow it?`,
+        options: [
+          `It shines behind them, and believers share half of it`,
+          `It proceeds before them and on their right; hypocrites are told to go back behind them and seek light, separated by a wall`,
+          `It stays inside the Garden, hidden until the Judgment concludes`,
+          `It is extinguished briefly during the crossing of the wall`
+        ],
+        answer: 1,
+        explanation: `In 57:12–13, believers’ light runs before them and on their right. Hypocrites ask to acquire some of it and are told to turn back, while a wall with a door is set between them.`
+      },
+      {
+        q: `What stands on the two sides of the dividing wall with a door in 57:13?`,
+        options: [
+          `Its interior contains mercy, while on the outside of it is torment`,
+          `Its interior contains iron, while on the outside is water`,
+          `Both sides contain light, differing only in brightness`,
+          `Its interior holds earthly wealth, while the outside holds gardens`
+        ],
+        answer: 0,
+        explanation: `Verse 57:13 describes the wall precisely: "its interior containing mercy, but on the outside of it is torment."`
+      },
+      {
+        q: `In 57:16–17, what natural image immediately follows the warning about hearts hardening over a long period?`,
+        options: [
+          `Mountains crumbling into dust before the Throne`,
+          `Allah giving life to the earth after its lifelessness`,
+          `Iron melting inside a furnace of trial`,
+          `Rivers flowing beneath gardens of eternal shade`
+        ],
+        answer: 1,
+        explanation: `Right after asking if the time has come for hearts to soften at Allah’s remembrance (57:16), 57:17 declares: "Know that Allah gives life to the earth after its lifelessness."`
+      },
+      {
+        q: `Which sequence accurately traces the parable of worldly life in 57:20?`,
+        options: [
+          `Seed → root → fruit → eternal harvest`,
+          `Rain-fed growth pleasing tillers → drying → turning yellow → scattered debris`,
+          `Storm → flood → fertile soil → overflowing rivers`,
+          `Dawn → midday heat → twilight → starry night`
+        ],
+        answer: 1,
+        explanation: `Verse 57:20 compares worldly life to rain whose plant growth pleases the tillers, then dries, turns yellow, and becomes scattered debris (hutam).`
+      },
+      {
+        q: `According to 57:22–23, why is every disaster recorded in a register before coming into being?`,
+        options: [
+          `So people can predict future dates of calamity`,
+          `So people neither despair over what eluded them nor exult in pride over what He gave them`,
+          `So people cease all worldly effort and withdraw into isolation`,
+          `So wealth circulates only among the descendants of Abraham`
+        ],
+        answer: 1,
+        explanation: `Verse 57:23 states the exact purpose: "In order that you not despair over what has eluded you and not exult [in pride] over what He has given you."`
+      },
+      {
+        q: `In 57:25, what three things are sent down alongside clear evidences, and for what overarching purpose?`,
+        options: [
+          `Gold, silver, and garments—to adorn houses of worship`,
+          `The Scripture, the Balance, and Iron—so people maintain justice and Allah makes evident who supports Him unseen`,
+          `Rain, wind, and crops—so tillers remain grateful`,
+          `Monastic vows, fasts, and laws—so nations avoid conflict`
+        ],
+        answer: 1,
+        explanation: `Verse 57:25 names the Scripture and the Balance "that the people may maintain [their affairs] in justice," and Iron containing "great military might and benefits for the people."`
+      },
+      {
+        q: `What distinction does 57:27 draw regarding the followers of Jesus, son of Mary?`,
+        options: [
+          `Allah prescribed strict monasticism upon them from the beginning`,
+          `Allah placed compassion and mercy in their hearts, whereas monasticism was innovated by them and not observed with due observance`,
+          `None of them received any reward for their faith`,
+          `Prophethood was removed from Abraham’s line before Jesus`
+        ],
+        answer: 1,
+        explanation: `Verse 57:27 clarifies that Allah placed compassion and mercy in their hearts, while monasticism was innovated seeking Allah’s approval—yet not duly observed; sincere believers among them still received their reward.`
+      }
+    ];
+
+    /* Application state persisted via notebookAppApi */
+    let appState = {
+      masteredVerses: [],
+      bookmarkedVerses: [],
+      notes: {},
+      masteredTerms: [],
+      quizAnswers: {},
+      selectedMovement: `all`,
+      selectedStatus: `all`,
+      searchQuery: ``,
+      showArabic: true,
+      showInsights: true,
+      selectedNameId: `awwal`,
+      parableStage: 1,
+      flashcardIndex: 0,
+      flashcardRevealed: false,
+      quizIndex: 0
+    };
+
+    let activeNoteEditors = {};
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          setStatusMessage(`Unable to save session state right now.`);
+        }
+      }
+    }
+
+    function setStatusMessage(msg) {
+      const el = document.getElementById(`global-status-note`);
+      if (el) el.textContent = msg;
+    }
+
+    function renderHeroStats() {
+      const vCount = appState.masteredVerses.length;
+      const vPct = Math.round((vCount / VERSES.length) * 100);
+      const tCount = appState.masteredTerms.length;
+
+      let qCorrect = 0;
+      let qAnswered = 0;
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        if (typeof appState.quizAnswers[i] === `number`) {
+          qAnswered++;
+          if (appState.quizAnswers[i] === QUIZ_QUESTIONS[i].answer) {
+            qCorrect++;
+          }
+        }
+      }
+
+      const vEl = document.getElementById(`stat-verses-mastered`);
+      const pEl = document.getElementById(`stat-verses-pct`);
+      const tEl = document.getElementById(`stat-terms-mastered`);
+      const qEl = document.getElementById(`stat-quiz-score`);
+      const qcEl = document.getElementById(`stat-quiz-caption`);
+
+      if (vEl) vEl.textContent = `${vCount} / ${VERSES.length}`;
+      if (pEl) pEl.textContent = `${vPct}% reviewed`;
+      if (tEl) tEl.textContent = `${tCount} / ${FLASHCARDS.length}`;
+      if (qEl) qEl.textContent = qAnswered > 0 ? `${qCorrect} / ${QUIZ_QUESTIONS.length}` : `— / ${QUIZ_QUESTIONS.length}`;
+      if (qcEl) {
+        qcEl.textContent = qAnswered === 0
+          ? `Ready when you are`
+          : `${qAnswered} of ${QUIZ_QUESTIONS.length} answered`;
+      }
+    }
+
+    function renderMovements() {
+      const svgNodes = document.getElementById(`svg-nodes`);
+      const grid = document.getElementById(`movement-cards`);
+      if (svgNodes) {
+        const xs = [90, 246, 402, 558, 714, 870];
+        let svgHtml = ``;
+        for (let i = 0; i < MOVEMENTS.length; i++) {
+          const mv = MOVEMENTS[i];
+          const x = xs[i];
+          const isActive = String(appState.selectedMovement) === String(mv.id);
+          const doneCount = mv.verses.filter(v => appState.masteredVerses.includes(v)).length;
+          const allDone = doneCount === mv.verses.length;
+          const fill = isActive ? `var(--primary)` : (allDone ? `var(--tertiary)` : `var(--surface-container-low)`);
+          const stroke = isActive ? `var(--primary)` : (allDone ? `var(--tertiary)` : `var(--secondary)`);
+          const textFill = (isActive || allDone) ? `var(--on-primary)` : `var(--on-surface)`;
+
+          svgHtml += `
+            <g style="cursor:pointer" onclick="selectMovementFromMap(${mv.id})" role="button" tabindex="0" aria-label="Movement ${mv.roman}: ${mv.title}, verses ${mv.range}">
+              <circle cx="${x}" cy="88" r="24" fill="${fill}" stroke="${stroke}" stroke-width="2" />
+              <text x="${x}" y="93" text-anchor="middle" fill="${textFill}" font-family="var(--font-headline)" font-size="16" font-weight="600">${mv.roman}</text>
+              <text x="${x}" y="132" text-anchor="middle" fill="var(--on-surface)" font-family="var(--font-label)" font-size="11" font-weight="700">${mv.range}</text>
+              <text x="${x}" y="150" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-body)" font-size="11">${doneCount}/${mv.verses.length} mastered</text>
+            </g>
+          `;
+        }
+        svgNodes.innerHTML = svgHtml;
+      }
+
+      if (grid) {
+        grid.innerHTML = MOVEMENTS.map(mv => {
+          const doneCount = mv.verses.filter(v => appState.masteredVerses.includes(v)).length;
+          const pct = Math.round((doneCount / mv.verses.length) * 100);
+          const isActive = String(appState.selectedMovement) === String(mv.id);
+          return `
+            <button type="button" class="movement-arch ${isActive ? `is-active` : ``}" onclick="selectMovementFromMap(${mv.id})">
+              <div>
+                <div class="movement-meta">
+                  <span>Movement ${mv.roman}</span>
+                  <span>${mv.range}</span>
+                </div>
+                <h3 class="subhead">${mv.title}</h3>
+                <p style="margin:0; font-size:0.9rem; color:var(--on-surface-variant);">${mv.summary}</p>
+              </div>
+              <div>
+                <div class="movement-meta" style="margin-top:var(--space-sm);">
+                  <span>${doneCount} of ${mv.verses.length} mastered</span>
+                  <span>${pct}%</span>
+                </div>
+                <div class="movement-progress-track">
+                  <div class="movement-progress-fill" style="width:${pct}%"></div>
+                </div>
+              </div>
+            </button>
+          `;
+        }).join(``);
+      }
+    }
+
+    function selectMovementFromMap(id) {
+      const nextVal = String(appState.selectedMovement) === String(id) ? `all` : String(id);
+      appState.selectedMovement = nextVal;
+      const sel = document.getElementById(`filter-movement`);
+      if (sel) sel.value = nextVal;
+      renderMovements();
+      renderVerseList();
+      persistState();
+      const reader = document.getElementById(`section-reader`);
+      if (reader && nextVal !== `all`) {
+        reader.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    /* Concept Explorer A: Divine Names */
+    function renderDivineNames() {
+      const grid = document.getElementById(`names-compass`);
+      if (!grid) return;
+
+      grid.innerHTML = DIVINE_NAMES.map(item => {
+        const selected = appState.selectedNameId === item.id;
+        return `
+          <button type="button" class="concept-tile ${selected ? `is-selected` : ``}" onclick="selectDivineName('${item.id}')">
+            <div class="field-label">${item.axis}</div>
+            <div class="arabic-term">${item.ar}</div>
+            <div style="font-weight:600; color:var(--on-surface);">${item.en}</div>
+          </button>
+        `;
+      }).join(``);
+
+      const current = DIVINE_NAMES.find(n => n.id === appState.selectedNameId) || DIVINE_NAMES[0];
+      const axisEl = document.getElementById(`detail-name-axis`);
+      const arEl = document.getElementById(`detail-name-ar`);
+      const enEl = document.getElementById(`detail-name-en`);
+      const descEl = document.getElementById(`detail-name-desc`);
+      if (axisEl) axisEl.textContent = current.axis;
+      if (arEl) arEl.textContent = current.ar;
+      if (enEl) enEl.textContent = current.en;
+      if (descEl) descEl.textContent = current.desc;
+    }
+
+    function selectDivineName(id) {
+      appState.selectedNameId = id;
+      renderDivineNames();
+      persistState();
+    }
+
+    /* Concept Explorer B: Parable Stepper */
+    function renderParableStepper() {
+      const row = document.getElementById(`parable-stepper`);
+      if (!row) return;
+
+      row.innerHTML = PARABLE_STAGES.map(st => {
+        const active = appState.parableStage === st.id;
+        return `
+          <button type="button" class="stage-pill ${active ? `is-active` : ``}" onclick="selectParableStage(${st.id})">
+            ${st.label}
+          </button>
+        `;
+      }).join(``);
+
+      const current = PARABLE_STAGES.find(s => s.id === appState.parableStage) || PARABLE_STAGES[0];
+      const kEl = document.getElementById(`parable-stage-kicker`);
+      const arEl = document.getElementById(`parable-stage-ar`);
+      const tEl = document.getElementById(`parable-stage-title`);
+      const bEl = document.getElementById(`parable-stage-body`);
+      if (kEl) kEl.textContent = `Stage ${current.id} of ${PARABLE_STAGES.length}`;
+      if (arEl) arEl.textContent = current.ar;
+      if (tEl) tEl.textContent = current.title;
+      if (bEl) bEl.textContent = current.body;
+    }
+
+    function selectParableStage(stageId) {
+      appState.parableStage = stageId;
+      renderParableStepper();
+      persistState();
+    }
+
+    /* Concept Explorer C: Triad */
+    function renderTriad() {
+      const container = document.getElementById(`triad-cards`);
+      if (!container) return;
+      container.innerHTML = TRIAD_PILLARS.map(p => `
+        <div class="concept-tile" style="cursor:default;">
+          <span class="badge-terracotta">${p.badge}</span>
+          <div class="arabic-term" style="margin-top:var(--space-sm);">${p.ar}</div>
+          <h4 class="subhead">${p.title}</h4>
+          <p style="margin:0; font-size:0.9375rem; color:var(--on-surface-variant);">${p.body}</p>
+        </div>
+      `).join(``);
+    }
+
+    /* Section 3: Verse Reader */
+    function getFilteredVerses() {
+      const mvFilter = appState.selectedMovement;
+      const stFilter = appState.selectedStatus;
+      const q = (appState.searchQuery || ``).trim().toLowerCase();
+
+      return VERSES.filter(v => {
+        if (mvFilter !== `all` && String(v.m) !== String(mvFilter)) return false;
+        const isMastered = appState.masteredVerses.includes(v.n);
+        const isBookmarked = appState.bookmarkedVerses.includes(v.n);
+        const hasNote = Boolean(appState.notes[v.n] && appState.notes[v.n].trim().length > 0);
+
+        if (stFilter === `unmastered` && isMastered) return false;
+        if (stFilter === `mastered` && !isMastered) return false;
+        if (stFilter === `bookmarked` && !isBookmarked) return false;
+        if (stFilter === `noted` && !hasNote) return false;
+
+        if (q) {
+          const hay = `${v.n} 57:${v.n} ${v.en} ${v.ar} ${v.insight}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function renderVerseList() {
+      const list = document.getElementById(`verse-list`);
+      const showingEl = document.getElementById(`reader-showing-label`);
+      const masteredEl = document.getElementById(`reader-mastered-label`);
+      if (!list) return;
+
+      const filtered = getFilteredVerses();
+      const masteredInView = filtered.filter(v => appState.masteredVerses.includes(v.n)).length;
+
+      if (showingEl) showingEl.textContent = `Showing ${filtered.length} of ${VERSES.length} verses`;
+      if (masteredEl) masteredEl.textContent = `${masteredInView} mastered in view`;
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <h3 class="subhead">No verses match these filters</h3>
+            <p class="section-lede" style="margin:0 auto var(--space-md);">Clear your search term or switch back to all movements to view the full chapter.</p>
+            <button type="button" class="btn btn-primary btn-sm" onclick="clearReaderFilters()">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map(v => {
+        const mv = MOVEMENTS.find(m => m.id === v.m);
+        const isMastered = appState.masteredVerses.includes(v.n);
+        const isBookmarked = appState.bookmarkedVerses.includes(v.n);
+        const noteText = appState.notes[v.n] || ``;
+        const editorOpen = Boolean(activeNoteEditors[v.n] || noteText.trim().length > 0);
+
+        return `
+          <article class="verse-card ${isMastered ? `is-mastered` : ``}" id="verse-${v.n}">
+            <div class="verse-header">
+              <div class="verse-id-group">
+                <span class="verse-num">57:${v.n}</span>
+                <span class="badge-emerald">Movement ${mv ? mv.roman : v.m}</span>
+                ${isMastered ? `<span class="badge-terracotta">Mastered</span>` : ``}
+                ${isBookmarked ? `<span class="badge-emerald">Bookmarked</span>` : ``}
+              </div>
+              <div class="action-group">
+                <button type="button" class="btn ${isMastered ? `btn-tertiary` : `btn-primary`} btn-sm" onclick="toggleVerseMastered(${v.n})">
+                  ${isMastered ? `Mastered ✓` : `Mark Mastered`}
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="toggleVerseBookmark(${v.n})">
+                  ${isBookmarked ? `Remove Bookmark` : `Bookmark`}
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="toggleNoteEditor(${v.n})">
+                  ${editorOpen ? `Hide Note` : `Add Note`}
+                </button>
+              </div>
+            </div>
+
+            ${appState.showArabic ? `<p class="verse-arabic" lang="ar" dir="rtl">${v.ar}</p>` : ``}
+            <p class="verse-english">${v.en}</p>
+            ${appState.showInsights ? `<div class="verse-insight"><strong>Study Insight:</strong> ${v.insight}</div>` : ``}
+
+            ${editorOpen ? `
+              <div class="verse-note-box">
+                <div class="field-group">
+                  <label class="field-label" for="note-input-${v.n}">Personal Reflection for Verse 57:${v.n}</label>
+                  <textarea id="note-input-${v.n}" class="field-textarea" placeholder="Write your reflection, question, or cross-reference…" oninput="saveVerseNote(${v.n}, this.value)">${escapeHtml(noteText)}</textarea>
+                </div>
+              </div>
+            ` : ``}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function applyReaderFilters() {
+      const mvEl = document.getElementById(`filter-movement`);
+      const stEl = document.getElementById(`filter-status`);
+      const srEl = document.getElementById(`search-verses`);
+
+      if (mvEl) appState.selectedMovement = mvEl.value;
+      if (stEl) appState.selectedStatus = stEl.value;
+      if (srEl) appState.searchQuery = srEl.value;
+
+      renderMovements();
+      renderVerseList();
+      persistState();
+    }
+
+    function clearReaderFilters() {
+      appState.selectedMovement = `all`;
+      appState.selectedStatus = `all`;
+      appState.searchQuery = ``;
+      const mvEl = document.getElementById(`filter-movement`);
+      const stEl = document.getElementById(`filter-status`);
+      const srEl = document.getElementById(`search-verses`);
+      if (mvEl) mvEl.value = `all`;
+      if (stEl) stEl.value = `all`;
+      if (srEl) srEl.value = ``;
+      renderMovements();
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleReaderOption(key, checked) {
+      appState[key] = Boolean(checked);
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleVerseMastered(n) {
+      const idx = appState.masteredVerses.indexOf(n);
+      if (idx >= 0) {
+        appState.masteredVerses.splice(idx, 1);
+      } else {
+        appState.masteredVerses.push(n);
+        appState.masteredVerses.sort((a, b) => a - b);
+      }
+      renderHeroStats();
+      renderMovements();
+      renderVerseList();
+      persistState();
+    }
+
+    function markVisibleMastered() {
+      const filtered = getFilteredVerses();
+      let added = 0;
+      for (let i = 0; i < filtered.length; i++) {
+        const n = filtered[i].n;
+        if (!appState.masteredVerses.includes(n)) {
+          appState.masteredVerses.push(n);
+          added++;
+        }
+      }
+      appState.masteredVerses.sort((a, b) => a - b);
+      renderHeroStats();
+      renderMovements();
+      renderVerseList();
+      persistState();
+      setStatusMessage(added > 0 ? `Marked ${added} verse(s) as mastered.` : `All verses in the current view are already mastered.`);
+    }
+
+    function toggleVerseBookmark(n) {
+      const idx = appState.bookmarkedVerses.indexOf(n);
+      if (idx >= 0) {
+        appState.bookmarkedVerses.splice(idx, 1);
+      } else {
+        appState.bookmarkedVerses.push(n);
+        appState.bookmarkedVerses.sort((a, b) => a - b);
+      }
+      renderVerseList();
+      persistState();
+    }
+
+    function toggleNoteEditor(n) {
+      const hasSaved = Boolean(appState.notes[n] && appState.notes[n].trim().length > 0);
+      if (activeNoteEditors[n]) {
+        delete activeNoteEditors[n];
+      } else {
+        activeNoteEditors[n] = true;
+      }
+      if (hasSaved && !activeNoteEditors[n]) {
+        activeNoteEditors[n] = false;
+      }
+      renderVerseList();
+    }
+
+    function saveVerseNote(n, val) {
+      if (val && val.trim().length > 0) {
+        appState.notes[n] = val;
+      } else {
+        delete appState.notes[n];
+      }
+      persistState();
+    }
+
+    /* Section 4: Flashcards */
+    function renderFlashcard() {
+      const card = FLASHCARDS[appState.flashcardIndex] || FLASHCARDS[0];
+      const isMastered = appState.masteredTerms.includes(card.id);
+
+      const cntEl = document.getElementById(`fc-counter`);
+      const badgeEl = document.getElementById(`fc-status-badge`);
+      const arEl = document.getElementById(`fc-arabic`);
+      const tEl = document.getElementById(`fc-term`);
+      const rEl = document.getElementById(`fc-ref`);
+      const ansEl = document.getElementById(`fc-answer-panel`);
+      const flipBtn = document.getElementById(`btn-flip-card`);
+      const mBtn = document.getElementById(`btn-fc-master`);
+
+      if (cntEl) cntEl.textContent = `Card ${appState.flashcardIndex + 1} of ${FLASHCARDS.length}`;
+      if (badgeEl) badgeEl.textContent = isMastered ? `Mastered` : `Needs Review`;
+      if (arEl) arEl.textContent = card.ar;
+      if (tEl) tEl.textContent = card.term;
+      if (rEl) rEl.textContent = card.ref;
+      if (flipBtn) flipBtn.textContent = appState.flashcardRevealed ? `Hide Meaning` : `Reveal Meaning`;
+      if (mBtn) mBtn.textContent = isMastered ? `Term Mastered ✓` : `Mark Term Mastered`;
+
+      if (ansEl) {
+        ansEl.innerHTML = appState.flashcardRevealed
+          ? `<div class="verse-insight" style="margin:0;"><strong>Meaning &amp; Role:</strong> ${card.meaning}</div>`
+          : `<p style="color:var(--on-surface-variant); margin:0;">Click “Reveal Meaning” below to test your recall before viewing the explanation.</p>`;
+      }
+    }
+
+    function toggleFlashcardAnswer() {
+      appState.flashcardRevealed = !appState.flashcardRevealed;
+      renderFlashcard();
+      persistState();
+    }
+
+    function nextFlashcard() {
+      appState.flashcardIndex = (appState.flashcardIndex + 1) % FLASHCARDS.length;
+      appState.flashcardRevealed = false;
+      renderFlashcard();
+      persistState();
+    }
+
+    function prevFlashcard() {
+      appState.flashcardIndex = (appState.flashcardIndex - 1 + FLASHCARDS.length) % FLASHCARDS.length;
+      appState.flashcardRevealed = false;
+      renderFlashcard();
+      persistState();
+    }
+
+    function toggleTermMastered() {
+      const card = FLASHCARDS[appState.flashcardIndex] || FLASHCARDS[0];
+      const idx = appState.masteredTerms.indexOf(card.id);
+      if (idx >= 0) {
+        appState.masteredTerms.splice(idx, 1);
+      } else {
+        appState.masteredTerms.push(card.id);
+      }
+      renderHeroStats();
+      renderFlashcard();
+      persistState();
+    }
+
+    /* Section 5: Quiz */
+    function renderQuiz() {
+      const qIdx = appState.quizIndex;
+      const qObj = QUIZ_QUESTIONS[qIdx] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[qIdx];
+      const hasAnswered = typeof chosen === `number`;
+
+      let score = 0;
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        if (appState.quizAnswers[i] === QUIZ_QUESTIONS[i].answer) score++;
+      }
+
+      const pEl = document.getElementById(`quiz-progress-label`);
+      const sEl = document.getElementById(`quiz-score-pill`);
+      const qtEl = document.getElementById(`quiz-question-text`);
+      const optEl = document.getElementById(`quiz-options`);
+      const fbEl = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`btn-quiz-prev`);
+      const nextBtn = document.getElementById(`btn-quiz-next`);
+
+      if (pEl) pEl.textContent = `Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (sEl) sEl.textContent = `Score: ${score} / ${QUIZ_QUESTIONS.length}`;
+      if (qtEl) qtEl.textContent = qObj.q;
+      if (prevBtn) prevBtn.disabled = qIdx === 0;
+      if (nextBtn) nextBtn.disabled = qIdx === QUIZ_QUESTIONS.length - 1;
+
+      if (optEl) {
+        optEl.innerHTML = qObj.options.map((opt, idx) => {
+          let cls = `quiz-option`;
+          if (hasAnswered) {
+            if (idx === qObj.answer) cls += ` is-correct`;
+            else if (idx === chosen) cls += ` is-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="answerQuizQuestion(${idx})">
+              ${opt}
+            </button>
+          `;
+        }).join(``);
+      }
+
+      if (fbEl) {
+        if (hasAnswered) {
+          const isRight = chosen === qObj.answer;
+          fbEl.hidden = false;
+          fbEl.className = `quiz-feedback ${isRight ? `is-positive` : `is-negative`}`;
+          fbEl.innerHTML = `<strong>${isRight ? `Correct.` : `Not quite.`}</strong> ${qObj.explanation}`;
+        } else {
+          fbEl.hidden = true;
+          fbEl.textContent = ``;
+        }
+      }
+    }
+
+    function answerQuizQuestion(optionIdx) {
+      if (typeof appState.quizAnswers[appState.quizIndex] === `number`) return;
+      appState.quizAnswers[appState.quizIndex] = optionIdx;
+      renderHeroStats();
+      renderQuiz();
+      persistState();
+    }
+
+    function nextQuizQuestion() {
+      if (appState.quizIndex < QUIZ_QUESTIONS.length - 1) {
+        appState.quizIndex++;
+        renderQuiz();
+        persistState();
+      }
+    }
+
+    function prevQuizQuestion() {
+      if (appState.quizIndex > 0) {
+        appState.quizIndex--;
+        renderQuiz();
+        persistState();
+      }
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset quiz`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Retake Quiz`;
+      }
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+      renderHeroStats();
+      renderQuiz();
+      persistState();
+      setStatusMessage(`Quiz answers cleared.`);
+    }
+
+    /* Export & Reset */
+    function exportStudySummary() {
+      const lines = [
+        `SURAH AL-HADID (CHAPTER 57) — STUDY & MASTERY LOG`,
+        `===================================================`,
+        `Verses Mastered: ${appState.masteredVerses.length} / ${VERSES.length}`,
+        `Mastered Verse Numbers: ${appState.masteredVerses.length ? appState.masteredVerses.map(n => `57:${n}`).join(`, `) : `None yet`}`,
+        `Bookmarked Verses: ${appState.bookmarkedVerses.length ? appState.bookmarkedVerses.map(n => `57:${n}`).join(`, `) : `None`}`,
+        `Mastered Key Terms: ${appState.masteredTerms.length} / ${FLASHCARDS.length}`,
+        ``
+      ];
+
+      const noteKeys = Object.keys(appState.notes).map(Number).sort((a, b) => a - b);
+      if (noteKeys.length > 0) {
+        lines.push(`PERSONAL REFLECTIONS`);
+        lines.push(`--------------------`);
+        for (let i = 0; i < noteKeys.length; i++) {
+          const k = noteKeys[i];
+          lines.push(`Verse 57:${k}: ${appState.notes[k]}`);
+        }
+      } else {
+        lines.push(`No personal notes recorded yet.`);
+      }
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-al-hadid-study-log.txt`
+        });
+        setStatusMessage(`Exported your Surah Al-Hadid study log.`);
+      } else {
+        setStatusMessage(`Study log prepared (${noteKeys.length} personal note(s)).`);
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.innerHTML = `<i data-lucide="rotate-ccw" width="16" height="16" aria-hidden="true"></i> Reset Progress`;
+        if (window.lucide) window.lucide.createIcons();
+      }
+      appState = {
+        masteredVerses: [],
+        bookmarkedVerses: [],
+        notes: {},
+        masteredTerms: [],
+        quizAnswers: {},
+        selectedMovement: `all`,
+        selectedStatus: `all`,
+        searchQuery: ``,
+        showArabic: true,
+        showInsights: true,
+        selectedNameId: `awwal`,
+        parableStage: 1,
+        flashcardIndex: 0,
+        flashcardRevealed: false,
+        quizIndex: 0
+      };
+      activeNoteEditors = {};
+      syncControlValues();
+      renderAll();
+      persistState();
+      setStatusMessage(`All mastery progress, notes, and quiz answers have been reset.`);
+    }
+
+    function syncControlValues() {
+      const mvEl = document.getElementById(`filter-movement`);
+      const stEl = document.getElementById(`filter-status`);
+      const srEl = document.getElementById(`search-verses`);
+      const arChk = document.getElementById(`toggle-arabic`);
+      const inChk = document.getElementById(`toggle-insights`);
+
+      if (mvEl) mvEl.value = appState.selectedMovement || `all`;
+      if (stEl) stEl.value = appState.selectedStatus || `all`;
+      if (srEl) srEl.value = appState.searchQuery || ``;
+      if (arChk) arChk.checked = Boolean(appState.showArabic);
+      if (inChk) inChk.checked = Boolean(appState.showInsights);
+    }
+
+    function renderAll() {
+      renderHeroStats();
+      renderMovements();
+      renderDivineNames();
+      renderParableStepper();
+      renderTriad();
+      renderVerseList();
+      renderFlashcard();
+      renderQuiz();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function setupRevealObserver() {
+      const targets = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        targets.forEach(el => el.classList.add(`is-visible`));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(el => obs.observe(el));
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign({}, appState, saved);
+          }
+        } catch (err) {
+          /* proceed with fresh default state */
+        }
+      }
+      syncControlValues();
+      renderAll();
+      setupRevealObserver();
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Chapter 43: Worldly Ornament &amp; Enduring Truth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --featured-arch-border: #c98a6b;
+      --emerald-badge-border: #b5d6c9;
+      --secondary-btn-border: #c4b29e;
+      --brass-edge: #d8c3b0;
+      --brass-core: #b5893e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3d1c;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, var(--brass-edge), var(--brass-core), var(--brass-edge));
+
+      /* Shared semantic & focus tokens */
+      --positive: var(--tertiary);
+      --warning: var(--secondary);
+      --focus: var(--primary);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.4rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+      --subhead-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+    }
+    .title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      max-width: 64ch;
+      margin: 0 0 var(--space-lg);
+    }
+
+    h2 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    h2 em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    h3 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs);
+    }
+
+    p {
+      margin: 0 0 var(--space-md);
+      max-width: 65ch;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* Brass diamond divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Hero & Arch Cards */
+    .hero-header {
+      padding-top: var(--space-md);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--featured-arch-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.1rem, 1.8rem + 1vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .arch-caption {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--emerald-badge-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--featured-arch-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      font-family: inherit;
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      min-height: 44px;
+      padding: 0 var(--space-lg);
+      border-radius: var(--rounded-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border: 1px solid var(--secondary-btn-border);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+    .btn-secondary[aria-pressed="true"] {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border-color: var(--tertiary);
+    }
+
+    /* Tonal section bands & panels */
+    .tonal-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: var(--warm-hairline);
+    }
+
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Interactive Seven-Movement Arc */
+    .arc-shell {
+      display: grid;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .arc-track-wrap {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .arc-track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .arc-track {
+      display: grid;
+      grid-template-columns: 14fr 11fr 10fr 10fr 11fr 9fr 24fr;
+      gap: var(--space-xs);
+      min-height: 58px;
+    }
+
+    .arc-segment {
+      font-family: inherit;
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      color: var(--on-surface);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-xs);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-height: 54px;
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out), color var(--dur-micro) var(--ease-in-out);
+    }
+    .arc-segment:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline);
+    }
+    .arc-segment.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .arc-segment.is-active .arc-seg-range {
+      color: var(--on-primary);
+      opacity: 0.9;
+    }
+    .arc-seg-num {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .arc-seg-range {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface-variant);
+    }
+
+    .arc-detail {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    .arc-quote-box {
+      background: var(--primary-container);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md);
+    }
+    .arc-quote-text {
+      font-family: var(--font-headline);
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.45;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs);
+    }
+    .arc-quote-ref {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-primary-container);
+    }
+
+    /* Comparative grids */
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .contrast-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .contrast-card.is-emerald {
+      background: var(--tertiary-container);
+      border-color: var(--emerald-badge-border);
+    }
+    .contrast-card.is-terracotta {
+      background: var(--primary-container);
+      border-color: var(--featured-arch-border);
+    }
+
+    .verse-snippet {
+      font-family: var(--font-headline);
+      font-size: 1.2rem;
+      line-height: 1.45;
+      color: var(--on-surface);
+      border-left: 2px solid var(--secondary);
+      padding-left: var(--space-md);
+      margin: var(--space-xs) 0;
+    }
+
+    /* Table styling */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    thead tr {
+      background: var(--surface-container);
+    }
+    th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .td-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--primary);
+    }
+
+    /* Bookended Interrogation Visual */
+    .bookend-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: center;
+      margin-top: var(--space-lg);
+    }
+    .bookend-bridge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding-inline: var(--space-sm);
+    }
+
+    /* Complete Reader Controls */
+    .reader-controls {
+      background: var(--surface-container);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-md);
+      align-items: end;
+      margin-top: var(--space-lg);
+    }
+
+    .control-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .control-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .control-input,
+    .control-select {
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      width: 100%;
+      transition: border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .control-select {
+      padding-right: var(--space-xl);
+      cursor: pointer;
+    }
+    .control-input:focus,
+    .control-select:focus {
+      border-color: var(--primary);
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .control-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .reader-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .reader-count {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Verse list */
+    .verse-stream {
+      display: grid;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .movement-divider {
+      margin-top: var(--space-lg);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--outline-variant);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .movement-divider:first-child {
+      margin-top: 0;
+    }
+    .movement-divider-title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .movement-divider-range {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .verse-item {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: start;
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .verse-item:hover {
+      border-color: var(--outline);
+    }
+    .verse-item.is-highlighted {
+      background: var(--primary-container);
+      border-color: var(--featured-arch-border);
+    }
+
+    .verse-num-badge {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      min-width: 58px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .verse-body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .verse-english {
+      margin: 0;
+      font-size: var(--body-size);
+      line-height: 1.65;
+      color: var(--on-surface);
+      max-width: 65ch;
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.45rem;
+      line-height: 2;
+      color: var(--on-surface-variant);
+      direction: rtl;
+      text-align: right;
+      padding-top: var(--space-xs);
+      border-top: 1px dashed var(--outline-variant);
+    }
+
+    .verse-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+    .verse-tag {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-tertiary-container);
+      background: var(--tertiary-container);
+      border: 1px solid var(--emerald-badge-border);
+      border-radius: var(--rounded-full);
+      padding: 2px 10px;
+    }
+
+    .empty-state {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-2xl) var(--space-lg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 780px) {
+      .arc-detail,
+      .split-grid,
+      .bookend-grid {
+        grid-template-columns: 1fr;
+      }
+      .arc-track {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+      }
+      .arc-seg-range {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .tonal-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .verse-item {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+      .verse-num-badge {
+        justify-self: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero Block -->
+    <header class="hero-header">
+      <p class="kicker">Qur&rsquo;an &middot; Chapter 43 &middot; Verses 1&ndash;89</p>
+      <h1 class="title">Worldly <em>Ornament</em> &amp; Enduring Truth</h1>
+      <p class="lede">
+        Opening with an oath by the Clear Book and closing with a quiet command to turn aside and say &ldquo;Peace,&rdquo; Chapter 43 dismantles status-driven disbelief, contrasts Pharaoh&rsquo;s demand for gold bracelets against the enduring reward of Paradise, and traces a single call to worship across Abraham, Moses, and Jesus.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">&#9670; Chapter Overview &#9670;</div>
+
+      <div class="arch-grid">
+        <div class="arch-card is-featured">
+          <span class="arch-label">Total Length</span>
+          <span class="arch-value">89</span>
+          <span class="arch-caption">Verses 43:1&ndash;43:89</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Rhetorical Arc</span>
+          <span class="arch-value">7</span>
+          <span class="arch-caption">Clear Movements</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Prophetic Exemplars</span>
+          <span class="arch-value">3</span>
+          <span class="arch-caption">Abraham, Moses, Jesus</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Central Motif</span>
+          <span class="arch-value">Gold</span>
+          <span class="arch-caption">43:35 &amp; 43:53 vs. 43:71</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 1: Interactive Rhetorical Map -->
+    <section class="tonal-band reveal" aria-labelledby="arc-heading">
+      <p class="kicker">Structural Progression</p>
+      <h2 id="arc-heading">How Chapter 43 Builds from Cosmic Gratitude to <em>Peace</em></h2>
+      <p>
+        Across its 89 verses, the discourse moves deliberately from universal signs in the physical world to historical reckoning and final accountability. Select any of the seven proportional movements below to inspect its core claim and jump directly to its verses.
+      </p>
+
+      <div class="arc-shell">
+        <div class="arc-track-wrap">
+          <div class="arc-track-header">
+            <span class="control-label">Proportional Verse Map (Select a Movement)</span>
+            <span class="badge-emerald" id="arc-active-badge">Movement I &middot; 14 Verses</span>
+          </div>
+          <div class="arc-track" role="tablist" aria-label="Seven movements of Chapter 43">
+            <button type="button" class="arc-segment is-active" role="tab" aria-selected="true" onclick="selectMovement(0)" id="seg-btn-0">
+              <span class="arc-seg-num">I</span>
+              <span class="arc-seg-range">1&ndash;14</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(1)" id="seg-btn-1">
+              <span class="arc-seg-num">II</span>
+              <span class="arc-seg-range">15&ndash;25</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(2)" id="seg-btn-2">
+              <span class="arc-seg-num">III</span>
+              <span class="arc-seg-range">26&ndash;35</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(3)" id="seg-btn-3">
+              <span class="arc-seg-num">IV</span>
+              <span class="arc-seg-range">36&ndash;45</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(4)" id="seg-btn-4">
+              <span class="arc-seg-num">V</span>
+              <span class="arc-seg-range">46&ndash;56</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(5)" id="seg-btn-5">
+              <span class="arc-seg-num">VI</span>
+              <span class="arc-seg-range">57&ndash;65</span>
+            </button>
+            <button type="button" class="arc-segment" role="tab" aria-selected="false" onclick="selectMovement(6)" id="seg-btn-6">
+              <span class="arc-seg-num">VII</span>
+              <span class="arc-seg-range">66&ndash;89</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="arc-detail" id="arc-detail-panel" role="tabpanel">
+          <div>
+            <span class="badge-brass" id="arc-detail-range">Verses 43:1&ndash;14</span>
+            <h3 id="arc-detail-title" style="margin-top: var(--space-sm);">The Clear Book &amp; Signs of Creation</h3>
+            <p id="arc-detail-summary">
+              Opens with an oath by the Clear Book—placed in Arabic so its listeners might understand—followed by cosmic reminders: the earth spread as a bed, roads carved for guidance, measured rain reviving dead land, and ships and animals subjected for travel so humanity remembers its return to its Lord.
+            </p>
+            <div style="margin-top: var(--space-md);">
+              <button type="button" class="btn-primary" onclick="jumpToSelectedMovement()">Read These Verses Below</button>
+            </div>
+          </div>
+          <div class="arc-quote-box">
+            <p class="arc-quote-text" id="arc-detail-quote">
+              &ldquo;Indeed, We have made it an Arabic Qur&rsquo;an that you might understand.&rdquo;
+            </p>
+            <span class="arc-quote-ref" id="arc-detail-quote-ref">Verse 43:3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Gold Motif & Status Critique -->
+    <section class="reveal" aria-labelledby="gold-heading">
+      <p class="kicker">Central Thematic Contrast</p>
+      <h2 id="gold-heading">Silver Roofs, Gold Bracelets &amp; the Measure of <em>Value</em></h2>
+      <p>
+        Critics of revelation in Chapter 43 judge prophetic authority by outward prestige—demanding why the scripture was not given to a prominent man of the two cities (43:31), or why Moses arrived without bracelets of gold (43:53). The text answers by stripping precious metals of spiritual authority and contrasting their fleeting earthly gleam against the eternal hospitality of Paradise.
+      </p>
+
+      <div class="split-grid">
+        <article class="contrast-card is-terracotta">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-brass">Worldly Enjoyment</span>
+            <span class="td-num">43:32&ndash;35 &amp; 43:53</span>
+          </div>
+          <h3>Wealth Withheld Lest Humanity Unites in Disbelief</h3>
+          <p>
+            Livelihood is apportioned by divine wisdom, not merit (43:32). Silver ceilings, stairways, doors, couches, and gold ornament are dismissed as mere temporary enjoyment—so trivial that only the fear of all people turning to disbelief prevents God from granting them exclusively to disbelievers.
+          </p>
+          <blockquote class="verse-snippet">
+            &ldquo;And gold ornament. But all that is not but the enjoyment of worldly life. And the Hereafter with your Lord is for the righteous.&rdquo;
+            <footer style="border: none; padding: var(--space-xs) 0 0; font-family: var(--font-label); font-size: var(--label-size); font-style: normal; color: var(--on-primary-container);">Verse 43:35</footer>
+          </blockquote>
+        </article>
+
+        <article class="contrast-card is-emerald">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-emerald">Enduring Inheritance</span>
+            <span class="td-num">43:68&ndash;73</span>
+          </div>
+          <h3>Gold Reclaimed as Hospitality for the Righteous</h3>
+          <p>
+            On the Day when close worldly friends become enemies to one another except for the righteous (43:67), the faithful are welcomed with freedom from fear and grief—entering Paradise to inherit vessels of gold earned not by worldly rank, but by what they used to do (43:72).
+          </p>
+          <blockquote class="verse-snippet">
+            &ldquo;Circulated among them will be plates and vessels of gold. And therein is whatever the souls desire and [what] delights the eyes, and you will abide therein eternally.&rdquo;
+            <footer style="border: none; padding: var(--space-xs) 0 0; font-family: var(--font-label); font-size: var(--label-size); font-style: normal; color: var(--on-tertiary-container);">Verse 43:71</footer>
+          </blockquote>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Three Prophetic Precedents -->
+    <section class="reveal" aria-labelledby="prophets-heading">
+      <p class="kicker">Historical Witness</p>
+      <h2 id="prophets-heading">Three Messengers Against Ancestral &amp; Imperial Pride</h2>
+      <p>
+        Verse 43:45 directs the Prophet to examine earlier messengers: none ever taught the worship of deities besides the Most Merciful. Three named narratives—Abraham, Moses, and Jesus—demonstrate how human pride rejects guidance through blind ancestral imitation, imperial arrogance, or sectarian dispute.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Messenger</th>
+              <th>Verses</th>
+              <th>Opposition &amp; Pretext</th>
+              <th>Core Declaration</th>
+              <th>Historical Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Abraham</strong></td>
+              <td class="td-num">43:26&ndash;28</td>
+              <td>His father and people clinging to inherited idols (&ldquo;we found our fathers upon a religion,&rdquo; 43:22).</td>
+              <td>&ldquo;Indeed, I am disassociated from that which you worship except for He who created me; and indeed, He will guide me.&rdquo;</td>
+              <td>Made his testimony an enduring word among his descendants so they might return (43:28).</td>
+            </tr>
+            <tr>
+              <td><strong>Moses</strong></td>
+              <td class="td-num">43:46&ndash;56</td>
+              <td>Pharaoh and his court laughing at signs, breaking vows when affliction lifts, and boasting of Egypt&rsquo;s rivers and gold (43:51&ndash;53).</td>
+              <td>&ldquo;Indeed, I am the messenger of the Lord of the worlds.&rdquo; (43:46)</td>
+              <td>Pharaoh bluffed his people into disobedience; all were drowned as a precedent for later peoples (43:54&ndash;56).</td>
+            </tr>
+            <tr>
+              <td><strong>Jesus</strong></td>
+              <td class="td-num">43:57&ndash;65</td>
+              <td>People prone to dispute laughing aloud and using comparisons solely for argument (43:57&ndash;58).</td>
+              <td>&ldquo;Indeed, Allah is my Lord and your Lord, so worship Him. This is a straight path.&rdquo; (43:64)</td>
+              <td>Identified as a favored servant and knowledge of the Hour; denominations differed afterward (43:59&ndash;65).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Bookended Theological Anchor -->
+    <section class="tonal-band reveal" aria-labelledby="bookend-heading">
+      <p class="kicker">Rhetorical Symmetry</p>
+      <h2 id="bookend-heading">The Unanswered Admission at Beginning &amp; End</h2>
+      <p>
+        Chapter 43 frames its entire argument inside a single diagnostic question. Both near the opening and immediately before the closing benediction, listeners are confronted with their own intuitive confession of who created the cosmos and themselves.
+      </p>
+
+      <div class="bookend-grid">
+        <div class="panel">
+          <span class="badge-brass">Opening Confession &middot; 43:9</span>
+          <p style="margin-top: var(--space-sm); font-family: var(--font-headline); font-size: 1.3rem; line-height: 1.4;">
+            &ldquo;And if you should ask them, &lsquo;Who has created the heavens and the earth?&rsquo; they would surely say, &lsquo;They were created by the Exalted in Might, the Knowing.&rsquo;&rdquo;
+          </p>
+        </div>
+
+        <div class="bookend-bridge">
+          <span>77 Verses</span>
+          <span aria-hidden="true">&#8596;</span>
+          <span>Same Witness</span>
+        </div>
+
+        <div class="panel">
+          <span class="badge-emerald">Closing Interrogation &middot; 43:87</span>
+          <p style="margin-top: var(--space-sm); font-family: var(--font-headline); font-size: 1.3rem; line-height: 1.4;">
+            &ldquo;And if you asked them who created them, they would surely say, &lsquo;Allah.&rsquo; So how are they deluded?&rdquo;
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--warm-hairline); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+        <p style="margin: 0; color: var(--on-surface-variant);">
+          <strong>Recurring Anchor:</strong> The phrase <em>&ldquo;straight path&rdquo;</em> appears three times across the chapter (<strong>43:43</strong>, <strong>43:61</strong>, and <strong>43:64</strong>), binding revelation to prophetic continuity.
+        </p>
+        <span class="badge-brass">Final Command: &ldquo;Peace&rdquo; (43:89)</span>
+      </div>
+    </section>
+
+    <!-- Section 5: Complete Chapter 43 Verse Explorer -->
+    <section id="complete-reader" class="reveal" aria-labelledby="reader-heading">
+      <p class="kicker">Complete Text in English</p>
+      <h2 id="reader-heading">Read Chapter 43: Verses 1 to 89</h2>
+      <p>
+        Explore all 89 verses in English translation, organized by the seven structural movements. Use the filters to isolate a specific movement or theme, search by keyword, or toggle the source Arabic script alongside the English text.
+      </p>
+
+      <div class="reader-controls">
+        <div class="control-field">
+          <label for="filter-movement" class="control-label">Movement</label>
+          <select id="filter-movement" class="control-select" onchange="applyVerseFilters()">
+            <option value="all">All 7 Movements (1&ndash;89)</option>
+            <option value="0">I. The Clear Book &amp; Creation (1&ndash;14)</option>
+            <option value="1">II. False Attributions &amp; Tradition (15&ndash;25)</option>
+            <option value="2">III. Abraham &amp; Worldly Gold (26&ndash;35)</option>
+            <option value="3">IV. Spiritual Blindness &amp; Steadfastness (36&ndash;45)</option>
+            <option value="4">V. Moses &amp; Pharaoh (46&ndash;56)</option>
+            <option value="5">VI. Jesus &amp; The Hour (57&ndash;65)</option>
+            <option value="6">VII. Judgment, Paradise &amp; Peace (66&ndash;89)</option>
+          </select>
+        </div>
+
+        <div class="control-field">
+          <label for="filter-theme" class="control-label">Theme Tag</label>
+          <select id="filter-theme" class="control-select" onchange="applyVerseFilters()">
+            <option value="all">All Themes</option>
+            <option value="Creation &amp; Signs">Creation &amp; Signs</option>
+            <option value="Revelation &amp; Guidance">Revelation &amp; Guidance</option>
+            <option value="Gold &amp; Wealth">Gold &amp; Wealth</option>
+            <option value="Prophetic Precedents">Prophetic Precedents</option>
+            <option value="Hereafter &amp; Judgment">Hereafter &amp; Judgment</option>
+          </select>
+        </div>
+
+        <div class="control-field">
+          <label for="search-verses" class="control-label">Search English Text</label>
+          <input type="search" id="search-verses" class="control-input" placeholder="Search e.g. silver, Abraham, peace" oninput="applyVerseFilters()">
+        </div>
+
+        <div class="control-actions">
+          <button type="button" id="toggle-arabic-btn" class="btn-secondary" aria-pressed="false" onclick="toggleArabicScript()">
+            Show Arabic
+          </button>
+          <button type="button" id="reset-filters-btn" class="btn-secondary" onclick="resetVerseFilters()">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="reader-status-bar">
+        <span class="reader-count" id="verse-count-label">Showing 89 of 89 verses</span>
+        <span class="badge-emerald" id="active-filter-pill">Complete Chapter</span>
+      </div>
+
+      <div class="verse-stream" id="verse-stream"></div>
+    </section>
+
+    <footer>
+      <span>Source: Excerpts from &ldquo;43..pdf&rdquo; (Chapter 43, verses 43:1&ndash;43:89).</span>
+      <span>Presented in English with optional source Arabic reference.</span>
+    </footer>
+  </main>
+
+  <script>
+    const MOVEMENTS = [
+      {
+        id: 0,
+        roman: `I`,
+        range: `43:1–14`,
+        shortRange: `1–14`,
+        count: 14,
+        title: `The Clear Book & Signs of Creation`,
+        summary: `Opens with an oath by the Clear Book—placed in Arabic so its listeners might understand—followed by cosmic reminders: the earth spread as a bed, roads carved for guidance, measured rain reviving dead land, and ships and animals subjected for travel so humanity remembers its return to its Lord.`,
+        quote: `Indeed, We have made it an Arabic Qur'an that you might understand.`,
+        quoteRef: `Verse 43:3`
+      },
+      {
+        id: 1,
+        roman: `II`,
+        range: `43:15–25`,
+        shortRange: `15–25`,
+        count: 11,
+        title: `False Attributions & Blind Ancestral Tradition`,
+        summary: `Confronts the contradiction of attributing daughters to the Most Merciful while resenting the news of daughters themselves, and exposes the standard excuse of affluent cities across history: blindly following the footsteps of their fathers even when offered better guidance.`,
+        quote: `Even if I brought you better guidance than that [religion] upon which you found your fathers?`,
+        quoteRef: `Verse 43:24`
+      },
+      {
+        id: 2,
+        roman: `III`,
+        range: `43:26–35`,
+        shortRange: `26–35`,
+        count: 10,
+        title: `Abraham's Break & The Test of Worldly Gold`,
+        summary: `Cites Abraham's break from his people's idols to worship only his Creator, then answers Makkah's demand for a revelation sent to a wealthy notable. Worldly silver roofs, couches, and gold ornament are shown to be trivial temporary enjoyment compared to the Hereafter.`,
+        quote: `And gold ornament. But all that is not but the enjoyment of worldly life. And the Hereafter with your Lord is for the righteous.`,
+        quoteRef: `Verse 43:35`
+      },
+      {
+        id: 3,
+        roman: `IV`,
+        range: `43:36–45`,
+        shortRange: `36–45`,
+        count: 10,
+        title: `Spiritual Blindness, The Companion & Steadfastness`,
+        summary: `Warns that whoever turns blind to the remembrance of the Most Merciful receives a devil as an inseparable companion who misleads them while they believe themselves guided—yet consoles the Prophet to hold fast to revelation on the straight path.`,
+        quote: `So adhere to that which is revealed to you. Indeed, you are on a straight path.`,
+        quoteRef: `Verse 43:43`
+      },
+      {
+        id: 4,
+        roman: `V`,
+        range: `43:46–56`,
+        shortRange: `46–56`,
+        count: 11,
+        title: `Moses, Pharaoh & The Illusion of Power`,
+        summary: `Recounts Moses bringing greater and greater signs to Pharaoh's court, who mocked them, broke promises as soon as plagues ceased, and boasted of Egypt's flowing rivers while scoffing that Moses lacked gold bracelets—until they were drowned as a precedent.`,
+        quote: `Then why have there not been placed upon him bracelets of gold or come with him the angels in conjunction?`,
+        quoteRef: `Verse 43:53`
+      },
+      {
+        id: 5,
+        roman: `VI`,
+        range: `43:57–65`,
+        shortRange: `57–65`,
+        count: 9,
+        title: `Jesus as Servant & Sign of the Hour`,
+        summary: `Addresses argumentative comparisons raised around the son of Mary, clarifying that Jesus was a favored servant, an example for the Children of Israel, and a sign of knowledge of the Hour—who called his people to fear Allah and follow the straight path.`,
+        quote: `Indeed, Allah is my Lord and your Lord, so worship Him. This is a straight path.`,
+        quoteRef: `Verse 43:64`
+      },
+      {
+        id: 6,
+        roman: `VII`,
+        range: `43:66–89`,
+        shortRange: `66–89`,
+        count: 24,
+        title: `Judgment, Paradise, Sovereignty & Peace`,
+        summary: `Contrasts the eternal delight of the righteous—circulated with plates and vessels of gold—against the despair of wrongdoers, affirms Allah's sole deity in heaven and earth, repeats the creation confession, and instructs the Prophet to turn aside and say, "Peace."`,
+        quote: `So turn aside from them and say, "Peace." But they are going to know.`,
+        quoteRef: `Verse 43:89`
+      }
+    ];
+
+    const VERSES = [
+      { n: 1, m: 0, themes: [`Revelation & Guidance`], en: `Ha, Meem.`, ar: `` },
+      { n: 2, m: 0, themes: [`Revelation & Guidance`], en: `By the clear Book,`, ar: `وَالْكِتَابِ الْمُبِينِ` },
+      { n: 3, m: 0, themes: [`Revelation & Guidance`], en: `Indeed, We have made it an Arabic Qur'an that you might understand.`, ar: `إِنَّا جَعَلْنَاهُ قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ` },
+      { n: 4, m: 0, themes: [`Revelation & Guidance`], en: `And indeed it is, in the Mother of the Book with Us, exalted and full of wisdom.`, ar: `وَإِنَّهُ فِي أُمِّ الْكِتَابِ لَدَيْنَا لَعَلِيٌّ حَكِيمٌ` },
+      { n: 5, m: 0, themes: [`Revelation & Guidance`], en: `Then should We turn the message away, disregarding you, because you are a transgressing people?`, ar: `أَفَنَضْرِبُ عَنْكُمُ الذِّكْرَ صَفْحًا أَنْ كُنْتُمْ قَوْمًا مُسْرِفِينَ` },
+      { n: 6, m: 0, themes: [`Prophetic Precedents`], en: `And how many a prophet We sent among the former peoples,`, ar: `وَكَمْ أَرْسَلْنَا مِنْ نَبِيِّ فِي الْأَوَّلِينَ` },
+      { n: 7, m: 0, themes: [`Prophetic Precedents`], en: `But there would not come to them a prophet except that they used to ridicule him.`, ar: `وَمَا يَأْتِيهِمْ مِنْ نَبِيٍّ إِلَّا كَانُوا بِهِ يَسْتَهْزِئُونَ` },
+      { n: 8, m: 0, themes: [`Prophetic Precedents`], en: `And We destroyed greater than them in [striking] power, and the example of the former peoples has preceded.`, ar: `فَأَهْلَكْنَا أَشَدَّ مِنْهُمْ بَطْشًا وَمَضَى مَثَلُ الْأَوَّلِينَ` },
+      { n: 9, m: 0, themes: [`Creation & Signs`], en: `And if you should ask them, "Who has created the heavens and the earth?" they would surely say, "They were created by the Exalted in Might, the Knowing."`, ar: `وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ خَلَقَهُنَّ الْعَزِيزُ الْعَلِيمُ` },
+      { n: 10, m: 0, themes: [`Creation & Signs`], en: `[The one] who has made for you the earth a bed and made for you upon it roads that you might be guided`, ar: `الَّذِي جَعَلَ لَكُمُ الْأَرْضَ مَهْدًا وَجَعَلَ لَكُمْ فِيهَا سُبُلًا لَعَلَّكُمْ تَهْتَدُونَ` },
+      { n: 11, m: 0, themes: [`Creation & Signs`], en: `And who sends down rain from the sky in measured amounts, and We revive thereby a dead land — thus will you be brought forth —`, ar: `وَالَّذِي نَزَّلَ مِنَ السَّمَاءِ مَاءً بِقَدَرٍ فَأَنْشَرْنَا بِهِ بَلْدَةً مَيْتًا ۚ كَذلِكَ تُخْرَجُونَ` },
+      { n: 12, m: 0, themes: [`Creation & Signs`], en: `And who created the species, all of them, and has made for you of ships and animals those which you mount.`, ar: `وَالَّذِي خَلَقَ الْأَزْوَاجَ كُلَّهَا وَجَعَلَ لَكُمْ مِنَ الْفُلْكِ وَالْأَنْعَامِ مَا تَرْكَبُونَ` },
+      { n: 13, m: 0, themes: [`Creation & Signs`], en: `That you may settle yourselves upon their backs and then remember the favor of your Lord when you have settled upon them and say, "Exalted is He who has subjected this to us, and we could not have [otherwise] subdued it.`, ar: `لِتَسْتَوُوا عَلَىٰ ظُهُورِهِ ثُمَّ تَذْكُرُوا نِعْمَةَ رَبِّكُمْ إِذَا اسْتَوَيْتُمْ عَلَيْهِ وَتَقُولُوا سُبْحَانَ الَّذِي سَخَّرَ لَنَا هُذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ` },
+      { n: 14, m: 0, themes: [`Creation & Signs`, `Hereafter & Judgment`], en: `And indeed we, to our Lord, will [surely] return."`, ar: `وَإِنَّا إِلَىٰ رَبِّنَا لَمُنْقَلِبُونَ` },
+      { n: 15, m: 1, themes: [`Creation & Signs`], en: `But they have attributed to Him from His servants a portion. Indeed, man is clearly ungrateful.`, ar: `وَجَعَلُوا لَهُ مِنْ عِبَادِهِ جُزْءًا إِنَّ الْإِنْسَانَ لَكَفُورٌ مُبِينٌ` },
+      { n: 16, m: 1, themes: [`Creation & Signs`], en: `Or has He taken, out of what He has created, daughters and chosen you for [having] sons?`, ar: `أَمِ اتَّخَذَ مِمَّا يَخْلُقُ بَنَاتٍ وَأَصْفَاكُمْ بِالْبَنِينَ` },
+      { n: 17, m: 1, themes: [`Creation & Signs`], en: `And when one of them is given good tidings of that which he attributes to the Most Merciful in comparison, his face becomes dark, and he suppresses grief.`, ar: `وَإِذَا بُشِّرَ أَحَدُهُمْ بِمَا ضَرَبَ لِلرَّحْمَن مَثَلًا ظَلَّ وَجْهُهُ مُسْوَدًّا وَهُوَ كَظِيمٌ` },
+      { n: 18, m: 1, themes: [`Gold & Wealth`], en: `So is one brought up in ornaments while being during conflict unevident [attributed to Allah]?`, ar: `أَوَمَنْ يُنَشَّأُ فِي الْحِلْيَةِ وَهُوَ فِي الْخِصَامِ غَيْرُ مُبِينٍ` },
+      { n: 19, m: 1, themes: [`Hereafter & Judgment`], en: `And they have made the angels, who are servants of the Most Merciful, females. Did they witness their creation? Their testimony will be recorded, and they will be questioned.`, ar: `وَجَعَلُوا الْمَلَائِكَةَ الَّذِينَ هُمْ عِبَادُ الرَّحْمَنِ إِنَاثًا أَشَهِدُوا خَلْقَهُمْ سَتُكْتَبُ شَهَادَتُهُمْ وَيُسْأَلُونَ` },
+      { n: 20, m: 1, themes: [`Revelation & Guidance`], en: `And they said, "If the Most Merciful had willed, we would not have worshipped them." They have of that no knowledge. They are not but falsifying.`, ar: `وَقَالُوا لَوْ شَاءَ الرَّحْمَنُ مَا عَبَدْنَاهُمْ مَا لَهُمْ بِذلِكَ مِنْ عِلْمٍ إِنْ هُمْ إِلَّا يَخْرُصُونَ` },
+      { n: 21, m: 1, themes: [`Revelation & Guidance`], en: `Or have We given them a book before the Qur'an to which they are adhering?`, ar: `أَمْ آتَيْنَاهُمْ كِتَابًا مِنْ قَبْلِهِ فَهُمْ بِهِ مُسْتَمْسِكُونَ` },
+      { n: 22, m: 1, themes: [`Revelation & Guidance`], en: `Rather, they say, "Indeed, we found our fathers upon a religion, and we are in their footsteps [rightly] guided."`, ar: `بَلْ قَالُوا إِنَّا وَجَدْنَا آبَاءَنَا عَلَىٰ أُمَّةٍ وَإِنَّا عَلَىٰ آثَارِهِمْ مُهْتَدُونَ` },
+      { n: 23, m: 1, themes: [`Prophetic Precedents`, `Gold & Wealth`], en: `And similarly, We did not send before you any warner into a city except that its affluent said, "Indeed, we found our fathers upon a religion, and we are, in their footsteps, following."`, ar: `وَكَذَّلِكَ مَا أَرْسَلْنَا مِنْ قَبْلِكَ فِي قَرْيَةٍ مِنْ نَذِيرٍ إِلَّا قَالَ مُتْرَفُوهَا إِنَّا وَجَدْنَا آبَاءَنَا عَلَىٰ أُمَّةٍ وَإِنَّا عَلَىٰ آثَارِهِمْ مُقْتَدُونَ` },
+      { n: 24, m: 1, themes: [`Prophetic Precedents`, `Revelation & Guidance`], en: `[Each warner] said, "Even if I brought you better guidance than that [religion] upon which you found your fathers?" They said, "Indeed we, in that with which you were sent, are disbelievers."`, ar: `قَالَ أَوَلَوْ جِئْتُكُمْ بِأَهْدَىٰ مِمَّا وَجَدْتُمْ عَلَيْهِ آبَاءَكُمْ ۖ قَالُوا إِنَّا بِمَا أُرْسِلْتُمْ بِهِ كَافِرُونَ` },
+      { n: 25, m: 1, themes: [`Prophetic Precedents`], en: `So we took retribution from them; then see how was the end of the deniers.`, ar: `فَانْتَقَمْنَا مِنْهُمْ فَانْظُرْ كَيْفَ كَانَ عَاقِبَةُ الْمُكَذِّبِينَ` },
+      { n: 26, m: 2, themes: [`Prophetic Precedents`], en: `And [mention, O Muhammad], when Abraham said to his father and his people, "Indeed, I am disassociated from that which you worship`, ar: `وَإِذْ قَالَ إِبْرَاهِيمُ لِأَبِيهِ وَقَوْمِهِ إِنَّنِي بَرَاءٌ مِمَّا تَعْبُدُونَ` },
+      { n: 27, m: 2, themes: [`Prophetic Precedents`, `Creation & Signs`], en: `Except for He who created me; and indeed, He will guide me."`, ar: `إِلَّا الَّذِي فَطَرَنِي فَإِنَّهُ سَيَهْدِينِ` },
+      { n: 28, m: 2, themes: [`Prophetic Precedents`], en: `And he made it a word remaining among his descendants that they might return [to it].`, ar: `وَجَعَلَهَا كَلِمَةً بَاقِيَةً فِي عَقِبِهِ لَعَلَّهُمْ يَرْجِعُونَ` },
+      { n: 29, m: 2, themes: [`Revelation & Guidance`], en: `However, I gave enjoyment to these [people of Makkah] and their fathers until there came to them the truth and a clear Messenger.`, ar: `بَلْ مَتَّعْتُ هُؤُلَاءِ وَآبَاءَهُمْ حَتَّى جَاءَهُمُ الْحَقُّ وَرَسُولٌ مُبِينٌ` },
+      { n: 30, m: 2, themes: [`Revelation & Guidance`], en: `But when the truth came to them, they said, "This is magic, and indeed we are, concerning it, disbelievers."`, ar: `وَلَمَّا جَاءَهُمُ الْحَقُّ قَالُوا هُذَا سِحْرٌ وَإِنَّا بِهِ كَافِرُونَ` },
+      { n: 31, m: 2, themes: [`Gold & Wealth`, `Revelation & Guidance`], en: `And they said, "Why was this Qur'an not sent down upon a great man from [one of] the two cities?"`, ar: `وَقَالُوا لَوْلَا نُزِّلَ هُذَا الْقُرْآنُ عَلَى رَجُلٍ مِنَ الْقَرْيَتَيْنِ عَظِيمٍ` },
+      { n: 32, m: 2, themes: [`Gold & Wealth`], en: `Do they distribute the mercy of your Lord? It is We who have apportioned among them their livelihood in the life of this world and have raised some of them above others in degrees [of rank] that they may make use of one another for service. But the mercy of your Lord is better than whatever they accumulate.`, ar: `أَهُمْ يَقْسِمُونَ رَحْمَتَ رَبِّكَ نَحْنُ قَسَمْنَا بَيْنَهُمْ مَعِيشَتَهُمْ فِي الْحَيَاةِ الدُّنْيَا وَرَفَعْنَا بَعْضَهُمْ فَوْقَ بَعْضٍ دَرَجَاتٍ لِيَتَّخِذَ بَعْضُهُمْ بَعْضًا سُخْرِيًّا وَرَحْمَتُ رَبِّكَ خَيْرٌ مِمَّا يَجْمَعُونَ` },
+      { n: 33, m: 2, themes: [`Gold & Wealth`], en: `And if it were not that the people would become one community [of disbelievers], We would have made for those who disbelieve in the Most Merciful — for their houses — ceilings and stairways of silver upon which to mount`, ar: `وَلَوْلَا أَنْ يَكُونَ النَّاسُ أُمَّةً وَاحِدَةً لَجَعَلْنَا لِمَنْ يَكْفُرُ بِالرَّحْمَن لِبُيُوتِهِمْ سُقُفًا مِنْ فِضَّةٍ وَمَعَارِجَ عَلَيْهَا يَظْهَرُونَ` },
+      { n: 34, m: 2, themes: [`Gold & Wealth`], en: `And for their houses — doors and couches [of silver] upon which to recline`, ar: `وَلِبُيُوتِهِمْ أَبْوَابًا وَسُرُرًا عَلَيْهَا يَتَّكِثُونَ` },
+      { n: 35, m: 2, themes: [`Gold & Wealth`, `Hereafter & Judgment`], en: `And gold ornament. But all that is not but the enjoyment of worldly life. And the Hereafter with your Lord is for the righteous.`, ar: `وَزُخْرُفًا ۚ وَإِنْ كُلُّ ذُلِكَ لَمَّا مَتَاعُ الْحَيَاةِ الدُّنْيَا وَالْآخِرَةُ عِنْدَ رَبِّكَ لِلْمُتَّقِينَ` },
+      { n: 36, m: 3, themes: [`Revelation & Guidance`], en: `And whoever is blinded from remembrance of the Most Merciful — We appoint for him a devil, and he is to him a companion.`, ar: `وَمَنْ يَعْشُ عَنْ ذِكْرِ الرَّحْمَن نُقَيِّضْ لَهُ شَيْطَانًا فَهُوَ لَهُ قَرِينٌ` },
+      { n: 37, m: 3, themes: [`Revelation & Guidance`], en: `And indeed, the devils avert them from the way [of guidance] while they think that they are [rightly] guided`, ar: `وَإِنَّهُمْ لَيَصُدُّونَهُمْ عَنِ السَّبِيلِ وَيَحْسَبُونَ أَنَّهُمْ مُهْتَدُونَ` },
+      { n: 38, m: 3, themes: [`Hereafter & Judgment`], en: `Until, when he comes to Us [at Judgement], he says [to his companion], "Oh, I wish there was between me and you the distance between the east and west — how wretched a companion."`, ar: `حَتَّىٰ إِذَا جَاءَنَا قَالَ يَا لَيْتَ بَيْنِي وَبَيْنَكَ بُعْدَ الْمَشْرِقَيْنِ فَبِئْسَ الْقَرِينُ` },
+      { n: 39, m: 3, themes: [`Hereafter & Judgment`], en: `And never will it benefit you that Day, when you have wronged, that you are [all] sharing in the punishment.`, ar: `وَلَنْ يَنْفَعَكُمُ الْيَوْمَ إِذْ ظَلَمْتُمْ أَنَّكُمْ فِي الْعَذَابِ مُشْتَرِكُونَ` },
+      { n: 40, m: 3, themes: [`Revelation & Guidance`], en: `Then will you make the deaf hear, [O Muhammad], or guide the blind or he who is in clear error?`, ar: `أَفَأَنْتَ تُسْمِعُ الصُّمَّ أَوْ تَهْدِي الْعُمْيَ وَمَنْ كَانَ فِي ضَلَالٍ مُبِينٍ` },
+      { n: 41, m: 3, themes: [`Hereafter & Judgment`], en: `And whether [or not] We take you away [in death], indeed, We will take retribution upon them.`, ar: `فَإِمَّا نَذْهَبَنَّ بِكَ فَإِنَّا مِنْهُمْ مُنْتَقِمُونَ` },
+      { n: 42, m: 3, themes: [`Hereafter & Judgment`], en: `Or whether [or not] We show you that which We have promised them, indeed, We are Perfect in Ability.`, ar: `أَوْ نُرِيَنَّكَ الَّذِي وَعَدْنَاهُمْ فَإِنَّا عَلَيْهِمْ مُقْتَدِرُونَ` },
+      { n: 43, m: 3, themes: [`Revelation & Guidance`], en: `So adhere to that which is revealed to you. Indeed, you are on a straight path.`, ar: `فَاسْتَمْسِكْ بِالَّذِي أُوحِيَ إِلَيْكَ ۖ إِنَّكَ عَلَىٰ صِرَاطٍ مُسْتَقِيمٍ` },
+      { n: 44, m: 3, themes: [`Revelation & Guidance`, `Hereafter & Judgment`], en: `And indeed, it is a remembrance for you and your people, and you [all] are going to be questioned.`, ar: `وَإِنَّهُ لَذِكْرٌ لَكَ وَلِقَوْمِكَ ۖ وَسَوْفَ تُسْأَلُونَ` },
+      { n: 45, m: 3, themes: [`Prophetic Precedents`, `Revelation & Guidance`], en: `And ask those We sent before you of Our messengers; have We made besides the Most Merciful deities to be worshipped?`, ar: `وَاسْأَلْ مَنْ أَرْسَلْنَا مِنْ قَبْلِكَ مِنْ رُسُلِنَا أَجَعَلْنَا مِنْ دُونِ الرَّحْمَنِ آلِهَةً يُعْبَدُونَ` },
+      { n: 46, m: 4, themes: [`Prophetic Precedents`], en: `And certainly did We send Moses with Our signs to Pharaoh and his establishment, and he said, "Indeed, I am the messenger of the Lord of the worlds."`, ar: `وَلَقَدْ أَرْسَلْنَا مُوسَى بِآيَاتِنَا إِلَىٰ فِرْعَوْنَ وَمَلَئِهِ فَقَالَ إِنِّي رَسُولُ رَبِّ الْعَالَمِينَ` },
+      { n: 47, m: 4, themes: [`Prophetic Precedents`], en: `But when he brought them Our signs, at once they laughed at them.`, ar: `فَلَمَّا جَاءَهُمْ بِآيَاتِنَا إِذَا هُمْ مِنْهَا يَضْحَكُونَ` },
+      { n: 48, m: 4, themes: [`Prophetic Precedents`], en: `And We showed them not a sign except that it was greater than its sister, and We seized them with affliction that perhaps they might return [to faith].`, ar: `وَمَا نُرِيهِمْ مِنْ آيَةٍ إِلَّا هِيَ أَكْبَرُ مِنْ أُخْتِهَا ۖ وَأَخَذْنَاهُمْ بِالْعَذَابِ لَعَلَّهُمْ يَرْجِعُونَ` },
+      { n: 49, m: 4, themes: [`Prophetic Precedents`], en: `And they said [to Moses], "O magician, invoke for us your Lord by what He has promised you. Indeed, we will be guided."`, ar: `وَقَالُوا يَا أَيُّهَ السَّاحِرُ ادْعُ لَنَا رَبَّكَ بِمَا عَهِدَ عِنْدَكَ إِنَّنَا لَمُهْتَدُونَ` },
+      { n: 50, m: 4, themes: [`Prophetic Precedents`], en: `But when We removed from them the affliction, at once they broke their word.`, ar: `فَلَمَّا كَشَفْنَا عَنْهُمُ الْعَذَابَ إِذَا هُمْ يَنْكُثُونَ` },
+      { n: 51, m: 4, themes: [`Prophetic Precedents`, `Gold & Wealth`], en: `And Pharaoh called out among his people; he said, "O my people, does not the kingdom of Egypt belong to me, and these rivers flowing beneath me; then do you not see?`, ar: `وَنَادَىٰ فِرْعَوْنُ فِي قَوْمِهِ قَالَ يَا قَوْمِ أَلَيْسَ لِي مُلْكُ مِصْرَ وَهُذِهِ الْأَنْهَارُ تَجْرِي مِنْ تَحْتِي أَفَلَا تُبْصِرُونَ` },
+      { n: 52, m: 4, themes: [`Prophetic Precedents`], en: `Or am I [not] better than this one who is insignificant and hardly makes himself clear?`, ar: `أَمْ أَنَا خَيْرٌ مِنْ هُذَا الَّذِي هُوَ مَهِينٌ وَلَا يَكَادُ يُبِينُ` },
+      { n: 53, m: 4, themes: [`Prophetic Precedents`, `Gold & Wealth`], en: `Then why have there not been placed upon him bracelets of gold or come with him the angels in conjunction?"`, ar: `فَلَوْلَا أُلْقِيَ عَلَيْهِ أَسْوِرَةٌ مِنْ ذَهَبٍ أَوْ جَاءَ مَعَهُ الْمَلَائِكَةُ مُقْتَرِنِينَ` },
+      { n: 54, m: 4, themes: [`Prophetic Precedents`], en: `So he bluffed his people, and they obeyed him. Indeed, they were [themselves] a people defiantly disobedient [of Allah].`, ar: `فَاسْتَخَفَّ قَوْمَهُ فَأَطَاعُوهُ ۚ إِنَّهُمْ كَانُوا قَوْمًا فَاسِقِينَ` },
+      { n: 55, m: 4, themes: [`Prophetic Precedents`], en: `And when they angered Us, We took retribution from them and drowned them all.`, ar: `فَلَمَّا آسَفُونَا انْتَقَمْنَا مِنْهُمْ فَأَغْرَقْنَاهُمْ أَجْمَعِينَ` },
+      { n: 56, m: 4, themes: [`Prophetic Precedents`], en: `And We made them a precedent and an example for the later peoples.`, ar: `فَجَعَلْنَاهُمْ سَلَفًا وَمَثَلًا لِلْآخِرِينَ` },
+      { n: 57, m: 5, themes: [`Prophetic Precedents`], en: `And when the son of Mary was presented as an example, immediately your people laughed aloud.`, ar: `وَلَمَّا ضُرِبَ ابْنُ مَرْيَمَ مَثَلًا إِذَا قَوْمُكَ مِنْهُ يَصِدُّونَ` },
+      { n: 58, m: 5, themes: [`Prophetic Precedents`], en: `And they said, "Are your gods better, or is he?" They did not present the comparison except for [mere] argument. But, [in fact], they are a people prone to dispute.`, ar: `وَقَالُوا أَآلِهَتُنَا خَيْرٌ أَمْ هُوَ مَا ضَرَبُوهُ لَكَ إِلَّا جَدَلًا بَلْ هُمْ قَوْمٌ خَصِمُونَ` },
+      { n: 59, m: 5, themes: [`Prophetic Precedents`], en: `Jesus was not but a servant upon whom We bestowed favor, and We made him an example for the Children of Israel.`, ar: `إِنْ هُوَ إِلَّا عَبْدٌ أَنْعَمْنَا عَلَيْهِ وَجَعَلْنَاهُ مَثَلًا لِبَنِي إِسْرَائِيلَ` },
+      { n: 60, m: 5, themes: [`Creation & Signs`], en: `And if We willed, We could have made [instead] of you angels succeeding [one another] on the earth.`, ar: `وَلَوْ نَشَاءُ لَجَعَلْنَا مِنْكُمْ مَلَائِكَةً فِي الْأَرْضِ يَخْلُفُونَ` },
+      { n: 61, m: 5, themes: [`Prophetic Precedents`, `Hereafter & Judgment`, `Revelation & Guidance`], en: `And indeed, Jesus will be [a sign for] knowledge of the Hour, so be not in doubt of it, and follow Me. This is a straight path.`, ar: `وَإِنَّهُ لَعِلْمٌ لِلسَّاعَةِ فَلَا تَمْتَرُنَّ بِهَا وَاتَّبِعُونَ هُذَا صِرَاطٌ مُسْتَقِيمٌ` },
+      { n: 62, m: 5, themes: [`Revelation & Guidance`], en: `And never let Satan avert you. Indeed, he is to you a clear enemy.`, ar: `وَلَا يَصُدَّنَّكُمُ الشَّيْطَانُ إِنَّهُ لَكُمْ عَدُوٌّ مُبِينٌ` },
+      { n: 63, m: 5, themes: [`Prophetic Precedents`, `Revelation & Guidance`], en: `And when Jesus brought clear proofs, he said, "I have come to you with wisdom and to make clear to you some of that over which you differ, so fear Allah and obey me.`, ar: `وَلَمَّا جَاءَ عِيسَى بِالْبَيِّنَاتِ قَالَ قَدْ جِئْتُكُمْ بِالْحِكْمَةِ وَلِأُبَيِّنَ لَكُمْ بَعْضَ الَّذِي تَخْتَلِفُونَ فِيهِ ۖ فَاتَّقُوا اللَّهَ وَأَطِيعُون` },
+      { n: 64, m: 5, themes: [`Prophetic Precedents`, `Revelation & Guidance`], en: `Indeed, Allah is my Lord and your Lord, so worship Him. This is a straight path."`, ar: `إِنَّ اللَّهَ هُوَ رَبِّي وَرَبُّكُمْ فَاعْبُدُوهُ هُذَا صِرَاطٌ مُسْتَقِيمٌ` },
+      { n: 65, m: 5, themes: [`Hereafter & Judgment`], en: `But the denominations from among them differed [and separated], so woe to those who have wronged from the punishment of a painful Day.`, ar: `فَاخْتَلَفَ الْأَحْزَابُ مِنْ بَيْنِهِمْ فَوَيْلٌ لِلَّذِينَ ظَلَمُوا مِنْ عَذَابِ يَوْمٍ أَلِيمٍ` },
+      { n: 66, m: 6, themes: [`Hereafter & Judgment`], en: `Are they waiting except for the Hour to come upon them suddenly while they perceive not?`, ar: `هَلْ يَنْظُرُونَ إِلَّا السَّاعَةَ أَنْ تَأْتِيَهُمْ بَغْتَةً وَهُمْ لَا يَشْعُرُونَ` },
+      { n: 67, m: 6, themes: [`Hereafter & Judgment`], en: `Close friends, that Day, will be enemies to each other, except for the righteous`, ar: `الْأَخِلَّاءُ يَوْمَئِذٍ بَعْضُهُمْ لِبَعْضٍ عَدُوٌّ إِلَّا الْمُتَّقِينَ` },
+      { n: 68, m: 6, themes: [`Hereafter & Judgment`], en: `[To whom Allah will say], "O My servants, no fear will there be concerning you this Day, nor will you grieve,`, ar: `يَا عِبَادِ لَا خَوْفٌ عَلَيْكُمُ الْيَوْمَ وَلَا أَنْتُمْ تَحْزَنُونَ` },
+      { n: 69, m: 6, themes: [`Hereafter & Judgment`], en: `[You] who believed in Our verses and were Muslims.`, ar: `الَّذِينَ آمَنُوا بِآيَاتِنَا وَكَانُوا مُسْلِمِينَ` },
+      { n: 70, m: 6, themes: [`Hereafter & Judgment`], en: `Enter Paradise, you and your kinds, delighted."`, ar: `ادْخُلُوا الْجَنَّةَ أَنْتُمْ وَأَزْوَاجُكُمْ تُحْبَرُونَ` },
+      { n: 71, m: 6, themes: [`Hereafter & Judgment`, `Gold & Wealth`], en: `Circulated among them will be plates and vessels of gold. And therein is whatever the souls desire and [what] delights the eyes, and you will abide therein eternally.`, ar: `يُطَافُ عَلَيْهِمْ بِصِحَافٍ مِنْ ذَهَبٍ وَأَكْوَابٍ ۖ وَفِيهَا مَا تَشْتَهِيهِ الْأَنْفُسُ وَتَلَذُّ الْأَعْيُنَ ۖ وَأَنْتُمْ فِيهَا خَالِدُونَ` },
+      { n: 72, m: 6, themes: [`Hereafter & Judgment`], en: `And that is Paradise which you are made to inherit for what you used to do.`, ar: `وَتِلْكَ الْجَنَّةُ الَّتِي أُورِثْتُمُوهَا بِمَا كُنْتُمْ تَعْمَلُونَ` },
+      { n: 73, m: 6, themes: [`Hereafter & Judgment`], en: `For you therein is much fruit from which you will eat.`, ar: `لَكُمْ فِيهَا فَاكِهَةٌ كَثِيرَةٌ مِنْهَا تَأْكُلُونَ` },
+      { n: 74, m: 6, themes: [`Hereafter & Judgment`], en: `Indeed, the criminals will be in the punishment of Hell, abiding eternally.`, ar: `إِنَّ الْمُجْرِمِينَ فِي عَذَابِ جَهَنَّمَ خَالِدُونَ` },
+      { n: 75, m: 6, themes: [`Hereafter & Judgment`], en: `It will not be allowed to subside for them, and they, therein, are in despair.`, ar: `لَا يُفَتَّرُ عَنْهُمْ وَهُمْ فِيهِ مُبْلِسُونَ` },
+      { n: 76, m: 6, themes: [`Hereafter & Judgment`], en: `And We did not wrong them, but it was they who were the wrongdoers.`, ar: `وَمَا ظَلَمْنَاهُمْ وَلُكِنْ كَانُوا هُمُ الظَّالِمِينَ` },
+      { n: 77, m: 6, themes: [`Hereafter & Judgment`], en: `And they will call, "O Malik, let your Lord put an end to us!" He will say, "Indeed, you will remain."`, ar: `وَنَادَوْا يَا مَالِكُ لِيَقْضِ عَلَيْنَا رَبُّكَ ۖ قَالَ إِنَّكُمْ مَاكِثُونَ` },
+      { n: 78, m: 6, themes: [`Revelation & Guidance`, `Hereafter & Judgment`], en: `We had certainly brought you the truth, but most of you, to the truth, were averse.`, ar: `لَقَدْ جِئْنَاكُمْ بِالْحَقِّ وَلَكِنَّ أَكْثَرَكُمْ لِلْحَقِّ كَارِهُونَ` },
+      { n: 79, m: 6, themes: [`Revelation & Guidance`], en: `Or have they devised [some] affair? But indeed, We are devising [a plan].`, ar: `أَمْ أَبْرَمُوا أَمْرًا فَإِنَّا مُبْرِمُونَ` },
+      { n: 80, m: 6, themes: [`Hereafter & Judgment`], en: `Or do they think that We hear not their secrets and their private conversations? Yes, [We do], and Our messengers are with them recording.`, ar: `أَمْ يَحْسَبُونَ أَنَّا لَا نَسْمَعُ سِرَّهُمْ وَنَجْوَاهُمْ بَلَىٰ وَرُسُلُنَا لَدَيْهِمْ يَكْتُبُونَ` },
+      { n: 81, m: 6, themes: [`Revelation & Guidance`], en: `Say, [O Muhammad], "If the Most Merciful had a son, then I would be the first of [his] worshippers."`, ar: `قُلْ إِنْ كَانَ لِلرَّحْمَنِ وَلَدٌ فَأَنَا أَوَّلُ الْعَابِدِينَ` },
+      { n: 82, m: 6, themes: [`Creation & Signs`], en: `Exalted is the Lord of the heavens and the earth, Lord of the Throne, above what they describe.`, ar: `سُبْحَانَ رَبِّ السَّمَاوَاتِ وَالْأَرْضِ رَبِّ الْعَرْشِ عَمَّا يَصِفُونَ` },
+      { n: 83, m: 6, themes: [`Hereafter & Judgment`], en: `So leave them to converse vainly and amuse themselves until they meet their Day which they are promised.`, ar: `فَذَرْهُمْ يَخُوضُوا وَيَلْعَبُوا حَتَّىٰ يُلَاقُوا يَوْمَهُمُ الَّذِي يُوعَدُونَ` },
+      { n: 84, m: 6, themes: [`Creation & Signs`], en: `And it is Allah who is [the only] deity in the heaven, and on the earth [the only] deity. And He is the Wise, the Knowing.`, ar: `وَهُوَ الَّذِي فِي السَّمَاءِ إِلَّهُ وَفِي الْأَرْضِ إِلَّهُ ۚ وَهُوَ الْحَكِيمُ الْعَلِيمُ` },
+      { n: 85, m: 6, themes: [`Creation & Signs`, `Hereafter & Judgment`], en: `And blessed is He to whom belongs the dominion of the heavens and the earth and whatever is between them and with whom is knowledge of the Hour and to whom you will be returned.`, ar: `وَتَبَارَكَ الَّذِي لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَا بَيْنَهُمَا وَعِنْدَهُ عِلْمُ السَّاعَةِ وَإِلَيْهِ تُرْجَعُونَ` },
+      { n: 86, m: 6, themes: [`Hereafter & Judgment`], en: `And those they invoke besides Him do not possess [power of] intercession; but only those who testify to the truth [can benefit], and they know.`, ar: `وَلَا يَمْلِكُ الَّذِينَ يَدْعُونَ مِنْ دُونِهِ الشَّفَاعَةَ إِلَّا مَنْ شَهِدَ بِالْحَقِّ وَهُمْ يَعْلَمُونَ` },
+      { n: 87, m: 6, themes: [`Creation & Signs`], en: `And if you asked them who created them, they would surely say, "Allah." So how are they deluded?`, ar: `وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَهُمْ لَيَقُولُنَّ اللَّهُ ۖ فَأَنَّى يُؤْفَكُونَ` },
+      { n: 88, m: 6, themes: [`Revelation & Guidance`], en: `And [Allah acknowledges] his saying, "O my Lord, indeed these are a people who do not believe."`, ar: `وَقِيلِهِ يَا رَبِّ إِنَّ هُؤُلَاءِ قَوْمٌ لَا يُؤْمِنُونَ` },
+      { n: 89, m: 6, themes: [`Revelation & Guidance`], en: `So turn aside from them and say, "Peace." But they are going to know.`, ar: `فَاصْفَحْ عَنْهُمْ وَقُلْ سَلَامٌ فَسَوْفَ يَعْلَمُونَ` }
+    ];
+
+    let selectedMovementIndex = 0;
+    let showArabic = false;
+
+    function selectMovement(idx) {
+      selectedMovementIndex = idx;
+      const mov = MOVEMENTS[idx];
+      if (!mov) return;
+
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const btn = document.getElementById(`seg-btn-${i}`);
+        if (!btn) continue;
+        if (i === idx) {
+          btn.classList.add(`is-active`);
+          btn.setAttribute(`aria-selected`, `true`);
+        } else {
+          btn.classList.remove(`is-active`);
+          btn.setAttribute(`aria-selected`, `false`);
+        }
+      }
+
+      const badgeEl = document.getElementById(`arc-active-badge`);
+      if (badgeEl) badgeEl.textContent = `Movement ${mov.roman} · ${mov.count} Verses`;
+
+      const rangeEl = document.getElementById(`arc-detail-range`);
+      if (rangeEl) rangeEl.textContent = `Verses ${mov.range}`;
+
+      const titleEl = document.getElementById(`arc-detail-title`);
+      if (titleEl) titleEl.textContent = mov.title;
+
+      const summaryEl = document.getElementById(`arc-detail-summary`);
+      if (summaryEl) summaryEl.textContent = mov.summary;
+
+      const quoteEl = document.getElementById(`arc-detail-quote`);
+      if (quoteEl) quoteEl.textContent = `“${mov.quote}”`;
+
+      const quoteRefEl = document.getElementById(`arc-detail-quote-ref`);
+      if (quoteRefEl) quoteRefEl.textContent = mov.quoteRef;
+    }
+
+    function jumpToSelectedMovement() {
+      const movSelect = document.getElementById(`filter-movement`);
+      const themeSelect = document.getElementById(`filter-theme`);
+      const searchInput = document.getElementById(`search-verses`);
+
+      if (movSelect) movSelect.value = String(selectedMovementIndex);
+      if (themeSelect) themeSelect.value = `all`;
+      if (searchInput) searchInput.value = ``;
+
+      applyVerseFilters();
+
+      const readerEl = document.getElementById(`complete-reader`);
+      if (readerEl) {
+        readerEl.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function toggleArabicScript() {
+      showArabic = !showArabic;
+      const btn = document.getElementById(`toggle-arabic-btn`);
+      if (btn) {
+        btn.setAttribute(`aria-pressed`, showArabic ? `true` : `false`);
+        btn.textContent = showArabic ? `Hide Arabic` : `Show Arabic`;
+      }
+      applyVerseFilters();
+    }
+
+    function resetVerseFilters() {
+      const movSelect = document.getElementById(`filter-movement`);
+      const themeSelect = document.getElementById(`filter-theme`);
+      const searchInput = document.getElementById(`search-verses`);
+
+      if (movSelect) movSelect.value = `all`;
+      if (themeSelect) themeSelect.value = `all`;
+      if (searchInput) searchInput.value = ``;
+
+      applyVerseFilters();
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    function applyVerseFilters() {
+      const movSelect = document.getElementById(`filter-movement`);
+      const themeSelect = document.getElementById(`filter-theme`);
+      const searchInput = document.getElementById(`search-verses`);
+      const streamEl = document.getElementById(`verse-stream`);
+      const countEl = document.getElementById(`verse-count-label`);
+      const pillEl = document.getElementById(`active-filter-pill`);
+
+      if (!streamEl) return;
+
+      const movVal = movSelect ? movSelect.value : `all`;
+      const themeVal = themeSelect ? themeSelect.value : `all`;
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : ``;
+
+      const filtered = VERSES.filter(function(v) {
+        if (movVal !== `all` && v.m !== Number(movVal)) return false;
+        if (themeVal !== `all` && v.themes.indexOf(themeVal) === -1) return false;
+        if (query) {
+          const haystack = `${v.en} 43:${v.n}`.toLowerCase();
+          if (haystack.indexOf(query) === -1) return false;
+        }
+        return true;
+      });
+
+      if (countEl) {
+        countEl.textContent = `Showing ${filtered.length} of ${VERSES.length} verses`;
+      }
+
+      if (pillEl) {
+        if (movVal === `all` && themeVal === `all` && !query) {
+          pillEl.textContent = `Complete Chapter`;
+        } else {
+          const parts = [];
+          if (movVal !== `all`) parts.push(`Movement ${MOVEMENTS[Number(movVal)].roman}`);
+          if (themeVal !== `all`) parts.push(themeVal);
+          if (query) parts.push(`“${query}”`);
+          pillEl.textContent = parts.join(` · `);
+        }
+      }
+
+      if (filtered.length === 0) {
+        streamEl.innerHTML = `
+          <div class="empty-state">
+            <h3>No verses match your current filter</h3>
+            <p style="margin: 0; color: var(--on-surface-variant);">
+              Try clearing your search term or switching back to all seven movements.
+            </p>
+            <button type="button" class="btn-primary" onclick="resetVerseFilters()">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      let html = ``;
+      let currentMovement = -1;
+
+      for (let i = 0; i < filtered.length; i++) {
+        const v = filtered[i];
+        if (v.m !== currentMovement) {
+          currentMovement = v.m;
+          const mov = MOVEMENTS[currentMovement];
+          html += `
+            <div class="movement-divider">
+              <h3 class="movement-divider-title">${mov.roman}. ${escapeHtml(mov.title)}</h3>
+              <span class="movement-divider-range">Verses ${mov.range}</span>
+            </div>
+          `;
+        }
+
+        const isKeyVerse = v.n === 3 || v.n === 9 || v.n === 35 || v.n === 43 || v.n === 53 || v.n === 64 || v.n === 71 || v.n === 87 || v.n === 89;
+        const themeTagsHtml = v.themes.map(function(t) {
+          return `<span class="verse-tag">${escapeHtml(t)}</span>`;
+        }).join(``);
+
+        const arabicHtml = showArabic && v.ar
+          ? `<div class="verse-arabic" lang="ar" dir="rtl">${escapeHtml(v.ar)}</div>`
+          : ``;
+
+        html += `
+          <article class="verse-item ${isKeyVerse ? `is-highlighted` : ``}" id="verse-43-${v.n}">
+            <div class="verse-num-badge">43:${v.n}</div>
+            <div class="verse-body">
+              <p class="verse-english">${escapeHtml(v.en)}</p>
+              ${arabicHtml}
+              <div class="verse-meta">
+                ${themeTagsHtml}
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      streamEl.innerHTML = html;
+    }
+
+    function initScrollReveal() {
+      const items = document.querySelectorAll(`.reveal`);
+      if (!(`IntersectionObserver` in window)) {
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add(`is-visible`);
+        }
+        return;
+      }
+
+      const observer = new IntersectionObserver(function(entries, obs) {
+        for (let i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            entries[i].target.classList.add(`is-visible`);
+            obs.unobserve(entries[i].target);
+          }
+        }
+      }, { threshold: 0.08 });
+
+      for (let i = 0; i < items.length; i++) {
+        observer.observe(items[i]);
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, function() {
+      selectMovement(0);
+      applyVerseFilters();
+      initScrollReveal();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Chapter 28 (Al-Qasas) — The Architecture of Power and Return</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Terracotta) */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      /* Ink */
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      /* Borders */
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+      --primary-border: #c98a6b;
+      --tertiary-border: #b5d6c9;
+      --secondary-border: #c4b29e;
+
+      /* Accents */
+      --primary: #b84a24;
+      --primary-hover: #9c3c1b;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      /* Fonts */
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Shared tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem);
+      --headline-size: clamp(1.875rem, 1.25rem + 2vw, 2.65rem);
+      --subhead-size: clamp(1.25rem, 1.05rem + 0.65vw, 1.55rem);
+      --body-size: clamp(1rem, 0.96rem + 0.25vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+      font-weight: 600;
+    }
+    p {
+      margin: 0;
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    p + p {
+      margin-top: var(--space-md);
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--warm-hairline);
+    }
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .kicker-muted {
+      color: var(--secondary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin-top: var(--space-lg);
+      max-width: 18ch;
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+      margin-top: var(--space-md);
+    }
+
+    .section-heading {
+      font-size: var(--headline-size);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      max-width: 28ch;
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--on-surface);
+    }
+
+    /* Defining treatment: Brass diamond divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-block: var(--space-xl);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Defining treatment: Riad arch cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .arch-card {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-xs);
+    }
+    .arch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .arch-card.is-featured {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2.125rem, 1.75rem + 1.5vw, 2.85rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+    }
+    .arch-card.is-featured .arch-figure {
+      color: var(--on-primary-container);
+    }
+    .arch-caption {
+      font-size: 0.875rem;
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    /* Defining treatment: Zellige emerald counterpoint badge */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--tertiary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-terracotta {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--primary-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-brass {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--surface-container-high);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Section structure */
+    .narrative-section {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .section-header {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .section-band {
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--outline-variant);
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out),
+                  box-shadow var(--dur-micro) var(--ease-in-out),
+                  transform var(--dur-micro) var(--ease-out);
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--on-surface);
+      border-color: var(--secondary-border);
+    }
+    .btn-secondary:hover {
+      background-color: var(--surface-container-low);
+      border-color: var(--primary);
+    }
+    .btn-secondary[aria-pressed="true"],
+    .btn-pill[aria-pressed="true"] {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-pill {
+      background-color: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+    }
+    .btn-pill:hover {
+      background-color: var(--surface-container);
+      border-color: var(--secondary-border);
+    }
+    .btn:active {
+      transform: scale(0.985);
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Interactive Section 1: Ring Symmetry Map */
+    .symmetry-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .panel {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    .symmetry-svg-wrap {
+      width: 100%;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .symmetry-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .arc-node {
+      cursor: pointer;
+      transition: opacity var(--dur-micro) var(--ease-in-out);
+    }
+    .arc-path {
+      fill: none;
+      stroke: var(--outline);
+      stroke-width: 2;
+      stroke-dasharray: 5 4;
+      transition: stroke var(--dur-short) var(--ease-out), stroke-width var(--dur-short) var(--ease-out);
+    }
+    .arc-path.is-active {
+      stroke: var(--primary);
+      stroke-width: 3;
+      stroke-dasharray: none;
+    }
+    .ring-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .ring-btn {
+      text-align: left;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background-color: var(--background);
+      color: var(--on-surface);
+      display: grid;
+      gap: 2px;
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .ring-btn:hover {
+      background-color: var(--surface-container);
+    }
+    .ring-btn[aria-pressed="true"] {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border);
+    }
+    .ring-btn-verses {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .ring-btn-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    .verse-pair-stack {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .quote-card {
+      background-color: var(--background);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .quote-card.is-emerald {
+      border-left-color: var(--tertiary);
+    }
+    .quote-ref {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .quote-text {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: var(--on-surface);
+    }
+
+    /* Interactive Section 2: Moses 4-Station Stepper */
+    .station-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .station-btn {
+      min-height: 44px;
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      border: 1px solid var(--outline-variant);
+      background-color: var(--surface-container-low);
+      color: var(--on-surface);
+      text-align: left;
+      display: grid;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-in-out), border-color var(--dur-micro) var(--ease-in-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .station-btn:hover {
+      background-color: var(--surface-container);
+    }
+    .station-btn[aria-pressed="true"] {
+      background-color: var(--primary-container);
+      border-color: var(--primary-border);
+      box-shadow: var(--soft-shadow);
+    }
+    .station-num {
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .station-name {
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .station-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: var(--space-lg);
+      align-items: stretch;
+    }
+    .journey-map-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .journey-svg {
+      width: 100%;
+      min-height: 250px;
+      display: block;
+    }
+    .prayer-list {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+    .prayer-item {
+      background-color: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .prayer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .prayer-quote {
+      font-family: var(--font-headline);
+      font-style: italic;
+      font-size: 1.1875rem;
+      line-height: 1.38;
+      color: var(--on-surface);
+    }
+
+    /* Section 3: Middle Act 2-column */
+    .two-col-editorial {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .cosmic-toggle-panel {
+      background-color: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .trait-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .trait-list li {
+      padding: var(--space-sm) var(--space-md);
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded);
+      border-left: 3px solid var(--tertiary);
+      font-size: 0.95rem;
+    }
+
+    /* Section 4: Pharaoh vs Qarun table & cards */
+    .table-wrap {
+      overflow-x: auto;
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--soft-shadow);
+    }
+    table.compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .compare-table th {
+      background-color: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--warm-hairline);
+    }
+    .compare-table td {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+    .compare-axis {
+      font-weight: 700;
+      color: var(--on-surface);
+      white-space: nowrap;
+    }
+    .verse-inline {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+    }
+
+    /* Section 5: Full 88-verse Explorer */
+    .controls-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1.2fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .field-input,
+    .field-select {
+      min-height: 44px;
+      width: 100%;
+      background-color: var(--background);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .field-select {
+      padding-right: var(--space-xl);
+    }
+    .field-input:focus,
+    .field-select:focus {
+      border-color: var(--primary);
+    }
+
+    .verse-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .verse-card {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-md);
+      align-items: start;
+    }
+    .verse-num-pill {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+      background-color: var(--primary-container);
+      border: 1px solid var(--primary-border);
+      border-radius: var(--rounded);
+      padding: var(--space-xs) var(--space-sm);
+      min-width: 3.75rem;
+      text-align: center;
+      font-variant-numeric: lining-nums;
+    }
+    .verse-body-col {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .verse-english {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--on-surface);
+      max-width: 68ch;
+    }
+    .verse-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+
+    .empty-state {
+      background-color: var(--surface-container-low);
+      border: 1px dashed var(--outline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      display: grid;
+      gap: var(--space-sm);
+      justify-items: center;
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-lg);
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Container query support for card wrappers */
+    .card-wrapper {
+      container-type: inline-size;
+    }
+    @container (max-width: 520px) {
+      .verse-card {
+        grid-template-columns: 1fr;
+      }
+      .verse-num-pill {
+        justify-self: start;
+      }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 820px) {
+      .symmetry-layout,
+      .station-stage {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .section-band {
+        padding: var(--space-lg);
+      }
+      .controls-bar {
+        grid-template-columns: 1fr;
+      }
+      .compare-axis {
+        white-space: normal;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero -->
+    <header class="narrative-section">
+      <div class="kicker-row">
+        <span class="kicker">Qur’an · Chapter 28 (Al-Qasas)</span>
+        <span class="kicker kicker-muted">Verses 1–88 · English Edition</span>
+      </div>
+      <h1 class="title">Chapter 28: The Architecture of <em>Power</em> and Return</h1>
+      <p class="lede">
+        Opening with a tyrant who slaughters newborn sons to secure his throne and closing with a hoarder swallowed by the earth beneath his own keys, Chapter 28 traces how fragile worldly supremacy collapses—and how an exiled fugitive becomes the instrument of a promise that never misses its mark.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true"><span>&#9670; Chapter Overview &#9670;</span></div>
+
+      <div class="arch-grid" aria-label="Chapter 28 structural highlights">
+        <div class="arch-card">
+          <span class="arch-label">Scope</span>
+          <span class="arch-figure">88</span>
+          <span class="arch-caption">Verses in six movements</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Formation</span>
+          <span class="arch-figure">4</span>
+          <span class="arch-caption">Stations of Moses’ journey</span>
+        </div>
+        <div class="arch-card is-featured">
+          <span class="arch-label">Central Contrast</span>
+          <span class="arch-figure">2</span>
+          <span class="arch-caption">Tyrants: Pharaoh &amp; Qarun</span>
+        </div>
+        <div class="arch-card">
+          <span class="arch-label">Interior Arc</span>
+          <span class="arch-figure">6</span>
+          <span class="arch-caption">Prayers spoken by Moses</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 1: Structural Symmetry -->
+    <section class="narrative-section" aria-labelledby="sec-symmetry">
+      <div class="section-header">
+        <span class="kicker">I. The Structural Spine</span>
+        <h2 class="section-heading" id="sec-symmetry">The Opening Condemns <em>Exaltedness</em>; the Ending Reserves Eternity Against It</h2>
+        <p>
+          Chapter 28 does not wander from episode to episode. Its opening thesis (28:4–6) names Pharaoh’s twin sins—exalting himself in the land and spreading corruption—and declares a divine reversal: the oppressed will be made leaders and inheritors. Eighty verses later (28:83), the closing verdict uses those exact twin criteria to define who inherits the Hereafter.
+        </p>
+      </div>
+
+      <div class="symmetry-layout">
+        <div class="panel">
+          <div class="symmetry-svg-wrap">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+              <span class="subhead">Interactive Symmetry Arcs</span>
+              <span class="badge-emerald">Select a pair to inspect</span>
+            </div>
+
+            <svg class="symmetry-svg" viewBox="0 0 640 230" role="img" aria-label="Structural symmetry connecting opening and closing verses of Chapter 28">
+              <!-- Baseline -->
+              <line x1="32" y1="185" x2="608" y2="185" stroke="var(--outline-variant)" stroke-width="2" />
+
+              <!-- Outer arc: 28:4 <-> 28:83 -->
+              <path id="arc-0" class="arc-path is-active" d="M 55 185 C 55 24, 585 24, 585 185" />
+              <!-- Second arc: 28:7a <-> 28:85 -->
+              <path id="arc-1" class="arc-path" d="M 125 185 C 125 56, 515 56, 515 185" />
+              <!-- Third arc: 28:7b <-> 28:40 -->
+              <path id="arc-2" class="arc-path" d="M 195 185 C 195 88, 390 88, 390 185" />
+              <!-- Fourth arc: 28:17 <-> 28:86 -->
+              <path id="arc-3" class="arc-path" d="M 265 185 C 265 112, 460 112, 460 185" />
+
+              <!-- Nodes -->
+              <circle cx="55" cy="185" r="7" fill="var(--primary)" />
+              <text x="55" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:4–5</text>
+
+              <circle cx="125" cy="185" r="6" fill="var(--tertiary)" />
+              <text x="125" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:7</text>
+
+              <circle cx="195" cy="185" r="6" fill="var(--secondary)" />
+              <text x="195" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:7–8</text>
+
+              <circle cx="265" cy="185" r="6" fill="var(--data-4)" />
+              <text x="265" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:17</text>
+
+              <circle cx="390" cy="185" r="6" fill="var(--secondary)" />
+              <text x="390" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:40</text>
+
+              <circle cx="460" cy="185" r="6" fill="var(--data-4)" />
+              <text x="460" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:86</text>
+
+              <circle cx="515" cy="185" r="6" fill="var(--tertiary)" />
+              <text x="515" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:85</text>
+
+              <circle cx="585" cy="185" r="7" fill="var(--primary)" />
+              <text x="585" y="210" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">28:83</text>
+            </svg>
+
+            <div class="ring-btn-grid" role="group" aria-label="Textual symmetry pairs">
+              <button type="button" class="ring-btn" data-pair="0" aria-pressed="true">
+                <span class="ring-btn-verses">28:4–5 &#8596; 28:83</span>
+                <span class="ring-btn-title">Exaltedness &amp; Corruption</span>
+              </button>
+              <button type="button" class="ring-btn" data-pair="1" aria-pressed="false">
+                <span class="ring-btn-verses">28:7 &#8596; 28:85</span>
+                <span class="ring-btn-title">The Promise of Return</span>
+              </button>
+              <button type="button" class="ring-btn" data-pair="2" aria-pressed="false">
+                <span class="ring-btn-verses">28:7–8 &#8596; 28:40</span>
+                <span class="ring-btn-title">Saved &amp; Seized by the Sea</span>
+              </button>
+              <button type="button" class="ring-btn" data-pair="3" aria-pressed="false">
+                <span class="ring-btn-verses">28:17 &#8596; 28:86</span>
+                <span class="ring-btn-title">No Assistant to Wrongdoers</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="symmetry-detail" aria-live="polite">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <span class="badge-terracotta" id="pair-tag">Thematic Bookend</span>
+            <span class="kicker kicker-muted" id="pair-refs">28:4–5 &amp; 28:83</span>
+          </div>
+          <h3 class="subhead" id="pair-heading">Exaltedness and Corruption Framed at Both Ends</h3>
+          <p id="pair-summary" style="margin-top:var(--space-sm); color:var(--on-surface-variant);">
+            Pharaoh defines tyranny at the opening by exalting himself and corrupting the earth; the chapter’s conclusion defines salvation as rejecting both impulses.
+          </p>
+          <div class="verse-pair-stack" style="margin-top:var(--space-md);">
+            <div class="quote-card">
+              <span class="quote-ref" id="pair-left-ref">Opening · 28:4</span>
+              <span class="quote-text" id="pair-left-quote">“Indeed, Pharaoh exalted himself in the land and made its people into factions… Indeed, he was of the corrupters.”</span>
+            </div>
+            <div class="quote-card is-emerald">
+              <span class="quote-ref" id="pair-right-ref">Closing · 28:83</span>
+              <span class="quote-text" id="pair-right-quote">“That home of the Hereafter We assign to those who do not desire exaltedness upon the earth or corruption. And the [best] outcome is for the righteous.”</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Moses' Four-Stage Formation -->
+    <section class="narrative-section" aria-labelledby="sec-moses">
+      <div class="section-header">
+        <span class="kicker">II. The Narrative of Moses (28:7–42)</span>
+        <h2 class="section-heading" id="sec-moses">Four Stations Trace How an Imperfect Fugitive Becomes a <em>Messenger</em></h2>
+        <p>
+          Unlike summaries that move straight to Sinai, Chapter 28 lingers over Moses’ human vulnerability—his mother’s empty heart, an unintended fatal blow, eight or ten years of shepherding in Madyan, and his stammering dread before returning to Egypt. At each turning point, his spoken prayers reveal his inner state.
+        </p>
+      </div>
+
+      <div class="station-tabs" role="group" aria-label="Stations of Moses' journey">
+        <button type="button" class="station-btn" data-station="0" aria-pressed="true">
+          <span class="station-num">Station I · 28:7–13</span>
+          <span class="station-name">The River &amp; Palace</span>
+        </button>
+        <button type="button" class="station-btn" data-station="1" aria-pressed="false">
+          <span class="station-num">Station II · 28:14–28</span>
+          <span class="station-name">City Flight &amp; Madyan</span>
+        </button>
+        <button type="button" class="station-btn" data-station="2" aria-pressed="false">
+          <span class="station-num">Station III · 28:29–35</span>
+          <span class="station-name">Fire at the Mount</span>
+        </button>
+        <button type="button" class="station-btn" data-station="3" aria-pressed="false">
+          <span class="station-num">Station IV · 28:36–42</span>
+          <span class="station-name">Tower &amp; Sea</span>
+        </button>
+      </div>
+
+      <div class="station-stage">
+        <div class="panel journey-map-panel">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-sm);">
+              <span class="kicker" id="station-geo-label">Setting · Nile Waters &amp; Royal Court</span>
+              <span class="badge-emerald" id="station-verses-pill">28:7–13</span>
+            </div>
+
+            <svg class="journey-svg" viewBox="0 0 520 260" role="img" aria-label="Schematic path of Moses across four stations in Chapter 28">
+              <!-- Subtle courtyard grid lines -->
+              <line x1="20" y1="210" x2="500" y2="210" stroke="var(--outline-variant)" stroke-width="1.5" />
+              <!-- Journey winding path -->
+              <path d="M 65 180 Q 130 100 185 155 T 315 110 T 450 155" fill="none" stroke="var(--outline)" stroke-width="2.5" stroke-dasharray="6 5" />
+              <path id="journey-progress-path" d="M 65 180 Q 130 100 185 155" fill="none" stroke="var(--primary)" stroke-width="3.5" stroke-linecap="round" />
+
+              <!-- Station 1: River -->
+              <g id="node-s0" class="arc-node">
+                <circle cx="65" cy="180" r="18" fill="var(--primary-container)" stroke="var(--primary)" stroke-width="2.5" />
+                <text x="65" y="185" text-anchor="middle" font-family="var(--font-headline)" font-size="16" font-weight="700" fill="var(--on-primary-container)">I</text>
+                <text x="65" y="232" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface)">River &amp; Palace</text>
+              </g>
+
+              <!-- Station 2: Madyan -->
+              <g id="node-s1" class="arc-node">
+                <circle cx="185" cy="155" r="16" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2" />
+                <text x="185" y="160" text-anchor="middle" font-family="var(--font-headline)" font-size="15" font-weight="700" fill="var(--on-surface)">II</text>
+                <text x="185" y="232" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface-variant)">City &amp; Madyan</text>
+              </g>
+
+              <!-- Station 3: Mount -->
+              <g id="node-s2" class="arc-node">
+                <circle cx="315" cy="110" r="16" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2" />
+                <text x="315" y="115" text-anchor="middle" font-family="var(--font-headline)" font-size="15" font-weight="700" fill="var(--on-surface)">III</text>
+                <text x="315" y="232" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface-variant)">The Mount</text>
+              </g>
+
+              <!-- Station 4: Court & Sea -->
+              <g id="node-s3" class="arc-node">
+                <circle cx="450" cy="155" r="16" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="2" />
+                <text x="450" y="160" text-anchor="middle" font-family="var(--font-headline)" font-size="15" font-weight="700" fill="var(--on-surface)">IV</text>
+                <text x="450" y="232" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="700" fill="var(--on-surface-variant)">Court &amp; Sea</text>
+              </g>
+
+              <!-- Dynamic highlight callout badge inside SVG -->
+              <rect x="20" y="16" width="480" height="44" rx="8" fill="var(--background)" stroke="var(--outline-variant)" stroke-width="1" />
+              <text id="svg-station-motif" x="260" y="43" text-anchor="middle" font-family="var(--font-headline)" font-size="17" font-weight="600" fill="var(--primary)">
+                Irony of Providence: Raised inside the household that sought his death
+              </text>
+            </svg>
+          </div>
+
+          <div class="btn-row" style="justify-content:space-between; border-top:var(--warm-hairline); padding-top:var(--space-md);">
+            <button type="button" class="btn btn-secondary" id="prev-station-btn">Previous Station</button>
+            <button type="button" class="btn btn-primary" id="next-station-btn">Next Station</button>
+          </div>
+        </div>
+
+        <div class="panel" id="station-detail" aria-live="polite">
+          <h3 class="subhead" id="station-title">Station I: Cast Into the River, Restored to His Mother</h3>
+          <p id="station-narrative" style="margin-top:var(--space-sm);">
+            When Pharaoh’s decree threatens newborn sons, Moses’ mother receives a paradoxical command: cast him into the river without fear or grief. Pharaoh’s own family fishes him out; Pharaoh’s wife pleads, “a comfort of the eye for me and for you” (28:9). Because God bars every wet nurse, Moses’ sister guides the palace straight back to his true mother, fulfilling the promise on the very threshold of danger.
+          </p>
+
+          <div style="margin-top:var(--space-lg);">
+            <span class="kicker" id="station-prayer-heading">Emotional &amp; Spiritual Register</span>
+            <div class="prayer-list" id="station-prayers"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Bridge to the Messenger & Cosmic Mercy -->
+    <section class="section-band narrative-section" aria-labelledby="sec-bridge">
+      <div class="section-header">
+        <span class="kicker">III. From Ancient Valley to Present Witness (28:43–75)</span>
+        <h2 class="section-heading" id="sec-bridge">Revelation Connects Forgotten Generations to <em>Immediate</em> Moral Choice</h2>
+      </div>
+
+      <div class="two-col-editorial">
+        <div>
+          <p>
+            After Pharaoh’s drowning, Chapter 28 pivots directly to Muhammad: “You were not on the western side [of the mount]… and you were not a resident among the people of Madyan” (28:44–45). The detailed narrative of Moses is presented as proof of prophetic continuity sent as a mercy so no community can claim no warner reached them (28:46–47).
+          </p>
+          <p>
+            Yet when truth arrives, critics dismiss both revelations as “two works of magic supporting each other” (28:48). In contrast, prior people of Scripture recognize its voice immediately (28:52–53) and earn a double reward through four civic virtues (28:54–55):
+          </p>
+          <ul class="trait-list" style="margin-top:var(--space-md);">
+            <li><strong>Patient endurance</strong> in holding fast through earlier revelation and the new.</li>
+            <li><strong>Averting evil through good</strong> rather than escalating hostility (28:54).</li>
+            <li><strong>Spending from provision</strong> given by God for the benefit of others (28:54).</li>
+            <li><strong>Turning away from ill speech</strong> with dignity: “Peace will be upon you; we seek not the ignorant” (28:55).</li>
+          </ul>
+        </div>
+
+        <div class="cosmic-toggle-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-sm);">
+            <span class="kicker">Cosmic Proof &amp; Accountability</span>
+            <span class="badge-brass">28:60–75</span>
+          </div>
+          <h3 class="subhead">What If Time Stopped Turning?</h3>
+          <p style="font-size:0.95rem; color:var(--on-surface-variant);">
+            To answer those who fear losing worldly security if they follow guidance (28:57), verses 28:71–73 ask a thought experiment: what if God made night—or day—continuous until the Day of Resurrection?
+          </p>
+          <div class="btn-row" role="group" aria-label="Cosmic polarity toggle">
+            <button type="button" class="btn btn-pill" data-cosmic="night" aria-pressed="true">Continuous Night (28:71)</button>
+            <button type="button" class="btn btn-pill" data-cosmic="day" aria-pressed="false">Continuous Day (28:72)</button>
+            <button type="button" class="btn btn-pill" data-cosmic="balance" aria-pressed="false">Mercy of Alternation (28:73)</button>
+          </div>
+          <div class="quote-card" id="cosmic-card" aria-live="polite">
+            <span class="quote-ref" id="cosmic-ref">Verse 28:71 · Perpetual Darkness</span>
+            <span class="quote-text" id="cosmic-quote">“Say, ‘Have you considered: if Allah should make for you the night continuous until the Day of Resurrection, what deity other than Allah could bring you light? Then will you not hear?’”</span>
+            <span id="cosmic-note" style="font-size:0.875rem; color:var(--on-surface-variant); margin-top:var(--space-xs);">
+              Without the return of dawn, human effort stalls; only the Creator restores light and movement.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Pharaoh vs Qarun -->
+    <section class="narrative-section" aria-labelledby="sec-tyrants">
+      <div class="section-header">
+        <span class="kicker">IV. Two Archetypes of Arrogance (28:38–42 &amp; 28:76–82)</span>
+        <h2 class="section-heading" id="sec-tyrants">Pharaoh Claims Divinity by <em>State Power</em>; Qarun Claims Entitlement by <em>Wealth</em></h2>
+        <p>
+          Chapter 28 closes its historical portraits not with another foreign king, but with Qarun—someone from Moses’ own oppressed community who becomes an oppressor himself (28:76). Together, Pharaoh and Qarun expose the two ways human beings idolize themselves: sovereign might and self-credited fortune.
+        </p>
+      </div>
+
+      <div class="btn-row" role="group" aria-label="Comparison lens">
+        <button type="button" class="btn btn-secondary" data-lens="power" aria-pressed="true">Compare Tyranny &amp; Collapse</button>
+        <button type="button" class="btn btn-secondary" data-lens="counsel" aria-pressed="false">Compare Warnings &amp; Excuses</button>
+        <button type="button" class="btn btn-secondary" data-lens="counter" aria-pressed="false">The Counter-Model (What Endures)</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="compare-table" id="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Dimension</th>
+              <th scope="col" id="col-left-head">Pharaoh (State Supremacy)</th>
+              <th scope="col" id="col-right-head">Qarun (Hoarded Wealth)</th>
+            </tr>
+          </thead>
+          <tbody id="comparison-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Complete 88-Verse English Explorer -->
+    <section class="narrative-section" aria-labelledby="sec-verses">
+      <div class="section-header">
+        <span class="kicker">V. Complete Primary Text</span>
+        <h2 class="section-heading" id="sec-verses">Read All Eighty-Eight Verses of Chapter 28 in English</h2>
+        <p>
+          Filter by narrative movement or recurring theme, or search any phrase or verse number below to read the full English text of Surah Al-Qasas directly.
+        </p>
+      </div>
+
+      <div class="controls-bar">
+        <div class="field-group">
+          <label class="field-label" for="filter-movement">Narrative Movement</label>
+          <select class="field-select" id="filter-movement">
+            <option value="all">All Movements (28:1–88)</option>
+            <option value="prologue">I. Prologue &amp; Thesis (28:1–6)</option>
+            <option value="egypt-madyan">II. Infancy, Flight &amp; Madyan (28:7–28)</option>
+            <option value="mount-sea">III. The Mount &amp; Pharaoh’s Fall (28:29–42)</option>
+            <option value="bridge">IV. Bridge to the Messenger (28:43–59)</option>
+            <option value="reckoning">V. Reckoning &amp; Cosmic Mercy (28:60–75)</option>
+            <option value="qarun-close">VI. Qarun &amp; Final Mandate (28:76–88)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="filter-theme">Thematic Lens</label>
+          <select class="field-select" id="filter-theme">
+            <option value="all">All Themes</option>
+            <option value="power">Power &amp; Oppression</option>
+            <option value="prayer">Trust, Fear &amp; Prayer</option>
+            <option value="revelation">Signs &amp; Revelation</option>
+            <option value="hereafter">Accountability &amp; Hereafter</option>
+            <option value="wealth">Wealth, Service &amp; Provision</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="search-verses">Search Text or Verse Number</label>
+          <input class="field-input" id="search-verses" type="search" placeholder="e.g. river, 24, tower, keys, peace">
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="reset-filters-btn">Reset</button>
+      </div>
+
+      <div class="verse-status-row">
+        <span class="badge-emerald" id="verse-count-badge" aria-live="polite">Showing 88 of 88 verses</span>
+        <span style="font-size:0.875rem; color:var(--on-surface-variant);">Complete verse-by-verse English translation from the source text</span>
+      </div>
+
+      <div class="card-wrapper">
+        <div class="verse-list" id="verse-list"></div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span>Source: Excerpts of Chapter 28 (Surah Al-Qasas, verses 28:1–88), rendered in full in English.</span>
+      <span>Built as a single-file interactive narrative study.</span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* 1. Symmetry Pairs Data */
+      var SYMMETRY_PAIRS = [
+        {
+          tag: `Thematic Bookend`,
+          refs: `28:4–5 & 28:83`,
+          heading: `Exaltedness and Corruption Framed at Both Ends`,
+          summary: `Pharaoh defines tyranny at the opening by exalting himself and corrupting the earth; the chapter’s conclusion defines salvation as rejecting both impulses.`,
+          leftRef: `Opening · 28:4`,
+          leftQuote: `“Indeed, Pharaoh exalted himself in the land and made its people into factions, oppressing a sector among them… Indeed, he was of the corrupters.”`,
+          rightRef: `Closing · 28:83`,
+          rightQuote: `“That home of the Hereafter We assign to those who do not desire exaltedness upon the earth or corruption. And the [best] outcome is for the righteous.”`
+        },
+        {
+          tag: `Divine Assurance`,
+          refs: `28:7 & 28:85`,
+          heading: `Two Promises of Return`,
+          summary: `Moses’ mother is promised her child will be returned to her despite casting him into the river; Muhammad is promised return to a place of honor despite exile and opposition.`,
+          leftRef: `Infancy · 28:7`,
+          leftQuote: `“…cast him into the river and do not fear and do not grieve. Indeed, We will return him to you and will make him [one] of the messengers.”`,
+          rightRef: `Mandate · 28:85`,
+          rightQuote: `“Indeed, [O Muhammad], He who imposed upon you the Qur'an will take you back to a place of return.”`
+        },
+        {
+          tag: `Elemental Reversal`,
+          refs: `28:7–8 & 28:40`,
+          heading: `The Same Water Saves the Infant and Swallows the Army`,
+          summary: `Moses enters the river as a vulnerable infant and emerges into safety; Pharaoh commands the empire and is cast with his soldiers into the sea.`,
+          leftRef: `Rescue · 28:7–8`,
+          leftQuote: `“…cast him into the river… And the family of Pharaoh picked him up [out of the river] so that he would become to them an enemy and a [cause of] grief.”`,
+          rightRef: `Reckoning · 28:40`,
+          rightQuote: `“So We took him and his soldiers and threw them into the sea. So see how was the end of the wrongdoers.”`
+        },
+        {
+          tag: `Moral Resolve`,
+          refs: `28:17 & 28:86`,
+          heading: `Never Becoming an Assistant to Wrongdoers`,
+          summary: `After receiving forgiveness for an unintentional killing, Moses vows never to aid criminals; at the close, Muhammad receives the parallel directive regarding disbelievers.`,
+          leftRef: `Moses’ Vow · 28:17`,
+          leftQuote: `“He said, ‘My Lord, for the favor You bestowed upon me, I will never be an assistant to the criminals.’”`,
+          rightRef: `Closing Charge · 28:86`,
+          rightQuote: `“…[it is] a mercy from your Lord. So do not be an assistant to the disbelievers.”`
+        }
+      ];
+
+      /* 2. Moses 4-Station Data */
+      var STATIONS = [
+        {
+          geo: `Setting · Nile Waters & Royal Court`,
+          verses: `28:7–13`,
+          title: `Station I: Cast Into the River, Restored to His Mother`,
+          motif: `Irony of Providence: Raised inside the household that sought his death`,
+          pathD: `M 65 180`,
+          narrative: `When Pharaoh’s decree threatens newborn sons, Moses’ mother receives a paradoxical command: cast him into the river without fear or grief. Pharaoh’s own family fishes him out, and his wife pleads, “a comfort of the eye for me and for you” (28:9). Because God bars every wet nurse, Moses’ sister guides the palace straight back to his true mother, fulfilling the promise on the threshold of danger.`,
+          prayerHeading: `Trust & Maternal Anchors`,
+          prayers: [
+            {
+              ref: `28:7`,
+              label: `Divine Inspiration`,
+              quote: `“Suckle him; but when you fear for him, cast him into the river and do not fear and do not grieve.”`
+            },
+            {
+              ref: `28:10 & 28:13`,
+              label: `Heart Bound Fast`,
+              quote: `“She was about to disclose him had We not bound fast her heart… So We restored him to his mother that she might be content and not grieve.”`
+            }
+          ]
+        },
+        {
+          geo: `Setting · The City & The Well of Madyan`,
+          verses: `28:14–28`,
+          title: `Station II: An Unintended Blow, Flight, and Ten Years of Service`,
+          motif: `Refinement in Exile: From impulsive strength to patient trustworthiness`,
+          pathD: `M 65 180 Q 130 100 185 155`,
+          narrative: `Given judgement and knowledge at maturity, Moses intervenes in a street fight and unintentionally kills an enemy (28:15). The next day, the same quarrelsome partisan exposes him, and a sincere runner from the farthest end of the city warns him that elites are conspiring to kill him (28:20). Fleeing to Madyan, Moses waters flocks for two women held back by crowds, retreats to the shade, and earns a home and an eight-to-ten-year marriage covenant as “the strong and the trustworthy” (28:26).`,
+          prayerHeading: `Moses’ Five Prayers in Crisis & Exile`,
+          prayers: [
+            {
+              ref: `28:16–17`,
+              label: `Repentance & Vow`,
+              quote: `“My Lord, indeed I have wronged myself, so forgive me… I will never be an assistant to the criminals.”`
+            },
+            {
+              ref: `28:21–22`,
+              label: `Flight & Direction`,
+              quote: `“My Lord, save me from the wrongdoing people… Perhaps my Lord will guide me to the sound way.”`
+            },
+            {
+              ref: `28:24`,
+              label: `In the Shade at Madyan`,
+              quote: `“My Lord, indeed I am, for whatever good You would send down to me, in need.”`
+            }
+          ]
+        },
+        {
+          geo: `Setting · Right Side of the Blessed Valley`,
+          verses: `28:29–35`,
+          title: `Station III: Fire at the Mount and Two Proofs`,
+          motif: `Commissioning Through Candor: Fear answered with signs and brotherhood`,
+          pathD: `M 65 180 Q 130 100 185 155 T 315 110`,
+          narrative: `After completing his term and traveling with his family, Moses spots fire on the mountainside and approaches to bring warmth or news (28:29). Called from the tree in the blessed valley, he is given two proofs: his staff writhing as a snake and his hand emerging white without disease (28:31–32). Moses openly confesses both his fear of execution for the earlier killing and his hesitation of speech—and is answered with Aaron’s fluent partnership.`,
+          prayerHeading: `Candor Before Mission`,
+          prayers: [
+            {
+              ref: `28:33–34`,
+              label: `Petition for Aaron`,
+              quote: `“My Lord, indeed, I killed from among them someone, and I fear they will kill me. And my brother Aaron is more fluent than me in tongue, so send him with me as support, verifying me.”`
+            },
+            {
+              ref: `28:35`,
+              label: `Divine Assurance`,
+              quote: `“We will strengthen your arm through your brother and grant you both supremacy so they will not reach you.”`
+            }
+          ]
+        },
+        {
+          geo: `Setting · Pharaoh’s Court & The Sea`,
+          verses: `28:36–42`,
+          title: `Station IV: Invented Magic, Fired Clay, and the Sea`,
+          motif: `Collapse of Illusion: A clay tower cannot outclimb truth`,
+          pathD: `M 65 180 Q 130 100 185 155 T 315 110 T 450 155`,
+          narrative: `Confronted with clear proofs, Pharaoh’s court dismisses them as invented magic unseen among their forefathers (28:36). Pharaoh declares himself the sole god he knows and orders minister Haman to fire bricks of clay to build a tower so he can peer at Moses’ God (28:38). Arrogant without right, he and his armies assume they will never return—until God casts them into the sea and leaves them a cautionary spectacle.`,
+          prayerHeading: `The Final Testimony`,
+          prayers: [
+            {
+              ref: `28:37`,
+              label: `Moses’ Reply`,
+              quote: `“My Lord is more knowing of who has come with guidance from Him and to whom will be succession in the home. Indeed, wrongdoers do not succeed.”`
+            },
+            {
+              ref: `28:40–41`,
+              label: `Verdict`,
+              quote: `“So We took him and his soldiers and threw them into the sea… And We made them leaders inviting to the Fire.”`
+            }
+          ]
+        }
+      ];
+
+      /* 3. Cosmic Toggle Data */
+      var COSMIC_STATES = {
+        night: {
+          ref: `Verse 28:71 · Perpetual Darkness`,
+          quote: `“Say, ‘Have you considered: if Allah should make for you the night continuous until the Day of Resurrection, what deity other than Allah could bring you light? Then will you not hear?’”`,
+          note: `Without the return of dawn, human effort stalls; only the Creator restores light and movement.`
+        },
+        day: {
+          ref: `Verse 28:72 · Perpetual Glare`,
+          quote: `“Say, ‘Have you considered: if Allah should make for you the day continuous until the Day of Resurrection, what deity other than Allah could bring you a night in which you may rest? Then will you not see?’”`,
+          note: `Unending activity without darkness would exhaust every living creature; rest itself is an authored mercy.`
+        },
+        balance: {
+          ref: `Verse 28:73 · Rhythm of Rest & Provision`,
+          quote: `“And out of His mercy He made for you the night and the day that you may rest therein and [by day] seek from His bounty and [that] perhaps you will be grateful.”`,
+          note: `Neither darkness nor daylight alone sustains life—gratitude grows from noticing the daily alternation.`
+        }
+      };
+
+      /* 4. Comparison Lenses Data */
+      var COMPARISON_LENSES = {
+        power: {
+          colLeft: `Pharaoh (State Supremacy)`,
+          colRight: `Qarun (Hoarded Wealth)`,
+          rows: [
+            {
+              axis: `Standing`,
+              left: `Supreme ruler who divided society into factions and slaughtered newborn sons <span class="verse-inline">(28:4)</span>.`,
+              right: `Insider from Moses’ own people who turned against and tyrannized them <span class="verse-inline">(28:76)</span>.`
+            },
+            {
+              axis: `Core Boast`,
+              left: `“O eminent ones, I have not known you to have a god other than me” <span class="verse-inline">(28:38)</span>.`,
+              right: `“I was only given it because of knowledge I have” <span class="verse-inline">(28:78)</span>.`
+            },
+            {
+              axis: `Material Emblem`,
+              left: `Commands Haman to ignite clay and build a tower to look at Moses’ God <span class="verse-inline">(28:38)</span>.`,
+              right: `Treasures whose keys alone burden a band of strong men; parades in adornment <span class="verse-inline">(28:76, 79)</span>.`
+            },
+            {
+              axis: `Delusion`,
+              left: `Assumed he and his soldiers “would not be returned to Us” <span class="verse-inline">(28:39)</span>.`,
+              right: `Forgot past generations “greater than him in power and greater in accumulation” <span class="verse-inline">(28:78)</span>.`
+            },
+            {
+              axis: `Instrument of Fall`,
+              left: `Thrown into the sea with his soldiers—no help on Resurrection Day <span class="verse-inline">(28:40–41)</span>.`,
+              right: `Earth swallows him and his home—no company to aid him other than God <span class="verse-inline">(28:81)</span>.`
+            }
+          ]
+        },
+        counsel: {
+          colLeft: `Pharaoh’s Rejection of Signs`,
+          colRight: `Qarun’s Rejection of Ethic`,
+          rows: [
+            {
+              axis: `Messenger / Advisors`,
+              left: `Moses and Aaron arrive with two clear proofs: staff and shining hand <span class="verse-inline">(28:32–36)</span>.`,
+              right: `His own people urge moderation and social duty <span class="verse-inline">(28:76–77)</span>.`
+            },
+            {
+              axis: `Fourfold Counsel Ignored`,
+              left: `Refuses Moses’ reminder of “who has come with guidance… and succession in the home” <span class="verse-inline">(28:37)</span>.`,
+              right: `Told: seek the Hereafter, keep your worldly share, do good as God did good, desire no corruption <span class="verse-inline">(28:77)</span>.`
+            },
+            {
+              axis: `Dismissive Response`,
+              left: `Labels clear evidences “invented magic” and calls Moses “among the liars” <span class="verse-inline">(28:36, 38)</span>.`,
+              right: `Treats unearned blessing as purely personal merit (“knowledge I have”) <span class="verse-inline">(28:78)</span>.`
+            },
+            {
+              axis: `Bystander Awakening`,
+              left: `Chapter challenges readers directly: “So see how was the end of the wrongdoers” <span class="verse-inline">(28:40)</span>.`,
+              right: `Yesterday’s enviers exclaim: “If not that Allah had conferred favor on us, He would have caused it to swallow us!” <span class="verse-inline">(28:82)</span>.`
+            }
+          ]
+        },
+        counter: {
+          colLeft: `What Collapses in Chapter 28`,
+          colRight: `What Endures (The Counter-Model)`,
+          rows: [
+            {
+              axis: `Source of Worth`,
+              left: `Exalting oneself in the land and dividing people into factions <span class="verse-inline">(28:4)</span>.`,
+              right: `Being “strong and trustworthy” in quiet service—even in exile <span class="verse-inline">(28:26)</span>.`
+            },
+            {
+              axis: `Use of Wealth`,
+              left: `Parading in adornment while exulting and spreading corruption <span class="verse-inline">(28:76, 79)</span>.`,
+              right: `Spending from provision, averting evil with good, and seeking the Hereafter <span class="verse-inline">(28:54, 77)</span>.`
+            },
+            {
+              axis: `Measure of Success`,
+              left: `Enjoyment of worldly life and its adornment that vanishes overnight <span class="verse-inline">(28:60, 81)</span>.`,
+              right: `“What is with Allah is better and more lasting; so will you not use reason?” <span class="verse-inline">(28:60, 80)</span>.`
+            },
+            {
+              axis: `Final Horizon`,
+              left: `Everything claimed as partner or monument fails and perishes <span class="verse-inline">(28:64, 88)</span>.`,
+              right: `“Everything will be destroyed except His Face. His is the judgement, and to Him you will be returned” <span class="verse-inline">(28:88)</span>.`
+            }
+          ]
+        }
+      };
+
+      /* 5. Complete 88 Verses Dataset (faithful to source English text) */
+      var VERSES = [
+        { n: 1, m: `prologue`, t: `revelation`, text: `Ta, Seen, Meem.` },
+        { n: 2, m: `prologue`, t: `revelation`, text: `These are the verses of the clear Book.` },
+        { n: 3, m: `prologue`, t: `revelation`, text: `We recite to you from the news of Moses and Pharaoh in truth for a people who believe.` },
+        { n: 4, m: `prologue`, t: `power`, text: `Indeed, Pharaoh exalted himself in the land and made its people into factions, oppressing a sector among them, slaughtering their [newborn] sons and keeping their females alive. Indeed, he was of the corrupters.` },
+        { n: 5, m: `prologue`, t: `power`, text: `And We wanted to confer favor upon those who were oppressed in the land and make them leaders and make them inheritors` },
+        { n: 6, m: `prologue`, t: `power`, text: `And establish them in the land and show Pharaoh and [his minister] Haman and their soldiers through them that which they had feared.` },
+        { n: 7, m: `egypt-madyan`, t: `prayer`, text: `And We inspired to the mother of Moses, “Suckle him; but when you fear for him, cast him into the river and do not fear and do not grieve. Indeed, We will return him to you and will make him [one] of the messengers.”` },
+        { n: 8, m: `egypt-madyan`, t: `power`, text: `And the family of Pharaoh picked him up [out of the river] so that he would become to them an enemy and a [cause of] grief. Indeed, Pharaoh and Haman and their soldiers were deliberate sinners.` },
+        { n: 9, m: `egypt-madyan`, t: `prayer`, text: `And the wife of Pharaoh said, “[He will be] a comfort of the eye for me and for you. Do not kill him; perhaps he may benefit us, or we may adopt him as a son.” And they perceived not.` },
+        { n: 10, m: `egypt-madyan`, t: `prayer`, text: `And the heart of Moses' mother became empty [of all else]. She was about to disclose [the matter concerning] him had We not bound fast her heart that she would be of the believers.` },
+        { n: 11, m: `egypt-madyan`, t: `prayer`, text: `And she said to his sister, “Follow him”; so she watched him from a distance while they perceived not.` },
+        { n: 12, m: `egypt-madyan`, t: `wealth`, text: `And We had prevented from him [all] wet nurses before, so she said, “Shall I direct you to a household that will be responsible for him for you while they are to him [for his upbringing] sincere?”` },
+        { n: 13, m: `egypt-madyan`, t: `prayer`, text: `So We restored him to his mother that she might be content and not grieve and that she would know that the promise of Allah is true. But most of the people do not know.` },
+        { n: 14, m: `egypt-madyan`, t: `revelation`, text: `And when he attained his full strength and was [mentally] mature, We bestowed upon him judgement and knowledge. And thus do We reward the doers of good.` },
+        { n: 15, m: `egypt-madyan`, t: `power`, text: `And he entered the city at a time of inattention by its people and found therein two men fighting: one from his faction and one from among his enemy. And the one from his faction called for help to him against the one from his enemy, so Moses struck him and [unintentionally] killed him. [Moses] said, “This is from the work of Satan. Indeed, he is a manifest, misleading enemy.”` },
+        { n: 16, m: `egypt-madyan`, t: `prayer`, text: `He said, “My Lord, indeed I have wronged myself, so forgive me,” and He forgave him. Indeed, He is the Forgiving, the Merciful.` },
+        { n: 17, m: `egypt-madyan`, t: `prayer`, text: `He said, “My Lord, for the favor You bestowed upon me, I will never be an assistant to the criminals.”` },
+        { n: 18, m: `egypt-madyan`, t: `prayer`, text: `And he became inside the city fearful and anticipating [exposure], when suddenly the one who sought his help the previous day cried out to him [once again]. Moses said to him, “Indeed, you are an evident, [persistent] deviator.”` },
+        { n: 19, m: `egypt-madyan`, t: `power`, text: `And when he wanted to strike the one who was an enemy to both of them, he said, “O Moses, do you intend to kill me as you killed someone yesterday? You only want to be a tyrant in the land and do not want to be of the amenders.”` },
+        { n: 20, m: `egypt-madyan`, t: `power`, text: `And a man came from the farthest end of the city, running. He said, “O Moses, indeed the eminent ones are conferring over you [intending] to kill you, so leave [the city]; indeed, I am to you of the sincere advisors.”` },
+        { n: 21, m: `egypt-madyan`, t: `prayer`, text: `So he left it, fearful and anticipating [apprehension]. He said, “My Lord, save me from the wrongdoing people.”` },
+        { n: 22, m: `egypt-madyan`, t: `prayer`, text: `And when he directed himself toward Madyan, he said, “Perhaps my Lord will guide me to the sound way.”` },
+        { n: 23, m: `egypt-madyan`, t: `wealth`, text: `And when he came to the well of Madyan, he found there a crowd of people watering [their flocks], and he found aside from them two women driving back [their flocks]. He said, “What is your circumstance?” They said, “We do not water until the shepherds dispatch [their flocks]; and our father is an old man.”` },
+        { n: 24, m: `egypt-madyan`, t: `prayer`, text: `So he watered [their flocks] for them; then he went back to the shade and said, “My Lord, indeed I am, for whatever good You would send down to me, in need.”` },
+        { n: 25, m: `egypt-madyan`, t: `prayer`, text: `Then one of the two women came to him walking with shyness. She said, “Indeed, my father invites you that he may reward you for having watered for us.” So when he came to him and related to him the story, he said, “Fear not. You have escaped from the wrongdoing people.”` },
+        { n: 26, m: `egypt-madyan`, t: `wealth`, text: `One of the women said, “O my father, hire him. Indeed, the best one you can hire is the strong and the trustworthy.”` },
+        { n: 27, m: `egypt-madyan`, t: `wealth`, text: `He said, “Indeed, I wish to wed you one of these, my two daughters, on [the condition] that you serve me for eight years; but if you complete ten, it will be [as a favor] from you. And I do not wish to put you in difficulty. You will find me, if Allah wills, from among the righteous.”` },
+        { n: 28, m: `egypt-madyan`, t: `wealth`, text: `[Moses] said, “That is [established] between me and you. Whichever of the two terms I complete there is no injustice to me, and Allah, over what we say, is Witness.”` },
+        { n: 29, m: `mount-sea`, t: `revelation`, text: `And when Moses had completed the term and was traveling with his family, he perceived from the direction of the mount a fire. He said to his family, “Stay here; indeed, I have perceived a fire. Perhaps I will bring you from there [some] information or burning wood from the fire that you may warm yourselves.”` },
+        { n: 30, m: `mount-sea`, t: `revelation`, text: `But when he came to it, he was called from the right side of the valley in a blessed spot - from the tree, “O Moses, indeed I am Allah, Lord of the worlds.”` },
+        { n: 31, m: `mount-sea`, t: `revelation`, text: `And [he was told], “Throw down your staff.” But when he saw it writhing as if it was a snake, he turned in flight and did not return. [Allah said], “O Moses, approach and fear not. Indeed, you are of the secure.` },
+        { n: 32, m: `mount-sea`, t: `revelation`, text: `Insert your hand into the opening of your garment; it will come out white, without disease. And draw in your arm close to you [as prevention] from fear, for those are two proofs from your Lord to Pharaoh and his establishment. Indeed, they have been a people defiantly disobedient.”` },
+        { n: 33, m: `mount-sea`, t: `prayer`, text: `He said, “My Lord, indeed, I killed from among them someone, and I fear they will kill me.` },
+        { n: 34, m: `mount-sea`, t: `prayer`, text: `And my brother Aaron is more fluent than me in tongue, so send him with me as support, verifying me. Indeed, I fear that they will deny me.”` },
+        { n: 35, m: `mount-sea`, t: `revelation`, text: `[Allah] said, “We will strengthen your arm through your brother and grant you both supremacy so they will not reach you. [It will be] through Our signs; you and those who follow you will be the predominant.”` },
+        { n: 36, m: `mount-sea`, t: `revelation`, text: `But when Moses came to them with Our signs as clear evidences, they said, “This is not except invented magic, and we have not heard of this [religion] among our forefathers.”` },
+        { n: 37, m: `mount-sea`, t: `hereafter`, text: `And Moses said, “My Lord is more knowing [than we or you] of who has come with guidance from Him and to whom will be succession in the home. Indeed, wrongdoers do not succeed.”` },
+        { n: 38, m: `mount-sea`, t: `power`, text: `And Pharaoh said, “O eminent ones, I have not known you to have a god other than me. Then ignite for me, O Haman, [a fire] upon the clay and make for me a tower that I may look at the God of Moses. And indeed, I do think he is among the liars.”` },
+        { n: 39, m: `mount-sea`, t: `power`, text: `And he was arrogant, he and his soldiers, in the land, without right, and they thought that they would not be returned to Us.` },
+        { n: 40, m: `mount-sea`, t: `power`, text: `So We took him and his soldiers and threw them into the sea. So see how was the end of the wrongdoers.` },
+        { n: 41, m: `mount-sea`, t: `hereafter`, text: `And We made them leaders inviting to the Fire, and on the Day of Resurrection they will not be helped.` },
+        { n: 42, m: `mount-sea`, t: `hereafter`, text: `And We caused to overtake them in this world a curse, and on the Day of Resurrection they will be of the despised.` },
+        { n: 43, m: `bridge`, t: `revelation`, text: `And We gave Moses the Scripture, after We had destroyed the former generations, as enlightenment for the people and guidance and mercy that they might be reminded.` },
+        { n: 44, m: `bridge`, t: `revelation`, text: `And you, [O Muhammad], were not on the western side [of the mount] when We revealed to Moses the command, and you were not among the witnesses [to that].` },
+        { n: 45, m: `bridge`, t: `revelation`, text: `But We produced [many] generations [after Moses], and prolonged was their duration. And you were not a resident among the people of Madyan, reciting to them Our verses, but We were senders [of this message].` },
+        { n: 46, m: `bridge`, t: `revelation`, text: `And you were not at the side of the mount when We called [Moses] but [were sent] as a mercy from your Lord to warn a people to whom no warner had come before you that they might be reminded.` },
+        { n: 47, m: `bridge`, t: `revelation`, text: `And if not that a disaster should strike them for what their hands put forth [of sins] and they would say, “Our Lord, why did You not send us a messenger so we could have followed Your verses and been among the believers?”…` },
+        { n: 48, m: `bridge`, t: `revelation`, text: `But when the truth came to them from Us, they said, “Why was he not given like that which was given to Moses?” Did they not disbelieve in that which was given to Moses before? They said, “[They are but] two works of magic supporting each other, and indeed we are, in both, disbelievers.”` },
+        { n: 49, m: `bridge`, t: `revelation`, text: `Say, “Then bring a scripture from Allah which is more guiding than either of them that I may follow it, if you should be truthful.”` },
+        { n: 50, m: `bridge`, t: `revelation`, text: `But if they do not respond to you - then know that they only follow their [own] desires. And who is more astray than one who follows his desire without guidance from Allah? Indeed, Allah does not guide the wrongdoing people.` },
+        { n: 51, m: `bridge`, t: `revelation`, text: `And We have [repeatedly] conveyed to them the Qur'an that they might be reminded.` },
+        { n: 52, m: `bridge`, t: `revelation`, text: `Those to whom We gave the Scripture before it - they are believers in it.` },
+        { n: 53, m: `bridge`, t: `revelation`, text: `And when it is recited to them, they say, “We have believed in it; indeed, it is the truth from our Lord. Indeed we were, [even] before it, Muslims [submitting to Allah].”` },
+        { n: 54, m: `bridge`, t: `wealth`, text: `Those will be given their reward twice for what they patiently endured and [because] they avert evil through good, and from what We have provided them they spend.` },
+        { n: 55, m: `bridge`, t: `prayer`, text: `And when they hear ill speech, they turn away from it and say, “For us are our deeds, and for you are your deeds. Peace will be upon you; we seek not the ignorant.”` },
+        { n: 56, m: `bridge`, t: `revelation`, text: `Indeed, [O Muhammad], you do not guide whom you like, but Allah guides whom He wills. And He is most knowing of the [rightly] guided.` },
+        { n: 57, m: `bridge`, t: `wealth`, text: `And they say, “If we were to follow the guidance with you, we would be swept from our land.” Have we not established for them a safe sanctuary to which are brought the fruits of all things as provision from Us? But most of them do not know.` },
+        { n: 58, m: `bridge`, t: `power`, text: `And how many a city have We destroyed that was insolent in its [way of] living, and those are their dwellings which have not been inhabited after them except briefly. And it is We who were the inheritors.` },
+        { n: 59, m: `bridge`, t: `power`, text: `And never would your Lord have destroyed the cities until He had sent to their mother a messenger reciting to them Our verses. And We would not destroy the cities except while their people were wrongdoers.` },
+        { n: 60, m: `reckoning`, t: `wealth`, text: `And whatever thing you [people] have been given - it is [only for] the enjoyment of worldly life and its adornment. And what is with Allah is better and more lasting; so will you not use reason?` },
+        { n: 61, m: `reckoning`, t: `hereafter`, text: `Then is he whom We have promised a good promise which he will obtain like he for whom We provided enjoyment of worldly life [but] then he is, on the Day of Resurrection, among those presented [for punishment in Hell]?` },
+        { n: 62, m: `reckoning`, t: `hereafter`, text: `And [warn of] the Day He will call them and say, “Where are My ‘partners’ which you used to claim?”` },
+        { n: 63, m: `reckoning`, t: `hereafter`, text: `Those upon whom the word will have come into effect will say, “Our Lord, these are the ones we led to error. We led them to error just as we were in error. We declare our disassociation [from them] to You. They did not used to worship us.”` },
+        { n: 64, m: `reckoning`, t: `hereafter`, text: `And it will be said, “Invoke your ‘partners’ ” and they will invoke them; but they will not respond to them, and they will see the punishment. If only they had followed guidance!` },
+        { n: 65, m: `reckoning`, t: `hereafter`, text: `And [mention] the Day He will call them and say, “What did you answer the messengers?”` },
+        { n: 66, m: `reckoning`, t: `hereafter`, text: `But the information will be unapparent to them that Day, so they will not [be able to] ask one another.` },
+        { n: 67, m: `reckoning`, t: `hereafter`, text: `But as for one who had repented, believed, and done righteousness, it is promised by Allah that he will be among the successful.` },
+        { n: 68, m: `reckoning`, t: `revelation`, text: `And your Lord creates what He wills and chooses; not for them was the choice. Exalted is Allah and high above what they associate with Him.` },
+        { n: 69, m: `reckoning`, t: `hereafter`, text: `And your Lord knows what their breasts conceal and what they declare.` },
+        { n: 70, m: `reckoning`, t: `hereafter`, text: `And He is Allah; there is no deity except Him. To Him is [due all] praise in the first [life] and the Hereafter. And His is the [final] decision, and to Him you will be returned.` },
+        { n: 71, m: `reckoning`, t: `wealth`, text: `Say, “Have you considered: if Allah should make for you the night continuous until the Day of Resurrection, what deity other than Allah could bring you light? Then will you not hear?”` },
+        { n: 72, m: `reckoning`, t: `wealth`, text: `Say, “Have you considered: if Allah should make for you the day continuous until the Day of Resurrection, what deity other than Allah could bring you a night in which you may rest? Then will you not see?”` },
+        { n: 73, m: `reckoning`, t: `wealth`, text: `And out of His mercy He made for you the night and the day that you may rest therein and [by day] seek from His bounty and [that] perhaps you will be grateful.` },
+        { n: 74, m: `reckoning`, t: `hereafter`, text: `And [warn of] the Day He will call them and say, “Where are my ‘partners’ which you used to claim?”` },
+        { n: 75, m: `reckoning`, t: `hereafter`, text: `And We will extract from every nation a witness and say, “Produce your proof,” and they will know that the truth belongs to Allah, and lost from them is that which they used to invent.` },
+        { n: 76, m: `qarun-close`, t: `wealth`, text: `Indeed, Qarun was from the people of Moses, but he tyrannized them. And We gave him of treasures whose keys would burden a band of strong men; thereupon his people said to him, “Do not exult. Indeed, Allah does not like the exultant.` },
+        { n: 77, m: `qarun-close`, t: `wealth`, text: `But seek, through that which Allah has given you, the home of the Hereafter; and [yet], do not forget your share of the world. And do good as Allah has done good to you. And desire not corruption in the land. Indeed, Allah does not like corrupters.”` },
+        { n: 78, m: `qarun-close`, t: `power`, text: `He said, “I was only given it because of knowledge I have.” Did he not know that Allah had destroyed before him of generations those who were greater than him in power and greater in accumulation [of wealth]? But the criminals, about their sins, will not be asked.` },
+        { n: 79, m: `qarun-close`, t: `wealth`, text: `So he came out before his people in his adornment. Those who desired the worldly life said, “Oh, would that we had like what was given to Qarun. Indeed, he is one of great fortune.”` },
+        { n: 80, m: `qarun-close`, t: `hereafter`, text: `But those who had been given knowledge said, “Woe to you! The reward of Allah is better for he who believes and does righteousness. And none are granted it except the patient.”` },
+        { n: 81, m: `qarun-close`, t: `power`, text: `And We caused the earth to swallow him and his home. And there was for him no company to aid him other than Allah, nor was he of those who [could] defend themselves.` },
+        { n: 82, m: `qarun-close`, t: `wealth`, text: `And those who had wished for his position the previous day began to say, “Oh, how Allah extends provision to whom He wills of His servants and restricts it! If not that Allah had conferred favor on us, He would have caused it to swallow us. Oh, how the disbelievers do not succeed!”` },
+        { n: 83, m: `qarun-close`, t: `hereafter`, text: `That home of the Hereafter We assign to those who do not desire exaltedness upon the earth or corruption. And the [best] outcome is for the righteous.` },
+        { n: 84, m: `qarun-close`, t: `hereafter`, text: `Whoever comes [on the Day of Judgement] with a good deed will have better than it; and whoever comes with an evil deed - then those who did evil deeds will not be recompensed except [as much as] what they used to do.` },
+        { n: 85, m: `qarun-close`, t: `revelation`, text: `Indeed, [O Muhammad], He who imposed upon you the Qur'an will take you back to a place of return. Say, “My Lord is most knowing of who brings guidance and who is in clear error.”` },
+        { n: 86, m: `qarun-close`, t: `revelation`, text: `And you were not expecting that the Book would be conveyed to you, but [it is] a mercy from your Lord. So do not be an assistant to the disbelievers.` },
+        { n: 87, m: `qarun-close`, t: `revelation`, text: `And never let them avert you from the verses of Allah after they have been revealed to you. And invite [people] to your Lord. And never be of those who associate others with Allah.` },
+        { n: 88, m: `qarun-close`, t: `hereafter`, text: `And do not invoke with Allah another deity. There is no deity except Him. Everything will be destroyed except His Face. His is the judgement, and to Him you will be returned.` }
+      ];
+
+      var MOVEMENT_LABELS = {
+        prologue: `Prologue & Thesis`,
+        'egypt-madyan': `Infancy & Madyan`,
+        'mount-sea': `Mount & Sea`,
+        bridge: `Bridge to Messenger`,
+        reckoning: `Reckoning & Mercy`,
+        'qarun-close': `Qarun & Closing`
+      };
+
+      var THEME_LABELS = {
+        power: `Power & Oppression`,
+        prayer: `Trust, Fear & Prayer`,
+        revelation: `Signs & Revelation`,
+        hereafter: `Accountability & Hereafter`,
+        wealth: `Wealth & Provision`
+      };
+
+      var currentStation = 0;
+
+      /* Symmetry Interaction */
+      function selectSymmetryPair(index) {
+        var idx = Number(index);
+        if (isNaN(idx) || idx < 0 || idx >= SYMMETRY_PAIRS.length) return;
+        var item = SYMMETRY_PAIRS[idx];
+
+        var btns = document.querySelectorAll('.ring-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+        }
+        for (var a = 0; a < 4; a++) {
+          var arc = document.getElementById('arc-' + a);
+          if (arc) {
+            if (a === idx) arc.classList.add('is-active');
+            else arc.classList.remove('is-active');
+          }
+        }
+
+        var tagEl = document.getElementById('pair-tag');
+        var refsEl = document.getElementById('pair-refs');
+        var headEl = document.getElementById('pair-heading');
+        var sumEl = document.getElementById('pair-summary');
+        var lRefEl = document.getElementById('pair-left-ref');
+        var lQuoteEl = document.getElementById('pair-left-quote');
+        var rRefEl = document.getElementById('pair-right-ref');
+        var rQuoteEl = document.getElementById('pair-right-quote');
+
+        if (tagEl) tagEl.textContent = item.tag;
+        if (refsEl) refsEl.textContent = item.refs;
+        if (headEl) headEl.textContent = item.heading;
+        if (sumEl) sumEl.textContent = item.summary;
+        if (lRefEl) lRefEl.textContent = item.leftRef;
+        if (lQuoteEl) lQuoteEl.textContent = item.leftQuote;
+        if (rRefEl) rRefEl.textContent = item.rightRef;
+        if (rQuoteEl) rQuoteEl.textContent = item.rightQuote;
+      }
+
+      /* Station Stepper Interaction */
+      function selectStation(index) {
+        var idx = Number(index);
+        if (isNaN(idx) || idx < 0 || idx >= STATIONS.length) return;
+        currentStation = idx;
+        var st = STATIONS[idx];
+
+        var tabBtns = document.querySelectorAll('.station-btn');
+        for (var i = 0; i < tabBtns.length; i++) {
+          tabBtns[i].setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+        }
+
+        for (var s = 0; s < 4; s++) {
+          var node = document.getElementById('node-s' + s);
+          if (node) {
+            var circle = node.querySelector('circle');
+            var texts = node.querySelectorAll('text');
+            if (circle) {
+              if (s === idx) {
+                circle.setAttribute('fill', 'var(--primary-container)');
+                circle.setAttribute('stroke', 'var(--primary)');
+                circle.setAttribute('stroke-width', '3');
+              } else if (s < idx) {
+                circle.setAttribute('fill', 'var(--tertiary-container)');
+                circle.setAttribute('stroke', 'var(--tertiary)');
+                circle.setAttribute('stroke-width', '2');
+              } else {
+                circle.setAttribute('fill', 'var(--surface-container)');
+                circle.setAttribute('stroke', 'var(--outline)');
+                circle.setAttribute('stroke-width', '2');
+              }
+            }
+            if (texts.length >= 2) {
+              texts[1].setAttribute('fill', s === idx ? 'var(--on-surface)' : 'var(--on-surface-variant)');
+            }
+          }
+        }
+
+        var progPath = document.getElementById('journey-progress-path');
+        if (progPath) progPath.setAttribute('d', st.pathD);
+
+        var motifEl = document.getElementById('svg-station-motif');
+        var geoEl = document.getElementById('station-geo-label');
+        var pillEl = document.getElementById('station-verses-pill');
+        var titleEl = document.getElementById('station-title');
+        var narEl = document.getElementById('station-narrative');
+        var pHeadEl = document.getElementById('station-prayer-heading');
+        var pListEl = document.getElementById('station-prayers');
+
+        if (motifEl) motifEl.textContent = st.motif;
+        if (geoEl) geoEl.textContent = st.geo;
+        if (pillEl) pillEl.textContent = st.verses;
+        if (titleEl) titleEl.textContent = st.title;
+        if (narEl) narEl.textContent = st.narrative;
+        if (pHeadEl) pHeadEl.textContent = st.prayerHeading;
+
+        if (pListEl) {
+          pListEl.innerHTML = '';
+          for (var p = 0; p < st.prayers.length; p++) {
+            var pr = st.prayers[p];
+            var card = document.createElement('div');
+            card.className = 'prayer-item';
+
+            var meta = document.createElement('div');
+            meta.className = 'prayer-meta';
+
+            var lbl = document.createElement('span');
+            lbl.className = 'quote-ref';
+            lbl.textContent = pr.label;
+
+            var badge = document.createElement('span');
+            badge.className = 'badge-terracotta';
+            badge.textContent = pr.ref;
+
+            var q = document.createElement('p');
+            q.className = 'prayer-quote';
+            q.textContent = pr.quote;
+
+            meta.appendChild(lbl);
+            meta.appendChild(badge);
+            card.appendChild(meta);
+            card.appendChild(q);
+            pListEl.appendChild(card);
+          }
+        }
+
+        var prevBtn = document.getElementById('prev-station-btn');
+        var nextBtn = document.getElementById('next-station-btn');
+        if (prevBtn) prevBtn.disabled = idx === 0;
+        if (nextBtn) nextBtn.disabled = idx === STATIONS.length - 1;
+      }
+
+      /* Cosmic Toggle Interaction */
+      function selectCosmic(key) {
+        var item = COSMIC_STATES[key];
+        if (!item) return;
+
+        var btns = document.querySelectorAll('[data-cosmic]');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-cosmic') === key ? 'true' : 'false');
+        }
+
+        var refEl = document.getElementById('cosmic-ref');
+        var quoteEl = document.getElementById('cosmic-quote');
+        var noteEl = document.getElementById('cosmic-note');
+        if (refEl) refEl.textContent = item.ref;
+        if (quoteEl) quoteEl.textContent = item.quote;
+        if (noteEl) noteEl.textContent = item.note;
+      }
+
+      /* Comparison Lens Interaction */
+      function selectComparisonLens(key) {
+        var lens = COMPARISON_LENSES[key];
+        if (!lens) return;
+
+        var btns = document.querySelectorAll('[data-lens]');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-lens') === key ? 'true' : 'false');
+        }
+
+        var leftHead = document.getElementById('col-left-head');
+        var rightHead = document.getElementById('col-right-head');
+        var tbody = document.getElementById('comparison-tbody');
+        if (leftHead) leftHead.textContent = lens.colLeft;
+        if (rightHead) rightHead.textContent = lens.colRight;
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+        for (var r = 0; r < lens.rows.length; r++) {
+          var row = lens.rows[r];
+          var tr = document.createElement('tr');
+          var tdAxis = document.createElement('td');
+          tdAxis.className = 'compare-axis';
+          tdAxis.textContent = row.axis;
+
+          var tdLeft = document.createElement('td');
+          tdLeft.innerHTML = row.left;
+
+          var tdRight = document.createElement('td');
+          tdRight.innerHTML = row.right;
+
+          tr.appendChild(tdAxis);
+          tr.appendChild(tdLeft);
+          tr.appendChild(tdRight);
+          tbody.appendChild(tr);
+        }
+      }
+
+      /* Verse Explorer Filtering */
+      function renderVerses() {
+        var movSelect = document.getElementById('filter-movement');
+        var thmSelect = document.getElementById('filter-theme');
+        var searchInput = document.getElementById('search-verses');
+        var listEl = document.getElementById('verse-list');
+        var countBadge = document.getElementById('verse-count-badge');
+
+        if (!listEl) return;
+
+        var movVal = movSelect ? movSelect.value : 'all';
+        var thmVal = thmSelect ? thmSelect.value : 'all';
+        var q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+        var filtered = [];
+        for (var i = 0; i < VERSES.length; i++) {
+          var v = VERSES[i];
+          if (movVal !== 'all' && v.m !== movVal) continue;
+          if (thmVal !== 'all' && v.t !== thmVal) continue;
+          if (q) {
+            var refStr = ('28:' + v.n).toLowerCase();
+            var numStr = String(v.n);
+            var textLower = v.text.toLowerCase();
+            if (textLower.indexOf(q) === -1 && refStr.indexOf(q) === -1 && numStr !== q) {
+              continue;
+            }
+          }
+          filtered.push(v);
+        }
+
+        if (countBadge) {
+          countBadge.textContent = 'Showing ' + filtered.length + ' of ' + VERSES.length + ' verses';
+        }
+
+        listEl.innerHTML = '';
+        if (filtered.length === 0) {
+          var empty = document.createElement('div');
+          empty.className = 'empty-state';
+          var title = document.createElement('h3');
+          title.className = 'subhead';
+          title.textContent = 'No matching verses found';
+          var desc = document.createElement('p');
+          desc.textContent = 'The current movement, theme, and search query returned zero verses.';
+          var clearBtn = document.createElement('button');
+          clearBtn.type = 'button';
+          clearBtn.className = 'btn btn-primary';
+          clearBtn.textContent = 'Reset All Filters';
+          clearBtn.addEventListener('click', resetVerseFilters);
+          empty.appendChild(title);
+          empty.appendChild(desc);
+          empty.appendChild(clearBtn);
+          listEl.appendChild(empty);
+          return;
+        }
+
+        var frag = document.createDocumentFragment();
+        for (var j = 0; j < filtered.length; j++) {
+          var verse = filtered[j];
+          var card = document.createElement('article');
+          card.className = 'verse-card';
+
+          var numPill = document.createElement('span');
+          numPill.className = 'verse-num-pill';
+          numPill.textContent = '28:' + verse.n;
+
+          var bodyCol = document.createElement('div');
+          bodyCol.className = 'verse-body-col';
+
+          var p = document.createElement('p');
+          p.className = 'verse-english';
+          p.textContent = verse.text;
+
+          var tags = document.createElement('div');
+          tags.className = 'verse-tags';
+
+          var movTag = document.createElement('span');
+          movTag.className = 'badge-brass';
+          movTag.textContent = MOVEMENT_LABELS[verse.m] || verse.m;
+
+          var thmTag = document.createElement('span');
+          thmTag.className = 'badge-emerald';
+          thmTag.textContent = THEME_LABELS[verse.t] || verse.t;
+
+          tags.appendChild(movTag);
+          tags.appendChild(thmTag);
+          bodyCol.appendChild(p);
+          bodyCol.appendChild(tags);
+          card.appendChild(numPill);
+          card.appendChild(bodyCol);
+          frag.appendChild(card);
+        }
+        listEl.appendChild(frag);
+      }
+
+      function resetVerseFilters() {
+        var movSelect = document.getElementById('filter-movement');
+        var thmSelect = document.getElementById('filter-theme');
+        var searchInput = document.getElementById('search-verses');
+        if (movSelect) movSelect.value = 'all';
+        if (thmSelect) thmSelect.value = 'all';
+        if (searchInput) searchInput.value = '';
+        renderVerses();
+      }
+
+      /* Wire Events */
+      function init() {
+        var ringBtns = document.querySelectorAll('.ring-btn');
+        for (var i = 0; i < ringBtns.length; i++) {
+          ringBtns[i].addEventListener('click', function () {
+            selectSymmetryPair(this.getAttribute('data-pair'));
+          });
+        }
+
+        var stationBtns = document.querySelectorAll('.station-btn');
+        for (var j = 0; j < stationBtns.length; j++) {
+          stationBtns[j].addEventListener('click', function () {
+            selectStation(this.getAttribute('data-station'));
+          });
+        }
+
+        for (var s = 0; s < 4; s++) {
+          (function (idx) {
+            var node = document.getElementById('node-s' + idx);
+            if (node) {
+              node.addEventListener('click', function () {
+                selectStation(idx);
+              });
+            }
+          })(s);
+        }
+
+        var prevBtn = document.getElementById('prev-station-btn');
+        var nextBtn = document.getElementById('next-station-btn');
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            if (currentStation > 0) selectStation(currentStation - 1);
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            if (currentStation < STATIONS.length - 1) selectStation(currentStation + 1);
+          });
+        }
+
+        var cosmicBtns = document.querySelectorAll('[data-cosmic]');
+        for (var c = 0; c < cosmicBtns.length; c++) {
+          cosmicBtns[c].addEventListener('click', function () {
+            selectCosmic(this.getAttribute('data-cosmic'));
+          });
+        }
+
+        var lensBtns = document.querySelectorAll('[data-lens]');
+        for (var l = 0; l < lensBtns.length; l++) {
+          lensBtns[l].addEventListener('click', function () {
+            selectComparisonLens(this.getAttribute('data-lens'));
+          });
+        }
+
+        var movSelect = document.getElementById('filter-movement');
+        var thmSelect = document.getElementById('filter-theme');
+        var searchInput = document.getElementById('search-verses');
+        var resetBtn = document.getElementById('reset-filters-btn');
+        if (movSelect) movSelect.addEventListener('change', renderVerses);
+        if (thmSelect) thmSelect.addEventListener('change', renderVerses);
+        if (searchInput) searchInput.addEventListener('input', renderVerses);
+        if (resetBtn) resetBtn.addEventListener('click', resetVerseFilters);
+
+        selectSymmetryPair(0);
+        selectStation(0);
+        selectCosmic('night');
+        selectComparisonLens('power');
+        renderVerses();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="haven">
+  <title>Surah Al-Fatihah — The Opening of the Quran</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Haven) */
+      --background: #f5f6f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3ebe2;
+      --surface-container-high: #dbe2dd;
+
+      /* Ink */
+      --on-surface: #23272a;
+      --on-surface-variant: #5c6468;
+
+      /* Rules */
+      --outline: #c9d0cc;
+      --outline-variant: #dde2df;
+
+      /* Accents */
+      --primary: #3c5a6e;
+      --on-primary: #ffffff;
+      --primary-container: #e2e9ee;
+      --on-primary-container: #2a4152;
+      --secondary: #4f6b53;
+      --tertiary: #5f7c63;
+      --error: #a63d32;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #3c5a6e;
+      --data-2: #5f7c63;
+      --data-3: #a8694a;
+      --data-4: #8a7a68;
+      --data-context: #c3cac6;
+
+      /* Fonts */
+      --font-headline: 'Outfit', sans-serif;
+      --font-body: 'Hanken Grotesk', sans-serif;
+      --font-label: 'Outfit', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-control: 1px solid var(--outline);
+      --hairline-primary: 1px solid var(--primary);
+      --elevation: none;
+
+      /* Shared semantic & focus tokens */
+      --positive: #4f6b53;
+      --positive-bg: #e3ebe2;
+      --warning: #8f6b2e;
+      --error-bg: #f6e7e5;
+      --focus: #3c5a6e;
+
+      /* Narrative type scale */
+      --display-size: clamp(2.35rem, 1.4rem + 3.6vw, 4rem);
+      --headline-size: clamp(1.65rem, 1.2rem + 1.8vw, 2.35rem);
+      --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.8125rem, 0.78rem + 0.12vw, 0.875rem);
+      --arabic-verse-size: clamp(1.65rem, 1.35rem + 1.2vw, 2.25rem);
+      --arabic-inspector-size: clamp(2.1rem, 1.6rem + 1.5vw, 2.75rem);
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: visible;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    h1 b, h1 strong, h2 b, h2 strong, h3 b, h3 strong {
+      font-weight: 600;
+    }
+    .display-title {
+      font-size: var(--display-size);
+      max-width: 18ch;
+    }
+    .section-heading {
+      font-size: var(--headline-size);
+      max-width: 28ch;
+    }
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    .lead {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      line-height: 1.55;
+      color: var(--secondary);
+      font-weight: 500;
+      max-width: 58ch;
+    }
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      text-transform: none;
+      color: var(--on-surface-variant);
+    }
+    .caption-sage {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      margin-top: var(--space-xs);
+    }
+    .arabic-text {
+      font-family: var(--font-arabic);
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.95;
+      font-weight: 400;
+      color: var(--on-surface);
+    }
+
+    /* Section rhythm */
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .section + .section {
+      border-top: var(--hairline);
+      padding-top: var(--space-2xl);
+    }
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* Hairline panels */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+    .panel-sage {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+
+    /* Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded-full);
+      border: none;
+      line-height: 1.3;
+    }
+    .tag-slate {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Buttons & Controls */
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: var(--hairline-control);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn:active:not(:disabled) {
+      background: var(--outline-variant);
+    }
+    .btn:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+    .btn-active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+    }
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--primary);
+      padding: 0 var(--space-sm);
+    }
+    .btn-ghost:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Hero & Orientation */
+    .hero-top {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+    }
+    .nav-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 var(--space-xs);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .nav-link:hover {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .mastery-bar-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+    }
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--outline-variant);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+
+    /* Asymmetric Key Figures */
+    .figures-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-md);
+    }
+    .figure-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .figure-num {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.85rem, 1.4rem + 1.4vw, 2.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Section 1: Architecture & Rhythm */
+    .arch-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .chart-box {
+      min-height: 250px;
+      width: 100%;
+    }
+    .movement-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .verse-node-row {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .verse-node-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: var(--space-xs);
+      border-radius: var(--rounded);
+      border: var(--hairline-control);
+      background: var(--surface-container-low);
+      cursor: pointer;
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .verse-node-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .verse-node-btn.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+    .verse-node-btn .node-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-node-btn .node-wc {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Section 2: Word-by-Word Explorer */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: end;
+      justify-content: space-between;
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .explorer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .verses-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: border-color var(--dur-micro) var(--ease-in-out),
+                  background-color var(--dur-micro) var(--ease-in-out);
+    }
+    .verse-card.is-active-verse {
+      border-color: var(--primary);
+    }
+    .verse-card.is-pattern-hit {
+      background: var(--primary-container);
+    }
+    .verse-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--hairline);
+    }
+    .verse-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-num-badge {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .arabic-words-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      direction: rtl;
+      gap: var(--space-sm);
+      align-items: center;
+      padding: var(--space-xs) 0;
+    }
+    .word-token {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-verse-size);
+      line-height: 1.75;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--on-surface);
+      cursor: pointer;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .word-token:hover {
+      background: var(--surface-container-high);
+    }
+    .word-token.is-selected-word {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+    .word-token.is-pattern-word {
+      background: var(--surface-container);
+      border-color: var(--secondary);
+      color: var(--on-surface);
+    }
+    .translit-line {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+    }
+    .translation-line {
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      color: var(--on-surface);
+      line-height: 1.55;
+    }
+    .recall-blur {
+      filter: blur(6px);
+      user-select: none;
+      cursor: pointer;
+      transition: filter var(--dur-short) var(--ease-out);
+    }
+    .recall-blur.is-revealed {
+      filter: none;
+      user-select: text;
+    }
+    .tajwid-note {
+      font-size: var(--label-size);
+      color: var(--secondary);
+      padding-top: var(--space-xs);
+      border-top: var(--hairline);
+    }
+
+    /* Sticky Inspector */
+    .verse-detail-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .inspector-sticky {
+      position: sticky;
+      top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .inspector-word-hero {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+    }
+    .inspector-arabic {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-inspector-size);
+      line-height: 1.6;
+      color: var(--on-surface);
+      direction: rtl;
+    }
+    .inspector-facts {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+    }
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-md);
+      padding: var(--space-xs) 0;
+      border-bottom: var(--hairline);
+    }
+    .fact-row:last-child {
+      border-bottom: none;
+    }
+    .fact-val {
+      font-weight: 500;
+      text-align: right;
+      color: var(--on-surface);
+    }
+
+    /* Section 3: Four Linguistic Patterns */
+    .patterns-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .pattern-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .pattern-btn {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      padding: var(--space-md);
+      border-radius: var(--rounded-lg);
+      border: var(--hairline);
+      background: var(--surface-container-low);
+      cursor: pointer;
+      width: 100%;
+      min-height: 44px;
+      transition: background-color var(--dur-micro) var(--ease-in-out),
+                  border-color var(--dur-micro) var(--ease-in-out);
+    }
+    .pattern-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .pattern-btn.is-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .pattern-matrix {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+    .matrix-row {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    .matrix-words {
+      display: flex;
+      flex-wrap: wrap;
+      direction: rtl;
+      gap: var(--space-xs);
+    }
+    .matrix-chip {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      padding: 2px 8px;
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      background: var(--background);
+      border: var(--hairline);
+    }
+    .matrix-chip.is-hit {
+      background: var(--surface-container);
+      border-color: var(--secondary);
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Section 4: Mastery Studio & Quiz */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-opt {
+      text-align: left;
+      justify-content: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      height: auto;
+      line-height: 1.4;
+    }
+    .quiz-opt.is-correct {
+      background: var(--positive-bg);
+      border-color: var(--positive);
+      color: var(--on-surface);
+    }
+    .quiz-opt.is-wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+    }
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-sm);
+    }
+    .checklist-table th,
+    .checklist-table td {
+      padding: var(--space-sm) var(--space-xs);
+      border-bottom: var(--hairline);
+      text-align: left;
+      vertical-align: middle;
+    }
+    .checklist-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+    }
+    .checklist-table tr:hover td {
+      background: var(--surface-container-high);
+    }
+    .check-btn {
+      width: 36px;
+      height: 36px;
+      min-height: 36px;
+      padding: 0;
+      border-radius: var(--rounded);
+    }
+    .check-cell {
+      width: 56px;
+      text-align: center !important;
+    }
+
+    /* Container query adaptation for cards */
+    .card-wrapper {
+      container-type: inline-size;
+    }
+    @container (max-width: 440px) {
+      .inspector-word-hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .fact-row {
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+      .fact-val {
+        text-align: left;
+      }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: var(--hairline);
+      padding-top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Responsive mobile layout */
+    @media (max-width: 860px) {
+      .arch-layout,
+      .explorer-grid,
+      .patterns-grid,
+      .studio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .inspector-sticky {
+        position: static;
+      }
+      .figures-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .verse-node-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .mastery-bar-wrap {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Orientation -->
+    <header class="section hero-top">
+      <div class="hero-meta-row">
+        <span class="label">Chapter 1 · Meccan Surah · 7 verses</span>
+        <nav class="nav-strip" aria-label="Chapter sections">
+          <a class="nav-link" href="#architecture">Structure</a>
+          <a class="nav-link" href="#explorer">Word-by-word</a>
+          <a class="nav-link" href="#patterns">Patterns</a>
+          <a class="nav-link" href="#mastery">Mastery studio</a>
+        </nav>
+      </div>
+
+      <div>
+        <h1 class="display-title">Surah Al-Fatihah: <strong>The Opening</strong> of the Quran</h1>
+        <p class="lead" style="margin-top: var(--space-sm);">
+          A complete guided study of Chapter 1 — inspect every Arabic word, trace its shift from praise to supplication, and track your memorization and understanding across all seven verses.
+        </p>
+      </div>
+
+      <!-- Progress Summary -->
+      <div class="panel mastery-bar-wrap" aria-live="polite">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-sm);">
+            <span class="label">Study progress</span>
+            <span class="label" id="progress-label">0 of 7 verses mastered</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="progress-bar-role">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="btn-export" onclick="exportStudyNotes()">Export notes (CSV)</button>
+          <button type="button" class="btn" id="btn-reset" onclick="resetProgress(this)">Reset progress</button>
+        </div>
+      </div>
+
+      <!-- Asymmetric Overview Figures -->
+      <div class="figures-grid">
+        <div class="panel figure-tile">
+          <span class="label">Complete chapter length</span>
+          <div class="figure-num">7 verses</div>
+          <span class="caption-sage">1:1 through 1:7 in complete sequence</span>
+        </div>
+        <div class="panel figure-tile">
+          <span class="label">Lexical footprint</span>
+          <div class="figure-num">29 words</div>
+          <span class="caption-sage">4 · 4 · 2 · 3 · 4 · 3 · 9 words per verse</span>
+        </div>
+        <div class="panel figure-tile">
+          <span class="label">Structural turning point</span>
+          <div class="figure-num">Verse 1:5</div>
+          <span class="caption-sage">Shifts from 3rd-person praise to direct “You”</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 1: Architecture & Voice Shift -->
+    <section class="section reveal" id="architecture">
+      <div class="section-header">
+        <span class="label">01 · Chapter architecture</span>
+        <h2 class="section-heading">Three movements shift from <strong>praise to supplication</strong></h2>
+        <p>
+          Al-Fatihah unfolds as a deliberate conversation. The first four verses describe Allah in the third person — grounding His name, universal Lordship, dual mercy, and absolute sovereignty. At verse 1:5, the grammar turns directly to the second person (“It is You…”), bridging adoration and need before closing with a shared plural prayer for guidance.
+        </p>
+      </div>
+
+      <div class="arch-layout">
+        <div class="panel">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap;">
+            <h3 class="subhead">Word density across the 7 verses</h3>
+            <span class="label">Select any verse below to inspect its role</span>
+          </div>
+
+          <div class="chart-box" style="margin-top: var(--space-md);">
+            <svg id="structure-svg" viewBox="0 0 560 220" width="100%" height="220" role="img" aria-label="Word count and three-movement structure across verses 1:1 to 1:7"></svg>
+          </div>
+
+          <div class="verse-node-row" id="arch-node-row" role="group" aria-label="Select verse in architectural map"></div>
+        </div>
+
+        <div class="panel card-wrapper verse-detail-col" id="arch-detail-panel" aria-live="polite">
+          <!-- Populated by renderArchDetail() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Word-by-Word Explorer -->
+    <section class="section reveal" id="explorer">
+      <div class="section-header">
+        <span class="label">02 · Interactive verse &amp; word studio</span>
+        <h2 class="section-heading">Inspect every verse <strong>word by word</strong></h2>
+        <p>
+          Click any Arabic word to examine its transliteration, grammatical role, root pattern, and placement in the verse. Switch to Recall mode to hide translations and test your memory verse by verse.
+        </p>
+      </div>
+
+      <div class="controls-bar panel">
+        <div class="control-group">
+          <label class="label" for="movement-filter">Filter by movement</label>
+          <div class="btn-row" id="movement-filter">
+            <button type="button" class="btn btn-active" data-filter="all" onclick="setMovementFilter('all', this)">All 7 verses</button>
+            <button type="button" class="btn" data-filter="praise" onclick="setMovementFilter('praise', this)">1:1–1:4 Praise</button>
+            <button type="button" class="btn" data-filter="pivot" onclick="setMovementFilter('pivot', this)">1:5 Pivot</button>
+            <button type="button" class="btn" data-filter="prayer" onclick="setMovementFilter('prayer', this)">1:6–1:7 Supplication</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="label">Study aids</span>
+          <div class="btn-row">
+            <button type="button" class="btn btn-active" id="btn-toggle-translit" onclick="toggleTranslit()">Transliteration: On</button>
+            <button type="button" class="btn" id="btn-toggle-recall" onclick="toggleRecallMode()">Recall blur: Off</button>
+            <button type="button" class="btn" id="btn-toggle-tajwid" onclick="toggleTajwid()">Reading cues: Off</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="explorer-grid">
+        <div class="verses-column" id="verses-container">
+          <!-- Rendered by renderVerses() -->
+        </div>
+
+        <div class="panel inspector-sticky card-wrapper" id="word-inspector" aria-live="polite">
+          <!-- Rendered by renderWordInspector() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Four Linguistic Patterns -->
+    <section class="section reveal" id="patterns">
+      <div class="section-header">
+        <span class="label">03 · Internal coherence</span>
+        <h2 class="section-heading">Four <strong>linguistic patterns</strong> weave the chapter together</h2>
+        <p>
+          Beyond the English translation, Al-Fatihah binds its seven verses through repeated roots, mirrored pronouns, and deliberate shifts in grammatical voice. Select a pattern to see every occurrence highlighted across the text.
+        </p>
+      </div>
+
+      <div class="patterns-grid">
+        <div class="pattern-list" id="pattern-buttons" role="tablist" aria-label="Linguistic patterns">
+          <!-- Rendered by renderPatternList() -->
+        </div>
+
+        <div class="panel card-wrapper" id="pattern-detail" aria-live="polite">
+          <!-- Rendered by renderPatternDetail() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Mastery Studio & Quiz -->
+    <section class="section reveal" id="mastery">
+      <div class="section-header">
+        <span class="label">04 · Recall &amp; mastery tracker</span>
+        <h2 class="section-heading">Test <strong>comprehension and memorization</strong> across all seven verses</h2>
+        <p>
+          Use the diagnostic check to verify word meanings, verse sequence, and grammatical turning points, then mark each verse as read, understood, and memorized. Your progress is saved automatically.
+        </p>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Interactive Quiz -->
+        <div class="panel card-wrapper" id="quiz-panel">
+          <!-- Rendered by renderQuiz() -->
+        </div>
+
+        <!-- 7-Verse Mastery Checklist -->
+        <div class="panel card-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap;">
+            <h3 class="subhead">Seven-verse mastery log</h3>
+            <span class="caption-sage" id="checklist-summary">0 / 21 milestones</span>
+          </div>
+          <p class="label" style="margin-top: var(--space-xs);">
+            Check off reading, meaning, and memorization for each verse. A verse counts as mastered when all three are checked.
+          </p>
+
+          <table class="checklist-table">
+            <thead>
+              <tr>
+                <th>Verse</th>
+                <th class="check-cell">Read</th>
+                <th class="check-cell">Meaning</th>
+                <th class="check-cell">Memory</th>
+              </tr>
+            </thead>
+            <tbody id="checklist-body">
+              <!-- Rendered by renderChecklist() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <span class="label">Source &amp; grounding note</span>
+      <p class="label">
+        Arabic verse text (1:1–1:7) and English translation are drawn directly from the selected source document (“1. 1-1 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ.pdf”, Sahih International rendering). Word-by-word transliteration, root letters, and grammatical classifications follow standard Quranic Arabic morphology.
+      </p>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const SURAH_VERSES = [
+      {
+        num: 1,
+        ref: `1:1`,
+        movement: `praise`,
+        movementLabel: `Movement I · Praise & Attributes`,
+        voice: `Opening invocation (Basmalah)`,
+        arabic: `بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ`,
+        translit: `Bismi Llāhi r-Raḥmāni r-Raḥīm`,
+        translation: `In the name of Allah, the Entirely Merciful, the Especially Merciful.`,
+        tajwidCue: `Hold clear kasrah endings on bismi and Allāhi; lengthen the final ī in ar-Raḥīm (2–6 counts on pause).`,
+        summaryNote: `Opens the chapter by anchoring every action in Allah's name and introducing His twin attributes of Mercy before anything else.`,
+        words: [
+          {
+            ar: `بِسْمِ`,
+            tr: `bismi`,
+            en: `In the name of`,
+            pos: `Preposition (bi-) + Noun (ism)`,
+            root: `س م و (s-m-w)`,
+            note: `Combines the preposition bi- (“in / by”) with ism (“name”), beginning any endeavor by seeking blessing and alignment.`
+          },
+          {
+            ar: `اللَّهِ`,
+            tr: `Allāhi`,
+            en: `Allah`,
+            pos: `Proper Noun (Majrūr / Genitive)`,
+            root: `أ ل ه (ʾ-l-h)`,
+            note: `The supreme, singular proper name of God, placed in the genitive case following bismi.`
+          },
+          {
+            ar: `الرَّحْمَنِ`,
+            tr: `ar-Raḥmāni`,
+            en: `the Entirely Merciful`,
+            pos: `Intensive Adjective (faʿlān pattern)`,
+            root: `ر ح م (r-ḥ-m)`,
+            note: `The faʿlān morphological pattern conveys vastness and immediacy — mercy that encompasses all creation.`
+          },
+          {
+            ar: `الرَّحِيمِ`,
+            tr: `ar-Raḥīmi`,
+            en: `the Especially Merciful`,
+            pos: `Permanent Attribute (faʿīl pattern)`,
+            root: `ر ح م (r-ḥ-m)`,
+            note: `The faʿīl pattern conveys constancy and enduring care — mercy continually bestowed.`
+          }
+        ]
+      },
+      {
+        num: 2,
+        ref: `1:2`,
+        movement: `praise`,
+        movementLabel: `Movement I · Praise & Attributes`,
+        voice: `3rd-person declaration of praise`,
+        arabic: `الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ`,
+        translit: `Al-ḥamdu lillāhi Rabbi l-ʿālamīn`,
+        translation: `[All] praise is [due] to Allah, Lord of the worlds -`,
+        tajwidCue: `Pronounce the clear throat ḥ in al-ḥamdu and the light ʿayn in al-ʿālamīn; double the b in Rabbi.`,
+        summaryNote: `Establishes that complete, loving praise belongs exclusively to Allah, whose Lordship sustains every realm of existence.`,
+        words: [
+          {
+            ar: `الْحَمْدُ`,
+            tr: `al-ḥamdu`,
+            en: `[All] praise`,
+            pos: `Definite Noun (Subject / Mubtadaʾ)`,
+            root: `ح م د (ḥ-m-d)`,
+            note: `Al- signals totality: all praise out of love, reverence, and gratitude—not mere praise under compulsion.`
+          },
+          {
+            ar: `لِلَّهِ`,
+            tr: `lillāhi`,
+            en: `is [due] to Allah`,
+            pos: `Preposition (li-) + Proper Noun`,
+            root: `أ ل ه (ʾ-l-h)`,
+            note: `The prefix li- denotes rightful ownership and exclusivity: all genuine praise returns to Him.`
+          },
+          {
+            ar: `رَبِّ`,
+            tr: `Rabbi`,
+            en: `Lord`,
+            pos: `Noun in Construct (Muḍāf)`,
+            root: `ر ب ب (r-b-b)`,
+            note: `Rabb means far more than ruler: it combines owner, nurturer, provider, and one who brings things to maturity.`
+          },
+          {
+            ar: `الْعَالَمِينَ`,
+            tr: `al-ʿālamīn`,
+            en: `of the worlds`,
+            pos: `Plural Noun (Genitive)`,
+            root: `ع ل م (ʿ-l-m)`,
+            note: `Encompasses all realms of creation—human, spiritual, natural, seen and unseen.`
+          }
+        ]
+      },
+      {
+        num: 3,
+        ref: `1:3`,
+        movement: `praise`,
+        movementLabel: `Movement I · Praise & Attributes`,
+        voice: `3rd-person attribute reinforcement`,
+        arabic: `الرَّحْمَنِ الرَّحِيمِ`,
+        translit: `Ar-Raḥmāni r-Raḥīm`,
+        translation: `The Entirely Merciful, the Especially Merciful,`,
+        tajwidCue: `Elide the initial alif of ar-Raḥīm when connecting from ar-Raḥmāni; emphasize the shaddah on r.`,
+        summaryNote: `Repeats the twin attributes of Mercy right between Lordship (1:2) and Judgment (1:4), showing that nurturing care governs both.`,
+        words: [
+          {
+            ar: `الرَّحْمَنِ`,
+            tr: `ar-Raḥmāni`,
+            en: `The Entirely Merciful`,
+            pos: `Intensive Adjective (Apposition)`,
+            root: `ر ح م (r-ḥ-m)`,
+            note: `Reiterated from 1:1 to confirm that Allah's universal Lordship over the worlds is rooted in vast mercy.`
+          },
+          {
+            ar: `الرَّحِيمِ`,
+            tr: `ar-Raḥīmi`,
+            en: `the Especially Merciful`,
+            pos: `Permanent Attribute (Apposition)`,
+            root: `ر ح م (r-ḥ-m)`,
+            note: `Pairs immediately with 1:4 so the Day of Recompense is framed by enduring mercy before justice is named.`
+          }
+        ]
+      },
+      {
+        num: 4,
+        ref: `1:4`,
+        movement: `praise`,
+        movementLabel: `Movement I · Praise & Attributes`,
+        voice: `3rd-person sovereignty statement`,
+        arabic: `مَالِكِ يَوْمِ الدِّين`,
+        translit: `Māliki yawmi d-dīn`,
+        translation: `Sovereign of the Day of Recompense.`,
+        tajwidCue: `Maintain the two-count alif elongation in Mālik; merge the l of ad-dīn cleanly into the doubled d.`,
+        summaryNote: `Names Allah as Master and Sovereign of the Day of Recompense, completing the four-verse foundation of who God is.`,
+        words: [
+          {
+            ar: `مَالِكِ`,
+            tr: `Māliki`,
+            en: `Sovereign / Owner`,
+            pos: `Active Participle (Construct)`,
+            root: `م ل ك (m-l-k)`,
+            note: `Mālik signifies absolute ownership and authority—every worldly claim dissolves on that Day.`
+          },
+          {
+            ar: `يَوْمِ`,
+            tr: `yawmi`,
+            en: `of the Day`,
+            pos: `Noun of Time (Genitive)`,
+            root: `ي و م (y-w-m)`,
+            note: `Specifies the appointed Day when deeds and intentions stand fully revealed.`
+          },
+          {
+            ar: `الدِّين`,
+            tr: `ad-dīn`,
+            en: `of Recompense`,
+            pos: `Definite Noun (Genitive)`,
+            root: `د ي ن (d-y-n)`,
+            note: `Here dīn carries the classical sense of reckoning, judgment, and moral repayment.`
+          }
+        ]
+      },
+      {
+        num: 5,
+        ref: `1:5`,
+        movement: `pivot`,
+        movementLabel: `Movement II · The Hinge of Devotion`,
+        voice: `2nd-person direct address + 1st-person plural`,
+        arabic: `إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ`,
+        translit: `Iyyāka naʿbudu wa-iyyāka nastaʿīn`,
+        translation: `It is You we worship and You we ask for help.`,
+        tajwidCue: `Articulate the doubled yāʾ in iyyāka clearly; keep the ʿayn crisp in both naʿbudu and nastaʿīn.`,
+        summaryNote: `The structural centerpiece of the Surah: shifts from speaking about Allah to speaking directly to Him, placing worship before asking for aid.`,
+        words: [
+          {
+            ar: `إِيَّاكَ`,
+            tr: `iyyāka`,
+            en: `It is You [alone]`,
+            pos: `Fronted Detached Object Pronoun`,
+            root: `Pronoun (2nd masc. sg.)`,
+            note: `Fronting the object before the verb creates grammatical exclusivity: You alone—never any other.`
+          },
+          {
+            ar: `نَعْبُدُ`,
+            tr: `naʿbudu`,
+            en: `we worship`,
+            pos: `Imperfect Verb (1st person plural)`,
+            root: `ع ب د (ʿ-b-d)`,
+            note: `Uses the plural “we” even in solitary prayer, binding the worshipper to the whole community of believers.`
+          },
+          {
+            ar: `وَإِيَّاكَ`,
+            tr: `wa-iyyāka`,
+            en: `and You [alone]`,
+            pos: `Conjunction (wa-) + Fronted Pronoun`,
+            root: `Pronoun (2nd masc. sg.)`,
+            note: `Repeats iyyāka rather than attaching a shorter suffix, giving seeking help the same exclusivity as worship.`
+          },
+          {
+            ar: `نَسْتَعِينُ`,
+            tr: `nastaʿīn`,
+            en: `we ask for help`,
+            pos: `Form X Imperfect Verb (1st plural)`,
+            root: `ع و ن (ʿ-w-n)`,
+            note: `Form X (istafʿala) expresses actively seeking support—acknowledging that even worship requires Allah's aid.`
+          }
+        ]
+      },
+      {
+        num: 6,
+        ref: `1:6`,
+        movement: `prayer`,
+        movementLabel: `Movement III · Collective Supplication`,
+        voice: `1st-person plural petition (Duʿāʾ)`,
+        arabic: `اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ`,
+        translit: `Ihdinā ṣ-ṣirāṭa l-mustaqīm`,
+        translation: `Guide us to the straight path -`,
+        tajwidCue: `Begin with a light kasrah on ihdinā; give ṣād in aṣ-ṣirāṭa its full heavy quality (tafkīm).`,
+        summaryNote: `The central request of the entire chapter: after declaring worship and dependence, the reciter asks for ongoing, upright guidance.`,
+        words: [
+          {
+            ar: `اهْدِنَا`,
+            tr: `ihdinā`,
+            en: `Guide us`,
+            pos: `Imperative Request + 1st Plural Suffix`,
+            root: `ه د ي (h-d-y)`,
+            note: `Grammatically an imperative used as humble entreaty; implies both showing the way and enabling one to stay on it.`
+          },
+          {
+            ar: `الصِّرَاطَ`,
+            tr: `aṣ-ṣirāṭa`,
+            en: `to the path`,
+            pos: `Definite Noun (Direct Object)`,
+            root: `ص ر ط (ṣ-r-ṭ)`,
+            note: `Denotes a clear, broad, unmistakable highway rather than a narrow or hidden trail.`
+          },
+          {
+            ar: `الْمُسْتَقِيمَ`,
+            tr: `al-mustaqīm`,
+            en: `the straight`,
+            pos: `Form X Active Participle Adjective`,
+            root: `ق و م (q-w-m)`,
+            note: `From the root of uprightness and standing firm: a path that neither swerves nor leads to dead ends.`
+          }
+        ]
+      },
+      {
+        num: 7,
+        ref: `1:7`,
+        movement: `prayer`,
+        movementLabel: `Movement III · Collective Supplication`,
+        voice: `1st-person plural clarification`,
+        arabic: `صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ`,
+        translit: `Ṣirāṭa lladhīna anʿamta ʿalayhim ghayri l-maghḍūbi ʿalayhim wa-lā ḍ-ḍāllīn`,
+        translation: `The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.`,
+        tajwidCue: `Give aḍ-ḍāllīn a full 6-count heavy madd before the doubled lām (madd lāzim kalimī muthaqqal).`,
+        summaryNote: `Defines the straight path by lived example—those blessed with favor—contrasted with willful rejection and confused wandering.`,
+        words: [
+          {
+            ar: `صِرَاطَ`,
+            tr: `ṣirāṭa`,
+            en: `The path`,
+            pos: `Noun in Apposition (Badal)`,
+            root: `ص ر ط (ṣ-r-ṭ)`,
+            note: `Restates aṣ-ṣirāṭa from 1:6 to define its character through real moral and spiritual exemplars.`
+          },
+          {
+            ar: `الَّذِينَ`,
+            tr: `alladhīna`,
+            en: `of those`,
+            pos: `Plural Relative Pronoun`,
+            root: `Relative pronoun`,
+            note: `Points to a living historical lineage of guided people across generations.`
+          },
+          {
+            ar: `أَنْعَمْتَ`,
+            tr: `anʿamta`,
+            en: `You have bestowed favor`,
+            pos: `Form IV Perfect Verb (2nd sg.)`,
+            root: `ن ع م (n-ʿ-m)`,
+            note: `Active voice attributing grace and blessing directly to Allah (“You bestowed”).`
+          },
+          {
+            ar: `عَلَيْهِمْ`,
+            tr: `ʿalayhim`,
+            en: `upon them`,
+            pos: `Preposition (ʿalā) + 3rd Plural Pronoun`,
+            root: `Prepositional phrase`,
+            note: `Mirrors the second ʿalayhim later in the verse, creating an exact rhythmic parallel.`
+          },
+          {
+            ar: `غَيْرِ`,
+            tr: `ghayri`,
+            en: `not [of]`,
+            pos: `Exclusionary Noun (Genitive)`,
+            root: `غ ي ر (gh-y-r)`,
+            note: `Sets a clear boundary distinguishing the favored path from two deviations.`
+          },
+          {
+            ar: `الْمَغْضُوبِ`,
+            tr: `al-maghḍūbi`,
+            en: `those who have evoked anger`,
+            pos: `Passive Participle (mafʿūl)`,
+            root: `غ ض ب (gh-ḍ-b)`,
+            note: `Uses the passive participle rather than naming Allah as the grammatical subject of anger, contrasting with active anʿamta.`
+          },
+          {
+            ar: `عَلَيْهِمْ`,
+            tr: `ʿalayhim`,
+            en: `upon them`,
+            pos: `Preposition (ʿalā) + 3rd Plural Pronoun`,
+            root: `Prepositional phrase`,
+            note: `Completes the mirrored phrase parallel with “upon whom You have bestowed favor.”`
+          },
+          {
+            ar: `وَلَا`,
+            tr: `wa-lā`,
+            en: `or [not]`,
+            pos: `Conjunction (wa-) + Negation (lā)`,
+            root: `Particle`,
+            note: `Extends the exclusion of ghayri to a second distinct category of deviation.`
+          },
+          {
+            ar: `الضَّالِّينَ`,
+            tr: `aḍ-ḍāllīn`,
+            en: `those who are astray`,
+            pos: `Active Participle (Plural Genitive)`,
+            root: `ض ل ل (ḍ-l-l)`,
+            note: `Describes those who lose the road without sound guidance—closing the chapter's plea to remain on course.`
+          }
+        ]
+      }
+    ];
+
+    const PATTERNS = [
+      {
+        id: `mercy`,
+        title: `The Mercy Frame (r-ḥ-m)`,
+        subtitle: `4 occurrences across 1:1 and 1:3`,
+        summary: `Both Ar-Raḥmān (vast, encompassing mercy) and Ar-Raḥīm (continuous, bestowed mercy) appear in 1:1 and return in 1:3. Placed immediately after “Lord of the worlds” and directly before “Sovereign of the Day of Recompense,” mercy frames both creation and accountability.`,
+        hits: [
+          `1:1:2`, `1:1:3`, `1:3:0`, `1:3:1`
+        ]
+      },
+      {
+        id: `exclusivity`,
+        title: `Fronted Exclusivity (Iyyāka)`,
+        subtitle: `2 fronted pronouns in 1:5`,
+        summary: `Normal Arabic word order places the verb first (“We worship You”). By placing the detached pronoun iyyāka (“It is You”) ahead of both naʿbudu (“we worship”) and nastaʿīn (“we ask for help”), verse 1:5 turns praise into an exclusive pledge.`,
+        hits: [
+          `1:5:0`, `1:5:2`
+        ]
+      },
+      {
+        id: `solidarity`,
+        title: `Collective Solidarity (“We / Us”)`,
+        subtitle: `3 first-person plural forms across 1:5–1:6`,
+        summary: `Even when recited by one person alone, Al-Fatihah never says “I worship” or “Guide me.” It uses naʿbudu (“we worship”), nastaʿīn (“we ask for help”), and ihdinā (“guide us”), placing individual prayer inside a shared human community.`,
+        hits: [
+          `1:5:1`, `1:5:3`, `1:6:0`
+        ]
+      },
+      {
+        id: `contrast`,
+        title: `Grace vs. Anger Contrast (1:7)`,
+        subtitle: `Active favor vs. passive anger`,
+        summary: `Verse 1:7 repeats ṣirāṭ (“path”) from 1:6 and parallels ʿalayhim (“upon them”) twice. Crucially, favor is phrased in the active voice attributing it directly to Allah (anʿamta — “You bestowed”), while anger is placed in the passive participle (al-maghḍūbi — “evoked anger”).`,
+        hits: [
+          `1:6:1`, `1:7:0`, `1:7:2`, `1:7:3`, `1:7:5`, `1:7:6`
+        ]
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        prompt: `Which verse marks the grammatical pivot from speaking about Allah (3rd person) to addressing Allah directly (2nd person)?`,
+        options: [
+          `1:3 — Ar-Raḥmāni r-Raḥīm`,
+          `1:4 — Māliki yawmi d-dīn`,
+          `1:5 — Iyyāka naʿbudu wa-iyyāka nastaʿīn`,
+          `1:6 — Ihdinā ṣ-ṣirāṭa l-mustaqīm`
+        ],
+        correct: 2,
+        explanation: `Verse 1:5 fronts “It is You” (iyyāka) twice, shifting the entire chapter from third-person praise into direct second-person devotion.`
+      },
+      {
+        prompt: `In the source translation, how are الرَّحْمَنِ and الرَّحِيمِ (1:1 and 1:3) distinguished in English?`,
+        options: [
+          `The Compassionate, the Forgiving`,
+          `The Entirely Merciful, the Especially Merciful`,
+          `The Generous, the Patient`,
+          `The Sovereign, the Sustainer`
+        ],
+        correct: 1,
+        explanation: `Both come from the root r-ḥ-m: ar-Raḥmān (faʿlān pattern) is rendered “the Entirely Merciful” and ar-Raḥīm (faʿīl pattern) “the Especially Merciful.”`
+      },
+      {
+        prompt: `Why does verse 1:5 place إِيَّاكَ (“It is You”) before the verbs “we worship” and “we ask for help”?`,
+        options: [
+          `To indicate past tense action`,
+          `To create exclusivity — You alone, and no other`,
+          `To shorten the verse meter`,
+          `To signal a plural subject`
+        ],
+        correct: 1,
+        explanation: `Fronting the detached object pronoun iyyāka before the verb restricts worship and ultimate reliance exclusively to Allah.`
+      },
+      {
+        prompt: `Which verse translates as “Sovereign of the Day of Recompense”?`,
+        options: [
+          `1:2`,
+          `1:3`,
+          `1:4`,
+          `1:7`
+        ],
+        correct: 2,
+        explanation: `Verse 1:4 (Māliki yawmi d-dīn) follows the reiteration of Mercy in 1:3 and immediately precedes the pledge of devotion in 1:5.`
+      },
+      {
+        prompt: `In 1:7, what grammatical shift occurs between “those upon whom You have bestowed favor” and “those who have evoked [Your] anger”?`,
+        options: [
+          `Favor uses the active voice (“You bestowed”), whereas anger uses a passive participle (al-maghḍūbi)`,
+          `Both phrases use imperative verbs`,
+          `Favor is singular while anger is dual`,
+          `Anger precedes favor in the Arabic text`
+        ],
+        correct: 0,
+        explanation: `Anʿamta explicitly names Allah as the giver of favor, while al-maghḍūbi uses the passive participle, avoiding naming Him as the direct grammatical subject of anger.`
+      },
+      {
+        prompt: `How many Arabic words appear in verse 1:7 compared to verse 1:3?`,
+        options: [
+          `Both verses have 4 words`,
+          `1:7 has 9 words; 1:3 has 2 words`,
+          `1:7 has 6 words; 1:3 has 3 words`,
+          `1:7 has 7 words; 1:3 has 4 words`
+        ],
+        correct: 1,
+        explanation: `1:3 is the shortest verse in the Surah (2 words: Ar-Raḥmāni r-Raḥīm), while 1:7 is the longest (9 words), elaborating the straight path and its contrasts.`
+      }
+    ];
+
+    let appState = {
+      selectedArchVerse: 1,
+      selectedVerseNum: 1,
+      selectedWordIdx: 0,
+      movementFilter: `all`,
+      showTranslit: true,
+      recallMode: false,
+      showTajwid: false,
+      activePatternId: `mercy`,
+      quizIndex: 0,
+      quizAnswers: {},
+      mastery: {
+        1: { read: false, meaning: false, memory: false },
+        2: { read: false, meaning: false, memory: false },
+        3: { read: false, meaning: false, memory: false },
+        4: { read: false, meaning: false, memory: false },
+        5: { read: false, meaning: false, memory: false },
+        6: { read: false, meaning: false, memory: false },
+        7: { read: false, meaning: false, memory: false }
+      }
+    };
+
+    function saveState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        window.notebookAppApi.setAppState(appState).catch(function() {});
+      }
+    }
+
+    function mergeSavedState(saved) {
+      if (!saved || typeof saved !== 'object') return;
+      if (typeof saved.selectedArchVerse === 'number') appState.selectedArchVerse = saved.selectedArchVerse;
+      if (typeof saved.selectedVerseNum === 'number') appState.selectedVerseNum = saved.selectedVerseNum;
+      if (typeof saved.selectedWordIdx === 'number') appState.selectedWordIdx = saved.selectedWordIdx;
+      if (typeof saved.movementFilter === 'string') appState.movementFilter = saved.movementFilter;
+      if (typeof saved.showTranslit === 'boolean') appState.showTranslit = saved.showTranslit;
+      if (typeof saved.recallMode === 'boolean') appState.recallMode = saved.recallMode;
+      if (typeof saved.showTajwid === 'boolean') appState.showTajwid = saved.showTajwid;
+      if (typeof saved.activePatternId === 'string') appState.activePatternId = saved.activePatternId;
+      if (typeof saved.quizIndex === 'number') appState.quizIndex = saved.quizIndex;
+      if (saved.quizAnswers && typeof saved.quizAnswers === 'object') appState.quizAnswers = saved.quizAnswers;
+      if (saved.mastery && typeof saved.mastery === 'object') {
+        for (let v = 1; v <= 7; v++) {
+          if (saved.mastery[v]) {
+            appState.mastery[v] = {
+              read: Boolean(saved.mastery[v].read),
+              meaning: Boolean(saved.mastery[v].meaning),
+              memory: Boolean(saved.mastery[v].memory)
+            };
+          }
+        }
+      }
+    }
+
+    function isVerseMastered(vNum) {
+      const m = appState.mastery[vNum];
+      return Boolean(m && m.read && m.meaning && m.memory);
+    }
+
+    function updateProgressUI() {
+      let masteredCount = 0;
+      let checksCount = 0;
+      for (let v = 1; v <= 7; v++) {
+        const m = appState.mastery[v];
+        if (m.read) checksCount++;
+        if (m.meaning) checksCount++;
+        if (m.memory) checksCount++;
+        if (isVerseMastered(v)) masteredCount++;
+      }
+
+      const labelEl = document.getElementById('progress-label');
+      const fillEl = document.getElementById('progress-fill');
+      const roleEl = document.getElementById('progress-bar-role');
+      const summaryEl = document.getElementById('checklist-summary');
+
+      if (labelEl) labelEl.textContent = `${masteredCount} of 7 verses mastered`;
+      if (fillEl) fillEl.style.width = `${Math.round((masteredCount / 7) * 100)}%`;
+      if (roleEl) roleEl.setAttribute('aria-valuenow', String(masteredCount));
+      if (summaryEl) summaryEl.textContent = `${checksCount} / 21 milestones`;
+    }
+
+    function selectArchVerse(vNum) {
+      appState.selectedArchVerse = vNum;
+      renderArchChart();
+      renderArchDetail();
+      saveState();
+    }
+
+    function renderArchChart() {
+      const svg = document.getElementById('structure-svg');
+      const row = document.getElementById('arch-node-row');
+      if (!svg || !row) return;
+
+      const maxWords = 9;
+      const chartTop = 34;
+      const chartBottom = 176;
+      const chartH = chartBottom - chartTop;
+      const colW = 520 / 7;
+      const startX = 20;
+
+      let svgContent = `
+        <line x1="16" y1="${chartBottom}" x2="544" y2="${chartBottom}" stroke="var(--outline-variant)" stroke-width="1" />
+        <line x1="16" y1="${chartTop + chartH * 0.5}" x2="544" y2="${chartTop + chartH * 0.5}" stroke="var(--outline-variant)" stroke-width="1" stroke-dasharray="3 3" />
+        <text x="16" y="18" fill="var(--secondary)" font-family="Outfit, sans-serif" font-size="11" font-weight="500">I · Praise (1:1–1:4)</text>
+        <text x="315" y="18" fill="var(--primary)" font-family="Outfit, sans-serif" font-size="11" font-weight="600">II · Pivot (1:5)</text>
+        <text x="415" y="18" fill="var(--secondary)" font-family="Outfit, sans-serif" font-size="11" font-weight="500">III · Prayer (1:6–1:7)</text>
+      `;
+
+      SURAH_VERSES.forEach(function(verse, idx) {
+        const wc = verse.words.length;
+        const barH = Math.round((wc / maxWords) * chartH);
+        const x = startX + idx * colW + 14;
+        const barW = colW - 28;
+        const y = chartBottom - barH;
+        const isSel = verse.num === appState.selectedArchVerse;
+
+        let fillColor = `var(--data-context)`;
+        if (verse.movement === `praise`) fillColor = isSel ? `var(--data-1)` : `var(--data-2)`;
+        if (verse.movement === `pivot`) fillColor = `var(--data-1)`;
+        if (verse.movement === `prayer`) fillColor = isSel ? `var(--data-1)` : `var(--data-2)`;
+
+        const opacityAttr = isSel ? `1` : `0.55`;
+        svgContent += `
+          <g style="cursor: pointer;" onclick="selectArchVerse(${verse.num})">
+            <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="2" fill="${fillColor}" fill-opacity="${opacityAttr}" />
+            <text x="${x + barW / 2}" y="${y - 6}" text-anchor="middle" fill="var(--on-surface)" font-family="Outfit, sans-serif" font-size="12" font-weight="${isSel ? '600' : '500'}">${wc}</text>
+            <text x="${x + barW / 2}" y="${chartBottom + 18}" text-anchor="middle" fill="${isSel ? 'var(--primary)' : 'var(--on-surface-variant)'}" font-family="Outfit, sans-serif" font-size="12" font-weight="${isSel ? '600' : '500'}">${verse.ref}</text>
+          </g>
+        `;
+      });
+
+      svg.innerHTML = svgContent;
+
+      row.innerHTML = SURAH_VERSES.map(function(v) {
+        const selClass = v.num === appState.selectedArchVerse ? ` is-selected` : ``;
+        return `
+          <button type="button" class="verse-node-btn${selClass}" onclick="selectArchVerse(${v.num})">
+            <span class="node-num">${v.ref}</span>
+            <span class="node-wc">${v.words.length} w</span>
+          </button>
+        `;
+      }).join(``);
+    }
+
+    function renderArchDetail() {
+      const panel = document.getElementById('arch-detail-panel');
+      if (!panel) return;
+      const v = SURAH_VERSES.find(function(item) { return item.num === appState.selectedArchVerse; }) || SURAH_VERSES[0];
+
+      panel.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+          <span class="tag ${v.movement === 'pivot' ? 'tag-slate' : ''}">${v.movementLabel}</span>
+          <span class="label">Verse ${v.ref} · ${v.words.length} words</span>
+        </div>
+        <p class="arabic-text" style="font-size: 1.65rem; margin-top: var(--space-md);">${v.arabic}</p>
+        <p style="margin-top: var(--space-sm); font-weight: 500;">${v.translation}</p>
+        <div class="fact-row" style="margin-top: var(--space-md);">
+          <span class="label">Grammatical voice</span>
+          <span class="fact-val">${v.voice}</span>
+        </div>
+        <p class="caption-sage" style="margin-top: var(--space-sm);">${v.summaryNote}</p>
+        <div style="margin-top: var(--space-md);">
+          <button type="button" class="btn" onclick="jumpToVerse(${v.num})">Inspect words in ${v.ref}</button>
+        </div>
+      `;
+    }
+
+    function jumpToVerse(vNum) {
+      appState.selectedVerseNum = vNum;
+      appState.selectedWordIdx = 0;
+      if (appState.movementFilter !== `all`) {
+        appState.movementFilter = `all`;
+        updateFilterButtons();
+      }
+      renderVerses();
+      renderWordInspector();
+      saveState();
+      const target = document.getElementById(`verse-card-${vNum}`);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function updateFilterButtons() {
+      const btns = document.querySelectorAll('#movement-filter button');
+      btns.forEach(function(btn) {
+        if (btn.dataset.filter === appState.movementFilter) {
+          btn.classList.add('btn-active');
+        } else {
+          btn.classList.remove('btn-active');
+        }
+      });
+    }
+
+    function setMovementFilter(filter, btnEl) {
+      appState.movementFilter = filter;
+      updateFilterButtons();
+      renderVerses();
+      saveState();
+    }
+
+    function toggleTranslit() {
+      appState.showTranslit = !appState.showTranslit;
+      const btn = document.getElementById('btn-toggle-translit');
+      if (btn) {
+        btn.textContent = `Transliteration: ${appState.showTranslit ? 'On' : 'Off'}`;
+        btn.classList.toggle('btn-active', appState.showTranslit);
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function toggleRecallMode() {
+      appState.recallMode = !appState.recallMode;
+      const btn = document.getElementById('btn-toggle-recall');
+      if (btn) {
+        btn.textContent = `Recall blur: ${appState.recallMode ? 'On' : 'Off'}`;
+        btn.classList.toggle('btn-active', appState.recallMode);
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function toggleTajwid() {
+      appState.showTajwid = !appState.showTajwid;
+      const btn = document.getElementById('btn-toggle-tajwid');
+      if (btn) {
+        btn.textContent = `Reading cues: ${appState.showTajwid ? 'On' : 'Off'}`;
+        btn.classList.toggle('btn-active', appState.showTajwid);
+      }
+      renderVerses();
+      saveState();
+    }
+
+    function selectWord(vNum, wIdx) {
+      appState.selectedVerseNum = vNum;
+      appState.selectedWordIdx = wIdx;
+      renderVerses();
+      renderWordInspector();
+      saveState();
+    }
+
+    function toggleRevealLine(el) {
+      if (el) el.classList.toggle('is-revealed');
+    }
+
+    function toggleVerseMasteredQuick(vNum) {
+      const currently = isVerseMastered(vNum);
+      appState.mastery[vNum] = {
+        read: !currently,
+        meaning: !currently,
+        memory: !currently
+      };
+      renderVerses();
+      renderChecklist();
+      updateProgressUI();
+      saveState();
+    }
+
+    function renderVerses() {
+      const container = document.getElementById('verses-container');
+      if (!container) return;
+
+      const filtered = SURAH_VERSES.filter(function(v) {
+        return appState.movementFilter === `all` || v.movement === appState.movementFilter;
+      });
+
+      container.innerHTML = filtered.map(function(v) {
+        const isActiveVerse = v.num === appState.selectedVerseNum;
+        const mastered = isVerseMastered(v.num);
+
+        const wordsHtml = v.words.map(function(w, idx) {
+          const isSelected = isActiveVerse && idx === appState.selectedWordIdx;
+          return `<button type="button" class="word-token${isSelected ? ' is-selected-word' : ''}" onclick="selectWord(${v.num}, ${idx})" lang="ar" dir="rtl">${w.ar}</button>`;
+        }).join(``);
+
+        const blurClass = appState.recallMode ? ` recall-blur` : ``;
+        const translitHtml = appState.showTranslit ? `<p class="translit-line${blurClass}" onclick="toggleRevealLine(this)">${v.translit}</p>` : ``;
+        const tajwidHtml = appState.showTajwid ? `<p class="tajwid-note">Reading cue: ${v.tajwidCue}</p>` : ``;
+
+        return `
+          <article class="panel verse-card${isActiveVerse ? ' is-active-verse' : ''}" id="verse-card-${v.num}">
+            <div class="verse-card-head">
+              <div class="verse-meta-left">
+                <span class="verse-num-badge">Verse ${v.ref}</span>
+                <span class="tag ${v.movement === 'pivot' ? 'tag-slate' : ''}">${v.movement === 'praise' ? 'Praise' : v.movement === 'pivot' ? 'Pivot' : 'Supplication'}</span>
+              </div>
+              <button type="button" class="btn${mastered ? ' btn-active' : ''}" onclick="toggleVerseMasteredQuick(${v.num})">
+                ${mastered ? 'Mastered' : 'Mark mastered'}
+              </button>
+            </div>
+
+            <div class="arabic-words-wrap" aria-label="Arabic words of verse ${v.ref}">
+              ${wordsHtml}
+            </div>
+
+            ${translitHtml}
+            <p class="translation-line${blurClass}" onclick="toggleRevealLine(this)" title="${appState.recallMode ? 'Click to reveal translation' : ''}">${v.translation}</p>
+            ${tajwidHtml}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function stepInspectorWord(delta) {
+      let vIdx = SURAH_VERSES.findIndex(function(v) { return v.num === appState.selectedVerseNum; });
+      if (vIdx < 0) vIdx = 0;
+      let wIdx = appState.selectedWordIdx + delta;
+
+      if (wIdx < 0) {
+        vIdx = (vIdx - 1 + SURAH_VERSES.length) % SURAH_VERSES.length;
+        wIdx = SURAH_VERSES[vIdx].words.length - 1;
+      } else if (wIdx >= SURAH_VERSES[vIdx].words.length) {
+        vIdx = (vIdx + 1) % SURAH_VERSES.length;
+        wIdx = 0;
+      }
+
+      appState.selectedVerseNum = SURAH_VERSES[vIdx].num;
+      appState.selectedWordIdx = wIdx;
+      renderVerses();
+      renderWordInspector();
+      saveState();
+    }
+
+    function renderWordInspector() {
+      const box = document.getElementById('word-inspector');
+      if (!box) return;
+
+      const verse = SURAH_VERSES.find(function(v) { return v.num === appState.selectedVerseNum; }) || SURAH_VERSES[0];
+      const word = verse.words[appState.selectedWordIdx] || verse.words[0];
+
+      box.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+          <span class="label">Word inspector · ${verse.ref} (${appState.selectedWordIdx + 1}/${verse.words.length})</span>
+          <div class="btn-row">
+            <button type="button" class="btn" onclick="stepInspectorWord(-1)" aria-label="Previous word">Prev</button>
+            <button type="button" class="btn" onclick="stepInspectorWord(1)" aria-label="Next word">Next</button>
+          </div>
+        </div>
+
+        <div class="inspector-word-hero">
+          <div>
+            <div class="inspector-arabic" lang="ar" dir="rtl">${word.ar}</div>
+            <div class="translit-line" style="font-size: 1.0625rem;">${word.tr}</div>
+          </div>
+          <div style="text-align: right;">
+            <span class="label">Gloss</span>
+            <div class="subhead" style="color: var(--primary); margin-top: 2px;">${word.en}</div>
+          </div>
+        </div>
+
+        <div class="inspector-facts">
+          <div class="fact-row">
+            <span class="label">Grammar</span>
+            <span class="fact-val">${word.pos}</span>
+          </div>
+          <div class="fact-row">
+            <span class="label">Root / origin</span>
+            <span class="fact-val">${word.root}</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.96rem; color: var(--on-surface-variant);">${word.note}</p>
+      `;
+    }
+
+    function selectPattern(patternId) {
+      appState.activePatternId = patternId;
+      renderPatternList();
+      renderPatternDetail();
+      saveState();
+    }
+
+    function renderPatternList() {
+      const container = document.getElementById('pattern-buttons');
+      if (!container) return;
+
+      container.innerHTML = PATTERNS.map(function(p) {
+        const active = p.id === appState.activePatternId;
+        return `
+          <button type="button" role="tab" aria-selected="${active ? 'true' : 'false'}" class="pattern-btn${active ? ' is-active' : ''}" onclick="selectPattern('${p.id}')">
+            <span class="subhead" style="font-size: 1.0625rem;">${p.title}</span>
+            <span class="caption-sage" style="margin-top: 0;">${p.subtitle}</span>
+          </button>
+        `;
+      }).join(``);
+    }
+
+    function renderPatternDetail() {
+      const box = document.getElementById('pattern-detail');
+      if (!box) return;
+
+      const pat = PATTERNS.find(function(p) { return p.id === appState.activePatternId; }) || PATTERNS[0];
+      const hitSet = new Set(pat.hits);
+
+      const matrixHtml = SURAH_VERSES.map(function(v) {
+        const chips = v.words.map(function(w, idx) {
+          const key = `${v.ref}:${idx}`;
+          const isHit = hitSet.has(key);
+          return `<span class="matrix-chip${isHit ? ' is-hit' : ''}" lang="ar" dir="rtl">${w.ar}</span>`;
+        }).join(``);
+
+        return `
+          <div class="matrix-row">
+            <span class="label">${v.ref}</span>
+            <div class="matrix-words">${chips}</div>
+          </div>
+        `;
+      }).join(``);
+
+      box.innerHTML = `
+        <span class="tag">${pat.subtitle}</span>
+        <h3 class="subhead" style="margin-top: var(--space-sm);">${pat.title}</h3>
+        <p style="margin-top: var(--space-sm);">${pat.summary}</p>
+        <div class="pattern-matrix">
+          <span class="label">Highlighted occurrences across verses 1:1–1:7</span>
+          ${matrixHtml}
+        </div>
+      `;
+    }
+
+    function answerQuiz(optIdx) {
+      appState.quizAnswers[appState.quizIndex] = optIdx;
+      renderQuiz();
+      saveState();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next >= 0 && next < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = next;
+        renderQuiz();
+        saveState();
+      }
+    }
+
+    function resetQuizOnly() {
+      appState.quizIndex = 0;
+      appState.quizAnswers = {};
+      renderQuiz();
+      saveState();
+    }
+
+    function renderQuiz() {
+      const box = document.getElementById('quiz-panel');
+      if (!box) return;
+
+      const q = QUIZ_QUESTIONS[appState.quizIndex] || QUIZ_QUESTIONS[0];
+      const chosen = appState.quizAnswers[appState.quizIndex];
+      const answered = typeof chosen === 'number';
+
+      let correctCount = 0;
+      let totalAnswered = 0;
+      QUIZ_QUESTIONS.forEach(function(item, idx) {
+        if (typeof appState.quizAnswers[idx] === 'number') {
+          totalAnswered++;
+          if (appState.quizAnswers[idx] === item.correct) correctCount++;
+        }
+      });
+
+      const optsHtml = q.options.map(function(opt, idx) {
+        let cls = `btn quiz-opt`;
+        if (answered) {
+          if (idx === q.correct) cls += ` is-correct`;
+          else if (idx === chosen) cls += ` is-wrong`;
+        }
+        return `<button type="button" class="${cls}" onclick="answerQuiz(${idx})">${opt}</button>`;
+      }).join(``);
+
+      const feedbackHtml = answered ? `
+        <div class="quiz-feedback">
+          <span class="label" style="color: ${chosen === q.correct ? 'var(--positive)' : 'var(--error)'};">
+            ${chosen === q.correct ? 'Correct' : 'Review'}
+          </span>
+          <p style="margin-top: var(--space-xs); font-size: 0.95rem;">${q.explanation}</p>
+        </div>
+      ` : ``;
+
+      box.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap;">
+          <h3 class="subhead">Comprehension check</h3>
+          <span class="label">Question ${appState.quizIndex + 1} of ${QUIZ_QUESTIONS.length} · Score ${correctCount}/${totalAnswered}</span>
+        </div>
+
+        <p style="margin-top: var(--space-md); font-weight: 500;">${q.prompt}</p>
+
+        <div class="quiz-options">${optsHtml}</div>
+        ${feedbackHtml}
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg); flex-wrap: wrap;">
+          <div class="btn-row">
+            <button type="button" class="btn" onclick="stepQuiz(-1)" ${appState.quizIndex === 0 ? 'disabled' : ''}>Previous</button>
+            <button type="button" class="btn btn-primary" onclick="stepQuiz(1)" ${appState.quizIndex === QUIZ_QUESTIONS.length - 1 ? 'disabled' : ''}>Next question</button>
+          </div>
+          <button type="button" class="btn btn-ghost" onclick="resetQuizOnly()">Clear quiz answers</button>
+        </div>
+      `;
+    }
+
+    function toggleChecklistCell(vNum, field) {
+      if (!appState.mastery[vNum]) return;
+      appState.mastery[vNum][field] = !appState.mastery[vNum][field];
+      renderChecklist();
+      renderVerses();
+      updateProgressUI();
+      saveState();
+    }
+
+    function renderChecklist() {
+      const tbody = document.getElementById('checklist-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = SURAH_VERSES.map(function(v) {
+        const m = appState.mastery[v.num];
+        return `
+          <tr>
+            <td>
+              <div style="font-weight: 500;">${v.ref}</div>
+              <div class="arabic-text" style="font-size: 1.05rem; line-height: 1.5;" lang="ar" dir="rtl">${v.arabic}</div>
+            </td>
+            <td class="check-cell">
+              <button type="button" class="btn check-btn${m.read ? ' btn-active' : ''}" aria-pressed="${m.read ? 'true' : 'false'}" aria-label="Verse ${v.ref} read" onclick="toggleChecklistCell(${v.num}, 'read')">${m.read ? '✓' : '—'}</button>
+            </td>
+            <td class="check-cell">
+              <button type="button" class="btn check-btn${m.meaning ? ' btn-active' : ''}" aria-pressed="${m.meaning ? 'true' : 'false'}" aria-label="Verse ${v.ref} meaning" onclick="toggleChecklistCell(${v.num}, 'meaning')">${m.meaning ? '✓' : '—'}</button>
+            </td>
+            <td class="check-cell">
+              <button type="button" class="btn check-btn${m.memory ? ' btn-active' : ''}" aria-pressed="${m.memory ? 'true' : 'false'}" aria-label="Verse ${v.ref} memorized" onclick="toggleChecklistCell(${v.num}, 'memory')">${m.memory ? '✓' : '—'}</button>
+            </td>
+          </tr>
+        `;
+      }).join(``);
+    }
+
+    function exportStudyNotes() {
+      const lines = [`Verse,Arabic,Transliteration,Translation,Read,Meaning,Memorized`];
+      SURAH_VERSES.forEach(function(v) {
+        const m = appState.mastery[v.num];
+        const safeTr = v.translit.replace(/"/g, `""`);
+        const safeEn = v.translation.replace(/"/g, `""`);
+        lines.push(`${v.ref},"${v.arabic}","${safeTr}","${safeEn}",${m.read},${m.meaning},${m.memory}`);
+      });
+      const csvContent = lines.join(`\n`);
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: csvContent,
+          contentType: 'text/csv',
+          encoding: 'UTF-8',
+          filename: 'surah-al-fatihah-study-log.csv'
+        });
+      }
+    }
+
+    function resetProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm`;
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset progress`;
+
+      for (let v = 1; v <= 7; v++) {
+        appState.mastery[v] = { read: false, meaning: false, memory: false };
+      }
+      appState.quizAnswers = {};
+      appState.quizIndex = 0;
+
+      renderVerses();
+      renderChecklist();
+      renderQuiz();
+      updateProgressUI();
+      saveState();
+    }
+
+    function setupScrollReveal() {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el) { el.classList.add('is-visible'); });
+        return;
+      }
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      els.forEach(function(el) { observer.observe(el); });
+    }
+
+    async function init() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          mergeSavedState(saved);
+        } catch (err) {
+          /* Start with clean default state */
+        }
+      }
+
+      updateFilterButtons();
+      const tBtn = document.getElementById('btn-toggle-translit');
+      if (tBtn) {
+        tBtn.textContent = `Transliteration: ${appState.showTranslit ? 'On' : 'Off'}`;
+        tBtn.classList.toggle('btn-active', appState.showTranslit);
+      }
+      const rBtn = document.getElementById('btn-toggle-recall');
+      if (rBtn) {
+        rBtn.textContent = `Recall blur: ${appState.recallMode ? 'On' : 'Off'}`;
+        rBtn.classList.toggle('btn-active', appState.recallMode);
+      }
+      const jBtn = document.getElementById('btn-toggle-tajwid');
+      if (jBtn) {
+        jBtn.textContent = `Reading cues: ${appState.showTajwid ? 'On' : 'Off'}`;
+        jBtn.classList.toggle('btn-active', appState.showTajwid);
+      }
+
+      renderArchChart();
+      renderArchDetail();
+      renderVerses();
+      renderWordInspector();
+      renderPatternList();
+      renderPatternDetail();
+      renderQuiz();
+      renderChecklist();
+      updateProgressUI();
+      setupScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

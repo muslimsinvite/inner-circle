@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="haven">
+  <title>Surah Yusuf (Chapter 12) — Interactive Study &amp; Mastery Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Haven palette */
+      --background: #f5f6f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3ebe2;
+      --surface-container-high: #dbe2dd;
+
+      --on-surface: #23272a;
+      --on-surface-variant: #5c6468;
+
+      --outline: #c9d0cc;
+      --outline-variant: #dde2df;
+
+      --primary: #3c5a6e;
+      --on-primary: #ffffff;
+      --primary-container: #e2e9ee;
+      --on-primary-container: #2a4152;
+      --secondary: #4f6b53;
+      --tertiary: #5f7c63;
+      --error: #a63d32;
+      --on-error: #ffffff;
+      --error-container: #f5e6e4;
+
+      --data-1: #3c5a6e;
+      --data-2: #5f7c63;
+      --data-3: #a8694a;
+      --data-4: #8a7a68;
+      --data-context: #c3cac6;
+
+      --font-headline: 'Outfit', sans-serif;
+      --font-body: 'Hanken Grotesk', sans-serif;
+      --font-label: 'Outfit', sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      --rounded: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-full: 9999px;
+
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-control: 1px solid var(--outline);
+      --elevation: none;
+
+      /* Shared foundation tokens */
+      --positive: #4f6b53;
+      --positive-container: #e3ebe2;
+      --warning: #8f6036;
+      --warning-container: #f3ebe2;
+      --focus: #3c5a6e;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.35rem, 1.5rem + 3vw, 3.6rem);
+      --headline-size: clamp(1.65rem, 1.25rem + 1.5vw, 2.3rem);
+      --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4rem);
+      --body-size: clamp(1.02rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.8125rem, 0.78rem + 0.12vw, 0.875rem);
+      --arabic-size: clamp(1.45rem, 1.25rem + 0.8vw, 1.85rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .headline-display {
+      font-family: var(--font-headline);
+      font-weight: 300;
+      font-size: var(--display-size);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline-display strong { font-weight: 600; }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 400;
+      font-size: var(--headline-size);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .section-heading strong { font-weight: 600; }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      text-transform: none;
+      color: var(--on-surface-variant);
+    }
+
+    .caption-sage {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--label-size);
+      color: var(--secondary);
+      margin: var(--space-xs) 0 0 0;
+    }
+
+    .prose {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .prose-muted {
+      max-width: 65ch;
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+
+    /* Hairline panels & sections */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-lg);
+    }
+
+    .panel-sage {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .section + .section {
+      border-top: var(--hairline);
+      padding-top: var(--space-2xl);
+    }
+
+    /* Hero & Navigation */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--label-size);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+    }
+    .tag-slate {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+    .anchor-link {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      padding: var(--space-sm) 0;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .anchor-link:hover {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Key figures row (asymmetric grid) */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1.25fr 1fr;
+      gap: var(--space-md);
+    }
+    .kpi-tile {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .kpi-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Progress bar */
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--outline-variant);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--label-size);
+      cursor: pointer;
+      border: var(--hairline-control);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+    .btn-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    /* Section 1: Ring composition explorer */
+    .two-col-asymmetric {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .ring-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .ring-btn {
+      width: 100%;
+      text-align: left;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-md);
+      min-height: 52px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .ring-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .ring-btn.is-selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .ring-code {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--primary);
+      min-width: 44px;
+    }
+    .ring-title {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      color: var(--on-surface);
+    }
+    .ring-range {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .mirror-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .mirror-box {
+      background: var(--background);
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .quote-inline {
+      font-style: italic;
+      color: var(--on-surface);
+      border-left: 2px solid var(--primary);
+      padding-left: var(--space-sm);
+      margin: var(--space-xs) 0 0 0;
+    }
+
+    /* Section 2: Narrative Arc Chart */
+    .arc-svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: var(--space-xs);
+    }
+    .arc-svg {
+      width: 100%;
+      min-width: 580px;
+      height: auto;
+      display: block;
+    }
+    .arc-node-btn {
+      cursor: pointer;
+    }
+    .arc-act-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    /* Section 3: Motifs & Glossary */
+    .segmented-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .motif-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: var(--arabic-size);
+      line-height: 2.05;
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      text-align: right;
+    }
+    .arabic-term {
+      font-family: var(--font-arabic);
+      font-size: 1.35rem;
+      line-height: 1.7;
+      direction: rtl;
+      unicode-bidi: isolate;
+      letter-spacing: 0;
+      color: var(--primary);
+    }
+
+    /* Table */
+    .table-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    .haven-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .haven-table th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--hairline-control);
+    }
+    .haven-table td {
+      padding: var(--space-md);
+      border-bottom: var(--hairline);
+      vertical-align: top;
+    }
+    .haven-table tbody tr:hover {
+      background: var(--surface-container-high);
+    }
+
+    /* Section 4: Verse-by-Verse Workbench */
+    .controls-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .field-input, .field-select {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      width: 100%;
+    }
+    .field-select {
+      padding-right: var(--space-xl);
+    }
+    .field-input:focus, .field-select:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+      border-color: var(--primary);
+    }
+
+    .act-pill-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .verse-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .verse-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: border-color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+    }
+    .verse-card.is-mastered {
+      border-color: var(--secondary);
+    }
+    .verse-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--hairline);
+    }
+    .verse-ref-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-num {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verse-translation {
+      margin: 0;
+      color: var(--on-surface);
+      max-width: 68ch;
+      line-height: 1.65;
+    }
+    .verse-insight {
+      background: var(--background);
+      border-left: 2px solid var(--outline);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+    }
+    .verse-insight strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    .workbench-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+    }
+
+    /* Section 5: Mastery Checkpoints */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+    }
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .quiz-option {
+      text-align: left;
+      justify-content: flex-start;
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      line-height: 1.4;
+    }
+    .quiz-option.is-correct {
+      background: var(--positive-container);
+      border-color: var(--secondary);
+      color: var(--on-surface);
+    }
+    .quiz-option.is-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--on-surface);
+    }
+    .quiz-feedback {
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .quiz-feedback.is-correct {
+      background: var(--positive-container);
+      color: var(--on-surface);
+    }
+    .quiz-feedback.is-wrong {
+      background: var(--error-container);
+      color: var(--on-surface);
+    }
+
+    /* Reflection & export */
+    .reflection-area {
+      width: 100%;
+      min-height: 110px;
+      padding: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      resize: vertical;
+      line-height: 1.6;
+    }
+    .status-note {
+      font-size: var(--label-size);
+      color: var(--secondary);
+      min-height: 1.4em;
+    }
+
+    /* Empty state */
+    .empty-state {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    /* Subtle reveal animation */
+    .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .two-col-asymmetric {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .controls-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md) var(--space-md) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .kpi-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .mirror-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .controls-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .panel, .verse-card, .quiz-card {
+        padding: var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- Hero & Study Overview -->
+    <header class="hero">
+      <div class="hero-meta">
+        <span class="tag tag-slate">Chapter 12 · Surah Yusuf</span>
+        <span class="tag">111 Verses · Complete Study Companion</span>
+      </div>
+      <h1 class="headline-display">Surah Yusuf: <strong>The Best of Narratives</strong></h1>
+      <p class="prose-muted">
+        Unlike any other chapter in the Qur'an, Chapter 12 unfolds a single unbroken human story from opening dream to final prostration — uniting literary ring symmetry, recurring physical tokens, and the quiet workings of divine subtlety (<em>lutf</em>).
+      </p>
+
+      <div class="kpi-grid" aria-label="Chapter and mastery overview">
+        <div class="kpi-tile">
+          <span class="label">Scope</span>
+          <span class="kpi-value">111 Verses</span>
+          <p class="caption-sage">One continuous narrative</p>
+        </div>
+        <div class="kpi-tile">
+          <span class="label">Structure</span>
+          <span class="kpi-value">7 Acts</span>
+          <p class="caption-sage">6 concentric ring pairs</p>
+        </div>
+        <div class="kpi-tile">
+          <span class="label">Verse Mastery</span>
+          <span class="kpi-value" id="kpi-verses-mastered">0 / 111</span>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="kpi-verses-bar"></div>
+          </div>
+          <p class="caption-sage" id="kpi-bookmarks-count">0 bookmarked for review</p>
+        </div>
+        <div class="kpi-tile">
+          <span class="label">Checkpoints</span>
+          <span class="kpi-value" id="kpi-quiz-score">0 / 8</span>
+          <p class="caption-sage" id="kpi-quiz-caption">Begin below to test retention</p>
+        </div>
+      </div>
+
+      <nav class="anchor-nav" aria-label="Study sections">
+        <a class="anchor-link" href="#architecture">Thematic Architecture</a>
+        <a class="anchor-link" href="#narrative-arc">Narrative Arc</a>
+        <a class="anchor-link" href="#motifs">Motifs &amp; Subtleties</a>
+        <a class="anchor-link" href="#workbench">Verse-by-Verse Workbench</a>
+        <a class="anchor-link" href="#checkpoints">Mastery Checkpoints</a>
+      </nav>
+    </header>
+
+    <!-- Section 1: Thematic Architecture & Ring Composition -->
+    <section class="section reveal-item" id="architecture">
+      <div>
+        <span class="label">Section 1 · Structural Symmetry</span>
+        <h2 class="section-heading">Every descent in the story <strong>mirrors an ascent</strong></h2>
+        <p class="prose-muted">
+          Surah Yusuf is organized in concentric pairs (a ring composition). The opening revelations, dreams, shirts, accusations, and trials in the first half are answered with exact precision in the second half. Select any ring pair below to inspect how the verses mirror one another.
+        </p>
+      </div>
+
+      <div class="two-col-asymmetric">
+        <div class="ring-list" role="group" aria-label="Concentric ring pairs">
+          <button type="button" class="ring-btn is-selected" id="ring-btn-0" onclick="selectRingPair(0)">
+            <span class="ring-code">A ↔ A'</span>
+            <span class="ring-title">Revelation &amp; Lessons for the Reflective</span>
+            <span class="ring-range">vv. 1–3 · 102–111</span>
+          </button>
+          <button type="button" class="ring-btn" id="ring-btn-1" onclick="selectRingPair(1)">
+            <span class="ring-code">B ↔ B'</span>
+            <span class="ring-title">The Dream of Stars &amp; Its Fulfillment</span>
+            <span class="ring-range">vv. 4–6 · 99–101</span>
+          </button>
+          <button type="button" class="ring-btn" id="ring-btn-2" onclick="selectRingPair(2)">
+            <span class="ring-code">C ↔ C'</span>
+            <span class="ring-title">Separation, Shirts &amp; Brothers' Reckoning</span>
+            <span class="ring-range">vv. 7–18 · 58–98</span>
+          </button>
+          <button type="button" class="ring-btn" id="ring-btn-3" onclick="selectRingPair(3)">
+            <span class="ring-code">D ↔ D'</span>
+            <span class="ring-title">Bondage in the House &amp; Public Exoneration</span>
+            <span class="ring-range">vv. 19–29 · 50–57</span>
+          </button>
+          <button type="button" class="ring-btn" id="ring-btn-4" onclick="selectRingPair(4)">
+            <span class="ring-code">E ↔ E'</span>
+            <span class="ring-title">Prison Dreams &amp; The King's Dream</span>
+            <span class="ring-range">vv. 30–42 · 43–49</span>
+          </button>
+          <button type="button" class="ring-btn" id="ring-btn-5" onclick="selectRingPair(5)">
+            <span class="ring-code">Center</span>
+            <span class="ring-title">Absolute Monotheism at the Lowest Station</span>
+            <span class="ring-range">vv. 38–40</span>
+          </button>
+        </div>
+
+        <article class="panel" id="ring-detail-panel" aria-live="polite">
+          <!-- Populated by renderRingDetail() -->
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: Narrative Arc -->
+    <section class="section reveal-item" id="narrative-arc">
+      <div>
+        <span class="label">Section 2 · Narrative Arc</span>
+        <h2 class="section-heading">External exile contrasts with <strong>steady inward ascent</strong></h2>
+        <p class="prose-muted">
+          As Joseph is stripped of home, freedom, and reputation across the opening acts, his spiritual stature and prophetic insight expand — from child dreamer to prisoner-preacher to guardian of Egypt's storehouses. Select any act along the trajectory to inspect its turning point.
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="arc-svg-wrap">
+          <svg class="arc-svg" viewBox="0 0 840 280" role="img" aria-label="Narrative trajectory of Surah Yusuf across seven acts">
+            <!-- Horizontal guide lines -->
+            <line x1="60" y1="50" x2="790" y2="50" stroke="var(--outline-variant)" stroke-width="1" />
+            <line x1="60" y1="130" x2="790" y2="130" stroke="var(--outline-variant)" stroke-width="1" stroke-dasharray="4 4" />
+            <line x1="60" y1="210" x2="790" y2="210" stroke="var(--outline-variant)" stroke-width="1" />
+
+            <!-- Axis labels -->
+            <text x="12" y="54" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="11">High station</text>
+            <text x="12" y="134" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="11">Trial</text>
+            <text x="12" y="214" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="11">Depths</text>
+
+            <!-- Inner prophetic clarity line (context / steady ascent) -->
+            <path d="M 85 160 L 195 140 L 305 110 L 415 80 L 525 65 L 635 55 L 745 45" fill="none" stroke="var(--data-2)" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round" />
+            <text x="640" y="34" fill="var(--secondary)" font-family="var(--font-label)" font-size="11" font-weight="500">Inward certainty &amp; wisdom</text>
+
+            <!-- Outward station trajectory -->
+            <path d="M 85 105 L 195 195 L 305 215 L 415 90 L 525 75 L 635 95 L 745 55" fill="none" stroke="var(--data-1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <text x="85" y="88" fill="var(--primary)" font-family="var(--font-label)" font-size="11" font-weight="500">Outward worldly station</text>
+
+            <!-- Interactive Act Nodes -->
+            <g id="arc-nodes-group"></g>
+          </svg>
+        </div>
+
+        <div class="arc-act-strip" id="arc-act-buttons" role="group" aria-label="Select a narrative act"></div>
+
+        <div id="arc-detail-box" style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--hairline);">
+          <!-- Populated by renderArcDetail() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Motifs, Literary Subtleties & Arabic Anchors -->
+    <section class="section reveal-item" id="motifs">
+      <div>
+        <span class="label">Section 3 · Literary Subtleties</span>
+        <h2 class="section-heading">Physical tokens and echoed phrases <strong>carry the chapter's memory</strong></h2>
+        <p class="prose-muted">
+          Surah Yusuf uses physical objects—above all Joseph's shirts—and parallel dream structures to bind decades together without needing a single wasted word. Switch lenses below to trace these recurring threads.
+        </p>
+      </div>
+
+      <div class="segmented-row" role="group" aria-label="Motif and subtlety lenses">
+        <button type="button" class="btn btn-active" id="motif-tab-0" onclick="selectMotifLens(0)">The Three Shirts</button>
+        <button type="button" class="btn" id="motif-tab-1" onclick="selectMotifLens(1)">The Three Dream Pairs</button>
+        <button type="button" class="btn" id="motif-tab-2" onclick="selectMotifLens(2)">Rhetorical &amp; Psychological Echoes</button>
+      </div>
+
+      <div class="card-grid-3" id="motif-cards-container" aria-live="polite">
+        <!-- Populated by renderMotifLens() -->
+      </div>
+
+      <div class="panel">
+        <div class="table-header-row">
+          <div>
+            <h3 class="subhead">Key Arabic Lexical Anchors</h3>
+            <p class="caption-sage">Eight recurring terms that unlock the chapter's ethical and theological vocabulary</p>
+          </div>
+          <span class="label">Click any verse reference to inspect in workbench</span>
+        </div>
+        <div class="table-wrap">
+          <table class="haven-table">
+            <thead>
+              <tr>
+                <th>Arabic</th>
+                <th>Transliteration</th>
+                <th>Meaning &amp; Role in Surah Yusuf</th>
+                <th>Anchor Verses</th>
+              </tr>
+            </thead>
+            <tbody id="glossary-table-body">
+              <!-- Populated by renderGlossary() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Verse-by-Verse Study Workbench -->
+    <section class="section reveal-item" id="workbench">
+      <div>
+        <span class="label">Section 4 · Verse-by-Verse Study</span>
+        <h2 class="section-heading">Read, annotate, and master <strong>all 111 verses</strong></h2>
+        <p class="prose-muted">
+          Browse by narrative act or search any Arabic term, English phrase, or theme. Mark verses as mastered or bookmark them for return; your progress saves automatically across sessions.
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="controls-row">
+          <div class="field-group">
+            <label class="label" for="verse-search">Search Arabic, English, or study notes</label>
+            <input type="search" id="verse-search" class="field-input" oninput="handleSearchInput(this.value)" placeholder="e.g. patience, well, shirt, 12:86">
+          </div>
+          <div class="field-group">
+            <label class="label" for="act-filter">Filter by Narrative Act</label>
+            <select id="act-filter" class="field-select" onchange="handleActFilterChange(this.value)">
+              <option value="all">All 111 Verses (Acts I–VII)</option>
+              <option value="1">Act I: Dream &amp; Conspiracy (vv. 1–18)</option>
+              <option value="2">Act II: Well &amp; Palace Trial (vv. 19–29)</option>
+              <option value="3">Act III: Banquet &amp; Prison (vv. 30–42)</option>
+              <option value="4">Act IV: King's Dream &amp; Ascent (vv. 43–57)</option>
+              <option value="5">Act V: Famine &amp; Return (vv. 58–68)</option>
+              <option value="6">Act VI: Measuring Bowl &amp; Grief (vv. 69–87)</option>
+              <option value="7">Act VII: Reunion &amp; Epilogue (vv. 88–111)</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="label" for="status-filter">Filter by Study Status</label>
+            <select id="status-filter" class="field-select" onchange="handleStatusFilterChange(this.value)">
+              <option value="all">All statuses</option>
+              <option value="unmastered">Not yet mastered</option>
+              <option value="mastered">Mastered</option>
+              <option value="bookmarked">Bookmarked</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="label" for="toggle-notes-btn">Study Insights</label>
+            <button type="button" id="toggle-notes-btn" class="btn btn-active" onclick="toggleStudyInsights()">Hide notes</button>
+          </div>
+        </div>
+
+        <div class="act-pill-bar" id="workbench-act-pills" style="margin-top: var(--space-md);" aria-label="Quick Act jump"></div>
+      </div>
+
+      <div id="workbench-summary-bar" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+        <span class="label" id="workbench-count-label">Showing verses 1–18 of 111</span>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+          <button type="button" class="btn btn-sm" id="btn-master-visible" onclick="markVisibleMastered()">Mark shown verses mastered</button>
+          <button type="button" class="btn btn-sm" id="btn-show-all-matching" onclick="toggleShowAllMatching()">Show all matching</button>
+        </div>
+      </div>
+
+      <div class="verse-list" id="verse-list-container">
+        <!-- Populated by renderVerses() -->
+      </div>
+
+      <div class="workbench-footer" id="workbench-pagination">
+        <button type="button" class="btn" id="btn-prev-act" onclick="stepAct(-1)">Previous act</button>
+        <span class="label" id="pagination-label">Act I · Verses 1–18</span>
+        <button type="button" class="btn" id="btn-next-act" onclick="stepAct(1)">Next act</button>
+      </div>
+    </section>
+
+    <!-- Section 5: Mastery Checkpoints & Personal Synthesis -->
+    <section class="section reveal-item" id="checkpoints">
+      <div>
+        <span class="label">Section 5 · Mastery Checkpoints</span>
+        <h2 class="section-heading">Verify your grasp of <strong>structure, subtleties, and verses</strong></h2>
+        <p class="prose-muted">
+          Test your understanding across eight questions spanning the chapter's ring composition, narrative details, motifs, and closing counsel. Every answer cites the exact verse so you can verify it directly.
+        </p>
+      </div>
+
+      <div class="quiz-grid" id="quiz-container">
+        <!-- Populated by renderQuiz() -->
+      </div>
+
+      <div class="panel-sage">
+        <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+          <div>
+            <h3 class="subhead">Personal Chapter Synthesis</h3>
+            <p class="caption-sage">Capture your central takeaway from Surah Yusuf and export your study record</p>
+          </div>
+          <div class="field-group">
+            <label class="label" for="personal-synthesis">Your reflection (saved across sessions)</label>
+            <textarea id="personal-synthesis" class="reflection-area" oninput="handleSynthesisInput(this.value)" placeholder="Write a key lesson, structural observation, or verse that resonated most..."></textarea>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+            <span class="status-note" id="save-status-msg" aria-live="polite"></span>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+              <button type="button" class="btn" id="btn-reset-progress" onclick="handleResetProgress(this)">Reset progress</button>
+              <button type="button" class="btn btn-primary" onclick="exportStudySummary()">Export study summary (.txt)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer style="padding-top: var(--space-md); border-top: var(--hairline);">
+        <p class="label">
+          Source grounding: Complete Arabic text and English translation of Chapter 12 (Surah Yusuf, verses 12:1–12:111) provided in the study source material.
+        </p>
+      </footer>
+    </section>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    // ---------------------------------------------------------
+    // 1. COMPLETE DATA: ALL 111 VERSES OF SURAH YUSUF (12:1-111)
+    // ---------------------------------------------------------
+    const ACTS = [
+      {
+        id: 1,
+        name: `Act I: Dream & Conspiracy`,
+        range: `vv. 1–18`,
+        start: 1,
+        end: 18,
+        yOutward: 105,
+        yInward: 160,
+        turningPoint: `Joseph receives divine reassurance inside the well (v. 15) while Jacob diagnoses the brothers' lie with "patience is most fitting" (v. 18).`,
+        virtue: `Prophetic restraint (v. 5) and "beautiful patience" (sabr jamil, v. 18).`,
+        summary: `Opens with the Qur'an declaring this "the best of stories" (v. 3). Joseph sees eleven stars, the sun, and the moon prostrating; Jacob warns him not to tell his brothers. Driven by jealousy, the brothers cast him into a deep well and present a shirt stained with false blood.`
+      },
+      {
+        id: 2,
+        name: `Act II: Well & Palace Trial`,
+        range: `vv. 19–29`,
+        start: 19,
+        end: 29,
+        yOutward: 195,
+        yInward: 140,
+        turningPoint: `Joseph flees toward the door and his shirt is torn from the back — turning physical fabric into forensic proof of his innocence (vv. 25–28).`,
+        virtue: `Moral integrity and gratitude to benefactors (v. 23) anchored by the "proof of his Lord" (v. 24).`,
+        summary: `A caravan rescues Joseph from the well and sells him for a few dirhams. Bought by al-'Azeez in Egypt, Joseph matures in wisdom and judgment (v. 22). When the master's wife tries to seduce him behind locked doors, he seeks refuge in Allah and runs.`
+      },
+      {
+        id: 3,
+        name: `Act III: Banquet & Prison`,
+        range: `vv. 30–42`,
+        start: 30,
+        end: 42,
+        yOutward: 215,
+        yInward: 110,
+        turningPoint: `Joseph chooses prison over moral compromise (v. 33) and delivers an uncompromising call to pure monotheism inside his cell (vv. 38–40).`,
+        virtue: `Conscience over comfort (v. 33) and calling others to the One God even in captivity (v. 39).`,
+        summary: `Following the banquet of knives, Joseph is imprisoned despite clear signs of his innocence (v. 35). Two young prisoners ask him to interpret their dreams of wine and bread; he teaches them tawhid first, interprets accurately, and stays forgotten for several years.`
+      },
+      {
+        id: 4,
+        name: `Act IV: King's Dream & Ascent`,
+        range: `vv. 43–57`,
+        start: 43,
+        end: 57,
+        yOutward: 90,
+        yInward: 80,
+        turningPoint: `Joseph refuses release until his name is publicly cleared (v. 50), prompting the confession: "Now the truth has become evident" (v. 51).`,
+        virtue: `Dignified vindication (v. 50) and proactive stewardship ("knowing guardian", v. 55).`,
+        summary: `The king dreams of seven fat cows eaten by seven lean ones and seven green/dry spikes. The cupbearer remembers Joseph, who provides a 15-year agricultural plan. Exonerated before the court, Joseph is entrusted with Egypt's storehouses.`
+      },
+      {
+        id: 5,
+        name: `Act V: Famine & Return`,
+        range: `vv. 58–68`,
+        start: 58,
+        end: 68,
+        yOutward: 75,
+        yInward: 65,
+        turningPoint: `Joseph discreetly returns their payment inside their saddlebags (v. 62) and requires them to bring their youngest brother Benjamin next time (v. 59).`,
+        virtue: `Trust in Allah's guardianship ("Allah is the best guardian", v. 64) alongside prudent planning ("enter from different gates", v. 67).`,
+        summary: `Joseph's brothers arrive in Egypt seeking grain; he recognizes them while remaining unrecognized. Returning home, they find their goods restored and persuade Jacob — under a solemn oath — to send Benjamin with them.`
+      },
+      {
+        id: 6,
+        name: `Act VI: Measuring Bowl & Grief`,
+        range: `vv. 69–87`,
+        start: 69,
+        end: 87,
+        yOutward: 95,
+        yInward: 55,
+        turningPoint: `Joseph reveals himself privately to Benjamin (v. 69) and uses the king's measuring bowl so the brothers' own legal verdict retains Benjamin (vv. 70–76).`,
+        virtue: `Unbreakable hope: "Despair not of relief from Allah" (v. 87) even when Jacob's eyes turn white from grief (v. 84).`,
+        summary: `Detained under the brothers' own rule for theft, Benjamin stays in Egypt while the eldest brother refuses to leave. Back in Canaan, Jacob's grief deepens, yet he urges his sons to go and search for both Joseph and Benjamin without despair.`
+      },
+      {
+        id: 7,
+        name: `Act VII: Reunion & Epilogue`,
+        range: `vv. 88–111`,
+        start: 88,
+        end: 111,
+        yOutward: 55,
+        yInward: 45,
+        turningPoint: `"No blame will there be upon you today" (v. 92) — followed by the healing shirt restoring Jacob's sight (v. 96) and the fulfillment of the opening dream (v. 100).`,
+        virtue: `Magnanimous forgiveness (v. 92), humility in power (v. 100), and praying to die in submission (v. 101).`,
+        summary: `Pleading poverty, the brothers hear Joseph ask, "Do you know what you did when you were ignorant?" Recognition leads to immediate pardon, Jacob's healing, family reunion in Egypt, and an epilogue addressing the Prophet Muhammad.`
+      }
+    ];
+
+    const RING_PAIRS = [
+      {
+        code: `A ↔ A'`,
+        title: `Revelation & Lessons for the Reflective`,
+        leftRange: `vv. 1–3`,
+        rightRange: `vv. 102–111`,
+        leftHeading: `Prologue: The Clear Book Revealed`,
+        leftQuote: `"We relate to you, [O Muhammad], the best of stories in what We have revealed to you of this Qur'an although you were, before it, among the unaware." (12:3)`,
+        rightHeading: `Epilogue: Unseen News & Guidance`,
+        rightQuote: `"That is from the news of the unseen which We reveal, [O Muhammad], to you... There was certainly in their stories a lesson for those of understanding." (12:102, 111)`,
+        insight: `Both bookends directly address the Prophet Muhammad — framing Joseph's story not as mere history, but as revealed proof of prophethood, consolation during rejection, and a universal reminder for people who reason (vv. 2, 109, 111).`,
+        jumpVerse: 1
+      },
+      {
+        code: `B ↔ B'`,
+        title: `The Dream of Stars & Its Fulfillment`,
+        leftRange: `vv. 4–6`,
+        rightRange: `vv. 99–101`,
+        leftHeading: `Opening Vision in Youth`,
+        leftQuote: `"O my father, indeed I have seen [in a dream] eleven stars and the sun and the moon; I saw them prostrating to me." (12:4)`,
+        rightHeading: `Throne & Prostration in Egypt`,
+        rightQuote: `"And he raised his parents upon the throne, and they bowed to him in prostration. And he said, 'O my father, this is the explanation of my vision of before.'" (12:100)`,
+        insight: `Jacob foretold in v. 6 that Allah would choose Joseph, teach him interpretation, and complete His favor upon Jacob's family. In vv. 100–101, Joseph explicitly recalls that promise — thanking Allah for taking him out of prison (omitting the well to spare his brothers shame) and asking to die as a Muslim.`,
+        jumpVerse: 4
+      },
+      {
+        code: `C ↔ C'`,
+        title: `Separation, Shirts & Brothers' Reckoning`,
+        leftRange: `vv. 7–18`,
+        rightRange: `vv. 58–98`,
+        leftHeading: `Plot, Well & Shirt of False Blood`,
+        leftQuote: `"And they brought upon his shirt false blood. [Jacob] said, 'Rather, your souls have enticed you to something, so patience is most fitting.'" (12:18)`,
+        rightHeading: `Test, Confession & Shirt of Sight`,
+        rightQuote: `"'Take this, my shirt, and cast it over the face of my father; he will become seeing.' ... [Jacob said,] 'Rather, your souls have enticed you to something, so patience is most fitting.'" (12:83, 93)`,
+        insight: `Notice the verbatim mirror: Jacob uses the exact same sentence ("Rather, your souls have enticed you to something, so patience is most fitting") in v. 18 and v. 83. The brothers first brought a shirt to break his heart; they ultimately carry a shirt to restore his sight.`,
+        jumpVerse: 18
+      },
+      {
+        code: `D ↔ D'`,
+        title: `Bondage in the House & Public Exoneration`,
+        leftRange: `vv. 19–29`,
+        rightRange: `vv. 50–57`,
+        leftHeading: `Private Injustice & Torn Shirt`,
+        leftQuote: `"And she tore his shirt from the back... [Her husband said,] 'Joseph, ignore this. And, [my wife], ask forgiveness for your sin.'" (12:25, 29)`,
+        rightHeading: `Public Inquiry & Royal Appointment`,
+        rightQuote: `"The wife of al-'Azeez said, 'Now the truth has become evident. It was I who sought to seduce him, and indeed, he is of the truthful.'" (12:51)`,
+        insight: `Although cleared privately in v. 28, Joseph was still sent to prison to hush the scandal (v. 35). In v. 50, he refuses to exit prison quietly until the king investigates the women — turning hidden innocence into public vindication and high office (vv. 54–56).`,
+        jumpVerse: 50
+      },
+      {
+        code: `E ↔ E'`,
+        title: `Prison Dreams & The King's Dream`,
+        leftRange: `vv. 30–42`,
+        rightRange: `vv. 43–49`,
+        leftHeading: `Two Prisoners' Dreams`,
+        leftQuote: `"One of them said, 'Indeed, I have seen myself pressing wine.' The other said, 'Indeed, I have seen myself carrying upon my head [some] bread...'" (12:36)`,
+        rightHeading: `The King's Double Dream`,
+        rightQuote: `"Indeed, I have seen [in a dream] seven fat cows being eaten by seven [that were] lean, and seven green spikes [of grain] and others [that were] dry." (12:43)`,
+        insight: `The first pair of dreams concerns personal survival (one freed to press/serve wine, one executed). The king's dream expands to the survival of an entire nation — and the freed cupbearer finally remembers Joseph after "a time" (v. 45).`,
+        jumpVerse: 36
+      },
+      {
+        code: `Center`,
+        title: `Absolute Monotheism at the Lowest Station`,
+        leftRange: `vv. 37–38`,
+        rightRange: `vv. 39–40`,
+        leftHeading: `Prophetic Lineage & Gratitude`,
+        leftQuote: `"And I have followed the religion of my fathers, Abraham, Isaac and Jacob. And it was not for us to associate anything with Allah." (12:38)`,
+        rightHeading: `The Central Theological Question`,
+        rightQuote: `"O [my] two companions of prison, are separate lords better or Allah, the One, the Prevailing? ... Legislation is not but for Allah." (12:39–40)`,
+        insight: `At the exact midpoint of his outward humiliation — falsely imprisoned and forgotten — Joseph stands tallest spiritually. Before interpreting their dreams, he invites his cellmates to freedom from fractured loyalties under one Sovereign Creator.`,
+        jumpVerse: 39
+      }
+    ];
+
+    const MOTIF_LENSES = [
+      {
+        title: `The Three Shirts (Qamis)`,
+        cards: [
+          {
+            badge: `Shirt 1 · v. 18`,
+            heading: `The Shirt of Deception`,
+            text: `Stained with "false blood" (dam kadhib), the brothers use Joseph's shirt as fabricated evidence of a wolf attack. Yet the untraveled, untorn garment gives away their lie to Jacob's discerning heart.`,
+            verse: 18
+          },
+          {
+            badge: `Shirt 2 · vv. 25–28`,
+            heading: `The Shirt of Innocence`,
+            text: `Torn from the back (qudda min dubur) as Joseph fled toward the locked door. A witness from her own household lays down the forensic rule: a tear from the back proves she pursued him and he is of the truthful.`,
+            verse: 25
+          },
+          {
+            badge: `Shirt 3 · vv. 93–96`,
+            heading: `The Shirt of Restoration`,
+            text: `Sent ahead from Egypt with the caravan, Joseph's shirt carries his scent across the desert (v. 94) and, once cast over Jacob's face, restores his sight (v. 96) — turning the very object of grief into an instrument of healing.`,
+            verse: 93
+          }
+        ]
+      },
+      {
+        title: `The Three Dream Pairs (Ru'ya)`,
+        cards: [
+          {
+            badge: `Dream 1 · v. 4 → v. 100`,
+            heading: `Cosmic Prostration`,
+            text: `Eleven stars, the sun, and the moon bow to young Joseph. It sets the whole plot in motion and takes decades to materialize when his parents and eleven brothers stand before his throne in Egypt.`,
+            verse: 4
+          },
+          {
+            badge: `Dreams 2 & 3 · vv. 36–41`,
+            heading: `Wine & Bread in Prison`,
+            text: `Two fellow inmates dream of pressing wine and carrying bread eaten by birds. Joseph interprets both — liberation for the cupbearer, death for the baker — only after preaching monotheism to them.`,
+            verse: 36
+          },
+          {
+            badge: `Dream 4 · vv. 43–49`,
+            heading: `Seven Cows & Seven Spikes`,
+            text: `Seven lean cows devour seven fat ones; seven dry spikes follow seven green ones. Dismissed by royal counselors as "false dreams" (v. 44), Joseph decodes the 7 years of plenty, 7 of famine, and 1 year of relief.`,
+            verse: 43
+          }
+        ]
+      },
+      {
+        title: `Rhetorical & Psychological Echoes`,
+        cards: [
+          {
+            badge: `Subtlety 1 · v. 100`,
+            heading: `Grace in Retelling`,
+            text: `When recounting Allah's favors before his father, Joseph mentions being brought out of prison and Satan inducing estrangement — deliberately omitting the well and slavery so his brothers are not shamed in front of Jacob.`,
+            verse: 100
+          },
+          {
+            badge: `Subtlety 2 · vv. 74–75`,
+            heading: `Self-Imposed Verdict`,
+            text: `Egyptian law could not seize Benjamin permanently ("religion of the king", v. 76). By asking the brothers to state the penalty for theft themselves (v. 75), their own legal code becomes the mechanism that keeps Benjamin with Joseph.`,
+            verse: 75
+          },
+          {
+            badge: `Subtlety 3 · vv. 21, 76, 100`,
+            heading: `Hidden Divine Agency`,
+            text: `Across the chapter runs a quiet refrain: "Allah is predominant over His affair, but most of the people do not know" (v. 21), "Thus did We plan for Joseph" (v. 76), and "My Lord is Subtle (Latif) in what He wills" (v. 100).`,
+            verse: 21
+          }
+        ]
+      }
+    ];
+
+    const GLOSSARY_TERMS = [
+      { arabic: `أَحْسَنَ الْقَصَصِ`, translit: `Ahsan al-Qasas`, meaning: `The best of stories — named so for its unbroken arc, psychological depth, and elevation from trial to mercy.`, verse: 3 },
+      { arabic: `صَبْرٌ جَمِيلٌ`, translit: `Sabr Jamil`, meaning: `Beautiful patience — steadfast composure that complains only to Allah (v. 86) without bitterness or despair.`, verse: 18 },
+      { arabic: `تَأْوِيلِ الْأَحَادِيثِ`, translit: `Ta'wil al-Ahadith`, meaning: `Interpretation of narratives, dreams, and unfolding events — seeing how inner signs resolve into reality.`, verse: 6 },
+      { arabic: `بُرْهَانَ رَبِّهِ`, translit: `Burhan Rabbihi`, meaning: `The clear proof of his Lord — spiritual clarity that shields Joseph at the moment of temptation.`, verse: 24 },
+      { arabic: `الْمُحْسِنِينَ`, translit: `Al-Muhsinin`, meaning: `Doers of excellence and good — attested for Joseph by Allah (v. 22), inmates (v. 36), and his brothers (v. 78).`, verse: 22 },
+      { arabic: `كَيْد`, translit: `Kayd`, meaning: `Plan or scheming — contrasted between human plotting (brothers, v. 5; court women, v. 28) and Allah's overriding plan (v. 76).`, verse: 5 },
+      { arabic: `رَوْحِ اللَّهِ`, translit: `Rawh Allah`, meaning: `Soothing relief and mercy from Allah — Jacob's final command against despair in dark times.`, verse: 87 },
+      { arabic: `لَطِيفٌ`, translit: `Latif`, meaning: `Subtle and gentle in orchestrating outcomes through seemingly adverse detours (well, slavery, prison).`, verse: 100 }
+    ];
+
+    // Complete 111 verses grounded strictly in the provided source text
+    const VERSES = [
+      { v: 1, act: 1, theme: `Prologue`, ar: `الر ۚ تِلْكَ آيَاتُ الْكِتَابِ الْمُبِينِ`, en: `Alif, Lam, Ra. These are the verses of the clear Book.`, note: `Opens with detached letters (Alif, Lam, Ra) paired immediately with clarity (al-Kitab al-Mubin) — signaling that this revelation makes hidden truth plain.` },
+      { v: 2, act: 1, theme: `Prologue`, ar: `إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ`, en: `Indeed, We have sent it down as an Arabic Qur'an that you might understand.`, note: `Connects Arabic linguistic precision directly to human reasoning (ta'qilun) — echoed at the end of the surah in v. 109.` },
+      { v: 3, act: 1, theme: `Prologue`, ar: `نَحْنُ نَقُصُّ عَلَيْكَ أَحْسَنَ الْقَصَصِ بِمَا أَوْحَيْنَا إِلَيْكَ هَٰذَا الْقُرْآنَ وَإِنْ كُنْتَ مِنْ قَبْلِهِ لَمِنَ الْغَافِلِينَ`, en: `We relate to you, [O Muhammad], the best of stories in what We have revealed to you of this Qur'an although you were, before it, among the unaware.`, note: `Calls this "the best of stories" (ahsan al-qasas). The Prophet Muhammad had no prior access to these hidden events, establishing the narrative as revelation.` },
+      { v: 4, act: 1, theme: `Dream`, ar: `إِذْ قَالَ يُوسُفُ لِأَبِيهِ يَا أَبَتِ إِنِّي رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ رَأَيْتُهُمْ لِي سَاجِدِينَ`, en: `[Of these stories mention] when Joseph said to his father, "O my father, indeed I have seen [in a dream] eleven stars and the sun and the moon; I saw them prostrating to me."`, note: `The opening dream introduces the central symbols: eleven stars (brothers) and the sun and moon (parents). Notice the loving address "Ya abati" (O my father), which returns at the end in v. 100.` },
+      { v: 5, act: 1, theme: `Warning`, ar: `قَالَ يَا بُنَيَّ لَا تَقْصُصْ رُؤْيَاكَ عَلَىٰ إِخْوَتِكَ فَيَكِيدُوا لَكَ كَيْدًا ۖ إِنَّ الشَّيْطَانَ لِلْإِنْسَانِ عَدُوٌّ مُبِينٌ`, en: `He said, "O my son, do not relate your vision to your brothers or they will contrive against you a plan. Indeed Satan, to man, is a manifest enemy.`, note: `Jacob wisely distinguishes between his sons' vulnerability and the real enemy: Satan. Notice he avoids planting hatred against the brothers while teaching discretion.` },
+      { v: 6, act: 1, theme: `Promise`, ar: `وَكَذَٰلِكَ يَجْتَبِيكَ رَبُّكَ وَيُعَلِّمُكَ مِنْ تَأْوِيلِ الْأَحَادِيثِ وَيُتِمُّ نِعْمَتَهُ عَلَيْكَ وَعَلَىٰ آلِ يَعْقُوبَ كَمَا أَتَمَّهَا عَلَىٰ أَبَوَيْكَ مِنْ قَبْلُ إِبْرَاهِيمَ وَإِسْحَاقَ ۚ إِنَّ رَبَّكَ عَلِيمٌ حَكِيمٌ`, en: `And thus will your Lord choose you and teach you the interpretation of narratives and complete His favor upon you and upon the family of Jacob, as He completed it upon your fathers before, Abraham and Isaac. Indeed, your Lord is Knowing and Wise."`, note: `Jacob interprets the dream before Joseph endures any trial — linking him to the prophetic lineage of Abraham and Isaac.` },
+      { v: 7, act: 1, theme: `Thesis`, ar: `لَقَدْ كَانَ فِي يُوسُفَ وَإِخْوَتِهِ آيَاتٌ لِلسَّائِلِينَ`, en: `Certainly were there in Joseph and his brothers signs for those who ask,`, note: `A direct invitation to the audience: the family conflict itself contains enduring signs (ayat) for anyone who inquires sincerely.` },
+      { v: 8, act: 1, theme: `Jealousy`, ar: `إِذْ قَالُوا لَيُوسُفُ وَأَخُوهُ أَحَبُّ إِلَىٰ أَبِينَا مِنَّا وَنَحْنُ عُصْبَةٌ إِنَّ أَبَانَا لَفِي ضَلَالٍ مُبِينٍ`, en: `When they said, "Joseph and his brother are more beloved to our father than we, while we are a clan. Indeed, our father is in clear error.`, note: `The brothers reduce love to utility ("while we are a strong clan") and project their own delusion onto Jacob ("in clear error" — a phrase they repeat in v. 95).` },
+      { v: 9, act: 1, theme: `Conspiracy`, ar: `اقْتُلُوا يُوسُفَ أَوِ اطْرَحُوهُ أَرْضًا يَخْلُ لَكُمْ وَجْهُ أَبِيكُمْ وَتَكُونُوا مِنْ بَعْدِهِ قَوْمًا صَالِحِينَ`, en: `Kill Joseph or cast him out to [another] land; the countenance of your father will [then] be only for you, and you will be after that a righteous people."`, note: `Self-deception of delayed repentance: proposing murder or exile while promising themselves they will become "a righteous people" afterward.` },
+      { v: 10, act: 1, theme: `Conspiracy`, ar: `قَالَ قَائِلٌ مِنْهُمْ لَا تَقْتُلُوا يُوسُفَ وَأَلْقُوهُ فِي غَيَابَتِ الْجُبِّ يَلْتَقِطْهُ بَعْضُ السَّيَّارَةِ إِنْ كُنْتُمْ فَاعِلِينَ`, en: `Said a speaker among them, "Do not kill Joseph but throw him into the bottom of the well; some travelers will pick him up - if you would do [something]."`, note: `One brother moderates murder into abandonment in a hidden well — unknowingly serving as the doorway to Egypt.` },
+      { v: 11, act: 1, theme: `Deception`, ar: `قَالُوا يَا أَبَانَا مَا لَكَ لَا تَأْمَنَّا عَلَىٰ يُوسُفَ وَإِنَّا لَهُ لَنَاصِحُونَ`, en: `They said, "O our father, why do you not entrust us with Joseph while indeed, we are to him sincere counselors?`, note: `Irony: the brothers claim to be "sincere counselors" (nasihun) right after plotting Joseph's removal.` },
+      { v: 12, act: 1, theme: `Deception`, ar: `أَرْسِلْهُ مَعَنَا غَدًا يَرْتَعْ وَيَلْعَبْ وَإِنَّا لَهُ لَحَافِظُونَ`, en: `Send him with us tomorrow that he may eat well and play. And indeed, we will be his guardians.`, note: `They promise to be his guardians (hafizun), a role Jacob later entrusts exclusively to Allah in v. 64.` },
+      { v: 13, act: 1, theme: `Foreshadowing`, ar: `قَالَ إِنِّي لَيَحْزُنُنِي أَنْ تَذْهَبُوا بِهِ وَأَخَافُ أَنْ يَأْكُلَهُ الذِّئْبُ وَأَنْتُمْ عَنْهُ غَافِلُونَ`, en: `[Jacob] said, "Indeed, it saddens me that you should take him, and I fear that a wolf would eat him while you are of him unaware."`, note: `Jacob inadvertently supplies the exact alibi ("a wolf") that the brothers will fabricate in v. 17.` },
+      { v: 14, act: 1, theme: `Deception`, ar: `قَالُوا لَئِنْ أَكَلَهُ الذِّئْبُ وَنَحْنُ عُصْبَةٌ إِنَّا إِذًا لَخَاسِرُونَ`, en: `They said, "If a wolf should eat him while we are a [strong] clan, indeed, we would then be losers."`, note: `They invoke their strength as a clan ('usbah) again — yet soon they will claim a wolf took him anyway.` },
+      { v: 15, act: 1, theme: `The Well`, ar: `فَلَمَّا ذَهَبُوا بِهِ وَأَجْمَعُوا أَنْ يَجْعَلُوهُ فِي غَيَابَتِ الْجُبِّ ۚ وَأَوْحَيْنَا إِلَيْهِ لَتُنَبِّئَنَّهُمْ بِأَمْرِهِمْ هَٰذَا وَهُمْ لَا يَشْعُرُونَ`, en: `So when they took him [out] and agreed to put him into the bottom of the well... But We inspired to him, "You will surely inform them [someday] about this affair of theirs while they do not perceive [your identity]."`, note: `Remarkable narrative ellipsis: the Qur'an skips the cruel physical moment of dropping him in and moves straight to Allah's comforting revelation inside the well — fulfilled in v. 89.` },
+      { v: 16, act: 1, theme: `Deception`, ar: `وَجَاءُوا أَبَاهُمْ عِشَاءً يَبْكُونَ`, en: `And they came to their father at night, weeping.`, note: `Nightfall ('isha') covers staged emotion, contrasting with the clear truth Jacob senses.` },
+      { v: 17, act: 1, theme: `Deception`, ar: `قَالُوا يَا أَبَانَا إِنَّا ذَهَبْنَا نَسْتَبِقُ وَتَرَكْنَا يُوسُفَ عِنْدَ مَتَاعِنَا فَأَكَلَهُ الذِّئْبُ ۖ وَمَا أَنْتَ بِمُؤْمِنٍ لَنَا وَلَوْ كُنَّا صَادِقِينَ`, en: `They said, "O our father, indeed we went racing each other and left Joseph with our possessions, and a wolf ate him. But you would not believe us, even if we were truthful."`, note: `Guilty conscience slips out in the final clause: even while claiming truth, they preemptively accuse their father of disbelief.` },
+      { v: 18, act: 1, theme: `Shirt I`, ar: `وَجَاءُوا عَلَىٰ قَمِيصِهِ بِدَمٍ كَذِبٍ ۚ قَالَ بَلْ سَوَّلَتْ لَكُمْ أَنْفُسُكُمْ أَمْرًا ۖ فَصَبْرٌ جَمِيلٌ ۖ وَاللَّهُ الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ`, en: `And they brought upon his shirt false blood. [Jacob] said, "Rather, your souls have enticed you to something, so patience is most fitting. And Allah is the one sought for help against that which you describe."`, note: `First Shirt: "false blood" (dam kadhib). Jacob establishes the chapter's ethos of sabr jamil (beautiful patience) — echoed word for word in v. 83.` },
+      { v: 19, act: 2, theme: `Rescue & Sale`, ar: `وَجَاءَتْ سَيَّارَةٌ فَأَرْسَلُوا وَارِدَهُمْ فَأَدْلَىٰ دَلْوَهُ ۖ قَالَ يَا بُشْرَىٰ هَٰذَا غُلَامٌ ۚ وَأَسَرُّوهُ بِضَاعَةً ۚ وَاللَّهُ عَلِيمٌ بِمَا يَعْمَلُونَ`, en: `And there came a company of travelers; then they sent their water drawer, and he let down his bucket. He said, "Good news! Here is a boy." And they concealed him, [taking him] as merchandise; and Allah was knowing of what they did.`, note: `A bucket meant for water draws up a prophet; the caravan hides his nobility and treats him as commodity, while Allah watches.` },
+      { v: 20, act: 2, theme: `Rescue & Sale`, ar: `وَشَرَوْهُ بِثَمَنٍ بَخْسٍ دَرَاهِمَ مَعْدُودَةٍ وَكَانُوا فِيهِ مِنَ الزَّاهِدِينَ`, en: `And they sold him for a reduced price - a few dirhams - and they were, concerning him, of those content with little.`, note: `Sold cheaply because those who sold him had no idea of his true worth — a sharp contrast to Egypt soon entrusting its entire treasury to him.` },
+      { v: 21, act: 2, theme: `Providence`, ar: `وَقَالَ الَّذِي اشْتَرَاهُ مِنْ مِصْرَ لِامْرَأَتِهِ أَكْرِمِي مَثْوَاهُ عَسَىٰ أَنْ يَنْفَعَنَا أَوْ نَتَّخِذَهُ وَلَدًا ۚ وَكَذَٰلِكَ مَكَّنَّا لِيُوسُفَ فِي الْأَرْضِ وَلِنُعَلِّمَهُ مِنْ تَأْوِيلِ الْأَحَادِيثِ ۚ وَاللَّهُ غَالِبٌ عَلَىٰ أَمْرِهِ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ`, en: `And the one from Egypt who bought him said to his wife, "Make his residence comfortable. Perhaps he will benefit us, or we will adopt him as a son." And thus, We established Joseph in the land that We might teach him the interpretation of events. And Allah is predominant over His affair, but most of the people do not know.`, note: `First statement of divine sovereignty in the story: what looked like enslavement was actually Allah establishing (makkanna) Joseph in Egypt.` },
+      { v: 22, act: 2, theme: `Maturity`, ar: `وَلَمَّا بَلَغَ أَشُدَّهُ آتَيْنَاهُ حُكْمًا وَعِلْمًا ۚ وَكَذَٰلِكَ نَجْزِي الْمُحْسِنِينَ`, en: `And when Joseph reached maturity, We gave him judgment and knowledge. And thus We reward the doers of good.`, note: `Links wisdom (hukm) and knowledge ('ilm) to ihsan (moral excellence) — a title others repeatedly recognize in Joseph (vv. 36, 78, 90).` },
+      { v: 23, act: 2, theme: `Integrity`, ar: `وَرَاوَدَتْهُ الَّتِي هُوَ فِي بَيْتِهَا عَنْ نَفْسِهِ وَغَلَّقَتِ الْأَبْوَابَ وَقَالَتْ هَيْتَ لَكَ ۚ قَالَ مَعَاذَ اللَّهِ ۖ إِنَّهُ رَبِّي أَحْسَنَ مَثْوَايَ ۖ إِنَّهُ لَا يُفْلِحُ الظَّالِمُونَ`, en: `And she, in whose house he was, sought to seduce him. She closed the doors and said, "Come, you." He said, "[I seek] the refuge of Allah. Indeed, he is my master, who has made good my residence. Indeed, wrongdoers will not succeed."`, note: `Behind bolted doors, Joseph invokes three shields: fear of Allah ("refuge of Allah"), loyalty to his caretaker, and moral principle ("wrongdoers will not succeed").` },
+      { v: 24, act: 2, theme: `Divine Proof`, ar: `وَلَقَدْ هَمَّتْ بِهِ ۖ وَهَمَّ بِهَا لَوْلَا أَنْ رَأَىٰ بُرْهَانَ رَبِّهِ ۚ كَذَٰلِكَ لِنَصْرِفَ عَنْهُ السُّوءَ وَالْفَحْشَاءَ ۚ إِنَّهُ مِنْ عِبَادِنَا الْمُخْلَصِينَ`, en: `And she certainly determined [to seduce] him, and he would have inclined to her had he not seen the proof of his Lord. And thus [it was] that We should avert from him evil and immorality. Indeed, he was of Our chosen servants.`, note: `Acknowledges Joseph's real human struggle while highlighting Allah's protection (burhan) for His sincere, purified servants (al-mukhlasin).` },
+      { v: 25, act: 2, theme: `Shirt II`, ar: `وَاسْتَبَقَا الْبَابَ وَقَدَّتْ قَمِيصَهُ مِنْ دُبُرٍ وَأَلْفَيَا سَيِّدَهَا لَدَى الْبَابِ ۚ قَالَتْ مَا جَزَاءُ مَنْ أَرَادَ بِأَهْلِكَ سُوءًا إِلَّا أَنْ يُسْجَنَ أَوْ عَذَابٌ أَلِيمٌ`, en: `And they both raced to the door, and she tore his shirt from the back, and they found her husband at the door. She said, "What is the recompense of one who intended evil for your wife but that he be imprisoned or a painful punishment?"`, note: `Second Shirt: torn from behind during his flight. Caught at the threshold, the pursuer instantly reverses the accusation.` },
+      { v: 26, act: 2, theme: `Witness`, ar: `قَالَ هِيَ رَاوَدَتْنِي عَنْ نَفْسِي ۚ وَشَهِدَ شَاهِدٌ مِنْ أَهْلِهَا إِنْ كَانَ قَمِيصُهُ قُدَّ مِنْ قُبُلٍ فَصَدَقَتْ وَهُوَ مِنَ الْكَاذِبِينَ`, en: `[Joseph] said, "It was she who sought to seduce me." And a witness from her family testified. "If his shirt is torn from the front, then she has told the truth, and he is of the liars.`, note: `Joseph speaks in brief self-defense; a witness from her own household supplies an impartial forensic test.` },
+      { v: 27, act: 2, theme: `Witness`, ar: `وَإِنْ كَانَ قَمِيصُهُ قُدَّ مِنْ دُبُرٍ فَكَذَبَتْ وَهُوَ مِنَ الصَّادِقِينَ`, en: `But if his shirt is torn from the back, then she has lied, and he is of the truthful."`, note: `The physical evidence speaks unambiguously: fleeing leaves the tear on the back.` },
+      { v: 28, act: 2, theme: `Witness`, ar: `فَلَمَّا رَأَىٰ قَمِيصَهُ قُدَّ مِنْ دُبُرٍ قَالَ إِنَّهُ مِنْ كَيْدِكُنَّ ۖ إِنَّ كَيْدَكُنَّ عَظِيمٌ`, en: `So when her husband saw his shirt torn from the back, he said, "Indeed, it is of the women's plan. Indeed, your plan is great.`, note: `Al-'Azeez sees the truth immediately, recognizing the scheme at play.` },
+      { v: 29, act: 2, theme: `Suppression`, ar: `يُوسُفُ أَعْرِضْ عَنْ هَٰذَا ۚ وَاسْتَغْفِرِي لِذَنْبِكِ ۖ إِنَّكِ كُنْتِ مِنَ الْخَاطِئِينَ`, en: `Joseph, ignore this. And, [my wife], ask forgiveness for your sin. Indeed, you were of the sinful."`, note: `Rather than public justice, the husband asks Joseph to bury the scandal — setting up the gossip of v. 30 and Joseph's eventual demand for public clearance in v. 50.` },
+      { v: 30, act: 3, theme: `Gossip`, ar: `وَقَالَ نِسْوَةٌ فِي الْمَدِينَةِ امْرَأَتُ الْعَزِيزِ تُرَاوِدُ فَتَاهَا عَنْ نَفْسِهِ ۖ قَدْ شَغَفَهَا حُبًّا ۖ إِنَّا لَنَرَاهَا فِي ضَلَالٍ مُبِينٍ`, en: `And women in the city said, "The wife of al-'Azeez is seeking to seduce her slave boy; he has impassioned her with love. Indeed, we see her [to be] in clear error."`, note: `Word spreads among elite women in the city, mocking her passion.` },
+      { v: 31, act: 3, theme: `The Banquet`, ar: `فَلَمَّا سَمِعَتْ بِمَكْرِهِنَّ أَرْسَلَتْ إِلَيْهِنَّ وَأَعْتَدَتْ لَهُنَّ مُتَّكَأً وَآتَتْ كُلَّ وَاحِدَةٍ مِنْهُنَّ سِكِّينًا وَقَالَتِ اخْرُجْ عَلَيْهِنَّ ۖ فَلَمَّا رَأَيْنَهُ أَكْبَرْنَهُ وَقَطَّعْنَ أَيْدِيَهُنَّ وَقُلْنَ حَاشَ لِلَّهِ مَا هَٰذَا بَشَرًا إِنْ هَٰذَا إِلَّا مَلَكٌ كَرِيمٌ`, en: `So when she heard of their scheming, she sent for them and prepared for them a banquet and gave each one of them a knife and said [to Joseph], "Come out before them." And when they saw him, they greatly admired him and cut their hands and said, "Perfect is Allah! This is not a man; this is none but a noble angel."`, note: `A masterclass in staging: given knives to peel fruit, the women are so stunned by Joseph's dignity and beauty that they cut their own hands without feeling pain.` },
+      { v: 32, act: 3, theme: `Coercion`, ar: `قَالَتْ فَذَٰلِكُنَّ الَّذِي لُمْتُنَّنِي فِيهِ ۖ وَلَقَدْ رَاوَدْتُهُ عَنْ نَفْسِهِ فَاسْتَعْصَمَ ۖ وَلَئِنْ لَمْ يَفْعَلْ مَا آمُرُهُ لَيُسْجَنَنَّ وَلَيَكُونًا مِنَ الصَّاغِرِينَ`, en: `She said, "That is the one about whom you blamed me. And I certainly sought to seduce him, but he firmly refused; and if he will not do what I order him, he will surely be imprisoned and will be of those debased."`, note: `Her confession of Joseph's absolute self-restraint (fasta'sama) is followed by an explicit threat of imprisonment.` },
+      { v: 33, act: 3, theme: `Sanctuary`, ar: `قَالَ رَبِّ السِّجْنُ أَحَبُّ إِلَيَّ مِمَّا يَدْعُونَنِي إِلَيْهِ ۖ وَإِلَّا تَصْرِفْ عَنِّي كَيْدَهُنَّ أَصْبُ إِلَيْهِنَّ وَأَكُنْ مِنَ الْجَاهِلِينَ`, en: `He said, "My Lord, prison is more to my liking than that to which they invite me. And if You do not avert from me their plan, I might incline toward them and [thus] be of the ignorant."`, note: `Note the plural pronoun ("to which they invite me"): pressure now comes from the entire circle of women. Joseph relies not on his own willpower, but on Allah's protection.` },
+      { v: 34, act: 3, theme: `Response`, ar: `فَاسْتَجَابَ لَهُ رَبُّهُ فَصَرَفَ عَنْهُ كَيْدَهُنَّ ۚ إِنَّهُ هُوَ السَّمِيعُ الْعَلِيمُ`, en: `So his Lord responded to him and averted from him their plan. Indeed, He is the Hearing, the Knowing.`, note: `Immediate divine answer: prison becomes a fortress protecting his purity.` },
+      { v: 35, act: 3, theme: `Imprisonment`, ar: `ثُمَّ بَدَا لَهُمْ مِنْ بَعْدِ مَا رَأَوُا الْآيَاتِ لَيَسْجُنُنَّهُ حَتَّىٰ حِينٍ`, en: `Then it appeared to them after they had seen the signs that al-'Azeez should surely imprison him for a time.`, note: `Despite seeing unmistakable signs of Joseph's innocence, political expediency leads them to lock him away "for a time".` },
+      { v: 36, act: 3, theme: `Prison Dreams`, ar: `وَدَخَلَ مَعَهُ السِّجْنَ فَتَيَانِ ۖ قَالَ أَحَدُهُمَا إِنِّي أَرَانِي أَعْصِرُ خَمْرًا ۖ وَقَالَ الْآخَرُ إِنِّي أَرَانِي أَحْمِلُ فَوْقَ رَأْسِي خُبْزًا تَأْكُلُ الطَّيْرُ مِنْهُ ۖ نَبِّئْنَا بِتَأْوِيلِهِ ۖ إِنَّا نَرَاكَ مِنَ الْمُحْسِنِينَ`, en: `And there entered the prison with him two young men. One of them said, "Indeed, I have seen myself [in a dream] pressing wine." The other said, "Indeed, I have seen myself carrying upon my head [some] bread, from which the birds were eating. Inform us of its interpretation; indeed, we see you to be of those who do good."`, note: `Even as a prisoner, Joseph radiates compassion and excellence so visibly that inmates immediately trust him as one of al-muhsinin.` },
+      { v: 37, act: 3, theme: `Da'wah`, ar: `قَالَ لَا يَأْتِيكُمَا طَعَامٌ تُرْزَقَانِهِ إِلَّا نَبَّأْتُكُمَا بِتَأْوِيلِهِ قَبْلَ أَنْ يَأْتِيَكُمَا ۚ ذَٰلِكُمَا مِمَّا عَلَّمَنِي رَبِّي ۚ إِنِّي تَرَكْتُ مِلَّةَ قَوْمٍ لَا يُؤْمِنُونَ بِاللَّهِ وَهُمْ بِالْآخِرَةِ هُمْ كَافِرُونَ`, en: `He said, "You will not receive food that is provided to you except that I will inform you of its interpretation before it comes to you. That is from what my Lord has taught me. Indeed, I have left the religion of a people who do not believe in Allah, and they, in the Hereafter, are disbelievers.`, note: `Joseph comforts them before delivering a hard truth ("before your meal arrives") and traces all his knowledge back to his Lord.` },
+      { v: 38, act: 3, theme: `Tawhid`, ar: `وَاتَّبَعْتُ مِلَّةَ آبَائِي إِبْرَاهِيمَ وَإِسْحَاقَ وَيَعْقُوبَ ۚ مَا كَانَ لَنَا أَنْ نُشْرِكَ بِاللَّهِ مِنْ شَيْءٍ ۚ ذَٰلِكَ مِنْ فَضْلِ اللَّهِ عَلَيْنَا وَعَلَى النَّاسِ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يَشْكُرُونَ`, en: `And I have followed the religion of my fathers, Abraham, Isaac and Jacob. And it was not for us to associate anything with Allah. That is from the favor of Allah upon us and upon the people, but most of the people are not grateful.`, note: `Claims his Abrahamic heritage in prison, framing monotheism as a mercy upon all humanity.` },
+      { v: 39, act: 3, theme: `Core Center`, ar: `يَا صَاحِبَيِ السِّجْنِ أَأَرْبَابٌ مُتَفَرِّقُونَ خَيْرٌ أَمِ اللَّهُ الْوَاحِدُ الْقَهَّارُ`, en: `O [my] two companions of prison, are separate lords better or Allah, the One, the Prevailing?`, note: `The theological center of the entire chapter: addressing inmates tenderly as "companions of prison" and contrasting fractured idols with the One Sovereign God.` },
+      { v: 40, act: 3, theme: `Core Center`, ar: `مَا تَعْبُدُونَ مِنْ دُونِهِ إِلَّا أَسْمَاءً سَمَّيْتُمُوهَا أَنْتُمْ وَآبَاؤُكُمْ مَا أَنْزَلَ اللَّهُ بِهَا مِنْ سُلْطَانٍ ۚ إِنِ الْحُكْمُ إِلَّا لِلَّهِ ۚ أَمَرَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ ۚ ذَٰلِكَ الدِّينُ الْقَيِّمُ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ`, en: `You worship not besides Him except [mere] names you have named them, you and your fathers, for which Allah has sent down no authority. Legislation is not but for Allah. He has commanded that you worship not except Him. That is the correct religion, but most of the people do not know.`, note: `Exposes false deities as hollow human labels devoid of authority, affirming that ultimate judgment (al-hukm) belongs to Allah alone.` },
+      { v: 41, act: 3, theme: `Interpretation`, ar: `يَا صَاحِبَيِ السِّجْنِ أَمَّا أَحَدُكُمَا فَيَسْقِي رَبَّهُ خَمْرًا ۖ وَأَمَّا الْآخَرُ فَيُصْلَبُ فَتَأْكُلُ الطَّيْرُ مِنْ رَأْسِهِ ۚ قُضِيَ الْأَمْرُ الَّذِي فِيهِ تَسْتَفْتِيَانِ`, en: `O two companions of prison, as for one of you, he will give drink to his master of wine; but as for the other, he will be crucified, and the birds will eat from his head. The matter has been decreed about which you both inquire."`, note: `Tactfully avoids naming which man will be executed when delivering the decree.` },
+      { v: 42, act: 3, theme: `Forgotten`, ar: `وَقَالَ لِلَّذِي ظَنَّ أَنَّهُ نَاجٍ مِنْهُمَا اذْكُرْنِي عِنْدَ رَبِّكَ فَأَنْسَاهُ الشَّيْطَانُ ذِكْرَ رَبِّهِ فَلَبِثَ فِي السِّجْنِ بِضْعَ سِنِينَ`, en: `And he said to the one whom he knew would go free, "Mention me before your master." But Satan made him forget the mention [to] his master, and Joseph remained in prison several years.`, note: `Waiting in prison several more years prepares Joseph for national leadership — and ensures his release comes at the king's own need, not as a favor.` },
+      { v: 43, act: 4, theme: `King's Dream`, ar: `وَقَالَ الْمَلِكُ إِنِّي أَرَىٰ سَبْعَ بَقَرَاتٍ سِمَانٍ يَأْكُلُهُنَّ سَبْعٌ عِجَافٌ وَسَبْعَ سُنْبُلَاتٍ خُضْرٍ وَأُخَرَ يَابِسَاتٍ ۖ يَا أَيُّهَا الْمَلَأُ أَفْتُونِي فِي رُؤْيَايَ إِنْ كُنْتُمْ لِلرُّؤْيَا تَعْبُرُونَ`, en: `And [subsequently] the king said, "Indeed, I have seen [in a dream] seven fat cows being eaten by seven [that were] lean, and seven green spikes [of grain] and others [that were] dry. O eminent ones, explain to me my vision, if you should interpret visions."`, note: `Notice the title shifts from al-'Azeez (chief minister) to al-Malik (the king), matching the historical transition to supreme royal authority.` },
+      { v: 44, act: 4, theme: `King's Dream`, ar: `قَالُوا أَضْغَاثُ أَحْلَامٍ ۖ وَمَا نَحْنُ بِتَأْوِيلِ الْأَحْلَامِ بِعَالِمِينَ`, en: `They said, "[It is but] a mixture of false dreams, and we are not learned in the interpretation of dreams."`, note: `The court's inability to decode the dream sets the stage for Joseph's unmatched insight.` },
+      { v: 45, act: 4, theme: `Remembrance`, ar: `وَقَالَ الَّذِي نَجَا مِنْهُمَا وَادَّكَرَ بَعْدَ أُمَّةٍ أَنَا أُنَبِّئُكُمْ بِتَأْوِيلِهِ فَأَرْسِلُونِ`, en: `But the one who was freed and remembered after a time said, "I will inform you of its interpretation, so send me forth."`, note: `After a long span (ummah), the cupbearer finally remembers Joseph.` },
+      { v: 46, act: 4, theme: `Request`, ar: `يُوسُفُ أَيُّهَا الصِّدِّيقُ أَفْتِنَا فِي سَبْعِ بَقَرَاتٍ سِمَانٍ يَأْكُلُهُنَّ سَبْعٌ عِجَافٌ وَسَبْعَ سُنْبُلَاتٍ خُضْرٍ وَأُخَرَ يَابِسَاتٍ لَعَلِّي أَرْجِعُ إِلَى النَّاسِ لَعَلَّهُمْ يَعْلَمُونَ`, en: `[He said], "Joseph, O man of truth, explain to us about seven fat cows eaten by seven [that were] lean, and seven green spikes [of grain] and others [that were] dry - that I may return to the people; perhaps they will know [about you]."`, note: `He greets Joseph as "O man of truth" (ayyuha al-siddiq) — recognizing both his truthfulness and reliability.` },
+      { v: 47, act: 4, theme: `Policy`, ar: `قَالَ تَزْرَعُونَ سَبْعَ سِنِينَ دَأَبًا فَمَا حَصَدْتُمْ فَذَرُوهُ فِي سُنْبُلِهِ إِلَّا قَلِيلًا مِمَّا تَأْكُلُونَ`, en: `[Joseph] said, "You will plant for seven years consecutively; and what you harvest leave in its spikes, except a little from which you will eat.`, note: `Joseph goes beyond mere dream decoding: he provides an immediate national agricultural preservation plan (leaving grain on the stalk to prevent spoilage).` },
+      { v: 48, act: 4, theme: `Policy`, ar: `ثُمَّ يَأْتِي مِنْ بَعْدِ ذَٰلِكَ سَبْعٌ شِدَادٌ يَأْكُلْنَ مَا قَدَّمْتُمْ لَهُنَّ إِلَّا قَلِيلًا مِمَّا تُحْصِنُونَ`, en: `Then will come after that seven difficult [years] which will consume what you saved for them, except a little from which you will store.`, note: `Reserving seed grain even through the severe famine ensures society can plant again once the crisis ends.` },
+      { v: 49, act: 4, theme: `Hope`, ar: `ثُمَّ يَأْتِي مِنْ بَعْدِ ذَٰلِكَ عَامٌ فِيهِ يُغَاثُ النَّاسُ وَفِيهِ يَعْصِرُونَ`, en: `Then will come after that a year in which the people will be given rain and in which they will press [olives and grapes]."`, note: `Reveals an extra year of relief not explicitly pictured in the king's dream — demonstrating prophetic insight beyond the symbols.` },
+      { v: 50, act: 4, theme: `Vindication`, ar: `وَقَالَ الْمَلِكُ ائْتُونِي بِهِ ۖ فَلَمَّا جَاءَهُ الرَّسُولُ قَالَ ارْجِعْ إِلَىٰ رَبِّكَ فَاسْأَلْهُ مَا بَالُ النِّسْوَةِ اللَّاتِي قَطَّعْنَ أَيْدِيَهُنَّ ۚ إِنَّ رَبِّي بِكَيْدِهِنَّ عَلِيمٌ`, en: `And the king said, "Bring him to me." But when the messenger came to him, [Joseph] said, "Return to your master and ask him what is the case of the women who cut their hands. Indeed, my Lord is Knowing of their plan."`, note: `A decisive moment of dignity: after years in prison, Joseph refuses to walk out under a cloud of suspicion, insisting on an official inquiry into the women's scheme.` },
+      { v: 51, act: 4, theme: `Confession`, ar: `قَالَ مَا خَطْبُكُنَّ إِذْ رَاوَدْتُنَّ يُوسُفَ عَنْ نَفْسِهِ ۚ قُلْنَ حَاشَ لِلَّهِ مَا عَلِمْنَا عَلَيْهِ مِنْ سُوءٍ ۚ قَالَتِ امْرَأَتُ الْعَزِيزِ الْآنَ حَصْحَصَ الْحَقُّ أَنَا رَاوَدْتُهُ عَنْ نَفْسِهِ وَإِنَّهُ لَمِنَ الصَّادِقِينَ`, en: `Said [the king to the women], "What was your condition when you sought to seduce Joseph?" They said, "Perfect is Allah! We know about him no evil." The wife of al-'Azeez said, "Now the truth has become evident. It was I who sought to seduce him, and indeed, he is of the truthful.`, note: `Public exoneration: both the women and al-'Azeez's wife testify clearly that Joseph is entirely blameless and truthful.` },
+      { v: 52, act: 4, theme: `Integrity`, ar: `ذَٰلِكَ لِيَعْلَمَ أَنِّي لَمْ أَخُنْهُ بِالْغَيْبِ وَأَنَّ اللَّهَ لَا يَهْدِي كَيْدَ الْخَائِنِينَ`, en: `That is so al-'Azeez will know that I did not betray him in [his] absence and that Allah does not guide the plan of betrayers.`, note: `Joseph's motive for requesting the inquiry was ethical fidelity: clearing his record so al-'Azeez knows he never betrayed his household trust.` },
+      { v: 53, act: 4, theme: `Self-Knowledge`, ar: `وَمَا أُبَرِّئُ نَفْسِي ۚ إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ إِلَّا مَا رَحِمَ رَبِّي ۚ إِنَّ رَبِّي غَفُورٌ رَحِيمٌ`, en: `And I do not acquit myself. Indeed, the soul is a persistent enjoiner of evil, except those upon which my Lord has mercy. Indeed, my Lord is Forgiving and Merciful."`, note: `Humility at the peak of vindication: human rectitude depends on Allah's mercy, not self-righteousness.` },
+      { v: 54, act: 4, theme: `Promotion`, ar: `وَقَالَ الْمَلِكُ ائْتُونِي بِهِ أَسْتَخْلِصْهُ لِنَفْسِي ۖ فَلَمَّا كَلَّمَهُ قَالَ إِنَّكَ الْيَوْمَ لَدَيْنَا مَكِينٌ أَمِينٌ`, en: `And the king said, "Bring him to me; I will appoint him exclusively for myself." And when he spoke to him, he said, "Indeed, you are today established [in position] and trusted."`, note: `Speaking directly with Joseph confirms his character: established (makin) and trustworthy (amin).` },
+      { v: 55, act: 4, theme: `Stewardship`, ar: `قَالَ اجْعَلْنِي عَلَىٰ خَزَائِنِ الْأَرْضِ ۖ إِنِّي حَفِيظٌ عَلِيمٌ`, en: `[Joseph] said, "Appoint me over the storehouses of the land. Indeed, I will be a knowing guardian."`, note: `Not seeking power for vanity, Joseph volunteers for the hardest administrative post in an upcoming famine because he combines trustworthiness (hafiz) and competence ('alim).` },
+      { v: 56, act: 4, theme: `Providence`, ar: `وَكَذَٰلِكَ مَكَّنَّا لِيُوسُفَ فِي الْأَرْضِ يَتَبَوَّأُ مِنْهَا حَيْثُ يَشَاءُ ۚ نُصِيبُ بِرَحْمَتِنَا مَنْ نَشَاءُ ۖ وَلَا نُضِيعُ أَجْرَ الْمُحْسِنِينَ`, en: `And thus We established Joseph in the land to settle therein wherever he willed. We touch with Our mercy whom We will, and We do not allow to be lost the reward of those who do good.`, note: `Echoes v. 21 using the same verb makkanna ("We established"), now at the summit of governance.` },
+      { v: 57, act: 4, theme: `Perspective`, ar: `وَلَأَجْرُ الْآخِرَةِ خَيْرٌ لِلَّذِينَ آمَنُوا وَكَانُوا يَتَّقُونَ`, en: `And the reward of the Hereafter is better for those who believed and were fearing Allah.`, note: `Reminds the reader that even an Egyptian throne is minor compared to the reward of the Hereafter for faith and taqwa.` },
+      { v: 58, act: 5, theme: `Encounter`, ar: `وَجَاءَ إِخْوَةُ يُوسُفَ فَدَخَلُوا عَلَيْهِ فَعَرَفَهُمْ وَهُمْ لَهُ مُنْكِرُونَ`, en: `And the brothers of Joseph came [seeking food], and they entered upon him; and he recognized them, but he was to them unknown.`, note: `Fulfillment of the well inspiration (v. 15) begins: he recognizes them immediately, while they see only an Egyptian ruler.` },
+      { v: 59, act: 5, theme: `Strategy`, ar: `وَلَمَّا جَهَّزَهُمْ بِجَهَازِهِمْ قَالَ ائْتُونِي بِأَخٍ لَكُمْ مِنْ أَبِيكُمْ ۚ أَلَا تَرَوْنَ أَنِّي أُوفِي الْكَيْلَ وَأَنَا خَيْرُ الْمُنْزِلِينَ`, en: `And when he had furnished them with their supplies, he said, "Bring me a brother of yours from your father. Do not you see that I give full measure and that I am the best of accommodators?`, note: `First honors them with full measure and hospitality, then calmly asks them to bring Benjamin on their next trip.` },
+      { v: 60, act: 5, theme: `Condition`, ar: `فَإِنْ لَمْ تَأْتُونِي بِهِ فَلَا كَيْلَ لَكُمْ عِنْدِي وَلَا تَقْرَبُونِ`, en: `But if you do not bring him to me, no measure will there be [hereafter] for you from me, nor will you approach me."`, note: `Sets a firm condition that compels them to return with Benjamin.` },
+      { v: 61, act: 5, theme: `Persuasion`, ar: `قَالُوا سَنُرَاوِدُ عَنْهُ أَبَاهُ وَإِنَّا لَفَاعِلُونَ`, en: `They said, "We will attempt to dissuade his father from [keeping] him, and indeed, we will do [it]."`, note: `They anticipate Jacob's deep reluctance to part with his remaining beloved son.` },
+      { v: 62, act: 5, theme: `Generosity`, ar: `وَقَالَ لِفِتْيَانِهِ اجْعَلُوا بِضَاعَتَهُمْ فِي رِحَالِهِمْ لَعَلَّهُمْ يَعْرِفُونَهَا إِذَا انْقَلَبُوا إِلَىٰ أَهْلِهِمْ لَعَلَّهُمْ يَرْجِعُونَ`, en: `And [Joseph] said to his servants, "Put their merchandise into their saddlebags so they might recognize it when they have gone back to their people that perhaps they will [again] return."`, note: `Secretly returns their barter goods so they can afford a second journey — and feel morally obliged to return what was given.` },
+      { v: 63, act: 5, theme: `Appeal`, ar: `فَلَمَّا رَجَعُوا إِلَىٰ أَبِيهِمْ قَالُوا يَا أَبَانَا مُنِعَ مِنَّا الْكَيْلُ فَأَرْسِلْ مَعَنَا أَخَانَا نَكْتَلْ وَإِنَّا لَهُ لَحَافِظُونَ`, en: `So when they returned to their father, they said, "O our father, [further] measure has been denied to us, so send with us our brother [that] we will be given measure. And indeed, we will be his guardians."`, note: `They repeat the exact vow from v. 12: "And indeed, we will be his guardians."` },
+      { v: 64, act: 5, theme: `Trust`, ar: `قَالَ هَلْ آمَنُكُمْ عَلَيْهِ إِلَّا كَمَا أَمِنْتُكُمْ عَلَىٰ أَخِيهِ مِنْ قَبْلُ ۖ فَاللَّهُ خَيْرٌ حَافِظًا ۖ وَهُوَ أَرْحَمُ الرَّاحِمِينَ`, en: `He said, "Should I entrust you with him except [under coercion] as I entrusted you with his brother before? But Allah is the best guardian, and He is the most merciful of the merciful."`, note: `Jacob recalls their broken promise over Joseph and places his reliance not in them, but in Allah, the Best Guardian.` },
+      { v: 65, act: 5, theme: `Discovery`, ar: `وَلَمَّا فَتَحُوا مَتَاعَهُمْ وَجَدُوا بِضَاعَتَهُمْ رُدَّتْ إِلَيْهِمْ ۖ قَالُوا يَا أَبَانَا مَا نَبْغِي ۖ هَٰذِهِ بِضَاعَتُنَا رُدَّتْ إِلَيْنَا ۖ وَنَمِيرُ أَهْلَنَا وَنَحْفَظُ أَخَانَا وَنَزْدَادُ كَيْلَ بَعِيرٍ ۖ ذَٰلِكَ كَيْلٌ يَسِيرٌ`, en: `And when they opened their baggage, they found their merchandise returned to them. They said, "O our father, what [more] could we desire? This is our merchandise returned to us. And we will obtain supplies for our family and protect our brother and obtain an increase of a camel's load; that is an easy measurement."`, note: `Finding their payment returned proves the Egyptian minister's extraordinary generosity and eases Jacob's hesitation.` },
+      { v: 66, act: 5, theme: `Covenant`, ar: `قَالَ لَنْ أُرْسِلَهُ مَعَكُمْ حَتَّىٰ تُؤْتُونِ مَوْثِقًا مِنَ اللَّهِ لَتَأْتُنَّنِي بِهِ إِلَّا أَنْ يُحَاطَ بِكُمْ ۖ فَلَمَّا آتَوْهُ مَوْثِقَهُمْ قَالَ اللَّهُ عَلَىٰ مَا نَقُولُ وَكِيلٌ`, en: `[Jacob] said, "Never will I send him with you until you give me a promise by Allah that you will bring him [back] to me, unless you should be surrounded by enemies." And when they had given their promise, he said, "Allah, over what we say, is Witness."`, note: `Jacob binds them by a solemn oath before Allah — an oath that will constrain their eldest brother in v. 80.` },
+      { v: 67, act: 5, theme: `Tawakkul`, ar: `وَقَالَ يَا بَنِيَّ لَا تَدْخُلُوا مِنْ بَابٍ وَاحِدٍ وَادْخُلُوا مِنْ أَبْوَابٍ مُتَفَرِّقَةٍ ۖ وَمَا أَغْنِي عَنْكُمْ مِنَ اللَّهِ مِنْ شَيْءٍ ۖ إِنِ الْحُكْمُ إِلَّا لِلَّهِ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَعَلَيْهِ فَلْيَتَوَكَّلِ الْمُتَوَكِّلُونَ`, en: `And he said, "O my sons, do not enter from one gate but enter from different gates; and I cannot avail you against [the decree of] Allah at all. The decision is only for Allah; upon Him I have relied, and upon Him let those who would rely [indeed] rely."`, note: `Classic balance of practical precaution (entering separate gates to avoid envy/suspicion) paired with complete reliance on Allah.` },
+      { v: 68, act: 5, theme: `Knowledge`, ar: `وَلَمَّا دَخَلُوا مِنْ حَيْثُ أَمَرَهُمْ أَبُوهُمْ مَا كَانَ يُغْنِي عَنْكُمْ مِنَ اللَّهِ مِنْ شَيْءٍ إِلَّا حَاجَةً فِي نَفْسِ يَعْقُوبَ قَضَاهَا ۚ وَإِنَّهُ لَذُو عِلْمٍ لِمَا عَلَّمْنَاهُ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ`, en: `And when they entered from where their father had ordered them, it did not avail them against Allah at all except [it was] a need within the soul of Jacob, which he satisfied. And indeed, he was a possessor of knowledge because of what We had taught him, but most of the people do not know.`, note: `Clarifies that precautions do not override divine decree; Jacob acted out of fatherly care and divinely taught wisdom.` },
+      { v: 69, act: 6, theme: `Reunion I`, ar: `وَلَمَّا دَخَلُوا عَلَىٰ يُوسُفَ آوَىٰ إِلَيْهِ أَخَاهُ ۖ قَالَ إِنِّي أَنَا أَخُوكَ فَلَا تَبْتَئِسْ بِمَا كَانُوا يَعْمَلُونَ`, en: `And when they entered upon Joseph, he took his brother to himself; he said, "Indeed, I am your brother, so do not despair over what they used to do [to me]."`, note: `A quiet private reunion: Joseph reassures Benjamin immediately before staging the test that will keep him safely in Egypt.` },
+      { v: 70, act: 6, theme: `The Bowl`, ar: `فَلَمَّا جَهَّزَهُمْ بِجَهَازِهِمْ جَعَلَ السِّقَايَةَ فِي رَحْلِ أَخِيهِ ثُمَّ أَذَّنَ مُؤَذِّنٌ أَيَّتُهَا الْعِيرُ إِنَّكُمْ لَسَارِقُونَ`, en: `So when he had furnished them with their supplies, he put the [gold measuring] bowl into the bag of his brother. Then an announcer called out, "O caravan, indeed you are thieves."`, note: `Joseph places the king's measuring bowl in Benjamin's pack so the brothers are halted and tested under pressure.` },
+      { v: 71, act: 6, theme: `Inquiry`, ar: `قَالُوا وَأَقْبَلُوا عَلَيْهِمْ مَاذَا تَفْقِدُونَ`, en: `They said while approaching them, "What is it you are missing?"`, note: `Confident of their innocence, the brothers turn back immediately to face the charge.` },
+      { v: 72, act: 6, theme: `Inquiry`, ar: `قَالُوا نَفْقِدُ صُوَاعَ الْمَلِكِ وَلِمَنْ جَاءَ بِهِ حِمْلُ بَعِيرٍ وَأَنَا بِهِ زَعِيمٌ`, en: `They said, "We are missing the measure of the king. And for he who produces it is [the reward of] a camel's load, and I am responsible for it."`, note: `A dual-purpose vessel (suwa'): the royal drinking cup and standard grain measure.` },
+      { v: 73, act: 6, theme: `Defense`, ar: `قَالُوا تَاللَّهِ لَقَدْ عَلِمْتُمْ مَا جِئْنَا لِنَفْسِدَ فِي الْأَرْضِ وَمَا كُنَّا سَارِقِينَ`, en: `They said, "By Allah, you have certainly known that we did not come to cause corruption in the land, and we have not been thieves."`, note: `Their upright conduct during their stays in Egypt makes the accusation shocking to them.` },
+      { v: 74, act: 6, theme: `Verdict`, ar: `قَالُوا فَمَا جَزَاؤُهُ إِنْ كُنْتُمْ كَاذِبِينَ`, en: `The accusers said, "Then what would be its recompense if you should be liars?"`, note: `Crucial legal move: the officials invite the brothers themselves to state the penalty.` },
+      { v: 75, act: 6, theme: `Verdict`, ar: `قَالُوا جَزَاؤُهُ مَنْ وُجِدَ فِي رَحْلِهِ فَهُوَ جَزَاؤُهُ ۚ كَذَٰلِكَ نَجْزِي الظَّالِمِينَ`, en: `[The brothers] said, "Its recompense is that he in whose bag it is found - he [himself] will be its recompense. Thus do we recompense the wrongdoers."`, note: `They declare their family's law — enslavement/detention of the person holding the item — sealing the exact mechanism Joseph needed.` },
+      { v: 76, act: 6, theme: `Divine Plan`, ar: `فَبَدَأَ بِأَوْعِيَتِهِمْ قَبْلَ وِعَاءِ أَخِيهِ ثُمَّ اسْتَخْرَجَهَا مِنْ وِعَاءِ أَخِيهِ ۚ كَذَٰلِكَ كِدْنَا لِيُوسُفَ ۖ مَا كَانَ لِيَأْخُذَ أَخَاهُ فِي دِينِ الْمَلِكِ إِلَّا أَنْ يَشَاءَ اللَّهُ ۚ نَرْفَعُ دَرَجَاتٍ مَنْ نَشَاءُ ۗ وَفَوْقَ كُلِّ ذِي عِلْمٍ عَلِيمٌ`, en: `So he began [the search] with their bags before the bag of his brother; then he extracted it from the bag of his brother. Thus did We plan for Joseph. He could not have taken his brother within the religion of the king except that Allah willed. We raise in degrees whom We will, but over every possessor of knowledge is one [more] knowing.`, note: `Searching the other bags first averts suspicion. Explains why: under Egyptian law, theft did not yield custody of the person; Allah inspired Joseph's legal stratagem.` },
+      { v: 77, act: 6, theme: `Restraint`, ar: `قَالُوا إِنْ يَسْرِقْ فَقَدْ سَرَقَ أَخٌ لَهُ مِنْ قَبْلُ ۚ فَأَسَرَّهَا يُوسُفُ فِي نَفْسِهِ وَلَمْ يُبْدِهَا لَهُمْ ۚ قَالَ أَنْتُمْ شَرٌّ مَكَانًا ۖ وَاللَّهُ أَعْلَمُ بِمَا تَصِفُونَ`, en: `They said, "If he steals a brother of his has stolen before." But Joseph kept it within himself and did not reveal it to them. He said, "You are worse in position, and Allah is most knowing of what you describe."`, note: `They slander Joseph right to his face to distance themselves from Benjamin. Joseph swallows the insult silently — demonstrating monumental self-mastery.` },
+      { v: 78, act: 6, theme: `Test`, ar: `قَالُوا يَا أَيُّهَا الْعَزِيزُ إِنَّ لَهُ أَبًا شَيْخًا كَبِيرًا فَخُذْ أَحَدَنَا مَكَانَهُ ۖ إِنَّا نَرَاكَ مِنَ الْمُحْسِنِينَ`, en: `They said, "O 'Azeez, indeed he has a father [who is] an old man, so take one of us in place of him. Indeed, we see you as a doer of good."`, note: `Progress in character: years ago they wanted to rid themselves of a brother; now they offer themselves in Benjamin's place out of concern for their aging father.` },
+      { v: 79, act: 6, theme: `Justice`, ar: `قَالَ مَعَاذَ اللَّهِ أَنْ نَأْخُذَ إِلَّا مَنْ وَجَدْنَا مَتَاعَنَا عِنْدَهُ إِنَّا إِذًا لَظَالِمُونَ`, en: `He said, "[I seek] the refuge of Allah [to prevent] that we take except him with whom we found our possession. Indeed, we would then be unjust."`, note: `Note that Joseph never calls Benjamin a thief — he carefully says only "him with whom we found our possession" (man wajadna mata'ana 'indahu).` },
+      { v: 80, act: 6, theme: `Remorse`, ar: `فَلَمَّا اسْتَيْأَسُوا مِنْهُ خَلَصُوا نَجِيًّا ۖ قَالَ كَبِيرُهُمْ أَلَمْ تَعْلَمُوا أَنَّ أَبَاكُمْ قَدْ أَخَذَ عَلَيْكُمْ مَوْثِقًا مِنَ اللَّهِ وَمِنْ قَبْلُ مَا فَرَّطْتُمْ فِي يُوسُفَ ۖ فَلَنْ أَبْرَحَ الْأَرْضَ حَتَّىٰ يَأْذَنَ لِي أَبِي أَوْ يَحْكُمَ اللَّهُ لِي ۖ وَهُوَ خَيْرُ الْحَاكِمِينَ`, en: `So when they had despaired of him, they secluded themselves in private consultation. The eldest of them said, "Do you not know that your father has taken upon you an oath by Allah and [that] before you failed in [your duty to] Joseph? So I will never leave [this] land until my father permits me or Allah decides for me, and He is the best of judges.`, note: `Accountability surfaces: the eldest brother remembers both their solemn oath and their earlier betrayal of Joseph, choosing exile over breaking his word again.` },
+      { v: 81, act: 6, theme: `Truthfulness`, ar: `ارْجِعُوا إِلَىٰ أَبِيكُمْ فَقُولُوا يَا أَبَانَا إِنَّ ابْنَكَ سَرَقَ وَمَا شَهِدْنَا إِلَّا بِمَا عَلِمْنَا وَمَا كُنَّا لِلْغَيْبِ حَافِظِينَ`, en: `Return to your father and say, "O our father, indeed your son has stolen, and we did not testify except to what we knew. And we were not witnesses of the unseen,`, note: `For the first time they must tell a story they genuinely believe to be true — yet ironically, their past lies rob them of credibility.` },
+      { v: 82, act: 6, theme: `Truthfulness`, ar: `وَاسْأَلِ الْقَرْيَةَ الَّتِي كُنَّا فِيهَا وَالْعِيرَ الَّتِي أَقْبَلْنَا فِيهَا ۖ وَإِنَّا لَصَادِقُونَ`, en: `And ask the city in which we were and the caravan in which we came and indeed, we are truthful,"`, note: `Calling the city and caravan as witnesses shows their desperation to be believed.` },
+      { v: 83, act: 6, theme: `Patience II`, ar: `قَالَ بَلْ سَوَّلَتْ لَكُمْ أَنْفُسُكُمْ أَمْرًا ۖ فَصَبْرٌ جَمِيلٌ ۖ عَسَى اللَّهُ أَنْ يَأْتِيَنِي بِهِمْ جَمِيعًا ۚ إِنَّهُ هُوَ الْعَلِيمُ الْحَكِيمُ`, en: `[Jacob] said, "Rather, your souls have enticed you to something, so patience is most fitting. Perhaps Allah will bring them to me all together. Indeed it is He who is the Knowing, the Wise."`, note: `Echoes v. 18 almost verbatim, but now adds expectant hope: "Perhaps Allah will bring them to me all together" — including Joseph, Benjamin, and the eldest son.` },
+      { v: 84, act: 6, theme: `Grief`, ar: `وَتَوَلَّىٰ عَنْهُمْ وَقَالَ يَا أَسَفَىٰ عَلَىٰ يُوسُفَ وَابْيَضَّتْ عَيْنَاهُ مِنَ الْحُزْنِ فَهُوَ كَظِيمٌ`, en: `And he turned away from them and said, "Oh, my sorrow over Joseph," and his eyes became white from grief, for he was [of that] a suppressor.`, note: `Loss of Benjamin reopens the wound of Joseph; Jacob loses his sight through suppressed, silent sorrow — showing that patience does not forbid human tears.` },
+      { v: 85, act: 6, theme: `Tension`, ar: `قَالُوا تَاللَّهِ تَفْتَأُ تَذْكُرُ يُوسُفَ حَتَّىٰ تَكُونَ حَرَضًا أَوْ تَكُونَ مِنَ الْهَالِكِينَ`, en: `They said, "By Allah, you will not cease remembering Joseph until you become fatally ill or become of those who perish."`, note: `Even now, his sons fail to grasp the spiritual depth of his remembrance and grief.` },
+      { v: 86, act: 6, theme: `Prayer`, ar: `قَالَ إِنَّمَا أَشْكُو بَثِّي وَحُزْنِي إِلَى اللَّهِ وَأَعْلَمُ مِنَ اللَّهِ مَا لَا تَعْلَمُونَ`, en: `He said, "I only complain of my suffering and my grief to Allah, and I know from Allah that which you do not know.`, note: `Defines "beautiful patience": not bottling up pain, nor complaining to creatures, but pouring raw grief directly to Allah.` },
+      { v: 87, act: 6, theme: `Hope`, ar: `يَا بَنِيَّ اذْهَبُوا فَتَحَسَّسُوا مِنْ يُوسُفَ وَأَخِيهِ وَلَا تَيْأَسُوا مِنْ رَوْحِ اللَّهِ ۖ إِنَّهُ لَا يَيْأَسُ مِنْ رَوْحِ اللَّهِ إِلَّا الْقَوْمُ الْكَافِرُونَ`, en: `O my sons, go and find out about Joseph and his brother and despair not of relief from Allah. Indeed, no one despairs of relief from Allah except the disbelieving people."`, note: `At the darkest point (blind, bereaved of three sons), Jacob sends them back with an unforgettable maxim against despair.` },
+      { v: 88, act: 7, theme: `Humility`, ar: `فَلَمَّا دَخَلُوا عَلَيْهِ قَالُوا يَا أَيُّهَا الْعَزِيزُ مَسَّنَا وَأَهْلَنَا الضُّرُّ وَجِئْنَا بِبِضَاعَةٍ مُزْجَاةٍ فَأَوْفِ لَنَا الْكَيْلَ وَتَصَدَّقْ عَلَيْنَا ۖ إِنَّ اللَّهَ يَجْزِي الْمُتَصَدِّقِينَ`, en: `So when they entered upon Joseph, they said, "O 'Azeez, adversity has touched us and our family, and we have come with goods poor in quality, but give us full measure and be charitable to us. Indeed, Allah rewards the charitable."`, note: `Broken of their former arrogance ("we are a strong clan"), the brothers now beg for charity — setting the moment for Joseph's reveal.` },
+      { v: 89, act: 7, theme: `Reveal`, ar: `قَالَ هَلْ عَلِمْتُمْ مَا فَعَلْتُمْ بِيُوسُفَ وَأَخِيهِ إِذْ أَنْتُمْ جَاهِلُونَ`, en: `He said, "Do you know what you did with Joseph and his brother when you were ignorant?"`, note: `The fulfillment of the well promise (v. 15). Notice he gently attributes their crime to "ignorance" (jahilun), softening the blow even as he confronts them.` },
+      { v: 90, act: 7, theme: `Reveal`, ar: `قَالُوا أَإِنَّكَ لَأَنْتَ يُوسُفُ ۖ قَالَ أَنَا يُوسُفُ وَهَٰذَا أَخِي ۖ قَدْ مَنَّ اللَّهُ عَلَيْنَا ۖ إِنَّهُ مَنْ يَتَّقِ وَيَصْبِرْ فَإِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ`, en: `They said, "Are you indeed Joseph?" He said "I am Joseph, and this is my brother. Allah has certainly favored us. Indeed, he who fears Allah and is patient, then indeed, Allah does not allow to be lost the reward of those who do good."`, note: `Summarizes the moral formula of the entire chapter: taqwa (conscientiousness) + sabr (patience) + ihsan (excellence) = unfailing divine reward.` },
+      { v: 91, act: 7, theme: `Admission`, ar: `قَالُوا تَاللَّهِ لَقَدْ آثَرَكَ اللَّهُ عَلَيْنَا وَإِنْ كُنَّا لَخَاطِئِينَ`, en: `They said, "By Allah, certainly has Allah preferred you over us, and indeed, we have been sinners."`, note: `Full confession without excuses — echoing v. 8's envy, now transformed into humble acknowledgment.` },
+      { v: 92, act: 7, theme: `Forgiveness`, ar: `قَالَ لَا تَثْرِيبَ عَلَيْكُمُ الْيَوْمَ ۖ يَغْفِرُ اللَّهُ لَكُمْ ۖ وَهُوَ أَرْحَمُ الرَّاحِمِينَ`, en: `He said, "No blame will there be upon you today. Allah will forgive you; and He is the most merciful of the merciful."`, note: `Instant, unconditional pardon — no dwelling on decades of suffering — followed by a prayer for Allah's forgiveness.` },
+      { v: 93, act: 7, theme: `Shirt III`, ar: `اذْهَبُوا بِقَمِيصِي هَٰذَا فَأَلْقُوهُ عَلَىٰ وَجْهِ أَبِي يَأْتِ بَصِيرًا وَأْتُونِي بِأَهْلِكُمْ أَجْمَعِينَ`, en: `Take this, my shirt, and cast it over the face of my father; he will become seeing. And bring me your family, all together."`, note: `Third Shirt: the brothers who once brought a bloodied shirt to cause grief now carry Joseph's shirt to heal his father's eyes.` },
+      { v: 94, act: 7, theme: `Scent`, ar: `وَلَمَّا فَصَلَتِ الْعِيرُ قَالَ أَبُوهُمْ إِنِّي لَأَجِدُ رِيحَ يُوسُفَ ۖ لَوْلَا أَنْ تُفَنِّدُونِ`, en: `And when the caravan departed [from Egypt], their father said, "Indeed, I find the smell of Joseph [and would say that he was alive] if you did not think me weakened in mind."`, note: `The moment the caravan leaves Egypt, Jacob perceives Joseph's scent across vast distance.` },
+      { v: 95, act: 7, theme: `Disbelief`, ar: `قَالُوا تَاللَّهِ إِنَّكَ لَفِي ضَلَالِكَ الْقَدِيمِ`, en: `They said, "By Allah, indeed you are in your [same] old error."`, note: `Those remaining at home still echo the family's old blindness ("your same old error", echoing v. 8).` },
+      { v: 96, act: 7, theme: `Healing`, ar: `فَلَمَّا أَنْ جَاءَ الْبَشِيرُ أَلْقَاهُ عَلَىٰ وَجْهِهِ فَارْتَدَّ بَصِيرًا ۖ قَالَ أَلَمْ أَقُلْ لَكُمْ إِنِّي أَعْلَمُ مِنَ اللَّهِ مَا لَا تَعْلَمُونَ`, en: `And when the bearer of good tidings arrived, he cast it over his face, and he returned [once again] seeing. He said, "Did I not tell you that I know from Allah that which you do not know?"`, note: `Sight is restored at once, vindicating Jacob's steadfast certainty from v. 86.` },
+      { v: 97, act: 7, theme: `Repentance`, ar: `قَالُوا يَا أَبَانَا اسْتَغْفِرْ لَنَا ذُنُوبَنَا إِنَّا كُنَّا خَاطِئِينَ`, en: `They said, "O our father, ask for us forgiveness of our sins; indeed, we have been sinners."`, note: `Now they seek forgiveness from their father as well.` },
+      { v: 98, act: 7, theme: `Mercy`, ar: `قَالَ سَوْفَ أَسْتَغْفِرُ لَكُمْ رَبِّي ۖ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ`, en: `He said, "I will ask forgiveness for you from my Lord. Indeed, it is He who is the Forgiving, the Merciful."`, note: `Jacob promises to pray for them (traditionally noted at the blessed pre-dawn hour), closing the family rift completely.` },
+      { v: 99, act: 7, theme: `Welcome`, ar: `فَلَمَّا دَخَلُوا عَلَىٰ يُوسُفَ آوَىٰ إِلَيْهِ أَبَوَيْهِ وَقَالَ ادْخُلُوا مِصْرَ إِنْ شَاءَ اللَّهُ آمِنِينَ`, en: `And when they entered upon Joseph, he took his parents to himself and said, "Enter Egypt, Allah willing, safe [and secure]."`, note: `Joseph embraces his parents first, welcoming the entire family into safety in Egypt.` },
+      { v: 100, act: 7, theme: `Fulfillment`, ar: `وَرَفَعَ أَبَوَيْهِ عَلَى الْعَرْشِ وَخَرُّوا لَهُ سُجَّدًا ۖ وَقَالَ يَا أَبَتِ هَٰذَا تَأْوِيلُ رُؤْيَايَ مِنْ قَبْلُ قَدْ جَعَلَهَا رَبِّي حَقًّا ۖ وَقَدْ أَحْسَنَ بِي إِذْ أَخْرَجَنِي مِنَ السِّجْنِ وَجَاءَ بِكُمْ مِنَ الْبَدْوِ مِنْ بَعْدِ أَنْ نَزَغَ الشَّيْطَانُ بَيْنِي وَبَيْنَ إِخْوَتِي ۚ إِنَّ رَبِّي لَطِيفٌ لِمَا يَشَاءُ ۚ إِنَّهُ هُوَ الْعَلِيمُ الْحَكِيمُ`, en: `And he raised his parents upon the throne, and they bowed to him in prostration. And he said, "O my father, this is the explanation of my vision of before. My Lord has made it reality. And He was certainly good to me when He took me out of prison and brought you [here] from bedouin life after Satan had induced [estrangement] between me and my brothers. Indeed, my Lord is Subtle in what He wills. Indeed, it is He who is the Knowing, the Wise.`, note: `The narrative climax: the opening dream (v. 4) is fulfilled. Joseph praises Allah's subtlety (Latif), blames Satan rather than his brothers, and leaves the well unmentioned out of nobility.` },
+      { v: 101, act: 7, theme: `Prayer`, ar: `رَبِّ قَدْ آتَيْتَنِي مِنَ الْمُلْكِ وَعَلَّمْتَنِي مِنْ تَأْوِيلِ الْأَحَادِيثِ ۚ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ أَنْتَ وَلِيِّي فِي الدُّنْيَا وَالْآخِرَةِ ۖ تَوَفَّنِي مُسْلِمًا وَأَلْحِقْنِي بِالصَّالِحِينَ`, en: `My Lord, You have given me [something] of sovereignty and taught me of the interpretation of dreams. Creator of the heavens and earth, You are my protector in this world and in the Hereafter. Cause me to die a Muslim and join me with the righteous."`, note: `At the zenith of earthly power and family reunion, Joseph turns immediately to prayer — asking not for prolonged rule, but to die in submission and join the righteous.` },
+      { v: 102, act: 7, theme: `Epilogue`, ar: `ذَٰلِكَ مِنْ أَنْبَاءِ الْغَيْبِ نُوحِيهِ إِلَيْكَ ۖ وَمَا كُنْتَ لَدَيْهِمْ إِذْ أَجْمَعُوا أَمْرَهُمْ وَهُمْ يَمْكُرُونَ`, en: `That is from the news of the unseen which We reveal, [O Muhammad], to you. And you were not with them when they put together their plan while they conspired.`, note: `Shifts back to the Prophet Muhammad: just as Joseph's brothers plotted in secret, the Prophet was not there — yet revelation unveils every detail.` },
+      { v: 103, act: 7, theme: `Epilogue`, ar: `وَمَا أَكْثَرُ النَّاسِ وَلَوْ حَرَصْتَ بِمُؤْمِنِينَ`, en: `And most of the people, although you strive [for it], are not believers.`, note: `Consoles the Prophet: rejection by the majority is not a reflection on his sincerity or effort.` },
+      { v: 104, act: 7, theme: `Epilogue`, ar: `وَمَا تَسْأَلُهُمْ عَلَيْهِ مِنْ أَجْرٍ ۚ إِنْ هُوَ إِلَّا ذِكْرٌ لِلْعَالَمِينَ`, en: `And you do not ask of them for it any payment. It is not except a reminder to the worlds.`, note: `No worldly fee is sought; the message is a universal reminder for all creation.` },
+      { v: 105, act: 7, theme: `Epilogue`, ar: `وَكَأَيِّنْ مِنْ آيَةٍ فِي السَّمَاوَاتِ وَالْأَرْضِ يَمُرُّونَ عَلَيْهَا وَهُمْ عَنْهَا مُعْرِضُونَ`, en: `And how many a sign within the heavens and earth do they pass over while they, therefrom, are turning away.`, note: `Just as people walked past signs in Joseph's story, many walk past daily signs in creation without reflecting.` },
+      { v: 106, act: 7, theme: `Epilogue`, ar: `وَمَا يُؤْمِنُ أَكْثَرُهُمْ بِاللَّهِ إِلَّا وَهُمْ مُشْرِكُونَ`, en: `And most of them believe not in Allah except while they associate others with Him.`, note: `Warns against mixing acknowledgment of Allah with false loyalties or partners.` },
+      { v: 107, act: 7, theme: `Epilogue`, ar: `أَفَأَمِنُوا أَنْ تَأْتِيَهُمْ غَاشِيَةٌ مِنْ عَذَابِ اللَّهِ أَوْ تَأْتِيَهُمُ السَّاعَةُ بَغْتَةً وَهُمْ لَا يَشْعُرُونَ`, en: `Then do they feel secure that there will not come to them an overwhelming [aspect] of the punishment of Allah or that the Hour will not come upon them suddenly while they do not perceive?`, note: `Challenges false security in heedlessness.` },
+      { v: 108, act: 7, theme: `Mission`, ar: `قُلْ هَٰذِهِ سَبِيلِي أَدْعُو إِلَى اللَّهِ ۚ عَلَىٰ بَصِيرَةٍ أَنَا وَمَنِ اتَّبَعَنِي ۖ وَسُبْحَانَ اللَّهِ وَمَا أَنَا مِنَ الْمُشْرِكِينَ`, en: `Say, "This is my way; I invite to Allah with insight, I and those who follow me. And exalted is Allah; and I am not of those who associate others with Him."`, note: `Defines prophetic calling: inviting to Allah upon clear insight (basirah), pure of any association.` },
+      { v: 109, act: 7, theme: `History`, ar: `وَمَا أَرْسَلْنَا مِنْ قَبْلِكَ إِلَّا رِجَالًا نُوحِي إِلَيْهِمْ مِنْ أَهْلِ الْقُرَىٰ ۗ أَفَلَمْ يَسِيرُوا فِي الْأَرْضِ فَيَنْظُرُوا كَيْفَ كَانَ عَاقِبَةُ الَّذِينَ مِنْ قَبْلِهِمْ ۗ وَلَدَارُ الْآخِرَةِ خَيْرٌ لِلَّذِينَ اتَّقَوْا ۗ أَفَلَا تَعْقِلُونَ`, en: `And We sent not before you [as messengers] except men to whom We revealed from among the people of cities. So have they not traveled through the earth and observed how was the end of those before them? And the home of the Hereafter is best for those who fear Allah; then will you not reason?`, note: `Echoes v. 57 ("the reward of the Hereafter is better") and v. 2 ("that you might reason").` },
+      { v: 110, act: 7, theme: `Victory`, ar: `حَتَّىٰ إِذَا اسْتَيْأَسَ الرُّسُلُ وَظَنُّوا أَنَّهُمْ قَدْ كُذِبُوا جَاءَهُمْ نَصْرُنَا فَنُجِّيَ مَنْ نَشَاءُ ۖ وَلَا يُرَدُّ بَأْسُنَا عَنِ الْقَوْمِ الْمُجْرِمِينَ`, en: `[They continued] until, when the messengers despaired and were certain that they had been denied, there came to them Our victory, and whoever We willed was saved. And Our punishment cannot be repelled from the people who are criminals.`, note: `A profound reassurance: relief arrives precisely when human hope appears exhausted — just as it did throughout the trials of Jacob and Joseph.` },
+      { v: 111, act: 7, theme: `Conclusion`, ar: `لَقَدْ كَانَ فِي قَصَصِهِمْ عِبْرَةٌ لِأُولِي الْأَلْبَابِ ۗ مَا كَانَ حَدِيثًا يُفْتَرَىٰ وَلَٰكِنْ تَصْدِيقَ الَّذِي بَيْنَ يَدَيْهِ وَتَفْصِيلَ كُلِّ شَيْءٍ وَهُدًى وَرَحْمَةً لِقَوْمٍ يُؤْمِنُونَ`, en: `There was certainly in their stories a lesson for those of understanding. Never was the Qur'an a narration invented, but a confirmation of what was before it and a detailed explanation of all things and guidance and mercy for a people who believe.`, note: `Seals the ring opened in vv. 1–7: the story is no fabrication, but a lesson ('ibrah) for people of deep understanding (ulu al-albab), guidance, and mercy.` }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `In the ring structure of Surah Yusuf, which passage sits at the thematic center of the chapter while Joseph is at his lowest outward station?`,
+        options: [
+          `Joseph's discourse on pure monotheism ("are separate lords better or Allah, the One, the Prevailing?") in prison`,
+          `The brothers casting Joseph into the bottom of the well`,
+          `Joseph's appointment over the storehouses of Egypt`,
+          `Jacob's healing when the shirt is cast over his face`
+        ],
+        correct: 0,
+        verse: 39,
+        explanation: `In vv. 38–40, at the exact nadir of false imprisonment, Joseph delivers the chapter's theological centerpiece: calling his prison companions to worship Allah alone.`
+      },
+      {
+        q: `Why did Joseph refuse to leave prison immediately when the king summoned him in verse 50?`,
+        options: [
+          `He wanted to wait until the seven years of plenty began`,
+          `He insisted on a public inquiry into the women who cut their hands so his honor and fidelity to al-'Azeez would be cleared`,
+          `He feared the brothers would recognize him on the streets`,
+          `He was still awaiting the cupbearer's apology`
+        ],
+        correct: 1,
+        verse: 50,
+        explanation: `In vv. 50–52, Joseph refuses quiet release so al-'Azeez and the public will know he never betrayed his master's trust in his absence, prompting the confession: "Now the truth has become evident."`
+      },
+      {
+        q: `How do the three shirts (qamis) trace the arc of Surah Yusuf from start to finish?`,
+        options: [
+          `False blood (deception) -> Torn from the back (innocence) -> Cast over Jacob's face (healing & sight)`,
+          `Royal robe -> Prison tunic -> Travelers' cloak`,
+          `Torn from the front -> Lost in the well -> Given to the king`,
+          `Worn by Benjamin -> Sold to the caravan -> Placed in a saddlebag`
+        ],
+        correct: 0,
+        verse: 93,
+        explanation: `The shirt moves from false blood (v. 18), to forensic proof of chastity torn from behind (v. 25), to restoring Jacob's sight and ending his grief (vv. 93–96).`
+      },
+      {
+        q: `Which exact phrase does Jacob speak twice — decades apart — when his sons bring devastating news about Joseph (v. 18) and Benjamin (v. 83)?`,
+        options: [
+          `"Are separate lords better or Allah, the One?"`,
+          `"Rather, your souls have enticed you to something, so patience is most fitting."`,
+          `"No blame will there be upon you today."`,
+          `"Indeed, my Lord is Subtle in what He wills."`
+        ],
+        correct: 1,
+        verse: 83,
+        explanation: `Jacob repeats the exact phrase ("Bal sawwalat lakum anfusukum amran, fa-sabrun jamil") in v. 18 and v. 83, adding in v. 83 the hopeful expectation that Allah will return all of them together.`
+      },
+      {
+        q: `In verse 76 ("Thus did We plan for Joseph"), how was Joseph legally able to retain Benjamin in Egypt?`,
+        options: [
+          `By invoking a decree from the king overriding Egyptian law`,
+          `By asking the brothers beforehand to name the penalty for theft, so their own family law detained Benjamin`,
+          `By buying Benjamin from the caravan`,
+          `By ordering his guards to imprison the entire caravan`
+        ],
+        correct: 1,
+        verse: 75,
+        explanation: `Under "the religion of the king" (v. 76), theft did not permit keeping a person. Asking the brothers in v. 74–75 to state their own verdict allowed Joseph to keep Benjamin legally.`
+      },
+      {
+        q: `What literary subtlety marks Joseph's summary of his journey to his father in verse 100?`,
+        options: [
+          `He lists every crime his brothers committed in detail`,
+          `He mentions prison and Satan's estrangement, but omits the well and slavery to avoid shaming his brothers`,
+          `He claims his brothers never harmed him`,
+          `He asks his father to punish the eldest brother`
+        ],
+        correct: 1,
+        verse: 100,
+        explanation: `In v. 100, Joseph thanks Allah for taking him out of prison and bringing his family from bedouin life after Satan induced estrangement — gracefully sparing his brothers embarrassment before Jacob.`
+      },
+      {
+        q: `How does Jacob define "beautiful patience" when his sons accuse him of clinging too long to Joseph's memory (v. 86)?`,
+        options: [
+          `Never feeling sadness or weeping`,
+          `Complaining of one's suffering and grief solely to Allah, while trusting in what Allah reveals`,
+          `Forgetting the past completely`,
+          `Isolating oneself from family forever`
+        ],
+        correct: 1,
+        verse: 86,
+        explanation: `"I only complain of my suffering and my grief to Allah, and I know from Allah that which you do not know" (v. 86), followed immediately by commanding them never to despair of Allah's relief (v. 87).`
+      },
+      {
+        q: `What reassurance closes the surah in verses 110–111 after the story ends?`,
+        options: [
+          `That worldly kingship lasts forever`,
+          `That relief and victory arrive even when messengers despair, and that these stories are a lesson for people of understanding`,
+          `That dreams should never be shared with anyone`,
+          `That Egypt would never face another drought`
+        ],
+        correct: 1,
+        verse: 110,
+        explanation: `Verse 110 affirms that Allah's help arrives when trials reach their extreme, and v. 111 seals the chapter's ring as "a lesson for those of understanding" (ulu al-albab).`
+      }
+    ];
+
+    // ---------------------------------------------------------
+    // 2. APPLICATION STATE (persisted via notebookAppApi)
+    // ---------------------------------------------------------
+    const DEFAULT_STATE = {
+      selectedRing: 0,
+      selectedActNode: 0,
+      selectedMotif: 0,
+      actFilter: `all`,
+      statusFilter: `all`,
+      searchQuery: ``,
+      showNotes: true,
+      showAllMatching: false,
+      activeActPage: 1,
+      masteredVerses: [],
+      bookmarkedVerses: [],
+      quizAnswers: {},
+      synthesisText: ``
+    };
+
+    let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    let saveTimer = null;
+
+    function persistState(noteText) {
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(async () => {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          try {
+            await window.notebookAppApi.setAppState(appState);
+            const msgEl = document.getElementById(`save-status-msg`);
+            if (msgEl && noteText) {
+              msgEl.textContent = noteText;
+            }
+          } catch (err) {
+            const msgEl = document.getElementById(`save-status-msg`);
+            if (msgEl) msgEl.textContent = `Could not save session state right now.`;
+          }
+        }
+      }, 150);
+    }
+
+    // ---------------------------------------------------------
+    // 3. RENDER FUNCTIONS
+    // ---------------------------------------------------------
+    function updateKPIs() {
+      const masteredCount = appState.masteredVerses.length;
+      const bookmarkedCount = appState.bookmarkedVerses.length;
+      const kpiMastered = document.getElementById(`kpi-verses-mastered`);
+      const kpiBar = document.getElementById(`kpi-verses-bar`);
+      const kpiBookmarks = document.getElementById(`kpi-bookmarks-count`);
+      const kpiQuiz = document.getElementById(`kpi-quiz-score`);
+      const kpiQuizCap = document.getElementById(`kpi-quiz-caption`);
+
+      if (kpiMastered) kpiMastered.textContent = `${masteredCount} / 111`;
+      if (kpiBar) kpiBar.style.width = `${Math.round((masteredCount / 111) * 100)}%`;
+      if (kpiBookmarks) kpiBookmarks.textContent = `${bookmarkedCount} bookmarked for review`;
+
+      let correctCount = 0;
+      let answeredCount = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        const ans = appState.quizAnswers[String(idx)];
+        if (ans !== undefined && ans !== null) {
+          answeredCount += 1;
+          if (ans === q.correct) correctCount += 1;
+        }
+      });
+
+      if (kpiQuiz) kpiQuiz.textContent = `${correctCount} / ${QUIZ_QUESTIONS.length}`;
+      if (kpiQuizCap) {
+        if (answeredCount === 0) {
+          kpiQuizCap.textContent = `Begin below to test retention`;
+        } else if (correctCount === QUIZ_QUESTIONS.length) {
+          kpiQuizCap.textContent = `Complete mastery achieved`;
+        } else {
+          kpiQuizCap.textContent = `${answeredCount} of ${QUIZ_QUESTIONS.length} checkpoints answered`;
+        }
+      }
+    }
+
+    function selectRingPair(index) {
+      appState.selectedRing = index;
+      renderRingDetail();
+      persistState();
+    }
+
+    function renderRingDetail() {
+      const pair = RING_PAIRS[appState.selectedRing] || RING_PAIRS[0];
+      RING_PAIRS.forEach((_, idx) => {
+        const btn = document.getElementById(`ring-btn-${idx}`);
+        if (btn) {
+          btn.classList.toggle(`is-selected`, idx === appState.selectedRing);
+        }
+      });
+
+      const panel = document.getElementById(`ring-detail-panel`);
+      if (!panel) return;
+      panel.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:baseline; gap:var(--space-sm); flex-wrap:wrap;">
+          <span class="tag tag-slate">${pair.code}</span>
+          <span class="label">${pair.leftRange} ↔ ${pair.rightRange}</span>
+        </div>
+        <h3 class="subhead" style="margin-top:var(--space-sm);">${pair.title}</h3>
+        <div class="mirror-grid">
+          <div class="mirror-box">
+            <span class="label">${pair.leftRange}</span>
+            <strong>${pair.leftHeading}</strong>
+            <p class="quote-inline">${pair.leftQuote}</p>
+          </div>
+          <div class="mirror-box">
+            <span class="label">${pair.rightRange}</span>
+            <strong>${pair.rightHeading}</strong>
+            <p class="quote-inline">${pair.rightQuote}</p>
+          </div>
+        </div>
+        <p class="prose-muted" style="margin-top:var(--space-md);">${pair.insight}</p>
+        <div style="margin-top:var(--space-md);">
+          <button type="button" class="btn btn-sm" onclick="jumpToVerse(${pair.jumpVerse})">Inspect v. ${pair.jumpVerse} in Workbench</button>
+        </div>
+      `;
+    }
+
+    function selectArcNode(index) {
+      appState.selectedActNode = index;
+      renderArc();
+      persistState();
+    }
+
+    function renderArc() {
+      const svgGroup = document.getElementById(`arc-nodes-group`);
+      const stripEl = document.getElementById(`arc-act-buttons`);
+      const detailEl = document.getElementById(`arc-detail-box`);
+      const xPositions = [85, 195, 305, 415, 525, 635, 745];
+
+      if (svgGroup) {
+        svgGroup.innerHTML = ACTS.map((act, idx) => {
+          const x = xPositions[idx];
+          const isSel = idx === appState.selectedActNode;
+          const rOut = isSel ? 9 : 6;
+          const fillOut = isSel ? `var(--primary)` : `var(--surface-container-low)`;
+          const labelY = act.yOutward > 150 ? act.yOutward + 24 : act.yOutward - 16;
+          return `
+            <g class="arc-node-btn" onclick="selectArcNode(${idx})">
+              <line x1="${x}" y1="40" x2="${x}" y2="235" stroke="${isSel ? 'var(--primary)' : 'var(--outline-variant)'}" stroke-width="${isSel ? '1.5' : '1'}" stroke-dasharray="2 3" />
+              <circle cx="${x}" cy="${act.yInward}" r="4.5" fill="var(--data-2)" />
+              <circle cx="${x}" cy="${act.yOutward}" r="${rOut}" fill="${fillOut}" stroke="var(--primary)" stroke-width="2" />
+              <text x="${x}" y="${labelY}" text-anchor="middle" fill="${isSel ? 'var(--primary)' : 'var(--on-surface-variant)'}" font-family="var(--font-label)" font-size="11" font-weight="${isSel ? '600' : '500'}">Act ${idx + 1}</text>
+              <text x="${x}" y="258" text-anchor="middle" fill="var(--on-surface-variant)" font-family="var(--font-label)" font-size="11">${act.range}</text>
+            </g>
+          `;
+        }).join(``);
+      }
+
+      if (stripEl) {
+        stripEl.innerHTML = ACTS.map((act, idx) => {
+          const isSel = idx === appState.selectedActNode;
+          return `<button type="button" class="btn btn-sm ${isSel ? 'btn-active' : ''}" onclick="selectArcNode(${idx})">Act ${idx + 1} (${act.range})</button>`;
+        }).join(``);
+      }
+
+      if (detailEl) {
+        const act = ACTS[appState.selectedActNode] || ACTS[0];
+        detailEl.innerHTML = `
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+            <div>
+              <span class="label">${act.range}</span>
+              <h3 class="subhead">${act.name}</h3>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="openActInWorkbench(${act.id})">Study Act ${act.id} verses</button>
+          </div>
+          <p class="prose-muted" style="margin-top:var(--space-sm);">${act.summary}</p>
+          <div class="mirror-grid" style="margin-top:var(--space-md);">
+            <div class="mirror-box">
+              <span class="label">Turning Point</span>
+              <p style="margin:0;">${act.turningPoint}</p>
+            </div>
+            <div class="mirror-box">
+              <span class="label">Core Virtue</span>
+              <p style="margin:0;">${act.virtue}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function selectMotifLens(index) {
+      appState.selectedMotif = index;
+      renderMotifLens();
+      persistState();
+    }
+
+    function renderMotifLens() {
+      [0, 1, 2].forEach(idx => {
+        const btn = document.getElementById(`motif-tab-${idx}`);
+        if (btn) btn.classList.toggle(`btn-active`, idx === appState.selectedMotif);
+      });
+
+      const container = document.getElementById(`motif-cards-container`);
+      if (!container) return;
+      const lens = MOTIF_LENSES[appState.selectedMotif] || MOTIF_LENSES[0];
+      container.innerHTML = lens.cards.map(card => `
+        <article class="motif-card">
+          <span class="tag">${card.badge}</span>
+          <h3 class="subhead">${card.heading}</h3>
+          <p class="prose-muted">${card.text}</p>
+          <div style="margin-top:auto; padding-top:var(--space-xs);">
+            <button type="button" class="btn btn-sm" onclick="jumpToVerse(${card.verse})">Read v. ${card.verse}</button>
+          </div>
+        </article>
+      `).join(``);
+    }
+
+    function renderGlossary() {
+      const tbody = document.getElementById(`glossary-table-body`);
+      if (!tbody) return;
+      tbody.innerHTML = GLOSSARY_TERMS.map(term => `
+        <tr>
+          <td><span class="arabic-term" lang="ar" dir="rtl">${term.arabic}</span></td>
+          <td><strong>${term.translit}</strong></td>
+          <td style="color:var(--on-surface-variant);">${term.meaning}</td>
+          <td><button type="button" class="btn btn-sm" onclick="jumpToVerse(${term.verse})">v. ${term.verse}</button></td>
+        </tr>
+      `).join(``);
+    }
+
+    // ---------------------------------------------------------
+    // 4. VERSE-BY-VERSE STUDY WORKBENCH
+    // ---------------------------------------------------------
+    function handleSearchInput(val) {
+      appState.searchQuery = val || ``;
+      renderVerses();
+      persistState();
+    }
+
+    function handleActFilterChange(val) {
+      appState.actFilter = val;
+      if (val !== `all`) {
+        appState.activeActPage = Number(val);
+      }
+      renderVerses();
+      persistState();
+    }
+
+    function handleStatusFilterChange(val) {
+      appState.statusFilter = val;
+      renderVerses();
+      persistState();
+    }
+
+    function toggleStudyInsights() {
+      appState.showNotes = !appState.showNotes;
+      renderVerses();
+      persistState();
+    }
+
+    function toggleShowAllMatching() {
+      appState.showAllMatching = !appState.showAllMatching;
+      renderVerses();
+      persistState();
+    }
+
+    function selectWorkbenchActPage(actId) {
+      appState.actFilter = `all`;
+      appState.activeActPage = actId;
+      appState.showAllMatching = false;
+      const actSel = document.getElementById(`act-filter`);
+      if (actSel) actSel.value = `all`;
+      renderVerses();
+      persistState();
+    }
+
+    function stepAct(delta) {
+      const next = Math.min(7, Math.max(1, appState.activeActPage + delta));
+      selectWorkbenchActPage(next);
+      const wb = document.getElementById(`workbench`);
+      if (wb) wb.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    function openActInWorkbench(actId) {
+      appState.actFilter = String(actId);
+      appState.activeActPage = actId;
+      appState.statusFilter = `all`;
+      appState.searchQuery = ``;
+      appState.showAllMatching = false;
+      syncWorkbenchInputs();
+      renderVerses();
+      persistState();
+      const wb = document.getElementById(`workbench`);
+      if (wb) wb.scrollIntoView({ behavior: `smooth`, block: `start` });
+    }
+
+    function jumpToVerse(verseNum) {
+      const target = VERSES.find(item => item.v === verseNum);
+      if (!target) return;
+      appState.actFilter = String(target.act);
+      appState.activeActPage = target.act;
+      appState.statusFilter = `all`;
+      appState.searchQuery = ``;
+      appState.showAllMatching = true;
+      syncWorkbenchInputs();
+      renderVerses();
+      persistState();
+      setTimeout(() => {
+        const card = document.getElementById(`verse-card-${verseNum}`);
+        if (card) {
+          card.scrollIntoView({ behavior: `smooth`, block: `center` });
+        }
+      }, 60);
+    }
+
+    function syncWorkbenchInputs() {
+      const searchEl = document.getElementById(`verse-search`);
+      const actEl = document.getElementById(`act-filter`);
+      const statusEl = document.getElementById(`status-filter`);
+      if (searchEl) searchEl.value = appState.searchQuery;
+      if (actEl) actEl.value = appState.actFilter;
+      if (statusEl) statusEl.value = appState.statusFilter;
+    }
+
+    function getFilteredVerses() {
+      const query = appState.searchQuery.trim().toLowerCase();
+      return VERSES.filter(item => {
+        if (appState.actFilter !== `all` && String(item.act) !== String(appState.actFilter)) {
+          return false;
+        }
+        const isMastered = appState.masteredVerses.includes(item.v);
+        const isBookmarked = appState.bookmarkedVerses.includes(item.v);
+        if (appState.statusFilter === `mastered` && !isMastered) return false;
+        if (appState.statusFilter === `unmastered` && isMastered) return false;
+        if (appState.statusFilter === `bookmarked` && !isBookmarked) return false;
+
+        if (query) {
+          const refStr = `12:${item.v}`;
+          const haystack = `${refStr} ${item.ar} ${item.en} ${item.note} ${item.theme}`.toLowerCase();
+          if (!haystack.includes(query)) return false;
+        }
+        return true;
+      });
+    }
+
+    function toggleMastered(verseNum) {
+      const idx = appState.masteredVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.masteredVerses.push(verseNum);
+      } else {
+        appState.masteredVerses.splice(idx, 1);
+      }
+      updateKPIs();
+      renderVerses();
+      persistState(`Progress updated.`);
+    }
+
+    function toggleBookmarked(verseNum) {
+      const idx = appState.bookmarkedVerses.indexOf(verseNum);
+      if (idx === -1) {
+        appState.bookmarkedVerses.push(verseNum);
+      } else {
+        appState.bookmarkedVerses.splice(idx, 1);
+      }
+      updateKPIs();
+      renderVerses();
+      persistState(`Bookmarks updated.`);
+    }
+
+    function markVisibleMastered() {
+      const { visible } = getVisibleSlice();
+      visible.forEach(item => {
+        if (!appState.masteredVerses.includes(item.v)) {
+          appState.masteredVerses.push(item.v);
+        }
+      });
+      updateKPIs();
+      renderVerses();
+      persistState(`Marked ${visible.length} visible verses as mastered.`);
+    }
+
+    function clearWorkbenchFilters() {
+      appState.actFilter = `all`;
+      appState.statusFilter = `all`;
+      appState.searchQuery = ``;
+      appState.showAllMatching = false;
+      syncWorkbenchInputs();
+      renderVerses();
+      persistState();
+    }
+
+    function getVisibleSlice() {
+      const filtered = getFilteredVerses();
+      const usingDefaultPaging =
+        appState.actFilter === `all` &&
+        appState.statusFilter === `all` &&
+        appState.searchQuery.trim() === `` &&
+        !appState.showAllMatching;
+
+      if (usingDefaultPaging) {
+        const visible = filtered.filter(item => item.act === appState.activeActPage);
+        return { filtered, visible, usingDefaultPaging };
+      }
+      return { filtered, visible: filtered, usingDefaultPaging };
+    }
+
+    function renderVerses() {
+      const toggleBtn = document.getElementById(`toggle-notes-btn`);
+      if (toggleBtn) {
+        toggleBtn.textContent = appState.showNotes ? `Hide notes` : `Show notes`;
+        toggleBtn.classList.toggle(`btn-active`, appState.showNotes);
+      }
+
+      const showAllBtn = document.getElementById(`btn-show-all-matching`);
+      if (showAllBtn) {
+        showAllBtn.textContent = appState.showAllMatching ? `Group by act` : `Show all 111 verses`;
+        showAllBtn.classList.toggle(`btn-active`, appState.showAllMatching);
+      }
+
+      // Act pill bar with per-act mastery counts
+      const pillBar = document.getElementById(`workbench-act-pills`);
+      if (pillBar) {
+        pillBar.innerHTML = ACTS.map(act => {
+          const totalInAct = act.end - act.start + 1;
+          const masteredInAct = VERSES.filter(v => v.act === act.id && appState.masteredVerses.includes(v.v)).length;
+          const isCurrent =
+            (appState.actFilter === String(act.id)) ||
+            (appState.actFilter === `all` && !appState.showAllMatching && appState.searchQuery.trim() === `` && appState.statusFilter === `all` && appState.activeActPage === act.id);
+          return `<button type="button" class="btn btn-sm ${isCurrent ? 'btn-active' : ''}" onclick="selectWorkbenchActPage(${act.id})">Act ${act.id} (${act.range}) · ${masteredInAct}/${totalInAct}</button>`;
+        }).join(``);
+      }
+
+      const { filtered, visible, usingDefaultPaging } = getVisibleSlice();
+      const countLabel = document.getElementById(`workbench-count-label`);
+      if (countLabel) {
+        if (visible.length === 0) {
+          countLabel.textContent = `0 matching verses`;
+        } else if (usingDefaultPaging) {
+          const actObj = ACTS[appState.activeActPage - 1];
+          countLabel.textContent = `Showing ${actObj.name} (${visible.length} verses of 111)`;
+        } else {
+          countLabel.textContent = `Showing ${visible.length} matching verse${visible.length === 1 ? '' : 's'} (of ${filtered.length} filtered)`;
+        }
+      }
+
+      const listEl = document.getElementById(`verse-list-container`);
+      if (!listEl) return;
+
+      if (visible.length === 0) {
+        listEl.innerHTML = `
+          <div class="empty-state">
+            <h3 class="subhead">No verses match your current filters</h3>
+            <p class="prose-muted">Your search or status filter returned zero verses. Clear filters to resume studying all 111 verses.</p>
+            <button type="button" class="btn btn-primary" onclick="clearWorkbenchFilters()">Reset filters</button>
+          </div>
+        `;
+      } else {
+        listEl.innerHTML = visible.map(item => {
+          const isMastered = appState.masteredVerses.includes(item.v);
+          const isBookmarked = appState.bookmarkedVerses.includes(item.v);
+          return `
+            <article class="verse-card ${isMastered ? 'is-mastered' : ''}" id="verse-card-${item.v}">
+              <div class="verse-card-head">
+                <div class="verse-ref-group">
+                  <span class="verse-num">12:${item.v}</span>
+                  <span class="tag">Act ${item.act}</span>
+                  <span class="tag tag-slate">${item.theme}</span>
+                </div>
+                <div class="verse-actions">
+                  <button type="button" class="btn btn-sm ${isBookmarked ? 'btn-active' : ''}" onclick="toggleBookmarked(${item.v})" aria-pressed="${isBookmarked}">
+                    <svg class="icon" viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    ${isBookmarked ? 'Bookmarked' : 'Bookmark'}
+                  </button>
+                  <button type="button" class="btn btn-sm ${isMastered ? 'btn-primary' : ''}" onclick="toggleMastered(${item.v})" aria-pressed="${isMastered}">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    ${isMastered ? 'Mastered' : 'Mark mastered'}
+                  </button>
+                </div>
+              </div>
+              <p class="arabic-text" lang="ar" dir="rtl">${item.ar}</p>
+              <p class="verse-translation">${item.en}</p>
+              ${appState.showNotes ? `<div class="verse-insight"><strong>Study note:</strong> ${item.note}</div>` : ''}
+            </article>
+          `;
+        }).join(``);
+      }
+
+      const paginationEl = document.getElementById(`workbench-pagination`);
+      const prevBtn = document.getElementById(`btn-prev-act`);
+      const nextBtn = document.getElementById(`btn-next-act`);
+      const pageLabel = document.getElementById(`pagination-label`);
+      if (paginationEl) {
+        paginationEl.style.display = usingDefaultPaging ? `flex` : `none`;
+      }
+      if (prevBtn) prevBtn.disabled = appState.activeActPage <= 1;
+      if (nextBtn) nextBtn.disabled = appState.activeActPage >= 7;
+      if (pageLabel) {
+        const curAct = ACTS[appState.activeActPage - 1];
+        pageLabel.textContent = `${curAct.name} (${curAct.range})`;
+      }
+    }
+
+    // ---------------------------------------------------------
+    // 5. MASTERY CHECKPOINTS & REFLECTION
+    // ---------------------------------------------------------
+    function answerQuiz(qIdx, optIdx) {
+      appState.quizAnswers[String(qIdx)] = optIdx;
+      updateKPIs();
+      renderQuiz();
+      persistState(`Checkpoint answer saved.`);
+    }
+
+    function renderQuiz() {
+      const container = document.getElementById(`quiz-container`);
+      if (!container) return;
+      container.innerHTML = QUIZ_QUESTIONS.map((item, qIdx) => {
+        const chosen = appState.quizAnswers[String(qIdx)];
+        const hasAnswered = chosen !== undefined && chosen !== null;
+        const isCorrect = chosen === item.correct;
+        return `
+          <article class="quiz-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm);">
+              <span class="label">Checkpoint ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+              <span class="tag">Anchor: v. ${item.verse}</span>
+            </div>
+            <h3 class="subhead">${item.q}</h3>
+            <div class="quiz-options">
+              ${item.options.map((opt, optIdx) => {
+                let cls = `btn quiz-option`;
+                if (hasAnswered) {
+                  if (optIdx === item.correct) cls += ` is-correct`;
+                  else if (optIdx === chosen) cls += ` is-wrong`;
+                }
+                return `<button type="button" class="${cls}" onclick="answerQuiz(${qIdx}, ${optIdx})">${opt}</button>`;
+              }).join(``)}
+            </div>
+            ${hasAnswered ? `
+              <div class="quiz-feedback ${isCorrect ? 'is-correct' : 'is-wrong'}">
+                <span><strong>${isCorrect ? 'Correct:' : 'Review:'}</strong> ${item.explanation}</span>
+                <button type="button" class="btn btn-sm" onclick="jumpToVerse(${item.verse})">Verify v. ${item.verse}</button>
+              </div>
+            ` : ''}
+          </article>
+        `;
+      }).join(``);
+    }
+
+    function handleSynthesisInput(val) {
+      appState.synthesisText = val;
+      const msgEl = document.getElementById(`save-status-msg`);
+      if (msgEl) msgEl.textContent = `Saving reflection…`;
+      persistState(`Reflection saved.`);
+    }
+
+    function handleResetProgress(btn) {
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to confirm reset`;
+        setTimeout(() => {
+          if (btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset progress`;
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset progress`;
+      appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      syncWorkbenchInputs();
+      const synthEl = document.getElementById(`personal-synthesis`);
+      if (synthEl) synthEl.value = ``;
+      renderAll();
+      persistState(`All study progress reset.`);
+    }
+
+    function exportStudySummary() {
+      const masteredList = appState.masteredVerses.slice().sort((a, b) => a - b);
+      const bookmarkedList = appState.bookmarkedVerses.slice().sort((a, b) => a - b);
+      let correctCount = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (appState.quizAnswers[String(idx)] === q.correct) correctCount += 1;
+      });
+
+      const lines = [
+        `SURAH YUSUF (CHAPTER 12) — STUDY & MASTERY SUMMARY`,
+        `===================================================`,
+        `Mastered Verses: ${masteredList.length} / 111`,
+        masteredList.length ? `  Verses: ${masteredList.map(v => `12:${v}`).join(`, `)}` : `  None marked yet`,
+        ``,
+        `Bookmarked Verses (${bookmarkedList.length}):`,
+        bookmarkedList.length ? bookmarkedList.map(v => {
+          const item = VERSES.find(x => x.v === v);
+          return item ? `  - 12:${item.v} — ${item.en}` : ``;
+        }).join(`\n`) : `  None bookmarked yet`,
+        ``,
+        `Mastery Checkpoints Score: ${correctCount} / ${QUIZ_QUESTIONS.length}`,
+        ``,
+        `Personal Chapter Synthesis:`,
+        appState.synthesisText.trim() || `(No personal reflection entered yet.)`
+      ];
+
+      const content = lines.join(`\n`);
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `surah-yusuf-study-summary.txt`
+        });
+        const msgEl = document.getElementById(`save-status-msg`);
+        if (msgEl) msgEl.textContent = `Study summary exported.`;
+      }
+    }
+
+    // ---------------------------------------------------------
+    // 6. SCROLL REVEAL & INITIALIZATION
+    // ---------------------------------------------------------
+    function initScrollReveal() {
+      // Progressive entrance kept non-blocking so all sections remain visible immediately
+      const items = document.querySelectorAll(`.reveal-item`);
+      items.forEach(el => el.classList.add(`is-visible`));
+    }
+
+    function renderAll() {
+      updateKPIs();
+      renderRingDetail();
+      renderArc();
+      renderMotifLens();
+      renderGlossary();
+      syncWorkbenchInputs();
+      renderVerses();
+      renderQuiz();
+      const synthEl = document.getElementById(`personal-synthesis`);
+      if (synthEl) synthEl.value = appState.synthesisText || ``;
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === `object`) {
+            appState = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
+            if (!Array.isArray(appState.masteredVerses)) appState.masteredVerses = [];
+            if (!Array.isArray(appState.bookmarkedVerses)) appState.bookmarkedVerses = [];
+            if (!appState.quizAnswers || typeof appState.quizAnswers !== `object`) appState.quizAnswers = {};
+          }
+        } catch (err) {
+          // Proceed with default empty state
+        }
+      }
+
+      renderAll();
+      initScrollReveal();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>

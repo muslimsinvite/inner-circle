@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="haven">
+  <title>Surah Al-Hijr (Chapter 15) — Interactive Study &amp; Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Haven) */
+      --background: #f5f6f5;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3ebe2;
+      --surface-container-high: #dbe2dd;
+
+      /* Ink */
+      --on-surface: #23272a;
+      --on-surface-variant: #5c6468;
+
+      /* Rules */
+      --outline: #c9d0cc;
+      --outline-variant: #dde2df;
+
+      /* Accents */
+      --primary: #3c5a6e;
+      --primary-hover: #2f4859;
+      --on-primary: #ffffff;
+      --primary-container: #e2e9ee;
+      --on-primary-container: #2a4152;
+      --secondary: #4f6b53;
+      --tertiary: #5f7c63;
+      --error: #a63d32;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #3c5a6e;
+      --data-2: #5f7c63;
+      --data-3: #a8694a;
+      --data-4: #8a7a68;
+      --data-context: #c3cac6;
+
+      /* Fonts */
+      --font-headline: 'Outfit', sans-serif;
+      --font-body: 'Hanken Grotesk', sans-serif;
+      --font-label: 'Outfit', sans-serif;
+      --font-arabic: 'Noto Naskh Arabic', serif;
+
+      /* Shape */
+      --rounded: 0.375rem;
+      --rounded-lg: 0.5rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --hairline: 1px solid var(--outline-variant);
+      --hairline-control: 1px solid var(--outline);
+      --elevation: none;
+
+      /* Semantic tokens */
+      --positive: #3d6344;
+      --positive-container: #e3ebe2;
+      --warning: #8c5539;
+      --warning-container: #f2ebe6;
+      --error-container: #f5e8e6;
+      --focus: var(--primary);
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.35rem, 1.4rem + 3.2vw, 3.75rem);
+      --headline-size: clamp(1.65rem, 1.2rem + 1.6vw, 2.35rem);
+      --subhead-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.375rem);
+      --body-size: clamp(1.03rem, 0.98rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: text-decoration-thickness var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    a:hover {
+      text-decoration-thickness: 2px;
+      color: var(--primary-hover);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Haven Typography */
+    .headline {
+      font-family: var(--font-headline);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline-display {
+      font-size: var(--display-size);
+      max-width: 22ch;
+    }
+    .headline-section {
+      font-size: var(--headline-size);
+      max-width: 32ch;
+    }
+    .headline-sub {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .headline b, .headline strong {
+      font-weight: 600;
+    }
+
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      text-transform: none;
+      color: var(--on-surface-variant);
+    }
+
+    .caption-sage {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--secondary);
+      margin: var(--space-xs) 0 0;
+    }
+
+    .prose {
+      max-width: 66ch;
+      margin: 0;
+      color: var(--on-surface);
+    }
+    .prose-muted {
+      max-width: 66ch;
+      margin: 0;
+      color: var(--on-surface-variant);
+    }
+
+    /* Panels & Dividers */
+    .panel {
+      background: var(--surface-container-low);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--elevation);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .panel-tinted {
+      background: var(--surface-container);
+      border: var(--hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .section + .section {
+      border-top: var(--hairline);
+      padding-top: var(--space-2xl);
+      margin-top: var(--space-lg);
+    }
+
+    /* Header & Jump Nav */
+    .hero-header {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+    }
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+    .jump-link {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      padding: var(--space-xs) 0;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .jump-link:hover, .jump-link.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Asymmetric Key Figures */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: var(--space-md);
+    }
+    .stat-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.15rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+    }
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: var(--outline-variant);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: var(--space-xs);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .progress-fill-sage {
+      background: var(--tertiary);
+    }
+
+    /* Tags & Buttons */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      padding: var(--space-xs) 0.7rem;
+      border-radius: var(--rounded-full);
+      white-space: nowrap;
+    }
+    .tag-slate {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: var(--hairline-control);
+      color: var(--on-surface);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .btn-active {
+      background: var(--primary-container);
+      border-color: var(--primary);
+      color: var(--on-primary-container);
+    }
+    .btn-sage-active {
+      background: var(--positive-container);
+      border-color: var(--secondary);
+      color: var(--positive);
+    }
+    .btn-sm {
+      min-height: 44px;
+      padding: 0.45rem 0.85rem;
+      font-size: var(--label-size);
+    }
+
+    /* Section 1: Structural Map */
+    .section-head {
+      display: grid;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .arch-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .arch-strip {
+      display: flex;
+      gap: 4px;
+      width: 100%;
+      padding: var(--space-md) 0 var(--space-sm);
+    }
+    .arch-seg {
+      border: none;
+      border-radius: 2px 2px 0 0;
+      height: 52px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 var(--space-sm);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      text-align: left;
+      transition: opacity var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+      min-width: 44px;
+    }
+    .arch-seg:hover {
+      opacity: 0.9;
+    }
+    .arch-seg[aria-selected="true"] {
+      outline: 2px solid var(--on-surface);
+      outline-offset: 2px;
+    }
+    .seg-1 { background: var(--data-1); }
+    .seg-2 { background: var(--data-2); }
+    .seg-3 { background: var(--data-1); opacity: 0.84; }
+    .seg-4 { background: var(--data-3); }
+    .seg-5 { background: var(--data-4); }
+    .seg-6 { background: var(--data-2); opacity: 0.86; }
+
+    .arch-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+    .legend-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: transparent;
+      border: var(--hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-sm);
+      min-height: 44px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .legend-btn:hover {
+      background: var(--surface-container-high);
+    }
+    .legend-btn.selected {
+      background: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Section 2: Six Movements */
+    .movements-list {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .movement-card {
+      container-type: inline-size;
+    }
+    .movement-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--hairline);
+    }
+    .movement-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .takeaway-list {
+      margin: var(--space-md) 0 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: var(--space-sm);
+      color: var(--on-surface);
+    }
+    .pivot-box {
+      border-left: 2px solid var(--primary);
+      padding-left: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+    }
+    .movement-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+
+    @container (max-width: 640px) {
+      .movement-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Arabic Typography */
+    .arabic-text {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.35rem, 1.15rem + 0.65vw, 1.65rem);
+      line-height: 1.9;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+      direction: rtl;
+      text-align: right;
+      margin: 0;
+    }
+    .arabic-inline {
+      font-family: var(--font-arabic);
+      font-size: 1.15em;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--on-surface);
+    }
+
+    /* Section 3: Lexicon */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    .lexicon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(265px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .lex-card {
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+    }
+    .lex-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+
+    /* Section 4: Parallels Table & Comparison */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
+      border-bottom: 1px solid var(--outline);
+      white-space: nowrap;
+    }
+    td {
+      padding: var(--space-md) var(--space-md) var(--space-md) 0;
+      border-bottom: var(--hairline);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+    tbody tr {
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    tbody tr:hover {
+      background-color: var(--surface-container-high);
+    }
+    .archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    /* Section 5: 99-Verse Reader */
+    .controls-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 0.9fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      margin-bottom: var(--space-lg);
+    }
+    .field-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .input-control {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      transition: border-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    select.input-control {
+      padding-right: 2rem;
+    }
+    .input-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-container);
+    }
+
+    .verses-container {
+      display: grid;
+    }
+    .verse-row {
+      padding: var(--space-lg) 0;
+      border-bottom: var(--hairline);
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .verse-row:first-child {
+      border-top: var(--hairline);
+    }
+    .verse-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .verse-num {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: var(--subhead-size);
+      font-variant-numeric: tabular-nums;
+      color: var(--primary);
+    }
+    .verse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .verse-english {
+      margin: 0;
+      max-width: 68ch;
+      color: var(--on-surface);
+    }
+    .verse-note {
+      margin: 0;
+      max-width: 66ch;
+      font-size: 0.9375rem;
+      color: var(--secondary);
+      border-left: 2px solid var(--outline-variant);
+      padding-left: var(--space-md);
+    }
+
+    /* Section 6: Quiz */
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.9fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .quiz-options {
+      display: grid;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .quiz-option {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.75rem var(--space-md);
+      text-align: left;
+      background: var(--surface-container-low);
+      border: var(--hairline-control);
+      border-radius: var(--rounded);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .quiz-option.opt-correct {
+      background: var(--positive-container);
+      border-color: var(--positive);
+      color: var(--positive);
+    }
+    .quiz-option.opt-wrong {
+      background: var(--error-container);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    .quiz-feedback {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      border: var(--hairline);
+      background: var(--background);
+    }
+    .quiz-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: var(--hairline);
+    }
+
+    .footer-note {
+      border-top: var(--hairline);
+      padding-top: var(--space-xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .hidden { display: none !important; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .arch-layout,
+      .quiz-layout {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+        gap: var(--space-lg);
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .movement-body {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        grid-template-columns: 1fr;
+      }
+      .arch-strip {
+        flex-direction: column;
+      }
+      .arch-seg {
+        width: 100% !important;
+        height: 44px;
+        border-radius: var(--rounded);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <!-- HEADER -->
+    <header class="hero-header">
+      <div class="hero-top">
+        <div>
+          <p class="label" style="margin: 0 0 var(--space-xs);">Chapter 15 · Verses 15:1–15:99 · Complete Source Companion</p>
+          <h1 class="headline headline-display">Surah Al-Hijr: Preservation, Signs, and <strong>Steadfastness</strong></h1>
+          <p class="caption-sage">A quiet study environment to understand every theme, Arabic term, prophetic narrative, and verse in Chapter 15.</p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-export" onclick="exportProgress()">Export study summary</button>
+        </div>
+      </div>
+
+      <div class="stats-grid" aria-label="Study mastery overview">
+        <div class="panel stat-tile">
+          <span class="label">Complete scope</span>
+          <div class="stat-value">99 verses</div>
+          <p class="caption-sage">6 thematic movements</p>
+        </div>
+        <div class="panel stat-tile">
+          <span class="label">Movements mastered</span>
+          <div class="stat-value" id="stat-movements">0 / 6</div>
+          <div class="progress-track"><div class="progress-fill" id="bar-movements" style="width: 0%;"></div></div>
+        </div>
+        <div class="panel stat-tile">
+          <span class="label">Verses reviewed</span>
+          <div class="stat-value" id="stat-verses">0 / 99</div>
+          <div class="progress-track"><div class="progress-fill progress-fill-sage" id="bar-verses" style="width: 0%;"></div></div>
+        </div>
+        <div class="panel stat-tile">
+          <span class="label">Mastery check</span>
+          <div class="stat-value" id="stat-quiz">0 / 12</div>
+          <p class="caption-sage" id="stat-quiz-note">Not yet completed</p>
+        </div>
+      </div>
+
+      <nav class="jump-nav" aria-label="Chapter sections">
+        <a class="jump-link active" href="#architecture">Architecture</a>
+        <a class="jump-link" href="#movements">Six movements</a>
+        <a class="jump-link" href="#lexicon">Key Arabic terms</a>
+        <a class="jump-link" href="#parallels">Historical parallels</a>
+        <a class="jump-link" href="#reader">99-verse reader</a>
+        <a class="jump-link" href="#mastery">Mastery check</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <!-- SECTION 1: ARCHITECTURE -->
+      <section class="section reveal" id="architecture">
+        <div class="section-head">
+          <span class="label">01 · Structural overview</span>
+          <h2 class="headline headline-section">One unbroken argument across <strong>six movements</strong></h2>
+          <p class="prose">Surah Al-Hijr opens with the pledge that the Qur'an itself is guarded against alteration (15:9), demonstrates that same precision in the heavens and earth (15:16–25), traces human accountability back to Iblees's refusal (15:26–50), illustrates historical certainty through four communities (15:51–84), and equips the Messenger with spiritual resilience against mockery (15:85–99).</p>
+        </div>
+
+        <div class="arch-layout">
+          <div class="panel">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap;">
+              <h3 class="headline-sub">Proportional span of all 99 verses</h3>
+              <span class="label">Select a segment to inspect</span>
+            </div>
+            <div class="arch-strip" role="tablist" aria-label="Chapter 15 structural movements">
+              <button type="button" class="arch-seg seg-1" style="width: 15.15%;" role="tab" aria-selected="true" id="seg-btn-0" onclick="selectArchMovement(0)">
+                <span>1–15</span>
+              </button>
+              <button type="button" class="arch-seg seg-2" style="width: 10.10%;" role="tab" aria-selected="false" id="seg-btn-1" onclick="selectArchMovement(1)">
+                <span>16–25</span>
+              </button>
+              <button type="button" class="arch-seg seg-3" style="width: 25.25%;" role="tab" aria-selected="false" id="seg-btn-2" onclick="selectArchMovement(2)">
+                <span>26–50</span>
+              </button>
+              <button type="button" class="arch-seg seg-4" style="width: 27.27%;" role="tab" aria-selected="false" id="seg-btn-3" onclick="selectArchMovement(3)">
+                <span>51–77</span>
+              </button>
+              <button type="button" class="arch-seg seg-5" style="width: 7.07%;" role="tab" aria-selected="false" id="seg-btn-4" onclick="selectArchMovement(4)">
+                <span>78–84</span>
+              </button>
+              <button type="button" class="arch-seg seg-6" style="width: 15.15%;" role="tab" aria-selected="false" id="seg-btn-5" onclick="selectArchMovement(5)">
+                <span>85–99</span>
+              </button>
+            </div>
+            <div class="arch-legend" id="arch-legend">
+              <button type="button" class="legend-btn selected" id="leg-btn-0" onclick="selectArchMovement(0)">
+                <span class="swatch seg-1" aria-hidden="true"></span>
+                <span class="label">I. Guarded Book (15:1–15)</span>
+              </button>
+              <button type="button" class="legend-btn" id="leg-btn-1" onclick="selectArchMovement(1)">
+                <span class="swatch seg-2" aria-hidden="true"></span>
+                <span class="label">II. Cosmic Order (15:16–25)</span>
+              </button>
+              <button type="button" class="legend-btn" id="leg-btn-2" onclick="selectArchMovement(2)">
+                <span class="swatch seg-3" aria-hidden="true"></span>
+                <span class="label">III. Creation &amp; Iblees (15:26–50)</span>
+              </button>
+              <button type="button" class="legend-btn" id="leg-btn-3" onclick="selectArchMovement(3)">
+                <span class="swatch seg-4" aria-hidden="true"></span>
+                <span class="label">IV. Abraham &amp; Lot (15:51–77)</span>
+              </button>
+              <button type="button" class="legend-btn" id="leg-btn-4" onclick="selectArchMovement(4)">
+                <span class="swatch seg-5" aria-hidden="true"></span>
+                <span class="label">V. Thicket &amp; Al-Hijr (15:78–84)</span>
+              </button>
+              <button type="button" class="legend-btn" id="leg-btn-5" onclick="selectArchMovement(5)">
+                <span class="swatch seg-6" aria-hidden="true"></span>
+                <span class="label">VI. Counsel &amp; Praise (15:85–99)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="panel" id="arch-inspector" aria-live="polite">
+            <span class="tag" id="arch-range">Verses 15:1–15 · 15 verses</span>
+            <h3 class="headline-sub" id="arch-title" style="margin-top: var(--space-sm);">The Guarded Revelation and Pattern of Denial</h3>
+            <p class="prose-muted" id="arch-summary" style="margin-top: var(--space-sm);"></p>
+            <div class="pivot-box" style="margin-top: var(--space-md);">
+              <span class="label" id="arch-pivot-ref">Anchor verse 15:9</span>
+              <p class="prose" id="arch-pivot-text"></p>
+            </div>
+            <div style="margin-top: var(--space-md); display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+              <button type="button" class="btn btn-primary btn-sm" id="arch-jump-btn" onclick="jumpToReaderMovement(0)">Read these verses</button>
+              <a class="btn btn-secondary btn-sm" id="arch-guide-link" href="#movement-0">Study guide</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: SIX MOVEMENTS -->
+      <section class="section reveal" id="movements">
+        <div class="section-head">
+          <span class="label">02 · Movement-by-movement study</span>
+          <h2 class="headline headline-section">Core lessons from every <strong>section of Al-Hijr</strong></h2>
+          <p class="prose">Work through all six movements in order. Mark each movement mastered once you can explain its central claim and pivot verses in your own words.</p>
+        </div>
+
+        <div class="movements-list" id="movements-container"></div>
+      </section>
+
+      <!-- SECTION 3: ARABIC LEXICON -->
+      <section class="section reveal" id="lexicon">
+        <div class="section-head">
+          <span class="label">03 · Precision vocabulary</span>
+          <h2 class="headline headline-section">Fourteen Arabic terms that carry the <strong>chapter's meaning</strong></h2>
+          <p class="prose">Filter by theme to study the exact words used in the source text—from the guarded <em>Dhikr</em> and measured <em>Khazā'in</em> to the healing command of <em>al-Safh al-Jamīl</em>.</p>
+        </div>
+
+        <div class="filter-row" role="group" aria-label="Filter Arabic terms by theme">
+          <button type="button" class="btn btn-sm btn-active" id="lex-filter-all" onclick="filterLexicon('all')">All 14 terms</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="lex-filter-revelation" onclick="filterLexicon('revelation')">Revelation</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="lex-filter-cosmos" onclick="filterLexicon('cosmos')">Cosmos &amp; Provision</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="lex-filter-soul" onclick="filterLexicon('soul')">Human Soul</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="lex-filter-history" onclick="filterLexicon('history')">History &amp; Counsel</button>
+        </div>
+
+        <div class="lexicon-grid" id="lexicon-grid"></div>
+      </section>
+
+      <!-- SECTION 4: PARALLELS -->
+      <section class="section reveal" id="parallels">
+        <div class="section-head">
+          <span class="label">04 · Comparative evidence</span>
+          <h2 class="headline headline-section">False security vs. <strong>discerning faith</strong></h2>
+          <p class="prose">Chapter 15 contrasts four subjects who rejected messengers or divine command against four models of obedience, mercy, and endurance. Note how both ruined cities of Lot and the Thicket sit on an established, visible road (15:76, 15:79).</p>
+        </div>
+
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject &amp; Verses</th>
+                <th>Root Illusion / Sin</th>
+                <th>Warning or Sign Given</th>
+                <th>Decreed Outcome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Iblees</strong><br>
+                  <span class="label">15:28–44</span>
+                </td>
+                <td>Arrogance over material origin—refusing to prostrate to a human formed from altered black mud (15:33).</td>
+                <td>Direct divine question and immediate expulsion; reprieved only until the Day of the known time (15:32–38).</td>
+                <td>Cursed until Judgment; has zero authority over Allah's sincere servants (<em>al-mukhlasīn</em>), only over deviators bound for Hell's seven gates (15:40–44).</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>People of Lot</strong><br>
+                  <span class="label">15:61–77</span>
+                </td>
+                <td>Wandering blindly in intoxication (15:72); assaulting Lot's angelic guests and forbidding protection (15:67–70).</td>
+                <td>Lot's repeated ethical appeal ("fear Allah and do not disgrace me," 15:68–71); Lot's family evacuated before dawn without looking back (15:65).</td>
+                <td>Seized by the shriek at sunrise; highest part of the city turned lowest and rained with stones of hard clay—left on an established road for those who discern (15:73–76).</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Companions of the Thicket</strong><br>
+                  <span class="label">15:78–79</span>
+                </td>
+                <td>Persistent wrongdoing (<em>zālimīn</em>) in defiance of revelation (15:78).</td>
+                <td>Preceding messengers and clear guidance across the shared historical highway (15:10–13, 15:79).</td>
+                <td>Retribution taken from them; both ruined cities stand together on a clear highway (<em>imāmin mubīn</em>, 15:79).</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Companions of Al-Hijr (Thamud)</strong><br>
+                  <span class="label">15:80–84</span>
+                </td>
+                <td>Denying the messengers, turning away from signs, and carving houses into mountains while feeling untouchably secure (15:80–82).</td>
+                <td>Clear divine signs given directly to them (15:81).</td>
+                <td>The shriek seized them at early morning; none of their wealth or carved fortresses availed them (15:83–84).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="archetypes-grid">
+          <div class="panel">
+            <span class="tag">15:29–30</span>
+            <h3 class="headline-sub" style="margin-top: var(--space-sm);">The Angels</h3>
+            <p class="prose-muted" style="margin-top: var(--space-xs);">Prostrated immediately and completely ("all of them entirely") the moment Allah proportioned the human and breathed of His created soul.</p>
+          </div>
+          <div class="panel">
+            <span class="tag">15:51–56</span>
+            <h3 class="headline-sub" style="margin-top: var(--space-sm);">Abraham</h3>
+            <p class="prose-muted" style="margin-top: var(--space-xs);">Greeted with peace despite initial awe; refused despair at old age, affirming that only those astray despair of Allah's mercy (15:56).</p>
+          </div>
+          <div class="panel">
+            <span class="tag">15:45–48</span>
+            <h3 class="headline-sub" style="margin-top: var(--space-sm);">The Righteous (<em>Al-Muttaqīn</em>)</h3>
+            <p class="prose-muted" style="margin-top: var(--space-xs);">Placed in gardens and springs; resentment removed from their chests so they sit as brothers facing one another, free from fatigue forever.</p>
+          </div>
+          <div class="panel">
+            <span class="tag">15:85–99</span>
+            <h3 class="headline-sub" style="margin-top: var(--space-sm);">The Messenger</h3>
+            <p class="prose-muted" style="margin-top: var(--space-xs);">Commanded to forgive graciously, not envy worldly enjoyment, lower his wing to believers, declare openly, and soothe a constricted chest through praise and prostration.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: COMPLETE 99-VERSE READER -->
+      <section class="section reveal" id="reader">
+        <div class="section-head">
+          <span class="label">05 · Complete text study</span>
+          <h2 class="headline headline-section">All ninety-nine verses of <strong>Surah Al-Hijr</strong></h2>
+          <p class="prose">Read, search, bookmark, and track your review across every verse from 15:1 to 15:99. Toggle Arabic text on or off at any time.</p>
+        </div>
+
+        <div class="panel">
+          <div class="controls-bar">
+            <div class="field-group">
+              <label class="label" for="verse-search">Search English translation or verse number</label>
+              <input class="input-control" type="search" id="verse-search" placeholder="Try 15:9, mountains, Abraham, gates…" oninput="applyVerseFilters()">
+            </div>
+            <div class="field-group">
+              <label class="label" for="verse-movement">Filter by movement</label>
+              <select class="input-control" id="verse-movement" onchange="applyVerseFilters()">
+                <option value="all">All movements (15:1–99)</option>
+                <option value="0">I. Guarded Book (15:1–15)</option>
+                <option value="1">II. Cosmic Order (15:16–25)</option>
+                <option value="2">III. Creation &amp; Hereafter (15:26–50)</option>
+                <option value="3">IV. Abraham &amp; Lot (15:51–77)</option>
+                <option value="4">V. Thicket &amp; Al-Hijr (15:78–84)</option>
+                <option value="5">VI. Counsel &amp; Praise (15:85–99)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="label" for="verse-status">Study filter</label>
+              <select class="input-control" id="verse-status" onchange="applyVerseFilters()">
+                <option value="all">All verses</option>
+                <option value="bookmarked">Bookmarked only</option>
+                <option value="unreviewed">Not yet reviewed</option>
+                <option value="reviewed">Reviewed only</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <span class="label" aria-hidden="true">Script</span>
+              <button type="button" class="btn btn-active" id="btn-toggle-arabic" onclick="toggleArabicScript()">Arabic: On</button>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+            <span class="label" id="reader-count">Showing 99 of 99 verses</span>
+            <button type="button" class="btn btn-secondary btn-sm hidden" id="btn-clear-filters" onclick="resetVerseFilters()">Reset filters</button>
+          </div>
+
+          <div class="verses-container" id="verses-container"></div>
+
+          <div class="panel-tinted hidden" id="verses-empty" style="margin-top: var(--space-md);">
+            <p class="headline-sub">No verses match your current filter</p>
+            <p class="prose-muted" style="margin-top: var(--space-xs);">Try clearing your search term or switching back to all movements and study states.</p>
+            <button type="button" class="btn btn-primary btn-sm" style="margin-top: var(--space-md);" onclick="resetVerseFilters()">Show all 99 verses</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: MASTERY CHECK -->
+      <section class="section reveal" id="mastery">
+        <div class="section-head">
+          <span class="label">06 · Active recall</span>
+          <h2 class="headline headline-section">Test your mastery of <strong>Surah Al-Hijr</strong></h2>
+          <p class="prose">Twelve verse-grounded questions spanning every movement of Chapter 15. Your answers and review progress save automatically.</p>
+        </div>
+
+        <div class="quiz-layout">
+          <div class="panel" id="quiz-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+              <span class="tag tag-slate" id="quiz-progress-tag">Question 1 of 12</span>
+              <span class="label" id="quiz-topic-label">Movement I · Guarded Revelation</span>
+            </div>
+
+            <h3 class="headline-sub" id="quiz-question" style="margin-top: var(--space-md);"></h3>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-feedback hidden" id="quiz-feedback" aria-live="polite"></div>
+
+            <div class="quiz-nav-row">
+              <div style="display: flex; gap: var(--space-sm);">
+                <button type="button" class="btn btn-secondary btn-sm" id="quiz-prev" onclick="moveQuiz(-1)">Previous</button>
+                <button type="button" class="btn btn-primary btn-sm" id="quiz-next" onclick="moveQuiz(1)">Next question</button>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="quiz-reset-btn" onclick="resetAllProgress(this)">Reset all progress</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <span class="label">Question navigator</span>
+            <p class="prose-muted" style="margin-top: var(--space-xs); font-size: 0.9375rem;">Jump to any question to check gaps across the six movements.</p>
+            <div id="quiz-dots" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-sm); margin-top: var(--space-md);"></div>
+            <div style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--hairline);">
+              <span class="label">Current mastery summary</span>
+              <p class="caption-sage" id="quiz-summary-text" style="margin-top: var(--space-xs);">Answer questions on the left to record your mastery score.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      <p class="prose-muted" style="font-size: 0.9375rem;">Grounded completely in the provided source text of Surah Al-Hijr (Chapter 15, verses 15:1–15:99, Arabic and English translation).</p>
+      <a class="label" href="#architecture">Back to top</a>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+  <script>
+    const MOVEMENTS = [
+      {
+        id: 0,
+        roman: `I`,
+        title: `The Guarded Revelation and Pattern of Denial`,
+        range: `15:1–15`,
+        count: 15,
+        summary: `Opens with the disconnected letters Alif, Lam, Ra and declares the clarity of the Book. Establishes that every city has a fixed term (ajalahā), answers the demand for visible angels, pledges divine guardianship over al-Dhikr (15:9), and diagnoses stubborn denial: even if a gate to heaven opened and skeptics ascended through it, they would blame dazzled eyes or magic (15:14–15).`,
+        pivotRef: `15:9`,
+        pivotText: `“Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian.”`,
+        takeaways: [
+          `Nations neither advance nor delay their decreed term (15:4–5).`,
+          `Angels descend only with truth (bi-l-haqq), after which disbelievers are not reprieved (15:8).`,
+          `Mocking messengers is an ancient pattern (sunnat al-awwalīn); physical miracles alone do not cure closed hearts (15:10–15).`
+        ]
+      },
+      {
+        id: 1,
+        roman: `II`,
+        title: `Cosmic Order, Measured Provision, and Gathering`,
+        range: `15:16–25`,
+        count: 10,
+        summary: `Turns the observer's gaze from guarded revelation to the guarded cosmos: constellations beautified in heaven and protected by burning flames against eavesdropping devils, an earth stabilized by mountains, balanced growth, fertilizing winds, rain humans cannot store themselves, and absolute knowledge of every past and future generation before the final Gathering.`,
+        pivotRef: `15:21`,
+        pivotText: `“And there is not a thing but that with Us are its depositories, and We do not send it down except according to a known measure.”`,
+        takeaways: [
+          `Just as the Qur'an is guarded (15:9), the heavens are guarded from every expelled devil (15:17–18).`,
+          `Earth is engineered with mountains (rawāsiya), balanced things (mawzūn), and livelihoods for creatures humans do not feed (15:19–20).`,
+          `Winds act as fertilizing agents (lawāqih) bringing sky-water that Allah stores and distributes—never human retainers (15:22–25).`
+        ]
+      },
+      {
+        id: 2,
+        roman: `III`,
+        title: `Creation, Iblees's Pride, and the Two Destinations`,
+        range: `15:26–50`,
+        count: 25,
+        summary: `Contrasts human creation from altered black mud (salsāl min hama' masnūn) and jinn from scorching fire (nār al-samūm). When Allah breathes His created soul into humanity and commands prostration, all angels obey except Iblees. Granted reprieve until the Day of the known time, Iblees vows to beautify sin—yet Allah confirms he has zero authority over sincere servants (al-mukhlasīn). Closes by contrasting Hell's seven designated gates with the peaceful, resentment-free brotherhood of Paradise and the twin truth of Allah's Forgiveness and Punishment.`,
+        pivotRef: `15:40–42`,
+        pivotText: `“Indeed, My servants — no authority will you have over them, except those who follow you of the deviators.”`,
+        takeaways: [
+          `Iblees's rebellion is rooted in false superiority over clay, not lack of belief in Allah (15:33–39).`,
+          `Paradise removes resentment (ghill) from believers' chests so they sit as brothers facing one another with zero fatigue (15:45–48).`,
+          `Verses 15:49–50 pair supreme mercy ("the Forgiving, the Merciful") with sober justice ("the painful punishment").`
+        ]
+      },
+      {
+        id: 3,
+        roman: `IV`,
+        title: `Abraham's Glad Tidings and the People of Lot`,
+        range: `15:51–77`,
+        count: 27,
+        summary: `Illustrates 15:49–50 in living history. Messengers first bring Abraham—anxious yet hospitable—the glad tidings of a learned boy in old age, prompting his timeless maxim against despairing of mercy (15:56). They then proceed to Lot, rescuing his family by night (except his wife) before the shriek (al-sayhah) and stones of hard clay overturn the city at sunrise, leaving visible signs along an established road for those who discern (al-mutawassimīn).`,
+        pivotRef: `15:56`,
+        pivotText: `“He said, ‘And who despairs of the mercy of his Lord except for those astray?’”`,
+        takeaways: [
+          `Mercy comes first: the angels announce good tidings to Abraham before executing judgment on Lot's criminal townspeople (15:53–58).`,
+          `Lot's command to depart at night without looking back precedes the early-morning destruction (15:65–66).`,
+          `The ruined cities remain along an established road (bi-sabīlin muqīm) as lasting signs for discerning observers (15:75–77).`
+        ]
+      },
+      {
+        id: 4,
+        roman: `V`,
+        title: `Companions of the Thicket and Al-Hijr (Thamud)`,
+        range: `15:78–84`,
+        count: 7,
+        summary: `Names the chapter itself through Ashāb al-Hijr (Thamud), paired briefly with the Companions of the Thicket (Ashāb al-Aykah). Though Thamud received clear signs and carved monumental homes directly out of mountains feeling secure (āminīn), the shriek seized them at early morning, proving material fortifications cannot shield against divine decree.`,
+        pivotRef: `15:82–84`,
+        pivotText: `“And they used to carve from the mountains, houses, feeling secure. But the shriek seized them at early morning. So nothing availed them [from] what they used to earn.”`,
+        takeaways: [
+          `Both the Companions of the Thicket and Lot's people sit along a clear highway (imāmin mubīn, 15:79).`,
+          `Carving stone dwellings in mountains symbolized peak engineering and false invulnerability (15:82).`,
+          `What they earned could not protect them once they turned away from signs (15:81–84).`
+        ]
+      },
+      {
+        id: 5,
+        roman: `VI`,
+        title: `Truth, the Seven Oft-Repeated, and Prophetic Comfort`,
+        range: `15:85–99`,
+        count: 15,
+        summary: `Brings the chapter full circle. Because the heavens and earth were created strictly in truth and the Hour is coming, the Prophet is instructed to practice gracious forgiveness (al-safh al-jamīl), value the great gift of the seven often-repeated verses (sab'an min al-mathānī) and the great Qur'an over transient worldly wealth, protect and humble himself before believers, declare the message openly, trust Allah's sufficiency against mockers, and heal an aching heart through praise, prostration, and lifelong worship until certainty (death).`,
+        pivotRef: `15:97–99`,
+        pivotText: `“And We already know that your breast is constrained by what they say. So exalt [Allah] with praise of your Lord and be of those who prostrate [to Him]. And worship your Lord until there comes to you the certainty (death).”`,
+        takeaways: [
+          `Gracious forgiveness (al-safh al-jamīl) flows from certainty that Allah is the Knowing Creator and the Hour will settle all accounts (15:85–86).`,
+          `Lower your wing to believers while declaring openly and turning away from polytheists—Allah suffices against mockers (15:88, 15:94–95).`,
+          `Three direct remedies for emotional distress over opposition: praise (tasbīh), prostration (sujūd), and steady worship until al-yaqīn (15:97–99).`
+        ]
+      }
+    ];
+
+    const LEXICON = [
+      { term: `Al-Dhikr`, arabic: `الذِّكْر`, ref: `15:6, 15:9`, cat: `revelation`, meaning: `The Reminder / Message—used both by mockers dismissing Muhammad and by Allah pledging to guard the Qur'an forever.` },
+      { term: `Kitāb Ma'lūm`, arabic: `كِتَابٌ مَعْلُومٌ`, ref: `15:4`, cat: `revelation`, meaning: `A known decree or recorded term; no city is destroyed except at its appointed time.` },
+      { term: `Sunnat al-Awwalīn`, arabic: `سُنَّةُ الْأَوَّلِينَ`, ref: `15:13`, cat: `revelation`, meaning: `The precedent of former peoples—stubborn disbelief despite messengers and clear evidence.` },
+      { term: `Shihāb Mubīn`, arabic: `شِهَابٌ مُبِينٌ`, ref: `15:18`, cat: `cosmos`, meaning: `A clear burning flame that pursues any devil attempting to steal a hearing from the guarded heaven.` },
+      { term: `Mawzūn`, arabic: `مَوْزُونٍ`, ref: `15:19`, cat: `cosmos`, meaning: `Well-balanced and measured; describes every plant and thing Allah caused to grow upon the spread earth.` },
+      { term: `Khazā'in`, arabic: `خَزَائِنُهُ`, ref: `15:21`, cat: `cosmos`, meaning: `Depositories / treasuries; every single thing's origin rests with Allah, sent down only in a known measure.` },
+      { term: `Al-Riyāh Lawāqih`, arabic: `الرِّيَاحَ لَوَاقِحَ`, ref: `15:22`, cat: `cosmos`, meaning: `Fertilizing winds—winds sent to seed clouds and ecosystems, bringing down drinkable water humans cannot hoard.` },
+      { term: `Salsāl min Hama' Masnūn`, arabic: `صَلْصَالٍ مِنْ حَمَإٍ مَسْنُونٍ`, ref: `15:26, 28, 33`, cat: `soul`, meaning: `Sounding clay formed from altered black mud—the humble earthly origin of humanity contrasted with jinn's scorching fire.` },
+      { term: `Al-Mukhlasīn`, arabic: `الْمُخْلَصِينَ`, ref: `15:40`, cat: `soul`, meaning: `Allah's chosen, purified servants—the only group Iblees admits he cannot mislead.` },
+      { term: `Ghill`, arabic: `غِلٍّ`, ref: `15:47`, cat: `soul`, meaning: `Resentment or concealed ill-will—explicitly removed from the breasts of the righteous in Paradise.` },
+      { term: `Al-Mutawassimīn`, arabic: `لِلْمُتَوَسِّمِينَ`, ref: `15:75`, cat: `history`, meaning: `Those who discern and read signs deeply—the audience capable of learning from Lot's ruined city.` },
+      { term: `Al-Safh al-Jamīl`, arabic: `الصَّفْحَ الْجَمِيلَ`, ref: `15:85`, cat: `history`, meaning: `Gracious forgiveness—overlooking harm with dignity because the Hour is surely coming.` },
+      { term: `Sab'an min al-Mathānī`, arabic: `سَبْعًا مِنَ الْمَثَانِي`, ref: `15:87`, cat: `revelation`, meaning: `Seven of the often-repeated verses paired with the great Qur'an—a treasure far above disbelievers' worldly enjoyment.` },
+      { term: `Al-Yaqīn`, arabic: `الْيَقِينُ`, ref: `15:99`, cat: `history`, meaning: `The certainty (death)—the lifelong horizon for steady worship of one's Lord.` }
+    ];
+
+    const VERSES = [
+      { n: 1, m: 0, ar: `الرَّ تِلْكَ آيَاتُ الْكِتَابِ وَقُرْآنٍ مُبِينٍ`, en: `Alif, Lam, Ra. These are the verses of the Book and a clear Qur'an.`, note: `Opens the chapter by affirming clarity (mubīn) against later accusations of madness or confusion.` },
+      { n: 2, m: 0, ar: `رُبَمَا يَوَدُّ الَّذِينَ كَفَرُوا لَوْ كَانُوا مُسْلِمِينَ`, en: `Perhaps those who disbelieve will wish that they had been Muslims.` },
+      { n: 3, m: 0, ar: `ذَرْهُمْ يَأْكُلُوا وَيَتَمَتَّعُوا وَيُلْهِهِمُ الْأَمَلُ ۖ فَسَوْفَ يَعْلَمُونَ`, en: `Let them eat and enjoy themselves and be diverted by [false] hope, for they are going to know.` },
+      { n: 4, m: 0, ar: `وَمَا أَهْلَكْنَا مِنْ قَرْيَةٍ إِلَّا وَلَهَا كِتَابٌ مَعْلُومٌ`, en: `And We did not destroy any city but that for it was a known decree.` },
+      { n: 5, m: 0, ar: `مَا تَسْبِقُ مِنْ أُمَّةٍ أَجَلَهَا وَمَا يَسْتَأْخِرُونَ`, en: `No nation will precede its term, nor will they remain thereafter.` },
+      { n: 6, m: 0, ar: `وَقَالُوا يَا أَيُّهَا الَّذِي نُزِّلَ عَلَيْهِ الذِّكْرُ إِنَّكَ لَمَجْنُونٌ`, en: `And they say, "O you upon whom the message has been sent down, indeed you are mad.` },
+      { n: 7, m: 0, ar: `لَوْ مَا تَأْتِينَا بِالْمَلَائِكَةِ إِنْ كُنْتَ مِنَ الصَّادِقِينَ`, en: `Why do you not bring us the angels, if you should be among the truthful?"` },
+      { n: 8, m: 0, ar: `مَا نُنَزِّلُ الْمَلَائِكَةَ إِلَّا بِالْحَقِّ وَمَا كَانُوا إِذًا مُنْظَرِينَ`, en: `We do not send down the angels except with truth; and the disbelievers would not then be reprieved.` },
+      { n: 9, m: 0, ar: `إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ وَإِنَّا لَهُ لَحَافِظُونَ`, en: `Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian.`, note: `Central pledge of the chapter: the very Dhikr mocked in 15:6 is divinely guarded by Allah Himself.` },
+      { n: 10, m: 0, ar: `وَلَقَدْ أَرْسَلْنَا مِنْ قَبْلِكَ فِي شِيَعِ الْأَوَّلِينَ`, en: `And We had certainly sent [messengers] before you, [O Muhammad], among the sects of the former peoples.` },
+      { n: 11, m: 0, ar: `وَمَا يَأْتِيهِمْ مِنْ رَسُولٍ إِلَّا كَانُوا بِهِ يَسْتَهْزِئُونَ`, en: `And no messenger would come to them except that they ridiculed him.` },
+      { n: 12, m: 0, ar: `كَذَلِكَ نَسْلُكُهُ فِي قُلُوبِ الْمُجْرِمِينَ`, en: `Thus do We insert denial into the hearts of the criminals.` },
+      { n: 13, m: 0, ar: `لَا يُؤْمِنُونَ بِهِ وَقَدْ خَلَتْ سُنَّةُ الْأَوَّلِينَ`, en: `They will not believe in it, while there has already occurred the precedent of the former peoples.` },
+      { n: 14, m: 0, ar: `وَلَوْ فَتَحْنَا عَلَيْهِمْ بَابًا مِنَ السَّمَاءِ فَظَلُّوا فِيهِ يَعْرُجُونَ`, en: `And [even] if We opened to them a gate from the heaven and they continued therein to ascend,` },
+      { n: 15, m: 0, ar: `لَقَالُوا إِنَّمَا سُكِّرَتْ أَبْصَارُنَا بَلْ نَحْنُ قَوْمٌ مَسْحُورُونَ`, en: `They would say, "Our eyes have only been dazzled. Rather, we are a people affected by magic."`, note: `Shows that stubborn denial rationalizes away even direct supernatural ascent.` },
+      { n: 16, m: 1, ar: `وَلَقَدْ جَعَلْنَا فِي السَّمَاءِ بُرُوجًا وَزَيَّنَّاهَا لِلنَّاظِرِينَ`, en: `And We have placed within the heaven great stars and have beautified it for the observers.` },
+      { n: 17, m: 1, ar: `وَحَفِظْنَاهَا مِنْ كُلِّ شَيْطَانٍ رَجِيمٍ`, en: `And We have protected it from every devil expelled [from the mercy of Allah]` },
+      { n: 18, m: 1, ar: `إِلَّا مَنِ اسْتَرَقَ السَّمْعَ فَأَتْبَعَهُ شِهَابٌ مُبِينٌ`, en: `Except one who steals a hearing and is pursued by a clear burning flame.` },
+      { n: 19, m: 1, ar: `وَالْأَرْضَ مَدَدْنَاهَا وَأَلْقَيْنَا فِيهَا رَوَاسِيَ وَأَنْبَتْنَا فِيهَا مِنْ كُلِّ شَيْءٍ مَوْزُونٍ`, en: `And the earth - We have spread it and cast therein firmly set mountains and caused to grow therein [something] of every well-balanced thing.` },
+      { n: 20, m: 1, ar: `وَجَعَلْنَا لَكُمْ فِيهَا مَعَايِشَ وَمَنْ لَسْتُمْ لَهُ بِرَازِقِينَ`, en: `And We have made for you therein means of living and [for] those for whom you are not providers.` },
+      { n: 21, m: 1, ar: `وَإِنْ مِنْ شَيْءٍ إِلَّا عِنْدَنَا خَزَائِنُهُ وَمَا نُنَزِّلُهُ إِلَّا بِقَدَرٍ مَعْلُومٍ`, en: `And there is not a thing but that with Us are its depositories, and We do not send it down except according to a known measure.`, note: `Links cosmic abundance directly to measured wisdom: nothing is scarce with Allah, yet everything descends in exact measure.` },
+      { n: 22, m: 1, ar: `وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ فَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً فَأَسْقَيْنَاكُمُوهُ وَمَا أَنْتُمْ لَهُ بِخَازِنِينَ`, en: `And We have sent the fertilizing winds and sent down water from the sky and given you drink from it. And you are not its retainers.` },
+      { n: 23, m: 1, ar: `وَإِنَّا لَنَحْنُ نُحْيِي وَنُمِيتُ وَنَحْنُ الْوَارِثُونَ`, en: `And indeed, it is We who give life and cause death, and We are the Inheritor.` },
+      { n: 24, m: 1, ar: `وَلَقَدْ عَلِمْنَا الْمُسْتَقْدِمِينَ مِنْكُمْ وَلَقَدْ عَلِمْنَا الْمُسْتَأْخِرِينَ`, en: `And We have already known the preceding [generations] among you, and We have already known the later [ones to come].` },
+      { n: 25, m: 1, ar: `وَإِنَّ رَبَّكَ هُوَ يَحْشُرُهُمْ إِنَّهُ حَكِيمٌ عَلِيمٌ`, en: `And indeed, your Lord will gather them; indeed, He is Wise and Knowing.` },
+      { n: 26, m: 2, ar: `وَلَقَدْ خَلَقْنَا الْإِنْسَانَ مِنْ صَلْصَالٍ مِنْ حَمَإٍ مَسْنُونٍ`, en: `And We did certainly create man out of clay from an altered black mud.` },
+      { n: 27, m: 2, ar: `وَالْجَانَّ خَلَقْنَاهُ مِنْ قَبْلُ مِنْ نَارِ السَّمُومِ`, en: `And the jinn We created before from scorching fire.` },
+      { n: 28, m: 2, ar: `وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي خَالِقٌ بَشَرًا مِنْ صَلْصَالٍ مِنْ حَمَإٍ مَسْنُونٍ`, en: `And [mention, O Muhammad], when your Lord said to the angels, "I will create a human being out of clay from an altered black mud.` },
+      { n: 29, m: 2, ar: `فَإِذَا سَوَّيْتُهُ وَنَفَخْتُ فِيهِ مِنْ رُوحِي فَقَعُوا لَهُ سَاجِدِينَ`, en: `And when I have proportioned him and breathed into him of My [created] soul, then fall down to him in prostration."`, note: `Human honor comes not from mud alone, but from divine proportioning and the breathed soul.` },
+      { n: 30, m: 2, ar: `فَسَجَدَ الْمَلَائِكَةُ كُلُّهُمْ أَجْمَعُونَ`, en: `So the angels prostrated all of them entirely,` },
+      { n: 31, m: 2, ar: `إِلَّا إِبْلِيسَ أَبَىٰ أَنْ يَكُونَ مَعَ السَّاجِدِينَ`, en: `Except Iblees, he refused to be with those who prostrated.` },
+      { n: 32, m: 2, ar: `قَالَ يَا إِبْلِيسُ مَا لَكَ أَلَّا تَكُونَ مَعَ السَّاجِدِينَ`, en: `[Allah] said, "O Iblees, what is [the matter] with you that you are not with those who prostrate?"` },
+      { n: 33, m: 2, ar: `قَالَ لَمْ أَكُنْ لِأَسْجُدَ لِبَشَرٍ خَلَقْتَهُ مِنْ صَلْصَالٍ مِنْ حَمَإٍ مَسْنُونٍ`, en: `He said, "Never would I prostrate to a human whom You created out of clay from an altered black mud."` },
+      { n: 34, m: 2, ar: `قَالَ فَاخْرُجْ مِنْهَا فَإِنَّكَ رَجِيمٌ`, en: `[Allah] said, "Then get out of it, for indeed, you are expelled.` },
+      { n: 35, m: 2, ar: `وَإِنَّ عَلَيْكَ اللَّعْنَةَ إِلَىٰ يَوْمِ الدِّينِ`, en: `And indeed, upon you is the curse until the Day of Recompense."` },
+      { n: 36, m: 2, ar: `قَالَ رَبِّ فَأَنْظِرْنِي إِلَى يَوْمِ يُبْعَثُونَ`, en: `He said, "My Lord, then reprieve me until the Day they are resurrected."` },
+      { n: 37, m: 2, ar: `قَالَ فَإِنَّكَ مِنَ الْمُنْظَرِينَ`, en: `[Allah] said, "So indeed, you are of those reprieved` },
+      { n: 38, m: 2, ar: `إِلَىٰ يَوْمِ الْوَقْتِ الْمَعْلُومِ`, en: `Until the Day of the time well-known."` },
+      { n: 39, m: 2, ar: `قَالَ رَبِّ بِمَا أَغْوَيْتَنِي لَأُزَيِّنَنَّ لَهُمْ فِي الْأَرْضِ وَلَأُغْوِيَنَّهُمْ أَجْمَعِينَ`, en: `[Iblees] said, "My Lord, because You have put me in error, I will surely make [disobedience] attractive to them on earth, and I will mislead them all` },
+      { n: 40, m: 2, ar: `إِلَّا عِبَادَكَ مِنْهُمُ الْمُخْلَصِينَ`, en: `Except, among them, Your chosen servants."` },
+      { n: 41, m: 2, ar: `قَالَ هَٰذَا صِرَاطٌ عَلَيَّ مُسْتَقِيمٌ`, en: `[Allah] said, "This is a path [of return] to Me [that is] straight.` },
+      { n: 42, m: 2, ar: `إِنَّ عِبَادِي لَيْسَ لَكَ عَلَيْهِمْ سُلْطَانٌ إِلَّا مَنِ اتَّبَعَكَ مِنَ الْغَاوِينَ`, en: `Indeed, My servants - no authority will you have over them, except those who follow you of the deviators.`, note: `Clarifies free will and spiritual protection: Iblees can tempt and beautify, never compel.` },
+      { n: 43, m: 2, ar: `وَإِنَّ جَهَنَّمَ لَمَوْعِدُهُمْ أَجْمَعِينَ`, en: `And indeed, Hell is the promised place for them all.` },
+      { n: 44, m: 2, ar: `لَهَا سَبْعَةُ أَبْوَابٍ لِكُلِّ بَابٍ مِنْهُمْ جُزْءٌ مَقْسُومٌ`, en: `It has seven gates; for every gate is of them a portion designated."` },
+      { n: 45, m: 2, ar: `إِنَّ الْمُتَّقِينَ فِي جَنَّاتٍ وَعُيُونٍ`, en: `Indeed, the righteous will be within gardens and springs.` },
+      { n: 46, m: 2, ar: `ادْخُلُوهَا بِسَلَامٍ آمِنِينَ`, en: `[Having been told], "Enter it in peace, safe [and secure]."` },
+      { n: 47, m: 2, ar: `وَنَزَعْنَا مَا فِي صُدُورِهِمْ مِنْ غِلٍّ إِخْوَانًا عَلَىٰ سُرُرٍ مُتَقَابِلِينَ`, en: `And We will remove whatever is in their breasts of resentment, [so they will be] brothers, on thrones facing each other.`, note: `True peace requires inner healing: every trace of resentment (ghill) is extracted.` },
+      { n: 48, m: 2, ar: `لَا يَمَسُّهُمْ فِيهَا نَصَبٌ وَمَا هُمْ مِنْهَا بِمُخْرَجِينَ`, en: `No fatigue will touch them therein, nor from it will they [ever] be removed.` },
+      { n: 49, m: 2, ar: `نَبِّئْ عِبَادِي أَنِّي أَنَا الْغَفُورُ الرَّحِيمُ`, en: `[O Muhammad], inform My servants that it is I who am the Forgiving, the Merciful.` },
+      { n: 50, m: 2, ar: `وَأَنَّ عَذَابِي هُوَ الْعَذَابُ الْأَلِيمُ`, en: `And that it is My punishment which is the painful punishment.`, note: `These paired verses bridge directly into the stories of Abraham (Mercy) and Lot (Punishment).` },
+      { n: 51, m: 3, ar: `وَنَبِّئْهُمْ عَنْ ضَيْفِ إِبْرَاهِيمَ`, en: `And inform them about the guests of Abraham,` },
+      { n: 52, m: 3, ar: `إِذْ دَخَلُوا عَلَيْهِ فَقَالُوا سَلَامًا قَالَ إِنَّا مِنْكُمْ وَجِلُونَ`, en: `When they entered upon him and said, "Peace." [Abraham] said, "Indeed, we are fearful of you."` },
+      { n: 53, m: 3, ar: `قَالُوا لَا تَوْجَلْ إِنَّا نُبَشِّرُكَ بِغُلَامٍ عَلِيمٍ`, en: `[The angels] said, "Fear not. Indeed, we give you good tidings of a learned boy."` },
+      { n: 54, m: 3, ar: `قَالَ أَبَشَّرْتُمُونِي عَلَىٰ أَنْ مَسَّنِيَ الْكِبَرُ فَبِمَ تُبَشِّرُونَ`, en: `He said, "Have you given me good tidings although old age has come upon me? Then of what [wonder] do you inform?"` },
+      { n: 55, m: 3, ar: `قَالُوا بَشَّرْنَاكَ بِالْحَقِّ فَلَا تَكُنْ مِنَ الْقَانِطِينَ`, en: `They said, "We have given you good tidings in truth, so do not be of the despairing."` },
+      { n: 56, m: 3, ar: `قَالَ وَمَنْ يَقْنَطُ مِنْ رَحْمَةِ رَبِّهِ إِلَّا الضَّالُّونَ`, en: `He said, "And who despairs of the mercy of his Lord except for those astray?"`, note: `Links directly back to 15:49: despairing of Allah's mercy belongs only to those who lose the straight path.` },
+      { n: 57, m: 3, ar: `قَالَ فَمَا خَطْبُكُمْ أَيُّهَا الْمُرْسَلُونَ`, en: `[Abraham] said, "Then what is your business [here], O messengers?"` },
+      { n: 58, m: 3, ar: `قَالُوا إِنَّا أُرْسِلْنَا إِلَىٰ قَوْمٍ مُجْرِمِينَ`, en: `They said, "Indeed, we have been sent to a people of criminals,` },
+      { n: 59, m: 3, ar: `إِلَّا آلَ لُوطٍ إِنَّا لَمُنَجُّوهُمْ أَجْمَعِينَ`, en: `Except the family of Lot; indeed, we will save them all` },
+      { n: 60, m: 3, ar: `إِلَّا امْرَأَتَهُ قَدَّرْنَا إِنَّهَا لَمِنَ الْغَابِرِينَ`, en: `Except his wife." Allah decreed that she is of those who remain behind.` },
+      { n: 61, m: 3, ar: `فَلَمَّا جَاءَ آلَ لُوطٍ الْمُرْسَلُونَ`, en: `And when the messengers came to the family of Lot,` },
+      { n: 62, m: 3, ar: `قَالَ إِنَّكُمْ قَوْمٌ مُنْكَرُونَ`, en: `He said, "Indeed, you are people unknown."` },
+      { n: 63, m: 3, ar: `قَالُوا بَلْ جِئْنَاكَ بِمَا كَانُوا فِيهِ يَمْتَرُونَ`, en: `They said, "But we have come to you with that about which they were disputing,` },
+      { n: 64, m: 3, ar: `وَأَتَيْنَاكَ بِالْحَقِّ وَإِنَّا لَصَادِقُونَ`, en: `And we have come to you with truth, and indeed, we are truthful.` },
+      { n: 65, m: 3, ar: `فَأَسْرِ بِأَهْلِكَ بِقِطْعٍ مِنَ اللَّيْلِ وَاتَّبِعْ أَدْبَارَهُمْ وَلَا يَلْتَفِتْ مِنْكُمْ أَحَدٌ وَامْضُوا حَيْثُ تُؤْمَرُونَ`, en: `So set out with your family during a portion of the night and follow behind them and let not anyone among you look back and continue on to where you are commanded."` },
+      { n: 66, m: 3, ar: `وَقَضَيْنَا إِلَيْهِ ذَٰلِكَ الْأَمْرَ أَنَّ دَابِرَ هَٰؤُلَاءِ مَقْطُوعٌ مُصْبِحِينَ`, en: `And We conveyed to him [the decree] of that matter: that those [sinners] would be eliminated by early morning.` },
+      { n: 67, m: 3, ar: `وَجَاءَ أَهْلُ الْمَدِينَةِ يَسْتَبْشِرُونَ`, en: `And the people of the city came rejoicing.` },
+      { n: 68, m: 3, ar: `قَالَ إِنَّ هَٰؤُلَاءِ ضَيْفِي فَلَا تَفْضَحُونِ`, en: `[Lot] said, "Indeed, these are my guests, so do not shame me.` },
+      { n: 69, m: 3, ar: `وَاتَّقُوا اللَّهَ وَلَا تُخْزُونِ`, en: `And fear Allah and do not disgrace me."` },
+      { n: 70, m: 3, ar: `قَالُوا أَوَلَمْ نَنْهَكَ عَنِ الْعَالَمِينَ`, en: `They said, "Have we not forbidden you from [protecting] people?"` },
+      { n: 71, m: 3, ar: `قَالَ هَٰؤُلَاءِ بَنَاتِي إِنْ كُنْتُمْ فَاعِلِينَ`, en: `[Lot] said, "These are my daughters - if you would be doers [of lawful marriage]."` },
+      { n: 72, m: 3, ar: `لَعَمْرُكَ إِنَّهُمْ لَفِي سَكْرَتِهِمْ يَعْمَهُونَ`, en: `By your life, [O Muhammad], indeed they were, in their intoxication, wandering blindly.`, note: `A rare oath by the Prophet's life, underscoring the total moral blindness of Lot's townspeople.` },
+      { n: 73, m: 3, ar: `فَأَخَذَتْهُمُ الصَّيْحَةُ مُشْرِقِينَ`, en: `So the shriek seized them at sunrise.` },
+      { n: 74, m: 3, ar: `فَجَعَلْنَا عَالِيَهَا سَافِلَهَا وَأَمْطَرْنَا عَلَيْهِمْ حِجَارَةً مِنْ سِجِّيلٍ`, en: `And We made the highest part [of the city] its lowest and rained upon them stones of hard clay.` },
+      { n: 75, m: 3, ar: `إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِلْمُتَوَسِّمِينَ`, en: `Indeed in that are signs for those who discern.` },
+      { n: 76, m: 3, ar: `وَإِنَّهَا لَبِسَبِيلٍ مُقِيمٍ`, en: `And indeed, those cities are [situated] on an established road.` },
+      { n: 77, m: 3, ar: `إِنَّ فِي ذَٰلِكَ لَآيَةً لِلْمُؤْمِنِينَ`, en: `Indeed in that is a sign for the believers.` },
+      { n: 78, m: 4, ar: `وَإِنْ كَانَ أَصْحَابُ الْأَيْكَةِ لَظَالِمِينَ`, en: `And the companions of the thicket were [also] wrongdoers.` },
+      { n: 79, m: 4, ar: `فَانْتَقَمْنَا مِنْهُمْ وَإِنَّهُمَا لَبِإِمَامٍ مُبِينٍ`, en: `So We took retribution from them, and indeed, both [cities] are on a clear highway.` },
+      { n: 80, m: 4, ar: `وَلَقَدْ كَذَّبَ أَصْحَابُ الْحِجْرِ الْمُرْسَلِينَ`, en: `And certainly did the companions of Thamud deny the messengers.`, note: `Al-Hijr—the rocky tract inhabited by Thamud—gives Surah 15 its name.` },
+      { n: 81, m: 4, ar: `وَآتَيْنَاهُمْ آيَاتِنَا فَكَانُوا عَنْهَا مُعْرِضِينَ`, en: `And We gave them Our signs, but from them they were turning away.` },
+      { n: 82, m: 4, ar: `وَكَانُوا يَنْحِتُونَ مِنَ الْجِبَالِ بُيُوتًا آمِنِينَ`, en: `And they used to carve from the mountains, houses, feeling secure.` },
+      { n: 83, m: 4, ar: `فَأَخَذَتْهُمُ الصَّيْحَةُ مُصْبِحِينَ`, en: `But the shriek seized them at early morning.` },
+      { n: 84, m: 4, ar: `فَمَا أَغْنَىٰ عَنْهُمْ مَا كَانُوا يَكْسِبُونَ`, en: `So nothing availed them [from] what they used to earn.` },
+      { n: 85, m: 5, ar: `وَمَا خَلَقْنَا السَّمَاوَاتِ وَالْأَرْضَ وَمَا بَيْنَهُمَا إِلَّا بِالْحَقِّ وَإِنَّ السَّاعَةَ لَآتِيَةٌ فَاصْفَحِ الصَّفْحَ الْجَمِيلَ`, en: `And We have not created the heavens and earth and that between them except in truth. And indeed, the Hour is coming; so forgive with gracious forgiveness.`, note: `Connects cosmic truth (bi-l-haqq) directly to ethical character: gracious forgiveness (al-safh al-jamīl).` },
+      { n: 86, m: 5, ar: `إِنَّ رَبَّكَ هُوَ الْخَلَّاقُ الْعَلِيمُ`, en: `Indeed, your Lord - He is the Knowing Creator.` },
+      { n: 87, m: 5, ar: `وَلَقَدْ آتَيْنَاكَ سَبْعًا مِنَ الْمَثَانِي وَالْقُرْآنَ الْعَظِيمَ`, en: `And We have certainly given you, [O Muhammad], seven of the often repeated [verses] and the great Qur'an.` },
+      { n: 88, m: 5, ar: `لَا تَمُدَّنَّ عَيْنَيْكَ إِلَىٰ مَا مَتَّعْنَا بِهِ أَزْوَاجًا مِنْهُمْ وَلَا تَحْزَنْ عَلَيْهِمْ وَاخْفِضْ جَنَاحَكَ لِلْمُؤْمِنِينَ`, en: `Do not extend your eyes toward that by which We have given enjoyment to [certain] categories of the disbelievers, and do not grieve over them. And lower your wing to the believers` },
+      { n: 89, m: 5, ar: `وَقُلْ إِنِّي أَنَا النَّذِيرُ الْمُبِينُ`, en: `And say, "Indeed, I am the clear warner" -` },
+      { n: 90, m: 5, ar: `كَمَا أَنْزَلْنَا عَلَى الْمُقْتَسِمِينَ`, en: `Just as We had revealed [scriptures] to the separators` },
+      { n: 91, m: 5, ar: `الَّذِينَ جَعَلُوا الْقُرْآنَ عِضِينَ`, en: `Who have made the Qur'an into portions.` },
+      { n: 92, m: 5, ar: `فَوَرَبِّكَ لَنَسْأَلَنَّهُمْ أَجْمَعِينَ`, en: `So by your Lord, We will surely question them all` },
+      { n: 93, m: 5, ar: `عَمَّا كَانُوا يَعْمَلُونَ`, en: `About what they used to do.` },
+      { n: 94, m: 5, ar: `فَاصْدَعْ بِمَا تُؤْمَرُ وَأَعْرِضْ عَنِ الْمُشْرِكِينَ`, en: `Then declare what you are commanded and turn away from the polytheists.` },
+      { n: 95, m: 5, ar: `إِنَّا كَفَيْنَاكَ الْمُسْتَهْزِئِينَ`, en: `Indeed, We are sufficient for you against the mockers` },
+      { n: 96, m: 5, ar: `الَّذِينَ يَجْعَلُونَ مَعَ اللَّهِ إِلَٰهًا آخَرَ فَسَوْفَ يَعْلَمُونَ`, en: `Who make [equal] with Allah another deity. But they are going to know.` },
+      { n: 97, m: 5, ar: `وَلَقَدْ نَعْلَمُ أَنَّكَ يَضِيقُ صَدْرُكَ بِمَا يَقُولُونَ`, en: `And We already know that your breast is constrained by what they say.` },
+      { n: 98, m: 5, ar: `فَسَبِّحْ بِحَمْدِ رَبِّكَ وَكُنْ مِنَ السَّاجِدِينَ`, en: `So exalt [Allah] with praise of your Lord and be of those who prostrate [to Him].` },
+      { n: 99, m: 5, ar: `وَاعْبُدْ رَبَّكَ حَتَّىٰ يَأْتِيَكَ الْيَقِينُ`, en: `And worship your Lord until there comes to you the certainty (death).`, note: `Closes Surah Al-Hijr with lifelong devotion, returning to the motif of prostration first introduced with the angels in 15:29–30.` }
+    ];
+
+    const QUIZ = [
+      {
+        topic: `Movement I · Guarded Revelation`,
+        q: `In 15:9, after mockers call the Prophet "mad" (15:6), what promise does Allah make regarding al-Dhikr (the Qur'an)?`,
+        options: [
+          `That angels will visibly descend to validate it in public`,
+          `That Allah Himself sent it down and will be its guardian`,
+          `That every city will accept it before its appointed term`,
+          `That no nation will ever mock a messenger again`
+        ],
+        correct: 1,
+        explain: `Verse 15:9 states: “Indeed, it is We who sent down the Qur'an and indeed, We will be its guardian.”`
+      },
+      {
+        topic: `Movement I · Pattern of Denial`,
+        q: `According to 15:14–15, what would persistent disbelievers say even if Allah opened a gate from heaven and they continued to ascend through it?`,
+        options: [
+          `They would immediately prostrate like the angels`,
+          `They would ask for a second written book`,
+          `They would say their eyes were dazzled and they were affected by magic`,
+          `They would wait until the morning shriek`
+        ],
+        correct: 2,
+        explain: `Verses 15:14–15 explain that even while ascending through a heavenly gate, they would claim: “Our eyes have only been dazzled. Rather, we are a people affected by magic.”`
+      },
+      {
+        topic: `Movement II · Cosmic Order`,
+        q: `How does 15:18 describe what happens to a devil who tries to "steal a hearing" from the guarded heaven?`,
+        options: [
+          `He is reprieved until the Day of Resurrection`,
+          `He is pursued by a clear burning flame (shihāb mubīn)`,
+          `He is cast beneath the firmly set mountains`,
+          `He is turned away by fertilizing winds`
+        ],
+        correct: 1,
+        explain: `Verses 15:17–18 state that heaven is protected from every expelled devil, except one who steals a hearing and is pursued by a clear burning flame.`
+      },
+      {
+        topic: `Movement II · Measured Provision`,
+        q: `What role do the winds (al-riyāh) perform in 15:22, and what does the verse emphasize about human beings regarding rain?`,
+        options: [
+          `Winds are fertilizing (lawāqih), and humans are not the retainers/storers of that water`,
+          `Winds carve mountain homes, and humans store water in depositories`,
+          `Winds bring the morning shriek, and humans measure its timing`,
+          `Winds scatter mockers, and humans retain rain in wells`
+        ],
+        correct: 0,
+        explain: `Verse 15:22 states: “And We have sent the fertilizing winds and sent down water from the sky and given you drink from it. And you are not its retainers.”`
+      },
+      {
+        topic: `Movement III · Creation & Iblees`,
+        q: `In 15:26–27, out of what materials were humankind and the jinn created respectively?`,
+        options: [
+          `Humankind from scorching fire; jinn from hard clay`,
+          `Humankind from clay of altered black mud; jinn beforehand from scorching fire`,
+          `Both humankind and jinn from light and water`,
+          `Humankind from mountain stone; jinn from wind`
+        ],
+        correct: 1,
+        explain: `Verses 15:26–27 contrast man created out of clay from an altered black mud (salsālin min hama'in masnūn) with jinn created before from scorching fire (nār al-samūm).`
+      },
+      {
+        topic: `Movement III · Limits of Misguidance`,
+        q: `Who does Iblees acknowledge he cannot mislead in 15:40, and what does Allah confirm in 15:42?`,
+        options: [
+          `He cannot mislead anyone who reads signs in the stars`,
+          `He has no authority over Allah's chosen/sincere servants (al-mukhlasīn)—only deviators who follow him`,
+          `He cannot enter cities built on established roads`,
+          `He has authority over all people until the time well-known`
+        ],
+        correct: 1,
+        explain: `In 15:40 Iblees excludes “Your chosen servants,” and in 15:42 Allah confirms: “Indeed, My servants — no authority will you have over them, except those who follow you of the deviators.”`
+      },
+      {
+        topic: `Movement III · Hell & Paradise`,
+        q: `How many gates does Hell have according to 15:44, and what is removed from the chests of the righteous in Paradise in 15:47?`,
+        options: [
+          `Seven gates; resentment (ghill) is removed so they sit as brothers`,
+          `Twelve gates; hunger is removed`,
+          `Seven gates; memory of earth is removed`,
+          `Four gates; old age is removed`
+        ],
+        correct: 0,
+        explain: `Verse 15:44 states Hell has seven gates, each with a designated portion; 15:47 states Allah removes resentment from the breasts of the righteous so they sit as brothers facing one another.`
+      },
+      {
+        topic: `Movement IV · Abraham's Counsel`,
+        q: `When the angels give aged Abraham glad tidings of a learned boy and tell him not to despair (15:53–56), how does Abraham respond?`,
+        options: [
+          `He asks for a sign in the sky before believing`,
+          `“And who despairs of the mercy of his Lord except for those astray?”`,
+          `He asks why they are not going to Al-Hijr instead`,
+          `He says old age makes joy impossible`
+        ],
+        correct: 1,
+        explain: `In 15:56 Abraham affirms: “And who despairs of the mercy of his Lord except for those astray?”`
+      },
+      {
+        topic: `Movement IV · Lot's City`,
+        q: `What instruction were Lot and his family given as they left the city by night (15:65), and who was decreed to remain behind (15:60)?`,
+        options: [
+          `Leave at noon and gather provisions; his guests stayed behind`,
+          `Set out during a portion of the night, follow behind them, and let no one look back; his wife remained behind`,
+          `Climb the nearby mountains for shelter; his daughters stayed behind`,
+          `Wait until sunrise; the elders remained behind`
+        ],
+        correct: 1,
+        explain: `Verse 15:65 commands Lot to depart with his family during a portion of the night and let none look back, while 15:60 decrees his wife is of those who remain behind.`
+      },
+      {
+        topic: `Movement V · Companions of Al-Hijr`,
+        q: `How did the Companions of Al-Hijr (Thamud) seek security (15:82), and what seized them at early morning (15:83)?`,
+        options: [
+          `They built ships on the sea, and a flood seized them`,
+          `They carved houses from the mountains feeling secure, and the shriek (al-sayhah) seized them at early morning`,
+          `They forged iron gates, and a burning flame seized them`,
+          `They hid in thickets, and scorching wind seized them`
+        ],
+        correct: 1,
+        explain: `Verses 15:82–83 state: “And they used to carve from the mountains, houses, feeling secure. But the shriek seized them at early morning.”`
+      },
+      {
+        topic: `Movement VI · Ethics & Gift`,
+        q: `Because the heavens and earth were created in truth and the Hour is coming (15:85), what attitude is the Prophet commanded to adopt toward opponents, and what greater gift is he reminded of in 15:87?`,
+        options: [
+          `Withdraw from society completely; reminded of earthly wealth`,
+          `Forgive with gracious forgiveness (al-safh al-jamīl); reminded of seven often-repeated verses and the great Qur'an`,
+          `Debate the separators daily; reminded of mountain dwellings`,
+          `Demand immediate punishment; reminded of the angels`
+        ],
+        correct: 1,
+        explain: `Verse 15:85 commands “so forgive with gracious forgiveness,” and 15:87 reminds him of the gift of “seven of the often repeated [verses] and the great Qur'an.”`
+      },
+      {
+        topic: `Movement VI · Remedy for a Constricted Chest`,
+        q: `In the closing verses (15:97–99), when the Prophet's breast is constrained by what mockers say, what three actions are prescribed?`,
+        options: [
+          `Travel to another city, debate the polytheists, and record their names`,
+          `Exalt with praise of your Lord, be of those who prostrate, and worship your Lord until certainty (death) comes`,
+          `Keep silent, fast continuously, and wait for angels`,
+          `Look toward the wealth of disbelievers and mourn over them`
+        ],
+        correct: 1,
+        explain: `Verses 15:98–99 prescribe: “So exalt [Allah] with praise of your Lord and be of those who prostrate [to Him]. And worship your Lord until there comes to you the certainty (death).”`
+      }
+    ];
+
+    let appState = {
+      masteredMovements: [],
+      reviewedVerses: [],
+      bookmarkedVerses: [],
+      quizAnswers: {},
+      currentQuizIdx: 0,
+      showArabic: true,
+      selectedArchMovement: 0,
+      lexFilter: `all`
+    };
+
+    function hasShim() {
+      return typeof window.notebookAppApi !== 'undefined' && window.notebookAppApi !== null;
+    }
+
+    async function persistState() {
+      if (hasShim() && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState({
+            masteredMovements: appState.masteredMovements,
+            reviewedVerses: appState.reviewedVerses,
+            bookmarkedVerses: appState.bookmarkedVerses,
+            quizAnswers: appState.quizAnswers,
+            currentQuizIdx: appState.currentQuizIdx,
+            showArabic: appState.showArabic
+          });
+        } catch (err) {
+          /* Ignore transient host serialization errors */
+        }
+      }
+    }
+
+    function updateDashboardStats() {
+      const mCount = appState.masteredMovements.length;
+      const vCount = appState.reviewedVerses.length;
+      let qCorrect = 0;
+      let qAnswered = 0;
+      QUIZ.forEach((item, idx) => {
+        const ans = appState.quizAnswers[String(idx)];
+        if (typeof ans === 'number') {
+          qAnswered += 1;
+          if (ans === item.correct) qCorrect += 1;
+        }
+      });
+
+      const statMov = document.getElementById('stat-movements');
+      const barMov = document.getElementById('bar-movements');
+      const statVer = document.getElementById('stat-verses');
+      const barVer = document.getElementById('bar-verses');
+      const statQuiz = document.getElementById('stat-quiz');
+      const statQuizNote = document.getElementById('stat-quiz-note');
+
+      if (statMov) statMov.textContent = `${mCount} / 6`;
+      if (barMov) barMov.style.width = `${Math.round((mCount / 6) * 100)}%`;
+      if (statVer) statVer.textContent = `${vCount} / 99`;
+      if (barVer) barVer.style.width = `${Math.round((vCount / 99) * 100)}%`;
+      if (statQuiz) statQuiz.textContent = `${qCorrect} / ${QUIZ.length}`;
+      if (statQuizNote) {
+        if (qAnswered === 0) {
+          statQuizNote.textContent = `Not yet completed`;
+        } else if (qAnswered < QUIZ.length) {
+          statQuizNote.textContent = `${qAnswered} of ${QUIZ.length} answered`;
+        } else {
+          statQuizNote.textContent = `${Math.round((qCorrect / QUIZ.length) * 100)}% accuracy complete`;
+        }
+      }
+    }
+
+    function selectArchMovement(idx) {
+      appState.selectedArchMovement = idx;
+      const mov = MOVEMENTS[idx];
+      if (!mov) return;
+
+      for (let i = 0; i < MOVEMENTS.length; i++) {
+        const seg = document.getElementById(`seg-btn-${i}`);
+        const leg = document.getElementById(`leg-btn-${i}`);
+        if (seg) seg.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+        if (leg) leg.classList.toggle('selected', i === idx);
+      }
+
+      const rangeEl = document.getElementById('arch-range');
+      const titleEl = document.getElementById('arch-title');
+      const sumEl = document.getElementById('arch-summary');
+      const pivRefEl = document.getElementById('arch-pivot-ref');
+      const pivTextEl = document.getElementById('arch-pivot-text');
+      const jumpBtn = document.getElementById('arch-jump-btn');
+      const guideLink = document.getElementById('arch-guide-link');
+
+      if (rangeEl) rangeEl.textContent = `Verses ${mov.range} · ${mov.count} verses`;
+      if (titleEl) titleEl.textContent = `${mov.roman}. ${mov.title}`;
+      if (sumEl) sumEl.textContent = mov.summary;
+      if (pivRefEl) pivRefEl.textContent = `Anchor verse ${mov.pivotRef}`;
+      if (pivTextEl) pivTextEl.textContent = mov.pivotText;
+      if (jumpBtn) jumpBtn.setAttribute('onclick', `jumpToReaderMovement(${idx})`);
+      if (guideLink) guideLink.setAttribute('href', `#movement-${idx}`);
+    }
+
+    function jumpToReaderMovement(idx) {
+      const movSelect = document.getElementById('verse-movement');
+      const searchEl = document.getElementById('verse-search');
+      const statusEl = document.getElementById('verse-status');
+      if (movSelect) movSelect.value = String(idx);
+      if (searchEl) searchEl.value = ``;
+      if (statusEl) statusEl.value = `all`;
+      applyVerseFilters();
+      const readerSection = document.getElementById('reader');
+      if (readerSection) readerSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderMovements() {
+      const container = document.getElementById('movements-container');
+      if (!container) return;
+      container.innerHTML = MOVEMENTS.map((mov, idx) => {
+        const mastered = appState.masteredMovements.includes(idx);
+        const btnClass = mastered ? `btn btn-sm btn-sage-active` : `btn btn-sm btn-secondary`;
+        const btnLabel = mastered ? `Mastered` : `Mark movement mastered`;
+        const takeawaysHtml = mov.takeaways.map(t => `<li>${t}</li>`).join('');
+        return `
+          <article class="panel movement-card" id="movement-${idx}">
+            <div class="movement-header">
+              <div>
+                <span class="label">Movement ${mov.roman} · Verses ${mov.range}</span>
+                <h3 class="headline-sub" style="margin-top: var(--space-xs);">${mov.title}</h3>
+              </div>
+              <span class="tag">${mov.count} verses</span>
+            </div>
+            <div class="movement-body">
+              <div>
+                <p class="prose">${mov.summary}</p>
+                <ul class="takeaway-list">${takeawaysHtml}</ul>
+              </div>
+              <div class="pivot-box">
+                <span class="label">Anchor verse ${mov.pivotRef}</span>
+                <p class="prose">${mov.pivotText}</p>
+              </div>
+            </div>
+            <div class="movement-footer">
+              <button type="button" class="${btnClass}" onclick="toggleMasteredMovement(${idx})">${btnLabel}</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="jumpToReaderMovement(${idx})">Open ${mov.range} in reader</button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function toggleMasteredMovement(idx) {
+      const pos = appState.masteredMovements.indexOf(idx);
+      if (pos === -1) {
+        appState.masteredMovements.push(idx);
+      } else {
+        appState.masteredMovements.splice(pos, 1);
+      }
+      renderMovements();
+      updateDashboardStats();
+      await persistState();
+    }
+
+    function filterLexicon(cat) {
+      appState.lexFilter = cat;
+      const cats = ['all', 'revelation', 'cosmos', 'soul', 'history'];
+      cats.forEach(c => {
+        const btn = document.getElementById(`lex-filter-${c}`);
+        if (btn) {
+          btn.className = c === cat ? `btn btn-sm btn-active` : `btn btn-sm btn-secondary`;
+        }
+      });
+      renderLexicon();
+    }
+
+    function renderLexicon() {
+      const grid = document.getElementById('lexicon-grid');
+      if (!grid) return;
+      const items = appState.lexFilter === 'all'
+        ? LEXICON
+        : LEXICON.filter(item => item.cat === appState.lexFilter);
+
+      grid.innerHTML = items.map(item => `
+        <div class="panel lex-card">
+          <div class="lex-top">
+            <span class="label">${item.ref}</span>
+            <span class="arabic-inline" dir="rtl" lang="ar">${item.arabic}</span>
+          </div>
+          <h3 class="headline-sub">${item.term}</h3>
+          <p class="prose-muted" style="font-size: 0.9375rem;">${item.meaning}</p>
+        </div>
+      `).join('');
+    }
+
+    function applyVerseFilters() {
+      const searchEl = document.getElementById('verse-search');
+      const movEl = document.getElementById('verse-movement');
+      const statusEl = document.getElementById('verse-status');
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : ``;
+      const movVal = movEl ? movEl.value : `all`;
+      const statusVal = statusEl ? statusEl.value : `all`;
+
+      const filtered = VERSES.filter(v => {
+        if (movVal !== `all` && String(v.m) !== movVal) return false;
+        const isBook = appState.bookmarkedVerses.includes(v.n);
+        const isRev = appState.reviewedVerses.includes(v.n);
+        if (statusVal === `bookmarked` && !isBook) return false;
+        if (statusVal === `reviewed` && !isRev) return false;
+        if (statusVal === `unreviewed` && isRev) return false;
+        if (query) {
+          const refStr = `15:${v.n}`;
+          const matchText = v.en.toLowerCase().includes(query) ||
+            refStr.includes(query) ||
+            (v.note && v.note.toLowerCase().includes(query));
+          if (!matchText) return false;
+        }
+        return true;
+      });
+
+      renderVerses(filtered);
+
+      const countEl = document.getElementById('reader-count');
+      const clearBtn = document.getElementById('btn-clear-filters');
+      const emptyBox = document.getElementById('verses-empty');
+      const hasActiveFilter = query !== `` || movVal !== `all` || statusVal !== `all`;
+
+      if (countEl) countEl.textContent = `Showing ${filtered.length} of 99 verses`;
+      if (clearBtn) clearBtn.classList.toggle('hidden', !hasActiveFilter);
+      if (emptyBox) emptyBox.classList.toggle('hidden', filtered.length > 0);
+    }
+
+    function resetVerseFilters() {
+      const searchEl = document.getElementById('verse-search');
+      const movEl = document.getElementById('verse-movement');
+      const statusEl = document.getElementById('verse-status');
+      if (searchEl) searchEl.value = ``;
+      if (movEl) movEl.value = `all`;
+      if (statusEl) statusEl.value = `all`;
+      applyVerseFilters();
+    }
+
+    async function toggleArabicScript() {
+      appState.showArabic = !appState.showArabic;
+      const btn = document.getElementById('btn-toggle-arabic');
+      if (btn) {
+        btn.textContent = appState.showArabic ? `Arabic: On` : `Arabic: Off`;
+        btn.className = appState.showArabic ? `btn btn-active` : `btn btn-secondary`;
+      }
+      applyVerseFilters();
+      await persistState();
+    }
+
+    function renderVerses(list) {
+      const container = document.getElementById('verses-container');
+      if (!container) return;
+
+      container.innerHTML = list.map(v => {
+        const mov = MOVEMENTS[v.m];
+        const isRev = appState.reviewedVerses.includes(v.n);
+        const isBook = appState.bookmarkedVerses.includes(v.n);
+        const arabicHtml = appState.showArabic
+          ? `<p class="arabic-text" dir="rtl" lang="ar">${v.ar}</p>`
+          : ``;
+        const noteHtml = v.note
+          ? `<p class="verse-note">${v.note}</p>`
+          : ``;
+
+        return `
+          <article class="verse-row" id="verse-15-${v.n}">
+            <div class="verse-meta">
+              <div class="verse-meta-left">
+                <span class="verse-num">15:${v.n}</span>
+                <span class="tag">${mov.roman}. ${mov.range}</span>
+              </div>
+              <div class="verse-actions">
+                <button type="button" class="btn btn-sm ${isBook ? 'btn-active' : 'btn-secondary'}" onclick="toggleBookmarkVerse(${v.n})">${isBook ? 'Bookmarked' : 'Bookmark'}</button>
+                <button type="button" class="btn btn-sm ${isRev ? 'btn-sage-active' : 'btn-secondary'}" onclick="toggleReviewedVerse(${v.n})">${isRev ? 'Reviewed' : 'Mark reviewed'}</button>
+              </div>
+            </div>
+            ${arabicHtml}
+            <p class="verse-english">${v.en}</p>
+            ${noteHtml}
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function toggleReviewedVerse(num) {
+      const pos = appState.reviewedVerses.indexOf(num);
+      if (pos === -1) {
+        appState.reviewedVerses.push(num);
+      } else {
+        appState.reviewedVerses.splice(pos, 1);
+      }
+      updateDashboardStats();
+      applyVerseFilters();
+      await persistState();
+    }
+
+    async function toggleBookmarkVerse(num) {
+      const pos = appState.bookmarkedVerses.indexOf(num);
+      if (pos === -1) {
+        appState.bookmarkedVerses.push(num);
+      } else {
+        appState.bookmarkedVerses.splice(pos, 1);
+      }
+      applyVerseFilters();
+      await persistState();
+    }
+
+    function renderQuiz() {
+      const idx = appState.currentQuizIdx;
+      const item = QUIZ[idx];
+      if (!item) return;
+
+      const progTag = document.getElementById('quiz-progress-tag');
+      const topicLabel = document.getElementById('quiz-topic-label');
+      const qEl = document.getElementById('quiz-question');
+      const optsEl = document.getElementById('quiz-options');
+      const fbEl = document.getElementById('quiz-feedback');
+      const prevBtn = document.getElementById('quiz-prev');
+      const nextBtn = document.getElementById('quiz-next');
+
+      if (progTag) progTag.textContent = `Question ${idx + 1} of ${QUIZ.length}`;
+      if (topicLabel) topicLabel.textContent = item.topic;
+      if (qEl) qEl.textContent = item.q;
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) {
+        nextBtn.disabled = idx === QUIZ.length - 1;
+        nextBtn.textContent = idx === QUIZ.length - 1 ? `Final question` : `Next question`;
+      }
+
+      const chosen = appState.quizAnswers[String(idx)];
+      const answered = typeof chosen === 'number';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      if (optsEl) {
+        optsEl.innerHTML = item.options.map((optText, oIdx) => {
+          let cls = `quiz-option`;
+          if (answered) {
+            if (oIdx === item.correct) cls += ` opt-correct`;
+            else if (oIdx === chosen) cls += ` opt-wrong`;
+          }
+          return `
+            <button type="button" class="${cls}" ${answered ? 'disabled' : ''} onclick="answerQuiz(${oIdx})">
+              <span class="label" style="min-width: 1.5rem; color: inherit;">${letters[oIdx]}.</span>
+              <span>${optText}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      if (fbEl) {
+        if (answered) {
+          const isRight = chosen === item.correct;
+          fbEl.classList.remove('hidden');
+          fbEl.innerHTML = `
+            <span class="label" style="color: ${isRight ? 'var(--positive)' : 'var(--error)'};">${isRight ? 'Correct' : 'Review verse'}</span>
+            <p class="prose" style="margin-top: var(--space-xs); font-size: 0.95rem;">${item.explain}</p>
+          `;
+        } else {
+          fbEl.classList.add('hidden');
+          fbEl.innerHTML = ``;
+        }
+      }
+
+      renderQuizNav();
+    }
+
+    function renderQuizNav() {
+      const dotsEl = document.getElementById('quiz-dots');
+      const sumEl = document.getElementById('quiz-summary-text');
+      if (dotsEl) {
+        dotsEl.innerHTML = QUIZ.map((item, idx) => {
+          const chosen = appState.quizAnswers[String(idx)];
+          let cls = `btn btn-sm btn-secondary`;
+          if (idx === appState.currentQuizIdx) {
+            cls = `btn btn-sm btn-active`;
+          } else if (typeof chosen === 'number') {
+            cls = chosen === item.correct ? `btn btn-sm btn-sage-active` : `btn btn-sm btn-secondary`;
+          }
+          const mark = typeof chosen === 'number' ? (chosen === item.correct ? ` · ✓` : ` · ×`) : ``;
+          return `<button type="button" class="${cls}" onclick="jumpQuiz(${idx})">${idx + 1}${mark}</button>`;
+        }).join('');
+      }
+
+      if (sumEl) {
+        let answered = 0;
+        let correct = 0;
+        QUIZ.forEach((item, idx) => {
+          const c = appState.quizAnswers[String(idx)];
+          if (typeof c === 'number') {
+            answered += 1;
+            if (c === item.correct) correct += 1;
+          }
+        });
+        if (answered === 0) {
+          sumEl.textContent = `Answer questions on the left to record your mastery score.`;
+        } else {
+          sumEl.textContent = `${correct} correct out of ${answered} answered (${QUIZ.length - answered} remaining).`;
+        }
+      }
+    }
+
+    async function answerQuiz(optIdx) {
+      const idx = appState.currentQuizIdx;
+      if (typeof appState.quizAnswers[String(idx)] === 'number') return;
+      appState.quizAnswers[String(idx)] = optIdx;
+      renderQuiz();
+      updateDashboardStats();
+      await persistState();
+    }
+
+    async function moveQuiz(delta) {
+      const next = appState.currentQuizIdx + delta;
+      if (next < 0 || next >= QUIZ.length) return;
+      appState.currentQuizIdx = next;
+      renderQuiz();
+      await persistState();
+    }
+
+    async function jumpQuiz(idx) {
+      if (idx < 0 || idx >= QUIZ.length) return;
+      appState.currentQuizIdx = idx;
+      renderQuiz();
+      await persistState();
+    }
+
+    async function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = `Click again to confirm reset`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = `Reset all progress`;
+      }
+      appState.masteredMovements = [];
+      appState.reviewedVerses = [];
+      appState.bookmarkedVerses = [];
+      appState.quizAnswers = {};
+      appState.currentQuizIdx = 0;
+      renderMovements();
+      applyVerseFilters();
+      renderQuiz();
+      updateDashboardStats();
+      await persistState();
+    }
+
+    function exportProgress() {
+      const lines = [
+        `SURAH AL-HIJR (CHAPTER 15) — STUDY SUMMARY`,
+        `=========================================`,
+        `Movements mastered: ${appState.masteredMovements.length} / 6`,
+        `Verses reviewed: ${appState.reviewedVerses.length} / 99`,
+        `Bookmarked verses: ${appState.bookmarkedVerses.length ? appState.bookmarkedVerses.map(n => `15:${n}`).join(', ') : 'None'}`,
+        ``,
+        `MASTERED MOVEMENTS:`
+      ];
+      MOVEMENTS.forEach((m, idx) => {
+        const done = appState.masteredMovements.includes(idx) ? `[Mastered]` : `[In progress]`;
+        lines.push(`${done} ${m.roman}. ${m.title} (${m.range})`);
+      });
+      if (appState.bookmarkedVerses.length > 0) {
+        lines.push(``);
+        lines.push(`BOOKMARKED VERSES:`);
+        appState.bookmarkedVerses.slice().sort((a, b) => a - b).forEach(n => {
+          const v = VERSES.find(item => item.n === n);
+          if (v) lines.push(`15:${v.n} — ${v.en}`);
+        });
+      }
+      const content = lines.join('\n');
+      if (hasShim() && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'surah-al-hijr-study-notes.txt'
+        });
+      }
+    }
+
+    function setupRevealObserver() {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(el => observer.observe(el));
+    }
+
+    function restoreFromState(saved) {
+      if (!saved || typeof saved !== 'object') return;
+      if (Array.isArray(saved.masteredMovements)) {
+        appState.masteredMovements = saved.masteredMovements.filter(n => Number.isInteger(n) && n >= 0 && n < 6);
+      }
+      if (Array.isArray(saved.reviewedVerses)) {
+        appState.reviewedVerses = saved.reviewedVerses.filter(n => Number.isInteger(n) && n >= 1 && n <= 99);
+      }
+      if (Array.isArray(saved.bookmarkedVerses)) {
+        appState.bookmarkedVerses = saved.bookmarkedVerses.filter(n => Number.isInteger(n) && n >= 1 && n <= 99);
+      }
+      if (saved.quizAnswers && typeof saved.quizAnswers === 'object') {
+        appState.quizAnswers = saved.quizAnswers;
+      }
+      if (Number.isInteger(saved.currentQuizIdx) && saved.currentQuizIdx >= 0 && saved.currentQuizIdx < QUIZ.length) {
+        appState.currentQuizIdx = saved.currentQuizIdx;
+      }
+      if (typeof saved.showArabic === 'boolean') {
+        appState.showArabic = saved.showArabic;
+      }
+    }
+
+    async function initApp() {
+      if (hasShim() && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) restoreFromState(saved);
+        } catch (err) {
+          /* Start with clean default state */
+        }
+      }
+
+      const arabicBtn = document.getElementById('btn-toggle-arabic');
+      if (arabicBtn) {
+        arabicBtn.textContent = appState.showArabic ? `Arabic: On` : `Arabic: Off`;
+        arabicBtn.className = appState.showArabic ? `btn btn-active` : `btn btn-secondary`;
+      }
+
+      selectArchMovement(0);
+      renderMovements();
+      renderLexicon();
+      applyVerseFilters();
+      renderQuiz();
+      updateDashboardStats();
+      setupRevealObserver();
+
+      if (hasShim() && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

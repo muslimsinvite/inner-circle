@@ -1,0 +1,2958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="terracotta">
+  <title>Surah Ibrahim (Chapter 14) — Comprehensive Study &amp; Interactive Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Terracotta palette & tokens */
+      --background: #f9f3eb;
+      --surface-container-low: #f3e9dc;
+      --surface-container: #ede0d0;
+      --surface-container-high: #e4d4c0;
+
+      --on-surface: #261b15;
+      --on-surface-variant: #57483f;
+
+      --outline: #9e8a78;
+      --outline-variant: #dfd0be;
+
+      --primary: #b84a24;
+      --on-primary: #ffffff;
+      --primary-container: #f7ebe0;
+      --on-primary-container: #7d2e12;
+      --secondary: #8f6524;
+      --tertiary: #1d6356;
+      --tertiary-container: #e1efe9;
+      --on-tertiary-container: #13473d;
+      --error: #b82929;
+      --on-error: #ffffff;
+
+      --data-1: #b84a24;
+      --data-2: #1d6356;
+      --data-3: #b5893e;
+      --data-4: #8c3838;
+      --data-context: #a39384;
+
+      --font-headline: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-label: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', serif;
+
+      --rounded: 0.375rem;
+      --rounded-lg: 0.75rem;
+      --rounded-arch: 28px 28px 6px 6px;
+      --rounded-full: 9999px;
+
+      --soft-shadow: 0 4px 18px rgb(38 27 21 / 0.04);
+      --soft-shadow-raised: 0 8px 28px rgb(38 27 21 / 0.07);
+      --warm-hairline: 1px solid var(--outline-variant);
+      --brass-gradient: linear-gradient(90deg, #d8c3b0, #b5893e, #d8c3b0);
+
+      /* Terracotta component border tokens */
+      --arch-featured-border: #c98a6b;
+      --badge-emerald-border: #b5d6c9;
+      --btn-secondary-border: #c4b29e;
+      --error-wash: #fbeaea;
+
+      /* 3. Shared foundation tokens */
+      --positive: #1d6356;
+      --warning: #8f6524;
+      --focus: #b84a24;
+
+      --display-size: clamp(2.5rem, 1.5rem + 3.8vw, 4.25rem);
+      --headline-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem);
+      --subhead-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --body-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+      --label-size: clamp(0.6875rem, 0.67rem + 0.1vw, 0.75rem);
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography helpers */
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .kicker-meta {
+      color: var(--secondary);
+    }
+
+    .title {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-md) 0 var(--space-md);
+    }
+    .title em, .section-heading em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .section-heading {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0 var(--space-sm);
+    }
+
+    .subhead {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs);
+    }
+
+    .lede {
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .prose {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-block: var(--space-lg);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--brass-gradient);
+    }
+
+    /* Badges & Buttons */
+    .badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--badge-emerald-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .badge-clay {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border: 1px solid var(--arch-featured-border);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: 0 var(--space-lg);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--on-primary-container);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--on-surface);
+      border-color: var(--btn-secondary-border);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--surface-container-low);
+      border-color: var(--outline);
+    }
+
+    .btn-sm {
+      min-height: 38px;
+      padding: 0 var(--space-md);
+      font-size: var(--label-size);
+    }
+
+    /* Hero & Arch Cards */
+    .hero-block {
+      padding-top: var(--space-md);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .arch-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-short) var(--ease-out);
+    }
+    .arch-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+      transform: translateY(-2px);
+    }
+    .arch-card.is-featured {
+      background: var(--primary-container);
+      border-color: var(--arch-featured-border);
+    }
+
+    .arch-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: var(--space-xs);
+    }
+
+    .arch-figure {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--on-surface);
+      font-variant-numeric: lining-nums;
+      margin: var(--space-xs) 0;
+    }
+
+    .arch-caption {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Quick Jump Index & Mastery Strip */
+    .study-index-panel {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      margin-top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      background: var(--background);
+      border: var(--warm-hairline);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out);
+    }
+    .jump-link:hover {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .mastery-bar-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+    }
+
+    .mastery-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .mastery-metrics strong {
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      flex: 1 1 200px;
+      height: 8px;
+      background: var(--surface-container-high);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--tertiary);
+      border-radius: var(--rounded-full);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    /* Section Containers & Bands */
+    .study-section {
+      scroll-margin-top: var(--space-lg);
+    }
+
+    .plaster-band {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      border: var(--warm-hairline);
+    }
+
+    .panel-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    /* Section I: Ring Architecture Map */
+    .ring-strip {
+      display: grid;
+      grid-template-columns: 4fr 4fr 12fr 7fr 7fr 7fr 11fr;
+      gap: var(--space-xs);
+      margin: var(--space-lg) 0 var(--space-md);
+    }
+
+    .ring-segment {
+      appearance: none;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-xs);
+      min-height: 68px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-short) var(--ease-out),
+                  box-shadow var(--dur-short) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .ring-segment:hover {
+      background: var(--surface-container-high);
+      transform: translateY(-2px);
+    }
+    .ring-segment.is-active {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .ring-num {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .ring-verses {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ring-detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-md);
+    }
+
+    .inclusio-callout {
+      background: var(--tertiary-container);
+      border: 1px solid var(--badge-emerald-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    /* Section II: Thematic Explorer + Chart */
+    .theme-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-lg);
+    }
+
+    .theme-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .theme-pill {
+      appearance: none;
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      border-radius: var(--rounded-full);
+      border: 1px solid var(--btn-secondary-border);
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out),
+                  color var(--dur-short) var(--ease-out);
+    }
+    .theme-pill:hover {
+      background: var(--surface-container-low);
+    }
+    .theme-pill.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .verse-ref-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .verse-chip {
+      appearance: none;
+      min-height: 36px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--rounded);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      color: var(--primary);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .verse-chip:hover {
+      background: var(--primary-container);
+    }
+
+    .chart-box {
+      position: relative;
+      min-height: 290px;
+      width: 100%;
+    }
+
+    /* Section III: Verse-by-Verse Study Explorer */
+    .filter-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr) auto;
+      gap: var(--space-md);
+      align-items: end;
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .field-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .field-control {
+      min-height: 44px;
+      padding: 0 var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+    }
+    select.field-control {
+      padding-right: var(--space-xl);
+    }
+    .field-control:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .explorer-toggles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    .toggle-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--on-surface);
+      cursor: pointer;
+      min-height: 36px;
+    }
+    .check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .section-group {
+      margin-bottom: var(--space-lg);
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+    }
+
+    .section-group-header {
+      width: 100%;
+      appearance: none;
+      background: var(--surface-container);
+      border: none;
+      border-bottom: var(--warm-hairline);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      text-align: left;
+      cursor: pointer;
+      min-height: 56px;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .section-group-header:hover {
+      background: var(--surface-container-high);
+    }
+
+    .section-group-title {
+      font-family: var(--font-headline);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--on-surface);
+    }
+
+    .section-group-body {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .section-group-body.is-collapsed {
+      display: none;
+    }
+
+    .verse-card {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      transition: box-shadow var(--dur-short) var(--ease-out),
+                  background-color var(--dur-short) var(--ease-out);
+    }
+    .verse-card.is-studied {
+      background: var(--primary-container);
+      border-color: var(--arch-featured-border);
+    }
+    .verse-card.is-highlighted {
+      box-shadow: 0 0 0 2px var(--primary), var(--soft-shadow-raised);
+    }
+
+    .verse-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .verse-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .verse-num-tag {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-variant-numeric: lining-nums;
+    }
+
+    .verse-arabic {
+      font-family: var(--font-arabic);
+      font-size: clamp(1.5rem, 1.25rem + 0.8vw, 1.95rem);
+      line-height: 2.05;
+      color: var(--on-surface);
+      text-align: right;
+      direction: rtl;
+      margin: 0 0 var(--space-md);
+      letter-spacing: 0;
+      word-spacing: 0.06em;
+    }
+    .verse-arabic.is-hidden {
+      display: none;
+    }
+
+    .verse-english {
+      font-size: 1.03rem;
+      line-height: 1.65;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+
+    .verse-insight {
+      margin-top: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: var(--warm-hairline);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      line-height: 1.55;
+    }
+    .verse-insight.is-hidden {
+      display: none;
+    }
+    .verse-insight strong {
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    /* Section IV: Parables & Linguistic Insights */
+    .parable-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .parable-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-arch);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--soft-shadow);
+    }
+    .parable-card.is-good {
+      background: var(--tertiary-container);
+      border-color: var(--badge-emerald-border);
+    }
+
+    .parable-arabic {
+      font-family: var(--font-arabic);
+      font-size: 1.25rem;
+      line-height: 1.8;
+      direction: rtl;
+      text-align: right;
+      color: var(--on-surface);
+      margin: var(--space-xs) 0;
+    }
+
+    .anatomy-table-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-lg);
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+    }
+
+    table.terracotta-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    table.terracotta-table thead th {
+      background: var(--surface-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+    }
+    table.terracotta-table tbody td {
+      padding: var(--space-md);
+      border-bottom: var(--warm-hairline);
+      vertical-align: top;
+      color: var(--on-surface);
+    }
+    table.terracotta-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ling-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .ling-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: box-shadow var(--dur-short) var(--ease-out);
+    }
+    .ling-card:hover {
+      box-shadow: var(--soft-shadow-raised);
+    }
+    .ling-card.is-reviewed {
+      background: var(--primary-container);
+      border-color: var(--arch-featured-border);
+    }
+
+    .ling-term-ar {
+      font-family: var(--font-arabic);
+      font-size: 1.65rem;
+      line-height: 1.7;
+      color: var(--primary);
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* Section V: Prayers of Ibrahim & Taskhir */
+    .duas-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+      align-items: start;
+    }
+
+    .dua-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .dua-step-btn {
+      appearance: none;
+      width: 100%;
+      min-height: 48px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      text-align: left;
+      cursor: pointer;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .dua-step-btn:hover {
+      background: var(--surface-container-low);
+    }
+    .dua-step-btn.is-active {
+      background: var(--primary-container);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .taskhir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .taskhir-tile {
+      background: var(--background);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    /* Section VI: Reflection Journal */
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .journal-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .journal-textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: var(--space-md);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      resize: vertical;
+      line-height: 1.55;
+      font-size: 0.9375rem;
+    }
+    .journal-textarea:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+
+    .journal-status {
+      font-size: 0.8125rem;
+      color: var(--tertiary);
+      font-weight: 600;
+      min-height: 1.25em;
+    }
+
+    /* Section VII: Self-Assessment Quiz */
+    .quiz-card {
+      background: var(--surface-container-low);
+      border: var(--warm-hairline);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl) var(--space-lg);
+      margin-top: var(--space-lg);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+      margin: var(--space-lg) 0;
+    }
+
+    .quiz-option-btn {
+      appearance: none;
+      width: 100%;
+      min-height: 48px;
+      padding: var(--space-md) var(--space-lg);
+      background: var(--background);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--surface-container-high);
+    }
+    .quiz-option-btn.is-correct {
+      background: var(--tertiary-container);
+      box-shadow: 0 0 0 2px var(--tertiary);
+    }
+    .quiz-option-btn.is-wrong {
+      background: var(--error-wash);
+      box-shadow: 0 0 0 2px var(--error);
+    }
+
+    .quiz-feedback {
+      border-radius: var(--rounded);
+      padding: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-md);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .quiz-feedback.is-visible {
+      display: block;
+    }
+    .quiz-feedback.is-correct {
+      background: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      border: 1px solid var(--badge-emerald-border);
+    }
+    .quiz-feedback.is-wrong {
+      background: var(--error-wash);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+
+    .quiz-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--warm-hairline);
+    }
+
+    /* Footer */
+    .study-footer {
+      border-top: var(--warm-hairline);
+      padding-top: var(--space-xl);
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .inline-status {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--tertiary);
+    }
+
+    /* Subtle reveal animation */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity var(--dur-long) var(--ease-out),
+                  transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .arch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .theme-layout,
+      .ring-detail-grid,
+      .duas-grid,
+      .parable-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .filter-toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-lg) var(--space-md) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .arch-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .ring-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .filter-toolbar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .plaster-band {
+        padding: var(--space-lg) var(--space-md);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- HERO & OVERVIEW -->
+    <header class="hero-block">
+      <div class="kicker">
+        <span>Chapter 14 · Surah Ibrahim</span>
+        <span class="kicker-meta">52 Verses · 7 Structural Movements</span>
+      </div>
+
+      <h1 class="title">From Darknesses into <em>Light</em></h1>
+      <p class="lede">
+        A structured study companion to Chapter 14 of the Qur’an—tracing its literary symmetry, prophetic dialogues, Arabic linguistic roots, cosmic signs, and the seven prayers of Prophet Ibrahim.
+      </p>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Surah Ibrahim · 14:1–52 ◆</div>
+
+      <section class="arch-grid" aria-label="Chapter at a glance">
+        <article class="arch-card">
+          <div class="arch-label">Verses</div>
+          <div class="arch-figure">52</div>
+          <div class="arch-caption">14:1 to 14:52 complete text</div>
+        </article>
+        <article class="arch-card is-featured">
+          <div class="arch-label">Central Contrast</div>
+          <div class="arch-figure">Shukr / Kufr</div>
+          <div class="arch-caption">Gratitude vs. Denial</div>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Supplications</div>
+          <div class="arch-figure">7</div>
+          <div class="arch-caption">Prayers of Ibrahim (14:35–41)</div>
+        </article>
+        <article class="arch-card">
+          <div class="arch-label">Parables</div>
+          <div class="arch-figure">3</div>
+          <div class="arch-caption">Ashes, Good Tree, Uprooted Tree</div>
+        </article>
+      </section>
+
+      <nav class="study-index-panel" aria-label="Study sections and progress">
+        <div class="jump-nav">
+          <a class="jump-link" href="#sec-architecture">I. Architecture</a>
+          <a class="jump-link" href="#sec-themes">II. Thematic Pillars</a>
+          <a class="jump-link" href="#sec-verses">III. All 52 Verses</a>
+          <a class="jump-link" href="#sec-parables">IV. Parables &amp; Linguistics</a>
+          <a class="jump-link" href="#sec-prayers">V. Prayers &amp; Blessings</a>
+          <a class="jump-link" href="#sec-reflection">VI. Reflections</a>
+          <a class="jump-link" href="#sec-quiz">VII. Self-Assessment</a>
+        </div>
+        <div class="mastery-bar-wrap">
+          <div class="mastery-metrics">
+            <span>Verses studied: <strong id="stat-verses">0 / 52</strong></span>
+            <span>Roots reviewed: <strong id="stat-roots">0 / 6</strong></span>
+            <span>Reflections: <strong id="stat-reflections">0 / 3</strong></span>
+            <span>Quiz score: <strong id="stat-quiz">0 / 10</strong></span>
+          </div>
+          <div class="progress-track" aria-label="Overall study completion">
+            <div class="progress-fill" id="overall-progress-fill"></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- SECTION I: LITERARY ARCHITECTURE -->
+    <section id="sec-architecture" class="study-section plaster-band reveal-item">
+      <div class="kicker">
+        <span>Section I · Structural Architecture</span>
+        <span class="kicker-meta">14:1 ↔ 14:52 Ring Symmetry</span>
+      </div>
+      <h2 class="section-heading">Seven Movements Framed by <em>Revelation</em> and Notification</h2>
+      <p class="prose">
+        Surah Ibrahim unfolds across seven deliberate movements. It opens and closes with matching declarations about the Qur’an itself—an <em>inclusio</em> linking the mission of bringing humanity from darknesses into light (14:1) with the closing summons for people of understanding to reflect (14:52). Select any segment below to inspect its role and jump directly to its verses.
+      </p>
+
+      <div class="ring-strip" id="ring-strip" role="group" aria-label="Seven structural sections of Surah Ibrahim"></div>
+
+      <div class="ring-detail-grid">
+        <div class="panel-card" id="ring-detail-card">
+          <div class="kicker" id="ring-detail-kicker">Movement I · Verses 14:1–4</div>
+          <h3 class="subhead" id="ring-detail-title" style="margin-top: var(--space-xs);">Purpose of Revelation &amp; Linguistic Clarity</h3>
+          <p class="prose" id="ring-detail-desc" style="margin-bottom: var(--space-md);">
+            Opens with Alif, Lam, Ra and defines scripture’s objective: leading humankind out of fragmented darknesses into unified light through messengers speaking each community’s own tongue.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center;">
+            <span class="badge-emerald" id="ring-detail-anchor">Anchor: Az-Zulumat → An-Nur</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="ring-jump-btn" onclick="jumpToSectionFromRing()">Open in Verse Explorer</button>
+          </div>
+        </div>
+
+        <aside class="inclusio-callout">
+          <div class="kicker" style="color: var(--tertiary);">Bookend Symmetry</div>
+          <h3 class="subhead" style="margin-top: var(--space-xs);">14:1 ↔ 14:52</h3>
+          <p style="font-size: 0.9375rem; margin: 0 0 var(--space-sm); color: var(--on-surface);">
+            <strong>Opening (14:1):</strong> “A Book which We have revealed to you… that you might bring mankind out of darknesses into the light.”
+          </p>
+          <p style="font-size: 0.9375rem; margin: 0; color: var(--on-surface-variant);">
+            <strong>Closing (14:52):</strong> “This is notification for the people that they may be warned thereby and that they may know that He is but one God and that those of understanding will be reminded.”
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SECTION II: THEMATIC PILLARS -->
+    <section id="sec-themes" class="study-section reveal-item">
+      <div class="kicker">
+        <span>Section II · Thematic Exploration</span>
+        <span class="kicker-meta">Core Conceptual Currents</span>
+      </div>
+      <h2 class="section-heading">Five Threads Woven Through the <em>Chapter</em></h2>
+      <p class="prose">
+        Rather than treating topics in isolation, Surah Ibrahim braids five recurring themes across history, nature, and the Hereafter. Choose a theme to examine its thesis and trace every verse where it appears.
+      </p>
+
+      <div class="theme-pills" id="theme-pills" role="group" aria-label="Select a theme"></div>
+
+      <div class="theme-layout">
+        <div class="panel-card" id="theme-detail-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+            <span class="badge-clay" id="theme-arabic-tag">الظلمات إلى النور</span>
+            <span class="kicker-meta" id="theme-count-label" style="font-size: var(--label-size); font-weight: 700;">8 key verses</span>
+          </div>
+          <h3 class="subhead" id="theme-title" style="margin-top: var(--space-md);">From Darknesses into Light</h3>
+          <p class="prose" id="theme-summary" style="margin-bottom: var(--space-sm);"></p>
+          <div class="kicker" style="margin-top: var(--space-md);">Click a verse reference to inspect it below</div>
+          <div class="verse-ref-list" id="theme-verse-refs"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="kicker" style="margin-bottom: var(--space-sm);">Verse Distribution Across Themes</div>
+          <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin: 0 0 var(--space-md);">
+            Number of verses carrying each primary thematic emphasis across the 52 verses of Surah Ibrahim.
+          </p>
+          <div class="chart-box">
+            <canvas id="themeChart" aria-label="Bar chart of thematic verse distribution in Surah Ibrahim"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION III: VERSE-BY-VERSE EXPLORER -->
+    <section id="sec-verses" class="study-section reveal-item">
+      <div class="kicker">
+        <span>Section III · Complete Text &amp; Analysis</span>
+        <span class="kicker-meta">All 52 Verses (14:1–14:52)</span>
+      </div>
+      <h2 class="section-heading">Verse-by-Verse <em>Study</em> &amp; Commentary</h2>
+      <p class="prose">
+        Read, search, and annotate your way through all seven movements. Toggle Arabic script or commentary notes, jump from any thematic reference, and mark verses as studied to track your mastery.
+      </p>
+
+      <div class="filter-toolbar">
+        <div class="field-group">
+          <label class="field-label" for="filter-section">Section</label>
+          <select id="filter-section" class="field-control" onchange="applyVerseFilters()">
+            <option value="all">All 7 Sections (14:1–52)</option>
+            <option value="1">I. Revelation &amp; Clarity (14:1–4)</option>
+            <option value="2">II. Moses &amp; Gratitude (14:5–8)</option>
+            <option value="3">III. Past Nations &amp; Ashes (14:9–20)</option>
+            <option value="4">IV. Judgment &amp; Two Trees (14:21–27)</option>
+            <option value="5">V. Ingratitude &amp; Cosmic Gifts (14:28–34)</option>
+            <option value="6">VI. Prayers of Ibrahim (14:35–41)</option>
+            <option value="7">VII. Divine Vigilance &amp; Close (14:42–52)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="filter-theme">Theme</label>
+          <select id="filter-theme" class="field-control" onchange="applyVerseFilters()">
+            <option value="all">All Themes</option>
+            <option value="light">Darknesses to Light</option>
+            <option value="gratitude">Gratitude vs. Ingratitude</option>
+            <option value="reliance">Prophetic Reliance &amp; Patience</option>
+            <option value="permanence">Permanence vs. Illusion</option>
+            <option value="prayer">Prayer &amp; Legacy</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="filter-search">Search text or verse</label>
+          <input type="search" id="filter-search" class="field-control" placeholder="e.g. 14:7, grateful, tree, Ibrahim…" oninput="applyVerseFilters()">
+        </div>
+
+        <button type="button" class="btn btn-secondary" onclick="clearVerseFilters()">Reset Filters</button>
+      </div>
+
+      <div class="explorer-toggles">
+        <div class="toggle-group">
+          <label class="check-label">
+            <input type="checkbox" id="toggle-arabic" checked onchange="toggleVerseDisplay()">
+            <span>Show Arabic text</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="toggle-insights" checked onchange="toggleVerseDisplay()">
+            <span>Show analytical notes</span>
+          </label>
+        </div>
+        <div class="toggle-group">
+          <span class="inline-status" id="verse-filter-count">Showing 52 of 52 verses</span>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="expandAllSections(true)">Expand All</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="expandAllSections(false)">Collapse All</button>
+        </div>
+      </div>
+
+      <div id="verses-container"></div>
+    </section>
+
+    <!-- SECTION IV: PARABLES & LINGUISTIC INSIGHTS -->
+    <section id="sec-parables" class="study-section plaster-band reveal-item">
+      <div class="kicker">
+        <span>Section IV · Rhetoric &amp; Linguistics</span>
+        <span class="kicker-meta">Parables &amp; Arabic Roots</span>
+      </div>
+      <h2 class="section-heading">Three Visual <em>Parables</em> &amp; Key Arabic Roots</h2>
+      <p class="prose">
+        Surah Ibrahim teaches enduring spiritual realities through tangible imagery—wind-blown ashes, a fruit-bearing tree rooted deep in soil, and a shallow tree torn from the ground—paired with deliberate Arabic morphological patterns.
+      </p>
+
+      <div class="parable-grid">
+        <article class="parable-card">
+          <div class="arch-label">Parable 1 · 14:18</div>
+          <h3 class="subhead">Ashes in a Storm Wind</h3>
+          <div class="parable-arabic" lang="ar">أَعْمَالُهُمْ كَرَمَادٍ اشْتَدَّتْ بِهِ الرِّيحُ فِي يَوْمٍ عَاصِفٍ</div>
+          <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">
+            Deeds lacking faith appear substantial while performed, yet turn to weightless ash scattered forcefully by a gale—leaving nothing the earner can hold onto.
+          </p>
+        </article>
+
+        <article class="parable-card is-good">
+          <div class="arch-label" style="color: var(--tertiary);">Parable 2 · 14:24–25</div>
+          <h3 class="subhead">The Good Word as a Good Tree</h3>
+          <div class="parable-arabic" lang="ar">كَلِمَةً طَيِّبَةً كَشَجَرَةٍ طَيِّبَةٍ أَصْلُهَا ثَابِتٌ وَفَرْعُهَا فِي السَّمَاءِ</div>
+          <p style="font-size: 0.9375rem; color: var(--on-surface); margin: 0;">
+            A sound word of truth has its root firmly fixed in the earth, its branches reaching high into the sky, yielding fruit in every season by its Lord’s permission.
+          </p>
+        </article>
+
+        <article class="parable-card">
+          <div class="arch-label">Parable 3 · 14:26</div>
+          <h3 class="subhead">The Bad Word as an Uprooted Tree</h3>
+          <div class="parable-arabic" lang="ar">كَشَجَرَةٍ خَبِيثَةٍ اجْتُنَّتْ مِنْ فَوْقِ الْأَرْضِ مَا لَهَا مِنْ قَرَارٍ</div>
+          <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">
+            Falsehood has no subterranean depth; it sits only on the surface, torn away cleanly with zero stability (<em>qarar</em>) in this life or the next.
+          </p>
+        </article>
+      </div>
+
+      <div class="anatomy-table-wrap">
+        <table class="terracotta-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Ashes in Storm (14:18)</th>
+              <th>The Good Tree (14:24–25, 27)</th>
+              <th>The Uprooted Tree (14:26)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Foundation</strong></td>
+              <td>Burnt residue; no living root</td>
+              <td>Root firmly fixed (<em>asluhā thābit</em>)</td>
+              <td>Torn from above the earth; unrooted</td>
+            </tr>
+            <tr>
+              <td><strong>Output</strong></td>
+              <td>Zero retained earnings</td>
+              <td>Fruit in every season (<em>kulla ḥīn</em>)</td>
+              <td>Barren and severed from nourishment</td>
+            </tr>
+            <tr>
+              <td><strong>Under Stress</strong></td>
+              <td>Scattered instantly by storm wind</td>
+              <td>Kept firm by the Firm Word (14:27)</td>
+              <td>No stability (<em>mā lahā min qarār</em>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ornament-rule" aria-hidden="true">◆ Linguistic Lab · 6 Core Expressions ◆</div>
+
+      <div class="ling-grid" id="ling-grid"></div>
+    </section>
+
+    <!-- SECTION V: PRAYERS OF IBRAHIM & TASKHIR -->
+    <section id="sec-prayers" class="study-section reveal-item">
+      <div class="kicker">
+        <span>Section V · The Namesake Section</span>
+        <span class="kicker-meta">14:32–41 · Provision &amp; Supplication</span>
+      </div>
+      <h2 class="section-heading">The Seven <em>Prayers</em> of Abraham</h2>
+      <p class="prose">
+        Why does Chapter 14 bear the name of Prophet Ibrahim? Immediately after cataloging seven cosmic favors and observing that humanity is “most unjust and ungrateful” (14:34), the Surah turns to Abraham standing in a barren valley—modeling what a grateful, anchored heart asks of God. Notice how his address shifts between personal (<em>Rabbi</em>, “My Lord”) and communal (<em>Rabbana</em>, “Our Lord”).
+      </p>
+
+      <div class="duas-grid">
+        <div class="dua-step-list" id="dua-step-list" role="group" aria-label="Select one of Ibrahim's seven prayers"></div>
+        <div class="panel-card" id="dua-detail-panel"></div>
+      </div>
+
+      <div class="panel-card" style="margin-top: var(--space-xl);">
+        <div class="kicker">Preceding Context · 14:32–34</div>
+        <h3 class="subhead" style="margin-top: var(--space-xs);">Seven Subjugated Blessings (<em>Taskhīr</em>)</h3>
+        <p class="prose" style="margin-bottom: var(--space-sm);">
+          Before Abraham’s supplications, verses 32–34 enumerate seven layers of divine provision—repeating <em>sakh-khara lakum</em> (“He subjected for you”) to underscore how creation serves human life:
+        </p>
+        <div class="taskhir-grid">
+          <div class="taskhir-tile"><strong>1. Heavens &amp; Earth</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Created as the foundational stage of life (14:32)</span></div>
+          <div class="taskhir-tile"><strong>2. Rain &amp; Fruits</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Water sent down to bring forth provision (14:32)</span></div>
+          <div class="taskhir-tile"><strong>3. Ocean Ships</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Subjected to sail seas by His command (14:32)</span></div>
+          <div class="taskhir-tile"><strong>4. Rivers</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Fresh waterways sustained for settlement (14:32)</span></div>
+          <div class="taskhir-tile"><strong>5. Sun &amp; Moon</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Continuous in steady orbit (<em>dā’ibayn</em>, 14:33)</span></div>
+          <div class="taskhir-tile"><strong>6. Night &amp; Day</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">Alternating rhythms of rest and labor (14:33)</span></div>
+          <div class="taskhir-tile"><strong>7. Uncountable Gifts</strong><br><span style="font-size: 0.875rem; color: var(--on-surface-variant);">“From all you asked… you could not enumerate them” (14:34)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION VI: REFLECTION JOURNAL -->
+    <section id="sec-reflection" class="study-section plaster-band reveal-item">
+      <div class="kicker">
+        <span>Section VI · Personal Tadabbur</span>
+        <span class="kicker-meta">Saved Automatically</span>
+      </div>
+      <h2 class="section-heading">Guided <em>Reflection</em> Exercises</h2>
+      <p class="prose">
+        Transform textual understanding into personal insight. Your responses are saved automatically in your notebook session and can be exported as a plain-text study sheet anytime.
+      </p>
+
+      <div class="journal-grid">
+        <div class="journal-card">
+          <div class="kicker">Prompt 1 · 14:7 &amp; 14:34</div>
+          <label class="subhead" for="reflect-1">The Gratitude Equation</label>
+          <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin: 0;">
+            “If you are grateful, I will surely increase you.” What are three quiet provisions in your life you usually overlook—and how would actively thanking God for them change your week?
+          </p>
+          <textarea id="reflect-1" class="journal-textarea" oninput="saveReflection(0, this.value)"></textarea>
+          <div class="journal-status" id="reflect-status-0">Not yet written</div>
+        </div>
+
+        <div class="journal-card">
+          <div class="kicker">Prompt 2 · 14:18 &amp; 14:24–27</div>
+          <label class="subhead" for="reflect-2">Deep Roots vs. Storm Ashes</label>
+          <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin: 0;">
+            Compare one effort in your life built on lasting principle (“root firmly fixed”) with one distraction or habit that leaves nothing behind (“ashes in a storm”).
+          </p>
+          <textarea id="reflect-2" class="journal-textarea" oninput="saveReflection(1, this.value)"></textarea>
+          <div class="journal-status" id="reflect-status-1">Not yet written</div>
+        </div>
+
+        <div class="journal-card">
+          <div class="kicker">Prompt 3 · 14:35–41</div>
+          <label class="subhead" for="reflect-3">Generational Prayer</label>
+          <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin: 0;">
+            Abraham prayed for himself, his parents, his children, and believers to come. Draft a brief prayer or aspiration covering your own integrity and the legacy you want to leave.
+          </p>
+          <textarea id="reflect-3" class="journal-textarea" oninput="saveReflection(2, this.value)"></textarea>
+          <div class="journal-status" id="reflect-status-2">Not yet written</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; margin-top: var(--space-lg);">
+        <button type="button" class="btn btn-primary" onclick="exportReflections()">Export Study Notes (.txt)</button>
+        <span class="inline-status" id="export-status"></span>
+      </div>
+    </section>
+
+    <!-- SECTION VII: SELF-ASSESSMENT QUIZ -->
+    <section id="sec-quiz" class="study-section reveal-item">
+      <div class="kicker">
+        <span>Section VII · Self-Assessment</span>
+        <span class="kicker-meta">10 Diagnostic Questions</span>
+      </div>
+      <h2 class="section-heading">Mastery <em>Check</em> &amp; Recall</h2>
+      <p class="prose">
+        Test your grasp of Surah Ibrahim’s structure, parables, linguistic nuances, and verse details. Immediate verse-anchored feedback accompanies every answer.
+      </p>
+
+      <div class="quiz-card" id="quiz-card">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+          <span class="badge-emerald" id="quiz-progress-badge">Question 1 of 10</span>
+          <span class="kicker-meta" id="quiz-score-label" style="font-size: 0.875rem; font-weight: 700;">Score: 0 / 10</span>
+        </div>
+
+        <h3 class="subhead" id="quiz-question-text" style="font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);"></h3>
+
+        <div class="quiz-options" id="quiz-options"></div>
+
+        <div class="quiz-feedback" id="quiz-feedback" role="status" aria-live="polite"></div>
+
+        <div class="quiz-footer">
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm);">
+            <button type="button" class="btn btn-secondary btn-sm" id="quiz-prev-btn" onclick="stepQuiz(-1)">Previous</button>
+            <button type="button" class="btn btn-primary btn-sm" id="quiz-next-btn" onclick="stepQuiz(1)">Next Question</button>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="quiz-reset-btn" onclick="resetQuiz(this)">Reset Quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="study-footer">
+      <div>
+        <strong>Sources:</strong> Full Arabic text and English translation grounded in the provided Chapter 14 (Surah Ibrahim, 14:1–52) source text.
+      </div>
+      <div>
+        <button type="button" class="btn btn-secondary btn-sm" id="reset-all-btn" onclick="resetAllProgress(this)">Reset All Study Progress</button>
+      </div>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+
+  <script>
+    // =========================================================================
+    // DATA: SECTIONS, THEMES, ALL 52 VERSES, LINGUISTIC ROOTS, PRAYERS, QUIZ
+    // =========================================================================
+
+    const SECTIONS = [
+      {
+        id: 1,
+        roman: `I`,
+        range: `14:1–4`,
+        count: 4,
+        title: `Purpose of Revelation & Universal Clarity`,
+        anchor: `Az-Zulumāt → An-Nūr`,
+        summary: `Opens with Alif, Lam, Ra and states the core purpose of scripture: bringing humanity out of fragmented darknesses into unified light through messengers sent in their own people’s language.`
+      },
+      {
+        id: 2,
+        roman: `II`,
+        range: `14:5–8`,
+        count: 4,
+        title: `Moses, the Days of Allah & the Law of Gratitude`,
+        anchor: `Ṣabbār Shakūr`,
+        summary: `Connects Prophet Muhammad’s mission to Moses’s liberation of Israel from Pharaoh, introducing the timeless covenant of gratitude: gratitude brings increase; denial leaves Allah completely self-sufficient.`
+      },
+      {
+        id: 3,
+        roman: `III`,
+        range: `14:9–20`,
+        count: 12,
+        title: `Past Nations, Prophetic Dialogue & Deeds Like Ashes`,
+        anchor: `Tawakkul & Ashes`,
+        summary: `Recounts debates between past messengers and skeptical nations (Noah, ‘Ad, Thamud), prophetic reliance under threats of exile, the ruin of obstinate tyrants, and the parable of disbelievers’ works blown away like ashes.`
+      },
+      {
+        id: 4,
+        roman: `IV`,
+        range: `14:21–27`,
+        count: 7,
+        title: `Judgment, Satan’s Disavowal & the Two Trees`,
+        anchor: `Shajarah Ṭayyibah`,
+        summary: `Pictures the Hereafter debate between followers and arrogant leaders, Satan’s chilling confession that he had no power beyond invitation, Paradise’s greeting of Peace, and the contrasting parables of the Good Tree and Uprooted Tree.`
+      },
+      {
+        id: 5,
+        roman: `V`,
+        range: `14:28–34`,
+        count: 7,
+        title: `Exchanging Favor for Kufr & Seven Cosmic Gifts`,
+        anchor: `Sakh-khara Lakum`,
+        summary: `Warns against leaders who barter divine favor for ruin, urges believers to establish prayer and charity before a day without commerce, and catalogs seven cosmic blessings—culminating in humanity’s inability to count them.`
+      },
+      {
+        id: 6,
+        roman: `VI`,
+        range: `14:35–41`,
+        count: 7,
+        title: `The Seven Supplications of Prophet Ibrahim`,
+        anchor: `Rabbī / Rabbanā`,
+        summary: `Presents Abraham in an uncultivated valley near the Sacred House as the living antidote to human ingratitude—praying for Makkah’s safety, freedom from idols, steadfast prayer, hearts inclining, gratitude, and forgiveness.`
+      },
+      {
+        id: 7,
+        roman: `VII`,
+        range: `14:42–52`,
+        count: 11,
+        title: `Divine Vigilance, Cosmic Renewal & Final Notification`,
+        anchor: `Balāgh lil-Nās`,
+        summary: `Assures that Allah is never unaware of oppression; describes the Day of staring eyes and replaced earth and heavens; and closes the chapter by naming the Qur’an a clear notification (Balāgh) for people of understanding.`
+      }
+    ];
+
+    const THEMES = [
+      {
+        id: `light`,
+        name: `Darknesses to Light`,
+        arabic: `مِنَ الظُّلُمَاتِ إِلَى النُّورِ`,
+        summary: `Revelation is framed not as abstract theory, but as liberation from scattered darknesses (plural) into a single coherent path of light (singular)—a shared mission across Muhammad (14:1), Moses (14:5), and every messenger speaking his people’s language (14:4).`,
+        verses: [1, 3, 4, 5, 9, 10, 48, 52]
+      },
+      {
+        id: `gratitude`,
+        name: `Gratitude vs. Ingratitude`,
+        arabic: `الشُّكْرُ وَالْكُفْرُ`,
+        summary: `Shukr (gratitude) and Kufr (denial/covering favor) form the moral axis of the chapter. Gratitude expands blessing (14:7) and shapes Ibrahim’s response to barren valleys and late-life children (14:37, 14:39), while ingratitude forgets uncountable cosmic gifts (14:28, 14:34).`,
+        verses: [5, 6, 7, 8, 28, 32, 33, 34, 37, 39]
+      },
+      {
+        id: `reliance`,
+        name: `Prophetic Reliance & Patience`,
+        arabic: `التَّوَكُّلُ وَالصَّبْرُ`,
+        summary: `When mocked as “merely human” or threatened with expulsion, messengers anchor themselves in Tawakkul (reliance upon Allah) and Sabr (patient perseverance), trusting Allah’s promise of ultimate vindication.`,
+        verses: [5, 11, 12, 13, 14, 15, 42, 46, 47]
+      },
+      {
+        id: `permanence`,
+        name: `Permanence vs. Illusion`,
+        arabic: `الْقَوْلُ الثَّابِتُ`,
+        summary: `Surah Ibrahim repeatedly separates what endures from what collapses: worldly preference (14:3), storm-scattered ashes (14:18), Satan’s empty promises (14:22), and uprooted trees (14:26) stand against the rooted Good Tree and Firm Word (14:24–27).`,
+        verses: [3, 18, 19, 21, 22, 23, 24, 25, 26, 27, 44, 46]
+      },
+      {
+        id: `prayer`,
+        name: `Prayer & Multi-Generational Legacy`,
+        arabic: `إِقَامَةُ الصَّلَاةِ`,
+        summary: `Establishing prayer (Iqamat as-Salah) is the bridge between recognizing divine blessings and sustaining a faithful community across generations—commanded to believers (14:31) and embodied in Ibrahim’s seven supplications (14:35–41).`,
+        verses: [31, 35, 36, 37, 38, 39, 40, 41]
+      }
+    ];
+
+    const VERSES = [
+      {
+        v: 1, sec: 1, themes: [`light`],
+        ar: `الر ۚ كِتَابٌ أَنْزَلْنَاهُ إِلَيْكَ لِتُخْرِجَ النَّاسَ مِنَ الظُّلُمَاتِ إِلَى النُّورِ بِإِذْنِ رَبِّهِمْ إِلَىٰ صِرَاطِ الْعَزِيزِ الْحَمِيدِ`,
+        en: `Alif, Lam, Ra. [This is] a Book which We have revealed to you, [O Muhammad], that you might bring mankind out of darknesses into the light by permission of their Lord - to the path of the Exalted in Might, the Praiseworthy -`,
+        note: `Notice the contrast between plural "darknesses" (az-zulumat) and singular "the light" (an-nur), ending with two divine names—Al-'Aziz (Exalted in Might) and Al-Hamid (Praiseworthy)—setting up the theme of praise and gratitude.`
+      },
+      {
+        v: 2, sec: 1, themes: [`light`, `permanence`],
+        ar: `اللَّهِ الَّذِي لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ وَوَيْلٌ لِلْكَافِرِينَ مِنْ عَذَابٍ شَدِيدٍ`,
+        en: `Allah, to whom belongs whatever is in the heavens and whatever is on the earth. And woe to the disbelievers from a severe punishment`,
+        note: `Universal ownership of the cosmos establishes why ignoring the Creator’s guidance carries real consequence.`
+      },
+      {
+        v: 3, sec: 1, themes: [`light`, `permanence`],
+        ar: `الَّذِينَ يَسْتَحِبُّونَ الْحَيَاةَ الدُّنْيَا عَلَى الْآخِرَةِ وَيَصُدُّونَ عَنْ سَبِيلِ اللَّهِ وَيَبْغُونَهَا عِوَجًا ۚ أُولَٰئِكَ فِي ضَلَالٍ بَعِيدٍ`,
+        en: `The ones who prefer the worldly life over the Hereafter and avert [people] from the way of Allah, seeking to make it (seem) deviant. Those are in extreme error.`,
+        note: `Defines "extreme error" through three actions: loving fleeting worldly life above the Hereafter, blocking others from truth, and trying to portray the straight path as crooked.`
+      },
+      {
+        v: 4, sec: 1, themes: [`light`],
+        ar: `وَمَا أَرْسَلْنَا مِنْ رَسُولٍ إِلَّا بِلِسَانِ قَوْمِهِ لِيُبَيِّنَ لَهُمْ ۖ فَيُضِلُّ اللَّهُ مَنْ يَشَاءُ وَيَهْدِي مَنْ يَشَاءُ ۚ وَهُوَ الْعَزِيزُ الْحَكِيمُ`,
+        en: `And We did not send any messenger except [speaking] in the language of his people to state clearly for them, and Allah sends astray [thereby] whom He wills and guides whom He wills. And He is the Exalted in Might, the Wise.`,
+        note: `Clarifies divine fairness: revelation always arrives in intelligible human language (bi-lisani qawmihi) so excuse is removed.`
+      },
+      {
+        v: 5, sec: 2, themes: [`light`, `gratitude`, `reliance`],
+        ar: `وَلَقَدْ أَرْسَلْنَا مُوسَىٰ بِآيَاتِنَا أَنْ أَخْرِجْ قَوْمَكَ مِنَ الظُّلُمَاتِ إِلَى النُّورِ وَذَكِّرْهُمْ بِأَيَّامِ اللَّهِ ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِكُلِّ صَبَّارٍ شَكُورٍ`,
+        en: `And We certainly sent Moses with Our signs, [saying], "Bring out your people from darknesses into the light and remind them of the days of Allah." Indeed in that are signs for everyone patient and grateful.`,
+        note: `Echoes 14:1 verbatim ("darknesses into the light") for Moses, uniting prophetic missions. Ends with "sabbarin shakur"—intensive forms for someone deeply patient in hardship and deeply grateful in ease.`
+      },
+      {
+        v: 6, sec: 2, themes: [`gratitude`],
+        ar: `وَإِذْ قَالَ مُوسَىٰ لِقَوْمِهِ اذْكُرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ إِذْ أَنْجَاكُمْ مِنْ آلِ فِرْعَوْنَ يَسُومُونَكُمْ سُوءَ الْعَذَابِ وَيُذَبِّحُونَ أَبْنَاءَكُمْ وَيَسْتَحْيُونَ نِسَاءَكُمْ ۚ وَفِي ذَٰلِكُمْ بَلَاءٌ مِنْ رَبِّكُمْ عَظِيمٌ`,
+        en: `And [recall, O Children of Israel], when Moses said to His people, "Remember the favor of Allah upon you when He saved you from the people of Pharaoh, who were afflicting you with the worst torment and were slaughtering your [newborn] sons and keeping your females alive. And in that was a great trial from your Lord.`,
+        note: `Concrete historical anchor for the "days of Allah": remembering rescue from Pharaoh’s tyranny turns memory into active gratitude.`
+      },
+      {
+        v: 7, sec: 2, themes: [`gratitude`],
+        ar: `وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِنْ كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ`,
+        en: `And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.' "`,
+        note: `One of the Qur’an’s most celebrated verses: the Divine Law of Increase—linking gratitude (shukr) directly to growth and ungratefulness (kufr) to deprivation.`
+      },
+      {
+        v: 8, sec: 2, themes: [`gratitude`],
+        ar: `وَقَالَ مُوسَىٰ إِنْ تَكْفُرُوا أَنْتُمْ وَمَنْ فِي الْأَرْضِ جَمِيعًا فَإِنَّ اللَّهَ لَغَنِيٌّ حَمِيدٌ`,
+        en: `And Moses said, "If you should disbelieve, you and whoever is on the earth entirely - indeed, Allah is Free of need and Praiseworthy."`,
+        note: `Protects against misunderstanding 14:7: Allah does not need human gratitude for Himself; gratitude benefits the human soul, while Allah remains Al-Ghani (Self-Sufficient) and Al-Hamid (inherently Praiseworthy).`
+      },
+      {
+        v: 9, sec: 3, themes: [`light`, `reliance`],
+        ar: `أَلَمْ يَأْتِكُمْ نَبَأُ الَّذِينَ مِنْ قَبْلِكُمْ قَوْمِ نُوحٍ وَعَادٍ وَثَمُودَ ۛ وَالَّذِينَ مِنْ بَعْدِهِمْ ۛ لَا يَعْلَمُهُمْ إِلَّا اللَّهُ ۚ جَاءَتْهُمْ رُسُلُهُمْ بِالْبَيِّنَاتِ فَرَدُّوا أَيْدِيَهُمْ فِي أَفْوَاهِهِمْ وَقَالُوا إِنَّا كَفَرْنَا بِمَا أُرْسِلْتُمْ بِهِ وَإِنَّا لَفِي شَكٍّ مِمَّا تَدْعُونَنَا إِلَيْهِ مُرِيبٍ`,
+        en: `Has there not reached you the news of those before you the people of Noah and 'Aad and Thamud and those after them? No one knows them but Allah. Their messengers brought them clear proofs, but they returned their hands to their mouths and said, "Indeed, we disbelieve in that with which you have been sent, and indeed we are, about that to which you invite us, in disquieting doubt."`,
+        note: `"Returned their hands to their mouths" depicts gestures of scoffing, stifled mockery, or biting fingers in stubborn refusal despite clear proofs (bayyinat).`
+      },
+      {
+        v: 10, sec: 3, themes: [`light`],
+        ar: `قَالَتْ رُسُلُهُمْ أَفِي اللَّهِ شَكٌّ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ ۖ يَدْعُوكُمْ لِيَغْفِرَ لَكُمْ مِنْ ذُنُوبِكُمْ وَيُؤَخِّرَكُمْ إِلَىٰ أَجَلٍ مُسَمًّى ۚ قَالُوا إِنْ أَنْتُمْ إِلَّا بَشَرٌ مِثْلُنَا تُرِيدُونَ أَنْ تَصُدُّونَا عَمَّا كَانَ يَعْبُدُ آبَاؤُنَا فَأْتُونَا بِسُلْطَانٍ مُبِينٍ`,
+        en: `Their messengers said, "Can there be doubt about Allah, Creator of the heavens and earth? He invites you that He may forgive you of your sins, and He delays your death for a specified term." They said, "You are not but men like us who wish to avert us from what our fathers were worshipping. So bring us a clear authority."`,
+        note: `Captures the recurring clash: messengers appeal to the Creator (Fatir) and mercy, while rejecters retreat into tribal tradition ("what our fathers worshipped") and demand spectacle.`
+      },
+      {
+        v: 11, sec: 3, themes: [`reliance`],
+        ar: `قَالَتْ لَهُمْ رُسُلُهُمْ إِنْ نَحْنُ إِلَّا بَشَرٌ مِثْلُكُمْ وَلَٰكِنَّ اللَّهَ يَمُنُّ عَلَىٰ مَنْ يَشَاءُ مِنْ عِبَادِهِ ۖ وَمَا كَانَ لَنَا أَنْ نَأْتِيَكُمْ بِسُلْطَانٍ إِلَّا بِإِذْنِ اللَّهِ ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ`,
+        en: `Their messengers said to them, "We are only men like you, but Allah confers favor upon whom He wills of His servants. It has never been for us to bring you evidence except by permission of Allah. And upon Allah let the believers rely.`,
+        note: `Humility combined with resolve: prophets freely acknowledge their humanity while pointing to divine favor and ending with a call to Tawakkul (reliance on Allah).`
+      },
+      {
+        v: 12, sec: 3, themes: [`reliance`],
+        ar: `وَمَا لَنَا أَلَّا نَتَوَكَّلَ عَلَى اللَّهِ وَقَدْ هَدَانَا سُبُلَنَا ۚ وَلَنَصْبِرَنَّ عَلَىٰ مَا آذَيْتُمُونَا ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُتَوَكِّلُونَ`,
+        en: `And why should we not rely upon Allah while He has guided us to our [good] ways. And we will surely be patient against whatever harm you should cause us. And upon Allah let those who would rely [indeed] rely."`,
+        note: `Pairs Tawakkul with Sabr ("we will surely be patient against whatever harm you cause us"), grounding confidence in lived guidance.`
+      },
+      {
+        v: 13, sec: 3, themes: [`reliance`],
+        ar: `وَقَالَ الَّذِينَ كَفَرُوا لِرُسُلِهِمْ لَنُخْرِجَنَّكُمْ مِنْ أَرْضِنَا أَوْ لَتَعُودُنَّ فِي مِلَّتِنَا ۖ فَأَوْحَىٰ إِلَيْهِمْ رَبُّهُمْ لَنُهْلِكَنَّ الظَّالِمِينَ`,
+        en: `And those who disbelieved said to their messengers, "We will surely drive you out of our land, or you must return to our religion." So their Lord inspired to them, "We will surely destroy the wrongdoers.`,
+        note: `When intellectual arguments fail, tyrants turn to forced exile; immediate divine inspiration reassures the messengers.`
+      },
+      {
+        v: 14, sec: 3, themes: [`reliance`],
+        ar: `وَلَنُسْكِنَنَّكُمُ الْأَرْضَ مِنْ بَعْدِهِمْ ۚ ذَٰلِكَ لِمَنْ خَافَ مَقَامِي وَخَافَ وَعِيدِ`,
+        en: `And We will surely cause you to dwell in the land after them. That is for he who fears My position and fears My threat."`,
+        note: `Promises peaceful stewardship of the land to those who live in reverent awareness of standing before Allah.`
+      },
+      {
+        v: 15, sec: 3, themes: [`reliance`, `permanence`],
+        ar: `وَاسْتَفْتَحُوا وَخَابَ كُلُّ جَبَّارٍ عَنِيدٍ`,
+        en: `And they requested victory from Allah, and disappointed, [therefore], was every obstinate tyrant.`,
+        note: `Concludes the historical struggle: arrogance (jabbar 'anid) inevitably collapses when divine judgment arrives.`
+      },
+      {
+        v: 16, sec: 3, themes: [`permanence`],
+        ar: `مِنْ وَرَائِهِ جَهَنَّمُ وَيُسْقَىٰ مِنْ مَاءٍ صَدِيدٍ`,
+        en: `Before him is Hell, and he will be given a drink of purulent water.`,
+        note: `Begins a stark contrast with earthly luxury—replacing comfort with unbearable thirst and bitter water.`
+      },
+      {
+        v: 17, sec: 3, themes: [`permanence`],
+        ar: `يَتَجَرَّعُهُ وَلَا يَكَادُ يُسِيغُهُ وَيَأْتِيهِ الْمَوْتُ مِنْ كُلِّ مَكَانٍ وَمَا هُوَ بِمَيِّتٍ ۖ وَمِنْ وَرَائِهِ عَذَابٌ غَلِيظٌ`,
+        en: `He will gulp it but will hardly [be able to] swallow it. And death will come to him from everywhere, but he is not to die. And before him is a massive punishment.`,
+        note: `Conveys relentless existential dread: surrounded by death yet denied the release of dying.`
+      },
+      {
+        v: 18, sec: 3, themes: [`permanence`],
+        ar: `مَثَلُ الَّذِينَ كَفَرُوا بِرَبِّهِمْ ۖ أَعْمَالُهُمْ كَرَمَادٍ اشْتَدَّتْ بِهِ الرِّيحُ فِي يَوْمٍ عَاصِفٍ ۖ لَا يَقْدِرُونَ مِمَّا كَسَبُوا عَلَىٰ شَيْءٍ ۚ ذَٰلِكَ هُوَ الضَّلَالُ الْبَعِيدُ`,
+        en: `The example of those who disbelieve in their Lord is [that] their deeds are like ashes which the wind blows forcefully on a stormy day; they are unable [to keep] from what they earned a [single] thing. That is what is extreme error.`,
+        note: `First major parable of the Surah: even charitable or impressive deeds, when severed from faith and sincerity, lack structural permanence—ashes scattered in a gale.`
+      },
+      {
+        v: 19, sec: 3, themes: [`permanence`],
+        ar: `أَلَمْ تَرَ أَنَّ اللَّهَ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ ۚ إِنْ يَشَأْ يُذْهِبْكُمْ وَيَأْتِ بِخَلْقٍ جَدِيدٍ`,
+        en: `Have you not seen that Allah created the heavens and the earth in truth? If He wills, He can do away with you and produce a new creation.`,
+        note: `Grounds human fragility in cosmic reality: the universe was created "in truth" (bil-haqq), not vanity.`
+      },
+      {
+        v: 20, sec: 3, themes: [`permanence`],
+        ar: `وَمَا ذَٰلِكَ عَلَى اللَّهِ بِعَزِيزٍ`,
+        en: `And that is not difficult for Allah.`,
+        note: `Brief, decisive cadence closing Section III before shifting directly to the Day of Judgment.`
+      },
+      {
+        v: 21, sec: 4, themes: [`permanence`],
+        ar: `وَبَرَزُوا لِلَّهِ جَمِيعًا فَقَالَ الضُّعَفَاءُ لِلَّذِينَ اسْتَكْبَرُوا إِنَّا كُنَّا لَكُمْ تَبَعًا فَهَلْ أَنْتُمْ مُغْنُونَ عَنَّا مِنْ عَذَابِ اللَّهِ مِنْ شَيْءٍ ۚ قَالُوا لَوْ هَدَانَا اللَّهُ لَهَدَيْنَاكُمْ ۖ سَوَاءٌ عَلَيْنَا أَجَزِعْنَا أَمْ صَبَرْنَا مَا لَنَا مِنْ مَحِيصٍ`,
+        en: `And they will come out [for judgement] before Allah all together, and the weak will say to those who were arrogant, "Indeed, we were your followers, so can you avail us anything against the punishment of Allah?" They will say, "If Allah had guided us, we would have guided you. It is all the same for us whether we show intolerance or are patient: there is for us no place of escape."`,
+        note: `Exposes blind conformity: on Judgment Day, followers discover their arrogant leaders are powerless to shield them—and patience comes too late ("no place of escape").`
+      },
+      {
+        v: 22, sec: 4, themes: [`permanence`],
+        ar: `وَقَالَ الشَّيْطَانُ لَمَّا قُضِيَ الْأَمْرُ إِنَّ اللَّهَ وَعَدَكُمْ وَعْدَ الْحَقِّ وَوَعَدْتُكُمْ فَأَخْلَفْتُكُمْ ۖ وَمَا كَانَ لِيَ عَلَيْكُمْ مِنْ سُلْطَانٍ إِلَّا أَنْ دَعَوْتُكُمْ فَاسْتَجَبْتُمْ لِي ۖ فَلَا تَلُومُونِي وَلُومُوا أَنْفُسَكُمْ ۖ مَا أَنَا بِمُصْرِخِكُمْ وَمَا أَنْتُمْ بِمُصْرِخِيَّ ۖ إِنِّي كَفَرْتُ بِمَا أَشْرَكْتُمُونِ مِنْ قَبْلُ ۗ إِنَّ الظَّالِمِينَ لَهُمْ عَذَابٌ أَلِيمٌ`,
+        en: `And Satan will say when the matter has been concluded, "Indeed, Allah had promised you the promise of truth. And I promised you, but I betrayed you. But I had no authority over you except that I invited you, and you responded to me. So do not blame me; but blame yourselves. I cannot be called to your aid, nor can you be called to my aid. Indeed, I deny your association of me [with Allah] before. Indeed, for the wrongdoers is a painful punishment."`,
+        note: `Satan’s devastating sermon after judgment is sealed: establishes total human moral agency ("I only invited you, and you responded").`
+      },
+      {
+        v: 23, sec: 4, themes: [`permanence`],
+        ar: `وَأُدْخِلَ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ جَنَّاتٍ تَجْرِي مِنْ تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا بِإِذْنِ رَبِّهِمْ ۖ تَحِيَّتُهُمْ فِيهَا سَلَامٌ`,
+        en: `And those who believed and did righteous deeds will be admitted to gardens beneath which rivers flow, abiding eternally therein by permission of their Lord; and their greeting therein will be, "Peace!"`,
+        note: `Sharp relief after 14:21–22: serenity, flowing rivers, and the greeting of Salam (Peace).`
+      },
+      {
+        v: 24, sec: 4, themes: [`permanence`],
+        ar: `أَلَمْ تَرَ كَيْفَ ضَرَبَ اللَّهُ مَثَلًا كَلِمَةً طَيِّبَةً كَشَجَرَةٍ طَيِّبَةٍ أَصْلُهَا ثَابِتٌ وَفَرْعُهَا فِي السَّمَاءِ`,
+        en: `Have you not considered how Allah presents an example, [making] a good word like a good tree, whose root is firmly fixed and its branches [high] in the sky?`,
+        note: `Second major parable: the "good word" (faith, truth, sincere speech) likened to a deep-rooted, sky-reaching tree.`
+      },
+      {
+        v: 25, sec: 4, themes: [`permanence`],
+        ar: `تُؤْتِي أُكُلَهَا كُلَّ حِينٍ بِإِذْنِ رَبِّهَا ۗ وَيَضْرِبُ اللَّهُ الْأَمْثَالَ لِلنَّاسِ لَعَلَّهُمْ يَتَذَكَّرُونَ`,
+        en: `It produces its fruit all the time, by permission of its Lord. And Allah presents examples for the people that perhaps they will be reminded.`,
+        note: `Unlike seasonal crops, the Good Tree yields nourishment continuously ("kulla hin")—representing ongoing righteous character and legacy.`
+      },
+      {
+        v: 26, sec: 4, themes: [`permanence`],
+        ar: `وَمَثَلُ كَلِمَةٍ خَبِيثَةٍ كَشَجَرَةٍ خَبِيثَةٍ اجْتُثَّتْ مِنْ فَوْقِ الْأَرْضِ مَا لَهَا مِنْ قَرَارٍ`,
+        en: `And the example of a bad word is like a bad tree, uprooted from the surface of the earth, not having any stability.`,
+        note: `Third parable: falsehood sits shallowly "above the earth" (min fawqi al-ard), easily severed with no stability (qarar).`
+      },
+      {
+        v: 27, sec: 4, themes: [`permanence`],
+        ar: `يُثَبِّتُ اللَّهُ الَّذِينَ آمَنُوا بِالْقَوْلِ الثَّابِتِ فِي الْحَيَاةِ الدُّنْيَا وَفِي الْآخِرَةِ ۖ وَيُضِلُّ اللَّهُ الظَّالِمِينَ ۚ وَيَفْعَلُ اللَّهُ مَا يَشَاءُ`,
+        en: `Allah keeps firm those who believe, with the firm word, in worldly life and in the Hereafter. And Allah sends astray the wrongdoers. And Allah does what He wills.`,
+        note: `Applies the tree parable to lived experience: the Firm Word (al-qawl ath-thabit) anchors the believer both amidst earthly trials and in the Hereafter.`
+      },
+      {
+        v: 28, sec: 5, themes: [`gratitude`],
+        ar: `أَلَمْ تَرَ إِلَى الَّذِينَ بَدَّلُوا نِعْمَتَ اللَّهِ كُفْرًا وَأَحَلُّوا قَوْمَهُمْ دَارَ الْبَوَارِ`,
+        en: `Have you not considered those who exchanged the favor of Allah for disbelief and settled their people [in] the home of ruin?`,
+        note: `Links back to 14:7: misleadership is framed specifically as "exchanging Allah’s favor (ni'mah) for ingratitude/disbelief (kufr)."`
+      },
+      {
+        v: 29, sec: 5, themes: [`gratitude`],
+        ar: `جَهَنَّمَ يَصْلَوْنَهَا ۖ وَبِئْسَ الْقَرَارُ`,
+        en: `[It is] Hell, which they will [enter to] burn, and wretched is the settlement.`,
+        note: `Uses the same word "qarar" (settlement/stability) from 14:26—falsehood had no stability on earth, yet settles its followers in ruin.`
+      },
+      {
+        v: 30, sec: 5, themes: [`gratitude`],
+        ar: `وَجَعَلُوا لِلَّهِ أَنْدَادًا لِيُضِلُّوا عَنْ سَبِيلِهِ ۗ قُلْ تَمَتَّعُوا فَإِنَّ مَصِيرَكُمْ إِلَى النَّارِ`,
+        en: `And they have attributed to Allah equals to mislead [people] from His way. Say, "Enjoy yourselves, for indeed, your destination is the Fire."`,
+        note: `Exposes idolatry (setting up equals, andad) as an active instrument to mislead people away from truth.`
+      },
+      {
+        v: 31, sec: 5, themes: [`prayer`],
+        ar: `قُلْ لِعِبَادِيَ الَّذِينَ آمَنُوا يُقِيمُوا الصَّلَاةَ وَيُنْفِقُوا مِمَّا رَزَقْنَاهُمْ سِرًّا وَعَلَانِيَةً مِنْ قَبْلِ أَنْ يَأْتِيَ يَوْمٌ لَا بَيْعٌ فِيهِ وَلَا خِلَالٌ`,
+        en: `[O Muhammad], tell My servants who have believed to establish prayer and spend from what We have provided them, secretly and publicly, before a Day comes in which there will be no exchange, nor any friendships.`,
+        note: `Gentle contrast ("tell My believing servants"): two lifelong investments—prayer (connection with God) and charity secretly and openly (service to people)—before barter and favors cease.`
+      },
+      {
+        v: 32, sec: 5, themes: [`gratitude`],
+        ar: `اللَّهُ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ وَأَنْزَلَ مِنَ السَّمَاءِ مَاءً فَأَخْرَجَ بِهِ مِنَ الثَّمَرَاتِ رِزْقًا لَكُمْ ۖ وَسَخَّرَ لَكُمُ الْفُلْكَ لِتَجْرِيَ فِي الْبَحْرِ بِأَمْرِهِ ۖ وَسَخَّرَ لَكُمُ الْأَنْهَارَ`,
+        en: `It is Allah who created the heavens and the earth and sent down rain from the sky and produced thereby some fruits as provision for you and subjected for you the ships to sail through the sea by His command and subjected for you the rivers.`,
+        note: `Begins the cosmic gratitude catalog: creation, rain, fruits (thamarat—echoed later in Ibrahim’s prayer in 14:37!), ships, and rivers.`
+      },
+      {
+        v: 33, sec: 5, themes: [`gratitude`],
+        ar: `وَسَخَّرَ لَكُمُ الشَّمْسَ وَالْقَمَرَ دَائِبَيْنِ ۖ وَسَخَّرَ لَكُمُ اللَّيْلَ وَالنَّهَارَ`,
+        en: `And He subjected for you the sun and the moon, continuous [in orbit], and subjected for you the night and the day.`,
+        note: `Continues the "sakh-khara lakum" refrain to celestial mechanics and time itself—sun, moon, night, and day.`
+      },
+      {
+        v: 34, sec: 5, themes: [`gratitude`],
+        ar: `وَآتَاكُمْ مِنْ كُلِّ مَا سَأَلْتُمُوهُ ۚ وَإِنْ تَعُدُّوا نِعْمَتَ اللَّهِ لَا تُحْصُوهَا ۗ إِنَّ الْإِنْسَانَ لَظَلُومٌ كَفَّارٌ`,
+        en: `And He gave you from all you asked of Him. And if you should count the favor of Allah, you could not enumerate them. Indeed, mankind is [generally] most unjust and ungrateful.`,
+        note: `Notice the singular "ni'matallah" (favor of Allah): even a single category of divine blessing cannot be fully tallied. Ends with intense critique of human ingratitude (zalumun kaffar).`
+      },
+      {
+        v: 35, sec: 6, themes: [`prayer`],
+        ar: `وَإِذْ قَالَ إِبْرَاهِيمُ رَبِّ اجْعَلْ هَٰذَا الْبَلَدَ آمِنًا وَاجْنُبْنِي وَبَنِيَّ أَنْ نَعْبُدَ الْأَصْنَامَ`,
+        en: `And [mention, O Muhammad], when Abraham said, "My Lord, make this city [Makkah] secure and keep me and my sons away from worshipping idols.`,
+        note: `First of Ibrahim’s seven prayers: prioritizes civic security (amnan) and spiritual purity—even a prophet humbly asks protection from idolatry for himself and his sons.`
+      },
+      {
+        v: 36, sec: 6, themes: [`prayer`],
+        ar: `رَبِّ إِنَّهُنَّ أَضْلَلْنَ كَثِيرًا مِنَ النَّاسِ ۖ فَمَنْ تَبِعَنِي فَإِنَّهُ مِنِّي ۖ وَمَنْ عَصَانِي فَإِنَّكَ غَفُورٌ رَحِيمٌ`,
+        en: `My Lord, indeed they have led astray many among the people. So whoever follows me - then he is of me; and whoever disobeys me - indeed, You are [yet] Forgiving and Merciful.`,
+        note: `Second prayer: shows prophetic compassion—rather than cursing those who disobey, Ibrahim leaves the door open to Allah’s forgiveness and mercy.`
+      },
+      {
+        v: 37, sec: 6, themes: [`prayer`, `gratitude`],
+        ar: `رَبَّنَا إِنِّي أَسْكَنْتُ مِنْ ذُرِّيَّتِي بِوَادٍ غَيْرِ ذِي زَرْعٍ عِنْدَ بَيْتِكَ الْمُحَرَّمِ رَبَّنَا لِيُقِيمُوا الصَّلَاةَ فَاجْعَلْ أَفْئِدَةً مِنَ النَّاسِ تَهْوِي إِلَيْهِمْ وَارْزُقْهُمْ مِنَ الثَّمَرَاتِ لَعَلَّهُمْ يَشْكُرُونَ`,
+        en: `Our Lord, I have settled some of my descendants in an uncultivated valley near Your sacred House, our Lord, that they may establish prayer. So make hearts among the people incline toward them and provide for them from the fruits that they might be grateful.`,
+        note: `Third prayer shifts to "Rabbana" (Our Lord): states the ultimate purpose of settling Makkah ("that they may establish prayer") and links provision of fruits directly to gratitude ("la'allahum yashkurun").`
+      },
+      {
+        v: 38, sec: 6, themes: [`prayer`],
+        ar: `رَبَّنَا إِنَّكَ تَعْلَمُ مَا نُخْفِي وَمَا نُعْلِنُ ۗ وَمَا يَخْفَىٰ عَلَى اللَّهِ مِنْ شَيْءٍ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ`,
+        en: `Our Lord, indeed You know what we conceal and what we declare, and nothing is hidden from Allah on the earth or in the heaven.`,
+        note: `Fourth prayer: entrusts unspoken inner grief and public words alike to Allah’s complete knowledge.`
+      },
+      {
+        v: 39, sec: 6, themes: [`prayer`, `gratitude`],
+        ar: `الْحَمْدُ لِلَّهِ الَّذِي وَهَبَ لِي عَلَى الْكِبَرِ إِسْمَاعِيلَ وَإِسْحَاقَ ۚ إِنَّ رَبِّي لَسَمِيعُ الدُّعَاءِ`,
+        en: `Praise to Allah, who has granted to me in old age Ishmael and Isaac. Indeed, my Lord is the Hearer of supplication.`,
+        note: `Fifth movement (praise inside prayer): models pure gratitude (Al-hamdu lillah) for children granted in old age, calling Allah Sami' ad-Du'a (Hearer of Supplication).`
+      },
+      {
+        v: 40, sec: 6, themes: [`prayer`],
+        ar: `رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ`,
+        en: `My Lord, make me an establisher of prayer, and [many] from my descendants. Our Lord, and accept my supplication.`,
+        note: `Sixth prayer blends Rabbi ("My Lord") and Rabbana ("Our Lord"): spiritual legacy begins with personal consistency ("make me an establisher of prayer") and extends to future generations.`
+      },
+      {
+        v: 41, sec: 6, themes: [`prayer`],
+        ar: `رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ`,
+        en: `Our Lord, forgive me and my parents and the believers the Day the account is established."`,
+        note: `Seventh prayer widens the circle to maximum breadth: self, parents, and all believers on the Day of Account.`
+      },
+      {
+        v: 42, sec: 7, themes: [`reliance`],
+        ar: `وَلَا تَحْسَبَنَّ اللَّهَ غَافِلًا عَمَّا يَعْمَلُ الظَّالِمُونَ ۚ إِنَّمَا يُؤَخِّرُهُمْ لِيَوْمٍ تَشْخَصُ فِيهِ الْأَبْصَارُ`,
+        en: `And never think that Allah is unaware of what the wrongdoers do. He only delays them for a Day when eyes will stare [in horror].`,
+        note: `Directly answers the question raised by tyranny’s apparent delay: respite is not neglect—accountability is simply scheduled.`
+      },
+      {
+        v: 43, sec: 7, themes: [`permanence`],
+        ar: `مُهْطِعِينَ مُقْنِعِي رُءُوسِهِمْ لَا يَرْتَدُّ إِلَيْهِمْ طَرْفُهُمْ ۖ وَأَفْئِدَتُهُمْ هَوَاءٌ`,
+        en: `Racing ahead, their heads raised up, their glance does not come back to them, and their hearts are void.`,
+        note: `Striking sensory portrait: unblinking eyes frozen in shock and hearts described as hawa' (hollow air/void).`
+      },
+      {
+        v: 44, sec: 7, themes: [`permanence`],
+        ar: `وَأَنْذِرِ النَّاسَ يَوْمَ يَأْتِيهِمُ الْعَذَابُ فَيَقُولُ الَّذِينَ ظَلَمُوا رَبَّنَا أَخِّرْنَا إِلَىٰ أَجَلٍ قَرِيبٍ نُجِبْ دَعْوَتَكَ وَنَتَّبِعِ الرُّسُلَ ۗ أَوَلَمْ تَكُونُوا أَقْسَمْتُمْ مِنْ قَبْلُ مَا لَكُمْ مِنْ زَوَالٍ`,
+        en: `And, [O Muhammad], warn the people of a Day when the punishment will come to them and those who did wrong will say, "Our Lord, delay us for a short term; we will answer Your call and follow the messengers." [But it will be said], "Had you not sworn, before, that for you there would be no cessation?`,
+        note: `Irony of delay: those who swore their worldly power would never end (zawal) now beg for "a short term" of delay.`
+      },
+      {
+        v: 45, sec: 7, themes: [`permanence`],
+        ar: `وَسَكَنْتُمْ فِي مَسَاكِنِ الَّذِينَ ظَلَمُوا أَنْفُسَهُمْ وَتَبَيَّنَ لَكُمْ كَيْفَ فَعَلْنَا بِهِمْ وَضَرَبْنَا لَكُمُ الْأَمْثَالَ`,
+        en: `And you lived among the dwellings of those who wronged themselves, and it had become clear to you how We dealt with them. And We presented for you [many] examples."`,
+        note: `Historical ruins were visible monuments and lived-in reminders—people lacked neither evidence nor parables.`
+      },
+      {
+        v: 46, sec: 7, themes: [`reliance`, `permanence`],
+        ar: `وَقَدْ مَكَرُوا مَكْرَهُمْ وَعِنْدَ اللَّهِ مَكْرُهُمْ وَإِنْ كَانَ مَكْرُهُمْ لِتَزُولَ مِنْهُ الْجِبَالُ`,
+        en: `And they had planned their plan, but with Allah is [recorded] their plan, even if their plan had been [sufficient] to do away with the mountains.`,
+        note: `Even mountain-moving schemes are fully encompassed and outmatched by divine knowledge.`
+      },
+      {
+        v: 47, sec: 7, themes: [`reliance`],
+        ar: `فَلَا تَحْسَبَنَّ اللَّهَ مُخْلِفَ وَعْدِهِ رُسُلَهُ ۗ إِنَّ اللَّهَ عَزِيزٌ ذُو انْتِقَامٍ`,
+        en: `So never think that Allah will fail in His promise to His messengers. Indeed, Allah is Exalted in Might and Owner of Retribution.`,
+        note: `Echoes the name Al-'Aziz from 14:1 and confirms Allah never breaks His promise to His messengers.`
+      },
+      {
+        v: 48, sec: 7, themes: [`light`, `permanence`],
+        ar: `يَوْمَ تُبَدَّلُ الْأَرْضُ غَيْرَ الْأَرْضِ وَالسَّمَاوَاتُ ۖ وَبَرَزُوا لِلَّهِ الْوَاحِدِ الْقَهَّارِ`,
+        en: `[It will be] on the Day the earth will be replaced by another earth, and the heavens [as well], and all creatures will come out before Allah, the One, the Prevailing.`,
+        note: `Cosmic transformation at the climax of the Surah: the physical earth and heavens are exchanged, and every soul stands exposed before Al-Wahid Al-Qahhar.`
+      },
+      {
+        v: 49, sec: 7, themes: [`permanence`],
+        ar: `وَتَرَى الْمُجْرِمِينَ يَوْمَئِذٍ مُقَرَّنِينَ فِي الْأَصْفَادِ`,
+        en: `And you will see the criminals that Day bound together in shackles,`,
+        note: `Those who conspired together in arrogance are bound together in reckoning.`
+      },
+      {
+        v: 50, sec: 7, themes: [`permanence`],
+        ar: `سَرَابِيلُهُمْ مِنْ قَطِرَانٍ وَتَغْشَىٰ وُجُوهَهُمُ النَّارُ`,
+        en: `Their garments of liquid pitch and their faces covered by the Fire.`,
+        note: `Stark reversal of earthly pride: garments of dark liquid pitch (qadiran) and faces engulfed.`
+      },
+      {
+        v: 51, sec: 7, themes: [`permanence`],
+        ar: `لِيَجْزِيَ اللَّهُ كُلَّ نَفْسٍ مَا كَسَبَتْ ۚ إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ`,
+        en: `So that Allah will recompense every soul for what it earned. Indeed, Allah is swift in account.`,
+        note: `Establishes individual justice ("every soul for what it earned") and swiftness of divine reckoning (Sari' al-Hisab).`
+      },
+      {
+        v: 52, sec: 7, themes: [`light`],
+        ar: `هَٰذَا بَلَاغٌ لِلنَّاسِ وَلِيُنْذَرُوا بِهِ وَلِيَعْلَمُوا أَنَّمَا هُوَ إِلَٰهٌ وَاحِدٌ وَلِيَذَّكَّرَ أُولُو الْأَلْبَابِ`,
+        en: `This [Qur'an] is notification for the people that they may be warned thereby and that they may know that He is but one God and that those of understanding will be reminded.`,
+        note: `Closes the inclusio opened at 14:1: the Qur’an is a universal Balagh (clear notification) calling humanity to recognize One God and inviting "ulu al-albab" (people of deep understanding) to reflect.`
+      }
+    ];
+
+    const LINGUISTIC_INSIGHTS = [
+      {
+        id: `zulumat-nur`,
+        termAr: `الظُّلُمَاتِ ← النُّورِ`,
+        translit: `Az-Zulumāt vs. An-Nūr`,
+        ref: `14:1 & 14:5`,
+        title: `Plural Darknesses, Singular Light`,
+        summary: `Throughout the Surah, darkness appears in the plural (zulumāt) while light is always singular (nūr). Error fractures into countless contradictory paths, whereas truth and guidance form one unified way.`
+      },
+      {
+        id: `sabbar-shakur`,
+        termAr: `صَبَّارٍ شَكُورٍ`,
+        translit: `Ṣabbār Shakūr`,
+        ref: `14:5`,
+        title: `Intensive Character Patterns`,
+        summary: `Both adjectives use intensive Arabic morphological patterns (fa‘‘āl and fa‘ūl)—signaling not occasional patience or gratitude, but a constant, ingrained habit of endurance in trials and gratitude in blessings.`
+      },
+      {
+        id: `shukr-kufr`,
+        termAr: `شَكَرْتُمْ / كَفَرْتُمْ`,
+        translit: `Shakartum vs. Kafartum`,
+        ref: `14:7 & 14:28`,
+        title: `Uncovering vs. Covering Favor`,
+        summary: `Root k-f-r carries the core sense of "covering over" or burying. Placed directly opposite shukr (gratitude), the Surah frames ingratitude as hiding and denying a favor that is right in front of you.`
+      },
+      {
+        id: `sakhkhara`,
+        termAr: `سَخَّرَ لَكُمُ`,
+        translit: `Sakh-khara lakum`,
+        ref: `14:32–33`,
+        title: `Fourfold Cosmic Subjugation`,
+        summary: `Repeated four times across two verses (ships, rivers, sun & moon, night & day), this verb means putting vast cosmic systems gracefully into service for human flourishing—preparing the rebuke of ingratitude in 14:34.`
+      },
+      {
+        id: `qawl-thabit`,
+        termAr: `الْقَوْلِ الثَّابِتِ`,
+        translit: `Al-Qawl ath-Thābit`,
+        ref: `14:24 & 14:27`,
+        title: `Rootedness & The Firm Word`,
+        summary: `The same root th-b-t ("firmly fixed") links the Good Tree’s deep root (aṣluhā thābit, 14:24) with the "firm word" (al-qawl ath-thābit, 14:27) by which believers stay anchored in both worlds.`
+      },
+      {
+        id: `afida-hawa`,
+        termAr: `أَفْئِدَتُهُمْ هَوَاءٌ`,
+        translit: `Af’idatuhum hawā’`,
+        ref: `14:43`,
+        title: `Hollow Hearts & Inclining Hearts`,
+        summary: `Notice the shared root for hearts (af’idah): in 14:37 Ibrahim prays for people’s af’idah to incline warmly toward Makkah; in 14:43 wrongdoers’ af’idah become hawā’—empty, breathless air on Judgment Day.`
+      }
+    ];
+
+    const IBRAHIM_PRAYERS = [
+      {
+        num: 1,
+        verse: `14:35`,
+        pronoun: `Rabbī (My Lord)`,
+        focus: `Civic Security & Purity from Idols`,
+        ar: `رَبِّ اجْعَلْ هَٰذَا الْبَلَدَ آمِنًا وَاجْنُبْنِي وَبَنِيَّ أَنْ نَعْبُدَ الْأَصْنَامَ`,
+        en: `"My Lord, make this city [Makkah] secure and keep me and my sons away from worshipping idols."`,
+        insight: `Ibrahim begins with public safety (amnan)—the prerequisite for worship and human flourishing—before immediately guarding his household’s spiritual integrity.`
+      },
+      {
+        num: 2,
+        verse: `14:36`,
+        pronoun: `Rabbī (My Lord)`,
+        focus: `Compassion & Divine Mercy`,
+        ar: `رَبِّ إِنَّهُنَّ أَضْلَلْنَ كَثِيرًا مِنَ النَّاسِ ۖ فَمَنْ تَبِعَنِي فَإِنَّهُ مِنِّي ۖ وَمَنْ عَصَانِي فَإِنَّكَ غَفُورٌ رَحِيمٌ`,
+        en: `"My Lord, indeed they have led astray many among the people. So whoever follows me - then he is of me; and whoever disobeys me - indeed, You are [yet] Forgiving and Merciful."`,
+        insight: `Notice his restraint: even for those who reject his call, he invokes Allah as Ghafur Rahim (Forgiving, Merciful) rather than demanding swift punishment.`
+      },
+      {
+        num: 3,
+        verse: `14:37`,
+        pronoun: `Rabbanā (Our Lord)`,
+        focus: `Barren Valley, Prayer & Gratitude`,
+        ar: `رَبَّنَا إِنِّي أَسْكَنْتُ مِنْ ذُرِّيَّتِي بِوَادٍ غَيْرِ ذِي زَرْعٍ عِنْدَ بَيْتِكَ الْمُحَرَّمِ رَبَّنَا لِيُقِيمُوا الصَّلَاةَ فَاجْعَلْ أَفْئِدَةً مِنَ النَّاسِ تَهْوِي إِلَيْهِمْ وَارْزُقْهُمْ مِنَ الثَّمَرَاتِ لَعَلَّهُمْ يَشْكُرُونَ`,
+        en: `"Our Lord, I have settled some of my descendants in an uncultivated valley near Your sacred House, our Lord, that they may establish prayer. So make hearts among the people incline toward them and provide for them from the fruits that they might be grateful."`,
+        insight: `Shifts to communal "Our Lord" (Rabbanā). Links material provision ("fruits") back to 14:32 and states its purpose: "that they might be grateful" (la'allahum yashkurun).`
+      },
+      {
+        num: 4,
+        verse: `14:38`,
+        pronoun: `Rabbanā (Our Lord)`,
+        focus: `Trust in Complete Divine Knowledge`,
+        ar: `رَبَّنَا إِنَّكَ تَعْلَمُ مَا نُخْفِي وَمَا نُعْلِنُ ۗ وَمَا يَخْفَىٰ عَلَى اللَّهِ مِنْ شَيْءٍ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ`,
+        en: `"Our Lord, indeed You know what we conceal and what we declare, and nothing is hidden from Allah on the earth or in the heaven."`,
+        insight: `Acknowledges that unspoken worries in the desert valley are as known to Allah as spoken prayers.`
+      },
+      {
+        num: 5,
+        verse: `14:39`,
+        pronoun: `Al-Ḥamdu lillāh (Praise to Allah)`,
+        focus: `Gratitude for Ishmael & Isaac`,
+        ar: `الْحَمْدُ لِلَّهِ الَّذِي وَهَبَ لِي عَلَى الْكِبَرِ إِسْمَاعِيلَ وَإِسْحَاقَ ۚ إِنَّ رَبِّي لَسَمِيعُ الدُّعَاءِ`,
+        en: `"Praise to Allah, who has granted to me in old age Ishmael and Isaac. Indeed, my Lord is the Hearer of supplication."`,
+        insight: `Pause of pure gratitude in the middle of petitioning: Ibrahim models praising Allah for answered prayers before asking for more.`
+      },
+      {
+        num: 6,
+        verse: `14:40`,
+        pronoun: `Rabbī → Rabbanā`,
+        focus: `Steadfast Prayer & Acceptance`,
+        ar: `رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ`,
+        en: `"My Lord, make me an establisher of prayer, and [many] from my descendants. Our Lord, and accept my supplication."`,
+        insight: `Combines both addresses in one verse—asking for personal constancy first ("make me") and generational continuation second ("and from my descendants").`
+      },
+      {
+        num: 7,
+        verse: `14:41`,
+        pronoun: `Rabbanā (Our Lord)`,
+        focus: `Forgiveness on the Day of Account`,
+        ar: `رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ`,
+        en: `"Our Lord, forgive me and my parents and the believers the Day the account is established."`,
+        insight: `Closes his sequence of prayers with a sweeping plea for forgiveness encompassing self, parents, and the entire community of believers.`
+      }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        q: `How does Surah Ibrahim frame the contrast between error and guidance in verses 14:1 and 14:5?`,
+        options: [
+          `As "darknesses" (plural) into "light" (singular)`,
+          `As "oceans" into "dry land"`,
+          `As "winter" into "harvest"`,
+          `As "silence" into "speech"`
+        ],
+        correct: 0,
+        explain: `Both 14:1 and 14:5 describe revelation’s goal as bringing people out of "darknesses" (az-zulumat, plural) into "the light" (an-nur, singular).`
+      },
+      {
+        q: `What promise and warning are paired in the famous verse 14:7?`,
+        options: [
+          `"If you travel, you will learn; if you stay, you will rest"`,
+          `"If you are grateful, I will surely increase you; if you deny, My punishment is severe"`,
+          `"If you build, I will protect; if you destroy, I will rebuild"`,
+          `"If you fast, you will triumph; if you feast, you will forget"`
+        ],
+        correct: 1,
+        explain: `In 14:7, Allah proclaims the Law of Gratitude: "If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe."`
+      },
+      {
+        q: `In 14:8, what does Moses clarify after reminding his people of gratitude?`,
+        options: [
+          `That angels need human praise to sustain creation`,
+          `That even if everyone on earth disbelieves, Allah is Free of need (Ghani) and Praiseworthy (Hamid)`,
+          `That only Israel was commanded to be grateful`,
+          `That Pharaoh’s treasures would be divided equally`
+        ],
+        correct: 1,
+        explain: `14:8 states: "If you should disbelieve, you and whoever is on the earth entirely - indeed, Allah is Free of need and Praiseworthy."`
+      },
+      {
+        q: `Which specific two character traits are highlighted at the end of 14:5 as keys to recognizing Allah’s signs?`,
+        options: [
+          `Wealthy and eloquent`,
+          `Learned and traveling`,
+          `Patient and grateful (ṣabbārin shakūr)`,
+          `Courageous and silent`
+        ],
+        correct: 2,
+        explain: `14:5 concludes: "Indeed in that are signs for everyone patient and grateful" (likulli sabbarin shakur).`
+      },
+      {
+        q: `In 14:18, what are the deeds of those who disbelieve compared to?`,
+        options: [
+          `Dry leaves floating on a river`,
+          `Ashes blown forcefully by the wind on a stormy day`,
+          `Mirages seen across a desert`,
+          `Sparks dying inside wet wood`
+        ],
+        correct: 1,
+        explain: `14:18 compares their works to "ashes which the wind blows forcefully on a stormy day; they are unable [to keep] from what they earned a [single] thing."`
+      },
+      {
+        q: `What does Satan tell those who followed him when judgment is concluded in 14:22?`,
+        options: [
+          `He vows to rescue them from Hellfire`,
+          `He claims he forced them against their will`,
+          `He admits he had no authority over them except to invite—and tells them to blame themselves`,
+          `He stays silent and refuses to speak`
+        ],
+        correct: 2,
+        explain: `In 14:22, Satan states: "I had no authority over you except that I invited you, and you responded to me. So do not blame me; but blame yourselves."`
+      },
+      {
+        q: `In the Parable of the Good Tree (14:24–25), what distinguishes it from the Uprooted Tree (14:26)?`,
+        options: [
+          `It grows only near ocean shores`,
+          `Its root is firmly fixed, its branches reach the sky, and it yields fruit at all times by its Lord’s permission`,
+          `It loses its leaves every winter and regrows in spring`,
+          `It is taller than mountains but produces no fruit`
+        ],
+        correct: 1,
+        explain: `14:24–25 describes the Good Word as a good tree whose root is firmly fixed, branches high in the sky, producing fruit all the time—whereas the bad tree (14:26) is uprooted with no stability.`
+      },
+      {
+        q: `What phrase is repeated four times in 14:32–33 to describe ships, rivers, sun & moon, and night & day?`,
+        options: [
+          `"He warned you through them"`,
+          `"He hid them from sight"`,
+          `"He subjected for you" (sakh-khara lakum)`,
+          `"He tested your strength"`
+        ],
+        correct: 2,
+        explain: `Verses 14:32–33 repeat "sakh-khara lakum" ("He subjected for you") four times before 14:34 concludes that human beings cannot even enumerate Allah’s favor.`
+      },
+      {
+        q: `In 14:37, what primary purpose does Prophet Ibrahim state for settling some of his descendants in an uncultivated valley near the Sacred House?`,
+        options: [
+          `To build a trade empire across Arabia`,
+          `That they may establish prayer (li-yuqīmū aṣ-ṣalāh) and be grateful`,
+          `To escape the climate of Syria`,
+          `To search for underground springs`
+        ],
+        correct: 1,
+        explain: `14:37 explicitly says: "that they may establish prayer. So make hearts among the people incline toward them and provide for them from the fruits that they might be grateful."`
+      },
+      {
+        q: `How does 14:52 close the chapter’s ring structure opened in 14:1?`,
+        options: [
+          `By repeating the story of Noah`,
+          `By naming the Qur’an a notification (balāgh) for humanity so they know He is One God and people of understanding take heed`,
+          `By listing the names of all twelve tribes`,
+          `By giving dates for future eclipses`
+        ],
+        correct: 1,
+        explain: `14:52 forms an inclusio with 14:1: "This [Qur'an] is notification for the people that they may be warned thereby and that they may know that He is but one God and that those of understanding will be reminded."`
+      }
+    ];
+
+    // =========================================================================
+    // STATE MANAGEMENT (notebookAppApi)
+    // =========================================================================
+
+    const appState = {
+      activeSectionRing: 1,
+      activeThemeId: `light`,
+      activeDuaNum: 1,
+      showArabic: true,
+      showInsights: true,
+      collapsedSections: { 1: false, 2: true, 3: true, 4: true, 5: true, 6: true, 7: true },
+      studiedVerses: [],
+      reviewedRoots: [],
+      reflections: [``, ``, ``],
+      quizIndex: 0,
+      quizAnswers: {},
+      bestQuizScore: 0
+    };
+
+    let themeChartInstance = null;
+    let statePersistTimer = null;
+
+    async function persistState() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({
+            activeSectionRing: appState.activeSectionRing,
+            activeThemeId: appState.activeThemeId,
+            activeDuaNum: appState.activeDuaNum,
+            showArabic: appState.showArabic,
+            showInsights: appState.showInsights,
+            collapsedSections: appState.collapsedSections,
+            studiedVerses: appState.studiedVerses,
+            reviewedRoots: appState.reviewedRoots,
+            reflections: appState.reflections,
+            quizIndex: appState.quizIndex,
+            quizAnswers: appState.quizAnswers,
+            bestQuizScore: appState.bestQuizScore
+          });
+        }
+      } catch (err) {
+        // Silent fallback if outside host environment
+      }
+    }
+
+    function schedulePersist() {
+      if (statePersistTimer) clearTimeout(statePersistTimer);
+      statePersistTimer = setTimeout(function () {
+        persistState();
+      }, 250);
+    }
+
+    function restoreFromState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (typeof saved.activeSectionRing === `number`) appState.activeSectionRing = saved.activeSectionRing;
+      if (typeof saved.activeThemeId === `string`) appState.activeThemeId = saved.activeThemeId;
+      if (typeof saved.activeDuaNum === `number`) appState.activeDuaNum = saved.activeDuaNum;
+      if (typeof saved.showArabic === `boolean`) appState.showArabic = saved.showArabic;
+      if (typeof saved.showInsights === `boolean`) appState.showInsights = saved.showInsights;
+      if (saved.collapsedSections && typeof saved.collapsedSections === `object`) {
+        appState.collapsedSections = Object.assign({}, appState.collapsedSections, saved.collapsedSections);
+      }
+      if (Array.isArray(saved.studiedVerses)) appState.studiedVerses = saved.studiedVerses;
+      if (Array.isArray(saved.reviewedRoots)) appState.reviewedRoots = saved.reviewedRoots;
+      if (Array.isArray(saved.reflections)) {
+        appState.reflections = [
+          saved.reflections[0] || ``,
+          saved.reflections[1] || ``,
+          saved.reflections[2] || ``
+        ];
+      }
+      if (typeof saved.quizIndex === `number`) appState.quizIndex = saved.quizIndex;
+      if (saved.quizAnswers && typeof saved.quizAnswers === `object`) appState.quizAnswers = saved.quizAnswers;
+      if (typeof saved.bestQuizScore === `number`) appState.bestQuizScore = saved.bestQuizScore;
+    }
+
+    // =========================================================================
+    // PROGRESS & STATS
+    // =========================================================================
+
+    function computeQuizScore() {
+      let score = 0;
+      for (let i = 0; i < QUIZ_QUESTIONS.length; i++) {
+        if (appState.quizAnswers[i] === QUIZ_QUESTIONS[i].correct) {
+          score++;
+        }
+      }
+      return score;
+    }
+
+    function updateProgressUI() {
+      const versesDone = appState.studiedVerses.length;
+      const rootsDone = appState.reviewedRoots.length;
+      let reflectionsDone = 0;
+      for (let i = 0; i < 3; i++) {
+        if ((appState.reflections[i] || ``).trim().length >= 10) reflectionsDone++;
+      }
+      const quizScore = Math.max(computeQuizScore(), appState.bestQuizScore);
+      appState.bestQuizScore = quizScore;
+
+      const elV = document.getElementById(`stat-verses`);
+      const elR = document.getElementById(`stat-roots`);
+      const elF = document.getElementById(`stat-reflections`);
+      const elQ = document.getElementById(`stat-quiz`);
+      const fill = document.getElementById(`overall-progress-fill`);
+
+      if (elV) elV.textContent = `${versesDone} / 52`;
+      if (elR) elR.textContent = `${rootsDone} / ${LINGUISTIC_INSIGHTS.length}`;
+      if (elF) elF.textContent = `${reflectionsDone} / 3`;
+      if (elQ) elQ.textContent = `${quizScore} / ${QUIZ_QUESTIONS.length}`;
+
+      const pct = Math.round(
+        ((versesDone / 52) * 0.45 +
+         (rootsDone / LINGUISTIC_INSIGHTS.length) * 0.15 +
+         (reflectionsDone / 3) * 0.15 +
+         (quizScore / QUIZ_QUESTIONS.length) * 0.25) * 100
+      );
+      if (fill) fill.style.width = `${Math.min(100, pct)}%`;
+    }
+
+    // =========================================================================
+    // SECTION I: RING ARCHITECTURE
+    // =========================================================================
+
+    function renderRingStrip() {
+      const strip = document.getElementById(`ring-strip`);
+      if (!strip) return;
+      strip.innerHTML = SECTIONS.map(function (sec) {
+        const activeClass = sec.id === appState.activeSectionRing ? ` is-active` : ``;
+        return `<button type="button" class="ring-segment${activeClass}" onclick="selectRingSection(${sec.id})" aria-pressed="${sec.id === appState.activeSectionRing}">
+          <span class="ring-num">Section ${sec.roman}</span>
+          <span class="ring-verses">${sec.range}</span>
+        </button>`;
+      }).join(``);
+
+      const active = SECTIONS.find(function (s) { return s.id === appState.activeSectionRing; }) || SECTIONS[0];
+      const kicker = document.getElementById(`ring-detail-kicker`);
+      const title = document.getElementById(`ring-detail-title`);
+      const desc = document.getElementById(`ring-detail-desc`);
+      const anchor = document.getElementById(`ring-detail-anchor`);
+
+      if (kicker) kicker.textContent = `Movement ${active.roman} · Verses ${active.range} (${active.count} verses)`;
+      if (title) title.textContent = active.title;
+      if (desc) desc.textContent = active.summary;
+      if (anchor) anchor.textContent = `Anchor: ${active.anchor}`;
+    }
+
+    function selectRingSection(secId) {
+      appState.activeSectionRing = secId;
+      renderRingStrip();
+      schedulePersist();
+    }
+
+    function jumpToSectionFromRing() {
+      const filterSec = document.getElementById(`filter-section`);
+      const filterTheme = document.getElementById(`filter-theme`);
+      const filterSearch = document.getElementById(`filter-search`);
+      if (filterSec) filterSec.value = String(appState.activeSectionRing);
+      if (filterTheme) filterTheme.value = `all`;
+      if (filterSearch) filterSearch.value = ``;
+      appState.collapsedSections[appState.activeSectionRing] = false;
+      applyVerseFilters();
+      const target = document.getElementById(`sec-verses`);
+      if (target) target.scrollIntoView({ behavior: `smooth` });
+    }
+
+    // =========================================================================
+    // SECTION II: THEMES & CHART
+    // =========================================================================
+
+    function renderThemes() {
+      const pills = document.getElementById(`theme-pills`);
+      if (!pills) return;
+
+      pills.innerHTML = THEMES.map(function (th) {
+        const cls = th.id === appState.activeThemeId ? ` is-active` : ``;
+        return `<button type="button" class="theme-pill${cls}" onclick="selectTheme('${th.id}')">${th.name}</button>`;
+      }).join(``);
+
+      const active = THEMES.find(function (t) { return t.id === appState.activeThemeId; }) || THEMES[0];
+      const arTag = document.getElementById(`theme-arabic-tag`);
+      const cntLbl = document.getElementById(`theme-count-label`);
+      const titleEl = document.getElementById(`theme-title`);
+      const sumEl = document.getElementById(`theme-summary`);
+      const refsEl = document.getElementById(`theme-verse-refs`);
+
+      if (arTag) arTag.textContent = active.arabic;
+      if (cntLbl) cntLbl.textContent = `${active.verses.length} key verses`;
+      if (titleEl) titleEl.textContent = active.name;
+      if (sumEl) sumEl.textContent = active.summary;
+      if (refsEl) {
+        refsEl.innerHTML = active.verses.map(function (vNum) {
+          return `<button type="button" class="verse-chip" onclick="jumpToVerse(${vNum})">14:${vNum}</button>`;
+        }).join(``);
+      }
+    }
+
+    function selectTheme(themeId) {
+      appState.activeThemeId = themeId;
+      renderThemes();
+      schedulePersist();
+    }
+
+    function initThemeChart() {
+      const canvas = document.getElementById(`themeChart`);
+      if (!canvas || typeof Chart === `undefined`) return;
+
+      const styles = getComputedStyle(document.documentElement);
+      const c1 = styles.getPropertyValue(`--data-1`).trim();
+      const c2 = styles.getPropertyValue(`--data-2`).trim();
+      const c3 = styles.getPropertyValue(`--data-3`).trim();
+      const c4 = styles.getPropertyValue(`--data-4`).trim();
+      const cText = styles.getPropertyValue(`--on-surface`).trim();
+      const cGrid = styles.getPropertyValue(`--outline-variant`).trim();
+
+      const labels = THEMES.map(function (t) { return t.name; });
+      const counts = THEMES.map(function (t) {
+        return VERSES.filter(function (v) { return v.themes.indexOf(t.id) !== -1; }).length;
+      });
+
+      if (themeChartInstance) themeChartInstance.destroy();
+
+      themeChartInstance = new Chart(canvas, {
+        type: `bar`,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `Tagged Verses`,
+            data: counts,
+            backgroundColor: [c3, c2, c1, c4, c2],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: `y`,
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              grid: { color: cGrid },
+              ticks: { color: cText, precision: 0 }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: cText }
+            }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // SECTION III: ALL 52 VERSES EXPLORER
+    // =========================================================================
+
+    function getFilteredVerses() {
+      const secSel = document.getElementById(`filter-section`);
+      const themeSel = document.getElementById(`filter-theme`);
+      const searchIn = document.getElementById(`filter-search`);
+
+      const secVal = secSel ? secSel.value : `all`;
+      const themeVal = themeSel ? themeSel.value : `all`;
+      const query = searchIn ? searchIn.value.trim().toLowerCase() : ``;
+
+      return VERSES.filter(function (item) {
+        if (secVal !== `all` && String(item.sec) !== secVal) return false;
+        if (themeVal !== `all` && item.themes.indexOf(themeVal) === -1) return false;
+        if (query) {
+          const ref = `14:${item.v}`;
+          const match =
+            ref.indexOf(query) !== -1 ||
+            String(item.v) === query ||
+            item.en.toLowerCase().indexOf(query) !== -1 ||
+            item.note.toLowerCase().indexOf(query) !== -1 ||
+            item.ar.indexOf(query) !== -1;
+          if (!match) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderVerses(highlightVerseNum) {
+      const container = document.getElementById(`verses-container`);
+      const countEl = document.getElementById(`verse-filter-count`);
+      if (!container) return;
+
+      const filtered = getFilteredVerses();
+      if (countEl) countEl.textContent = `Showing ${filtered.length} of ${VERSES.length} verses`;
+
+      const secSel = document.getElementById(`filter-section`);
+      const themeSel = document.getElementById(`filter-theme`);
+      const searchIn = document.getElementById(`filter-search`);
+      const hasActiveFilter =
+        (secSel && secSel.value !== `all`) ||
+        (themeSel && themeSel.value !== `all`) ||
+        (searchIn && searchIn.value.trim() !== ``);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="panel-card" style="text-align: center;">
+          <h3 class="subhead">No matching verses</h3>
+          <p class="prose" style="margin: 0 auto var(--space-md);">No verses matched your current section, theme, or keyword filter.</p>
+          <button type="button" class="btn btn-primary btn-sm" onclick="clearVerseFilters()">Reset Filters</button>
+        </div>`;
+        return;
+      }
+
+      const arHiddenClass = appState.showArabic ? `` : ` is-hidden`;
+      const inHiddenClass = appState.showInsights ? `` : ` is-hidden`;
+
+      let html = ``;
+      SECTIONS.forEach(function (sec) {
+        const secVerses = filtered.filter(function (v) { return v.sec === sec.id; });
+        if (secVerses.length === 0) return;
+
+        const isCollapsed = !hasActiveFilter && Boolean(appState.collapsedSections[sec.id]);
+        const studiedInSec = secVerses.filter(function (v) {
+          return appState.studiedVerses.indexOf(v.v) !== -1;
+        }).length;
+
+        const bodyClass = isCollapsed ? `section-group-body is-collapsed` : `section-group-body`;
+
+        html += `<div class="section-group" id="verse-sec-${sec.id}">
+          <button type="button" class="section-group-header" onclick="toggleSectionGroup(${sec.id})" aria-expanded="${!isCollapsed}">
+            <div>
+              <span class="kicker" style="margin-bottom: 2px;">Movement ${sec.roman} · ${sec.range}</span>
+              <div class="section-group-title">${sec.title}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+              <span class="badge-emerald">${studiedInSec} / ${secVerses.length} studied</span>
+              <span class="kicker-meta" style="font-size: var(--label-size); font-weight: 700;">${isCollapsed ? `Expand +` : `Collapse −`}</span>
+            </div>
+          </button>
+          <div class="${bodyClass}">`;
+
+        secVerses.forEach(function (item) {
+          const isStudied = appState.studiedVerses.indexOf(item.v) !== -1;
+          const isHl = highlightVerseNum === item.v;
+          const cardCls = `verse-card${isStudied ? ` is-studied` : ``}${isHl ? ` is-highlighted` : ``}`;
+          const themeBadges = item.themes.map(function (tid) {
+            const tObj = THEMES.find(function (x) { return x.id === tid; });
+            return tObj ? `<span class="badge-emerald">${tObj.name}</span>` : ``;
+          }).join(``);
+
+          html += `<article class="${cardCls}" id="verse-card-${item.v}">
+            <div class="verse-card-top">
+              <div class="verse-meta-left">
+                <span class="verse-num-tag">14:${item.v}</span>
+                ${themeBadges}
+              </div>
+              <label class="check-label">
+                <input type="checkbox" ${isStudied ? `checked` : ``} onchange="toggleVerseStudied(${item.v}, this.checked)">
+                <span>${isStudied ? `Studied` : `Mark studied`}</span>
+              </label>
+            </div>
+            <p class="verse-arabic${arHiddenClass}" lang="ar" dir="rtl">${item.ar}</p>
+            <p class="verse-english">${item.en}</p>
+            <div class="verse-insight${inHiddenClass}"><strong>Study Note:</strong> ${item.note}</div>
+          </article>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function applyVerseFilters() {
+      renderVerses();
+    }
+
+    function clearVerseFilters() {
+      const secSel = document.getElementById(`filter-section`);
+      const themeSel = document.getElementById(`filter-theme`);
+      const searchIn = document.getElementById(`filter-search`);
+      if (secSel) secSel.value = `all`;
+      if (themeSel) themeSel.value = `all`;
+      if (searchIn) searchIn.value = ``;
+      renderVerses();
+    }
+
+    function toggleVerseDisplay() {
+      const arChk = document.getElementById(`toggle-arabic`);
+      const inChk = document.getElementById(`toggle-insights`);
+      appState.showArabic = arChk ? arChk.checked : true;
+      appState.showInsights = inChk ? inChk.checked : true;
+      renderVerses();
+      schedulePersist();
+    }
+
+    function toggleSectionGroup(secId) {
+      appState.collapsedSections[secId] = !appState.collapsedSections[secId];
+      renderVerses();
+      schedulePersist();
+    }
+
+    function expandAllSections(expand) {
+      SECTIONS.forEach(function (s) {
+        appState.collapsedSections[s.id] = !expand;
+      });
+      renderVerses();
+      schedulePersist();
+    }
+
+    function toggleVerseStudied(vNum, isChecked) {
+      const idx = appState.studiedVerses.indexOf(vNum);
+      if (isChecked && idx === -1) {
+        appState.studiedVerses.push(vNum);
+      } else if (!isChecked && idx !== -1) {
+        appState.studiedVerses.splice(idx, 1);
+      }
+      renderVerses();
+      updateProgressUI();
+      schedulePersist();
+    }
+
+    function jumpToVerse(vNum) {
+      const found = VERSES.find(function (item) { return item.v === vNum; });
+      if (!found) return;
+      clearVerseFilters();
+      appState.collapsedSections[found.sec] = false;
+      renderVerses(vNum);
+      schedulePersist();
+      const card = document.getElementById(`verse-card-${vNum}`);
+      if (card) {
+        card.scrollIntoView({ behavior: `smooth`, block: `center` });
+      }
+    }
+
+    // =========================================================================
+    // SECTION IV: LINGUISTIC LAB
+    // =========================================================================
+
+    function renderLinguistics() {
+      const grid = document.getElementById(`ling-grid`);
+      if (!grid) return;
+      grid.innerHTML = LINGUISTIC_INSIGHTS.map(function (item) {
+        const reviewed = appState.reviewedRoots.indexOf(item.id) !== -1;
+        const cardCls = `ling-card${reviewed ? ` is-reviewed` : ``}`;
+        return `<article class="${cardCls}">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);">
+              <span class="badge-emerald">${item.ref}</span>
+              <span class="kicker-meta" style="font-size: var(--label-size); font-weight: 700;">${item.translit}</span>
+            </div>
+            <div class="ling-term-ar" lang="ar">${item.termAr}</div>
+            <h3 class="subhead">${item.title}</h3>
+            <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">${item.summary}</p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); padding-top: var(--space-sm); border-top: var(--warm-hairline);">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="toggleRootReviewed('${item.id}')">${reviewed ? `Reviewed ✓` : `Mark Reviewed`}</button>
+          </div>
+        </article>`;
+      }).join(``);
+    }
+
+    function toggleRootReviewed(rootId) {
+      const idx = appState.reviewedRoots.indexOf(rootId);
+      if (idx === -1) {
+        appState.reviewedRoots.push(rootId);
+      } else {
+        appState.reviewedRoots.splice(idx, 1);
+      }
+      renderLinguistics();
+      updateProgressUI();
+      schedulePersist();
+    }
+
+    // =========================================================================
+    // SECTION V: IBRAHIM'S SEVEN PRAYERS
+    // =========================================================================
+
+    function renderPrayers() {
+      const list = document.getElementById(`dua-step-list`);
+      const detail = document.getElementById(`dua-detail-panel`);
+      if (!list || !detail) return;
+
+      list.innerHTML = IBRAHIM_PRAYERS.map(function (p) {
+        const cls = p.num === appState.activeDuaNum ? ` is-active` : ``;
+        return `<button type="button" class="dua-step-btn${cls}" onclick="selectDua(${p.num})">
+          <span><strong>Prayer ${p.num} · ${p.verse}</strong><br><span style="font-size: 0.8125rem; color: var(--on-surface-variant);">${p.focus}</span></span>
+          <span class="badge-clay">${p.pronoun}</span>
+        </button>`;
+      }).join(``);
+
+      const active = IBRAHIM_PRAYERS.find(function (p) { return p.num === appState.activeDuaNum; }) || IBRAHIM_PRAYERS[0];
+      detail.innerHTML = `<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md);">
+        <span class="kicker">Supplication ${active.num} of 7 · ${active.verse}</span>
+        <span class="badge-emerald">${active.pronoun}</span>
+      </div>
+      <h3 class="subhead">${active.focus}</h3>
+      <p class="verse-arabic" lang="ar" dir="rtl" style="margin-top: var(--space-sm);">${active.ar}</p>
+      <p class="verse-english">${active.en}</p>
+      <div class="verse-insight"><strong>Structural &amp; Spiritual Insight:</strong> ${active.insight}</div>`;
+    }
+
+    function selectDua(num) {
+      appState.activeDuaNum = num;
+      renderPrayers();
+      schedulePersist();
+    }
+
+    // =========================================================================
+    // SECTION VI: REFLECTIONS
+    // =========================================================================
+
+    function renderReflections() {
+      for (let i = 0; i < 3; i++) {
+        const ta = document.getElementById(`reflect-${i + 1}`);
+        const st = document.getElementById(`reflect-status-${i}`);
+        const val = appState.reflections[i] || ``;
+        if (ta && ta.value !== val) ta.value = val;
+        if (st) {
+          const len = val.trim().length;
+          st.textContent = len >= 10 ? `Saved (${len} chars)` : (len > 0 ? `Keep writing (${len} chars)` : `Not yet written`);
+        }
+      }
+    }
+
+    function saveReflection(idx, value) {
+      appState.reflections[idx] = value;
+      const st = document.getElementById(`reflect-status-${idx}`);
+      if (st) {
+        const len = value.trim().length;
+        st.textContent = len >= 10 ? `Saved (${len} chars)` : (len > 0 ? `Keep writing (${len} chars)` : `Not yet written`);
+      }
+      updateProgressUI();
+      schedulePersist();
+    }
+
+    function exportReflections() {
+      const titles = [
+        `1. The Gratitude Equation (14:7 & 14:34)`,
+        `2. Deep Roots vs. Storm Ashes (14:18 & 14:24-27)`,
+        `3. Generational Prayer (14:35-41)`
+      ];
+      let text = `SURAH IBRAHIM (CHAPTER 14) — PERSONAL STUDY NOTES\n`;
+      text += `=================================================\n\n`;
+      text += `Verses Studied: ${appState.studiedVerses.length} / 52\n`;
+      text += `Linguistic Roots Reviewed: ${appState.reviewedRoots.length} / ${LINGUISTIC_INSIGHTS.length}\n`;
+      text += `Best Quiz Score: ${appState.bestQuizScore} / ${QUIZ_QUESTIONS.length}\n\n`;
+
+      for (let i = 0; i < 3; i++) {
+        text += `${titles[i]}\n`;
+        text += `${(appState.reflections[i] || `(No reflection written yet)`).trim()}\n\n`;
+      }
+
+      const statusEl = document.getElementById(`export-status`);
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+          window.notebookAppApi.triggerFileDownload({
+            content: text,
+            contentType: `text/plain`,
+            encoding: `UTF-8`,
+            filename: `surah-ibrahim-study-notes.txt`
+          });
+          if (statusEl) statusEl.textContent = `Downloaded surah-ibrahim-study-notes.txt`;
+        } else {
+          const blob = new Blob([text], { type: `text/plain` });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement(`a`);
+          a.href = url;
+          a.download = `surah-ibrahim-study-notes.txt`;
+          a.click();
+          URL.revokeObjectURL(url);
+          if (statusEl) statusEl.textContent = `Exported study notes.`;
+        }
+      } catch (err) {
+        if (statusEl) statusEl.textContent = `Could not export in this viewer.`;
+      }
+    }
+
+    // =========================================================================
+    // SECTION VII: QUIZ
+    // =========================================================================
+
+    function renderQuiz() {
+      const idx = appState.quizIndex;
+      const q = QUIZ_QUESTIONS[idx];
+      const badge = document.getElementById(`quiz-progress-badge`);
+      const scoreLbl = document.getElementById(`quiz-score-label`);
+      const qText = document.getElementById(`quiz-question-text`);
+      const optsWrap = document.getElementById(`quiz-options`);
+      const fb = document.getElementById(`quiz-feedback`);
+      const prevBtn = document.getElementById(`quiz-prev-btn`);
+      const nextBtn = document.getElementById(`quiz-next-btn`);
+
+      if (!q || !optsWrap) return;
+
+      const chosen = appState.quizAnswers[idx];
+      const hasAnswered = typeof chosen === `number`;
+
+      if (badge) badge.textContent = `Question ${idx + 1} of ${QUIZ_QUESTIONS.length}`;
+      if (scoreLbl) scoreLbl.textContent = `Score: ${computeQuizScore()} / ${QUIZ_QUESTIONS.length}`;
+      if (qText) qText.textContent = q.q;
+
+      const letters = [`A`, `B`, `C`, `D`];
+      optsWrap.innerHTML = q.options.map(function (opt, oIdx) {
+        let cls = `quiz-option-btn`;
+        if (hasAnswered) {
+          if (oIdx === q.correct) cls += ` is-correct`;
+          else if (oIdx === chosen) cls += ` is-wrong`;
+        }
+        return `<button type="button" class="${cls}" ${hasAnswered ? `disabled` : ``} onclick="answerQuiz(${oIdx})">
+          <strong style="color: var(--primary);">${letters[oIdx]}.</strong>
+          <span>${opt}</span>
+        </button>`;
+      }).join(``);
+
+      if (fb) {
+        if (hasAnswered) {
+          const isRight = chosen === q.correct;
+          fb.className = `quiz-feedback is-visible ${isRight ? `is-correct` : `is-wrong`}`;
+          fb.innerHTML = `<strong>${isRight ? `Correct.` : `Not quite.`}</strong> ${q.explain}`;
+        } else {
+          fb.className = `quiz-feedback`;
+          fb.innerHTML = ``;
+        }
+      }
+
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) {
+        nextBtn.disabled = idx === QUIZ_QUESTIONS.length - 1;
+        nextBtn.textContent = idx === QUIZ_QUESTIONS.length - 1 ? `Final Question` : `Next Question`;
+      }
+    }
+
+    function answerQuiz(optIdx) {
+      appState.quizAnswers[appState.quizIndex] = optIdx;
+      renderQuiz();
+      updateProgressUI();
+      schedulePersist();
+    }
+
+    function stepQuiz(delta) {
+      const next = appState.quizIndex + delta;
+      if (next >= 0 && next < QUIZ_QUESTIONS.length) {
+        appState.quizIndex = next;
+        renderQuiz();
+        schedulePersist();
+      }
+    }
+
+    function resetQuiz(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset quiz`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset Quiz`;
+      }
+      appState.quizIndex = 0;
+      appState.quizAnswers = {};
+      renderQuiz();
+      updateProgressUI();
+      schedulePersist();
+    }
+
+    function resetAllProgress(btn) {
+      if (btn && btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirm: clear all progress?`;
+        return;
+      }
+      if (btn) {
+        btn.dataset.armed = `false`;
+        btn.textContent = `Reset All Study Progress`;
+      }
+      appState.studiedVerses = [];
+      appState.reviewedRoots = [];
+      appState.reflections = [``, ``, ``];
+      appState.quizIndex = 0;
+      appState.quizAnswers = {};
+      appState.bestQuizScore = 0;
+      renderVerses();
+      renderLinguistics();
+      renderReflections();
+      renderQuiz();
+      updateProgressUI();
+      persistState();
+    }
+
+    // =========================================================================
+    // SCROLL REVEALS & INITIALIZATION
+    // =========================================================================
+
+    function setupScrollReveals() {
+      const items = document.querySelectorAll(`.reveal-item`);
+      if (!(`IntersectionObserver` in window)) {
+        items.forEach(function (el) { el.classList.add(`is-visible`); });
+        return;
+      }
+      const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      items.forEach(function (el) { obs.observe(el); });
+    }
+
+    async function initApp() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) restoreFromState(saved);
+        }
+      } catch (err) {
+        // Proceed with defaults
+      }
+
+      const arChk = document.getElementById(`toggle-arabic`);
+      const inChk = document.getElementById(`toggle-insights`);
+      if (arChk) arChk.checked = appState.showArabic;
+      if (inChk) inChk.checked = appState.showInsights;
+
+      renderRingStrip();
+      renderThemes();
+      initThemeChart();
+      renderVerses();
+      renderLinguistics();
+      renderPrayers();
+      renderReflections();
+      renderQuiz();
+      updateProgressUI();
+      setupScrollReveals();
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (err) {
+        // Ignore outside host
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
