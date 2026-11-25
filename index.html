@@ -10,6 +10,13 @@
   <meta property="og:url" content="https://muslimsinvite.com/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
+  <!-- PWA & Home Screen App Meta -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ffffff" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Muslims Invite">
+  <link rel="apple-touch-icon" href="/icon-192.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f1f1f'/%3E%3Cpath d='M9 22.5v-11A2.5 2.5 0 0 1 11.5 9H23v14H11.5a2.5 2.5 0 0 1 0-5H23' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M13 13h6M13 16h4' fill='none' stroke='%234dd0e1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +26,6 @@
   <script src="quran-catalog.js"></script>
   <style>
     :root {
-      /* Light Mode — Google Gemini Notebook (Material Design 3) */
       --bg: #ffffff;
       --surface: #f8fafd;
       --surface-variant: #f0f4f9;
@@ -44,7 +50,6 @@
 
       --hero-grad: linear-gradient(90deg, #1a73e8 0%, #00897b 55%, #1e8e3e 100%);
 
-      /* Signature Tonal Notebook Card Pastels (Light) */
       --card-tint-0: #edf2fa;
       --card-tint-1: #e9f5ee;
       --card-tint-2: #fef4e5;
@@ -61,7 +66,6 @@
     }
 
     html[data-theme="dark"] {
-      /* Dark Mode — Google Gemini Notebook Workspace */
       --bg: #131314;
       --surface: #1e1f20;
       --surface-variant: #282a2c;
@@ -86,7 +90,6 @@
 
       --hero-grad: linear-gradient(90deg, #8ab4f8 0%, #4dd0e1 55%, #81c995 100%);
 
-      /* Signature Tonal Notebook Card Tints (Dark) */
       --card-tint-0: #1e2430;
       --card-tint-1: #1c2722;
       --card-tint-2: #2b251c;
@@ -98,10 +101,8 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--ink);
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--ink);
       font-family: var(--font-body);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
@@ -114,131 +115,60 @@
 
     /* ---------- GLOBAL HEADER & SECTION NAV RAIL ---------- */
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       transition: background 180ms ease;
     }
     .top-nav {
-      height: 60px;
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      height: 60px; max-width: 1320px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
     }
     .brand-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: var(--ink);
-      font-family: var(--font-display);
-      font-size: 1.22rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--ink);
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 500;
+      letter-spacing: -0.02em; cursor: pointer;
     }
     .brand-badge {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-      background: var(--surface-variant);
-      padding: 0.16rem 0.55rem;
-      border-radius: var(--radius-pill);
-      margin-left: 0.15rem;
+      font-family: var(--font-body); font-size: 0.7rem; font-weight: 600;
+      color: var(--ink-muted); background: var(--surface-variant);
+      padding: 0.16rem 0.55rem; border-radius: var(--radius-pill); margin-left: 0.15rem;
     }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .nav-actions { display: flex; align-items: center; gap: 0.45rem; }
 
-    /* Section Navigation Bar (Clean Material 3 Rail) */
     .section-nav-bar {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 1.5rem 0.65rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      overflow-x: auto;
-      scrollbar-width: none;
+      max-width: 1320px; margin: 0 auto; padding: 0 1.5rem 0.65rem;
+      display: flex; align-items: center; gap: 0.4rem;
+      overflow-x: auto; scrollbar-width: none;
     }
     .section-nav-bar::-webkit-scrollbar { display: none; }
 
     .sec-tab {
-      height: 36px;
-      padding: 0 0.95rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--ink-secondary);
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      transition: background 140ms ease, color 140ms ease;
-      flex-shrink: 0;
+      height: 36px; padding: 0 0.95rem; border-radius: var(--radius-pill);
+      border: 1px solid transparent; background: transparent; color: var(--ink-secondary);
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      transition: background 140ms ease, color 140ms ease; flex-shrink: 0;
     }
-    .sec-tab:hover:not(.active) {
-      background: var(--surface-variant);
-      color: var(--ink);
-    }
-    .sec-tab.active {
-      background: var(--chip-active-bg);
-      color: var(--chip-active-ink);
-    }
+    .sec-tab:hover:not(.active) { background: var(--surface-variant); color: var(--ink); }
+    .sec-tab.active { background: var(--chip-active-bg); color: var(--chip-active-ink); }
     .sec-live-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      display: inline-block;
-    }
-    .sec-soon-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-      background: var(--surface-variant);
-      padding: 0.1rem 0.42rem;
-      border-radius: var(--radius-pill);
-    }
-    .sec-tab.active .sec-soon-tag {
-      background: rgba(255,255,255,0.28);
-      color: var(--chip-active-ink);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-green); display: inline-block;
     }
 
     /* ---------- MATERIAL 3 BUTTONS ---------- */
     .pill-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      height: 38px;
-      padding: 0 1.1rem;
-      border-radius: var(--radius-pill);
-      font-family: var(--font-display);
-      font-size: 0.86rem;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 150ms ease, border-color 150ms ease, transform 120ms ease;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+      height: 38px; padding: 0 1.05rem; border-radius: var(--radius-pill);
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; border: 1px solid transparent; text-decoration: none;
+      white-space: nowrap; transition: background 150ms ease, border-color 150ms ease, transform 120ms ease;
     }
     .pill-btn:active { transform: scale(0.98); }
-    .pill-btn:disabled { opacity: 0.6; cursor: wait; }
-
+    .pill-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .pill-primary { background: var(--btn-dark-bg); color: var(--btn-dark-ink); }
     .pill-primary:hover:not(:disabled) { background: var(--btn-dark-hover); }
     .pill-tonal { background: var(--surface-variant); color: var(--ink); }
@@ -246,18 +176,17 @@
     .pill-outline { background: transparent; color: var(--ink); border-color: var(--border-strong); }
     .pill-outline:hover:not(:disabled) { background: var(--surface-variant); }
 
+    .pill-install {
+      background: var(--chip-active-bg);
+      color: var(--chip-active-ink);
+      font-weight: 600;
+    }
+    .pill-install:hover { filter: brightness(0.96); }
+
     .icon-circle-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--ink-secondary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 150ms ease, color 150ms ease;
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid transparent;
+      background: transparent; color: var(--ink-secondary);
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
     }
     .icon-circle-btn:hover { background: var(--surface-variant); color: var(--ink); }
 
@@ -267,66 +196,40 @@
 
     /* ---------- HOME: LOCK SCREEN HERO ---------- */
     .landing-main {
-      max-width: 1120px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 3.75rem 1.5rem 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      max-width: 1120px; width: 100%; margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-family: var(--font-display);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--ink-secondary);
-      background: var(--surface-variant);
-      padding: 0.35rem 0.9rem;
-      border-radius: var(--radius-pill);
-      margin-bottom: 1.4rem;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: var(--font-display); font-size: 0.82rem; font-weight: 500;
+      color: var(--ink-secondary); background: var(--surface-variant);
+      padding: 0.35rem 0.9rem; border-radius: var(--radius-pill); margin-bottom: 1.4rem;
     }
     .hero-h1 {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 1.5rem + 4.2vw, 4.5rem);
-      font-weight: 500;
-      line-height: 1.06;
-      letter-spacing: -0.035em;
-      margin: 0 0 1.2rem 0;
-      max-width: 15ch;
-      color: var(--ink);
+      font-weight: 500; line-height: 1.06; letter-spacing: -0.035em;
+      margin: 0 0 1.2rem 0; max-width: 15ch; color: var(--ink);
     }
     .hero-grad-word {
       background: var(--hero-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .hero-sub {
       font-size: clamp(1.02rem, 0.96rem + 0.32vw, 1.2rem);
-      color: var(--ink-muted);
-      max-width: 54ch;
-      margin: 0 0 2rem 0;
-      font-weight: 400;
+      color: var(--ink-muted); max-width: 54ch; margin: 0 0 2rem 0;
     }
 
     .unlock-capsule-wrap { width: 100%; max-width: 500px; margin-bottom: 0.9rem; }
     .unlock-capsule {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--surface-variant);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-pill);
-      padding: 0.35rem 0.35rem 0.35rem 1.15rem;
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--surface-variant); border: 1.5px solid var(--border);
+      border-radius: var(--radius-pill); padding: 0.35rem 0.35rem 0.35rem 1.15rem;
       transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
     }
     .unlock-capsule:focus-within {
-      background: var(--bg);
-      border-color: var(--accent-blue);
+      background: var(--bg); border-color: var(--accent-blue);
       box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.14);
     }
     .capsule-input {
@@ -338,8 +241,7 @@
     .eye-toggle-btn {
       width: 36px; height: 36px; border-radius: 50%; border: none;
       background: transparent; color: var(--ink-muted);
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
     }
     .eye-toggle-btn:hover { background: var(--surface-hover); color: var(--ink); }
     .capsule-submit { height: 42px; padding: 0 1.35rem; flex-shrink: 0; }
@@ -362,33 +264,17 @@
     }
     .hero-cta-row .pill-btn { height: 44px; padding: 0 1.35rem; font-size: 0.9rem; }
 
-    /* Public Quran Spotlight Banner on Home Lock Screen */
     .home-quran-strip {
-      width: 100%;
-      margin-top: 3.5rem;
-      background: var(--card-tint-1);
-      border-radius: var(--radius-lg);
-      padding: 1.65rem 1.85rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      text-align: left;
+      width: 100%; margin-top: 3.5rem; background: var(--card-tint-1);
+      border-radius: var(--radius-lg); padding: 1.65rem 1.85rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1.25rem; text-align: left;
     }
     .home-quran-strip h2 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 500;
-      margin: 0 0 0.3rem 0;
-      color: var(--ink);
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 500;
+      margin: 0 0 0.3rem 0; color: var(--ink);
     }
-    .home-quran-strip p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--ink-secondary);
-      max-width: 56ch;
-    }
+    .home-quran-strip p { margin: 0; font-size: 0.92rem; color: var(--ink-secondary); max-width: 56ch; }
 
     .overview-section { width: 100%; margin-top: 3.75rem; text-align: left; }
     .overview-heading {
@@ -412,18 +298,13 @@
     }
     .overview-card p { font-size: 0.87rem; color: var(--ink-muted); margin: 0; line-height: 1.5; }
 
-    /* ---------- WORKSPACE CONTAINER (Vault & Quran & Upcoming) ---------- */
-    .hub-container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4.5rem;
-    }
+    /* ---------- WORKSPACE CONTAINER ---------- */
+    .hub-container { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 4.5rem; }
     .hub-welcome { margin-bottom: 1.85rem; }
     .hub-title {
       font-family: var(--font-display);
       font-size: clamp(1.85rem, 1.35rem + 1.8vw, 2.75rem);
-      font-weight: 500; letter-spacing: -0.03em; line-height: 1.15;
-      margin: 0 0 0.45rem 0;
+      font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; margin: 0 0 0.45rem 0;
     }
     .hub-subtitle { font-size: 0.98rem; color: var(--ink-muted); margin: 0; max-width: 66ch; }
 
@@ -442,10 +323,7 @@
       transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
     }
     .m3-chip:hover:not(.active) { background: var(--surface-variant); }
-    .m3-chip.active {
-      background: var(--chip-active-bg); color: var(--chip-active-ink);
-      border-color: transparent;
-    }
+    .m3-chip.active { background: var(--chip-active-bg); color: var(--chip-active-ink); border-color: transparent; }
     .chip-check { display: none; }
     .m3-chip.active .chip-check { display: inline-block; }
     .chip-num { font-size: 0.78rem; opacity: 0.75; }
@@ -495,28 +373,17 @@
       gap: 1.1rem;
     }
     .notebook-card {
-      border-radius: var(--radius-card);
-      padding: 1.35rem;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.9rem;
-      border: 1px solid transparent;
-      cursor: pointer;
+      border-radius: var(--radius-card); padding: 1.35rem; min-height: 220px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 0.9rem;
+      border: 1px solid transparent; cursor: pointer;
       transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
     }
     .notebook-card:hover:not(.is-upcoming) {
-      transform: translateY(-2px);
-      box-shadow: var(--card-shadow-hover);
-      border-color: var(--border-strong);
+      transform: translateY(-2px); box-shadow: var(--card-shadow-hover); border-color: var(--border-strong);
     }
     .notebook-card.is-upcoming {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      cursor: default;
-      opacity: 0.82;
-      min-height: 175px;
+      background: var(--surface); border: 1px solid var(--border);
+      cursor: default; opacity: 0.82; min-height: 175px;
     }
     .tint-0 { background: var(--card-tint-0); }
     .tint-1 { background: var(--card-tint-1); }
@@ -534,11 +401,8 @@
       font-family: var(--font-display); font-weight: 600; font-size: 0.92rem;
     }
     .nb-arabic-title {
-      font-family: var(--font-arabic);
-      font-size: 1.45rem;
-      line-height: 1.4;
-      color: var(--ink);
-      direction: rtl;
+      font-family: var(--font-arabic); font-size: 1.45rem; line-height: 1.4;
+      color: var(--ink); direction: rtl; unicode-bidi: isolate;
     }
     .nb-reel-pill {
       display: inline-flex; align-items: center; gap: 0.3rem; height: 30px;
@@ -574,7 +438,7 @@
       padding: 0.22rem 0.6rem; border-radius: var(--radius-pill);
     }
 
-    /* List Table View */
+    /* List Table View (Fixed Arabic Column Alignment) */
     .notebook-list-wrap {
       width: 100%; overflow-x: auto; border: 1px solid var(--border);
       border-radius: 16px; background: var(--bg);
@@ -587,6 +451,7 @@
     }
     .notebook-table td {
       padding: 0.9rem 1.15rem; border-bottom: 1px solid var(--border); vertical-align: middle;
+      text-align: left;
     }
     .notebook-table tbody tr:last-child td { border-bottom: none; }
     .notebook-table tbody tr.clickable-row { cursor: pointer; transition: background 120ms ease; }
@@ -602,12 +467,9 @@
 
     /* ---------- UPCOMING COLLECTION PAGES ---------- */
     .upcoming-hero-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2.75rem 2.25rem;
-      max-width: 820px;
-      margin: 1rem auto 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.75rem 2.25rem;
+      max-width: 820px; margin: 1rem auto 0;
     }
     .upcoming-pill {
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -619,9 +481,7 @@
       font-family: var(--font-display); font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.75rem);
       font-weight: 500; letter-spacing: -0.025em; line-height: 1.15; margin: 0 0 0.75rem 0;
     }
-    .upcoming-hero-card p {
-      color: var(--ink-secondary); font-size: 1rem; max-width: 62ch; margin: 0 0 1.75rem 0;
-    }
+    .upcoming-hero-card p { color: var(--ink-secondary); font-size: 1rem; max-width: 62ch; margin: 0 0 1.75rem 0; }
     .upcoming-feature-list {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 0.85rem; margin-bottom: 2rem;
@@ -661,6 +521,50 @@
     .site-footer a { color: var(--ink-muted); text-decoration: none; }
     .site-footer a:hover { color: var(--ink); text-decoration: underline; }
 
+    /* ---------- FLOATING BACK TO TOP PILL ---------- */
+    #back-to-top {
+      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
+      display: none; height: 42px; padding: 0 1rem;
+      border-radius: var(--radius-pill);
+      background: var(--btn-dark-bg); color: var(--btn-dark-ink);
+      border: none; font-family: var(--font-display); font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; align-items: center; gap: 0.35rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+
+    /* ---------- PWA INSTALL MODAL (For iOS Safari & Instagram Browser) ---------- */
+    #install-modal {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0, 0, 0, 0.52);
+      align-items: center; justify-content: center; padding: 1.25rem;
+    }
+    .install-sheet {
+      width: 100%; max-width: 440px; background: var(--bg); color: var(--ink);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 1.75rem; box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+    }
+    .install-sheet-head {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
+    }
+    .install-sheet h3 {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0;
+    }
+    .install-steps {
+      list-style: none; padding: 0; margin: 1rem 0 1.35rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .install-steps li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.85rem 1rem; border-radius: 14px; font-size: 0.9rem;
+    }
+    .step-badge {
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      background: var(--chip-active-bg); color: var(--chip-active-ink);
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+
     /* ---------- FULLSCREEN READER ---------- */
     #reader-overlay {
       display: none; position: fixed; inset: 0; background: var(--bg);
@@ -671,13 +575,14 @@
       border-bottom: 1px solid var(--border); display: flex; align-items: center;
       justify-content: space-between; padding: 0 1.15rem; gap: 0.75rem; flex-shrink: 0;
     }
-    .reader-left { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+    .reader-left { display: flex; align-items: center; gap: 0.65rem; min-width: 0; }
+    .reader-right { display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0; }
     .reader-title {
-      font-family: var(--font-display); font-size: 0.98rem; font-weight: 500;
+      font-family: var(--font-display); font-size: 0.96rem; font-weight: 500;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink);
     }
     .reader-status-pill {
-      font-family: var(--font-display); font-size: 0.75rem; font-weight: 500;
+      font-family: var(--font-display); font-size: 0.74rem; font-weight: 500;
       color: var(--accent-green); background: var(--accent-green-soft);
       padding: 0.25rem 0.7rem; border-radius: var(--radius-pill); flex-shrink: 0;
     }
@@ -688,8 +593,8 @@
       .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
-      .top-nav { padding: 0 1rem; }
-      .section-nav-bar { padding: 0 1rem 0.6rem; }
+      .top-nav { padding: 0 0.85rem; }
+      .section-nav-bar { padding: 0 0.85rem 0.6rem; }
       .brand-badge, .hide-xs { display: none; }
       .landing-main { padding: 2.5rem 1rem 3rem; }
       .overview-grid { grid-template-columns: 1fr; }
@@ -698,6 +603,7 @@
       .toolbar-right { justify-content: space-between; }
       .search-pill { flex: 1; width: auto; }
       .upcoming-hero-card { padding: 1.75rem 1.25rem; }
+      .pill-btn { padding: 0 0.85rem; font-size: 0.82rem; }
       .notebook-table th:nth-child(2), .notebook-table td:nth-child(2) { display: none; }
     }
   </style>
@@ -717,24 +623,33 @@
       </a>
 
       <div class="nav-actions">
+        <!-- Seamless PWA Install App Button (Visible on Desktop & Mobile; auto-hides when installed) -->
+        <button type="button" class="pill-btn pill-install" id="btn-install-app" onclick="handleInstallClick()" title="Add Muslims Invite to Home Screen">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          <span>Install App</span>
+        </button>
+
         <button type="button" class="icon-circle-btn" onclick="toggleTheme()" aria-label="Toggle Light or Dark Mode" title="Switch Theme">
           <svg class="icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           <svg class="icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         </button>
+
         <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener" class="pill-btn pill-tonal hide-xs">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
           <span>Support</span>
         </a>
+
         <a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-tonal hide-xs">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
           <span>Discord</span>
         </a>
-        <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary" id="nav-join-btn">
+
+        <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary hide-xs" id="nav-join-btn">
           <span>Join Inner Circle</span>
         </a>
         <button type="button" class="pill-btn pill-outline" id="nav-lock-btn" onclick="lockVault()" style="display:none;">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Lock Vault</span>
+          <span class="hide-xs">Lock</span>
         </button>
       </div>
     </div>
@@ -742,7 +657,8 @@
     <!-- Clean Material 3 Section Navigation Tabs -->
     <nav class="section-nav-bar" aria-label="Main knowledge sections">
       <button type="button" class="sec-tab active" data-sec="home" onclick="switchSection('home')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <svg class="icon-sm" id="tab-lock-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <svg class="icon-sm" id="tab-lock-open" style="display:none; color:var(--accent-green);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
         <span>Inner Circle Vault</span>
       </button>
       <button type="button" class="sec-tab" data-sec="intro" onclick="switchSection('intro')">
@@ -764,7 +680,7 @@
       </button>
       <button type="button" class="sec-tab" data-sec="biography" onclick="switchSection('biography')">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-        <span>Prophet's Biography</span>
+        <span>Biography</span>
       </button>
       <button type="button" class="sec-tab" data-sec="books" onclick="switchSection('books')">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
@@ -780,7 +696,7 @@
     <section id="lock-screen">
       <div class="landing-main">
         <div class="hero-kicker">
-          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           <span id="lock-guide-count">Encrypted Interactive Library</span>
         </div>
 
@@ -792,10 +708,9 @@
           Your interactive Dawah and faith-defense workspace, grounded in the Quran, authentic Sunnah, and historical evidence.
         </p>
 
-        <!-- Passcode Capsule -->
         <form id="unlock-form" class="unlock-capsule-wrap" autocomplete="off" onsubmit="handleUnlock(event)">
           <div class="unlock-capsule">
-            <svg class="icon" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+            <svg class="icon" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
             <input id="vault-pass" class="capsule-input" type="password" placeholder="Enter Inner Circle passcode..." autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
             <button type="button" class="eye-toggle-btn" id="pass-eye-btn" onclick="togglePassVisibility()" aria-label="Show or hide passcode" title="Show passcode">
               <svg class="icon-sm" id="eye-icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -824,7 +739,6 @@
           </a>
         </div>
 
-        <!-- Free Public Quran Callout Strip -->
         <div class="home-quran-strip">
           <div>
             <h2>Read the Noble Quran — Free Interactive Study Companions</h2>
@@ -836,7 +750,6 @@
           </button>
         </div>
 
-        <!-- Feature Overview Grid -->
         <div class="overview-section">
           <p class="overview-heading">Overview of Inner Circle Interactive Features</p>
           <div class="overview-grid">
@@ -993,7 +906,7 @@
     </div>
   </section>
 
-  <!-- ==================== VIEW 3: UPCOMING SECTIONS (DYNAMIC) ==================== -->
+  <!-- ==================== VIEW 3: UPCOMING SECTIONS ==================== -->
   <section id="view-upcoming" class="page-view">
     <div class="hub-container" id="upcoming-stage"></div>
   </section>
@@ -1005,11 +918,32 @@
       <a href="https://instagram.com/muslims.invite" target="_blank" rel="noopener">@muslims.invite</a>
       <a href="https://instagram.com/muslims.refute" target="_blank" rel="noopener">@muslims.refute</a>
       <a href="https://instagram.com/muslims.network" target="_blank" rel="noopener">@muslims.network</a>
-      <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener">Support</a>
+      <a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener">Discord</a>
+      <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener">Support Dawah</a>
     </div>
   </footer>
 
-  <!-- FULLSCREEN INTERACTIVE READER OVERLAY (Used by Both Vault & Quran) -->
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button type="button" id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Scroll to top">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    <span>Top</span>
+  </button>
+
+  <!-- PWA INSTALL GUIDE MODAL (Smart iOS Safari / Instagram Browser Guide) -->
+  <div id="install-modal" role="dialog" aria-modal="true" aria-labelledby="install-modal-title" onclick="if(event.target===this) closeInstallModal()">
+    <div class="install-sheet">
+      <div class="install-sheet-head">
+        <h3 id="install-modal-title">Add Muslims Invite to Home Screen</h3>
+        <button type="button" class="icon-circle-btn" onclick="closeInstallModal()" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div id="install-modal-body"></div>
+      <button type="button" class="pill-btn pill-primary" style="width:100%; height:42px;" onclick="closeInstallModal()">Got it</button>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN INTERACTIVE READER OVERLAY -->
   <div id="reader-overlay" aria-hidden="true">
     <div class="reader-bar">
       <div class="reader-left">
@@ -1019,7 +953,18 @@
         </button>
         <span class="reader-title" id="reader-title">Loading notebook...</span>
       </div>
-      <span class="reader-status-pill hide-xs" id="reader-mode-pill">Encrypted Session</span>
+
+      <div class="reader-right">
+        <div id="reader-surah-controls" style="display:none; align-items:center; gap:0.4rem;">
+          <button type="button" class="pill-btn pill-tonal" id="btn-prev-surah" style="height:34px; padding:0 0.75rem; font-size:0.8rem;" onclick="stepSurah(-1)">Prev</button>
+          <button type="button" class="pill-btn pill-tonal" id="btn-next-surah" style="height:34px; padding:0 0.75rem; font-size:0.8rem;" onclick="stepSurah(1)">Next</button>
+          <button type="button" class="pill-btn pill-outline" id="btn-share-surah" style="height:34px; padding:0 0.8rem; font-size:0.8rem;" onclick="shareActiveSurah(this)">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+            <span class="hide-xs">Share</span>
+          </button>
+        </div>
+        <span class="reader-status-pill hide-xs" id="reader-mode-pill">Encrypted Session</span>
+      </div>
     </div>
     <div id="reader-mount"></div>
   </div>
@@ -1038,6 +983,8 @@
     let quranFilter = 'live';
     let quranView = 'grid';
     let readerIsOpen = false;
+    let activeSurahNum = null;
+    let deferredInstallPrompt = null;
 
     const decryptedCache = {};
     const publicHtmlCache = {};
@@ -1105,11 +1052,86 @@
     const SVG_EXT = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
     const SVG_ARROW = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
 
+    /* ---------- PWA SERVICE WORKER & SEAMLESS INSTALL ENGINE ---------- */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').catch(function() {});
+      });
+    }
+
+    function isAlreadyStandalone() {
+      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    }
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      const btn = document.getElementById('btn-install-app');
+      if (btn) btn.style.display = 'inline-flex';
+    });
+
+    window.addEventListener('appinstalled', function() {
+      deferredInstallPrompt = null;
+      const btn = document.getElementById('btn-install-app');
+      if (btn) btn.style.display = 'none';
+    });
+
+    async function handleInstallClick() {
+      // 1. Native 1-tap OS install prompt (Android Chrome/Edge & Desktop Chrome/Edge)
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const choice = await deferredInstallPrompt.userChoice;
+        if (choice && choice.outcome === 'accepted') {
+          const btn = document.getElementById('btn-install-app');
+          if (btn) btn.style.display = 'none';
+        }
+        deferredInstallPrompt = null;
+        return;
+      }
+
+      // 2. Smart fallback modal for Instagram In-App Browser, iPhone Safari, or Desktop Safari/Firefox
+      const ua = navigator.userAgent || '';
+      const isInApp = /Instagram|FBAN|FBAV|TikTok|Snapchat/i.test(ua);
+      const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const body = document.getElementById('install-modal-body');
+
+      if (isInApp) {
+        body.innerHTML =
+          '<p style="color:var(--ink-secondary); font-size:0.92rem; margin:0;">You are currently inside an in-app browser, which blocks Home Screen installation. Follow these 2 quick steps:</p>' +
+          '<ol class="install-steps">' +
+            '<li><span class="step-badge">1</span><span>Tap the <strong>menu (&bull;&bull;&bull;)</strong> in the top corner and select <strong>Open in Browser</strong> (Safari or Chrome).</span></li>' +
+            '<li><span class="step-badge">2</span><span>Once opened in Safari or Chrome, tap <strong>Install App</strong> again to add Muslims Invite to your Home Screen!</span></li>' +
+          '</ol>';
+      } else if (isIOS) {
+        body.innerHTML =
+          '<p style="color:var(--ink-secondary); font-size:0.92rem; margin:0;">Install Muslims Invite onto your iPhone or iPad Home Screen for instant full-screen access:</p>' +
+          '<ol class="install-steps">' +
+            '<li><span class="step-badge">1</span><span>Tap the <strong>Share</strong> icon <svg class="icon-sm" style="color:var(--accent-blue);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg> at the bottom of Safari.</span></li>' +
+            '<li><span class="step-badge">2</span><span>Scroll down and tap <strong>Add to Home Screen</strong>, then tap <strong>Add</strong> in the top right.</span></li>' +
+          '</ol>';
+      } else {
+        body.innerHTML =
+          '<p style="color:var(--ink-secondary); font-size:0.92rem; margin:0;">Install Muslims Invite directly onto your device for 1-click access:</p>' +
+          '<ol class="install-steps">' +
+            '<li><span class="step-badge">1</span><span>Open your browser’s top-right menu (<strong>&vellip;</strong>) or look for the <strong>Install icon</strong> in the address bar.</span></li>' +
+            '<li><span class="step-badge">2</span><span>Select <strong>Install Muslims Invite</strong> or <strong>Add to Home Screen</strong>.</span></li>' +
+          '</ol>';
+      }
+
+      document.getElementById('install-modal').style.display = 'flex';
+    }
+
+    function closeInstallModal() {
+      document.getElementById('install-modal').style.display = 'none';
+    }
+
     /* ---------- THEME & NAVIGATION ---------- */
     function applyTheme(theme) {
       const t = theme === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
       localStorage.setItem(THEME_STORAGE_KEY, t);
+      const metaTheme = document.getElementById('meta-theme-color');
+      if (metaTheme) metaTheme.setAttribute('content', t === 'dark' ? '#131314' : '#ffffff');
       document.querySelectorAll('.theme-icon-sun').forEach(function(el) {
         el.style.display = t === 'dark' ? 'inline-block' : 'none';
       });
@@ -1119,8 +1141,7 @@
     }
 
     function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'dark' ? 'light' : 'dark');
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     }
 
     function togglePassVisibility() {
@@ -1139,7 +1160,7 @@
       input.focus();
     }
 
-    function switchSection(sec) {
+    function switchSection(sec, skipUrlUpdate) {
       activeSection = sec;
       document.querySelectorAll('.sec-tab').forEach(function(btn) {
         btn.classList.toggle('active', btn.getAttribute('data-sec') === sec);
@@ -1148,6 +1169,11 @@
       document.getElementById('view-home').classList.toggle('is-visible', sec === 'home');
       document.getElementById('view-quran').classList.toggle('is-visible', sec === 'quran');
       document.getElementById('view-upcoming').classList.toggle('is-visible', sec !== 'home' && sec !== 'quran');
+
+      if (!skipUrlUpdate && window.history && history.replaceState) {
+        const nextUrl = sec === 'home' ? window.location.pathname : window.location.pathname + '?section=' + sec;
+        try { history.replaceState(null, '', nextUrl); } catch (e) {}
+      }
 
       if (sec === 'quran') {
         renderQuran();
@@ -1181,6 +1207,13 @@
           '</div>' +
         '</div>';
     }
+
+    /* ---------- BACK TO TOP BUTTON ---------- */
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      btn.style.display = window.scrollY > 420 ? 'inline-flex' : 'none';
+    }, { passive: true });
 
     /* ---------- SHARED READER BRIDGE SHIM ---------- */
     function buildBridgeShim(guideId) {
@@ -1220,10 +1253,20 @@
       return shim + html;
     }
 
-    function openInReader(rawHtml, storageKeyId, titleText, modeLabel) {
+    function openInReader(rawHtml, storageKeyId, titleText, modeLabel, surahNumOrNull) {
       const bridgedHtml = injectShimIntoHtml(rawHtml, storageKeyId);
       document.getElementById('reader-title').textContent = titleText;
       document.getElementById('reader-mode-pill').textContent = modeLabel;
+
+      activeSurahNum = surahNumOrNull || null;
+      const surahCtrl = document.getElementById('reader-surah-controls');
+      if (activeSurahNum) {
+        surahCtrl.style.display = 'inline-flex';
+        document.getElementById('btn-prev-surah').disabled = !isSurahLive(activeSurahNum - 1);
+        document.getElementById('btn-next-surah').disabled = !isSurahLive(activeSurahNum + 1);
+      } else {
+        surahCtrl.style.display = 'none';
+      }
 
       const mount = document.getElementById('reader-mount');
       mount.innerHTML = '';
@@ -1247,12 +1290,45 @@
       document.getElementById('reader-mount').innerHTML = '';
       document.body.style.overflow = '';
       readerIsOpen = false;
+      activeSurahNum = null;
       if (activeSection === 'home' && vaultUnlocked) renderGuides();
       if (activeSection === 'quran') renderQuran();
     }
 
+    function stepSurah(delta) {
+      if (!activeSurahNum) return;
+      const nextNum = activeSurahNum + delta;
+      if (isSurahLive(nextNum)) launchSurah(nextNum);
+    }
+
+    async function shareActiveSurah(btn) {
+      if (!activeSurahNum) return;
+      const surah = getSurahs().find(function(s) { return s[0] === activeSurahNum; });
+      const shareUrl = 'https://muslimsinvite.com/?surah=' + activeSurahNum;
+      const shareTitle = surah ? ('Surah ' + surah[1] + ' (' + surah[3] + ') — Interactive Study') : 'Muslims Invite Quran';
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: shareTitle, url: shareUrl });
+          return;
+        } catch (e) {}
+      }
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        const orig = btn.innerHTML;
+        btn.textContent = 'Copied';
+        setTimeout(function() { btn.innerHTML = orig; }, 1600);
+      } catch (e) {}
+    }
+
     window.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && readerIsOpen) closeReader();
+      if (e.key === 'Escape') {
+        if (document.getElementById('install-modal').style.display === 'flex') {
+          closeInstallModal();
+        } else if (readerIsOpen) {
+          closeReader();
+        }
+      }
     });
 
     function hasSavedProgress(keyId) {
@@ -1262,6 +1338,7 @@
 
     /* ---------- PUBLIC QURAN LIBRARY ENGINE ---------- */
     function isSurahLive(num) {
+      if (num < 1 || num > 114) return false;
       const maxLive = typeof window.QURAN_LIVE_MAX === 'number' ? window.QURAN_LIVE_MAX : 0;
       const extra = Array.isArray(window.QURAN_EXTRA_LIVE) ? window.QURAN_EXTRA_LIVE : [];
       return num <= maxLive || extra.indexOf(num) !== -1;
@@ -1307,7 +1384,6 @@
         if (query) {
           const hay = (num + ' ' + name + ' ' + meaning + ' ' + arabic + ' ' + type).toLowerCase();
           if (hay.indexOf(query) === -1) return false;
-          // When searching, search across all matching surahs if in 'all', or filter by type
           if (quranFilter === 'Meccan' && type !== 'Meccan') return false;
           if (quranFilter === 'Medinan' && type !== 'Medinan') return false;
           return true;
@@ -1342,7 +1418,7 @@
                   '</div>' +
                 '</div>' +
               '</td>' +
-              '<td class="nb-arabic-title" style="font-size:1.3rem;">' + arabic + '</td>' +
+              '<td><span class="nb-arabic-title" style="font-size:1.3rem;" lang="ar" dir="rtl">' + arabic + '</span></td>' +
               '<td style="white-space:nowrap;">' +
                 (live
                   ? (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '<span style="color:var(--accent-green); font-size:0.82rem; font-weight:500;">Live Free</span>')
@@ -1378,7 +1454,7 @@
               '<div>' +
                 '<div class="nb-card-top">' +
                   '<span class="nb-icon-circle" style="background:var(--surface-variant); color:var(--ink-muted);">' + num + '</span>' +
-                  '<span class="nb-arabic-title" style="opacity:0.75;">' + arabic + '</span>' +
+                  '<span class="nb-arabic-title" style="opacity:0.75;" lang="ar" dir="rtl">' + arabic + '</span>' +
                 '</div>' +
                 '<h3 class="nb-title">Surah ' + name + '</h3>' +
                 '<p class="nb-desc">' + meaning + '</p>' +
@@ -1397,7 +1473,7 @@
             '<div>' +
               '<div class="nb-card-top">' +
                 '<span class="nb-icon-circle">' + String(num).padStart(2, '0') + '</span>' +
-                '<span class="nb-arabic-title">' + arabic + '</span>' +
+                '<span class="nb-arabic-title" lang="ar" dir="rtl">' + arabic + '</span>' +
               '</div>' +
               '<h3 class="nb-title">Surah ' + name + '</h3>' +
               '<p class="nb-desc">' + meaning + ' — Interactive chapter study, structure, verses &amp; mastery quiz.</p>' +
@@ -1432,7 +1508,7 @@
           rawHtml = await res.text();
           publicHtmlCache[filePath] = rawHtml;
         }
-        openInReader(rawHtml, 'quran-' + num, 'Chapter ' + num + ' · Surah ' + surah[1] + ' (' + surah[3] + ')', 'Free Public Study');
+        openInReader(rawHtml, 'quran-' + num, 'Chapter ' + num + ' · Surah ' + surah[1] + ' (' + surah[3] + ')', 'Free Public Study', num);
       } catch (err) {
         alert(err.message);
       } finally {
@@ -1524,6 +1600,8 @@
       document.getElementById('vault-hub').style.display = 'block';
       document.getElementById('nav-join-btn').style.display = 'none';
       document.getElementById('nav-lock-btn').style.display = 'inline-flex';
+      document.getElementById('tab-lock-closed').style.display = 'none';
+      document.getElementById('tab-lock-open').style.display = 'inline-block';
 
       const catalog = getCatalog();
       const inviteCount = catalog.filter(function(g) { return g.track === 'invite'; }).length;
@@ -1546,6 +1624,8 @@
       document.getElementById('lock-screen').style.display = 'block';
       document.getElementById('nav-join-btn').style.display = 'inline-flex';
       document.getElementById('nav-lock-btn').style.display = 'none';
+      document.getElementById('tab-lock-closed').style.display = 'inline-block';
+      document.getElementById('tab-lock-open').style.display = 'none';
       switchSection('home');
     }
 
@@ -1691,7 +1771,7 @@
 
       try {
         const rawHtml = await fetchAndDecryptGuide(guide, activePassword);
-        openInReader(rawHtml, guide.id, '#' + guide.number + ' · ' + guide.title, 'Encrypted Session');
+        openInReader(rawHtml, guide.id, '#' + guide.number + ' · ' + guide.title, 'Encrypted Session', null);
       } catch (err) {
         alert('Could not decrypt this guide. Please check that ' + getGuideFile(guide) + ' was encrypted with the current passcode.');
       } finally {
@@ -1699,10 +1779,15 @@
       }
     }
 
-    /* ---------- INIT & URL ROUTING (?section=quran, ?surah=2) ---------- */
+    /* ---------- INIT & URL ROUTING ---------- */
     window.addEventListener('DOMContentLoaded', async function() {
-      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
-      applyTheme(savedTheme);
+      applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'light');
+
+      // Hide Install button automatically if user already opened from Home Screen app icon
+      if (isAlreadyStandalone()) {
+        const installBtn = document.getElementById('btn-install-app');
+        if (installBtn) installBtn.style.display = 'none';
+      }
 
       const savedView = localStorage.getItem(VIEW_STORAGE_KEY) || 'grid';
       activeView = savedView === 'list' ? 'list' : 'grid';
@@ -1715,7 +1800,6 @@
         lockBadge.textContent = catalog.length + ' Interactive Guides Inside';
       }
 
-      // Check auto-unlock for Inner Circle Vault
       const savedPass = localStorage.getItem(PASS_STORAGE_KEY) || sessionStorage.getItem(PASS_STORAGE_KEY);
       if (savedPass && catalog.length > 0) {
         try {
@@ -1728,16 +1812,15 @@
         }
       }
 
-      // Support shareable links like muslimsinvite.com/?section=quran or muslimsinvite.com/?surah=2
       const params = new URLSearchParams(window.location.search);
       const urlSection = params.get('section');
       const urlSurah = parseInt(params.get('surah'), 10);
 
       if (urlSurah && isSurahLive(urlSurah)) {
-        switchSection('quran');
+        switchSection('quran', true);
         launchSurah(urlSurah);
       } else if (urlSection && ['home', 'intro', 'quran', 'hadith', 'stories', 'biography', 'books'].indexOf(urlSection) !== -1) {
-        switchSection(urlSection);
+        switchSection(urlSection, true);
       }
     });
   </script>
