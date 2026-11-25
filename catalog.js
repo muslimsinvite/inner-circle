@@ -246,5 +246,5 @@ window.VAULT_CATALOG = [
     tags: ["Quran 49:13","Aisha (RA)","30s Pitch Drill","Live Simulator"],
     file: "guides/refute-12.enc",
     reelUrl: "https://www.instagram.com/muslims.refute/reel/De4hY5FPWws/"
-  }
+  },
 ];
