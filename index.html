@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -6,7 +7,7 @@
   <title>Muslims Invite — Interactive Islamic Knowledge &amp; Dawah Notebook</title>
   <meta name="description" content="Explore free interactive Quran study companions and unlock the Inner Circle Dawah Vault, grounded in the Quran, authentic Sunnah, and historical evidence.">
   <meta property="og:title" content="Muslims Invite — Interactive Islamic Knowledge & Dawah Notebook">
-  <meta property="og:description" content="Free interactive Quran study companions alongside the Inner Circle Dawah & Refutation Notebook library.">
+  <meta property="og:description" content="Free interactive Quran study companions (all 114 Surahs) alongside the Inner Circle Dawah & Refutation Notebook library.">
   <meta property="og:url" content="https://muslimsinvite.com/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
@@ -45,6 +46,8 @@
       --accent-blue: #0b57d0;
       --accent-green: #146c2e;
       --accent-green-soft: #e6f4ea;
+      --gold: #ffdd00;
+      --gold-hover: #f2cf00;
       --error: #b3261e;
       --error-bg: #fce8e6;
 
@@ -175,6 +178,8 @@
     .pill-tonal:hover:not(:disabled) { background: var(--surface-hover); }
     .pill-outline { background: transparent; color: var(--ink); border-color: var(--border-strong); }
     .pill-outline:hover:not(:disabled) { background: var(--surface-variant); }
+    .pill-gold { background: var(--gold); color: #1f1f1f; font-weight: 600; border-color: #1f1f1f; }
+    .pill-gold:hover { background: var(--gold-hover); }
 
     .pill-install {
       background: var(--chip-active-bg);
@@ -314,6 +319,9 @@
       border-bottom: 1px solid var(--border);
     }
     .filter-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+    .chip-divider {
+      width: 1px; height: 22px; background: var(--border-strong); margin: 0 0.15rem;
+    }
     .m3-chip {
       height: 38px; padding: 0 1rem; border-radius: var(--radius-pill);
       border: 1px solid var(--border-strong); background: transparent;
@@ -324,6 +332,7 @@
     }
     .m3-chip:hover:not(.active) { background: var(--surface-variant); }
     .m3-chip.active { background: var(--chip-active-bg); color: var(--chip-active-ink); border-color: transparent; }
+    .m3-chip.saved-chip.active { background: var(--accent-green-soft); color: var(--accent-green); border-color: var(--accent-green); }
     .chip-check { display: none; }
     .m3-chip.active .chip-check { display: inline-block; }
     .chip-num { font-size: 0.78rem; opacity: 0.75; }
@@ -333,7 +342,7 @@
       display: flex; align-items: center; gap: 0.45rem; height: 38px;
       padding: 0 0.9rem; border-radius: var(--radius-pill);
       background: var(--surface-variant); border: 1px solid transparent;
-      width: 250px; max-width: 100%;
+      width: 245px; max-width: 100%;
     }
     .search-pill:focus-within { background: var(--bg); border-color: var(--accent-blue); }
     .search-pill input {
@@ -354,11 +363,27 @@
     .view-seg-btn + .view-seg-btn { border-left: 1px solid var(--border-strong); }
     .view-seg-btn.active { background: var(--chip-active-bg); color: var(--chip-active-ink); }
 
+    /* Fixed Sort Dropdown — Clean Custom Chevron, Zero Text Overlap */
     .sort-select {
-      height: 38px; padding: 0 0.9rem; border-radius: var(--radius-pill);
-      border: 1px solid var(--border-strong); background: var(--bg); color: var(--ink);
-      font-family: var(--font-display); font-size: 0.84rem; font-weight: 500;
-      cursor: pointer; outline: none;
+      height: 38px;
+      min-width: 162px;
+      padding: 0 2.35rem 0 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      background-size: 14px 14px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
     }
 
     .section-sublabel {
@@ -398,7 +423,8 @@
       width: 44px; height: 44px; border-radius: 14px;
       background: var(--card-icon-bg); color: var(--ink);
       display: inline-flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-weight: 600; font-size: 0.92rem;
+      font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+      font-variant-numeric: tabular-nums;
     }
     .nb-arabic-title {
       font-family: var(--font-arabic); font-size: 1.45rem; line-height: 1.4;
@@ -438,7 +464,7 @@
       padding: 0.22rem 0.6rem; border-radius: var(--radius-pill);
     }
 
-    /* List Table View (Fixed Arabic Column Alignment) */
+    /* List Table View */
     .notebook-list-wrap {
       width: 100%; overflow-x: auto; border: 1px solid var(--border);
       border-radius: 16px; background: var(--bg);
@@ -460,7 +486,8 @@
     .list-icon-dot {
       width: 36px; height: 36px; border-radius: 10px;
       display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: 0.82rem;
+      flex-shrink: 0; color: var(--ink); font-family: var(--font-display); font-weight: 600;
+      font-size: 0.84rem; font-variant-numeric: tabular-nums;
     }
     .list-title-main { font-family: var(--font-display); font-weight: 500; color: var(--ink); display: block; }
     .list-title-sub { font-size: 0.8rem; color: var(--ink-muted); display: block; margin-top: 2px; }
@@ -532,7 +559,7 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.18);
     }
 
-    /* ---------- PWA INSTALL MODAL (For iOS Safari & Instagram Browser) ---------- */
+    /* ---------- PWA INSTALL MODAL ---------- */
     #install-modal {
       display: none; position: fixed; inset: 0; z-index: 10000;
       background: rgba(0, 0, 0, 0.52);
@@ -623,8 +650,8 @@
       </a>
 
       <div class="nav-actions">
-        <!-- Seamless PWA Install App Button (Visible on Desktop & Mobile; auto-hides when installed) -->
-        <button type="button" class="pill-btn pill-install" id="btn-install-app" onclick="handleInstallClick()" title="Add Muslims Invite to Home Screen">
+        <!-- Smart PWA Install App Button (Only shows when installable or on iOS/In-App browsers; hides automatically if already installed) -->
+        <button type="button" class="pill-btn pill-install" id="btn-install-app" style="display:none;" onclick="handleInstallClick()" title="Add Muslims Invite to Home Screen">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
           <span>Install App</span>
         </button>
@@ -668,7 +695,7 @@
       <button type="button" class="sec-tab" data-sec="quran" onclick="switchSection('quran')">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         <span>Quran</span>
-        <span class="sec-live-dot" title="Free chapters live now"></span>
+        <span class="sec-live-dot" title="All 114 chapters live"></span>
       </button>
       <button type="button" class="sec-tab" data-sec="hadith" onclick="switchSection('hadith')">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -741,7 +768,7 @@
 
         <div class="home-quran-strip">
           <div>
-            <h2>Read the Noble Quran — Free Interactive Study Companions</h2>
+            <h2>Read the Noble Quran — All 114 Interactive Study Companions</h2>
             <p>Explore word-by-word Arabic morphology, structural chapter maps, supplication vaults, and mastery quizzes — completely free and open to everyone.</p>
           </div>
           <button type="button" class="pill-btn pill-primary" style="height:44px; padding:0 1.4rem;" onclick="switchSection('quran')">
@@ -808,6 +835,12 @@
               <span>Muslims Refute</span>
               <span class="chip-num" id="count-refute">0</span>
             </button>
+            <span class="chip-divider"></span>
+            <button type="button" class="m3-chip saved-chip" id="tab-vault-saved" onclick="toggleVaultSavedFilter()">
+              <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Saved</span>
+              <span class="chip-num" id="count-vault-saved">0</span>
+            </button>
           </div>
 
           <div class="toolbar-right">
@@ -855,7 +888,7 @@
       <div class="hub-welcome">
         <div class="hero-kicker" style="margin-bottom:0.85rem;">
           <span class="sec-live-dot"></span>
-          <span id="quran-live-meta">Free &amp; Open for Everyone · New Chapters Added Weekly</span>
+          <span id="quran-live-meta">Free &amp; Open for Everyone</span>
         </div>
         <h1 class="hub-title">The Noble Quran — Interactive Study</h1>
         <p class="hub-subtitle">
@@ -865,12 +898,12 @@
 
       <div class="workspace-toolbar">
         <div class="filter-chips" role="tablist" aria-label="Quran filters">
-          <button type="button" class="m3-chip active" id="qtab-live" onclick="setQuranFilter('live')">
+          <button type="button" class="m3-chip" id="qtab-live" onclick="setQuranFilter('live')">
             <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>Available Now</span>
             <span class="chip-num" id="qcount-live">0</span>
           </button>
-          <button type="button" class="m3-chip" id="qtab-all" onclick="setQuranFilter('all')">
+          <button type="button" class="m3-chip active" id="qtab-all" onclick="setQuranFilter('all')">
             <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>All 114 Surahs</span>
             <span class="chip-num">114</span>
@@ -878,10 +911,18 @@
           <button type="button" class="m3-chip" id="qtab-meccan" onclick="setQuranFilter('Meccan')">
             <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>Meccan</span>
+            <span class="chip-num" id="qcount-meccan">86</span>
           </button>
           <button type="button" class="m3-chip" id="qtab-medinan" onclick="setQuranFilter('Medinan')">
             <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>Medinan</span>
+            <span class="chip-num" id="qcount-medinan">28</span>
+          </button>
+          <span class="chip-divider"></span>
+          <button type="button" class="m3-chip saved-chip" id="qtab-saved" onclick="setQuranFilter('saved')">
+            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Saved</span>
+            <span class="chip-num" id="qcount-saved">0</span>
           </button>
         </div>
 
@@ -903,6 +944,20 @@
       </div>
 
       <div id="quran-stage"></div>
+
+      <!-- Dignified Sadaqah Jariyah Support Banner on Free Quran Page -->
+      <section class="hub-support-banner">
+        <div class="hub-support-text">
+          <h3>Keep Interactive Quran Education Free for Everyone</h3>
+          <p>All 114 interactive Quran study companions are completely free for the entire Ummah and truth-seekers worldwide. Support the studio and share in the ongoing Sadaqah Jariyah.</p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;">
+          <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener" class="pill-btn pill-gold" style="height:44px; padding:0 1.35rem;">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span>Support the Dawah Efforts</span>
+          </a>
+        </div>
+      </section>
     </div>
   </section>
 
@@ -929,7 +984,7 @@
     <span>Top</span>
   </button>
 
-  <!-- PWA INSTALL GUIDE MODAL (Smart iOS Safari / Instagram Browser Guide) -->
+  <!-- PWA INSTALL GUIDE MODAL -->
   <div id="install-modal" role="dialog" aria-modal="true" aria-labelledby="install-modal-title" onclick="if(event.target===this) closeInstallModal()">
     <div class="install-sheet">
       <div class="install-sheet-head">
@@ -979,8 +1034,9 @@
     let activePassword = '';
     let vaultUnlocked = false;
     let activeTrack = 'invite';
+    let vaultSavedOnly = false;
     let activeView = 'grid';
-    let quranFilter = 'live';
+    let quranFilter = 'all';
     let quranView = 'grid';
     let readerIsOpen = false;
     let activeSurahNum = null;
@@ -1042,17 +1098,11 @@
       }
     };
 
-    const CARD_ICONS = [
-      '<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
-      '<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
-      '<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>',
-      '<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>'
-    ];
     const SVG_CHECK = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
     const SVG_EXT = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
     const SVG_ARROW = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
 
-    /* ---------- PWA SERVICE WORKER & SEAMLESS INSTALL ENGINE ---------- */
+    /* ---------- SMART PWA SERVICE WORKER & INSTALL ENGINE ---------- */
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').catch(function() {});
@@ -1063,11 +1113,14 @@
       return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     }
 
+    // Only reveal Install App button on Chrome/Edge/Android if browser confirms it is NOT already installed
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredInstallPrompt = e;
-      const btn = document.getElementById('btn-install-app');
-      if (btn) btn.style.display = 'inline-flex';
+      if (!isAlreadyStandalone()) {
+        const btn = document.getElementById('btn-install-app');
+        if (btn) btn.style.display = 'inline-flex';
+      }
     });
 
     window.addEventListener('appinstalled', function() {
@@ -1077,7 +1130,6 @@
     });
 
     async function handleInstallClick() {
-      // 1. Native 1-tap OS install prompt (Android Chrome/Edge & Desktop Chrome/Edge)
       if (deferredInstallPrompt) {
         deferredInstallPrompt.prompt();
         const choice = await deferredInstallPrompt.userChoice;
@@ -1089,7 +1141,6 @@
         return;
       }
 
-      // 2. Smart fallback modal for Instagram In-App Browser, iPhone Safari, or Desktop Safari/Firefox
       const ua = navigator.userAgent || '';
       const isInApp = /Instagram|FBAN|FBAV|TikTok|Snapchat/i.test(ua);
       const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -1125,7 +1176,7 @@
       document.getElementById('install-modal').style.display = 'none';
     }
 
-    /* ---------- THEME & NAVIGATION ---------- */
+    /* ---------- THEME & NAVIGATION WITH NATURAL BROWSER HISTORY ---------- */
     function applyTheme(theme) {
       const t = theme === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
@@ -1160,8 +1211,10 @@
       input.focus();
     }
 
-    function switchSection(sec, skipUrlUpdate) {
+    function switchSection(sec, skipHistoryPush) {
+      const prevSection = activeSection;
       activeSection = sec;
+
       document.querySelectorAll('.sec-tab').forEach(function(btn) {
         btn.classList.toggle('active', btn.getAttribute('data-sec') === sec);
       });
@@ -1170,18 +1223,32 @@
       document.getElementById('view-quran').classList.toggle('is-visible', sec === 'quran');
       document.getElementById('view-upcoming').classList.toggle('is-visible', sec !== 'home' && sec !== 'quran');
 
-      if (!skipUrlUpdate && window.history && history.replaceState) {
+      if (!skipHistoryPush && sec !== prevSection && window.history && history.pushState) {
         const nextUrl = sec === 'home' ? window.location.pathname : window.location.pathname + '?section=' + sec;
-        try { history.replaceState(null, '', nextUrl); } catch (e) {}
+        try { history.pushState({ section: sec }, '', nextUrl); } catch (e) {}
       }
 
       if (sec === 'quran') {
         renderQuran();
       } else if (sec !== 'home') {
         renderUpcomingSection(sec);
+      } else if (vaultUnlocked) {
+        renderGuides();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    window.addEventListener('popstate', function(e) {
+      if (readerIsOpen) {
+        closeReader();
+      }
+      const targetSec = (e.state && e.state.section)
+        ? e.state.section
+        : (new URLSearchParams(window.location.search).get('section') || 'home');
+      if (['home', 'intro', 'quran', 'hadith', 'stories', 'biography', 'books'].indexOf(targetSec) !== -1) {
+        switchSection(targetSec, true);
+      }
+    });
 
     function renderUpcomingSection(secKey) {
       const data = UPCOMING_SECTIONS[secKey];
@@ -1208,7 +1275,6 @@
         '</div>';
     }
 
-    /* ---------- BACK TO TOP BUTTON ---------- */
     window.addEventListener('scroll', function() {
       const btn = document.getElementById('back-to-top');
       if (!btn) return;
@@ -1350,7 +1416,7 @@
 
     function setQuranFilter(filter) {
       quranFilter = filter;
-      ['live', 'all', 'Meccan', 'Medinan'].forEach(function(key) {
+      ['live', 'all', 'Meccan', 'Medinan', 'saved'].forEach(function(key) {
         const el = document.getElementById('qtab-' + key.toLowerCase());
         if (el) el.classList.toggle('active', key === filter);
       });
@@ -1370,10 +1436,39 @@
 
       const surahs = getSurahs();
       const liveTotal = surahs.filter(function(s) { return isSurahLive(s[0]); }).length;
+      const savedTotal = surahs.filter(function(s) { return hasSavedProgress('quran-' + s[0]); }).length;
+      const meccanTotal = surahs.filter(function(s) { return s[5] === 'Meccan'; }).length;
+      const medinanTotal = surahs.filter(function(s) { return s[5] === 'Medinan'; }).length;
+
+      // Auto-hide redundant "Available Now" chip when all 114 chapters are live
+      const liveTabBtn = document.getElementById('qtab-live');
+      if (liveTabBtn) {
+        if (liveTotal >= 114) {
+          liveTabBtn.style.display = 'none';
+          if (quranFilter === 'live') {
+            quranFilter = 'all';
+            document.getElementById('qtab-all').classList.add('active');
+          }
+        } else {
+          liveTabBtn.style.display = 'inline-flex';
+        }
+      }
+
       const liveCountEl = document.getElementById('qcount-live');
       const liveMetaEl = document.getElementById('quran-live-meta');
+      const savedCountEl = document.getElementById('qcount-saved');
+      const mecCountEl = document.getElementById('qcount-meccan');
+      const medCountEl = document.getElementById('qcount-medinan');
+
       if (liveCountEl) liveCountEl.textContent = liveTotal;
-      if (liveMetaEl) liveMetaEl.textContent = liveTotal + ' of 114 Interactive Chapters Live · Free for Everyone';
+      if (savedCountEl) savedCountEl.textContent = savedTotal;
+      if (mecCountEl) mecCountEl.textContent = meccanTotal;
+      if (medCountEl) medCountEl.textContent = medinanTotal;
+      if (liveMetaEl) {
+        liveMetaEl.textContent = liveTotal >= 114
+          ? 'All 114 Interactive Chapters Live · Free for Everyone'
+          : liveTotal + ' of 114 Interactive Chapters Live · Free for Everyone';
+      }
 
       const query = (document.getElementById('quran-search').value || '').trim().toLowerCase();
 
@@ -1381,22 +1476,31 @@
         const num = s[0], name = s[1], arabic = s[2], meaning = s[3], type = s[5];
         const live = isSurahLive(num);
 
+        if (quranFilter === 'saved' && !hasSavedProgress('quran-' + num)) return false;
+        if (quranFilter === 'live' && !live) return false;
+        if (quranFilter === 'Meccan' && type !== 'Meccan') return false;
+        if (quranFilter === 'Medinan' && type !== 'Medinan') return false;
+
         if (query) {
           const hay = (num + ' ' + name + ' ' + meaning + ' ' + arabic + ' ' + type).toLowerCase();
           if (hay.indexOf(query) === -1) return false;
-          if (quranFilter === 'Meccan' && type !== 'Meccan') return false;
-          if (quranFilter === 'Medinan' && type !== 'Medinan') return false;
-          return true;
         }
-
-        if (quranFilter === 'live') return live;
-        if (quranFilter === 'Meccan') return type === 'Meccan';
-        if (quranFilter === 'Medinan') return type === 'Medinan';
         return true;
       });
 
       if (filtered.length === 0) {
-        stage.innerHTML = '<p style="color:var(--ink-muted); padding:2rem 0;">No chapters match that search.</p>';
+        if (quranFilter === 'saved') {
+          stage.innerHTML =
+            '<div class="empty-search-box">' +
+              '<div>' +
+                '<strong style="display:block; margin-bottom:0.2rem;">No saved Surahs yet</strong>' +
+                '<span style="color:var(--ink-muted); font-size:0.9rem;">Open any chapter and check off a verse, bookmark, or quiz question—your progress will appear right here automatically.</span>' +
+              '</div>' +
+              '<button type="button" class="pill-btn pill-primary" onclick="setQuranFilter(\'all\')"><span>Browse All 114 Surahs</span>' + SVG_ARROW + '</button>' +
+            '</div>';
+        } else {
+          stage.innerHTML = '<p style="color:var(--ink-muted); padding:2rem 0;">No chapters match that search.</p>';
+        }
         return;
       }
 
@@ -1411,7 +1515,7 @@
             '<tr class="' + (live ? 'clickable-row' : '') + '" ' + (live ? 'onclick="launchSurah(' + num + ')"' : '') + '>' +
               '<td>' +
                 '<div class="list-title-cell">' +
-                  '<span class="list-icon-dot ' + tintCls + '" style="' + (live ? '' : 'background:var(--surface-variant); color:var(--ink-muted);') + '">' + num + '</span>' +
+                  '<span class="list-icon-dot ' + tintCls + '" style="' + (live ? '' : 'background:var(--surface-variant); color:var(--ink-muted);') + '">' + String(num).padStart(2, '0') + '</span>' +
                   '<div>' +
                     '<span class="list-title-main">Surah ' + name + '</span>' +
                     '<span class="list-title-sub">' + meaning + ' &middot; ' + verses + ' verses &middot; ' + type + '</span>' +
@@ -1453,7 +1557,7 @@
             '<article class="notebook-card is-upcoming">' +
               '<div>' +
                 '<div class="nb-card-top">' +
-                  '<span class="nb-icon-circle" style="background:var(--surface-variant); color:var(--ink-muted);">' + num + '</span>' +
+                  '<span class="nb-icon-circle" style="background:var(--surface-variant); color:var(--ink-muted);">' + String(num).padStart(2, '0') + '</span>' +
                   '<span class="nb-arabic-title" style="opacity:0.75;" lang="ar" dir="rtl">' + arabic + '</span>' +
                 '</div>' +
                 '<h3 class="nb-title">Surah ' + name + '</h3>' +
@@ -1616,6 +1720,7 @@
     function lockVault() {
       vaultUnlocked = false;
       activePassword = '';
+      vaultSavedOnly = false;
       localStorage.removeItem(PASS_STORAGE_KEY);
       sessionStorage.removeItem(PASS_STORAGE_KEY);
       for (const k in decryptedCache) delete decryptedCache[k];
@@ -1626,6 +1731,8 @@
       document.getElementById('nav-lock-btn').style.display = 'none';
       document.getElementById('tab-lock-closed').style.display = 'inline-block';
       document.getElementById('tab-lock-open').style.display = 'none';
+      const savedBtn = document.getElementById('tab-vault-saved');
+      if (savedBtn) savedBtn.classList.remove('active');
       switchSection('home');
     }
 
@@ -1639,6 +1746,13 @@
       if (heading) {
         heading.textContent = track === 'invite' ? 'Muslims Invite Notebooks' : 'Muslims Refute Notebooks';
       }
+      renderGuides();
+    }
+
+    function toggleVaultSavedFilter() {
+      vaultSavedOnly = !vaultSavedOnly;
+      const btn = document.getElementById('tab-vault-saved');
+      if (btn) btn.classList.toggle('active', vaultSavedOnly);
       renderGuides();
     }
 
@@ -1663,8 +1777,16 @@
       const sortOrder = document.getElementById('hub-sort').value;
       const catalog = getCatalog();
 
+      const trackSavedCount = catalog.filter(function(g) {
+        return g.track === activeTrack && hasSavedProgress(g.id);
+      }).length;
+      const savedCountEl = document.getElementById('count-vault-saved');
+      if (savedCountEl) savedCountEl.textContent = trackSavedCount;
+
       let filtered = catalog.filter(function(g) {
-        return g.track === activeTrack && matchesQuery(g, query);
+        if (g.track !== activeTrack) return false;
+        if (vaultSavedOnly && !hasSavedProgress(g.id)) return false;
+        return matchesQuery(g, query);
       });
 
       filtered.sort(function(a, b) {
@@ -1674,6 +1796,18 @@
       });
 
       if (filtered.length === 0) {
+        if (vaultSavedOnly && !query) {
+          stage.innerHTML =
+            '<div class="empty-search-box">' +
+              '<div>' +
+                '<strong style="display:block; margin-bottom:0.2rem;">No saved guides in this category yet</strong>' +
+                '<span style="color:var(--ink-muted); font-size:0.9rem;">Open any notebook and start a drill or simulator—your progress will appear here automatically.</span>' +
+              '</div>' +
+              '<button type="button" class="pill-btn pill-primary" onclick="toggleVaultSavedFilter()"><span>Show All Guides</span>' + SVG_ARROW + '</button>' +
+            '</div>';
+          return;
+        }
+
         const otherTrack = activeTrack === 'invite' ? 'refute' : 'invite';
         const otherLabel = otherTrack === 'invite' ? 'Muslims Invite' : 'Muslims Refute';
         const otherMatches = query
@@ -1698,20 +1832,20 @@
       if (activeView === 'list') {
         const rows = filtered.map(function(g, idx) {
           const tintCls = 'tint-' + (idx % 4);
-          const iconSvg = CARD_ICONS[idx % CARD_ICONS.length];
+          const paddedNum = String(g.number).padStart(2, '0');
           const started = hasSavedProgress(g.id);
           return (
             '<tr class="clickable-row" onclick="launchGuide(\'' + g.id + '\')">' +
               '<td>' +
                 '<div class="list-title-cell">' +
-                  '<span class="list-icon-dot ' + tintCls + '">' + iconSvg + '</span>' +
+                  '<span class="list-icon-dot ' + tintCls + '">' + paddedNum + '</span>' +
                   '<div>' +
                     '<span class="list-title-main">' + g.title + '</span>' +
                     '<span class="list-title-sub">' + g.subtitle + '</span>' +
                   '</div>' +
                 '</div>' +
               '</td>' +
-              '<td style="white-space:nowrap; color:var(--ink-muted);">Guide #' + g.number + '</td>' +
+              '<td style="white-space:nowrap; color:var(--ink-muted);">Guide #' + paddedNum + '</td>' +
               '<td style="white-space:nowrap;">' +
                 (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '<span style="color:var(--ink-muted); font-size:0.82rem;">Ready</span>') +
               '</td>' +
@@ -1735,14 +1869,15 @@
 
       const cards = filtered.map(function(g, idx) {
         const tintCls = 'tint-' + (idx % 4);
-        const iconSvg = CARD_ICONS[idx % CARD_ICONS.length];
+        const paddedNum = String(g.number).padStart(2, '0');
         const started = hasSavedProgress(g.id);
+        const topTags = (g.tags || []).slice(0, 2).join(' · ');
 
         return (
           '<article class="notebook-card ' + tintCls + '" onclick="launchGuide(\'' + g.id + '\')">' +
             '<div>' +
               '<div class="nb-card-top">' +
-                '<span class="nb-icon-circle">' + iconSvg + '</span>' +
+                '<span class="nb-icon-circle">' + paddedNum + '</span>' +
                 (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" class="nb-reel-pill" onclick="event.stopPropagation();"><span>Watch Reel</span>' + SVG_EXT + '</a>' : '') +
               '</div>' +
               '<h3 class="nb-title">' + g.title + '</h3>' +
@@ -1750,7 +1885,7 @@
             '</div>' +
             '<div class="nb-footer">' +
               '<div class="nb-meta-left">' +
-                '<span>Guide #' + g.number + '</span>' +
+                '<span>' + (topTags || ('Guide #' + paddedNum)) + '</span>' +
                 (started ? '<span>&middot;</span><span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '') +
               '</div>' +
               '<span class="nb-open-text"><span>Open</span>' + SVG_ARROW + '</span>' +
@@ -1783,10 +1918,14 @@
     window.addEventListener('DOMContentLoaded', async function() {
       applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'light');
 
-      // Hide Install button automatically if user already opened from Home Screen app icon
-      if (isAlreadyStandalone()) {
+      // Show Install App button on iOS Safari or Instagram In-App Browser (when not already standalone)
+      // On Chrome/Edge/Android, beforeinstallprompt handles showing it ONLY if not already installed
+      const ua = navigator.userAgent || '';
+      const isInApp = /Instagram|FBAN|FBAV|TikTok|Snapchat/i.test(ua);
+      const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (!isAlreadyStandalone() && (isIOS || isInApp)) {
         const installBtn = document.getElementById('btn-install-app');
-        if (installBtn) installBtn.style.display = 'none';
+        if (installBtn) installBtn.style.display = 'inline-flex';
       }
 
       const savedView = localStorage.getItem(VIEW_STORAGE_KEY) || 'grid';
@@ -1799,6 +1938,10 @@
       if (lockBadge && catalog.length > 0) {
         lockBadge.textContent = catalog.length + ' Interactive Guides Inside';
       }
+
+      // Default Quran filter smartly based on whether all 114 chapters are live
+      const liveSurahs = getSurahs().filter(function(s) { return isSurahLive(s[0]); }).length;
+      setQuranFilter(liveSurahs >= 114 ? 'all' : 'live');
 
       const savedPass = localStorage.getItem(PASS_STORAGE_KEY) || sessionStorage.getItem(PASS_STORAGE_KEY);
       if (savedPass && catalog.length > 0) {
@@ -1816,13 +1959,21 @@
       const urlSection = params.get('section');
       const urlSurah = parseInt(params.get('surah'), 10);
 
+      let initialSec = 'home';
       if (urlSurah && isSurahLive(urlSurah)) {
+        initialSec = 'quran';
         switchSection('quran', true);
         launchSurah(urlSurah);
       } else if (urlSection && ['home', 'intro', 'quran', 'hadith', 'stories', 'biography', 'books'].indexOf(urlSection) !== -1) {
+        initialSec = urlSection;
         switchSection(urlSection, true);
+      }
+
+      if (window.history && history.replaceState) {
+        try { history.replaceState({ section: initialSec }, '', window.location.href); } catch (e) {}
       }
     });
   </script>
 </body>
 </html>
+```
