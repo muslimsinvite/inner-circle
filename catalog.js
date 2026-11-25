@@ -124,7 +124,7 @@ window.VAULT_CATALOG = [
     tags: ["Live Simulator"],
     file: "guides/invite-12.enc",
     reelUrl: "https://www.instagram.com/muslims.invite/reel/DayEkBZTEgp/"
-  },
+  }
 
   // ---------- @MUSLIMS.REFUTE GUIDES ----------
   {
@@ -156,5 +156,95 @@ window.VAULT_CATALOG = [
     tags: ["Matthew 7:16", "Matthew 12:26", "Roleplay Sim"],
     file: "guides/refute-03.enc",
     reelUrl: "https://www.instagram.com/reel/DePK3QZSMA0/?utm_source=ig_web_copy_link&hvrq=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+  },
+  {
+    id: "refute-04",
+    number: "04",
+    track: "refute",
+    title: "The \"Worst of Creatures\" Trap",
+    subtitle: "Refuting the Surah Al-Bayyinah (98:6) dehumanization allegation with calm Socratic logic, moral metaphysics, and comparative scripture.",
+    tags: ["Matthew 15:26","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-04.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/DeR6CPKy54O/"
+  },
+  {
+    id: "refute-05",
+    number: "05",
+    track: "refute",
+    title: "The \"Warlord\" Fallacy",
+    subtitle: "How to dismantle the “Jesus vs. Muhammad” comparison in real life — without apologizing, losing your composure, or surrendering the moral frame.",
+    tags: ["Quran 2:256","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-05.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/DeU0ucktVBm/"
+  },
+  {
+    id: "refute-06",
+    number: "06",
+    track: "refute",
+    title: "The \"Burglar's Fallacy\"",
+    subtitle: "How to dismantle the \"Why don't Arab countries take them?\" argument in real life—with Socratic clarity, verified receipts, and composure.",
+    tags: ["Quran 2:85","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-06.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/Dehll-1PH2u/"
+  },
+  {
+    id: "refute-07",
+    number: "07",
+    track: "refute",
+    title: "The \"6 and 9\" Street Ambush",
+    subtitle: "How to dismantle the Aisha (RA) accusation, expose presentist double standards, and win the “moral role model for all time” follow-up trap without…",
+    tags: ["Quran 4:6","Aisha (RA)","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-07.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/DekLd6_PlpN/"
+  },
+  {
+    id: "refute-08",
+    number: "08",
+    track: "refute",
+    title: "The Slavery Equivocation Trap",
+    subtitle: "How to Dismantle the \"Islamic vs. Transatlantic Slavery\" Argument & The \"Why Didn't God Ban It Overnight?\" Follow-Up",
+    tags: ["Quran 90:12–13","Slavery Context","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-08.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/Dem353ryj8h/"
+  },
+  {
+    id: "refute-09",
+    number: "09",
+    track: "refute",
+    title: "The \"Adultery of the Eyes\" Strawman",
+    subtitle: "How to dismantle modesty double standards, flip Matthew 5:28 in thirty seconds, and close the “1 Corinthians 11” escape hatch on the spot.",
+    tags: ["Quran 24:30","Matthew 5:28","Quran 24:31","Paul vs. Muhammad"],
+    file: "guides/refute-09.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/DesBlaHykcO/"
+  },
+  {
+    id: "refute-10",
+    number: "10",
+    track: "refute",
+    title: "The Apostasy Accusation",
+    subtitle: "How to Dismantle the Apostasy Accusation (Bukhari 6922) & The Classical Fiqh Follow-Up",
+    tags: ["Quran 4:137","Deuteronomy 13:6–9","Apostasy & Treason","30s Pitch Drill"],
+    file: "guides/refute-10.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/DexP6W6TqYo/"
+  },
+  {
+    id: "refute-11",
+    number: "11",
+    track: "refute",
+    title: "The “Cold Quran” Myth",
+    subtitle: "A forensic and pastoral field guide for answering the evangelical “no comfort / distant God” trap in real life—moving from formal logic and Socratic…",
+    tags: ["Quran 39:53","Matthew 7:21–23","Trinity","Preservation"],
+    file: "guides/refute-11.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/Dez4cyWTJ3q/"
+  },
+  {
+    id: "refute-12",
+    number: "12",
+    track: "refute",
+    title: "The “Anti-Woke” Trojan Horse ",
+    subtitle: "How to Dismantle Ethno-Nationalist Supremacy & the “Jizya / Dhimmi” Counter-Attack in Real Life",
+    tags: ["Quran 49:13","Aisha (RA)","30s Pitch Drill","Live Simulator"],
+    file: "guides/refute-12.enc",
+    reelUrl: "https://www.instagram.com/muslims.refute/reel/De4hY5FPWws/"
   }
 ];
