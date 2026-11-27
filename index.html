@@ -21,6 +21,7 @@
   <!-- PWA & Home Screen App Meta -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#ffffff" id="meta-theme-color">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Muslims Invite">
@@ -758,7 +759,12 @@
       .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
-      .top-nav { padding: 0 0.85rem; }
+      .top-nav { padding: 0 0.85rem; gap: 0.45rem; }
+      .brand-link { font-size: 1.02rem; gap: 0.42rem; white-space: nowrap; }
+      .nav-actions { gap: 0.3rem; }
+      #nav-join-btn { height: 34px; padding: 0 0.78rem; font-size: 0.78rem; white-space: nowrap; }
+      #btn-install-app { height: 34px; padding: 0 0.65rem; font-size: 0.76rem; }
+      .icon-circle-btn { width: 34px; height: 34px; }
       .section-nav-bar { padding: 0 0.85rem 0.6rem; }
       .brand-badge, .hide-xs { display: none !important; }
       .landing-main { padding: 2.25rem 1rem 3rem; }
@@ -778,6 +784,14 @@
       .reader-right { flex: 1 1 100%; justify-content: flex-end; }
       .reader-title { font-size: 0.86rem; }
     }
+    @media (max-width: 560px) {
+      #btn-install-app { width: 34px; padding: 0; }
+      #btn-install-app span { display: none; }
+    }
+    @media (max-width: 390px) {
+      .brand-link { font-size: 0.96rem; gap: 0.36rem; }
+      #nav-join-btn { padding: 0 0.68rem; font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -795,7 +809,7 @@
       </a>
 
       <div class="nav-actions">
-        <button type="button" class="pill-btn pill-install" id="btn-install-app" style="display:none;" onclick="handleInstallClick()" title="Add Muslims Invite to Home Screen">
+        <button type="button" class="pill-btn pill-install" id="btn-install-app" style="display:none;" onclick="handleInstallClick()" aria-label="Install App" title="Add Muslims Invite to Home Screen">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
           <span>Install App</span>
         </button>
@@ -815,7 +829,7 @@
           <span>Discord</span>
         </a>
 
-        <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary hide-xs" id="nav-join-btn">
+        <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary" id="nav-join-btn">
           <span>Join Inner Circle</span>
         </a>
         <button type="button" class="pill-btn pill-outline" id="nav-lock-btn" onclick="lockVault()" aria-label="Lock Inner Circle Vault" title="Lock Inner Circle Vault" style="display:none;">
@@ -1171,6 +1185,7 @@
       </div>
       <div id="install-modal-body"></div>
       <button type="button" class="pill-btn pill-primary" style="width:100%; height:42px;" onclick="closeModal('install-modal')">Got it</button>
+      <button type="button" class="pill-btn pill-outline" style="width:100%; height:40px; margin-top:0.55rem;" onclick="dismissInstallPrompt()">Already Added &mdash; Hide Install Button</button>
     </div>
   </div>
 
@@ -1315,6 +1330,7 @@
     const THEME_STORAGE_KEY = 'mi_vault_theme_v1';
     const VIEW_STORAGE_KEY = 'mi_vault_view_v1';
     const BOOKMARKS_STORAGE_KEY = 'mi_bookmarks_v1';
+    const INSTALL_DISMISSED_KEY = 'mi_install_dismissed_v1';
     const MAGIC_HEADER = 'MUSLIMS_INVITE_VAULT_V1';
 
     let activeSection = 'home';
@@ -1499,13 +1515,34 @@
     }
 
     function isAlreadyStandalone() {
-      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      const urlPwa = new URLSearchParams(window.location.search).get('source') === 'pwa';
+      const standalone = window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches ||
+        window.navigator.standalone === true ||
+        document.referrer.indexOf('android-app://') === 0 ||
+        urlPwa;
+      if (standalone) {
+        try { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); } catch (e) {}
+      }
+      return standalone;
+    }
+
+    function isInstallDismissed() {
+      try { return localStorage.getItem(INSTALL_DISMISSED_KEY) === '1'; } catch (e) { return false; }
+    }
+
+    function dismissInstallPrompt() {
+      try { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); } catch (e) {}
+      const btn = document.getElementById('btn-install-app');
+      if (btn) btn.style.display = 'none';
+      closeModal('install-modal');
+      showToast('Install button hidden');
     }
 
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredInstallPrompt = e;
-      if (!isAlreadyStandalone()) {
+      if (!isAlreadyStandalone() && !isInstallDismissed()) {
         const btn = document.getElementById('btn-install-app');
         if (btn) btn.style.display = 'inline-flex';
       }
@@ -1513,6 +1550,7 @@
 
     window.addEventListener('appinstalled', function() {
       deferredInstallPrompt = null;
+      try { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); } catch (e) {}
       const btn = document.getElementById('btn-install-app');
       if (btn) btn.style.display = 'none';
     });
@@ -1522,6 +1560,7 @@
         deferredInstallPrompt.prompt();
         const choice = await deferredInstallPrompt.userChoice;
         if (choice && choice.outcome === 'accepted') {
+          try { localStorage.setItem(INSTALL_DISMISSED_KEY, '1'); } catch (e) {}
           const btn = document.getElementById('btn-install-app');
           if (btn) btn.style.display = 'none';
         }
@@ -1543,10 +1582,10 @@
           '</ol>';
       } else if (isIOS) {
         body.innerHTML =
-          '<p style="color:var(--ink-secondary); font-size:0.92rem; margin:0;">Install Muslims Invite onto your iPhone or iPad Home Screen for instant full-screen access:</p>' +
+          '<p style="color:var(--ink-secondary); font-size:0.92rem; margin:0;">Apple iOS requires adding web apps via the browser Share menu (1-tap prompts are blocked by iOS across all browsers):</p>' +
           '<ol class="install-steps">' +
-            '<li><span class="step-badge">1</span><span>Tap the <strong>Share</strong> icon <svg class="icon-sm" style="color:var(--accent-blue);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg> at the bottom of Safari.</span></li>' +
-            '<li><span class="step-badge">2</span><span>Scroll down and tap <strong>Add to Home Screen</strong>, then tap <strong>Add</strong> in the top right.</span></li>' +
+            '<li><span class="step-badge">1</span><span>Tap the <strong>Share</strong> icon <svg class="icon-sm" style="color:var(--accent-blue);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg> at the bottom of Safari (or top-right address bar in Chrome).</span></li>' +
+            '<li><span class="step-badge">2</span><span>Scroll down, tap <strong>Add to Home Screen</strong>, ensure <strong>Open as Web App</strong> is enabled, and tap <strong>Add</strong>.</span></li>' +
           '</ol>';
       } else {
         body.innerHTML =
@@ -2693,7 +2732,7 @@
       const ua = navigator.userAgent || '';
       const isInApp = /Instagram|FBAN|FBAV|TikTok|Snapchat/i.test(ua);
       const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      if (!isAlreadyStandalone() && (isIOS || isInApp)) {
+      if (!isAlreadyStandalone() && !isInstallDismissed() && (isIOS || isInApp)) {
         const installBtn = document.getElementById('btn-install-app');
         if (installBtn) installBtn.style.display = 'inline-flex';
       }
@@ -2751,7 +2790,12 @@
         openReportModal(urlReport);
       }
 
-      if (window.history && history.replaceState) {
+      if (params.has('source') && window.history && history.replaceState) {
+        params.delete('source');
+        const cleanQuery = params.toString();
+        const cleanUrl = window.location.pathname + (cleanQuery ? '?' + cleanQuery : '') + window.location.hash;
+        try { history.replaceState({ section: initialSec }, '', cleanUrl); } catch (e) {}
+      } else if (window.history && history.replaceState) {
         try { history.replaceState({ section: initialSec }, '', window.location.href); } catch (e) {}
       }
     });

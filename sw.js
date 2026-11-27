@@ -1,4 +1,4 @@
-const CACHE_NAME = 'muslims-invite-pwa-v2';
+const CACHE_NAME = 'muslims-invite-pwa-v3';
 const CORE_ASSETS = [
   '/',
   '/index.html',
