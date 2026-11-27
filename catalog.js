@@ -9,27 +9,29 @@ window.VAULT_CATALOG = [
     id: "invite-01",
     number: "01",
     track: "invite",
-    title: 'THE "600 YEARS LATER" FALLACY',
+    isFreeSample: true,
+    sampleFile: "guides/sample-invite-01.html",
+    title: 'The "600 Years Later" Fallacy',
     subtitle: "Shifting from horizontal human hearsay to vertical divine revelation (Wahy) using Quran 3:44.",
     tags: ["Paul vs. Muhammad", "Quran 3:44", "Vertical Wahy"],
     file: "guides/invite-01.enc",
-    reelUrl: "https://www.instagram.com/reel/DaTCYwczu6B/?utm_source=ig_web_copy_link&cnvx=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+    reelUrl: "https://www.instagram.com/reel/DaTCYwczu6B/"
   },
   {
     id: "invite-02",
     number: "02",
     track: "invite",
-    title: 'THE "BLIND FAITH" FALLACY',
+    title: 'The "Blind Faith" Fallacy',
     subtitle: "Refuting circular reasoning with three objective Quranic falsification tests (4:82, 2:23, 15:9).",
     tags: ["Circular Logic", "Falsifiability", "Tawatur"],
     file: "guides/invite-02.enc",
-    reelUrl: "https://www.instagram.com/reel/DaVdZrMT2fL/?utm_source=ig_web_copy_link&knvt=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+    reelUrl: "https://www.instagram.com/reel/DaVdZrMT2fL/"
   },
   {
     id: "invite-03",
     number: "03",
     track: "invite",
-    title: 'THE "FALSE PROPHET" TROLL',
+    title: 'The "False Prophet" Troll',
     subtitle: "Reversing the Matthew 7:15 bait-and-switch using Jesus' own Fruit Test (vv. 16–20) & Al-Amin.",
     tags: ["Matthew 7:15", "Fruit Test", "Al-Amin"],
     file: "guides/invite-03.enc",
@@ -39,7 +41,7 @@ window.VAULT_CATALOG = [
     id: "invite-04",
     number: "04",
     track: "invite",
-    title: 'THE "WORST OF CREATURES" DEBUNK',
+    title: 'The "Worst of Creatures" Debunk',
     subtitle: "How polemicists isolate Surah Al-Bayyinah (98:6) to manufacture a charge of bigotry—and how restoring verse 7 exposes a universal moral scale.",
     tags: ["Quran 98:6–7", "Context X-Ray", "Dawah"],
     file: "guides/invite-04.enc",
@@ -49,7 +51,7 @@ window.VAULT_CATALOG = [
     id: "invite-05",
     number: "05",
     track: "invite",
-    title: 'THE "JESUS VS. MUHAMMAD" FALLACY',
+    title: 'The "Jesus vs. Muhammad" Fallacy',
     subtitle: "Why pitting a stateless spiritual teacher against a defending head of state creates a false equivalence—dismantling the warlord narrative.",
     tags: ["Quran 22:39", "Quran 2:190", "Historical Context"],
     file: "guides/invite-05.enc",
@@ -59,7 +61,7 @@ window.VAULT_CATALOG = [
     id: "invite-06",
     number: "06",
     track: "invite",
-    title: 'THE "ARAB NEIGHBORS" FALLACY',
+    title: 'The "Arab Neighbors" Fallacy',
     subtitle: "Why demanding neighboring states absorb displaced Palestinians masks permanent expulsion as humanitarian concern—and how to flip the premise.",
     tags: ["Quran 2:85", "Quran 22:40", "30s Pitch Drill"],
     file: "guides/invite-06.enc",
@@ -69,7 +71,7 @@ window.VAULT_CATALOG = [
     id: "invite-07",
     number: "07",
     track: "invite",
-    title: 'THE "MARRIAGE OF AISHA (RA)" FALLACY',
+    title: 'The "Marriage of Aisha (RA)" Fallacy',
     subtitle: "A disciplined framework for dismantling presentism and anachronism, restoring 7th-century Arabian and comparative legal history.",
     tags: ["Quran 4:6", "Aisha (RA)", "30s Pitch Drill"],
     file: "guides/invite-07.enc",
@@ -79,7 +81,7 @@ window.VAULT_CATALOG = [
     id: "invite-08",
     number: "08",
     track: "invite",
-    title: 'THE "ISLAMIC SLAVERY" FALLACY',
+    title: 'The "Islamic Slavery" Fallacy',
     subtitle: "Separating the crimes of political empires from the Quranic and Prophetic system of gradual abolition, legal protection, and racial equality.",
     tags: ["Slavery Context", "Quran 90:12–13", "Gradual Abolition"],
     file: "guides/invite-08.enc",
@@ -89,7 +91,7 @@ window.VAULT_CATALOG = [
     id: "invite-09",
     number: "09",
     track: "invite",
-    title: 'THE "SELF-CONTROL VS. HIJAB" FALLACY',
+    title: 'The "Self-Control vs. Hijab" Fallacy',
     subtitle: "Why pitting male gaze discipline against female modesty is a false dichotomy—and how the Quranic sequence places accountability on men first.",
     tags: ["Quran 24:30–31", "Matthew 5:28", "Hijab & Modesty"],
     file: "guides/invite-09.enc",
@@ -99,7 +101,7 @@ window.VAULT_CATALOG = [
     id: "invite-10",
     number: "10",
     track: "invite",
-    title: 'THE "APOSTASY HADITH" FALLACY',
+    title: 'The "Apostasy Hadith" Fallacy',
     subtitle: "Why isolated literalism confuses private conscience with 7th-century wartime high treason—and how to dismantle the argument calmly in real life.",
     tags: ["Quran 2:256", "Quran 4:137", "Apostasy & Treason", "Live Simulator"],
     file: "guides/invite-10.enc",
@@ -109,7 +111,7 @@ window.VAULT_CATALOG = [
     id: "invite-11",
     number: "11",
     track: "invite",
-    title: 'THE "COMFORTLESS QURAN" FALLACY',
+    title: 'The "Comfortless Quran" Fallacy',
     subtitle: "Answering the claim that the Quran lacks spiritual comfort—showing Allah's intimate mercy, nearness, and healing for broken hearts.",
     tags: ["Quran 10:57", "Quran 39:53", "Mercy & Healing"],
     file: "guides/invite-11.enc",
@@ -119,7 +121,7 @@ window.VAULT_CATALOG = [
     id: "invite-12",
     number: "12",
     track: "invite",
-    title: 'THE "UNEQUAL CATEGORIES" BIGOTRY',
+    title: 'The "Unequal Categories" Bigotry',
     subtitle: "How majoritarian supremacists disguise minority disenfranchisement as anti-woke realism—and how to dismantle it with Islamic universal justice.",
     tags: ["Quran 49:13", "Islamic Justice", "Live Simulator"],
     file: "guides/invite-12.enc",
@@ -135,7 +137,7 @@ window.VAULT_CATALOG = [
     subtitle: "Exposing the Shame Heuristic, Moses & Genesis parallels, and Galatians 1:11–12 in live dialogue.",
     tags: ["Galatians 1:12", "Moses Parallel", "Live Trainer"],
     file: "guides/refute-01.enc",
-    reelUrl: "https://www.instagram.com/reel/DeHDI_RvB9r/?utm_source=ig_web_copy_link&bqrl=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+    reelUrl: "https://www.instagram.com/reel/DeHDI_RvB9r/"
   },
   {
     id: "refute-02",
@@ -145,7 +147,7 @@ window.VAULT_CATALOG = [
     subtitle: "Masterclass #02 field guide & branching simulator using Quran 2:170, 4:82, 2:23, and 2:111.",
     tags: ["Quran 2:170", "30s Drill", "Counter-Punches"],
     file: "guides/refute-02.enc",
-    reelUrl: "https://www.instagram.com/reel/DeIGaxlzb12/?utm_source=ig_web_copy_link&dmpr=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+    reelUrl: "https://www.instagram.com/reel/DeIGaxlzb12/"
   },
   {
     id: "refute-03",
@@ -155,7 +157,7 @@ window.VAULT_CATALOG = [
     subtitle: "Field Guide #03 with Matthew 12:26 checkmate, Galatians 5:22–23 audit, and branching roleplay.",
     tags: ["Matthew 7:16", "Matthew 12:26", "Roleplay Sim"],
     file: "guides/refute-03.enc",
-    reelUrl: "https://www.instagram.com/reel/DePK3QZSMA0/?utm_source=ig_web_copy_link&hvrq=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA=="
+    reelUrl: "https://www.instagram.com/reel/DePK3QZSMA0/"
   },
   {
     id: "refute-04",

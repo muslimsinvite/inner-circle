@@ -1,0 +1,268 @@
+/* =========================================================================
+   MUSLIMS INVITE — UNIFIED EDITORIAL THEME & ACCESSIBILITY STYLESHEET
+   Applies the warm Terracotta Editorial system across all 114 Surahs
+   plus full Dark Mode parity, high-contrast confirmation, and focus rings.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Warm Terracotta Editorial Surfaces */
+  --background: #f9f3eb;
+  --surface: #f3e9dc;
+  --surface-container-low: #f3e9dc;
+  --surface-container: #ede0d0;
+  --surface-container-high: #e4d4c0;
+  --surface-card: #fdf9f4;
+
+  /* Ink */
+  --on-surface: #261b15;
+  --on-surface-variant: #57483f;
+  --ink: #261b15;
+  --ink-muted: #57483f;
+
+  /* Borders & Rules */
+  --outline: #9e8a78;
+  --outline-variant: #dfd0be;
+  --outline-btn: #c4b29e;
+  --secondary-btn-border: #c4b29e;
+  --featured-border: #c98a6b;
+  --primary-border: #c98a6b;
+  --emerald-border: #b5d6c9;
+  --tertiary-border: #b5d6c9;
+  --brass-stop-edge: #d8c3b0;
+  --brass-stop-mid: #b5893e;
+  --warm-hairline: 1px solid #dfd0be;
+  --hairline: 1px solid #dfd0be;
+  --hairline-control: 1px solid #c4b29e;
+
+  /* Accents */
+  --primary: #b84a24;
+  --primary-hover: #9d3c1b;
+  --on-primary: #ffffff;
+  --primary-container: #f7ebe0;
+  --on-primary-container: #7d2e12;
+  --secondary: #8f6524;
+  --tertiary: #1d6356;
+  --tertiary-container: #e1efe9;
+  --on-tertiary-container: #14493f;
+  --error: #b42318;
+  --on-error: #ffffff;
+  --error-container: #faecec;
+  --error-wash: #faecec;
+  --error-border: #dfb3b3;
+
+  /* Data Series */
+  --data-1: #b84a24;
+  --data-2: #1d6356;
+  --data-3: #8f6524;
+  --data-4: #6b4e71;
+  --data-context: #9e8a78;
+
+  /* Unified Editorial Typography */
+  --font-headline: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+}
+
+html[data-theme="dark"],
+html[data-mi-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #131314;
+  --surface: #1c1d1f;
+  --surface-container-low: #1c1d1f;
+  --surface-container: #242629;
+  --surface-container-high: #2e3136;
+  --surface-card: #1c1d1f;
+
+  --on-surface: #ece8e1;
+  --on-surface-variant: #b8b2a8;
+  --ink: #ece8e1;
+  --ink-muted: #b8b2a8;
+
+  --outline: #6c655c;
+  --outline-variant: #35373b;
+  --outline-btn: #4a4c52;
+  --secondary-btn-border: #4a4c52;
+  --featured-border: #915239;
+  --primary-border: #915239;
+  --emerald-border: #2c5c50;
+  --tertiary-border: #2c5c50;
+  --brass-stop-edge: #4e453b;
+  --brass-stop-mid: #b5893e;
+  --warm-hairline: 1px solid #35373b;
+  --hairline: 1px solid #35373b;
+  --hairline-control: 1px solid #4a4c52;
+
+  --primary: #e27d57;
+  --primary-hover: #ee926f;
+  --on-primary: #1a110d;
+  --primary-container: #3a2319;
+  --on-primary-container: #f7d5c6;
+  --secondary: #d4a65a;
+  --tertiary: #5cb8a5;
+  --tertiary-container: #1b312d;
+  --on-tertiary-container: #bfece2;
+  --error: #f28b82;
+  --on-error: #1f0e0d;
+  --error-container: #3b1d1b;
+  --error-wash: #3b1d1b;
+  --error-border: #7a3b37;
+
+  --data-1: #e27d57;
+  --data-2: #5cb8a5;
+  --data-3: #d4a65a;
+  --data-4: #b99ad1;
+  --data-context: #7c756c;
+}
+
+body {
+  background-color: var(--background) !important;
+  color: var(--on-surface) !important;
+  font-family: var(--font-body);
+}
+
+h1, h2, .hero-title, .display-title {
+  font-family: var(--font-headline);
+}
+
+/* Global Accessible Focus Indicator */
+*:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 2px;
+}
+
+/* High-Contrast Reset Confirmation State (Fixes Surah 2 & all chapters) */
+.btn-danger-armed,
+.btn--danger-armed,
+button[data-armed="true"],
+.btn.btn-ghost[data-armed="true"],
+.btn-ghost.btn-danger-armed {
+  background: #b42318 !important;
+  color: #ffffff !important;
+  border-color: #b42318 !important;
+  opacity: 1 !important;
+}
+.btn-danger-armed:hover,
+.btn--danger-armed:hover,
+button[data-armed="true"]:hover {
+  background: #991b1b !important;
+  color: #ffffff !important;
+  border-color: #991b1b !important;
+}
+
+/* Dark-mode surface hardening for any hardcoded light cards/controls inside Surahs */
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-mi-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] textarea,
+html[data-mi-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-mi-theme="dark"] select {
+  background-color: var(--surface-container) !important;
+  color: var(--on-surface) !important;
+  border-color: var(--outline-variant) !important;
+}
+html[data-theme="dark"] .sticky-nav,
+html[data-mi-theme="dark"] .sticky-nav,
+html[data-theme="dark"] .top-nav,
+html[data-mi-theme="dark"] .top-nav,
+html[data-theme="dark"] .nav-bar,
+html[data-mi-theme="dark"] .nav-bar {
+  background-color: rgba(19, 19, 20, 0.92) !important;
+  border-color: var(--outline-variant) !important;
+}
+
+/* Standalone Crawlable Top Bar (hidden automatically inside index.html iframe) */
+.mi-standalone-bar {
+  position: sticky;
+  top: 0;
+  z-index: 950;
+  height: 52px;
+  padding: 0 1.25rem;
+  background: var(--surface-container-low);
+  border-bottom: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+html.in-iframe .mi-standalone-bar {
+  display: none !important;
+}
+.mi-sb-left,
+.mi-sb-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.mi-sb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 34px;
+  padding: 0 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--outline-variant);
+  background: var(--background);
+  color: var(--on-surface);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.mi-sb-btn:hover {
+  background: var(--surface-container);
+  border-color: var(--outline);
+}
+.mi-sb-brand {
+  color: var(--on-surface-variant);
+  font-weight: 600;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mi-sb-theme-btn {
+  width: 34px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Report Error link appended inside Surah footers */
+.mi-report-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+  font-size: 0.84rem;
+}
+.mi-report-link {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+.mi-report-link:hover {
+  color: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .mi-standalone-bar {
+    padding: 0 0.75rem;
+  }
+  .mi-sb-brand {
+    display: none;
+  }
+  .mi-sb-btn {
+    padding: 0 0.65rem;
+    font-size: 0.78rem;
+  }
+}

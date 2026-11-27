@@ -1,6 +1,12 @@
-```javascript
-const CACHE_NAME = 'muslims-invite-pwa-v1';
-const CORE_ASSETS = ['/', '/index.html', '/manifest.json'];
+const CACHE_NAME = 'muslims-invite-pwa-v2';
+const CORE_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/quran-editorial.css',
+  '/catalog.js',
+  '/quran-catalog.js'
+];
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
@@ -31,7 +37,7 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request)
       .then(function(response) {
-        if (response && response.status === 200) {
+        if (response && response.status === 200 && response.type === 'basic') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(function(cache) {
             cache.put(event.request, clone);
@@ -44,4 +50,3 @@ self.addEventListener('fetch', function(event) {
       })
   );
 });
-```

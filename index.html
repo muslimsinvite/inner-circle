@@ -4,12 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muslims Invite — Interactive Islamic Knowledge &amp; Dawah Notebook</title>
-  <meta name="description" content="Explore free interactive Quran study companions and unlock the Inner Circle Dawah Vault, grounded in the Quran, authentic Sunnah, and historical evidence.">
+  <meta name="description" content="Explore free interactive Quran study companions for all 114 Surahs and try a free Inner Circle Dawah playbook grounded in the Quran, authentic Sunnah, and historical evidence.">
+  <link rel="canonical" href="https://muslimsinvite.com/">
+  <meta property="og:site_name" content="Muslims Invite">
   <meta property="og:title" content="Muslims Invite — Interactive Islamic Knowledge & Dawah Notebook">
   <meta property="og:description" content="Free interactive Quran study companions (all 114 Surahs) alongside the Inner Circle Dawah & Refutation Notebook library.">
   <meta property="og:url" content="https://muslimsinvite.com/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://muslimsinvite.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Muslims Invite — Interactive Islamic Knowledge & Dawah Notebook">
+  <meta name="twitter:description" content="Free interactive Quran study companions for all 114 Surahs plus Inner Circle Dawah playbooks and live dialogue simulators.">
+  <meta name="twitter:image" content="https://muslimsinvite.com/og-image.png">
   <!-- PWA & Home Screen App Meta -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#ffffff" id="meta-theme-color">
@@ -17,11 +25,38 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Muslims Invite">
   <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f1f1f'/%3E%3Cpath d='M9 22.5v-11A2.5 2.5 0 0 1 11.5 9H23v14H11.5a2.5 2.5 0 0 1 0-5H23' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M13 13h6M13 16h4' fill='none' stroke='%234dd0e1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "Muslims Invite",
+        "url": "https://muslimsinvite.com/",
+        "logo": "https://muslimsinvite.com/icon-512.png",
+        "description": "Interactive Islamic education, Quran chapter study companions (all 114 Surahs), and Dawah apologetics training platform grounded in the Quran, authentic Sunnah, and historical evidence.",
+        "sameAs": [
+          "https://instagram.com/muslims.invite",
+          "https://instagram.com/muslims.refute",
+          "https://instagram.com/muslims.network",
+          "https://discord.gg/XMEbxz9Apa"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "Muslims Invite — Interactive Islamic Knowledge & Dawah Hub",
+        "url": "https://muslimsinvite.com/",
+        "description": "Free interactive study guides for all 114 chapters of the Noble Quran and Dawah faith-defense playbooks."
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" crossorigin="anonymous"></script>
   <script src="catalog.js"></script>
   <script src="quran-catalog.js"></script>
   <style>
@@ -111,6 +146,12 @@
       transition: background 180ms ease, color 180ms ease;
     }
 
+    /* Accessible Focus Ring Globally */
+    :focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
+
     .icon { width: 18px; height: 18px; flex-shrink: 0; display: inline-block; vertical-align: middle; }
     .icon-sm { width: 15px; height: 15px; flex-shrink: 0; display: inline-block; vertical-align: middle; }
     .icon-lg { width: 22px; height: 22px; flex-shrink: 0; display: inline-block; }
@@ -141,8 +182,9 @@
 
     .section-nav-bar {
       max-width: 1320px; margin: 0 auto; padding: 0 1.5rem 0.65rem;
-      display: flex; align-items: center; gap: 0.4rem;
+      display: flex; align-items: center; gap: 0.45rem;
       overflow-x: auto; scrollbar-width: none;
+      scroll-padding-inline: 1rem;
     }
     .section-nav-bar::-webkit-scrollbar { display: none; }
 
@@ -159,6 +201,17 @@
     .sec-live-dot {
       width: 6px; height: 6px; border-radius: 50%;
       background: var(--accent-green); display: inline-block;
+    }
+    .sec-count-badge {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.08rem 0.45rem; border-radius: var(--radius-pill);
+      background: var(--surface-variant); color: var(--ink-muted);
+    }
+    .sec-tab.active .sec-count-badge {
+      background: rgba(0, 0, 0, 0.08); color: var(--chip-active-ink);
+    }
+    html[data-theme="dark"] .sec-tab.active .sec-count-badge {
+      background: rgba(255, 255, 255, 0.14);
     }
 
     /* ---------- MATERIAL 3 BUTTONS ---------- */
@@ -177,6 +230,8 @@
     .pill-tonal:hover:not(:disabled) { background: var(--surface-hover); }
     .pill-outline { background: transparent; color: var(--ink); border-color: var(--border-strong); }
     .pill-outline:hover:not(:disabled) { background: var(--surface-variant); }
+    .pill-accent { background: var(--chip-active-bg); color: var(--chip-active-ink); font-weight: 600; }
+    .pill-accent:hover:not(:disabled) { filter: brightness(0.95); }
     .pill-gold { background: var(--gold); color: #1f1f1f; font-weight: 600; border-color: #1f1f1f; }
     .pill-gold:hover { background: var(--gold-hover); }
 
@@ -201,35 +256,35 @@
     /* ---------- HOME: LOCK SCREEN HERO ---------- */
     .landing-main {
       max-width: 1120px; width: 100%; margin: 0 auto;
-      padding: 3.5rem 1.5rem 4rem;
+      padding: 3rem 1.5rem 4rem;
       display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .hero-kicker {
       display: inline-flex; align-items: center; gap: 0.45rem;
       font-family: var(--font-display); font-size: 0.82rem; font-weight: 500;
       color: var(--ink-secondary); background: var(--surface-variant);
-      padding: 0.35rem 0.9rem; border-radius: var(--radius-pill); margin-bottom: 1.4rem;
+      padding: 0.35rem 0.9rem; border-radius: var(--radius-pill); margin-bottom: 1.25rem;
     }
     .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 1.5rem + 4.2vw, 4.5rem);
+      font-size: clamp(2.4rem, 1.5rem + 4.1vw, 4.4rem);
       font-weight: 500; line-height: 1.06; letter-spacing: -0.035em;
-      margin: 0 0 1.2rem 0; max-width: 15ch; color: var(--ink);
+      margin: 0 0 1.1rem 0; max-width: 15ch; color: var(--ink);
     }
     .hero-grad-word {
       background: var(--hero-grad);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .hero-sub {
-      font-size: clamp(1.02rem, 0.96rem + 0.32vw, 1.2rem);
-      color: var(--ink-muted); max-width: 54ch; margin: 0 0 2rem 0;
+      font-size: clamp(1rem, 0.95rem + 0.3vw, 1.18rem);
+      color: var(--ink-muted); max-width: 54ch; margin: 0 0 1.75rem 0;
     }
 
-    .unlock-capsule-wrap { width: 100%; max-width: 500px; margin-bottom: 0.9rem; }
+    .unlock-capsule-wrap { width: 100%; max-width: 500px; margin-bottom: 0.65rem; }
     .unlock-capsule {
       display: flex; align-items: center; gap: 0.4rem;
       background: var(--surface-variant); border: 1.5px solid var(--border);
-      border-radius: var(--radius-pill); padding: 0.35rem 0.35rem 0.35rem 1.15rem;
+      border-radius: var(--radius-pill); padding: 0.35rem 0.35rem 0.35rem 1.05rem;
       transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
     }
     .unlock-capsule:focus-within {
@@ -238,9 +293,10 @@
     }
     .capsule-input {
       flex: 1; min-width: 0; border: none; background: transparent;
-      color: var(--ink); font-family: var(--font-body); font-size: 0.96rem;
+      color: var(--ink); font-family: var(--font-body); font-size: 0.95rem;
       outline: none; padding: 0.45rem 0;
     }
+    .capsule-input:focus-visible { outline: none; }
     .capsule-input::placeholder { color: var(--ink-muted); }
     .eye-toggle-btn {
       width: 36px; height: 36px; border-radius: 50%; border: none;
@@ -252,38 +308,65 @@
 
     .remember-inline {
       display: inline-flex; align-items: center; gap: 0.45rem;
-      font-size: 0.84rem; color: var(--ink-muted); margin-top: 0.7rem; cursor: pointer;
+      font-size: 0.84rem; color: var(--ink-muted); margin-top: 0.65rem; cursor: pointer;
     }
     .remember-inline input { accent-color: var(--accent-blue); cursor: pointer; }
 
     .lock-error {
-      display: none; max-width: 500px; width: 100%; margin-top: 0.9rem;
+      display: none; max-width: 500px; width: 100%; margin-top: 0.85rem;
       padding: 0.8rem 1.1rem; background: var(--error-bg); color: var(--error);
       border-radius: 14px; font-size: 0.875rem; text-align: left;
     }
 
+    /* Above-the-fold Free Sample Playbook & Quick Entry */
+    .sample-callout {
+      width: 100%; max-width: 780px; margin-top: 1.5rem;
+      background: var(--card-tint-0); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1rem; text-align: left;
+    }
+    .sample-callout-meta { flex: 1; min-width: 240px; }
+    .sample-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: var(--accent-green-soft); color: var(--accent-green);
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 600;
+      padding: 0.2rem 0.65rem; border-radius: var(--radius-pill); margin-bottom: 0.45rem;
+    }
+    .sample-callout h2 {
+      font-family: var(--font-display); font-size: 1.12rem; font-weight: 600;
+      margin: 0 0 0.25rem 0; color: var(--ink);
+    }
+    .sample-callout p {
+      margin: 0; font-size: 0.86rem; color: var(--ink-secondary);
+    }
+    .sample-actions {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem;
+    }
+
     .hero-cta-row {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-      gap: 0.7rem; margin-top: 1.5rem;
+      gap: 0.7rem; margin-top: 1.25rem;
     }
-    .hero-cta-row .pill-btn { height: 44px; padding: 0 1.35rem; font-size: 0.9rem; }
+    .hero-cta-row .pill-btn { height: 42px; padding: 0 1.25rem; font-size: 0.88rem; }
 
     .home-quran-strip {
-      width: 100%; margin-top: 3.5rem; background: var(--card-tint-1);
-      border-radius: var(--radius-lg); padding: 1.65rem 1.85rem;
+      width: 100%; margin-top: 2.5rem; background: var(--card-tint-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem 1.75rem;
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 1.25rem; text-align: left;
     }
     .home-quran-strip h2 {
-      font-family: var(--font-display); font-size: 1.3rem; font-weight: 500;
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 500;
       margin: 0 0 0.3rem 0; color: var(--ink);
     }
-    .home-quran-strip p { margin: 0; font-size: 0.92rem; color: var(--ink-secondary); max-width: 56ch; }
+    .home-quran-strip p { margin: 0; font-size: 0.9rem; color: var(--ink-secondary); max-width: 56ch; }
 
-    .overview-section { width: 100%; margin-top: 3.75rem; text-align: left; }
+    .overview-section { width: 100%; margin-top: 3.25rem; text-align: left; }
     .overview-heading {
       font-family: var(--font-display); font-size: 0.92rem; font-weight: 500;
-      color: var(--ink-muted); text-align: center; margin: 0 0 1.5rem 0;
+      color: var(--ink-muted); text-align: center; margin: 0 0 1.35rem 0;
     }
     .overview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
     .overview-card {
@@ -322,32 +405,34 @@
       width: 1px; height: 22px; background: var(--border-strong); margin: 0 0.15rem;
     }
     .m3-chip {
-      height: 38px; padding: 0 1rem; border-radius: var(--radius-pill);
+      height: 38px; padding: 0 0.95rem; border-radius: var(--radius-pill);
       border: 1px solid var(--border-strong); background: transparent;
       color: var(--ink-secondary); font-family: var(--font-display);
-      font-size: 0.86rem; font-weight: 500; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.42rem;
       transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
     }
     .m3-chip:hover:not(.active) { background: var(--surface-variant); }
     .m3-chip.active { background: var(--chip-active-bg); color: var(--chip-active-ink); border-color: transparent; }
     .m3-chip.saved-chip.active { background: var(--accent-green-soft); color: var(--accent-green); border-color: var(--accent-green); }
+    .m3-chip.bookmark-chip.active { background: var(--chip-active-bg); color: var(--chip-active-ink); border-color: var(--accent-blue); }
     .chip-check { display: none; }
     .m3-chip.active .chip-check { display: inline-block; }
-    .chip-num { font-size: 0.78rem; opacity: 0.75; }
+    .chip-num { font-size: 0.78rem; opacity: 0.78; }
 
     .toolbar-right { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; }
     .search-pill {
       display: flex; align-items: center; gap: 0.45rem; height: 38px;
       padding: 0 0.9rem; border-radius: var(--radius-pill);
       background: var(--surface-variant); border: 1px solid transparent;
-      width: 245px; max-width: 100%;
+      width: 280px; max-width: 100%;
     }
     .search-pill:focus-within { background: var(--bg); border-color: var(--accent-blue); }
     .search-pill input {
       border: none; background: transparent; color: var(--ink);
       font-size: 0.875rem; outline: none; width: 100%;
     }
+    .search-pill input:focus-visible { outline: none; }
     .search-pill input::placeholder { color: var(--ink-muted); }
 
     .view-segment {
@@ -362,28 +447,17 @@
     .view-seg-btn + .view-seg-btn { border-left: 1px solid var(--border-strong); }
     .view-seg-btn.active { background: var(--chip-active-bg); color: var(--chip-active-ink); }
 
-    /* Fixed Sort Dropdown — Clean Custom Chevron, Zero Text Overlap */
-    .sort-select {
+    /* Clean Toggle Sort Pill — Zero Native Select Arrow Quirks */
+    .sort-pill-btn {
       height: 38px;
-      min-width: 162px;
-      padding: 0 2.35rem 0 0.95rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-strong);
-      background-color: var(--bg);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.8rem center;
-      background-size: 14px 14px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      color: var(--ink);
-      font-family: var(--font-display);
+      padding: 0 0.95rem;
       font-size: 0.84rem;
       font-weight: 500;
-      cursor: pointer;
-      outline: none;
+      border-color: var(--border-strong);
+      background: var(--bg);
+      color: var(--ink);
     }
+    .sort-pill-btn:hover { background: var(--surface-variant); }
 
     .section-sublabel {
       font-family: var(--font-display); font-size: 1.05rem; font-weight: 500;
@@ -418,6 +492,9 @@
       display: flex; align-items: center; justify-content: space-between;
       gap: 0.5rem; margin-bottom: 0.85rem;
     }
+    .nb-top-right {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
     .nb-icon-circle {
       width: 44px; height: 44px; border-radius: 14px;
       background: var(--card-icon-bg); color: var(--ink);
@@ -436,12 +513,30 @@
       font-size: 0.76rem; font-weight: 500; text-decoration: none;
     }
     .nb-reel-pill:hover { background: var(--bg); color: var(--ink); }
+
+    .nb-bookmark-btn {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid transparent;
+      background: var(--card-icon-bg); color: var(--ink-muted);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+    .nb-bookmark-btn:hover { background: var(--bg); color: var(--ink); border-color: var(--border-strong); }
+    .nb-bookmark-btn[aria-pressed="true"] {
+      color: var(--accent-blue); background: var(--bg); border-color: var(--accent-blue);
+    }
+
     .nb-title {
-      font-family: var(--font-display); font-size: 1.2rem; font-weight: 500;
+      font-family: var(--font-display); font-size: 1.18rem; font-weight: 500;
       line-height: 1.28; letter-spacing: -0.015em; margin: 0 0 0.35rem 0; color: var(--ink);
     }
+    .nb-meaning-line {
+      font-size: 0.8rem; font-weight: 600; color: var(--ink-muted);
+      margin: 0 0 0.3rem 0;
+    }
     .nb-desc {
-      font-size: 0.875rem; color: var(--ink-secondary); margin: 0;
+      font-size: 0.865rem; color: var(--ink-secondary); margin: 0;
       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     .nb-footer {
@@ -491,35 +586,37 @@
     .list-title-main { font-family: var(--font-display); font-weight: 500; color: var(--ink); display: block; }
     .list-title-sub { font-size: 0.8rem; color: var(--ink-muted); display: block; margin-top: 2px; }
 
-    /* ---------- UPCOMING COLLECTION PAGES ---------- */
-    .upcoming-hero-card {
+    /* ---------- ROADMAP / UPCOMING SECTION ---------- */
+    .roadmap-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: 1.1rem;
+    }
+    .roadmap-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 2.75rem 2.25rem;
-      max-width: 820px; margin: 1rem auto 0;
+      border-radius: var(--radius-lg); padding: 1.6rem;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .roadmap-card.is-highlighted {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.14);
     }
     .upcoming-pill {
-      display: inline-flex; align-items: center; gap: 0.45rem;
+      display: inline-flex; align-items: center; gap: 0.45rem; width: fit-content;
       background: var(--chip-active-bg); color: var(--chip-active-ink);
-      font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
-      padding: 0.3rem 0.85rem; border-radius: var(--radius-pill); margin-bottom: 1.25rem;
+      font-family: var(--font-display); font-size: 0.74rem; font-weight: 600;
+      padding: 0.25rem 0.75rem; border-radius: var(--radius-pill); margin-bottom: 0.75rem;
     }
-    .upcoming-hero-card h1 {
-      font-family: var(--font-display); font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.75rem);
-      font-weight: 500; letter-spacing: -0.025em; line-height: 1.15; margin: 0 0 0.75rem 0;
+    .roadmap-card h2 {
+      font-family: var(--font-display); font-size: 1.32rem; font-weight: 500;
+      letter-spacing: -0.02em; margin: 0 0 0.45rem 0; color: var(--ink);
     }
-    .upcoming-hero-card p { color: var(--ink-secondary); font-size: 1rem; max-width: 62ch; margin: 0 0 1.75rem 0; }
-    .upcoming-feature-list {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.85rem; margin-bottom: 2rem;
+    .roadmap-card p { color: var(--ink-secondary); font-size: 0.88rem; margin: 0 0 0.9rem 0; }
+    .roadmap-bullets {
+      margin: 0; padding-left: 1.15rem; font-size: 0.84rem; color: var(--ink-muted);
+      display: flex; flex-direction: column; gap: 0.35rem;
     }
-    .upcoming-mini-box {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 14px; padding: 1rem 1.1rem;
-    }
-    .upcoming-mini-box strong {
-      font-family: var(--font-display); font-size: 0.92rem; display: block; margin-bottom: 0.25rem;
-    }
-    .upcoming-mini-box span { font-size: 0.83rem; color: var(--ink-muted); }
+    .roadmap-bullets strong { color: var(--ink); }
 
     /* ---------- EMPTY SEARCH & SUPPORT BANNER ---------- */
     .empty-search-box {
@@ -536,7 +633,6 @@
       font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; margin: 0 0 0.3rem 0;
     }
     .hub-support-text p { margin: 0; font-size: 0.9rem; color: var(--ink-muted); max-width: 58ch; }
-    .bmc-wrap { display: flex; align-items: center; flex-shrink: 0; }
 
     .site-footer {
       max-width: 1320px; width: 100%; margin: 2rem auto 0; padding: 1.5rem;
@@ -544,10 +640,18 @@
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 1rem; font-size: 0.84rem; color: var(--ink-muted);
     }
-    .site-footer a { color: var(--ink-muted); text-decoration: none; }
-    .site-footer a:hover { color: var(--ink); text-decoration: underline; }
+    .footer-links {
+      display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center;
+    }
+    .site-footer a,
+    .footer-link-btn {
+      color: var(--ink-muted); text-decoration: none; background: none; border: none;
+      padding: 0; font: inherit; cursor: pointer;
+    }
+    .site-footer a:hover,
+    .footer-link-btn:hover { color: var(--ink); text-decoration: underline; }
 
-    /* ---------- FLOATING BACK TO TOP PILL ---------- */
+    /* ---------- FLOATING BACK TO TOP & TOAST ---------- */
     #back-to-top {
       position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
       display: none; height: 42px; padding: 0 1rem;
@@ -557,23 +661,48 @@
       cursor: pointer; align-items: center; gap: 0.35rem;
       box-shadow: 0 6px 20px rgba(0,0,0,0.18);
     }
+    .mi-toast {
+      position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%) translateY(16px);
+      z-index: 10050; background: var(--btn-dark-bg); color: var(--btn-dark-ink);
+      padding: 0.6rem 1.15rem; border-radius: var(--radius-pill);
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 500;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+      opacity: 0; pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .mi-toast.is-shown {
+      opacity: 1; transform: translateX(-50%) translateY(0);
+    }
 
-    /* ---------- PWA INSTALL MODAL ---------- */
-    #install-modal {
-      display: none; position: fixed; inset: 0; z-index: 10000;
-      background: rgba(0, 0, 0, 0.52);
+    /* ---------- MODALS (INSTALL, BACKUP, ABOUT, PRIVACY, REPORT) ---------- */
+    .mi-modal-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 10020;
+      background: rgba(0, 0, 0, 0.54);
       align-items: center; justify-content: center; padding: 1.25rem;
     }
     .install-sheet {
-      width: 100%; max-width: 440px; background: var(--bg); color: var(--ink);
+      width: 100%; max-width: 500px; max-height: 88vh; overflow-y: auto;
+      background: var(--bg); color: var(--ink);
       border: 1px solid var(--border); border-radius: var(--radius-lg);
       padding: 1.75rem; box-shadow: 0 20px 50px rgba(0,0,0,0.28);
     }
     .install-sheet-head {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; gap: 0.75rem;
     }
     .install-sheet h3 {
       font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0;
+    }
+    .modal-prose { font-size: 0.9rem; color: var(--ink-secondary); line-height: 1.6; }
+    .modal-prose h4 {
+      font-family: var(--font-display); font-size: 0.96rem; color: var(--ink);
+      margin: 1.1rem 0 0.35rem 0;
+    }
+    .modal-prose p { margin: 0 0 0.75rem 0; }
+    .modal-field {
+      width: 100%; padding: 0.65rem 0.85rem; border-radius: 12px;
+      border: 1px solid var(--border-strong); background: var(--surface);
+      color: var(--ink); font-family: var(--font-body); font-size: 0.88rem;
+      margin-bottom: 0.75rem;
     }
     .install-steps {
       list-style: none; padding: 0; margin: 1rem 0 1.35rem;
@@ -599,10 +728,10 @@
     .reader-bar {
       height: 58px; background: var(--surface); color: var(--ink);
       border-bottom: 1px solid var(--border); display: flex; align-items: center;
-      justify-content: space-between; padding: 0 1.15rem; gap: 0.75rem; flex-shrink: 0;
+      justify-content: space-between; padding: 0 1.15rem; gap: 0.65rem; flex-shrink: 0;
     }
-    .reader-left { display: flex; align-items: center; gap: 0.65rem; min-width: 0; }
-    .reader-right { display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0; }
+    .reader-left { display: flex; align-items: center; gap: 0.65rem; min-width: 0; flex: 1; }
+    .reader-right { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
     .reader-title {
       font-family: var(--font-display); font-size: 0.96rem; font-weight: 500;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink);
@@ -612,8 +741,18 @@
       color: var(--accent-green); background: var(--accent-green-soft);
       padding: 0.25rem 0.7rem; border-radius: var(--radius-pill); flex-shrink: 0;
     }
-    #reader-mount { flex: 1; width: 100%; display: flex; background: #f5f6f5; }
-    #reader-mount iframe { flex: 1; width: 100%; height: 100%; border: none; background: #f5f6f5; }
+    #reader-mount {
+      position: relative; flex: 1; width: 100%; display: flex; background: var(--bg);
+    }
+    #reader-mount iframe {
+      flex: 1; width: 100%; height: 100%; border: none; background: var(--bg);
+    }
+    .reader-loading {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.65rem;
+      background: var(--bg); color: var(--ink-muted); font-size: 0.88rem;
+      pointer-events: none; transition: opacity 150ms ease;
+    }
 
     @media (max-width: 960px) {
       .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -621,16 +760,23 @@
     @media (max-width: 640px) {
       .top-nav { padding: 0 0.85rem; }
       .section-nav-bar { padding: 0 0.85rem 0.6rem; }
-      .brand-badge, .hide-xs { display: none; }
-      .landing-main { padding: 2.5rem 1rem 3rem; }
+      .brand-badge, .hide-xs { display: none !important; }
+      .landing-main { padding: 2.25rem 1rem 3rem; }
       .overview-grid { grid-template-columns: 1fr; }
       .hub-container { padding: 1.5rem 1rem 3.5rem; }
       .workspace-toolbar { flex-direction: column; align-items: stretch; }
-      .toolbar-right { justify-content: space-between; }
-      .search-pill { flex: 1; width: auto; }
-      .upcoming-hero-card { padding: 1.75rem 1.25rem; }
+      .toolbar-right { justify-content: flex-start; gap: 0.5rem; }
+      .search-pill { flex: 1 1 100%; width: 100%; min-width: 0; }
+      .chip-divider { display: none; }
       .pill-btn { padding: 0 0.85rem; font-size: 0.82rem; }
       .notebook-table th:nth-child(2), .notebook-table td:nth-child(2) { display: none; }
+      .reader-bar {
+        height: auto; min-height: 52px; padding: 0.45rem 0.75rem;
+        flex-wrap: wrap; row-gap: 0.35rem;
+      }
+      .reader-left { flex: 1 1 100%; }
+      .reader-right { flex: 1 1 100%; justify-content: flex-end; }
+      .reader-title { font-size: 0.86rem; }
     }
   </style>
 </head>
@@ -639,7 +785,7 @@
   <!-- PERSISTENT GLOBAL HEADER + SECTION NAVIGATION RAIL -->
   <header class="site-header">
     <div class="top-nav">
-      <a href="#home" class="brand-link" onclick="event.preventDefault(); switchSection('home');">
+      <a href="/" class="brand-link" onclick="event.preventDefault(); switchSection('home');">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
           <path d="M8 7h8"/><path d="M8 11h6"/>
@@ -649,7 +795,6 @@
       </a>
 
       <div class="nav-actions">
-        <!-- Smart PWA Install App Button (Only shows when installable or on iOS/In-App browsers; hides automatically if already installed) -->
         <button type="button" class="pill-btn pill-install" id="btn-install-app" style="display:none;" onclick="handleInstallClick()" title="Add Muslims Invite to Home Screen">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
           <span>Install App</span>
@@ -673,302 +818,333 @@
         <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary hide-xs" id="nav-join-btn">
           <span>Join Inner Circle</span>
         </a>
-        <button type="button" class="pill-btn pill-outline" id="nav-lock-btn" onclick="lockVault()" style="display:none;">
+        <button type="button" class="pill-btn pill-outline" id="nav-lock-btn" onclick="lockVault()" aria-label="Lock Inner Circle Vault" title="Lock Inner Circle Vault" style="display:none;">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           <span class="hide-xs">Lock</span>
         </button>
       </div>
     </div>
 
-    <!-- Clean Material 3 Section Navigation Tabs -->
-    <nav class="section-nav-bar" aria-label="Main knowledge sections">
-      <button type="button" class="sec-tab active" data-sec="home" onclick="switchSection('home')">
-        <svg class="icon-sm" id="tab-lock-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <svg class="icon-sm" id="tab-lock-open" style="display:none; color:var(--accent-green);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+    <!-- Clean 3-Tab Material 3 Navigation Rail -->
+    <nav class="section-nav-bar" role="tablist" aria-label="Main knowledge sections">
+      <button type="button" role="tab" aria-selected="true" class="sec-tab active" data-sec="home" onclick="switchSection('home')">
+        <svg class="icon-sm" id="tab-lock-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <svg class="icon-sm" id="tab-lock-open" style="display:none; color:var(--accent-green);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
         <span>Inner Circle Vault</span>
       </button>
-      <button type="button" class="sec-tab" data-sec="intro" onclick="switchSection('intro')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-        <span>Intro to Islam</span>
-      </button>
-      <button type="button" class="sec-tab" data-sec="quran" onclick="switchSection('quran')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <button type="button" role="tab" aria-selected="false" class="sec-tab" data-sec="quran" onclick="switchSection('quran')">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         <span>Quran</span>
         <span class="sec-live-dot" title="All 114 chapters live"></span>
+        <span class="sec-count-badge">114</span>
       </button>
-      <button type="button" class="sec-tab" data-sec="hadith" onclick="switchSection('hadith')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <span>Hadith</span>
-      </button>
-      <button type="button" class="sec-tab" data-sec="stories" onclick="switchSection('stories')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-        <span>Stories</span>
-      </button>
-      <button type="button" class="sec-tab" data-sec="biography" onclick="switchSection('biography')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-        <span>Biography</span>
-      </button>
-      <button type="button" class="sec-tab" data-sec="books" onclick="switchSection('books')">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
-        <span>Books</span>
+      <button type="button" role="tab" aria-selected="false" class="sec-tab" data-sec="roadmap" onclick="switchSection('roadmap')">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Roadmap</span>
+        <span class="sec-count-badge">Soon</span>
       </button>
     </nav>
   </header>
 
-  <!-- ==================== VIEW 1: HOME (INNER CIRCLE VAULT) ==================== -->
-  <div id="view-home" class="page-view is-visible">
+  <main id="main-content">
+    <!-- ==================== VIEW 1: HOME (INNER CIRCLE VAULT) ==================== -->
+    <div id="view-home" class="page-view is-visible">
 
-    <!-- 1A. LOCKED HOME HERO -->
-    <section id="lock-screen">
-      <div class="landing-main">
-        <div class="hero-kicker">
-          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span id="lock-guide-count">Encrypted Interactive Library</span>
-        </div>
+      <!-- 1A. LOCKED HOME HERO -->
+      <section id="lock-screen">
+        <div class="landing-main">
+          <div class="hero-kicker">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span id="lock-guide-count">24 Playbooks · 1 Free Sample</span>
+          </div>
 
-        <h1 class="hero-h1">
-          Defend truth <span class="hero-grad-word">with wisdom</span>
-        </h1>
+          <h1 class="hero-h1">
+            Defend truth <span class="hero-grad-word">with wisdom</span>
+          </h1>
 
-        <p class="hero-sub">
-          Your interactive Dawah and faith-defense workspace, grounded in the Quran, authentic Sunnah, and historical evidence.
-        </p>
+          <p class="hero-sub">
+            Your interactive Dawah and faith-defense workspace, grounded in the Quran, authentic Sunnah, and historical evidence.
+          </p>
 
-        <form id="unlock-form" class="unlock-capsule-wrap" autocomplete="off" onsubmit="handleUnlock(event)">
-          <div class="unlock-capsule">
-            <svg class="icon" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
-            <input id="vault-pass" class="capsule-input" type="password" placeholder="Enter Inner Circle passcode..." autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
-            <button type="button" class="eye-toggle-btn" id="pass-eye-btn" onclick="togglePassVisibility()" aria-label="Show or hide passcode" title="Show passcode">
-              <svg class="icon-sm" id="eye-icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-              <svg class="icon-sm" id="eye-icon-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+          <form id="unlock-form" class="unlock-capsule-wrap" autocomplete="off" onsubmit="handleUnlock(event)">
+            <div class="unlock-capsule">
+              <svg class="icon" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+              <input id="vault-pass" class="capsule-input" type="password" placeholder="Enter passcode..." aria-label="Inner Circle passcode" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
+              <button type="button" class="eye-toggle-btn" id="pass-eye-btn" onclick="togglePassVisibility()" aria-label="Show or hide passcode" title="Show passcode">
+                <svg class="icon-sm" id="eye-icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-sm" id="eye-icon-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+              </button>
+              <button type="submit" class="pill-btn pill-primary capsule-submit" id="unlock-btn">
+                <span>Unlock</span>
+              </button>
+            </div>
+            <label class="remember-inline">
+              <input type="checkbox" id="remember-pass" checked>
+              <span>Keep vault unlocked on this device</span>
+            </label>
+          </form>
+
+          <div class="lock-error" id="lock-error" role="alert"></div>
+
+          <!-- Above-the-fold Free Sample Inner Circle Playbook -->
+          <div class="sample-callout">
+            <div class="sample-callout-meta">
+              <span class="sample-pill">Free Interactive Preview · No Passcode Needed</span>
+              <h2>Playbook #01 — The &ldquo;600 Years Later&rdquo; Fallacy</h2>
+              <p>Try the full interactive study playbook, context X-ray, and live dialogue simulator right now.</p>
+            </div>
+            <div class="sample-actions">
+              <button type="button" class="pill-btn pill-primary" id="btn-free-sample" style="height:42px; padding:0 1.25rem;" onclick="launchFreeSample(this)">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>Try Free Playbook (#01)</span>
+              </button>
+              <button type="button" class="pill-btn pill-tonal" style="height:42px; padding:0 1.15rem;" onclick="switchSection('quran')">
+                <span>114 Free Quran Chapters</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-accent">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+              <span>Get Full 24-Playbook Passcode</span>
+            </a>
+            <a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-outline">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              <span>Join Free Community Discord</span>
+            </a>
+          </div>
+
+          <div class="home-quran-strip">
+            <div>
+              <h2>Read the Noble Quran — All 114 Interactive Study Companions</h2>
+              <p>Explore word-by-word Arabic morphology, structural chapter maps, supplication vaults, and mastery quizzes — completely free and open to everyone.</p>
+            </div>
+            <button type="button" class="pill-btn pill-primary" style="height:44px; padding:0 1.4rem;" onclick="switchSection('quran')">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span>Open Free Quran Library</span>
             </button>
-            <button type="submit" class="pill-btn pill-primary capsule-submit" id="unlock-btn">
-              <span>Unlock</span>
-            </button>
           </div>
-          <label class="remember-inline">
-            <input type="checkbox" id="remember-pass" checked>
-            <span>Keep vault unlocked on this device</span>
-          </label>
-        </form>
 
-        <div class="lock-error" id="lock-error"></div>
-
-        <div class="hero-cta-row">
-          <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary">
-            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
-            <span>Get Inner Circle Passcode</span>
-          </a>
-          <a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-outline">
-            <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-            <span>Join Free Community Discord</span>
-          </a>
-        </div>
-
-        <div class="home-quran-strip">
-          <div>
-            <h2>Read the Noble Quran — All 114 Interactive Study Companions</h2>
-            <p>Explore word-by-word Arabic morphology, structural chapter maps, supplication vaults, and mastery quizzes — completely free and open to everyone.</p>
-          </div>
-          <button type="button" class="pill-btn pill-primary" style="height:44px; padding:0 1.4rem;" onclick="switchSection('quran')">
-            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <span>Open Free Quran Library</span>
-          </button>
-        </div>
-
-        <div class="overview-section">
-          <p class="overview-heading">Overview of Inner Circle Interactive Features</p>
-          <div class="overview-grid">
-            <div class="overview-card">
-              <div class="overview-icon-box">
-                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <div class="overview-section">
+            <p class="overview-heading">Overview of Inner Circle Interactive Features</p>
+            <div class="overview-grid">
+              <div class="overview-card">
+                <div class="overview-icon-box">
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3>Turn misconceptions into Interactive Playbooks</h3>
+                <p>Deconstruct common traps with context X-rays and structured 4-step conversational reversals.</p>
               </div>
-              <h3>Turn misconceptions into Interactive Playbooks</h3>
-              <p>Deconstruct common traps with context X-rays and structured 4-step conversational reversals.</p>
-            </div>
-            <div class="overview-card">
-              <div class="overview-icon-box">
-                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <div class="overview-card">
+                <div class="overview-icon-box">
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <h3>Practice with Live Dialogue Simulators</h3>
+                <p>Spar against real-world workplace, campus, and online pushbacks before you face them live.</p>
               </div>
-              <h3>Practice with Live Dialogue Simulators</h3>
-              <p>Spar against real-world workplace, campus, and online pushbacks before you face them live.</p>
-            </div>
-            <div class="overview-card">
-              <div class="overview-icon-box">
-                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="overview-card">
+                <div class="overview-icon-box">
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Master 30-Second Pitch Drills</h3>
+                <p>Train calm, concise responses with built-in pace timers, cue recall mode, and custom script builders.</p>
               </div>
-              <h3>Master 30-Second Pitch Drills</h3>
-              <p>Train calm, concise responses with built-in pace timers, cue recall mode, and custom script builders.</p>
-            </div>
-            <div class="overview-card">
-              <div class="overview-icon-box">
-                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <div class="overview-card">
+                <div class="overview-icon-box">
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </div>
+                <h3>Bookmark &amp; Export Verified Receipts</h3>
+                <p>Save key chapters and playbooks, track real progress on your device, and export or back up anytime.</p>
               </div>
-              <h3>Bookmark Verified Pocket Receipts</h3>
-              <p>Keep exact Quranic, Hadith, and historical citations ready on your device with instant export.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 1B. UNLOCKED INNER CIRCLE HUB -->
-    <section id="vault-hub" style="display:none;">
+      <!-- 1B. UNLOCKED INNER CIRCLE HUB -->
+      <section id="vault-hub" hidden style="display:none;">
+        <div class="hub-container">
+          <div class="hub-welcome">
+            <h1 class="hub-title">Inner Circle Dawah Vault</h1>
+            <p class="hub-subtitle">
+              Select a category below to launch encrypted Dawah playbooks, practice live sparring simulators, and verify primary sources. Progress saves automatically on your device.
+            </p>
+          </div>
+
+          <div class="workspace-toolbar">
+            <div class="filter-chips" role="tablist" aria-label="Vault categories">
+              <button type="button" role="tab" aria-selected="true" class="m3-chip active" id="tab-invite" onclick="setTrackFilter('invite')">
+                <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Muslims Invite</span>
+                <span class="chip-num" id="count-invite">0</span>
+              </button>
+              <button type="button" role="tab" aria-selected="false" class="m3-chip" id="tab-refute" onclick="setTrackFilter('refute')">
+                <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Muslims Refute</span>
+                <span class="chip-num" id="count-refute">0</span>
+              </button>
+              <span class="chip-divider" aria-hidden="true"></span>
+              <button type="button" aria-pressed="false" class="m3-chip bookmark-chip" id="tab-vault-bookmarked" onclick="toggleVaultSubFilter('bookmarked')">
+                <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Bookmarked</span>
+                <span class="chip-num" id="count-vault-bookmarked">0</span>
+              </button>
+              <button type="button" aria-pressed="false" class="m3-chip saved-chip" id="tab-vault-progress" onclick="toggleVaultSubFilter('progress')">
+                <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>In Progress</span>
+                <span class="chip-num" id="count-vault-progress">0</span>
+              </button>
+            </div>
+
+            <div class="toolbar-right">
+              <div class="search-pill">
+                <svg class="icon-sm" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" id="hub-search" placeholder="Search guides..." aria-label="Search Inner Circle guides" oninput="renderGuides()">
+              </div>
+
+              <div class="view-segment" role="group" aria-label="Switch layout view">
+                <button type="button" class="view-seg-btn active" id="view-grid-btn" onclick="setViewMode('grid')" title="Grid view" aria-label="Grid view" aria-pressed="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                </button>
+                <button type="button" class="view-seg-btn" id="view-list-btn" onclick="setViewMode('list')" title="List view" aria-label="List view" aria-pressed="false">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                </button>
+              </div>
+
+              <button type="button" id="hub-sort-btn" class="pill-btn pill-outline sort-pill-btn" onclick="toggleHubSort()" aria-label="Toggle guide sort order">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+                <span id="hub-sort-label">Order: #01 &rarr; #99</span>
+              </button>
+
+              <button type="button" class="pill-btn pill-tonal" style="height:38px;" onclick="openBackupModal()" title="Backup or restore your progress">
+                <span>Backup</span>
+              </button>
+            </div>
+          </div>
+
+          <h2 class="section-sublabel" id="active-track-heading">Muslims Invite Notebooks</h2>
+          <div id="guides-stage"></div>
+
+          <!-- Sleek Native Theme-Matched Support Banner -->
+          <section class="hub-support-banner">
+            <div class="hub-support-text">
+              <h3>Support the Dawah Studio (Sadaqah Jariyah)</h3>
+              <p>Every interactive playbook, Quran study companion, and animated reel is funded directly by this community. Contribute anytime to help us expand this library and reach more hearts.</p>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;">
+              <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener" class="pill-btn pill-primary" style="height:44px; padding:0 1.35rem;">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <span>Support the Dawah Efforts</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 2: FREE PUBLIC QURAN LIBRARY ==================== -->
+    <section id="view-quran" class="page-view" hidden>
       <div class="hub-container">
         <div class="hub-welcome">
-          <h1 class="hub-title">Inner Circle Dawah Vault</h1>
+          <div class="hero-kicker" style="margin-bottom:0.85rem;">
+            <span class="sec-live-dot"></span>
+            <span id="quran-live-meta">Free &amp; Open for Everyone</span>
+          </div>
+          <h1 class="hub-title">The Noble Quran — Interactive Study</h1>
           <p class="hub-subtitle">
-            Select a category below to launch encrypted Dawah playbooks, practice live sparring simulators, and verify primary sources. Progress saves automatically on your device.
+            Read and master the Book of Allah chapter by chapter with structural maps, word-by-word morphology, thematic summaries, supplication vaults, and auto-saving mastery checklists.
           </p>
         </div>
 
         <div class="workspace-toolbar">
-          <div class="filter-chips" role="tablist" aria-label="Vault categories">
-            <button type="button" class="m3-chip active" id="tab-invite" onclick="setTrackFilter('invite')">
+          <div class="filter-chips" role="tablist" aria-label="Quran filters">
+            <button type="button" role="tab" aria-selected="false" class="m3-chip" id="qtab-live" onclick="setQuranFilter('live')">
               <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Muslims Invite</span>
-              <span class="chip-num" id="count-invite">0</span>
+              <span>Available Now</span>
+              <span class="chip-num" id="qcount-live">0</span>
             </button>
-            <button type="button" class="m3-chip" id="tab-refute" onclick="setTrackFilter('refute')">
+            <button type="button" role="tab" aria-selected="true" class="m3-chip active" id="qtab-all" onclick="setQuranFilter('all')">
               <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Muslims Refute</span>
-              <span class="chip-num" id="count-refute">0</span>
+              <span>All 114 Surahs</span>
+              <span class="chip-num">114</span>
             </button>
-            <span class="chip-divider"></span>
-            <button type="button" class="m3-chip saved-chip" id="tab-vault-saved" onclick="toggleVaultSavedFilter()">
+            <button type="button" role="tab" aria-selected="false" class="m3-chip" id="qtab-meccan" onclick="setQuranFilter('Meccan')">
               <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Saved</span>
-              <span class="chip-num" id="count-vault-saved">0</span>
+              <span>Meccan</span>
+              <span class="chip-num" id="qcount-meccan">86</span>
+            </button>
+            <button type="button" role="tab" aria-selected="false" class="m3-chip" id="qtab-medinan" onclick="setQuranFilter('Medinan')">
+              <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Medinan</span>
+              <span class="chip-num" id="qcount-medinan">28</span>
+            </button>
+            <span class="chip-divider" aria-hidden="true"></span>
+            <button type="button" role="tab" aria-selected="false" class="m3-chip bookmark-chip" id="qtab-bookmarked" onclick="setQuranFilter('bookmarked')">
+              <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Bookmarked</span>
+              <span class="chip-num" id="qcount-bookmarked">0</span>
+            </button>
+            <button type="button" role="tab" aria-selected="false" class="m3-chip saved-chip" id="qtab-saved" onclick="setQuranFilter('saved')">
+              <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>In Progress</span>
+              <span class="chip-num" id="qcount-saved">0</span>
             </button>
           </div>
 
           <div class="toolbar-right">
             <div class="search-pill">
-              <svg class="icon-sm" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="search" id="hub-search" placeholder="Search guides..." oninput="renderGuides()">
+              <svg class="icon-sm" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="search" id="quran-search" placeholder="Search Surah, # or meaning" aria-label="Search Surahs" oninput="renderQuran()">
             </div>
 
-            <div class="view-segment" role="group" aria-label="Switch layout view">
-              <button type="button" class="view-seg-btn active" id="view-grid-btn" onclick="setViewMode('grid')" title="Grid view">
+            <div class="view-segment" role="group" aria-label="Quran layout view">
+              <button type="button" class="view-seg-btn active" id="qview-grid-btn" onclick="setQuranViewMode('grid')" title="Grid view" aria-label="Grid view" aria-pressed="true">
                 <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
               </button>
-              <button type="button" class="view-seg-btn" id="view-list-btn" onclick="setViewMode('list')" title="List view">
+              <button type="button" class="view-seg-btn" id="qview-list-btn" onclick="setQuranViewMode('list')" title="List view" aria-label="List view" aria-pressed="false">
                 <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
               </button>
             </div>
 
-            <select id="hub-sort" class="sort-select" onchange="renderGuides()" aria-label="Sort guides">
-              <option value="asc">Order: #01 &rarr; #99</option>
-              <option value="desc">Newest first</option>
-            </select>
+            <button type="button" class="pill-btn pill-tonal" style="height:38px;" onclick="openBackupModal()" title="Backup or restore your progress">
+              <span>Backup</span>
+            </button>
           </div>
         </div>
 
-        <h2 class="section-sublabel" id="active-track-heading">Muslims Invite Notebooks</h2>
-        <div id="guides-stage"></div>
+        <div id="quran-stage"></div>
 
-        <!-- Official Buy Me a Coffee Support Section -->
+        <!-- Dignified Sadaqah Jariyah Support Banner on Free Quran Page -->
         <section class="hub-support-banner">
           <div class="hub-support-text">
-            <h3>Support the Dawah Studio (Sadaqah Jariyah)</h3>
-            <p>Every interactive playbook, Quran study companion, and animated reel is funded directly by this community. Contribute anytime to help us expand this library and reach more hearts.</p>
+            <h3>Keep Interactive Quran Education Free for Everyone</h3>
+            <p>All 114 interactive Quran study companions are completely free for the entire Ummah and truth-seekers worldwide. Support the studio and share in the ongoing Sadaqah Jariyah.</p>
           </div>
-          <div class="bmc-wrap">
-            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="Muslims.invite" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Support the Dawah efforts" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;">
+            <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener" class="pill-btn pill-primary" style="height:44px; padding:0 1.35rem;">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <span>Support the Dawah Efforts</span>
+            </a>
           </div>
         </section>
       </div>
     </section>
-  </div>
 
-  <!-- ==================== VIEW 2: FREE PUBLIC QURAN LIBRARY ==================== -->
-  <section id="view-quran" class="page-view">
-    <div class="hub-container">
-      <div class="hub-welcome">
-        <div class="hero-kicker" style="margin-bottom:0.85rem;">
-          <span class="sec-live-dot"></span>
-          <span id="quran-live-meta">Free &amp; Open for Everyone</span>
-        </div>
-        <h1 class="hub-title">The Noble Quran — Interactive Study</h1>
-        <p class="hub-subtitle">
-          Read and master the Book of Allah chapter by chapter with structural maps, word-by-word morphology, bilingual search, supplication vaults, and auto-saving mastery checklists.
-        </p>
-      </div>
-
-      <div class="workspace-toolbar">
-        <div class="filter-chips" role="tablist" aria-label="Quran filters">
-          <button type="button" class="m3-chip" id="qtab-live" onclick="setQuranFilter('live')">
-            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Available Now</span>
-            <span class="chip-num" id="qcount-live">0</span>
-          </button>
-          <button type="button" class="m3-chip active" id="qtab-all" onclick="setQuranFilter('all')">
-            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>All 114 Surahs</span>
-            <span class="chip-num">114</span>
-          </button>
-          <button type="button" class="m3-chip" id="qtab-meccan" onclick="setQuranFilter('Meccan')">
-            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Meccan</span>
-            <span class="chip-num" id="qcount-meccan">86</span>
-          </button>
-          <button type="button" class="m3-chip" id="qtab-medinan" onclick="setQuranFilter('Medinan')">
-            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Medinan</span>
-            <span class="chip-num" id="qcount-medinan">28</span>
-          </button>
-          <span class="chip-divider"></span>
-          <button type="button" class="m3-chip saved-chip" id="qtab-saved" onclick="setQuranFilter('saved')">
-            <svg class="icon-sm chip-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Saved</span>
-            <span class="chip-num" id="qcount-saved">0</span>
-          </button>
-        </div>
-
-        <div class="toolbar-right">
-          <div class="search-pill">
-            <svg class="icon-sm" style="color:var(--ink-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="search" id="quran-search" placeholder="Search Surah name, # or meaning..." oninput="renderQuran()">
-          </div>
-
-          <div class="view-segment" role="group" aria-label="Quran layout view">
-            <button type="button" class="view-seg-btn active" id="qview-grid-btn" onclick="setQuranViewMode('grid')" title="Grid view">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-            </button>
-            <button type="button" class="view-seg-btn" id="qview-list-btn" onclick="setQuranViewMode('list')" title="List view">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div id="quran-stage"></div>
-
-      <!-- Dignified Sadaqah Jariyah Support Banner on Free Quran Page -->
-      <section class="hub-support-banner">
-        <div class="hub-support-text">
-          <h3>Keep Interactive Quran Education Free for Everyone</h3>
-          <p>All 114 interactive Quran study companions are completely free for the entire Ummah and truth-seekers worldwide. Support the studio and share in the ongoing Sadaqah Jariyah.</p>
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center;">
-          <a href="https://buymeacoffee.com/muslims.invite" target="_blank" rel="noopener" class="pill-btn pill-gold" style="height:44px; padding:0 1.35rem;">
-            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            <span>Support the Dawah Efforts</span>
-          </a>
-        </div>
-      </section>
-    </div>
-  </section>
-
-  <!-- ==================== VIEW 3: UPCOMING SECTIONS ==================== -->
-  <section id="view-upcoming" class="page-view">
-    <div class="hub-container" id="upcoming-stage"></div>
-  </section>
+    <!-- ==================== VIEW 3: CONSOLIDATED ROADMAP ==================== -->
+    <section id="view-upcoming" class="page-view" hidden>
+      <div class="hub-container" id="upcoming-stage"></div>
+    </section>
+  </main>
 
   <!-- SHARED SITE FOOTER -->
   <footer class="site-footer">
-    <span>Muslims Invite · Interactive Islamic Knowledge &amp; Dawah Hub</span>
-    <div style="display:flex; gap:1.25rem; flex-wrap:wrap;">
+    <span>Muslims Invite &middot; Interactive Islamic Knowledge &amp; Dawah Hub</span>
+    <div class="footer-links">
+      <button type="button" class="footer-link-btn" onclick="openAboutModal()">About &amp; Sources</button>
+      <button type="button" class="footer-link-btn" onclick="openBackupModal()">Backup Progress</button>
+      <button type="button" class="footer-link-btn" onclick="openReportModal()">Report an Error</button>
+      <button type="button" class="footer-link-btn" onclick="openPrivacyModal()">Privacy &amp; Terms</button>
       <a href="https://instagram.com/muslims.invite" target="_blank" rel="noopener">@muslims.invite</a>
       <a href="https://instagram.com/muslims.refute" target="_blank" rel="noopener">@muslims.refute</a>
       <a href="https://instagram.com/muslims.network" target="_blank" rel="noopener">@muslims.network</a>
@@ -977,23 +1153,116 @@
     </div>
   </footer>
 
-  <!-- FLOATING BACK TO TOP BUTTON -->
+  <!-- FLOATING BACK TO TOP & TOAST -->
   <button type="button" id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Scroll to top">
     <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
     <span>Top</span>
   </button>
+  <div id="mi-toast" class="mi-toast" role="status" aria-live="polite"></div>
 
   <!-- PWA INSTALL GUIDE MODAL -->
-  <div id="install-modal" role="dialog" aria-modal="true" aria-labelledby="install-modal-title" onclick="if(event.target===this) closeInstallModal()">
+  <div id="install-modal" class="mi-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="install-modal-title" onclick="if(event.target===this) closeModal('install-modal')">
     <div class="install-sheet">
       <div class="install-sheet-head">
         <h3 id="install-modal-title">Add Muslims Invite to Home Screen</h3>
-        <button type="button" class="icon-circle-btn" onclick="closeInstallModal()" aria-label="Close">
+        <button type="button" class="icon-circle-btn" onclick="closeModal('install-modal')" aria-label="Close">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
         </button>
       </div>
       <div id="install-modal-body"></div>
-      <button type="button" class="pill-btn pill-primary" style="width:100%; height:42px;" onclick="closeInstallModal()">Got it</button>
+      <button type="button" class="pill-btn pill-primary" style="width:100%; height:42px;" onclick="closeModal('install-modal')">Got it</button>
+    </div>
+  </div>
+
+  <!-- BACKUP & RESTORE PROGRESS MODAL -->
+  <div id="backup-modal" class="mi-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="backup-modal-title" onclick="if(event.target===this) closeModal('backup-modal')">
+    <div class="install-sheet">
+      <div class="install-sheet-head">
+        <h3 id="backup-modal-title">Backup &amp; Restore Progress</h3>
+        <button type="button" class="icon-circle-btn" onclick="closeModal('backup-modal')" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-prose">
+        <p>Your Quran bookmarks, chapter checklists, and playbook notes are saved locally on this device. Export a backup file anytime or restore it on another device. <strong>Passcodes are never included in backups.</strong></p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.65rem; margin:1rem 0;">
+          <button type="button" class="pill-btn pill-primary" onclick="exportProgressBackup()">Export Backup (.json)</button>
+          <label class="pill-btn pill-outline" style="cursor:pointer;">
+            <span>Restore Backup (.json)</span>
+            <input type="file" id="backup-file-input" accept="application/json,.json" style="display:none;" onchange="importProgressBackup(this)">
+          </label>
+        </div>
+        <p id="backup-status" style="font-size:0.84rem; color:var(--accent-green); min-height:1.2em; margin:0;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT & METHODOLOGY MODAL -->
+  <div id="about-modal" class="mi-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="about-modal-title" onclick="if(event.target===this) closeModal('about-modal')">
+    <div class="install-sheet">
+      <div class="install-sheet-head">
+        <h3 id="about-modal-title">About &amp; Scholarly Sources</h3>
+        <button type="button" class="icon-circle-btn" onclick="closeModal('about-modal')" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-prose">
+        <p><strong>Muslims Invite</strong> is an interactive Islamic education and Dawah training studio built to help believers and curious seekers study the Quran and respond to modern misconceptions with clarity, wisdom, and primary evidence.</p>
+        <h4>Quranic &amp; Classical Sources</h4>
+        <p>The 114 free Quran study companions pair Arabic script with the <strong>Sahih International</strong> translation, contextualizing themes through classical Sunni tafsir (Ibn Kathir, al-Tabari, al-Qurtubi) and standard Quranic Arabic morphology.</p>
+        <h4>Upcoming Study Companions</h4>
+        <p>Upcoming interactive companions include original study guides for classical and modern works such as <em>Riyad as-Salihin</em> by Imam Yahya ibn Sharaf an-Nawawi, <em>The Sealed Nectar (Ar-Raheeq Al-Makhtum)</em> by Safi-ur-Rahman al-Mubarakpuri, and <em>The Divine Reality</em> by Hamza Andreas Tzortzis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY & TERMS MODAL -->
+  <div id="privacy-modal" class="mi-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" onclick="if(event.target===this) closeModal('privacy-modal')">
+    <div class="install-sheet">
+      <div class="install-sheet-head">
+        <h3 id="privacy-modal-title">Privacy &amp; Terms</h3>
+        <button type="button" class="icon-circle-btn" onclick="closeModal('privacy-modal')" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-prose">
+        <h4>Local-First Privacy</h4>
+        <p>Muslims Invite uses zero tracking cookies or behavioral ad networks. Bookmarks, mastery quizzes, theme preference, and study notes stay inside your browser&rsquo;s <code>localStorage</code> on your own device.</p>
+        <h4>External Platforms</h4>
+        <p>Community discussions and Inner Circle membership are hosted externally on Discord, BuyMeACoffee, and Instagram, subject to those platforms&rsquo; respective privacy policies.</p>
+        <h4>Educational Use</h4>
+        <p>All 114 Quran companions are free for personal study and non-commercial educational sharing. Inner Circle playbooks are licensed for individual member study. If you spot any Arabic typo or citation issue, please let us know via Report an Error.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPORT AN ERROR / ARABIC TYPO MODAL -->
+  <div id="report-modal" class="mi-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="report-modal-title" onclick="if(event.target===this) closeModal('report-modal')">
+    <div class="install-sheet">
+      <div class="install-sheet-head">
+        <h3 id="report-modal-title">Report an Error or Arabic Typo</h3>
+        <button type="button" class="icon-circle-btn" onclick="closeModal('report-modal')" aria-label="Close">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-prose">
+        <p>Spotted an Arabic diacritic mistake, translation typo, or UI bug? Copy the structured report below and post it in our Discord <strong>#feedback</strong> channel for fast review.</p>
+        <label for="report-item-input" style="display:block; font-size:0.82rem; font-weight:600; margin-bottom:0.25rem;">Chapter or Playbook</label>
+        <input type="text" id="report-item-input" class="modal-field" placeholder="e.g. Chapter 2 · Surah Al-Baqarah">
+        <label for="report-type-select" style="display:block; font-size:0.82rem; font-weight:600; margin-bottom:0.25rem;">Issue Type</label>
+        <select id="report-type-select" class="modal-field">
+          <option value="Arabic / Tashkeel">Arabic text / tashkeel typo</option>
+          <option value="Translation / Citation">Translation or citation correction</option>
+          <option value="UI / Bug">Interactive quiz or layout bug</option>
+        </select>
+        <label for="report-notes-input" style="display:block; font-size:0.82rem; font-weight:600; margin-bottom:0.25rem;">Details</label>
+        <textarea id="report-notes-input" rows="3" class="modal-field" placeholder="Verse number or section and what needs fixing..."></textarea>
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:0.25rem;">
+          <button type="button" class="pill-btn pill-primary" onclick="copyReportSummary()">Copy Report Details</button>
+          <a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-outline">Open Discord</a>
+        </div>
+        <p id="report-status" style="font-size:0.84rem; color:var(--accent-green); margin:0.65rem 0 0; min-height:1.2em;"></p>
+      </div>
     </div>
   </div>
 
@@ -1001,7 +1270,7 @@
   <div id="reader-overlay" aria-hidden="true">
     <div class="reader-bar">
       <div class="reader-left">
-        <button type="button" class="pill-btn pill-tonal" style="height:36px; padding:0 0.9rem;" onclick="closeReader()">
+        <button type="button" class="pill-btn pill-tonal" style="height:36px; padding:0 0.85rem;" onclick="closeReader()">
           <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
           <span>Back</span>
         </button>
@@ -1009,14 +1278,32 @@
       </div>
 
       <div class="reader-right">
-        <div id="reader-surah-controls" style="display:none; align-items:center; gap:0.4rem;">
-          <button type="button" class="pill-btn pill-tonal" id="btn-prev-surah" style="height:34px; padding:0 0.75rem; font-size:0.8rem;" onclick="stepSurah(-1)">Prev</button>
-          <button type="button" class="pill-btn pill-tonal" id="btn-next-surah" style="height:34px; padding:0 0.75rem; font-size:0.8rem;" onclick="stepSurah(1)">Next</button>
-          <button type="button" class="pill-btn pill-outline" id="btn-share-surah" style="height:34px; padding:0 0.8rem; font-size:0.8rem;" onclick="shareActiveSurah(this)">
+        <div id="reader-surah-controls" style="display:none; align-items:center; gap:0.35rem;">
+          <button type="button" class="pill-btn pill-tonal" id="btn-prev-surah" style="height:34px; padding:0 0.7rem; font-size:0.8rem;" onclick="stepSurah(-1)">Prev</button>
+          <button type="button" class="pill-btn pill-tonal" id="btn-next-surah" style="height:34px; padding:0 0.7rem; font-size:0.8rem;" onclick="stepSurah(1)">Next</button>
+          <button type="button" class="pill-btn pill-outline" id="btn-share-surah" style="height:34px; padding:0 0.75rem; font-size:0.8rem;" onclick="shareActiveSurah(this)" aria-label="Share Surah link">
             <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
             <span class="hide-xs">Share</span>
           </button>
         </div>
+
+        <button type="button" class="icon-circle-btn" id="btn-reader-bookmark" style="width:34px; height:34px;" onclick="toggleActiveReaderBookmark()" aria-label="Bookmark this item" aria-pressed="false" title="Bookmark">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+        </button>
+
+        <button type="button" class="icon-circle-btn" id="btn-reader-theme" style="width:34px; height:34px;" onclick="toggleTheme()" aria-label="Toggle Light or Dark Mode" title="Switch Theme">
+          <svg class="icon-sm theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="icon-sm theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <button type="button" class="icon-circle-btn" style="width:34px; height:34px;" onclick="openReportModal()" aria-label="Report an error" title="Report an error">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+        </button>
+
+        <a href="https://buymeacoffee.com/muslims.invite/membership" target="_blank" rel="noopener" class="pill-btn pill-primary" id="btn-sample-unlock" style="display:none; height:34px; padding:0 0.85rem; font-size:0.78rem;">
+          <span>Unlock All 24</span>
+        </a>
+
         <span class="reader-status-pill hide-xs" id="reader-mode-pill">Encrypted Session</span>
       </div>
     </div>
@@ -1027,19 +1314,23 @@
     const PASS_STORAGE_KEY = 'mi_inner_circle_pass_v1';
     const THEME_STORAGE_KEY = 'mi_vault_theme_v1';
     const VIEW_STORAGE_KEY = 'mi_vault_view_v1';
+    const BOOKMARKS_STORAGE_KEY = 'mi_bookmarks_v1';
     const MAGIC_HEADER = 'MUSLIMS_INVITE_VAULT_V1';
 
     let activeSection = 'home';
     let activePassword = '';
     let vaultUnlocked = false;
     let activeTrack = 'invite';
-    let vaultSavedOnly = false;
+    let vaultSubFilter = 'all'; // 'all' | 'bookmarked' | 'progress'
+    let hubSortOrder = 'asc'; // 'asc' | 'desc'
     let activeView = 'grid';
     let quranFilter = 'all';
     let quranView = 'grid';
     let readerIsOpen = false;
     let activeSurahNum = null;
+    let activeReaderContext = null; // { scope: 'quran'|'vault', id: number|string, label: string }
     let deferredInstallPrompt = null;
+    let toastTimer = null;
 
     const decryptedCache = {};
     const publicHtmlCache = {};
@@ -1058,7 +1349,7 @@
       hadith: {
         badge: 'Upcoming Hadith Collection',
         title: 'Riyad as-Salihin',
-        subtitle: 'The Meadows of the Righteous by Imam Yahya ibn Sharaf an-Nawawi — transformed into interactive thematic study companions with Arabic text, chains, and practical daily takeaways.',
+        subtitle: 'Original interactive study companion to The Meadows of the Righteous by Imam Yahya ibn Sharaf an-Nawawi — with Arabic text, chains, and practical daily takeaways.',
         items: [
           { head: 'Sincerity & Intention (Ikhlas)', desc: 'Foundational Prophetic narrations on purifying the heart and deeds.' },
           { head: 'Character, Mercy & Family', desc: 'Interactive modules on Prophetic etiquette (Adab), patience, and brotherhood.' },
@@ -1067,7 +1358,7 @@
       },
       stories: {
         badge: 'Upcoming Interactive Series',
-        title: "Prophets' & Quran Stories",
+        title: "Prophets’ & Quran Stories",
         subtitle: 'Walk through the timeless narratives of the Prophets and righteous communities in the Quran — complete with historical timelines, cross-references, and reflection journals.',
         items: [
           { head: 'Stories of the Prophets', desc: 'Deep interactive companions on Adam, Nuh, Ibrahim, Yusuf, Musa, and Isa (AS).' },
@@ -1078,7 +1369,7 @@
       biography: {
         badge: 'Upcoming Seerah Companion',
         title: 'The Sealed Nectar (Ar-Raheeq Al-Makhtum)',
-        subtitle: 'The award-winning biography of Prophet Muhammad (ﷺ) by Safi-ur-Rahman al-Mubarakpuri — reimagined as an interactive chapter-by-chapter Seerah companion.',
+        subtitle: 'Original interactive chapter-by-chapter study companion to the biography of Prophet Muhammad (ﷺ) by Safi-ur-Rahman al-Mubarakpuri.',
         items: [
           { head: 'The Makkan Period', desc: 'From Al-Amin and the first revelation in Hira to patience under persecution and Al-Isra.' },
           { head: 'The Madinan Transformation', desc: 'The Hijrah, the Constitution of Madinah, Badr, Uhud, and the Treaty of Hudaybiyyah.' },
@@ -1088,7 +1379,7 @@
       books: {
         badge: 'Upcoming Interactive Book Study',
         title: 'The Divine Reality',
-        subtitle: 'God, Islam & The Mirage of Atheism — interactive intellectual study guides unpacking rational arguments for the Creator, consciousness, contingency, and the miracle of the Quran.',
+        subtitle: 'Original intellectual study companion to Hamza Andreas Tzortzis’s book — unpacking rational arguments for the Creator, consciousness, contingency, and the Quran.',
         items: [
           { head: 'Rational Proofs for God', desc: 'Interactive breakdowns of the Contingency, Fine-Tuning, and Consciousness arguments.' },
           { head: 'Answering Modern Skepticism', desc: 'Clear philosophical frameworks addressing the Problem of Evil and scientism.' },
@@ -1097,9 +1388,108 @@
       }
     };
 
-    const SVG_CHECK = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
-    const SVG_EXT = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
-    const SVG_ARROW = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    const SVG_CHECK = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+    const SVG_EXT = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
+    const SVG_ARROW = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    const SVG_BM_OFF = '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>';
+    const SVG_BM_ON = '<svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>';
+
+    /* ---------- TOAST & DOWNLOAD BRIDGE ---------- */
+    function showToast(msg) {
+      const el = document.getElementById('mi-toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add('is-shown');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() {
+        el.classList.remove('is-shown');
+      }, 2600);
+    }
+
+    window.miHostTriggerDownload = function(o) {
+      try {
+        const opts = o || {};
+        const rawContent = Array.isArray(opts.content) ? opts.content.join('\n') : String(opts.content || '');
+        const ctype = opts.contentType || 'text/plain;charset=utf-8';
+        const fname = opts.filename || 'muslims-invite-export.txt';
+        const blob = new Blob([rawContent], { type: ctype });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fname;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+          URL.revokeObjectURL(url);
+          if (a.parentNode) a.parentNode.removeChild(a);
+        }, 1500);
+        showToast('Downloaded ' + fname);
+        return true;
+      } catch (e) {
+        showToast('Could not start download');
+        return false;
+      }
+    };
+
+    /* ---------- BOOKMARKS & PROGRESS HELPERS ---------- */
+    function loadBookmarks() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(BOOKMARKS_STORAGE_KEY) || '{}');
+        return {
+          quran: Array.isArray(parsed.quran) ? parsed.quran : [],
+          vault: Array.isArray(parsed.vault) ? parsed.vault : []
+        };
+      } catch (e) {
+        return { quran: [], vault: [] };
+      }
+    }
+
+    function saveBookmarks(data) {
+      try { localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function isBookmarked(scope, id) {
+      const bm = loadBookmarks();
+      return bm[scope].indexOf(id) !== -1;
+    }
+
+    function toggleBookmark(scope, id, event) {
+      if (event) event.stopPropagation();
+      const bm = loadBookmarks();
+      const list = bm[scope];
+      const idx = list.indexOf(id);
+      const added = idx === -1;
+      if (added) list.push(id);
+      else list.splice(idx, 1);
+      saveBookmarks(bm);
+      showToast(added ? 'Bookmarked' : 'Bookmark removed');
+      syncReaderBookmarkButton();
+      if (scope === 'quran') renderQuran();
+      if (scope === 'vault' && vaultUnlocked) renderGuides();
+    }
+
+    function toggleActiveReaderBookmark() {
+      if (!activeReaderContext) return;
+      toggleBookmark(activeReaderContext.scope, activeReaderContext.id);
+    }
+
+    function syncReaderBookmarkButton() {
+      const btn = document.getElementById('btn-reader-bookmark');
+      if (!btn || !activeReaderContext) return;
+      const active = isBookmarked(activeReaderContext.scope, activeReaderContext.id);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.style.color = active ? 'var(--accent-blue)' : '';
+      btn.innerHTML = active ? SVG_BM_ON : SVG_BM_OFF;
+      btn.title = active ? 'Remove bookmark' : 'Bookmark';
+    }
+
+    function hasSavedProgress(keyId) {
+      try {
+        const raw = localStorage.getItem('mi_vault_state_' + keyId);
+        return Boolean(raw && raw !== 'null' && raw !== '{}');
+      } catch (e) { return false; }
+    }
 
     /* ---------- SMART PWA SERVICE WORKER & INSTALL ENGINE ---------- */
     if ('serviceWorker' in navigator) {
@@ -1112,7 +1502,6 @@
       return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     }
 
-    // Only reveal Install App button on Chrome/Edge/Android if browser confirms it is NOT already installed
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredInstallPrompt = e;
@@ -1168,18 +1557,136 @@
           '</ol>';
       }
 
-      document.getElementById('install-modal').style.display = 'flex';
+      openModal('install-modal');
     }
 
-    function closeInstallModal() {
-      document.getElementById('install-modal').style.display = 'none';
+    /* ---------- MODALS & BACKUP / TRUST CONTROLS ---------- */
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.style.display = 'none';
+    }
+
+    function closeAllModals() {
+      ['install-modal', 'backup-modal', 'about-modal', 'privacy-modal', 'report-modal'].forEach(closeModal);
+    }
+
+    function openBackupModal() {
+      const st = document.getElementById('backup-status');
+      if (st) st.textContent = '';
+      openModal('backup-modal');
+    }
+
+    function openAboutModal() { openModal('about-modal'); }
+    function openPrivacyModal() { openModal('privacy-modal'); }
+
+    function openReportModal(prefillLabel) {
+      const input = document.getElementById('report-item-input');
+      const st = document.getElementById('report-status');
+      if (st) st.textContent = '';
+      if (input) {
+        if (prefillLabel) input.value = prefillLabel;
+        else if (activeReaderContext && activeReaderContext.label) input.value = activeReaderContext.label;
+        else input.value = '';
+      }
+      openModal('report-modal');
+    }
+
+    async function copyReportSummary() {
+      const item = (document.getElementById('report-item-input').value || '').trim() || 'General Site';
+      const kind = document.getElementById('report-type-select').value;
+      const notes = (document.getElementById('report-notes-input').value || '').trim();
+      const payload = [
+        'Muslims Invite Feedback Report',
+        'Location: ' + item,
+        'Type: ' + kind,
+        'Details: ' + (notes || '(please describe issue here)'),
+        'URL: ' + window.location.href
+      ].join('\n');
+      try {
+        await navigator.clipboard.writeText(payload);
+        document.getElementById('report-status').textContent = 'Copied report summary! Paste it into Discord #feedback.';
+        showToast('Report copied to clipboard');
+      } catch (e) {
+        document.getElementById('report-status').textContent = 'Copy unavailable — please paste manually in Discord.';
+      }
+    }
+
+    function exportProgressBackup() {
+      const stateMap = {};
+      let count = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (!k) continue;
+        // Strictly export only study state & preferences; NEVER export passcode
+        if (k.indexOf('mi_vault_state_') === 0 || k === BOOKMARKS_STORAGE_KEY || k === THEME_STORAGE_KEY || k === VIEW_STORAGE_KEY) {
+          stateMap[k] = localStorage.getItem(k);
+          count++;
+        }
+      }
+      const backupObj = {
+        app: 'MuslimsInvite',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        data: stateMap
+      };
+      const dateSlug = new Date().toISOString().slice(0, 10);
+      window.miHostTriggerDownload({
+        filename: 'muslims-invite-backup-' + dateSlug + '.json',
+        contentType: 'application/json;charset=utf-8',
+        content: JSON.stringify(backupObj, null, 2)
+      });
+      const st = document.getElementById('backup-status');
+      if (st) st.textContent = 'Exported ' + count + ' saved items (passcode excluded).';
+    }
+
+    function importProgressBackup(inputEl) {
+      const file = inputEl && inputEl.files && inputEl.files[0];
+      const st = document.getElementById('backup-status');
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function() {
+        try {
+          const parsed = JSON.parse(String(reader.result || ''));
+          if (!parsed || parsed.app !== 'MuslimsInvite' || typeof parsed.data !== 'object' || !parsed.data) {
+            throw new Error('Invalid Muslims Invite backup file.');
+          }
+          let restored = 0;
+          Object.keys(parsed.data).forEach(function(k) {
+            // Strict key allowlist
+            if (k.indexOf('mi_vault_state_') === 0 || k === BOOKMARKS_STORAGE_KEY || k === THEME_STORAGE_KEY || k === VIEW_STORAGE_KEY) {
+              if (typeof parsed.data[k] === 'string') {
+                localStorage.setItem(k, parsed.data[k]);
+                restored++;
+              }
+            }
+          });
+          applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'light');
+          renderQuran();
+          if (vaultUnlocked) renderGuides();
+          if (st) st.textContent = 'Restored ' + restored + ' saved entries onto this device.';
+          showToast('Progress restored (' + restored + ' items)');
+        } catch (err) {
+          if (st) {
+            st.style.color = 'var(--error)';
+            st.textContent = err.message || 'Could not read backup file.';
+          }
+        } finally {
+          inputEl.value = '';
+        }
+      };
+      reader.readAsText(file);
     }
 
     /* ---------- THEME & NAVIGATION WITH NATURAL BROWSER HISTORY ---------- */
     function applyTheme(theme) {
       const t = theme === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
-      localStorage.setItem(THEME_STORAGE_KEY, t);
+      try { localStorage.setItem(THEME_STORAGE_KEY, t); } catch (e) {}
       const metaTheme = document.getElementById('meta-theme-color');
       if (metaTheme) metaTheme.setAttribute('content', t === 'dark' ? '#131314' : '#ffffff');
       document.querySelectorAll('.theme-icon-sun').forEach(function(el) {
@@ -1188,49 +1695,73 @@
       document.querySelectorAll('.theme-icon-moon').forEach(function(el) {
         el.style.display = t === 'dark' ? 'none' : 'inline-block';
       });
+      const openFrame = document.querySelector('#reader-mount iframe');
+      if (openFrame && openFrame.contentWindow) {
+        try { openFrame.contentWindow.postMessage({ type: 'mi-theme', theme: t }, '*'); } catch (e) {}
+      }
     }
 
     function toggleTheme() {
       applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     }
 
-    function togglePassVisibility() {
+    function setPassVisibility(visible) {
       const input = document.getElementById('vault-pass');
       const showIcon = document.getElementById('eye-icon-show');
       const hideIcon = document.getElementById('eye-icon-hide');
-      if (input.type === 'password') {
-        input.type = 'text';
-        showIcon.style.display = 'none';
-        hideIcon.style.display = 'inline-block';
-      } else {
-        input.type = 'password';
-        showIcon.style.display = 'inline-block';
-        hideIcon.style.display = 'none';
-      }
+      if (!input) return;
+      input.type = visible ? 'text' : 'password';
+      if (showIcon) showIcon.style.display = visible ? 'none' : 'inline-block';
+      if (hideIcon) hideIcon.style.display = visible ? 'inline-block' : 'none';
+    }
+
+    function togglePassVisibility() {
+      const input = document.getElementById('vault-pass');
+      if (!input) return;
+      setPassVisibility(input.type === 'password');
       input.focus();
     }
 
-    function switchSection(sec, skipHistoryPush) {
+    function normalizeSection(sec) {
+      if (sec === 'quran') return 'quran';
+      if (sec === 'roadmap' || UPCOMING_SECTIONS[sec]) return 'roadmap';
+      return 'home';
+    }
+
+    function switchSection(sec, skipHistoryPush, highlightKey) {
+      const legacyHighlight = UPCOMING_SECTIONS[sec] ? sec : highlightKey;
+      const targetSec = normalizeSection(sec);
       const prevSection = activeSection;
-      activeSection = sec;
+      activeSection = targetSec;
 
       document.querySelectorAll('.sec-tab').forEach(function(btn) {
-        btn.classList.toggle('active', btn.getAttribute('data-sec') === sec);
+        const isAct = btn.getAttribute('data-sec') === targetSec;
+        btn.classList.toggle('active', isAct);
+        btn.setAttribute('aria-selected', isAct ? 'true' : 'false');
+        if (isAct && btn.scrollIntoView) {
+          try { btn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+        }
       });
 
-      document.getElementById('view-home').classList.toggle('is-visible', sec === 'home');
-      document.getElementById('view-quran').classList.toggle('is-visible', sec === 'quran');
-      document.getElementById('view-upcoming').classList.toggle('is-visible', sec !== 'home' && sec !== 'quran');
+      const vHome = document.getElementById('view-home');
+      const vQuran = document.getElementById('view-quran');
+      const vRoad = document.getElementById('view-upcoming');
+      vHome.classList.toggle('is-visible', targetSec === 'home');
+      vHome.hidden = targetSec !== 'home';
+      vQuran.classList.toggle('is-visible', targetSec === 'quran');
+      vQuran.hidden = targetSec !== 'quran';
+      vRoad.classList.toggle('is-visible', targetSec === 'roadmap');
+      vRoad.hidden = targetSec !== 'roadmap';
 
-      if (!skipHistoryPush && sec !== prevSection && window.history && history.pushState) {
-        const nextUrl = sec === 'home' ? window.location.pathname : window.location.pathname + '?section=' + sec;
-        try { history.pushState({ section: sec }, '', nextUrl); } catch (e) {}
+      if (!skipHistoryPush && targetSec !== prevSection && window.history && history.pushState) {
+        const nextUrl = targetSec === 'home' ? window.location.pathname : window.location.pathname + '?section=' + targetSec;
+        try { history.pushState({ section: targetSec }, '', nextUrl); } catch (e) {}
       }
 
-      if (sec === 'quran') {
+      if (targetSec === 'quran') {
         renderQuran();
-      } else if (sec !== 'home') {
-        renderUpcomingSection(sec);
+      } else if (targetSec === 'roadmap') {
+        renderRoadmapSection(legacyHighlight);
       } else if (vaultUnlocked) {
         renderGuides();
       }
@@ -1238,40 +1769,76 @@
     }
 
     window.addEventListener('popstate', function(e) {
+      const params = new URLSearchParams(window.location.search);
+      const urlSurah = parseInt(params.get('surah'), 10);
+      const urlSample = params.get('sample');
+      const urlSection = (e.state && e.state.section) ? e.state.section : (params.get('section') || 'home');
+
+      if (urlSurah && isSurahLive(urlSurah)) {
+        switchSection('quran', true);
+        launchSurah(urlSurah, null, true);
+        return;
+      }
+      if (urlSample === '1') {
+        switchSection('home', true);
+        launchFreeSample(null, true);
+        return;
+      }
       if (readerIsOpen) {
-        closeReader();
+        closeReader(true);
       }
-      const targetSec = (e.state && e.state.section)
-        ? e.state.section
-        : (new URLSearchParams(window.location.search).get('section') || 'home');
-      if (['home', 'intro', 'quran', 'hadith', 'stories', 'biography', 'books'].indexOf(targetSec) !== -1) {
-        switchSection(targetSec, true);
-      }
+      switchSection(urlSection, true);
     });
 
-    function renderUpcomingSection(secKey) {
-      const data = UPCOMING_SECTIONS[secKey];
+    function renderRoadmapSection(highlightKey) {
       const stage = document.getElementById('upcoming-stage');
-      if (!data || !stage) return;
+      if (!stage) return;
 
-      const itemsHtml = data.items.map(function(item) {
-        return '<div class="upcoming-mini-box"><strong>' + item.head + '</strong><span>' + item.desc + '</span></div>';
+      const cardsHtml = Object.keys(UPCOMING_SECTIONS).map(function(key) {
+        const data = UPCOMING_SECTIONS[key];
+        const isHi = highlightKey === key;
+        const bullets = data.items.map(function(item) {
+          return '<li><strong>' + item.head + ':</strong> ' + item.desc + '</li>';
+        }).join('');
+        return (
+          '<article class="roadmap-card' + (isHi ? ' is-highlighted' : '') + '" id="roadmap-' + key + '">' +
+            '<div>' +
+              '<span class="upcoming-pill">' +
+                '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
+                '<span>' + data.badge + ' &middot; In Production</span>' +
+              '</span>' +
+              '<h2>' + data.title + '</h2>' +
+              '<p>' + data.subtitle + '</p>' +
+              '<ul class="roadmap-bullets">' + bullets + '</ul>' +
+            '</div>' +
+          '</article>'
+        );
       }).join('');
 
       stage.innerHTML =
-        '<div class="upcoming-hero-card">' +
-          '<span class="upcoming-pill">' +
-            '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
-            '<span>' + data.badge + ' · In Production</span>' +
-          '</span>' +
-          '<h1>' + data.title + '</h1>' +
-          '<p>' + data.subtitle + '</p>' +
-          '<div class="upcoming-feature-list">' + itemsHtml + '</div>' +
-          '<div style="display:flex; flex-wrap:wrap; gap:0.7rem;">' +
-            '<button type="button" class="pill-btn pill-primary" style="height:44px; padding:0 1.35rem;" onclick="switchSection(\'quran\')"><span>Explore Live Quran Chapters</span>' + SVG_ARROW + '</button>' +
-            '<a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-outline" style="height:44px; padding:0 1.35rem;"><span>Get Notified on Discord</span></a>' +
+        '<div class="hub-welcome">' +
+          '<div class="hero-kicker" style="margin-bottom:0.85rem;"><span>Knowledge Hub Roadmap</span></div>' +
+          '<h1 class="hub-title">Upcoming Interactive Collections</h1>' +
+          '<p class="hub-subtitle">While all 114 Quran study companions and 24 Dawah playbooks are live today, these five interactive libraries are actively in production.</p>' +
+        '</div>' +
+        '<div class="roadmap-grid">' + cardsHtml + '</div>' +
+        '<div class="hub-support-banner">' +
+          '<div class="hub-support-text">' +
+            '<h3>Explore What’s Live Today</h3>' +
+            '<p>Study all 114 Quran chapters free right now, try Playbook #01 above the fold, or join Discord for launch notifications.</p>' +
+          '</div>' +
+          '<div style="display:flex; flex-wrap:wrap; gap:0.65rem;">' +
+            '<button type="button" class="pill-btn pill-primary" style="height:42px;" onclick="switchSection(\'quran\')"><span>Explore Live Quran Chapters</span>' + SVG_ARROW + '</button>' +
+            '<a href="https://discord.gg/XMEbxz9Apa" target="_blank" rel="noopener" class="pill-btn pill-outline" style="height:42px;"><span>Get Notified on Discord</span></a>' +
           '</div>' +
         '</div>';
+
+      if (highlightKey) {
+        const target = document.getElementById('roadmap-' + highlightKey);
+        if (target && target.scrollIntoView) {
+          setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 80);
+        }
+      }
     }
 
     window.addEventListener('scroll', function() {
@@ -1280,31 +1847,106 @@
       btn.style.display = window.scrollY > 420 ? 'inline-flex' : 'none';
     }, { passive: true });
 
-    /* ---------- SHARED READER BRIDGE SHIM ---------- */
+    /* ---------- SHARED READER BRIDGE SHIM & DARK MODE PROPAGATION ---------- */
     function buildBridgeShim(guideId) {
       const safeId = JSON.stringify('mi_vault_state_' + guideId);
-      return '<script>' +
+      const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const themeCss =
+        '<style id="mi-iframe-theme-override">' +
+        'html[data-mi-theme="dark"] {' +
+          'color-scheme: dark !important;' +
+          '--background: #131314 !important;' +
+          '--surface: #1c1d1f !important;' +
+          '--surface-container-low: #1c1d1f !important;' +
+          '--surface-container: #242629 !important;' +
+          '--surface-container-high: #2e3136 !important;' +
+          '--surface-card: #1c1d1f !important;' +
+          '--on-surface: #ece8e1 !important;' +
+          '--on-surface-variant: #b8b2a8 !important;' +
+          '--ink: #ece8e1 !important;' +
+          '--ink-muted: #b8b2a8 !important;' +
+          '--outline: #6c655c !important;' +
+          '--outline-variant: #35373b !important;' +
+          '--outline-btn: #4a4c52 !important;' +
+          '--secondary-btn-border: #4a4c52 !important;' +
+          '--featured-border: #915239 !important;' +
+          '--primary-border: #915239 !important;' +
+          '--emerald-border: #2c5c50 !important;' +
+          '--tertiary-border: #2c5c50 !important;' +
+          '--warm-hairline: 1px solid #35373b !important;' +
+          '--hairline: 1px solid #35373b !important;' +
+          '--hairline-control: 1px solid #4a4c52 !important;' +
+          '--primary: #e27d57 !important;' +
+          '--primary-hover: #ee926f !important;' +
+          '--on-primary: #1a110d !important;' +
+          '--primary-container: #3a2319 !important;' +
+          '--on-primary-container: #f7d5c6 !important;' +
+          '--secondary: #5cb8a5 !important;' +
+          '--secondary-tint: #1b312d !important;' +
+          '--tertiary: #d4a65a !important;' +
+          '--tertiary-tint: #2d2518 !important;' +
+          '--tertiary-container: #1b312d !important;' +
+          '--on-tertiary-container: #bfece2 !important;' +
+          '--error: #f28b82 !important;' +
+          '--on-error: #1f0e0d !important;' +
+          '--error-container: #3b1d1b !important;' +
+          '--error-tint: #3b1d1b !important;' +
+          '--error-wash: #3b1d1b !important;' +
+          '--error-border: #7a3b37 !important;' +
+          '--data-1: #e27d57 !important;' +
+          '--data-2: #5cb8a5 !important;' +
+          '--data-3: #d4a65a !important;' +
+          '--data-4: #b99ad1 !important;' +
+          '--data-context: #7c756c !important;' +
+        '}' +
+        'html[data-mi-theme="dark"] body { background-color: #131314 !important; color: #ece8e1 !important; }' +
+        'html[data-mi-theme="dark"] input:not([type="checkbox"]):not([type="radio"]), html[data-mi-theme="dark"] textarea, html[data-mi-theme="dark"] select {' +
+          'background-color: #242629 !important; color: #ece8e1 !important; border-color: #4a4c52 !important;' +
+        '}' +
+        '.btn-danger-armed, .btn--danger-armed, button[data-armed="true"], .btn.btn-ghost[data-armed="true"] {' +
+          'background: #b42318 !important; color: #ffffff !important; border-color: #b42318 !important; opacity: 1 !important;' +
+        '}' +
+        '*:focus-visible { outline: 2px solid var(--primary, #0b57d0) !important; outline-offset: 2px; }' +
+        '</style>';
+
+      return themeCss + '<script>' +
         '(function(){' +
         'var K=' + safeId + ';' +
+        'var miUserInteracted=false;' +
+        'document.documentElement.classList.add("in-iframe");' +
+        'document.documentElement.setAttribute("data-mi-theme",' + JSON.stringify(currentTheme) + ');' +
+        'if(' + JSON.stringify(currentTheme) + '==="dark"){document.documentElement.setAttribute("data-theme","dark");}' +
+        'function markInteracted(){miUserInteracted=true;}' +
+        '["pointerdown","keydown","input","change","click"].forEach(function(ev){document.addEventListener(ev,markInteracted,true);});' +
+        'document.addEventListener("keydown",function(e){if(e.key==="Escape"){try{if(window.parent&&typeof window.parent.miHandleChildEscape==="function"){window.parent.miHandleChildEscape();}}catch(err){}}});' +
+        'window.addEventListener("message",function(e){' +
+          'if(e&&e.data&&e.data.type==="mi-theme"){' +
+            'var nt=e.data.theme==="dark"?"dark":"light";' +
+            'document.documentElement.setAttribute("data-mi-theme",nt);' +
+            'document.documentElement.setAttribute("data-theme",nt);' +
+          '}' +
+        '});' +
         'window.notebookAppApi={' +
           'getAppState:function(){try{var r=localStorage.getItem(K);return Promise.resolve(r?JSON.parse(r):null);}catch(e){return Promise.resolve(null);}},' +
-          'setAppState:function(s){try{localStorage.setItem(K,JSON.stringify(s));}catch(e){}return Promise.resolve();},' +
-          'triggerFileDownload:function(o){try{var b=new Blob([o.content||""],{type:o.contentType||"text/plain;charset=utf-8"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download=o.filename||"guide.txt";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},500);}catch(e){}},' +
+          'setAppState:function(s){if(!miUserInteracted){return Promise.resolve();}try{localStorage.setItem(K,JSON.stringify(s));}catch(e){}return Promise.resolve();},' +
+          'triggerFileDownload:function(o){' +
+            'try{if(window.parent&&typeof window.parent.miHostTriggerDownload==="function"){window.parent.miHostTriggerDownload(o);return;}}catch(e){}' +
+            'try{var b=new Blob([o.content||""],{type:o.contentType||"text/plain;charset=utf-8"});var u=URL.createObjectURL(b);var a=document.createElement("a");a.href=u;a.download=o.filename||"guide.txt";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},1000);}catch(e){}' +
+          '},' +
           'notifyAppReady:function(){}' +
         '};' +
         'document.addEventListener("click",function(e){' +
           'var el=e.target&&e.target.nodeType===1?e.target:(e.target?e.target.parentElement:null);' +
           'if(!el||!el.closest)return;' +
+          'var rep=el.closest("a[href*=\\"?report=\\"]");' +
+          'if(rep){try{if(window.parent&&typeof window.parent.openReportModal==="function"){e.preventDefault();window.parent.openReportModal();return;}}catch(err){}}' +
           'var link=el.closest("a[href^=\\"#\\"]");' +
           'if(!link)return;' +
           'var href=link.getAttribute("href");' +
           'if(!href||href==="#")return;' +
           'var targetId=href.slice(1);' +
           'var target=document.getElementById(targetId)||document.querySelector("[name=\\""+targetId+"\\"]");' +
-          'if(target){' +
-            'e.preventDefault();' +
-            'target.scrollIntoView({behavior:"smooth",block:"start"});' +
-          '}' +
+          'if(target){e.preventDefault();target.scrollIntoView({behavior:"smooth",block:"start"});}' +
         '},true);' +
         '})();' +
         '<\/script>';
@@ -1312,18 +1954,31 @@
 
     function injectShimIntoHtml(html, guideId) {
       const shim = buildBridgeShim(guideId);
-      if (html.indexOf('<head>') !== -1) {
-        return html.replace('<head>', '<head>' + shim);
+      if (/<\/head>/i.test(html)) {
+        return html.replace(/<\/head>/i, shim + '</head>');
+      }
+      if (/<head>/i.test(html)) {
+        return html.replace(/<head>/i, '<head>' + shim);
       }
       return shim + html;
     }
 
-    function openInReader(rawHtml, storageKeyId, titleText, modeLabel, surahNumOrNull) {
+    function openInReader(rawHtml, storageKeyId, desktopTitle, mobileTitle, modeLabel, surahNumOrNull, readerCtx, isSample) {
       const bridgedHtml = injectShimIntoHtml(rawHtml, storageKeyId);
-      document.getElementById('reader-title').textContent = titleText;
+      const isNarrow = window.innerWidth <= 640;
+      const titleEl = document.getElementById('reader-title');
+      titleEl.textContent = (isNarrow && mobileTitle) ? mobileTitle : desktopTitle;
+      titleEl.dataset.desktopTitle = desktopTitle;
+      titleEl.dataset.mobileTitle = mobileTitle || desktopTitle;
+
       document.getElementById('reader-mode-pill').textContent = modeLabel;
+      const unlockBtn = document.getElementById('btn-sample-unlock');
+      if (unlockBtn) unlockBtn.style.display = isSample ? 'inline-flex' : 'none';
 
       activeSurahNum = surahNumOrNull || null;
+      activeReaderContext = readerCtx || null;
+      syncReaderBookmarkButton();
+
       const surahCtrl = document.getElementById('reader-surah-controls');
       if (activeSurahNum) {
         surahCtrl.style.display = 'inline-flex';
@@ -1334,9 +1989,14 @@
       }
 
       const mount = document.getElementById('reader-mount');
-      mount.innerHTML = '';
+      mount.innerHTML = '<div class="reader-loading" id="reader-loading-el"><span>Loading study companion...</span></div>';
       const frame = document.createElement('iframe');
       frame.setAttribute('allow', 'clipboard-write');
+      frame.setAttribute('title', desktopTitle);
+      frame.onload = function() {
+        const loader = document.getElementById('reader-loading-el');
+        if (loader) loader.style.display = 'none';
+      };
       frame.srcdoc = bridgedHtml;
       mount.appendChild(frame);
 
@@ -1347,7 +2007,7 @@
       readerIsOpen = true;
     }
 
-    function closeReader() {
+    function closeReader(skipHistoryPush) {
       if (!readerIsOpen) return;
       const overlay = document.getElementById('reader-overlay');
       overlay.style.display = 'none';
@@ -1356,6 +2016,13 @@
       document.body.style.overflow = '';
       readerIsOpen = false;
       activeSurahNum = null;
+      activeReaderContext = null;
+
+      if (!skipHistoryPush && window.history && history.pushState) {
+        const nextUrl = activeSection === 'home' ? window.location.pathname : window.location.pathname + '?section=' + activeSection;
+        try { history.pushState({ section: activeSection }, '', nextUrl); } catch (e) {}
+      }
+
       if (activeSection === 'home' && vaultUnlocked) renderGuides();
       if (activeSection === 'quran') renderQuran();
     }
@@ -1369,7 +2036,7 @@
     async function shareActiveSurah(btn) {
       if (!activeSurahNum) return;
       const surah = getSurahs().find(function(s) { return s[0] === activeSurahNum; });
-      const shareUrl = 'https://muslimsinvite.com/?surah=' + activeSurahNum;
+      const shareUrl = 'https://muslimsinvite.com/?section=quran&surah=' + activeSurahNum;
       const shareTitle = surah ? ('Surah ' + surah[1] + ' (' + surah[3] + ') — Interactive Study') : 'Muslims Invite Quran';
 
       if (navigator.share) {
@@ -1382,24 +2049,35 @@
         await navigator.clipboard.writeText(shareUrl);
         const orig = btn.innerHTML;
         btn.textContent = 'Copied';
+        showToast('Share link copied');
         setTimeout(function() { btn.innerHTML = orig; }, 1600);
       } catch (e) {}
     }
 
+    window.miHandleChildEscape = function() {
+      if (readerIsOpen) closeReader();
+    };
+
     window.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        if (document.getElementById('install-modal').style.display === 'flex') {
-          closeInstallModal();
+        const anyModalOpen = ['install-modal', 'backup-modal', 'about-modal', 'privacy-modal', 'report-modal'].some(function(id) {
+          const el = document.getElementById(id);
+          return el && el.style.display === 'flex';
+        });
+        if (anyModalOpen) {
+          closeAllModals();
         } else if (readerIsOpen) {
           closeReader();
         }
       }
     });
 
-    function hasSavedProgress(keyId) {
-      try { return Boolean(localStorage.getItem('mi_vault_state_' + keyId)); }
-      catch (e) { return false; }
-    }
+    window.addEventListener('resize', function() {
+      const titleEl = document.getElementById('reader-title');
+      if (readerIsOpen && titleEl && titleEl.dataset.desktopTitle) {
+        titleEl.textContent = window.innerWidth <= 640 ? titleEl.dataset.mobileTitle : titleEl.dataset.desktopTitle;
+      }
+    });
 
     /* ---------- PUBLIC QURAN LIBRARY ENGINE ---------- */
     function isSurahLive(num) {
@@ -1415,17 +2093,25 @@
 
     function setQuranFilter(filter) {
       quranFilter = filter;
-      ['live', 'all', 'Meccan', 'Medinan', 'saved'].forEach(function(key) {
+      ['live', 'all', 'Meccan', 'Medinan', 'bookmarked', 'saved'].forEach(function(key) {
         const el = document.getElementById('qtab-' + key.toLowerCase());
-        if (el) el.classList.toggle('active', key === filter);
+        if (el) {
+          const act = key === filter;
+          el.classList.toggle('active', act);
+          el.setAttribute('aria-selected', act ? 'true' : 'false');
+        }
       });
       renderQuran();
     }
 
     function setQuranViewMode(mode) {
       quranView = mode === 'list' ? 'list' : 'grid';
-      document.getElementById('qview-grid-btn').classList.toggle('active', quranView === 'grid');
-      document.getElementById('qview-list-btn').classList.toggle('active', quranView === 'list');
+      const gb = document.getElementById('qview-grid-btn');
+      const lb = document.getElementById('qview-list-btn');
+      gb.classList.toggle('active', quranView === 'grid');
+      lb.classList.toggle('active', quranView === 'list');
+      gb.setAttribute('aria-pressed', quranView === 'grid' ? 'true' : 'false');
+      lb.setAttribute('aria-pressed', quranView === 'list' ? 'true' : 'false');
       renderQuran();
     }
 
@@ -1434,12 +2120,13 @@
       if (!stage) return;
 
       const surahs = getSurahs();
+      const bmList = loadBookmarks().quran;
       const liveTotal = surahs.filter(function(s) { return isSurahLive(s[0]); }).length;
+      const bookmarkedTotal = surahs.filter(function(s) { return bmList.indexOf(s[0]) !== -1; }).length;
       const savedTotal = surahs.filter(function(s) { return hasSavedProgress('quran-' + s[0]); }).length;
       const meccanTotal = surahs.filter(function(s) { return s[5] === 'Meccan'; }).length;
       const medinanTotal = surahs.filter(function(s) { return s[5] === 'Medinan'; }).length;
 
-      // Auto-hide redundant "Available Now" chip when all 114 chapters are live
       const liveTabBtn = document.getElementById('qtab-live');
       if (liveTabBtn) {
         if (liveTotal >= 114) {
@@ -1453,47 +2140,42 @@
         }
       }
 
-      const liveCountEl = document.getElementById('qcount-live');
-      const liveMetaEl = document.getElementById('quran-live-meta');
-      const savedCountEl = document.getElementById('qcount-saved');
-      const mecCountEl = document.getElementById('qcount-meccan');
-      const medCountEl = document.getElementById('qcount-medinan');
-
-      if (liveCountEl) liveCountEl.textContent = liveTotal;
-      if (savedCountEl) savedCountEl.textContent = savedTotal;
-      if (mecCountEl) mecCountEl.textContent = meccanTotal;
-      if (medCountEl) medCountEl.textContent = medinanTotal;
-      if (liveMetaEl) {
-        liveMetaEl.textContent = liveTotal >= 114
-          ? 'All 114 Interactive Chapters Live · Free for Everyone'
-          : liveTotal + ' of 114 Interactive Chapters Live · Free for Everyone';
-      }
+      document.getElementById('qcount-live').textContent = liveTotal;
+      document.getElementById('qcount-bookmarked').textContent = bookmarkedTotal;
+      document.getElementById('qcount-saved').textContent = savedTotal;
+      document.getElementById('qcount-meccan').textContent = meccanTotal;
+      document.getElementById('qcount-medinan').textContent = medinanTotal;
+      document.getElementById('quran-live-meta').textContent = liveTotal >= 114
+        ? 'All 114 Interactive Chapters Live · Free for Everyone'
+        : liveTotal + ' of 114 Interactive Chapters Live · Free for Everyone';
 
       const query = (document.getElementById('quran-search').value || '').trim().toLowerCase();
 
       const filtered = surahs.filter(function(s) {
-        const num = s[0], name = s[1], arabic = s[2], meaning = s[3], type = s[5];
+        const num = s[0], name = s[1], arabic = s[2], meaning = s[3], type = s[5], summary = s[6] || '';
         const live = isSurahLive(num);
 
+        if (quranFilter === 'bookmarked' && bmList.indexOf(num) === -1) return false;
         if (quranFilter === 'saved' && !hasSavedProgress('quran-' + num)) return false;
         if (quranFilter === 'live' && !live) return false;
         if (quranFilter === 'Meccan' && type !== 'Meccan') return false;
         if (quranFilter === 'Medinan' && type !== 'Medinan') return false;
 
         if (query) {
-          const hay = (num + ' ' + name + ' ' + meaning + ' ' + arabic + ' ' + type).toLowerCase();
+          const hay = (num + ' ' + name + ' ' + meaning + ' ' + arabic + ' ' + type + ' ' + summary).toLowerCase();
           if (hay.indexOf(query) === -1) return false;
         }
         return true;
       });
 
       if (filtered.length === 0) {
-        if (quranFilter === 'saved') {
+        if (quranFilter === 'bookmarked' || quranFilter === 'saved') {
+          const isBm = quranFilter === 'bookmarked';
           stage.innerHTML =
             '<div class="empty-search-box">' +
               '<div>' +
-                '<strong style="display:block; margin-bottom:0.2rem;">No saved Surahs yet</strong>' +
-                '<span style="color:var(--ink-muted); font-size:0.9rem;">Open any chapter and check off a verse, bookmark, or quiz question—your progress will appear right here automatically.</span>' +
+                '<strong style="display:block; margin-bottom:0.2rem;">' + (isBm ? 'No bookmarked Surahs yet' : 'No chapters in progress yet') + '</strong>' +
+                '<span style="color:var(--ink-muted); font-size:0.9rem;">' + (isBm ? 'Tap the bookmark icon on any Surah card or reader header to pin chapters here.' : 'Open any chapter and interact with a verse checklist or quiz—your progress appears here automatically.') + '</span>' +
               '</div>' +
               '<button type="button" class="pill-btn pill-primary" onclick="setQuranFilter(\'all\')"><span>Browse All 114 Surahs</span>' + SVG_ARROW + '</button>' +
             '</div>';
@@ -1505,10 +2187,11 @@
 
       if (quranView === 'list') {
         const rows = filtered.map(function(s, idx) {
-          const num = s[0], name = s[1], arabic = s[2], meaning = s[3], verses = s[4], type = s[5];
+          const num = s[0], name = s[1], arabic = s[2], meaning = s[3], verses = s[4], type = s[5], summary = s[6] || '';
           const live = isSurahLive(num);
           const tintCls = live ? ('tint-' + (idx % 4)) : '';
           const started = hasSavedProgress('quran-' + num);
+          const bookmarked = bmList.indexOf(num) !== -1;
 
           return (
             '<tr class="' + (live ? 'clickable-row' : '') + '" ' + (live ? 'onclick="launchSurah(' + num + ')"' : '') + '>' +
@@ -1516,18 +2199,19 @@
                 '<div class="list-title-cell">' +
                   '<span class="list-icon-dot ' + tintCls + '" style="' + (live ? '' : 'background:var(--surface-variant); color:var(--ink-muted);') + '">' + String(num).padStart(2, '0') + '</span>' +
                   '<div>' +
-                    '<span class="list-title-main">Surah ' + name + '</span>' +
-                    '<span class="list-title-sub">' + meaning + ' &middot; ' + verses + ' verses &middot; ' + type + '</span>' +
+                    '<span class="list-title-main">Surah ' + name + ' <span style="font-weight:400; color:var(--ink-muted);">(' + meaning + ')</span></span>' +
+                    '<span class="list-title-sub">' + (summary || (verses + ' verses · ' + type)) + '</span>' +
                   '</div>' +
                 '</div>' +
               '</td>' +
               '<td><span class="nb-arabic-title" style="font-size:1.3rem;" lang="ar" dir="rtl">' + arabic + '</span></td>' +
               '<td style="white-space:nowrap;">' +
                 (live
-                  ? (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '<span style="color:var(--accent-green); font-size:0.82rem; font-weight:500;">Live Free</span>')
+                  ? (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>In Progress</span></span>' : '<span style="color:var(--accent-green); font-size:0.82rem; font-weight:500;">Live Free</span>')
                   : '<span class="upcoming-badge">Upcoming</span>') +
               '</td>' +
               '<td style="white-space:nowrap; text-align:right;">' +
+                '<button type="button" class="nb-bookmark-btn" style="margin-right:0.45rem; vertical-align:middle;" aria-label="Bookmark Surah ' + name + '" aria-pressed="' + (bookmarked ? 'true' : 'false') + '" onclick="toggleBookmark(\'quran\', ' + num + ', event)">' + (bookmarked ? SVG_BM_ON : SVG_BM_OFF) + '</button>' +
                 (live
                   ? '<button type="button" class="pill-btn pill-primary" style="height:34px; padding:0 0.9rem; font-size:0.8rem;" onclick="event.stopPropagation(); launchSurah(' + num + ', this)"><span>Study</span></button>'
                   : '<span style="color:var(--ink-muted); font-size:0.8rem;">In production</span>') +
@@ -1547,28 +2231,10 @@
       }
 
       const cards = filtered.map(function(s, idx) {
-        const num = s[0], name = s[1], arabic = s[2], meaning = s[3], verses = s[4], type = s[5];
+        const num = s[0], name = s[1], arabic = s[2], meaning = s[3], verses = s[4], type = s[5], summary = s[6] || '';
         const live = isSurahLive(num);
         const started = hasSavedProgress('quran-' + num);
-
-        if (!live) {
-          return (
-            '<article class="notebook-card is-upcoming">' +
-              '<div>' +
-                '<div class="nb-card-top">' +
-                  '<span class="nb-icon-circle" style="background:var(--surface-variant); color:var(--ink-muted);">' + String(num).padStart(2, '0') + '</span>' +
-                  '<span class="nb-arabic-title" style="opacity:0.75;" lang="ar" dir="rtl">' + arabic + '</span>' +
-                '</div>' +
-                '<h3 class="nb-title">Surah ' + name + '</h3>' +
-                '<p class="nb-desc">' + meaning + '</p>' +
-              '</div>' +
-              '<div class="nb-footer">' +
-                '<span>' + verses + ' verses &middot; ' + type + '</span>' +
-                '<span class="upcoming-badge">Upcoming Drop</span>' +
-              '</div>' +
-            '</article>'
-          );
-        }
+        const bookmarked = bmList.indexOf(num) !== -1;
 
         const tintCls = 'tint-' + (idx % 4);
         return (
@@ -1576,15 +2242,19 @@
             '<div>' +
               '<div class="nb-card-top">' +
                 '<span class="nb-icon-circle">' + String(num).padStart(2, '0') + '</span>' +
-                '<span class="nb-arabic-title" lang="ar" dir="rtl">' + arabic + '</span>' +
+                '<div class="nb-top-right">' +
+                  '<span class="nb-arabic-title" lang="ar" dir="rtl">' + arabic + '</span>' +
+                  '<button type="button" class="nb-bookmark-btn" aria-label="Bookmark Surah ' + name + '" aria-pressed="' + (bookmarked ? 'true' : 'false') + '" onclick="toggleBookmark(\'quran\', ' + num + ', event)">' + (bookmarked ? SVG_BM_ON : SVG_BM_OFF) + '</button>' +
+                '</div>' +
               '</div>' +
               '<h3 class="nb-title">Surah ' + name + '</h3>' +
-              '<p class="nb-desc">' + meaning + ' — Interactive chapter study, structure, verses &amp; mastery quiz.</p>' +
+              '<p class="nb-meaning-line">' + meaning + '</p>' +
+              '<p class="nb-desc">' + (summary || 'Interactive chapter study, structure, verses & mastery quiz.') + '</p>' +
             '</div>' +
             '<div class="nb-footer">' +
               '<div class="nb-meta-left">' +
                 '<span>' + verses + ' verses &middot; ' + type + '</span>' +
-                (started ? '<span>&middot;</span><span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '') +
+                (started ? '<span>&middot;</span><span class="nb-saved-pill">' + SVG_CHECK + '<span>In Progress</span></span>' : '') +
               '</div>' +
               '<span class="nb-open-text"><span>Read</span>' + SVG_ARROW + '</span>' +
             '</div>' +
@@ -1595,7 +2265,7 @@
       stage.innerHTML = '<div class="notebook-grid">' + cards + '</div>';
     }
 
-    async function launchSurah(num, btnEl) {
+    async function launchSurah(num, btnEl, skipHistoryPush) {
       const surah = getSurahs().find(function(s) { return s[0] === num; });
       if (!surah || !isSurahLive(num)) return;
 
@@ -1607,11 +2277,20 @@
         let rawHtml = publicHtmlCache[filePath];
         if (!rawHtml) {
           const res = await fetch(filePath + '?v=' + Date.now());
-          if (!res.ok) throw new Error('Could not load ' + filePath + '. Make sure it is uploaded in your quran/ folder.');
+          if (!res.ok) throw new Error('Could not load ' + filePath + '.');
           rawHtml = await res.text();
           publicHtmlCache[filePath] = rawHtml;
         }
-        openInReader(rawHtml, 'quran-' + num, 'Chapter ' + num + ' · Surah ' + surah[1] + ' (' + surah[3] + ')', 'Free Public Study', num);
+        const desktopTitle = 'Chapter ' + num + ' · Surah ' + surah[1] + ' (' + surah[3] + ')';
+        const mobileTitle = 'Ch. ' + num + ' · ' + surah[1];
+        if (!skipHistoryPush && window.history && history.pushState) {
+          try { history.pushState({ section: 'quran', surah: num }, '', window.location.pathname + '?section=quran&surah=' + num); } catch (e) {}
+        }
+        openInReader(rawHtml, 'quran-' + num, desktopTitle, mobileTitle, 'Free Public Study', num, {
+          scope: 'quran',
+          id: num,
+          label: desktopTitle
+        }, false);
       } catch (err) {
         alert(err.message);
       } finally {
@@ -1619,7 +2298,40 @@
       }
     }
 
-    /* ---------- ENCRYPTED INNER CIRCLE VAULT ENGINE ---------- */
+    /* ---------- FREE SAMPLE & ENCRYPTED INNER CIRCLE VAULT ENGINE ---------- */
+    async function launchFreeSample(btnEl, skipHistoryPush) {
+      const origHtml = btnEl ? btnEl.innerHTML : '';
+      if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'Opening...'; }
+
+      try {
+        const samplePath = 'guides/sample-invite-01.html';
+        let rawHtml = publicHtmlCache[samplePath];
+        if (!rawHtml) {
+          const res = await fetch(samplePath + '?v=' + Date.now());
+          if (!res.ok) throw new Error('Could not load free sample playbook.');
+          rawHtml = await res.text();
+          publicHtmlCache[samplePath] = rawHtml;
+        }
+        if (!skipHistoryPush && window.history && history.pushState) {
+          try { history.pushState({ section: 'home', sample: 1 }, '', window.location.pathname + '?sample=1'); } catch (e) {}
+        }
+        openInReader(
+          rawHtml,
+          'invite-01',
+          '#01 · The "600 Years Later" Fallacy (Free Sample)',
+          '#01 · Free Sample',
+          'Free Sample Playbook',
+          null,
+          { scope: 'vault', id: 'invite-01', label: '#01 · The "600 Years Later" Fallacy' },
+          true
+        );
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        if (btnEl) { btnEl.disabled = false; btnEl.innerHTML = origHtml; }
+      }
+    }
+
     function getCatalog() {
       return Array.isArray(window.VAULT_CATALOG) ? window.VAULT_CATALOG : [];
     }
@@ -1681,9 +2393,12 @@
         if (remember) {
           localStorage.setItem(PASS_STORAGE_KEY, password);
         } else {
-          sessionStorage.setItem(PASS_STORAGE_KEY, password);
+          // Keep passcode in memory only when "Keep unlocked" is unchecked
           localStorage.removeItem(PASS_STORAGE_KEY);
+          sessionStorage.removeItem(PASS_STORAGE_KEY);
         }
+        input.value = '';
+        setPassVisibility(false);
 
         openHub();
       } catch (err) {
@@ -1699,19 +2414,20 @@
 
     function openHub() {
       vaultUnlocked = true;
-      document.getElementById('lock-screen').style.display = 'none';
-      document.getElementById('vault-hub').style.display = 'block';
+      const lockScreen = document.getElementById('lock-screen');
+      const vaultHub = document.getElementById('vault-hub');
+      lockScreen.style.display = 'none';
+      lockScreen.hidden = true;
+      vaultHub.style.display = 'block';
+      vaultHub.hidden = false;
       document.getElementById('nav-join-btn').style.display = 'none';
       document.getElementById('nav-lock-btn').style.display = 'inline-flex';
       document.getElementById('tab-lock-closed').style.display = 'none';
       document.getElementById('tab-lock-open').style.display = 'inline-block';
 
       const catalog = getCatalog();
-      const inviteCount = catalog.filter(function(g) { return g.track === 'invite'; }).length;
-      const refuteCount = catalog.filter(function(g) { return g.track === 'refute'; }).length;
-
-      document.getElementById('count-invite').textContent = inviteCount;
-      document.getElementById('count-refute').textContent = refuteCount;
+      document.getElementById('count-invite').textContent = catalog.filter(function(g) { return g.track === 'invite'; }).length;
+      document.getElementById('count-refute').textContent = catalog.filter(function(g) { return g.track === 'refute'; }).length;
 
       renderGuides();
     }
@@ -1719,27 +2435,56 @@
     function lockVault() {
       vaultUnlocked = false;
       activePassword = '';
-      vaultSavedOnly = false;
+      vaultSubFilter = 'all';
       localStorage.removeItem(PASS_STORAGE_KEY);
       sessionStorage.removeItem(PASS_STORAGE_KEY);
       for (const k in decryptedCache) delete decryptedCache[k];
-      document.getElementById('vault-pass').value = '';
-      document.getElementById('vault-hub').style.display = 'none';
-      document.getElementById('lock-screen').style.display = 'block';
+
+      const input = document.getElementById('vault-pass');
+      if (input) input.value = '';
+      setPassVisibility(false);
+
+      const lockScreen = document.getElementById('lock-screen');
+      const vaultHub = document.getElementById('vault-hub');
+      vaultHub.style.display = 'none';
+      vaultHub.hidden = true;
+      lockScreen.style.display = 'block';
+      lockScreen.hidden = false;
+
       document.getElementById('nav-join-btn').style.display = 'inline-flex';
       document.getElementById('nav-lock-btn').style.display = 'none';
       document.getElementById('tab-lock-closed').style.display = 'inline-block';
       document.getElementById('tab-lock-open').style.display = 'none';
-      const savedBtn = document.getElementById('tab-vault-saved');
-      if (savedBtn) savedBtn.classList.remove('active');
+      syncVaultSubFilterButtons();
       switchSection('home');
+      showToast('Vault locked');
+    }
+
+    function syncVaultSubFilterButtons() {
+      const bmBtn = document.getElementById('tab-vault-bookmarked');
+      const prBtn = document.getElementById('tab-vault-progress');
+      if (bmBtn) {
+        const a = vaultSubFilter === 'bookmarked';
+        bmBtn.classList.toggle('active', a);
+        bmBtn.setAttribute('aria-pressed', a ? 'true' : 'false');
+      }
+      if (prBtn) {
+        const b = vaultSubFilter === 'progress';
+        prBtn.classList.toggle('active', b);
+        prBtn.setAttribute('aria-pressed', b ? 'true' : 'false');
+      }
     }
 
     function setTrackFilter(track) {
       activeTrack = track;
+      vaultSubFilter = 'all'; // Never carry sticky empty sub-filter across tracks
+      syncVaultSubFilterButtons();
       ['invite', 'refute'].forEach(function(t) {
         const b = document.getElementById('tab-' + t);
-        if (b) b.classList.toggle('active', t === track);
+        if (b) {
+          b.classList.toggle('active', t === track);
+          b.setAttribute('aria-selected', t === track ? 'true' : 'false');
+        }
       });
       const heading = document.getElementById('active-track-heading');
       if (heading) {
@@ -1748,18 +2493,21 @@
       renderGuides();
     }
 
-    function toggleVaultSavedFilter() {
-      vaultSavedOnly = !vaultSavedOnly;
-      const btn = document.getElementById('tab-vault-saved');
-      if (btn) btn.classList.toggle('active', vaultSavedOnly);
+    function toggleVaultSubFilter(kind) {
+      vaultSubFilter = vaultSubFilter === kind ? 'all' : kind;
+      syncVaultSubFilterButtons();
       renderGuides();
     }
 
     function setViewMode(mode) {
       activeView = mode === 'list' ? 'list' : 'grid';
-      localStorage.setItem(VIEW_STORAGE_KEY, activeView);
-      document.getElementById('view-grid-btn').classList.toggle('active', activeView === 'grid');
-      document.getElementById('view-list-btn').classList.toggle('active', activeView === 'list');
+      try { localStorage.setItem(VIEW_STORAGE_KEY, activeView); } catch (e) {}
+      const gb = document.getElementById('view-grid-btn');
+      const lb = document.getElementById('view-list-btn');
+      gb.classList.toggle('active', activeView === 'grid');
+      lb.classList.toggle('active', activeView === 'list');
+      gb.setAttribute('aria-pressed', activeView === 'grid' ? 'true' : 'false');
+      lb.setAttribute('aria-pressed', activeView === 'list' ? 'true' : 'false');
       renderGuides();
     }
 
@@ -1769,22 +2517,35 @@
       return hay.indexOf(query) !== -1;
     }
 
+    function toggleHubSort() {
+      hubSortOrder = hubSortOrder === 'asc' ? 'desc' : 'asc';
+      const lbl = document.getElementById('hub-sort-label');
+      if (lbl) lbl.textContent = hubSortOrder === 'asc' ? 'Order: #01 \u2192 #99' : 'Newest first';
+      renderGuides();
+    }
+
     function renderGuides() {
       const stage = document.getElementById('guides-stage');
       if (!stage) return;
       const query = (document.getElementById('hub-search').value || '').trim().toLowerCase();
-      const sortOrder = document.getElementById('hub-sort').value;
+      const sortOrder = hubSortOrder;
       const catalog = getCatalog();
+      const bmVault = loadBookmarks().vault;
 
-      const trackSavedCount = catalog.filter(function(g) {
+      const trackBookmarkedCount = catalog.filter(function(g) {
+        return g.track === activeTrack && bmVault.indexOf(g.id) !== -1;
+      }).length;
+      const trackProgressCount = catalog.filter(function(g) {
         return g.track === activeTrack && hasSavedProgress(g.id);
       }).length;
-      const savedCountEl = document.getElementById('count-vault-saved');
-      if (savedCountEl) savedCountEl.textContent = trackSavedCount;
 
-      let filtered = catalog.filter(function(g) {
+      document.getElementById('count-vault-bookmarked').textContent = trackBookmarkedCount;
+      document.getElementById('count-vault-progress').textContent = trackProgressCount;
+
+      const filtered = catalog.filter(function(g) {
         if (g.track !== activeTrack) return false;
-        if (vaultSavedOnly && !hasSavedProgress(g.id)) return false;
+        if (vaultSubFilter === 'bookmarked' && bmVault.indexOf(g.id) === -1) return false;
+        if (vaultSubFilter === 'progress' && !hasSavedProgress(g.id)) return false;
         return matchesQuery(g, query);
       });
 
@@ -1795,14 +2556,15 @@
       });
 
       if (filtered.length === 0) {
-        if (vaultSavedOnly && !query) {
+        if (vaultSubFilter !== 'all' && !query) {
+          const isBm = vaultSubFilter === 'bookmarked';
           stage.innerHTML =
             '<div class="empty-search-box">' +
               '<div>' +
-                '<strong style="display:block; margin-bottom:0.2rem;">No saved guides in this category yet</strong>' +
-                '<span style="color:var(--ink-muted); font-size:0.9rem;">Open any notebook and start a drill or simulator—your progress will appear here automatically.</span>' +
+                '<strong style="display:block; margin-bottom:0.2rem;">' + (isBm ? 'No bookmarked guides in this category yet' : 'No guides in progress in this category yet') + '</strong>' +
+                '<span style="color:var(--ink-muted); font-size:0.9rem;">' + (isBm ? 'Tap the bookmark icon on any guide card to pin it here.' : 'Open any notebook and start a drill or simulator—your progress will appear here automatically.') + '</span>' +
               '</div>' +
-              '<button type="button" class="pill-btn pill-primary" onclick="toggleVaultSavedFilter()"><span>Show All Guides</span>' + SVG_ARROW + '</button>' +
+              '<button type="button" class="pill-btn pill-primary" onclick="toggleVaultSubFilter(\'' + vaultSubFilter + '\')"><span>Show All Guides</span>' + SVG_ARROW + '</button>' +
             '</div>';
           return;
         }
@@ -1833,6 +2595,7 @@
           const tintCls = 'tint-' + (idx % 4);
           const paddedNum = String(g.number).padStart(2, '0');
           const started = hasSavedProgress(g.id);
+          const bookmarked = bmVault.indexOf(g.id) !== -1;
           return (
             '<tr class="clickable-row" onclick="launchGuide(\'' + g.id + '\')">' +
               '<td>' +
@@ -1846,9 +2609,10 @@
               '</td>' +
               '<td style="white-space:nowrap; color:var(--ink-muted);">Guide #' + paddedNum + '</td>' +
               '<td style="white-space:nowrap;">' +
-                (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '<span style="color:var(--ink-muted); font-size:0.82rem;">Ready</span>') +
+                (started ? '<span class="nb-saved-pill">' + SVG_CHECK + '<span>In Progress</span></span>' : '<span style="color:var(--ink-muted); font-size:0.82rem;">Ready</span>') +
               '</td>' +
               '<td style="white-space:nowrap; text-align:right;">' +
+                '<button type="button" class="nb-bookmark-btn" style="margin-right:0.45rem; vertical-align:middle;" aria-label="Bookmark ' + g.title.replace(/"/g, '&quot;') + '" aria-pressed="' + (bookmarked ? 'true' : 'false') + '" onclick="toggleBookmark(\'vault\', \'' + g.id + '\', event)">' + (bookmarked ? SVG_BM_ON : SVG_BM_OFF) + '</button>' +
                 (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" class="nb-reel-pill" onclick="event.stopPropagation();" style="margin-right:0.5rem;"><span>Reel</span>' + SVG_EXT + '</a>' : '') +
                 '<button type="button" class="pill-btn pill-primary" style="height:34px; padding:0 0.9rem; font-size:0.8rem;" onclick="event.stopPropagation(); launchGuide(\'' + g.id + '\', this)"><span>Open</span></button>' +
               '</td>' +
@@ -1870,6 +2634,7 @@
         const tintCls = 'tint-' + (idx % 4);
         const paddedNum = String(g.number).padStart(2, '0');
         const started = hasSavedProgress(g.id);
+        const bookmarked = bmVault.indexOf(g.id) !== -1;
         const topTags = (g.tags || []).slice(0, 2).join(' · ');
 
         return (
@@ -1877,7 +2642,10 @@
             '<div>' +
               '<div class="nb-card-top">' +
                 '<span class="nb-icon-circle">' + paddedNum + '</span>' +
-                (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" class="nb-reel-pill" onclick="event.stopPropagation();"><span>Watch Reel</span>' + SVG_EXT + '</a>' : '') +
+                '<div class="nb-top-right">' +
+                  (g.reelUrl ? '<a href="' + g.reelUrl + '" target="_blank" rel="noopener" class="nb-reel-pill" onclick="event.stopPropagation();"><span>Watch Reel</span>' + SVG_EXT + '</a>' : '') +
+                  '<button type="button" class="nb-bookmark-btn" aria-label="Bookmark ' + g.title.replace(/"/g, '&quot;') + '" aria-pressed="' + (bookmarked ? 'true' : 'false') + '" onclick="toggleBookmark(\'vault\', \'' + g.id + '\', event)">' + (bookmarked ? SVG_BM_ON : SVG_BM_OFF) + '</button>' +
+                '</div>' +
               '</div>' +
               '<h3 class="nb-title">' + g.title + '</h3>' +
               '<p class="nb-desc">' + g.subtitle + '</p>' +
@@ -1885,7 +2653,7 @@
             '<div class="nb-footer">' +
               '<div class="nb-meta-left">' +
                 '<span>' + (topTags || ('Guide #' + paddedNum)) + '</span>' +
-                (started ? '<span>&middot;</span><span class="nb-saved-pill">' + SVG_CHECK + '<span>Saved</span></span>' : '') +
+                (started ? '<span>&middot;</span><span class="nb-saved-pill">' + SVG_CHECK + '<span>In Progress</span></span>' : '') +
               '</div>' +
               '<span class="nb-open-text"><span>Open</span>' + SVG_ARROW + '</span>' +
             '</div>' +
@@ -1905,7 +2673,12 @@
 
       try {
         const rawHtml = await fetchAndDecryptGuide(guide, activePassword);
-        openInReader(rawHtml, guide.id, '#' + guide.number + ' · ' + guide.title, 'Encrypted Session', null);
+        const fullTitle = '#' + guide.number + ' · ' + guide.title;
+        openInReader(rawHtml, guide.id, fullTitle, fullTitle, 'Encrypted Session', null, {
+          scope: 'vault',
+          id: guide.id,
+          label: fullTitle
+        }, false);
       } catch (err) {
         alert('Could not decrypt this guide. Please check that ' + getGuideFile(guide) + ' was encrypted with the current passcode.');
       } finally {
@@ -1917,8 +2690,6 @@
     window.addEventListener('DOMContentLoaded', async function() {
       applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || 'light');
 
-      // Show Install App button on iOS Safari or Instagram In-App Browser (when not already standalone)
-      // On Chrome/Edge/Android, beforeinstallprompt handles showing it ONLY if not already installed
       const ua = navigator.userAgent || '';
       const isInApp = /Instagram|FBAN|FBAV|TikTok|Snapchat/i.test(ua);
       const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -1931,18 +2702,19 @@
       activeView = savedView === 'list' ? 'list' : 'grid';
       document.getElementById('view-grid-btn').classList.toggle('active', activeView === 'grid');
       document.getElementById('view-list-btn').classList.toggle('active', activeView === 'list');
+      document.getElementById('view-grid-btn').setAttribute('aria-pressed', activeView === 'grid' ? 'true' : 'false');
+      document.getElementById('view-list-btn').setAttribute('aria-pressed', activeView === 'list' ? 'true' : 'false');
 
       const catalog = getCatalog();
       const lockBadge = document.getElementById('lock-guide-count');
       if (lockBadge && catalog.length > 0) {
-        lockBadge.textContent = catalog.length + ' Interactive Guides Inside';
+        lockBadge.textContent = catalog.length + ' Interactive Playbooks · 1 Free Sample';
       }
 
-      // Default Quran filter smartly based on whether all 114 chapters are live
       const liveSurahs = getSurahs().filter(function(s) { return isSurahLive(s[0]); }).length;
       setQuranFilter(liveSurahs >= 114 ? 'all' : 'live');
 
-      const savedPass = localStorage.getItem(PASS_STORAGE_KEY) || sessionStorage.getItem(PASS_STORAGE_KEY);
+      const savedPass = localStorage.getItem(PASS_STORAGE_KEY);
       if (savedPass && catalog.length > 0) {
         try {
           await fetchAndDecryptGuide(catalog[0], savedPass);
@@ -1950,22 +2722,33 @@
           openHub();
         } catch (e) {
           localStorage.removeItem(PASS_STORAGE_KEY);
-          sessionStorage.removeItem(PASS_STORAGE_KEY);
         }
+      } else {
+        sessionStorage.removeItem(PASS_STORAGE_KEY);
       }
 
       const params = new URLSearchParams(window.location.search);
       const urlSection = params.get('section');
       const urlSurah = parseInt(params.get('surah'), 10);
+      const urlSample = params.get('sample');
+      const urlReport = params.get('report');
 
       let initialSec = 'home';
       if (urlSurah && isSurahLive(urlSurah)) {
         initialSec = 'quran';
         switchSection('quran', true);
-        launchSurah(urlSurah);
-      } else if (urlSection && ['home', 'intro', 'quran', 'hadith', 'stories', 'biography', 'books'].indexOf(urlSection) !== -1) {
-        initialSec = urlSection;
+        launchSurah(urlSurah, null, true);
+      } else if (urlSample === '1') {
+        initialSec = 'home';
+        switchSection('home', true);
+        launchFreeSample(null, true);
+      } else if (urlSection) {
+        initialSec = normalizeSection(urlSection);
         switchSection(urlSection, true);
+      }
+
+      if (urlReport) {
+        openReportModal(urlReport);
       }
 
       if (window.history && history.replaceState) {
